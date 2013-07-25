@@ -19,7 +19,7 @@ class captcha{
 	 * @param int $height
 	 * @param string $baseList
 	 */
-    public static function image($name='',$width=120,$height=40,$baseList = '0123456789abcdfghjkmnpqrstvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+    public static function image($name='',$width=120,$height=40,$baseList = '123456789abcdfghjkmnpqrstvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ')
     {
         //echo $name.' orig= '.Session::instance()->get('captcha_'.$name).'<br>';
 

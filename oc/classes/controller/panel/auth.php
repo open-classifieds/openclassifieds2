@@ -103,7 +103,7 @@ class Controller_Panel_Auth extends Controller {
 			}
 			else
 			{
-				Form::set_errors(array(__('Email required')));
+				Form::set_errors(array(__('Invalid Email')));
 			}
 			
 		}
@@ -188,7 +188,7 @@ class Controller_Panel_Auth extends Controller {
 			}
 			else
 			{
-				Form::set_errors(array(__('Email required')));
+				Form::set_errors(array(__('Invalid Email')));
 			}
 				
 		}

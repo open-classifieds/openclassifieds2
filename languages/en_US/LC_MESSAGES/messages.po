@@ -2194,3 +2194,6 @@ msgstr "Right side"
 msgid "Left side"
 msgstr "Left side"
 
+#: String 549
+msgid "Invalid Email"
+msgstr "Invalid Email"

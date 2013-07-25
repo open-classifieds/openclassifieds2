@@ -79,6 +79,16 @@ class Controller_New extends Controller
 			
  	}
 
+	public function randString($length = 8) {
+		$chars = "abcdefghjklmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789";	
+		$str = "";
+		$size = strlen($chars);
+		for($i = 0; $i < $length; $i++) {
+			$str .= $chars[rand(0, $size - 1)];
+		}
+		return $str;
+	}
+
  	/**
  	 * [save_new_ad Save new advertisement if validated, with a given parameters 
  	 * 
@@ -140,12 +150,12 @@ class Controller_New extends Controller
 
 							if(!$user->loaded())
 							{ 
-								$new_password_hash = Auth::instance()->hash_password('password'); 
+								$new_password_plain = self::randString(8);
 								$user->email 	= $email;
 								$user->name 	= $name;
 								$user->status 	= Model_User::STATUS_ACTIVE;
 								$user->id_role	= Model_Role::ROLE_USER;//normal user
-								$user->password = $new_password_hash;	// @TODO generate new user password, bad solution find better !!!
+								$user->password = $new_password_plain;
 								$user->seoname 	= $name;
 								
 								try
@@ -160,7 +170,7 @@ class Controller_New extends Controller
 			                    										   'action'		=> 'edit'),TRUE);
 
 			                    	$ret = $user->email('user.new',array('[URL.PWCH]'=>$url_pwch,
-			                    										 '[USER.PWD]'=>$new_password_hash));
+			                    										 '[USER.PWD]'=>$new_password_plain));
 														
 								}
 								catch (ORM_Validation_Exception $e)
@@ -177,7 +187,7 @@ class Controller_New extends Controller
 						}
 						else
 						{
-							Alert::set(Alert::ALERT, __('Some errors in the form'));
+							Alert::set(Alert::ALERT, __('Invalid Email'));
 							$this->request->redirect(Route::url('post_new'));
 						}
 					}
