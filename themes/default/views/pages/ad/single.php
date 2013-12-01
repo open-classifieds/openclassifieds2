@@ -41,7 +41,7 @@
 				<?if( isset($value['thumb']) AND isset($value['image']) ):?>
 					<div class="col-md-3">
 					<a href="<?=URL::base('http')?><?= $value['image']?>" class="thumbnail gallery-item" data-gallery>
-						<img src="<?=URL::base('http')?><?= $value['thumb']?>"  class="img-rounded" alt="">
+					<img src="<?=URL::base('http')?><?= $value['thumb']?>" class="img-rounded" alt="<?= $value['image']?>" />
 					</a>
 					</div>
 				<?endif?>	

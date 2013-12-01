@@ -192,18 +192,19 @@ class Model_Ad extends ORM {
                 foreach (new DirectoryIterator($folder) as $file) 
                 {   
 
-                    if(!$file->isDot())
-                    {   
+                    if ( ! $file->isDot())
+                    {
 
-                        $key = explode('_', $file->getFilename());
+                        $fileName = $file->getFilename();
+                        $key = explode('_', $fileName);
                         $key = end($key);
                         $key = explode('.', $key);
                         $key = (isset($key[0])) ? $key[0] : NULL ;
 
                         if(is_numeric($key))
                         {
-                            $type = (strpos($file->getFilename(), 'thumb_') === 0) ? 'thumb' : 'image' ;
-                            $image_path[$key][$type] = $route.$file->getFilename();
+                            $type = (strpos($fileName, 'thumb_') === 0) ? 'thumb' : 'image' ;
+                            $image_path[$key][$type] = $route.$fileName;
                         }
                     }
                 }

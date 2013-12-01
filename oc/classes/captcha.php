@@ -120,7 +120,6 @@ class captcha{
     public static function image_tag($name='')
     {
         return self::reload_image().
-                '<img alt="captcha" id="captcha_img_'.$name.'" style="cursor: pointer;" title="Click to refresh"
-				onClick="return reloadImg(\'captcha_img_'.$name.'\');" src="'.captcha::url($name).'">';
+                '<img alt="captcha" id="captcha_img_'.$name.'" style="cursor:pointer;" title="'.HTML::chars(__("Click to get another challenge")).'" onclick="return reloadImg(\'captcha_img_'.$name.'\');" src="'.captcha::url($name).'" />';
     }
 }

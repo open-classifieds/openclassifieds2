@@ -7,28 +7,32 @@
     <p><?=__('You can change the look and feel of your website here.')?><a href="http://open-classifieds.com/2013/08/21/how-to-change-theme/" target="_blank"><?=__('Read more')?></a></p>
 </div>
 <!-- end install themeform -->
-<div class=" col-md-7 col-sm-10 col-xs-10">
-    <?if ($scr = Theme::get_theme_screenshot(Theme::$theme))?>
-            <img class="media-object pull-left" width="150px" height="100px" src="<?=$scr?>">
+<div class="col-md-7 col-sm-10 col-xs-10">
+<? $esc_html_Title=HTML::chars($selected['Name']);
+if ( $scr = Theme::get_theme_screenshot(Theme::$theme)):?>
+    <img class="media-object pull-left" src="<?=$scr?>" width="150" height="100" style="width:150px;height:100px;margin-right:20px;" alt="<?=$esc_html_Title?>" title="<?=$esc_html_Title?>" />
+    <?else:?>
+    <img class="media-object pull-left" src="http://www.placehold.it/150x100&text=<?=$selected['Name']?>" width="150" height="100" style="width:150px;height:100px;margin-right:20px;" alt="<?=$esc_html_Title?>" title="<?=$esc_html_Title?>" />
+  <?endif?>
     <div class="media-body">
         <h4 class="media-heading"><?=$selected['Name']?></h4>
         <p>
             <span class="label label-info"><?=__('Current Theme')?></span>
             <?if (Theme::has_options()):?>
-            <a class="btn btn-xs btn-primary" title="<?=__('Theme Options')?>" 
+            <a class="btn btn-xs btn-primary" title="<?=HTML::chars(__('Theme Options'))?>" 
                 href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'options'))?>">
-                <i class="glyphicon  glyphicon-wrench glyphicon"></i> </a>
+                <i class="glyphicon glyphicon-wrench glyphicon"></i> </a>
             <?endif?>
         </p>
         <p><?=$selected['Description']?></p>
         <?if(Core::config('appearance.theme_mobile')!=''):?>
             <p>
                 <?=__('Using mobile theme')?> <code><?=Core::config('appearance.theme_mobile')?></code>
-                <a class="btn btn-xs btn-warning" title="<?=__('Disable')?>" 
+                <a class="btn btn-xs btn-warning" title="<?=HTML::chars(__('Disable'))?>" 
                     href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'mobile','id'=>'disable'))?>">
                     <i class="glyphicon   glyphicon-remove"></i>
                 </a>
-                <a class="btn btn-xs btn-primary" title="<?=__('Options')?>" 
+                <a class="btn btn-xs btn-primary" title="<?=HTML::chars(__('Options'))?>" 
                     href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'options','id'=>Core::config('appearance.theme_mobile')))?>">
                 <i class="glyphicon  glyphicon-wrench glyphicon"></i></a>
             </p>
@@ -63,7 +67,7 @@ foreach ($themes as $theme=>$info):?>
     
     <div class="thumbnail col-md-3 col-sm-3 ">
         <?if ($scr = Theme::get_theme_screenshot($theme)):?>
-            <img width="300px" height="200px" src="<?=$scr?>">
+            <img src="<?=$scr?>" width="300" height="200" style="width:300px;height:200px;" alt="<?=HTML::chars($info['Name'])?>" title="<?=HTML::chars($info['Name'])?>" />
         <?endif?>
         
 
@@ -107,7 +111,7 @@ foreach ($mobile_themes as $theme=>$info):?>
     <div class="thumbnail">
 
         <?if ($scr = Theme::get_theme_screenshot($theme)):?>
-            <img width="300px" height="200px" src="<?=$scr?>">
+            <img src="<?=$scr?>" width="300" height="200" style="width:300px;height:200px;" alt="<?=HTML::chars($info['Name'])?>" title="<?=HTML::chars($info['Name'])?>" />
         <?endif?>
 
         <div class="caption">
