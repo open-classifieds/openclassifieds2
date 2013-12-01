@@ -9,7 +9,7 @@
 </div>
 <a class="btn btn-primary pull-right" 
     href="<?=Route::url('oc-panel', array('controller'=>'content','action'=>'create')).'?type='.$type ?>" 
-    rel"tooltip" title="<?=__('Edit')?>">
+    rel="tooltip" title="<?=__('Edit')?>">
     <?=__('New')?>
 </a>
 <?= FORM::open(Route::url('oc-panel',array('controller'=>'content','action'=>'list')), array('method'=>'GET','class'=>'form-horizontal', 'id'=>'locale_form','enctype'=>'multipart/form-data'))?>
@@ -46,12 +46,12 @@
             
             <a class="btn btn-primary" 
                 href="<?=Route::url('oc-panel', array('controller'=>'content','action'=>'edit','id'=>$content))?>" 
-                rel"tooltip" title="<?=__('Edit')?>">
+                rel="tooltip" title="<?=__('Edit')?>">
                 <i class="glyphicon   glyphicon-edit"></i>
             </a>
             <a class="btn btn-danger" 
                 href="<?=Route::url('oc-panel', array('controller'=>'content','action'=>'delete','id'=>$content))?>" 
-                rel"tooltip" title="<?=__('Delete')?>">
+                rel="tooltip" title="<?=__('Delete')?>">
                 <i class="glyphicon   glyphicon-trash"></i>
             </a>
 
