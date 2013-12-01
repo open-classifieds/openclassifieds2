@@ -11,10 +11,12 @@ Host file:
 127.0.0.1   reoc.lo
 
 Vhost apache:
+```
 <VirtualHost *:80>
 ServerName reoc.lo
 DocumentRoot /var/www/reoc/
 </VirtualHost>
+````
 
 ## Git usage
 Example to clone project on local:
@@ -51,13 +53,14 @@ We only accept issues that are bug reports or feature requests. Bugs must be iso
 
 ## Key branches
 
-- In the home page 2.0.x showed branch is the current development branch.
+- In the home page 2.0.7 shown branch is the current deployed branch.
 - The previous branch 2.0.x is the latest, deployed version.
+- The current development branch is 2.1.
 
 
 ## Pull requests
 
-- Try to submit pull requests against the latest branch for easier merging
+- Try to submit pull requests against the current development branch for easier merging
 - Try not to pollute your pull request with unintended changes--keep them simple and small
 - Try to share which browsers your code has been tested in before submitting a pull request
 
