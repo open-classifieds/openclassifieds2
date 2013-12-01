@@ -14,8 +14,8 @@ class Controller_Contact extends Controller {
 
 		if($this->request->post()) //message submition  
 		{
-            //captcha check
-            if(core::config('advertisement.captcha') == FALSE || captcha::check('contact'))
+
+            if (captcha::check('contact'))
             {
                 //akismet spam filter
                 if(!core::akismet(core::post('name'), 
@@ -61,7 +61,7 @@ class Controller_Contact extends Controller {
 
             $user = new Model_User($ad->id_user);
          
-			if(core::config('advertisement.captcha') == FALSE || captcha::check('contact'))
+            if (captcha::check('contact'))
 			{ 
                 //akismet spam filter
                 if(!core::akismet(core::post('name'), 
@@ -131,7 +131,7 @@ class Controller_Contact extends Controller {
         if($user->loaded() AND $this->request->post() )
         {
 
-            if(core::config('advertisement.captcha') == FALSE || captcha::check('contact'))
+            if (captcha::check('contact'))
             {
                 //akismet spam filter
                 if(!core::akismet(core::post('name'), 

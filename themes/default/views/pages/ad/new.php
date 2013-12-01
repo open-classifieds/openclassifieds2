@@ -181,7 +181,7 @@
 				<div class="form-group">
 					<div class="col-md-4">
 						Captcha*:<br />
-						<?= captcha::image_tag('contact');?><br />
+						<?= captcha::image_tag('newad');?><br />
 						<?= FORM::input('captcha', "", array('class' => 'form-control', 'id' => 'captcha', 'required'))?>
 					</div>
 				</div>

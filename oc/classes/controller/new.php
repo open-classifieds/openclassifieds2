@@ -109,7 +109,7 @@ class Controller_New extends Controller
 		//$_POST is submitted for a new ad 
 		if($this->request->post()) 
 		{
-			if(captcha::check('contact')) 
+            if (captcha::check('newad'))
 			{		
 				//FORM DATA 
 				$seotitle = $new_ad->gen_seo_title($data['title']); 
