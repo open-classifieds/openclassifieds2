@@ -48,7 +48,7 @@ class Model_Ad extends ORM {
     const POST_DIRECTLY         = 0; // create new ad directly 
     const MODERATION_ON         = 1; // new ad after creation goes to moderation
     const PAYMENT_ON            = 2; // redirects to payment and after paying there is no moderation
-    const EMAIL_CONFIRAMTION    = 3; // sends email to confirm ad, until then is in moderation 
+    const EMAIL_CONFIRMATION    = 3; // sends email to confirm ad, until then is in moderation 
     const EMAIL_MODERATION      = 4; // sends email to confirm, but admin needs also to validate
     const PAYMENT_MODERATION    = 5; // even after payment, admin still needs to validate
     
