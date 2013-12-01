@@ -8,21 +8,21 @@
     <h3><?=__('Popular Ads last month')?></h3>
     <?endif?>
     <div class="col-md-12">
-        <?$i=0;
-        foreach($ads as $ad):?>
+    <?$i=0; foreach($ads as $ad):
+        $esc_html_adTitle = HTML::chars($ad->title);?>
         <div class="col-md-3">
             <div class="thumbnail latest_ads">
-                <a href="<?=Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
+                <a href="<?=Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>" title="<?=HTML::chars($ad->category->name)?>">
                 <?if($ad->get_first_image()!== NULL):?>
-                    <img src="<?=URL::base('http')?><?=$ad->get_first_image()?>" >
+                    <img src="<?=URL::base('http')?><?=$ad->get_first_image()?>" alt="<?=$esc_html_adTitle?>" title="<?=$esc_html_adTitle?>" />
                 <?else:?>
-                    <img src="http://www.placehold.it/200x200&text=<?=$ad->category->name?>"> 
+                    <img src="http://www.placehold.it/200x200&text=<?=URL::title($ad->category->name)?>" alt="<?=$esc_html_adTitle?>" title="<?=$esc_html_adTitle?>" /> 
                 <?endif?>
                 </a>
                 <div class="caption">
-                    <h5><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?=$ad->title?></a></h5>
+                    <h5><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>" title="<?=$esc_html_adTitle?>"><?=$ad->title?></a></h5>
 
-                    <p ><?=substr(Text::removebbcode($ad->description), 0, 30)?></p>
+                    <p><?=substr(Text::removebbcode($ad->description), 0, 30)/** @todo truncate between words **/?></p>
 
                 </div>
             </div>

@@ -23,7 +23,7 @@
             
             <a class="btn btn-warning" 
                 href="<?=Route::url('oc-panel', array('controller'=>'translations','action'=>'edit','id'=>$language))?>" 
-                rel"tooltip" title="<?=__('Edit')?>">
+                rel="tooltip" title="<?=__('Edit')?>">
                 <i class="glyphicon   glyphicon-pencil"></i>
             </a>
 
@@ -32,7 +32,7 @@
             <?if ($language!=$current_language):?>
             <a class="btn btn-default" 
                 href="<?=Route::url('oc-panel', array('controller'=>'translations','action'=>'index','id'=>$language))?>" 
-                rel"tooltip" title="<?=__('Activate')?>">
+                rel="tooltip" title="<?=__('Activate')?>">
                 <?=__('Activate')?>
             </a>
             <?else:?>

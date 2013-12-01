@@ -9,10 +9,10 @@ foreach ($market as $item):?>
     <li class="col-md-4 col-sm-4">
     <div class="thumbnail <?if ( $item['price_offer']>0):?>alert-success<?endif?>" >
 
-        <?if (empty($item['url_screenshot'])===FALSE):?>
-            <img  class="thumb_market" src="<?=$item['url_screenshot']?>">
+        <?if ( ! empty($item['url_screenshot'])):?>
+            <img class="thumb_market" src="<?=$item['url_screenshot']?>" alt="<?=HTML::chars($item['title'])?>" title="<?=HTML::chars($item['title'])?>" />
         <?else:?>
-             <img class="thumb_market" src="http://www.placehold.it/300x200&text=<?=$item['title']?>">
+             <img class="thumb_market" src="http://www.placehold.it/300x200&text=<?=$item['title']?>" alt="<?=HTML::chars($item['title'])?>" title="<?=HTML::chars($item['title'])?>" />
         <?endif?>   
         
         <div class="caption">

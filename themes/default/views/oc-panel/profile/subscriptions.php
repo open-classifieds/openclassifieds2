@@ -14,7 +14,7 @@
 			<a class=" btn btn-danger  " 
 				href="<?=Route::url('default', array('controller'=>'subscribe','action'=>'unsubscribe', 'id'=>Auth::instance()->get_user()->id_user))?>" 
 				onclick="return confirm('<?=__('Unsubscribe to all?')?>');"
-				rel"tooltip" title="<?=__('Unsubscribe to all')?>">
+				rel="tooltip" title="<?=__('Unsubscribe to all')?>">
 				<i class="glyphicon   glyphicon-remove"></i>
 			</a>
 		</th>
@@ -49,7 +49,7 @@
 				<a class="btn btn-warning" 
 					href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'unsubscribe','id'=>$l['id']))?>" 
 					onclick="return confirm('<?=__('Unsubscribe?')?>');"
-					rel"tooltip" title="<?=__('Unsubscribe')?>">
+					rel="tooltip" title="<?=__('Unsubscribe')?>">
 					<i class="glyphicon   glyphicon-remove"></i>
 				</a>
 			</td>

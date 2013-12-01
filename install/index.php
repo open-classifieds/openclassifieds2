@@ -118,7 +118,7 @@ include 'install.php';
             			<li><a href="http://open-classifieds.com/market/">Market</a></li>
             			<li><a href="http://open-classifieds.com/">Support & More</a></li>
             			<li><a href="http://j.mp/thanksdonate" target="_blank">
-            					<img src="http://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" alt="">
+            					<img src="http://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" alt="" />
             			</a></li>
             			<li class="divider"></li>
             			

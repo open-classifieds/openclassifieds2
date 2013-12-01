@@ -80,7 +80,7 @@ class Controller_New extends Controller
             }
             elseif( $moderation == Model_Ad::MODERATION_ON 
                  || $moderation == Model_Ad::PAYMENT_ON 
-                 || $moderation == Model_Ad::EMAIL_CONFIRAMTION 
+                 || $moderation == Model_Ad::EMAIL_CONFIRMATION 
                  || $moderation == Model_Ad::EMAIL_MODERATION 
                  || $moderation == Model_Ad::PAYMENT_MODERATION)
             {
@@ -109,7 +109,7 @@ class Controller_New extends Controller
 		//$_POST is submitted for a new ad 
 		if($this->request->post()) 
 		{
-			if(captcha::check('contact')) 
+            if (captcha::check('newad'))
 			{		
 				//FORM DATA 
 				$seotitle = $new_ad->gen_seo_title($data['title']); 
@@ -157,7 +157,7 @@ class Controller_New extends Controller
 					if(!core::akismet(Model_Ad::banned_words($data['title']), $email,
 								 	  Model_Ad::banned_words($data['description'])))
 					{
-						if($moderation == Model_Ad::EMAIL_MODERATION OR $moderation == Model_Ad::EMAIL_CONFIRAMTION)
+						if($moderation == Model_Ad::EMAIL_MODERATION OR $moderation == Model_Ad::EMAIL_CONFIRMATION)
 							$new_ad->status = Model_Ad::STATUS_UNCONFIRMED;
 						
 						$new_ad->save();
@@ -189,7 +189,7 @@ class Controller_New extends Controller
 						->find();
 
 					// after successful posting send them email depending on moderation
-					if($moderation == Model_Ad::EMAIL_CONFIRAMTION OR 
+					if($moderation == Model_Ad::EMAIL_CONFIRMATION OR 
 					   $moderation == Model_Ad::EMAIL_MODERATION)
 					{
 						$edit_url = core::config('general.base_url').'oc-panel/profile/update/'.$new_ad->id_ad;
@@ -320,7 +320,7 @@ class Controller_New extends Controller
 					// redirect to payment
         			$this->request->redirect(Route::url('default', array('controller'=> 'payment_paypal','action'=>'form' , 'id' => $order_id))); // @TODO - check route
 				}
-				elseif ($moderation == Model_Ad::EMAIL_MODERATION OR $moderation == Model_Ad::EMAIL_CONFIRAMTION)
+				elseif ($moderation == Model_Ad::EMAIL_MODERATION OR $moderation == Model_Ad::EMAIL_CONFIRMATION)
 				{
 					Alert::set(Alert::INFO, __('Advertisement is posted but first you need to activate. Please check your email!'));
 					$this->request->redirect(Route::url('default'));

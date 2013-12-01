@@ -7,7 +7,7 @@
 <div class="row">
 	<div class="col-md-3">
 		<a class="thumbnail">
-			<img src="<?=URL::base('http')?>images/users/<?=$user->id_user?>.png" class="img-rounded" alt="<?=__('Profile Picture')?>" height='200px'>
+			<img src="<?=URL::base('http')?>images/users/<?=$user->id_user?>.png" class="img-rounded" alt="<?=HTML::chars(__('Profile Picture'))?>" height="200" />
 		</a>
 	</div>
 </div>

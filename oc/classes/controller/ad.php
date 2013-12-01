@@ -446,7 +446,7 @@ class Controller_Ad extends Controller {
 
 		if($advert->loaded())
 		{
-			if(core::config('general.moderation') == Model_Ad::EMAIL_CONFIRAMTION)
+			if(core::config('general.moderation') == Model_Ad::EMAIL_CONFIRMATION)
 			{
 
 				$advert->status = 1; // status active

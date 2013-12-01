@@ -48,7 +48,7 @@ class Model_Ad extends ORM {
     const POST_DIRECTLY         = 0; // create new ad directly 
     const MODERATION_ON         = 1; // new ad after creation goes to moderation
     const PAYMENT_ON            = 2; // redirects to payment and after paying there is no moderation
-    const EMAIL_CONFIRAMTION    = 3; // sends email to confirm ad, until then is in moderation 
+    const EMAIL_CONFIRMATION    = 3; // sends email to confirm ad, until then is in moderation 
     const EMAIL_MODERATION      = 4; // sends email to confirm, but admin needs also to validate
     const PAYMENT_MODERATION    = 5; // even after payment, admin still needs to validate
     
@@ -192,18 +192,19 @@ class Model_Ad extends ORM {
                 foreach (new DirectoryIterator($folder) as $file) 
                 {   
 
-                    if(!$file->isDot())
-                    {   
+                    if ( ! $file->isDot())
+                    {
 
-                        $key = explode('_', $file->getFilename());
+                        $fileName = $file->getFilename();
+                        $key = explode('_', $fileName);
                         $key = end($key);
                         $key = explode('.', $key);
                         $key = (isset($key[0])) ? $key[0] : NULL ;
 
                         if(is_numeric($key))
                         {
-                            $type = (strpos($file->getFilename(), 'thumb_') === 0) ? 'thumb' : 'image' ;
-                            $image_path[$key][$type] = $route.$file->getFilename();
+                            $type = (strpos($fileName, 'thumb_') === 0) ? 'thumb' : 'image' ;
+                            $image_path[$key][$type] = $route.$fileName;
                         }
                     }
                 }

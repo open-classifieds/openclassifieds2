@@ -203,22 +203,22 @@
 						<?if($images):?>
 							<?php foreach ($images as $path => $value):?>
 							<?if(isset($value['thumb'])): // only formated images (not originals)?>
-							<?$img_name = str_replace(".jpg", "", substr(strrchr($value['thumb'], "/"), 1 ));?>
+							<?$esc_html_img_name = HTML::chars(str_replace('.jpg', '', substr(strrchr($value['thumb'], '/'), 1 )));?>
 							<div class="col-md-4 edit-image">
-								<a class="">
-									<img src="<?=URL::base('http')?><?= $value['thumb']?>" class="img-rounded" alt="">
+								<a>
+									<img src="<?=URL::base('http')?><?= $value['thumb']?>" class="img-rounded" alt="<?=$esc_html_img_name?>" />
 								</a>
 								<button class="btn btn-danger index-delete"
-								   onclick="return confirm('<?=__('Delete?')?>');" 
+								   onclick="return confirm('<?=HTML::chars(__("Delete?"))?>');" 
 								   type="submit" 
 								   name="img_delete"
-								   value="<?=$img_name?>" 
+								   value="<?=$esc_html_img_name?>" 
 								   href="<?=Route::url('default', array('controller'=>'ad', 
 								   									   'action'=>'img_delete', 
 								   									   'id'=>$ad->id_ad))?>" 
-								   rel"tooltip" 
-								   title="<?=__('Delete image')?>">
-									<?=__('Delete')?>
+								   rel="tooltip" 
+								   title="<?=HTML::chars(__("Delete image"))?>">
+									<?=__("Delete")?>
 								</button>
 							</div>
 							<?endif?>
