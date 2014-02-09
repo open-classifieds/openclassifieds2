@@ -85,7 +85,7 @@ include 'install.php';
 
     <div class="btn-group pull-right">
         <a class="btn btn-primary we-install" href="http://open-classifieds.com/market/">
-            <i class="glyphicon-shopping-cart glyphicon"></i> We install it for you, Buy now!
+            <i class="glyphicon-shopping-cart glyphicon"></i> <?php echo __("We install it for you, Buy now!")?>
         </a>
     </div>
 
