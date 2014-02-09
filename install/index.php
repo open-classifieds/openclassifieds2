@@ -56,7 +56,7 @@ include 'install.php';
   <body>
 
     <!--phpinfo Modal -->
-    <div id="phpinfoModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div id="phpinfoModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="phpinfoModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-body">
@@ -69,7 +69,7 @@ include 'install.php';
                 //strip the body html                                                                                                  
                 $phpinfo = preg_replace('%^.*<body>(.*)</body>.*$%ms', '$1', $phpinfo);
                 //adding our class
-                echo str_replace('<table', '<table class="table table-striped  table-bordered"', $phpinfo);
+                echo str_replace('<table', '<table class="table table-striped table-bordered"', $phpinfo);
                 ?>
               </div>
             </div>
@@ -126,7 +126,7 @@ include 'install.php';
                         <li><a href="http://open-classifieds.com/market/">Market</a></li>
                         <li><a href="http://open-classifieds.com/">Support & More</a></li>
                         <li><a href="http://j.mp/thanksdonate" target="_blank">
-                                <img src="http://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" alt="">
+                            <img src="http://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" alt="">
                         </a></li>
                         <li class="divider"></li>
                         
@@ -137,8 +137,6 @@ include 'install.php';
                             class="twitter-follow-button" data-show-count="false"
                             data-size="large">Follow @openclassifieds</a><br />
                         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-                    
-                    
                 </div>
                 <!--/.well -->
             </div>
@@ -308,21 +306,21 @@ include 'install.php';
     
     <div class="col-md-6">
     <label class="control-label"><?php echo __("Database name")?>:</label>
-    <input type="text" name="DB_NAME" value="<?php echo cP('DB_NAME','openclassifieds')?>"  class="form-control"  />
+    <input type="text" name="DB_NAME" value="<?php echo cP('DB_NAME','openclassifieds')?>"  class="form-control" />
     </div>
 </div>
 
 <div class="form-group">
     
-    <div class="col-md-3">
+    <div class="col-md-6">
     <label class="control-label"><?php echo __("Database charset")?>:</label>
-    <input type="text" name="DB_CHARSET" value="<?php echo cP('DB_CHARSET','utf8')?>"  class="form-control"   />
+    <input type="text" name="DB_CHARSET" value="<?php echo cP('DB_CHARSET','utf8')?>" class="form-control" />
     </div>
 </div>
 
 <div class="form-group">
     
-    <div class="col-md-3">
+    <div class="col-md-6">
     <label class="control-label"><?php echo __("Table prefix")?>:</label>
     <input type="text" name="TABLE_PREFIX" value="<?php echo cP('TABLE_PREFIX','oc2_')?>" class="form-control" />
     <span class="help-block"><?php echo __("Allows multiple installations in one database if you give each one a unique prefix")?>. <?php echo __("Only numbers, letters, and underscores")?>.</span>
@@ -336,9 +334,9 @@ include 'install.php';
     <hr>
     <div class="checkbox">
         <label>
-            <input type="checkbox" name="OCAKU" checked />
-            <?php echo __("Ocacu classifieds community registration")?> <a target="_blank" href="http://ocacu.com/en/terms.html">
-            <br><?php echo __('Terms')?></a>
+            <input type="checkbox" name="OCAKU" checked="checked" />
+            <?php echo __("Ocacu classifieds community registration")?><br>
+            <a target="_blank" href="http://ocacu.com/en/terms.html"><?php echo __('Terms')?></a>
         </label>
     </div>
 </div>
@@ -365,8 +363,8 @@ include 'install.php';
 
 </div><!--/.fluid-container-->
     
-        <script type="text/javascript" src="themes/default/js/jquery-1.10.2.js"></script>
-        <script type="text/javascript" src="themes/default/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="themes/default/js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="themes/default/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
     $(function  () {
@@ -382,7 +380,7 @@ include 'install.php';
     })
     </script>
     <!--[if lt IE 7 ]>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>     <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>     <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
     <![endif]-->
   </body>
 </html>
