@@ -500,17 +500,17 @@ function __($msgid)
             <div class="navbar-inner">
                 <div class="container">
                     <button class="navbar-toggle pull-left" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
+                        <span class="sr-only"><?=__("Toggle navigation")?></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
                     <div class="navbar-collapse bs-navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="#home" data-toggle="tab">Install</a></li>
-                            <li><a href="http://open-classifieds.com/support/" target="_blank">Support</a></li>
-                            <li><a href="#home" data-toggle="tab">Requirements</a></li>
-                            <li><a href="#about" data-toggle="tab">About</a></li>
+                            <li class="active"><a href="#home" data-toggle="tab"><?=__("Install")?></a></li>
+                            <li><a href="http://open-classifieds.com/support/" target="_blank"><?=__("Support")?></a></li>
+                            <li><a href="#home" data-toggle="tab"><?=__("Requirements")?></a></li>
+                            <li><a href="#about" data-toggle="tab"><?=__("About")?></a></li>
                         </ul>
 
                         <div class="btn-group pull-right">
