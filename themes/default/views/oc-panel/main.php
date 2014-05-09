@@ -11,7 +11,7 @@
 	<title><?=$title?></title>
     <meta name="keywords" content="<?=$meta_keywords?>" >
     <meta name="description" content="<?=$meta_description?>" >
-    <meta name="copyright" content="<?=$meta_copywrite?>" >
+    <meta name="copyright" content="<?=$meta_copyright?>" >
     <?if (Theme::get('premium')!=1):?>
     <meta name="author" content="open-classifieds.com">
     <?endif?>

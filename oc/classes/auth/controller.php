@@ -77,7 +77,7 @@ class Auth_Controller extends Controller
 			$this->template->title            = __('Panel').' - '.core::config('general.site_name');
 			$this->template->meta_keywords    = '';
 			$this->template->meta_description = '';
-			$this->template->meta_copywrite   = 'Open Classifieds '.Core::version;
+			$this->template->meta_copyright   = 'Open Classifieds '.Core::version;
 			$this->template->header           = View::factory('oc-panel/header');
 			$this->template->content          = '';
 			$this->template->footer           = View::factory('oc-panel/footer');
