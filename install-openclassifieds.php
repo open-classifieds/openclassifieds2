@@ -568,7 +568,7 @@ function __($msgid)
                     <div class="page-header">
                         <h1><?=__("Install Open Classifieds")?> v.<?=$last_version;?></h1>
                         <p><?=__("We will download last stable version of Open Classifieds and redirect you to the installation form.")?><br>
-                            <?=__("Once you click in the install button can take few seconds until downloaded, please do not close this window.")?></p>
+                            <?=__("Once you click on the install button it can take few seconds until it gets downloaded; Please do not close this window.")?></p>
                         <div class="clearfix"></div>
                     </div>
                     <form method="post" action="" class="" >
