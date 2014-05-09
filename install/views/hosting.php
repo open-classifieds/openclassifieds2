@@ -14,16 +14,16 @@
 <?endif?>
 
 <div class="jumbotron well">
-    <h2>Oops! You need a compatible Hosting</h2>
-    <p class="text-danger">Your hosting seems to be not compatible. Check your settings.<p>
-    <p>We have partnership with hosting companies to assure compatibility. And we include:
+    <h2><?=__("Oops! You need a compatible Hosting</h2>
+    <p class="text-danger"><?=__("Your hosting seems to be not compatible. Check your settings.")?><p>
+    <p><?=__("We have partnership with hosting companies to assure compatibility. And we include:")?></p>
         <ul>
-            <li>100% Compatible High Speed Hosting</li>
-            <li>1 Premium Theme, of your choice worth $129.99</li>
-            <li>Professional Installation and Support worth $89</li>
-            <li>Free Domain name, worth $10</li>
+            <li><?=__("100% Compatible High Speed Hosting")?></li>
+            <li><?=sprintf(__("%s Premium Theme%s of your choice worth %s"),'1','','$129.99')?></li>
+            <li><?=sprintf(__("Professional Installation and Support worth %s"),'$89')?></li>
+            <li><?=sprintf(__("Free Domain name, worth %s"),'$10')?></li>
             <div class="clearfix"></div><br>
         <a class="btn btn-primary btn-large" href="http://open-classifieds.com/hosting/">
-            <i class=" icon-shopping-cart icon-white"></i> Get Hosting! Less than $5 Month</a>
+            <i class=" icon-shopping-cart icon-white"></i> <?=sprintf(__("Get your Hosting now! Less than %s a Month"),'$5')?></a>
     </p>
 </div>
