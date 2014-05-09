@@ -733,12 +733,12 @@ function hosting_view()
         <p><?=__("We have partnership with hosting companies to assure compatibility. And we include:")?></p>
             <ul>
                 <li><?=__("100% Compatible High Speed Hosting")?></li>
-                <li><?=sprintf(_("%s Premium Theme%s of your choice, worth %s"),'1','','$129.99')?></li>
-                <li><?=sprintf(_("Professional Installation and Support worth %s"),'$89')?></li>
-                <li><?=sprintf(_("Free Domain name, worth %s"),'$10')?></li>
+                <li><?=sprintf(__("%s Premium Theme%s of your choice, worth %s"),'1','','$129.99')?></li>
+                <li><?=sprintf(__("Professional Installation and Support worth %s"),'$89')?></li>
+                <li><?=sprintf(__("Free Domain name, worth %s"),'$10')?></li>
                 <div class="clearfix"></div><br>
-            <a class="btn btn-primary btn-large" href="http://open-classifieds.com/hosting/">
-                <i class=" icon-shopping-cart icon-white"></i> Get Hosting! Less than $5 Month</a>
+            <a class="btn btn-primary btn-large" href="http://open-classifieds.com/hosting/" target="_blank">
+                <i class=" icon-shopping-cart icon-white"></i> <?=sprintf(__("Get your Hosting now! Less than %s a Month"),'$5')?></a>
         </p>
     </div>
     <?
