@@ -1,4 +1,4 @@
-<? 
+<?php 
 /**
  * HTML template for the install
  *
@@ -18,8 +18,9 @@ define('DOCROOT', realpath(dirname(__FILE__)).DIRECTORY_SEPARATOR);
 
 //we check first short tags if not we can not even load the installer
 if (! ((bool) ini_get('short_open_tag')) )
-    die('<a href="http://php.net/manual/ini.core.php#ini.short-open-tag" target="_blank">short_open_tag</a> must be enabled in your php.ini.');
+    die('<strong><u>OC Installation requirement</u></strong>: Before you proceed with your OC installation: Keep in mind OC uses the short tag "short cut" syntax.<br><br> Thus the <a href="http://php.net/manual/ini.core.php#ini.short-open-tag" target="_blank">short_open_tag</a> directive must be enabled in your php.ini.<br><br><u>Easy Solution</u>:<ol><li>Open php.ini file and look for line short_open_tag = Off</li><li>Replace it with short_open_tag = On</li><li>Restart then your PHP server</li><li>Refresh this page to resume your OC installation</li><li>Enjoy OC ;)</li></ol>');
 
+//prevents from new install to be done
 if (file_exists(DOCROOT.'oc/config/database.php'))
     die('It seems Open Classifieds is already installed');
 
@@ -94,7 +95,7 @@ class install{
          * all the install checks
          */
         return     array(
-                'New Installation'=>array('message'   => 'Seems Open Classifieds it is already insalled',
+                'New Installation'=>array('message'   => 'It seems that Open Classifieds is already installed',
                                         'mandatory' => TRUE,
                                         'result'    => !file_exists('oc/config/database.php')
                                         ),
@@ -102,7 +103,7 @@ class install{
                                         'mandatory' => TRUE,
                                         'result'    => (is_writable(DOCROOT))
                                         ),
-                'PHP'   =>array('message'   => 'PHP 5.3 or newer required, this version is '. PHP_VERSION,
+                'PHP'   =>array('message'   => 'PHP 5.3 or newer is required, this version is '. PHP_VERSION,
                                     'mandatory' => TRUE,
                                     'result'    => version_compare(PHP_VERSION, '5.3', '>=')
                                     ),
@@ -214,7 +215,7 @@ class install{
     }
 
     /**
-     * returns array last version from json
+     * returns array of last versions from json
      * @return array
      */
     public static function versions()
@@ -456,8 +457,6 @@ function __($msgid)
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
     <title>Open Classifieds <?=__("Installation")?></title>
-    <meta name="keywords" content="" >
-    <meta name="description" content="" >
     <meta name="copyright" content="Open Classifieds <?=install::version?>" >
     <meta name="author" content="Open Classifieds">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -501,17 +500,17 @@ function __($msgid)
             <div class="navbar-inner">
                 <div class="container">
                     <button class="navbar-toggle pull-left" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
+                        <span class="sr-only"><?=__("Toggle navigation")?></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
                     <div class="navbar-collapse bs-navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="#home" data-toggle="tab">Install</a></li>
-                            <li><a href="http://open-classifieds.com/support/" target="_blank">Support</a></li>
-                            <li><a href="#home" data-toggle="tab">Requirements</a></li>
-                            <li><a href="#about" data-toggle="tab">About</a></li>
+                            <li class="active"><a href="#home" data-toggle="tab"><?=__("Install")?></a></li>
+                            <li><a href="http://open-classifieds.com/support/" target="_blank"><?=__("Support")?></a></li>
+                            <li><a href="#home" data-toggle="tab"><?=__("Requirements")?></a></li>
+                            <li><a href="#about" data-toggle="tab"><?=__("About")?></a></li>
                         </ul>
 
                         <div class="btn-group pull-right">
@@ -567,15 +566,15 @@ function __($msgid)
                     <?if (!empty(install::$msg) OR !empty(install::$error_msg)) 
                             hosting_view();?>
                     <div class="page-header">
-                        <h1>Install Open Classifieds v.<?=$last_version;?></h1>
-                        <p>We will download last stable version of Open Classifieds and redirect you to the installation form. <br>
-                            Once you click in the install button can take few seconds until downloaded, please do not close this window.</p>
+                        <h1><?=__("Install Open Classifieds")?> v.<?=$last_version;?></h1>
+                        <p><?=__("We will download last stable version of Open Classifieds and redirect you to the installation form.")?><br>
+                            <?=__("Once you click on the install button it can take few seconds until it gets downloaded; Please do not close this window.")?></p>
                         <div class="clearfix"></div>
                     </div>
                     <form method="post" action="" class="" >
                         <fieldset>
                             <div class="form-action">
-                            <input type="submit" name="action" id="submit" value="Download and Install" class="btn btn-primary btn-large" />
+                            <input type="submit" name="action" id="submit" value=<?=HTML::chars(__("Download and Install"))?>" class="btn btn-primary btn-large" />
                             </div>
                         </fieldset>
                     </form>
@@ -649,7 +648,7 @@ function __($msgid)
 
         <footer>
             <p>
-            &copy;  <a href="http://open-classifieds.com" title="Open Source PHP Classifieds">Open Classifieds</a> 2009 - <?=date('Y')?>
+            &copy; <a href="http://open-classifieds.com" title="Open Source PHP Classifieds" target="_blank">Open Classifieds</a> 2009 - <?=date('Y')?>
             </p>
         </footer>
     </div> 
@@ -729,17 +728,17 @@ function hosting_view()
     <?endif?>
 
     <div class="jumbotron well">
-        <h2>Oops! You need a compatible Hosting</h2>
-        <p class="text-danger">Your hosting seems to be not compatible. Check your settings.<p>
-        <p>We have partnership with hosting companies to assure compatibility. And we include:
+        <h2><?=__("Oops! You need a compatible Hosting")?></h2>
+        <p class="text-danger"><?=__("Your hosting seems to be not compatible. Check your settings.")?><p>
+        <p><?=__("We have partnership with hosting companies to assure compatibility. And we include:")?></p>
             <ul>
-                <li>100% Compatible High Speed Hosting</li>
-                <li>1 Premium Theme, of your choice worth $129.99</li>
-                <li>Professional Installation and Support worth $89</li>
-                <li>Free Domain name, worth $10</li>
+                <li><?=__("100% Compatible High Speed Hosting")?></li>
+                <li><?=sprintf(__("%s Premium Theme%s of your choice, worth %s"),'1','','$129.99')?></li>
+                <li><?=sprintf(__("Professional Installation and Support worth %s"),'$89')?></li>
+                <li><?=sprintf(__("Free Domain name, worth %s"),'$10')?></li>
                 <div class="clearfix"></div><br>
-            <a class="btn btn-primary btn-large" href="http://open-classifieds.com/hosting/">
-                <i class=" icon-shopping-cart icon-white"></i> Get Hosting! Less than $5 Month</a>
+            <a class="btn btn-primary btn-large" href="http://open-classifieds.com/hosting/" target="_blank">
+                <i class=" icon-shopping-cart icon-white"></i> <?=sprintf(__("Get your Hosting now! Less than %s a Month"),'$5')?></a>
         </p>
     </div>
     <?

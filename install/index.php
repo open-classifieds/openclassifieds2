@@ -17,7 +17,7 @@ define('INSTALLROOT', DOCROOT.'install/');
 
 //we check first short tags if not we can not even load the installer
 if (! ((bool) ini_get('short_open_tag')) )
-    die('<a href="http://www.php.net/manual/en/ini.core.php#ini.short-open-tag">short_open_tag</a> must be enabled in your php.ini.');
+	die('<strong><u>OC Installation requirement</u></strong>: Before you proceed with your OC installation: Keep in mind OC uses the short tag "short cut" syntax.<br><br> Thus the <a href="http://php.net/manual/ini.core.php#ini.short-open-tag" target="_blank">short_open_tag</a> directive must be enabled in your php.ini.<br><br><u>Easy Solution</u>:<ol><li>Open php.ini file and look for line short_open_tag = Off</li><li>Replace it with short_open_tag = On</li><li>Restart then your PHP server</li><li>Refresh this page to resume your OC installation</li><li>Enjoy OC ;)</li></ol>');
 
 //prevents from new install to be done
 if(!file_exists(INSTALLROOT.'install.lock')) 
@@ -54,8 +54,6 @@ else
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
     <title>Open Classifieds <?=__("Installation")?></title>
-    <meta name="keywords" content="" >
-    <meta name="description" content="" >
     <meta name="copyright" content="Open Classifieds <?=install::version?>" >
     <meta name="author" content="Open Classifieds">
     <meta name="viewport" content="width=device-width,initial-scale=1">
