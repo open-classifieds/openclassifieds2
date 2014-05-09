@@ -70,7 +70,7 @@ class Controller extends Kohana_Controller
             $this->template->title            = core::config('general.site_name');
             $this->template->meta_keywords    = '';
             $this->template->meta_description = '';
-            $this->template->meta_copywrite   = 'Open Classifieds '.Core::version;
+            $this->template->meta_copyright   = 'Open Classifieds '.Core::version;
             $this->template->content          = '';
             $this->template->styles           = array();
             $this->template->scripts          = array();
