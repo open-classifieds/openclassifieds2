@@ -144,7 +144,7 @@ class SitemapGenerator {
     public function addUrl($url, $lastModified = null, $changeFrequency = null, $priority = null) {
         if ($url == null)
             throw new InvalidArgumentException("URL is mandatory. At least one argument should be given.");
-        $urlLenght = extension_loaded('mbstring') ? mb_strlen($url) : strlen($url);
+        $urlLenght = extension_loaded('mbstring') ? mb_strlen($url, Kohana::$charset) : strlen($url);
         if ($urlLenght > 2048)
             throw new InvalidArgumentException("URL lenght can't be bigger than 2048 characters.
                                                 Note, that precise url length check is guaranteed only using mb_string extension.
