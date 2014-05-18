@@ -259,7 +259,7 @@ class Kohana_UTF8 {
 	{
 		if (UTF8::$server_utf8)
 			return ($length === NULL)
-				? mb_substr($str, $offset, mb_strlen($str), Kohana::$charset)
+				? mb_substr($str, $offset, mb_strlen($str, Kohana::$charset), Kohana::$charset)
 				: mb_substr($str, $offset, $length, Kohana::$charset);
 
 		if ( ! isset(self::$called[__FUNCTION__]))
