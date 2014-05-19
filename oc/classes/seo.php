@@ -64,7 +64,7 @@ class seo{
      */
     public static function keywords($text, $max_keys = 15)
     {
-        $text = self::clean(mb_strtolower($text));
+        $text = self::clean(mb_strtolower($text, Kohana::$charset));
         $text = str_replace (array('–','(',')','+',':','.','?','!','_','*','-','"'), '', $text);//replace not valid character 
         $text = str_replace (array(' ','.',';'), ',', $text);//replace for comas 
 
@@ -76,7 +76,7 @@ class seo{
         //remove small words
         foreach ($wordcount as $key => $value) 
         {
-            if ( (strlen($key)<= self::$min_word_length) OR in_array($key, self::$banned_words))
+            if ( (mb_strlen($key, Kohana::$charset)<= self::$min_word_length) OR in_array($key, self::$banned_words))
                 unset($wordcount[$key]);
         }
         
@@ -105,7 +105,7 @@ class seo{
     } 
     
     /**
-     * sort for uasort descendent numbers , compares values
+     * sort for uasort descendant numbers , compares values
      * @param  integer $a 
      * @param  integer $b 
      * @return integer    
@@ -134,21 +134,21 @@ class seo{
 
         $limit = (int) $limit;
 
-        if (trim($str) === '' OR mb_strlen($str) <= $limit)
+        if (trim($str) === '' OR mb_strlen($str, Kohana::$charset) <= $limit)
             return $str;
 
         if ($limit <= 0)
             return $end_char;
 
         if ($preserve_words === FALSE)
-            return rtrim(mb_substr($str, 0, $limit)).$end_char;
+            return rtrim(mb_substr($str, 0, $limit, Kohana::$charset)).$end_char;
 
         // Don't preserve words. The limit is considered the top limit.
         // No strings with a length longer than $limit should be returned.
         if ( ! preg_match('/^.{0,'.$limit.'}\s/us', $str, $matches))
             return $end_char;
 
-        return rtrim($matches[0]).((strlen($matches[0]) === strlen($str)) ? '' : $end_char);
+        return rtrim($matches[0]).((mb_strlen($matches[0], Kohana::$charset) === mb_strlen($str, Kohana::$charset)) ? '' : $end_char);
     }
 } 
 //end seo class 
