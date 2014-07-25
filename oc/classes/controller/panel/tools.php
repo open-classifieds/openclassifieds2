@@ -150,57 +150,58 @@ class Controller_Panel_Tools extends Auth_Controller {
 
         if($_POST)
         {
+            $bool_csv_parse_error = FALSE;
+            $prefix = Database::instance()->table_prefix();
 
             foreach($_FILES as $file => $path) 
             {
-                
+
                 $csv = $path["tmp_name"];
                 if ($csv!=="" AND ($handle = fopen($csv, "r")) !== FALSE) 
                 {
-                    $i = 0;
-                    $array=NULL;
-                    while(($data = fgetcsv($handle, 0, ",")) !== false)
+					if($file=='csv_file_categories')
+					{
+						$type = 'categories';
+						$t = 'category';
+						$obj_model_imported = new Model_Category();
+					}
+					elseif($file=='csv_file_locations')
+					{
+						$type = 'locations';
+						$t = 'location';
+						$obj_model_imported = new Model_Location();
+					}
+
+                    $i = -1;
+                    $array='';
+                    while(($data = fgetcsv($handle, 0, ",")) !== FALSE)
                     {
-                        //avoid first line
-                        if ($i!=0)
-                        {
-                            
-                            list($name, $seoname) = $data;
-                            // $name = str_replace("'", "`", $name);
-                            // $seoname = str_replace("'", "`", $seoname);
-                            if($file=='csv_file_categories')
-                            {
-                                $obj_category = new Model_Category();
-                                $type = 'categories';
-                                $t = 'category';
-                                if($seoname == "")
-                                    $seoname = $obj_category->gen_seoname($name);
-                            }
-                            elseif($file=='csv_file_locations')
-                            {
-                                $obj_location = new Model_Location();
-                                $type = 'locations';
-                                $t = 'location';
-                                if($seoname == "")
-                                    $seoname = $obj_location->gen_seoname($name);
-                            }
+						$i++;
+						//avoid first line and blank lines (fgetcsv() returns blank lines found in a CSV file as an array comprising a single NULL field)
+						if ($i==0 OR empty($data[0]))
+							continue; // next line
+
+						$name = $data[0];
+						$seoname = (isset($data[1])) ? $data[1] : '';
+
+						if (empty($seoname))
+							$seoname = $obj_model_imported->gen_seoname($name);
+
                             $array .= '('.Database::instance()->quote($name).',1,'.Database::instance()->quote($seoname).'),';
                         }
                         $i++;
                     }
-                    
-                    $array = substr($array, 0, -1);
-                    
-                    if($array == FALSE)
+                    fclose($handle); unset($obj_model_imported);
+
+                    if (empty($array))
                     {
                         Alert::set(Alert::INFO, sprintf(__('File %s contains invalid parsing format!'),$path['name']));
-                        $this->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')));
+                        $bool_csv_parse_error = TRUE;
+                        continue; // next $_FILES if any
                     }
                    
-                    //base location
-                    //DB prefix
-                    $prefix = Database::instance()->table_prefix();
-
+                    $array = rtrim($array, ',');
+                    
                     $query = DB::query(Database::UPDATE,"INSERT INTO `".$prefix.$type."`
                         (`name` ,`id_".$t."_parent`,`seoname`)
                         VALUES $array ON DUPLICATE KEY UPDATE `id_".$t."_parent`=1;"); 
@@ -211,22 +212,21 @@ class Controller_Panel_Tools extends Auth_Controller {
                     } 
                     catch (Exception $e) 
                     {
-                        Alert::set(Alert::INFO, __('Something went wrong, please check format of the file! Remove single quotes or strange characters, in case you have any.'));
-                        $this->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')));
+                        $bool_csv_parse_error = TRUE;
                     }
 
                     if($query == FALSE)
-                    {
-                        Alert::set(Alert::INFO, __('Something went wrong, please check format of the file! Remove single quotes, in case you have any.'));
-                        $this->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')));
-                    }
-                    
-
-                    Alert::set(Alert::SUCCESS, sprintf(__('%s have been created'),$type));
+                        $bool_csv_parse_error = TRUE;
+                    else
+                        Alert::set(Alert::SUCCESS, sprintf(__('%u %s have been created'),$i,__(ucfirst($type))));
                 }
             }
+			if ($bool_csv_parse_error)
+			{
+				Alert::set(Alert::ERROR, __('Something went wrong, please check format of the file! Remove single quotes or strange characters, in case you have any.'));
+				$this->request->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')));
+			}
         } 
-            
 
         $this->template->content = View::factory('oc-panel/pages/tools/import_tool',array());
     }
