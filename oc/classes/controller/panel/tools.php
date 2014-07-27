@@ -150,12 +150,11 @@ class Controller_Panel_Tools extends Auth_Controller {
 
         if($_POST)
         {
-            $bool_csv_parse_error = FALSE;
             $prefix = Database::instance()->table_prefix();
 
             foreach($_FILES as $file => $path) 
             {
-
+                $bool_csv_parse_error = FALSE;
                 $csv = $path["tmp_name"];
                 if ($csv!=="" AND ($handle = fopen($csv, "r")) !== FALSE) 
                 {
