@@ -156,6 +156,10 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                                 if (strpos($file->getFilename(), 'thumb_') === 0)
                                 {
                                     $ad->has_images++;
+        
+                                    //reordering image file names
+                                    @rename($folder.$ad->seotitle.'_'.$key.'.jpg', $folder.$ad->seotitle.'_'.$ad->has_images.'.jpg');
+                                    @rename($folder.'thumb_'.$ad->seotitle.'_'.$key.'.jpg', $folder.'thumb_'.$ad->seotitle.'_'.$ad->has_images.'.jpg');
                                 }
                             }
                         }
