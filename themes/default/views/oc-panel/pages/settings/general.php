@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['disallowbots']['id'], __("Disallows (blocks) Bots and Crawlers on this website"), array('class'=>'control-label col-sm-4', 'for'=>$forms['disallowbots']['id']))?>
+                        <?= FORM::label($forms['disallowbots']['id'], "<a target='_blank' href='http://open-classifieds.com/2015/01/22/allowdisallow-bots-crawlers/'>".__("Disallows (blocks) Bots and Crawlers on this website")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['disallowbots']['id']))?>
                         <div class="col-sm-8">
                             <div class="onoffswitch">
                                 <?= Form::checkbox($forms['disallowbots']['key'], 1, (bool) $forms['disallowbots']['value'], array(
