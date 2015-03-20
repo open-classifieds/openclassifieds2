@@ -12,4 +12,3 @@ themes/*
 !themes/default/
 oc/vendor/hybridauth/logs.txt
 .gitmodules
-.gitignore
