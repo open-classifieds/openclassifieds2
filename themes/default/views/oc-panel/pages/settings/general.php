@@ -55,7 +55,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['site_name']['id'], __('Site name'), array('class'=>'control-label col-sm-4', 'for'=>$forms['site_name']['id']))?>
+                        <?= FORM::label($forms['site_name']['id'], "<a target='_blank' href='http://open-classifieds.com/2015/01/21/change-site-name-site-description/'>".__('Site name')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['site_name']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::input($forms['site_name']['key'], $forms['site_name']['value'], array(
                             'placeholder' => 'Open-classifieds', 
@@ -72,7 +72,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['site_description']['id'], __('Site description'), array('class'=>'control-label col-sm-4', 'for'=>$forms['site_description']['id']))?>
+                        <?= FORM::label($forms['site_description']['id'], "<a target='_blank' href='http://open-classifieds.com/2015/01/21/change-site-name-site-description/'>".__('Site description')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['site_description']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::textarea($forms['site_description']['key'], $forms['site_description']['value'], array(
                             'placeholder' => __('Description of your site in no more than 160 characters.'),
@@ -161,7 +161,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['analytics']['id'], __('Analytics Tracking ID'), array('class'=>'control-label col-sm-4', 'for'=>$forms['analytics']['id']))?>
+                        <?= FORM::label($forms['analytics']['id'], "<a target='_blank' href='http://open-classifieds.com/2015/03/06/how-to-add-tracking-codes/'>".__('Analytics Tracking ID')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['analytics']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::input($forms['analytics']['key'], $forms['analytics']['value'], array(
                             'placeholder' => 'UA-XXXXX-YY', 
