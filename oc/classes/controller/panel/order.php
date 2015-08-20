@@ -52,7 +52,9 @@ class Controller_Panel_Order extends Auth_Crud {
         }
 
         //filter date
-        if (!empty(Core::request('from_date')) AND !empty(Core::request('to_date')))
+        $from_date_temp = Core::request('from_date'); // This temporary variable is needed - see http://stackoverflow.com/questions/1532693/weird-php-error-cant-use-function-return-value-in-write-context for why
+        $to_date_temp = Core::request('to_date'); // This temporary variable is needed - see http://stackoverflow.com/questions/1532693/weird-php-error-cant-use-function-return-value-in-write-context for why
+        if (!empty($from_date_temp) AND !empty($to_date_temp))
         {
             //Getting the dates range
             $from_date = Core::request('from_date',strtotime('-1 month'));
