@@ -83,9 +83,7 @@
     <br/>
 
     <div>
-        <?if(core::config('advertisement.description')!=FALSE):?>
-          <p><?=Text::bb2html($ad->description,TRUE)?></p>
-        <?endif?>
+        <p><?= Text::bb2html($ad->description,TRUE)?></p>
         <?if (Valid::url($ad->website)):?>
             <p><a href="<?=$ad->website?>" rel="nofollow" target="_blank">><?=$ad->website?></a></p>
         <?endif?>

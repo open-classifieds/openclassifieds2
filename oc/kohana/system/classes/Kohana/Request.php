@@ -38,7 +38,7 @@ class Kohana_Request implements HTTP_Request {
 
 	/**
 	 * Creates a new request object for the given URI. New requests should be
-	 * Created using the [Request::factory] method.
+	 * created using the [Request::instance] or [Request::factory] methods.
 	 *
 	 *     $request = Request::factory($uri);
 	 *
@@ -462,12 +462,6 @@ class Kohana_Request implements HTTP_Request {
 
 		foreach ($routes as $name => $route)
 		{
-			// Use external routes for reverse routing only
-			if ($route->is_external())
-			{
-				continue;
-			}
-
 			// We found something suitable
 			if ($params = $route->matches($request))
 			{
@@ -637,7 +631,7 @@ class Kohana_Request implements HTTP_Request {
 
 	/**
 	 * Creates a new request object for the given URI. New requests should be
-	 * Created using the [Request::factory] method.
+	 * created using the [Request::instance] or [Request::factory] methods.
 	 *
 	 *     $request = new Request($uri);
 	 *
@@ -746,6 +740,7 @@ class Kohana_Request implements HTTP_Request {
 	 *
 	 *     echo URL::site($this->request->uri(), $protocol);
 	 *
+	 * @param   array    $params    URI parameters
 	 * @param   mixed    $protocol  protocol string or Request object
 	 * @return  string
 	 * @since   3.0.7
@@ -753,13 +748,7 @@ class Kohana_Request implements HTTP_Request {
 	 */
 	public function url($protocol = NULL)
 	{
-		if ($this->is_external())
-		{
-			// If it's an external request return the URI
-			return $this->uri();
-		}
-
-		// Create a URI with the current route, convert to a URL and returns
+		// Create a URI with the current route and convert it to a URL
 		return URL::site($this->uri(), $protocol);
 	}
 

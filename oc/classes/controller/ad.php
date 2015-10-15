@@ -124,20 +124,6 @@ class Controller_Ad extends Controller {
 
 
         $data = $this->list_logic($category, $location);
-
-        //if home page is the listing
-        if ( ($landing = json_decode(core::config('general.landing_page'))) != NULL
-            AND $landing->controller == 'ad'
-            AND $landing->action == 'listing'
-            AND (isset($data['pagination']) AND $data['pagination']->current_page == 1) )
-        {
-            //only show site title
-            $this->template->title = NULL;
-
-            // if we have site description lets use that ;)
-            if (core::config('general.site_description') != '')
-                $this->template->meta_description = core::config('general.site_description');
-        }
    		
 		$this->template->bind('content', $content);
 		$this->template->content = View::factory('pages/ad/listing',$data);
@@ -218,9 +204,10 @@ class Controller_Ad extends Controller {
                     'view'           	=> 'pagination',
                     'total_items'    	=> $res_count,
                     'items_per_page' 	=> core::config('advertisement.advertisements_per_page'),
-     	    ))->route(Route::get('list'))
-              ->route_params(array(
-                    'category' 			=> ($category!==NULL)?$category->seoname:URL::title(__('all')),
+     	    ))->route_params(array(
+                    'controller' 		=> $this->request->controller(),
+                    'action'      		=> $this->request->action(),
+                    'category' 			=> ($category!==NULL)?$category->seoname:NULL,
                     'location'			=> ($location!==NULL)?$location->seoname:NULL, 
     	    ));
     	   
@@ -859,11 +846,6 @@ class Controller_Ad extends Controller {
 
 	public function action_advanced_search()
 	{
-        if (Theme::get('infinite_scroll'))
-        {
-            $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/jquery.infinitescroll/2.0b2/jquery.infinitescroll.js';
-            $this->template->scripts['footer'][] = 'js/listing.js';
-        }
         $this->template->scripts['footer'][] = 'js/jquery.toolbar.js';
         $this->template->scripts['footer'][] = 'js/sort.js';
 

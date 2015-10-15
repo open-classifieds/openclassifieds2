@@ -38,7 +38,6 @@
 	<div id="kodoc-content">
 		<div class="wrapper">
 			<div class="container">
-				<?php if (count($breadcrumb) > 1): ?>
 				<div class="span-22 prefix-1 suffix-1">
 					<ul id="kodoc-breadcrumb">
 						<?php foreach ($breadcrumb as $link => $title): ?>
@@ -50,7 +49,6 @@
 						<?php endforeach ?>
 					</ul>
 				</div>
-				<?php endif ?>
 				<div class="span-6 prefix-1">
 					<div id="kodoc-topics">
 						<?php echo $menu ?>

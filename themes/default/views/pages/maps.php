@@ -33,11 +33,6 @@
               locations: locations,
               controls_on_map: false,
               pan_on_click: false,
-              <? if(core::config('advertisement.map_style') != '') :?>
-                styles: {
-                  'Default': <?=core::config('advertisement.map_style')?>
-                }
-              <?endif?>
           }).Load();
       });
     </script>

@@ -10,7 +10,7 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand ajax-load" href="<?=(Auth::instance()->get_user()->id_role!=Model_Role::ROLE_ADMIN) ? Route::url('oc-panel',array('controller'=>'myads','action'=>'index')) : Route::url('oc-panel',array('controller'=>'home'))?>" title="<?=__('Panel')?>">
+            <a class="navbar-brand ajax-load" href="<?=(Auth::instance()->get_user()->id_role!=Model_Role::ROLE_ADMIN) ? Route::url('oc-panel',array(array('controller'=>'myads','action'=>'index'))) : Route::url('oc-panel',array('controller'=>'home'))?>" title="<?=__('Panel')?>">
                 <i class="glyphicon glyphicon-th-large"></i> <?=__('Panel')?>
             </a>
             <div class="btn-group pull-right ml-20">
@@ -102,7 +102,7 @@
         </script>
         <input name="category_name" type="hidden" value="howto"/>
         <div class="input-group-btn">
-            <button id="oc-faq" type="button" class="btn btn-default pull-right oc-faq-btn">
+            <button type="button" class="btn btn-default pull-right oc-faq-btn">
                 <i class="glyphicon glyphicon-question-sign"></i>
             </button>
         </div>

@@ -34,10 +34,7 @@ class Kohana_Request_Client_Curl extends Request_Client_External {
 		// if using a request other than POST. PUT does support this method
 		// and DOES NOT require writing data to disk before putting it, if
 		// reading the PHP docs you may have got that impression. SdF
-		// This will also add a Content-Type: application/x-www-form-urlencoded header unless you override it
-		if ($body = $request->body()) {
-			$options[CURLOPT_POSTFIELDS] = $body;
-		}
+		$options[CURLOPT_POSTFIELDS] = $request->body();
 
 		// Process headers
 		if ($headers = $request->headers())

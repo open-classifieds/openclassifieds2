@@ -115,7 +115,7 @@
                       <?elseif(( $icon_src = $ad->location->get_icon() )!==FALSE ):?>
                           <img src="<?=$icon_src?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>" />
                       <?else:?>
-                          <img data-src="holder.js/<?=core::config('image.width_thumb')?>x<?=core::config('image.height_thumb')?>?<?=str_replace('+', ' ', http_build_query(array('text' => $ad->category->name, 'size' => 14, 'auto' => 'yes')))?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>"> 
+                          <img data-src="holder.js/<?=core::config('image.width_thumb')?>x<?=core::config('image.height_thumb')?>?text=<?=HTML::entities($ad->category->name)?>&amp;size=14&amp;auto=yes" class="img-responsive" alt="<?=HTML::chars($ad->title)?>"> 
                       <?endif?>
                   </figure>
               </a>
@@ -133,9 +133,7 @@
               <?}?>  
           </ul>
        
-          <?if(core::config('advertisement.description')!=FALSE):?>
-            <p><?=Text::limit_chars(Text::removebbcode($ad->description), 255, NULL, TRUE);?></p>
-          <?endif?>
+          <p><?=Text::limit_chars(Text::removebbcode($ad->description), 255, NULL, TRUE);?></p>
           
           <a title="<?=HTML::chars($ad->seotitle);?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><i class="glyphicon glyphicon-share"></i><?=__('Read more')?></a>
           <?if ($user !== NULL && $user->id_role == Model_Role::ROLE_ADMIN):?>

@@ -12,62 +12,47 @@
         <div class="panel panel-default">
             <div class="panel-heading"><?=__('Home')?></div>
             <div class="panel-body">
-                <?=FORM::open(Route::url('oc-panel',array('controller'=>'category','action'=>'delete')), array('class'=>'form-inline', 'enctype'=>'multipart/form-data'))?>
-                    <ol class='plholder' id="ol_1" data-id="1">
-                        <?function lili($item, $key,$cats){?>
-                            <li data-id="<?=$key?>" id="li_<?=$key?>">
-                                <div class="drag-item">
-                                    <span class="drag-icon">
-                                        <i class="fa fa-ellipsis-v"></i><i class="fa fa-ellipsis-v"></i>
-                                    </span>
-                                    <div class="drag-name">
-                                        <?=$cats[$key]['name']?>
-                                    </div>
-                                    <a class="drag-action ajax-load" title="<?=__('Edit')?>"
-                                        href="<?=Route::url('oc-panel',array('controller'=>'category','action'=>'update','id'=>$key))?>">
-                                        <i class="fa fa-pencil-square-o"></i>
-                                    </a>
-                                    <a 
-                                        href="<?=Route::url('oc-panel', array('controller'=> 'category', 'action'=>'delete','id'=>$key))?>" 
-                                        class="drag-action index-delete" 
-                                        title="<?=__('Are you sure you want to delete?')?>" 
-                                        data-id="li_<?=$key?>" 
-                                        data-text="<?=__('We will move the siblings categories and ads to the parent of this category.')?>"
-                                        data-btnOkLabel="<?=__('Yes, definitely!')?>" 
-                                        data-btnCancelLabel="<?=__('No way!')?>">
-                                        <i class="glyphicon glyphicon-trash"></i>
-                                    </a>
-                                    <span class="drag-action">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input name="categories[]" value="<?=$key?>" type="checkbox">
-                                            </label>
-                                        </div>
-                                    </span>
+                <ol class='plholder' id="ol_1" data-id="1">
+                    <?function lili($item, $key,$cats){?>
+                        <li data-id="<?=$key?>" id="li_<?=$key?>">
+                            <div class="drag-item">
+                                <span class="drag-icon"><i class="fa fa-ellipsis-v"></i><i class="fa fa-ellipsis-v"></i></span>
+                                <div class="drag-name">
+                                    <?=$cats[$key]['name']?>
                                 </div>
-                    
-                                <ol data-id="<?=$key?>" id="ol_<?=$key?>">
-                                    <? if (is_array($item)) array_walk($item, 'lili', $cats);?>
-                                </ol><!--ol_<?=$key?>-->
-                    
-                            </li><!--li_<?=$key?>-->
-                        <?}
-                        if(is_array($order))
-                            array_walk($order, 'lili',$cats);?>
-                    </ol><!--ol_1-->
-                    <span id='ajax_result' data-url='<?=Route::url('oc-panel',array('controller'=>'category','action'=>'saveorder'))?>'></span>
-                    <?if(count($cats) > 1) :?>
-                        <p class="text-right">
-                            <button data-toggle="modal" data-target="#delete-all" class="btn btn-danger">
-                                <?=__('Delete all categories')?>
-                            </button>
-
-                            <button name="delete" type="submit" class="btn btn-danger">
-                                <?=__('Delete selected categories')?>
-                            </button>
-                        </p>
-                    <?endif?>
-                <?=FORM::close()?>
+                                <a class="drag-action ajax-load" title="<?=__('Edit')?>"
+                                    href="<?=Route::url('oc-panel',array('controller'=>'category','action'=>'update','id'=>$key))?>">
+                                    <i class="fa fa-pencil-square-o"></i>
+                                </a>
+                                <a 
+                                    href="<?=Route::url('oc-panel', array('controller'=> 'category', 'action'=>'delete','id'=>$key))?>" 
+                                    class="drag-action index-delete" 
+                                    title="<?=__('Are you sure you want to delete?')?>" 
+                                    data-id="li_<?=$key?>" 
+                                    data-text="<?=__('We will move the siblings categories and ads to the parent of this category.')?>"
+                                    data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                    data-btnCancelLabel="<?=__('No way!')?>">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </a>
+                            </div>
+                
+                            <ol data-id="<?=$key?>" id="ol_<?=$key?>">
+                                <? if (is_array($item)) array_walk($item, 'lili', $cats);?>
+                            </ol><!--ol_<?=$key?>-->
+                
+                        </li><!--li_<?=$key?>-->
+                    <?}
+                    if(is_array($order))
+                        array_walk($order, 'lili',$cats);?>
+                </ol><!--ol_1-->
+                <span id='ajax_result' data-url='<?=Route::url('oc-panel',array('controller'=>'category','action'=>'saveorder'))?>'></span>
+                <?if(count($cats) > 1) :?>
+                    <p>
+                        <button data-toggle="modal" data-target="#delete-all" class="btn btn-danger pull-right">
+                            <?=__('Delete all categories')?>
+                        </button>
+                    </p>
+                <?endif?>
             </div>
         </div>
     </div>
@@ -99,7 +84,7 @@
 		    <div class="panel-heading"><?="<a target='_blank' href='http://docs.yclas.com/use-import-tool-categories-locations/'>"._('Upload CSV file')."</a>"?></div>
                     <div class="panel-body">
                         <p>
-                            <?=__('Please use the correct CSV format')?> <a href="https://docs.google.com/uc?id=0B60e9iwQucDwTm1NRGlqcEZwdGM&export=download"><?=__('download example')?>.</a>
+                            <?=__('Please use the correct CSV format')?> <a href="https://mega.co.nz/#!4wZQVCzA!EHYk1TdDgBr6U600eS28rtgbTfIYzONwmzpb7o3pIhg"><?=__('download example')?>.</a>
                         </p>
                         <hr>
                         <?= FORM::open(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>

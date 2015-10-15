@@ -108,7 +108,7 @@ class Model_Ad extends ORM {
      */
     public function rules()
     {
-    	$rules = array(
+    	return array(
 				        'id_ad'		    => array(array('numeric')),
 				        'id_user'		=> array(array('numeric')),
 				        'id_category'	=> array(array('not_empty'),array('digit')),
@@ -126,11 +126,6 @@ class Model_Ad extends ORM {
                         'latitude'      => array(array('regex', array(':value', '/^-?+(?=.*[0-9])[0-9]*+'.preg_quote('.').'?+[0-9]*+$/D'))),
                         'longitude'     => array(array('regex', array(':value', '/^-?+(?=.*[0-9])[0-9]*+'.preg_quote('.').'?+[0-9]*+$/D'))),
 				    );
-
-        if (core::config('advertisement.description') == FALSE)
-            $rules['description'] = array(array('min_length', array(':value', 5)), array('max_length', array(':value', 65535)), );
-        
-        return $rules;
     }
 
     /**
@@ -235,8 +230,8 @@ class Model_Ad extends ORM {
 
             //insert new visit
             if ($this->id_user!=$visitor_id)
-                $new_hit = DB::insert('visits', array('id_ad', 'id_user'))
-                                    ->values(array($this->id_ad, $visitor_id))
+                $new_hit = DB::insert('visits', array('id_ad', 'id_user', 'ip_address'))
+                                    ->values(array($this->id_ad, $visitor_id, ip2long(Request::$client_ip)))
                                     ->execute();
 
             //count how many matches are found 
@@ -675,67 +670,6 @@ class Model_Ad extends ORM {
             }
         }
         $this->has_images = ($this->has_images > 0) ? $this->has_images-1 : 0;
-        $this->last_modified = Date::unix2mysql();
-
-        try 
-        {
-            $this->save();
-            return TRUE;
-        } 
-        catch (Exception $e) 
-        {
-            throw HTTP_Exception::factory(500,$e->getMessage());
-        }
-        
-        return FALSE;
-    }
-
-    /**
-     * Set primary image by swapping ids
-     * @param  integer $primary_image 
-     * @return void                
-     */
-    public function set_primary_image($primary_image)
-    {
-        // if ad doesn't have at least two images do nothing
-        if ($this->has_images < 2)
-            return;
-
-        $img_path = $this->image_path();
-        
-        // delete image from Amazon S3
-        if (core::config('image.aws_s3_active'))
-        {
-            require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
-            $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
-            
-            //re-ordering image file names
-            $s3->copyObject(core::config('image.aws_s3_bucket'), $this->image_name('1'), core::config('image.aws_s3_bucket'), $this->image_name('1_old'), S3::ACL_PUBLIC_READ);
-            $s3->deleteObject(core::config('image.aws_s3_bucket'), $this->image_name('1'));
-            $s3->copyObject(core::config('image.aws_s3_bucket'), $this->image_name('1', 'thumb'), core::config('image.aws_s3_bucket'), $this->image_name('1_old', 'thumb'), S3::ACL_PUBLIC_READ);
-            $s3->deleteObject(core::config('image.aws_s3_bucket'), $this->image_name('1', 'thumb'));
-
-            $s3->copyObject(core::config('image.aws_s3_bucket'), $this->image_name($primary_image), core::config('image.aws_s3_bucket'), $this->image_name('1'), S3::ACL_PUBLIC_READ);
-            $s3->deleteObject(core::config('image.aws_s3_bucket'), $this->image_name($primary_image));
-            $s3->copyObject(core::config('image.aws_s3_bucket'), $this->image_name($primary_image, 'thumb'), core::config('image.aws_s3_bucket'), $this->image_name('1', 'thumb'), S3::ACL_PUBLIC_READ);
-            $s3->deleteObject(core::config('image.aws_s3_bucket'), $this->image_name($primary_image, 'thumb'));
-
-            $s3->copyObject(core::config('image.aws_s3_bucket'), $this->image_name('1_old'), core::config('image.aws_s3_bucket'), $this->image_name($primary_image), S3::ACL_PUBLIC_READ);
-            $s3->deleteObject(core::config('image.aws_s3_bucket'), $this->image_name('1_old'));
-            $s3->copyObject(core::config('image.aws_s3_bucket'), $this->image_name('1_old', 'thumb'), core::config('image.aws_s3_bucket'), $this->image_name($primary_image, 'thumb'), S3::ACL_PUBLIC_READ);
-            $s3->deleteObject(core::config('image.aws_s3_bucket'), $this->image_name('1_old', 'thumb'));
-        }
-
-        //re-ordering image file names
-        @rename($this->image_name('1'), $this->image_name('1_old'));
-        @rename($this->image_name('1', 'thumb'), $this->image_name('1_old', 'thumb'));
-
-        @rename($this->image_name($primary_image), $this->image_name('1'));
-        @rename($this->image_name($primary_image, 'thumb'), $this->image_name('1', 'thumb'));
-
-        @rename($this->image_name('1_old'), $this->image_name($primary_image));
-        @rename($this->image_name('1_old', 'thumb'), $this->image_name($primary_image, 'thumb'));
-
         $this->last_modified = Date::unix2mysql();
 
         try 

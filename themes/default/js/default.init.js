@@ -151,11 +151,4 @@ $(function(){
     $('#auto-locations .close').click( function(){
         createCookie('cancel_auto_locate',1,1800);
     });
-
-    setInterval(function () {
-        if ( ! navigator.onLine )
-            $('.off-line').show();
-        else
-            $('.off-line').hide();
-    }, 250);
 });

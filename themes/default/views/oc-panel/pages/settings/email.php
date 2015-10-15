@@ -60,7 +60,7 @@
             </div>
         </div>
         <div class="panel panel-default">
-            <div class="panel-heading"><?="<a target='_blank' href='http://docs.yclas.com/configure-elasticemail-open-classifieds/'>".__('ElasticEmail Configuration')."</a>"?></div>
+            <div class="panel-heading"><?=__('ElasticEmail Configuration')?></div>
             <div class="panel-body">
                 <div class="form-horizontal">
 

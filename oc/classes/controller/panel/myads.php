@@ -132,12 +132,6 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                     Alert::set(Alert::ALERT, __("Advertisement is already marked as 'active'"));
                 }
 
-                //pending payment
-                if ($activate === TRUE AND ($order = $active_ad->get_order()) !== FALSE AND $order->status == Model_Order::STATUS_CREATED )
-                {
-                    $activate = FALSE;
-                    Alert::set(Alert::ALERT, __("Advertisement can not be marked as “active”. There is a pending payment."));
-                }
 
                 //activate the ad
                 if ($activate === TRUE)
@@ -247,14 +241,6 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                 
                 $this->redirect(Route::url('oc-panel', array('controller'	=>'myads', 'action' =>'update', 'id' =>$form->id_ad)));
             }// end of img delete
-
-            // set primary image
-            if(is_numeric($primary_image = core::request('primary_image')))
-            {
-                $form->set_primary_image($primary_image);
-
-                $this->redirect(Route::url('oc-panel', array('controller'   =>'myads', 'action' =>'update', 'id' =>$form->id_ad)));
-            }
             
             $original_category = $form->category;
 

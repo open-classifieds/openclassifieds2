@@ -588,13 +588,13 @@ function koggle(elem)
 				</tr>
 								<tr>
 					<td><code>SERVER_SIGNATURE</code></td>
-					<td><pre><small>string</small><span>(110)</span> "&lt;address&gt;Apache/2.2.11 (Ubuntu) PHP/5.2.6-3ubuntu4.2 with Suhosin-Patch Server at localhost Port 80&lt;/address&gt;
+					<td><pre><small>string</small><span>(110)</span> "&lt;address&gt;Apache/2.4.11 (Ubuntu) PHP/5.2.6-3ubuntu4.2 with Suhosin-Patch Server at localhost Port 80&lt;/address&gt;
 "</pre></td>
 
 				</tr>
 								<tr>
 					<td><code>SERVER_SOFTWARE</code></td>
-					<td><pre><small>string</small><span>(62)</span> "Apache/2.2.11 (Ubuntu) PHP/5.2.6-3ubuntu4.2 with Suhosin-Patch"</pre></td>
+					<td><pre><small>string</small><span>(62)</span> "Apache/2.4.11 (Ubuntu) PHP/5.2.6-3ubuntu4.2 with Suhosin-Patch"</pre></td>
 				</tr>
 								<tr>
 

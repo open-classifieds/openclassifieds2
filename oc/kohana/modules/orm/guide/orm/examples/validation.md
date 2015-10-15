@@ -101,7 +101,7 @@ Please forgive my slightly ugly form. I am trying not to use any modules or unre
 			{
 				$member->save($extra);
 				// Redirect the user to his page
-				$this->request->redirect('members/'.$member->id);
+				$this->redirect('members/'.$member->id);
 			}
 			catch (ORM_Validation_Exception $e)
 			{

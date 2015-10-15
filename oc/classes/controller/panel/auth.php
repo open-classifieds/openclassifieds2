@@ -342,7 +342,7 @@ class Controller_Panel_Auth extends Controller {
 
             try {
                 $user->save();
-                Alert::set(Alert::SUCCESS, __('You have successfully unsubscribed'));                
+                Alert::set(Alert::SUCCESS, __('You have successfuly unsubscribed'));                
             } catch (Exception $e) {
                 //throw 500
                 throw HTTP_Exception::factory(500,$e->getMessage());
