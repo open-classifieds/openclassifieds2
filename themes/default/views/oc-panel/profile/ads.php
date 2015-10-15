@@ -97,17 +97,15 @@
                     <? if( $ad->status == Model_Ad::STATUS_UNAVAILABLE 
                                 AND !in_array(core::config('general.moderation'), Model_Ad::$moderation_status)  
                         ):?>
-                        <?if ( ($order = $ad->get_order()) === FALSE OR ($order !== FALSE AND $order->status == Model_Order::STATUS_PAID) ):?>
-                            <a
-                                href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'activate','id'=>$ad->id_ad))?>" 
-                                class="btn btn-success" 
-                                title="<?=__('Activate?')?>" 
-                                data-toggle="confirmation" 
-                                data-btnOkLabel="<?=__('Yes, definitely!')?>" 
-                                data-btnCancelLabel="<?=__('No way!')?>">
-                                <i class="glyphicon glyphicon-ok"></i>
-                            </a>
-                        <?endif?>
+                        <a
+                            href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'activate','id'=>$ad->id_ad))?>" 
+                            class="btn btn-success" 
+                            title="<?=__('Activate?')?>" 
+                            data-toggle="confirmation" 
+                            data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                            data-btnCancelLabel="<?=__('No way!')?>">
+                            <i class="glyphicon glyphicon-ok"></i>
+                        </a>
                     <?elseif($ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
                         <a
                             href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'deactivate','id'=>$ad->id_ad))?>" 

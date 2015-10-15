@@ -611,7 +611,6 @@ class Kohana_Image_GD extends Image {
 		switch (strtolower($extension))
 		{
 			case 'jpg':
-			case 'jpe':
 			case 'jpeg':
 				// Save a JPG file
 				$save = 'imagejpeg';

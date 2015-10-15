@@ -79,7 +79,6 @@ ol.plholder li .drag-action {
 ol.plholder li .drag-action .fa,
 ol.plholder li .drag-action .glyphicon {
     font-size: 16px;
-    margin-top: 4px;
 }
 ol.plholder li .drag-action.index-delete {
     margin: 0;

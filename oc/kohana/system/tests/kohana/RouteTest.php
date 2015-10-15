@@ -28,8 +28,6 @@ class Kohana_RouteTest extends Unittest_TestCase
 	{
 		parent::setUp();
 
-		Kohana::$config->load('url')->set('trusted_hosts', array('kohanaframework\.org'));
-
 		$this->cleanCacheDir();
 	}
 
@@ -270,7 +268,11 @@ class Kohana_RouteTest extends Unittest_TestCase
 		$route = new Route($uri);
 
 		// Mock a request class with the $match uri
-		$stub = $this->get_request_mock($match);
+		$stub = $this->getMock('Request', array('uri'), array($match));
+		$stub->expects($this->any())
+			->method('uri')
+			// Request::uri() called by Route::matches() will return $match
+			->will($this->returnValue($match));
 
 		$this->assertSame(FALSE, $route->matches($stub));
 	}
@@ -306,7 +308,11 @@ class Kohana_RouteTest extends Unittest_TestCase
 		$route = new Route($uri);
 
 		// Mock a request class with the $m uri
-		$request = $this->get_request_mock($m);
+		$request = $this->getMock('Request', array('uri'), array($m));
+		$request->expects($this->any())
+			->method('uri')
+			// Request::uri() called by Route::matches() will return $m
+			->will($this->returnValue($m));
 
 		$matches = $route->matches($request);
 
@@ -375,7 +381,10 @@ class Kohana_RouteTest extends Unittest_TestCase
 		$this->assertSame($defaults, $route->defaults());
 
 		// Mock a request class
-		$request = $this->get_request_mock($default_uri);
+		$request = $this->getMock('Request', array('uri'), array($default_uri));
+		$request->expects($this->any())
+			->method('uri')
+			->will($this->returnValue($default_uri));
 
 		$matches = $route->matches($request);
 
@@ -541,19 +550,28 @@ class Kohana_RouteTest extends Unittest_TestCase
 		$route = new Route($uri);
 
 		// Mock a request class that will return empty uri
-		$request = $this->get_request_mock('');
+		$request = $this->getMock('Request', array('uri'), array(''));
+		$request->expects($this->any())
+			->method('uri')
+			->will($this->returnValue(''));
 
 		$this->assertFalse($route->matches($request));
 
 		// Mock a request class that will return route1
-		$request = $this->get_request_mock($matches_route1);
+		$request = $this->getMock('Request', array('uri'), array($matches_route1));
+		$request->expects($this->any())
+			->method('uri')
+			->will($this->returnValue($matches_route1));
 
 		$matches = $route->matches($request);
 
 		$this->assertInternalType('array', $matches);
 
 		// Mock a request class that will return route2 uri
-		$request = $this->get_request_mock($matches_route2);
+		$request = $this->getMock('Request', array('uri'), array($matches_route2));
+		$request->expects($this->any())
+			->method('uri')
+			->will($this->returnValue($matches_route2));
 
 		$matches = $route->matches($request);
 
@@ -881,78 +899,14 @@ class Kohana_RouteTest extends Unittest_TestCase
 		$route = new Route($route);
 
 		// Mock a request class
-		$request = $this->get_request_mock($uri);
+		$request = $this->getMock('Request', array('uri'), array($uri));
+		$request->expects($this->any())
+			->method('uri')
+			->will($this->returnValue($uri));
 
 		$params = $route->defaults($defaults)->filter($filter)->matches($request);
 
 		$this->assertSame($expected_params, $params);
-	}
-
-	/**
-	 * Provides test data for test_route_uri_encode_parameters
-	 *
-	 * @return array
-	 */
-	public function provider_route_uri_encode_parameters()
-	{
-		return array(
-			array(
-				'article',
-				'blog/article/<article_name>',
-				array(
-					'controller' => 'home',
-					'action' => 'index'
-				),
-				'article_name',
-				'Article name with special chars \\ ##',
-				'blog/article/Article%20name%20with%20special%20chars%20\\%20%23%23'
-			)
-		);
-	}
-
-	/**
-	 * http://dev.kohanaframework.org/issues/4079
-	 *
-	 * @test
-	 * @covers Route::get
-	 * @ticket 4079
-	 * @dataProvider provider_route_uri_encode_parameters
-	 */
-	public function test_route_uri_encode_parameters($name, $uri_callback, $defaults, $uri_key, $uri_value, $expected)
-	{
-		Route::set($name, $uri_callback)->defaults($defaults);
-
-		$get_route_uri = Route::get($name)->uri(array($uri_key => $uri_value));
-
-		$this->assertSame($expected, $get_route_uri);
-	}
-
-	/**
-	 * Get a mock of the Request class with a mocked `uri` method
-	 *
-	 * We are also mocking `method` method as it conflicts with newer PHPUnit,
-	 * in order to avoid the fatal errors
-	 *
-	 * @param string $uri
-	 * @return type
-	 */
-	public function get_request_mock($uri)
-	{
-		// Mock a request class with the $uri uri
-		$request = $this->getMock('Request', array('uri', 'method'), array($uri));
-
-		// mock `uri` method
-		$request->expects($this->any())
-			->method('uri')
-		  	// Request::uri() called by Route::matches() in the tests will return $uri
-			->will($this->returnValue($uri));
-
-		// also mock `method` method
-		$request->expects($this->any())
-			->method('method')
-			->withAnyParameters();
-
-		return $request;
 	}
 
 }

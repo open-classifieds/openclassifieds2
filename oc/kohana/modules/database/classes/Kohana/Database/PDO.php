@@ -60,12 +60,6 @@ class Kohana_Database_PDO extends Database {
 				array(':error' => $e->getMessage()),
 				$e->getCode());
 		}
-
-		if ( ! empty($this->_config['charset']))
-		{
-			// Set the character set
-			$this->set_charset($this->_config['charset']);
-		}
 	}
 
 	/**

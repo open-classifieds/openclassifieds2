@@ -41,6 +41,10 @@ class Auth_Frontcontroller extends Controller
                                                     'action'     => 'login'));
                 $this->redirect($url);
             }
+            
+            // Force configured theme in case mobile theme is selected
+            if (Theme::$is_mobile)
+                Theme::initialize(Core::config('appearance.theme'));
         }
 
     }

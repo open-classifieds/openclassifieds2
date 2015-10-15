@@ -16,8 +16,8 @@
 class Kohana_Core {
 
 	// Release version and codename
-	const VERSION  = '3.3.4';
-	const CODENAME = 'pharrell';
+	const VERSION  = '3.3.1';
+	const CODENAME = 'peregrinus';
 
 	// Common environment type constants for consistency and convenience
 	const PRODUCTION  = 10;
@@ -322,7 +322,7 @@ class Kohana_Core {
 		}
 
 		// Determine if the extremely evil magic quotes are enabled
-		Kohana::$magic_quotes = (bool) get_magic_quotes_gpc();
+		Kohana::$magic_quotes = (version_compare(PHP_VERSION, '5.4') < 0 AND get_magic_quotes_gpc());
 
 		// Sanitize all request variables
 		$_GET    = Kohana::sanitize($_GET);

@@ -78,7 +78,7 @@
             <!-- slider -->
             <div class="form-group">
                 <div class="col-xs-10">
-                    <?= FORM::label('price_subscribe', __('Price'), array('class'=>'', 'for'=>'price_subscribe'))?>
+                    <?= FORM::label('price_subscribe', __('Price Range'), array('class'=>'', 'for'=>'price_subscribe'))?>
                     <input type="text" class="slider_subscribe" value="<?=$widget->min_price?>,<?=$widget->max_price?>" 
                             data-slider-min='<?=$widget->min_price?>' data-slider-max="<?=$widget->max_price?>" 
                             data-slider-step="50" data-slider-value='[<?=$widget->min_price?>,<?=$widget->max_price?>]' 

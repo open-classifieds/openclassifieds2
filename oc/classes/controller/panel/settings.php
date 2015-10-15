@@ -200,7 +200,7 @@ class Controller_Panel_Settings extends Auth_Controller {
         }
         
         //not updatable fields
-        $do_nothing = array('menu','locale','allow_query_language','charset','translate','ocacu','minify','subscribe','api_key', 'blog', 'faq', 'forums', 'messaging', 'black_list', 'auto_locate', 'social_auth');
+        $do_nothing = array('menu','locale','allow_query_language','charset','translate','ocacu','minify','subscribe','api_key');
 
         // save only changed values
         if($this->request->post())
@@ -452,67 +452,6 @@ class Controller_Panel_Settings extends Auth_Controller {
         }
 
         $this->template->content = View::factory('oc-panel/pages/settings/image', array('config'=>$config));
-    }
-
-    /**
-     * Plugins configuration 
-     * @return [view] Renders view with form inputs
-     */
-    public function action_plugins()
-    {
-        // validation active 
-        $this->template->scripts['footer'][]= 'js/jquery.validate.min.js';
-        $this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
-        
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Plugins')));
-        $this->template->title = __('Plugins');
-
-        // all form config values
-        $generalconfig = new Model_Config();
-        $config = $generalconfig->where('group_name', '=', 'general')->or_where('group_name', '=', 'i18n')->find_all();
-
-        // config general array
-        foreach ($config as $c) 
-        {
-            $forms[$c->config_key] = $forms[$c->config_key] = array('key'=>$c->group_name.'['.$c->config_key.'][]', 'id'=>$c->config_key, 'value'=>$c->config_value);
-        }
-        
-        // save only changed values
-        if($this->request->post())
-        {
-            //d($this->request->post());
-            foreach ($this->request->post('general') as $k => $v)
-                $this->request->post('general_'.$k, $v[0]);
-            
-            $validation = Validation::factory($this->request->post());
-            
-            if ($validation->check()) {
-                //save general
-                foreach ($config as $c) 
-                {   
-                    $config_res = $this->request->post();
-
-                    if (isset($config_res[$c->group_name][$c->config_key][0]) AND $config_res[$c->group_name][$c->config_key][0] != $c->config_value)
-                    {
-                        $c->config_value = $config_res[$c->group_name][$c->config_key][0];
-                        Model_Config::set_value($c->group_name,$c->config_key,$c->config_value);    
-                    }
-                }
-            }
-            else {
-                $errors = $validation->errors('config');
-            
-                foreach ($errors as $error) 
-                    Alert::set(Alert::ALERT, $error);
-            
-                $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'plugins')));
-            }
-
-            Alert::set(Alert::SUCCESS, __('Plugins configuration updated'));
-            $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'plugins')));
-        }
-
-        $this->template->content = View::factory('oc-panel/pages/settings/plugins', array('forms'=>$forms));
     }
 
 }//end of controller

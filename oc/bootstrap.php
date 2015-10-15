@@ -107,6 +107,7 @@ $modules = array(
 	'pagination'	=> COMMONPATH.'modules/pagination', // ORM Pagination
 	'breadcrumbs'	=> COMMONPATH.'modules/breadcrumbs',// breadcrumb view
 	'formmanager'	=> COMMONPATH.'modules/formmanager',// forms to objects ORM
+    'mysqli'        => COMMONPATH.'modules/mysqli',     // mysqli driver
 	'widgets'	    => COMMONPATH.'modules/widgets',    // loads default widgets
     'cron'          => COMMONPATH.'modules/cron',    // cron module
     //modules unique for open classifieds

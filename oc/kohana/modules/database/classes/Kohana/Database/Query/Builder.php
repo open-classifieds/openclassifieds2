@@ -80,7 +80,7 @@ abstract class Kohana_Database_Query_Builder extends Database_Query {
 							// Convert "val = NULL" to "val IS NULL"
 							$op = 'IS';
 						}
-						elseif ($op === '!=' OR $op === '<>')
+						elseif ($op === '!=')
 						{
 							// Convert "val != NULL" to "valu IS NOT NULL"
 							$op = 'IS NOT';

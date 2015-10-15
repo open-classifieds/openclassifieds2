@@ -1,7 +1,6 @@
 $(function  () {
     var group = $("ol.plholder").sortable({
         group: 'plholder',
-        delay: 100,
         onDrop: function (item, container, _super) {
             //first we execute the normal plugins behaviour
             _super(item, container);
