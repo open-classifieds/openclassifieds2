@@ -55,7 +55,7 @@ failure_callback | __NO__   | (_[callback](http://www.php.net/manual/en/language
 		'driver'             => 'memcache',
 		'default_expire'     => 3600,
 		'compression'        => FALSE,              // Use Zlib compression 
-		                                            (can cause issues with integers)
+		                                            // (can cause issues with integers)
 		'servers'            => array
 		(
 			'local' => array
@@ -71,7 +71,7 @@ failure_callback | __NO__   | (_[callback](http://www.php.net/manual/en/language
 		'driver'             => 'memcachetag',
 		'default_expire'     => 3600,
 		'compression'        => FALSE,              // Use Zlib compression 
-		                                            (can cause issues with integers)
+		                                            // (can cause issues with integers)
 		'servers'            => array
 		(
 			'local' => array

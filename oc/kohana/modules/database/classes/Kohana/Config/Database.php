@@ -9,7 +9,7 @@
  * @copyright  (c) 2012 Kohana Team
  * @license    http://kohanaframework.org/license
  */
-class Kohana_Config_Database extends Kohana_Config_Database_Writer
+class Kohana_Config_Database extends Config_Database_Writer
 {
 
 }

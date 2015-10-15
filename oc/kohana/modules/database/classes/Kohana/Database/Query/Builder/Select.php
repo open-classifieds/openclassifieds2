@@ -309,7 +309,7 @@ class Kohana_Database_Query_Builder_Select extends Database_Query_Builder_Where 
 	 */
 	public function offset($number)
 	{
-		$this->_offset = $number;
+		$this->_offset = ($number === NULL) ? NULL : (int) $number;
 
 		return $this;
 	}
@@ -404,13 +404,14 @@ class Kohana_Database_Query_Builder_Select extends Database_Query_Builder_Where 
 
 		if ( ! empty($this->_union))
 		{
+			$query = '('.$query.')';
 			foreach ($this->_union as $u) {
 				$query .= ' UNION ';
 				if ($u['all'] === TRUE)
 				{
 					$query .= 'ALL ';
 				}
-				$query .= $u['select']->compile($db);
+				$query .= '('.$u['select']->compile($db).')';
 			}
 		}
 

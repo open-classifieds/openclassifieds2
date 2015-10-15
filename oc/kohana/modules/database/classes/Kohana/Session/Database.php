@@ -204,6 +204,9 @@ class Kohana_Session_Database extends Session {
 			// Execute the query
 			$query->execute($this->_db);
 
+			// Delete the old session id
+			$this->_update_id = NULL;
+
 			// Delete the cookie
 			Cookie::delete($this->_name);
 		}

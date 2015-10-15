@@ -90,14 +90,13 @@ class Kohana_CacheTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function test_cloning_fails()
 	{
-		if ( ! Kohana::$config->load('cache.file'))
-		{
-			$this->markTestSkipped('Unable to load File configuration');
-		}
+		$cache = $this->getMockBuilder('Cache')
+			->disableOriginalConstructor()
+			->getMockForAbstractClass();
 
 		try
 		{
-			$cache_clone = clone(Cache::instance('file'));
+			clone($cache);
 		}
 		catch (Cache_Exception $e)
 		{

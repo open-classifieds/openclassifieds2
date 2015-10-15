@@ -22,7 +22,7 @@ a complex set of instructions.
 Caching engines that use memory are considerably faster than file based alternatives. But
 memory is limited whereas disk space is plentiful. If caching large datasets, such as large database result sets, it is best to use file caching.
 
- [!!] Cache drivers require the relevant PHP extensions to be installed. APC, eAccelerator, Memecached and Xcache all require non-standard PHP extensions.
+[!!] Cache drivers require the relevant PHP extensions to be installed. APC, eAccelerator, Memecached and Xcache all require non-standard PHP extensions.
 
 ## What the Kohana Cache module does (and does not do)
 

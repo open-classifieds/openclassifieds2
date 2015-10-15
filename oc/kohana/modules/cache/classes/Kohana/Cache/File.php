@@ -140,16 +140,20 @@ class Kohana_Cache_File extends Cache implements Cache_GarbageCollect {
 			}
 			else
 			{
-				// Open the file and parse data
-				$created  = $file->getMTime();
-				$data     = $file->openFile();
-				$lifetime = $data->fgets();
-
-				// If we're at the EOF at this point, corrupted!
-				if ($data->eof())
+				// Test the expiry
+				if ($this->_is_expired($file))
 				{
-					throw new Cache_Exception(__METHOD__.' corrupted cache file!');
+					// Delete the file
+					$this->_delete_file($file, FALSE, TRUE);
+					return $default;
 				}
+
+				// open the file to read data
+				$data = $file->openFile();
+
+				// Run first fgets(). Cache data starts from the second line
+				// as the first contains the lifetime timestamp
+				$data->fgets();
 
 				$cache = '';
 
@@ -158,17 +162,7 @@ class Kohana_Cache_File extends Cache implements Cache_GarbageCollect {
 					$cache .= $data->fgets();
 				}
 
-				// Test the expiry
-				if (($created + (int) $lifetime) < time())
-				{
-					// Delete the file
-					$this->_delete_file($file, NULL, TRUE);
-					return $default;
-				}
-				else
-				{
-					return unserialize($cache);
-				}
+				return unserialize($cache);
 			}
 
 		}
@@ -219,14 +213,7 @@ class Kohana_Cache_File extends Cache implements Cache_GarbageCollect {
 		// If the directory path is not a directory
 		if ( ! $dir->isDir())
 		{
-			// Create the directory
-			if ( ! mkdir($directory, 0777, TRUE))
-			{
-				throw new Cache_Exception(__METHOD__.' unable to create directory : :directory', array(':directory' => $directory));
-			}
-
-			// chmod to solve potential umask issues
-			chmod($directory, 0777);
+			$this->_make_directory($directory, 0777, TRUE);
 		}
 
 		// Open file to inspect
@@ -267,7 +254,7 @@ class Kohana_Cache_File extends Cache implements Cache_GarbageCollect {
 		$filename = Cache_File::filename($this->_sanitize_id($id));
 		$directory = $this->_resolve_directory($filename);
 
-		return $this->_delete_file(new SplFileInfo($directory.$filename), NULL, TRUE);
+		return $this->_delete_file(new SplFileInfo($directory.$filename), FALSE, TRUE);
 	}
 
 	/**
@@ -337,9 +324,7 @@ class Kohana_Cache_File extends Cache implements Cache_GarbageCollect {
 					else
 					{
 						// Assess the file expiry to flag it for deletion
-						$json = $file->openFile('r')->current();
-						$data = json_decode($json);
-						$delete = $data->expiry < time();
+						$delete = $this->_is_expired($file);
 					}
 
 					// If the delete flag is set delete file
@@ -375,7 +360,7 @@ class Kohana_Cache_File extends Cache implements Cache_GarbageCollect {
 						// Create new file resource
 						$fp = new SplFileInfo($files->getRealPath());
 						// Delete the file
-						$this->_delete_file($fp);
+						$this->_delete_file($fp, $retain_parent_directory, $ignore_errors, $only_expired);
 					}
 
 					// Move the file pointer on
@@ -446,21 +431,55 @@ class Kohana_Cache_File extends Cache implements Cache_GarbageCollect {
 	 * `mkdir` to ensure DRY principles
 	 *
 	 * @link    http://php.net/manual/en/function.mkdir.php
-	 * @param   string    $directory
-	 * @param   integer   $mode
-	 * @param   boolean   $recursive
-	 * @param   resource  $context
+	 * @param   string    $directory    directory path
+	 * @param   integer   $mode         chmod mode
+	 * @param   boolean   $recursive    allows nested directories creation
+	 * @param   resource  $context      a stream context
 	 * @return  SplFileInfo
 	 * @throws  Cache_Exception
 	 */
 	protected function _make_directory($directory, $mode = 0777, $recursive = FALSE, $context = NULL)
 	{
-		if ( ! mkdir($directory, $mode, $recursive, $context))
+		// call mkdir according to the availability of a passed $context param
+		$mkdir_result = $context ?
+			mkdir($directory, $mode, $recursive, $context) :
+			mkdir($directory, $mode, $recursive);
+
+		// throw an exception if unsuccessful
+		if ( ! $mkdir_result)
 		{
 			throw new Cache_Exception('Failed to create the defined cache directory : :directory', array(':directory' => $directory));
 		}
+
+		// chmod to solve potential umask issues
 		chmod($directory, $mode);
 
 		return new SplFileInfo($directory);
+	}
+
+	/**
+	 * Test if cache file is expired
+	 *
+	 * @param SplFileInfo $file the cache file
+	 * @return boolean TRUE if expired false otherwise
+	 */
+	protected function _is_expired(SplFileInfo $file)
+	{
+		// Open the file and parse data
+		$created = $file->getMTime();
+		$data = $file->openFile("r");
+		$lifetime = (int) $data->fgets();
+
+		// If we're at the EOF at this point, corrupted!
+		if ($data->eof())
+		{
+			throw new Cache_Exception(__METHOD__ . ' corrupted cache file!');
+		}
+
+		//close file
+		$data = null;
+
+		// test for expiry and return
+		return (($lifetime !== 0) AND ( ($created + $lifetime) < time()));
 	}
 }

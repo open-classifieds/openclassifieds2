@@ -11,6 +11,43 @@
 class Controller_Panel_Update extends Controller_Panel_OC_Update {    
 
     /**
+     * This function will upgrade DB that didn't existed in versions prior to 2.6.0
+     */
+    public function action_260()
+    {
+        //Cron update
+        try
+        {
+            DB::query(Database::UPDATE,"UPDATE `".self::$db_prefix."crontab` SET period='30 */1 * * *' WHERE callback='Cron_Ad::expired_featured' LIMIT 1")->execute();
+        }catch (exception $e) {}
+
+        //improve performance table visits
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE `".self::$db_prefix."visits` DROP `ip_address`")->execute();
+        }catch (exception $e) {}
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE `".self::$db_prefix."visits` DROP INDEX oc2_visits_IK_id_user")->execute();
+        }catch (exception $e) {}
+
+        //new configs
+        $configs = array(
+                        array( 'config_key'     => 'description',
+                               'group_name'     => 'advertisement', 
+                               'config_value'   => '1'),
+                        array( 'config_key'     => 'social_auth',
+                               'group_name'     => 'general', 
+                               'config_value'   => '1'),
+                        array( 'config_key'     => 'map_style',
+                               'group_name'     => 'advertisement', 
+                               'config_value'   => ''),
+                        );
+        
+        Model_Config::config_array($configs);
+    }
+
+    /**
      * This function will upgrade DB that didn't existed in versions prior to 2.5.1
      */
     public function action_251()

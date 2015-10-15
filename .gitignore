@@ -11,3 +11,5 @@ images/*
 themes/*
 !themes/default/
 oc/vendor/hybridauth/logs.txt
+oc/codecept.phar
+oc/tests/_output/*

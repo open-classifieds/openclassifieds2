@@ -145,9 +145,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `id_user` int(10) unsigned DEFAULT NULL,
   `contacted` tinyint(1) NOT NULL DEFAULT '0',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `ip_address` bigint DEFAULT NULL,
   PRIMARY KEY (`id_visit`),
-  KEY `".core::request('TABLE_PREFIX')."visits_IK_id_user` (`id_user`),
   KEY `".core::request('TABLE_PREFIX')."visits_IK_id_ad` (`id_ad`)
 ) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
@@ -574,6 +572,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('general', 'recaptcha_sitekey', ''),
 ('general', 'cookie_consent', 0),
 ('general', 'auto_locate', 0),
+('general', 'social_auth', 0),
 ('general', 'search_multi_catloc', 0),
 ('general', 'gcm_apikey', ''),
 ('image', 'allowed_formats', 'jpeg,jpg,png,'),
@@ -594,6 +593,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('image', 'disallow_nudes', 0),
 ('advertisement', 'num_images', '4'),
 ('advertisement', 'expire_date', '0'),
+('advertisement', 'description', 1),
 ('advertisement', 'address', 1),
 ('advertisement', 'phone', 1),
 ('advertisement', 'upload_file', 0),
@@ -608,6 +608,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('advertisement', 'disqus', ''),
 ('advertisement', 'fbcomments', ''),
 ('advertisement', 'map', 0),
+('advertisement', 'map_style', ''),
 ('advertisement', 'map_zoom', 14),
 ('advertisement', 'center_lon', ''),
 ('advertisement', 'center_lat', ''),

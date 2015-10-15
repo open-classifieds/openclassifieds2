@@ -51,6 +51,9 @@ class Kohana_Database_MySQL_Result extends Database_Result {
 		// Increment internal row for optimization assuming rows are fetched in order
 		$this->_internal_row++;
 
+		// FIXME mysql_fetch_object has been deprecated as of php 5.5!
+		// Please use mysqli_fetch_object or PDOStatement::fetch(PDO::FETCH_OBJ) instead.
+
 		if ($this->_as_object === TRUE)
 		{
 			// Return an stdClass
@@ -58,8 +61,32 @@ class Kohana_Database_MySQL_Result extends Database_Result {
 		}
 		elseif (is_string($this->_as_object))
 		{
-			// Return an object of given class name
-			return mysql_fetch_object($this->_result, $this->_as_object, $this->_object_params);
+			/* The second and third argument for mysql_fetch_object are optional, but do 
+			 * not have default values defined.  Passing _object_params with a non-array value results 
+			 * in undefined behavior that varies by PHP version.  For example, if NULL is supplied on 
+			 * PHP 5.3, the resulting behavior is identical to calling with array(), which results in the 
+			 * classes __construct function being called with no arguments. This is only an issue when 
+			 * the _as_object class does not have an explicit __construct method resulting in the 
+			 * cryptic error "Class %s does not have a constructor hence you cannot use ctor_params."
+			 * In contrast, the same function call on PHP 5.5 will 'functionally' interpret 
+			 * _object_params == NULL as an omission of the third argument, resulting in the original
+			 * intended functionally.
+			 * 
+			 * Because the backing code for the mysql_fetch_object has not changed between 5.3 and 5.5,
+			 * I suspect this discrepancy is due to the way the classes are instantiated on a boarder 
+			 * level. Additionally, mysql_fetch_object has been deprecated in 5.5 and should probably be 
+			 * replaced by mysqli_fetch_object or PDOStatement::fetch(PDO::FETCH_OBJ) in Kohana 3.4.
+			 */
+			if ($this->_object_params !== NULL)
+			{
+				// Return an object of given class name with constructor params
+				return mysql_fetch_object($this->_result, $this->_as_object, $this->_object_params);
+			}
+			else
+			{
+				// Return an object of given class name without constructor params
+				return mysql_fetch_object($this->_result, $this->_as_object);
+			}
 		}
 		else
 		{

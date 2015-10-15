@@ -24,6 +24,11 @@
 		"kohana/core":         ">=3.3",
 		"php":                 ">=5.3.3"
 	},
+    "require-dev": {
+        "kohana/core":         "3.3.*@dev",
+        "kohana/unittest":     "3.3.*@dev",
+        "kohana/koharness":    "*@dev"
+    },
 	"suggest": {
 		"ext-gd":   "*"
 	},
@@ -31,6 +36,9 @@
 		"branch-alias": {
 			"dev-3.3/develop": "3.3.x-dev",
 			"dev-3.4/develop": "3.4.x-dev"
-		}
+        },
+        "installer-paths": {
+            "vendor/{$vendor}/{$name}": ["type:kohana-module"]
+        }
 	}
 }

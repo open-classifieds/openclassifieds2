@@ -36,7 +36,7 @@
  * Below is an example of a _memcache_ server configuration.
  *
  *     return array(
- *          'default'       => array(                      // Default group
+ *          'memcache' => array(                           // Name of group
  *                  'driver'         => 'memcache',        // using Memcache driver
  *                  'servers'        => array(             // Available server definitions
  *                         array(
@@ -49,8 +49,12 @@
  *           ),
  *     )
  *
- * In cases where only one cache group is required, if the group is named `default` there is
- * no need to pass the group name when instantiating a cache instance.
+ * In cases where only one cache group is required, set `Cache::$default` (in your bootstrap,
+ * or by extending `Kohana_Cache` class) to the name of the group, and use:
+ *
+ *     $cache = Cache::instance(); // instead of Cache::instance('memcache')
+ *
+ * It will return the cache instance of the group it has been set in `Cache::$default`.
  *
  * #### General cache group configuration settings
  *

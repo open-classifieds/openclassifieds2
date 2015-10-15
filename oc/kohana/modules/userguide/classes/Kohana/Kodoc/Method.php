@@ -5,28 +5,28 @@
  * @package    Kohana/Userguide
  * @category   Base
  * @author     Kohana Team
- * @copyright  (c) 2009 Kohana Team
- * @license    http://kohanaphp.com/license
+ * @copyright  (c) 2008-2013 Kohana Team
+ * @license    http://kohanaframework.org/license
  */
 class Kohana_Kodoc_Method extends Kodoc {
 
 	/**
-	 * @var  ReflectionMethod   The ReflectionMethod for this class
+	 * @var  ReflectionMethod  The ReflectionMethod for this class
 	 */
 	public $method;
 
 	/**
-	 * @var  array    array of Kodoc_Method_Param
+	 * @var  array  Array of Kodoc_Method_Param
 	 */
 	public $params;
 
 	/**
-	 * @var  array   the things this function can return
+	 * @var  array  The things this function can return
 	 */
 	public $return = array();
 
 	/**
-	 * @var  string  the source code for this function
+	 * @var  string  The source code for this function
 	 */
 	public $source;
 

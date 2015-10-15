@@ -1,1 +1,1 @@
-Kohana 3.3.2
+Kohana 3.3.4

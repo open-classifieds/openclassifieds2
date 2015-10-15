@@ -22,8 +22,13 @@
 	"require": {
 		"composer/installers": "~1.0",
 		"kohana/core":         ">=3.3",
-		"php":                 ">=5.3.3"
+		"php":                 ">=5.3.6"
 	},
+    "require-dev": {
+        "kohana/core":         "3.3.*@dev",
+        "kohana/unittest":     "3.3.*@dev",
+        "kohana/koharness":    "*@dev"
+    },
 	"suggest": {
 		"ext-mysql":   "*",
 		"ext-pdo":     "*"
@@ -32,6 +37,9 @@
 		"branch-alias": {
 			"dev-3.3/develop": "3.3.x-dev",
 			"dev-3.4/develop": "3.4.x-dev"
-		}
+        },
+        "installer-paths": {
+            "vendor/{$vendor}/{$name}": ["type:kohana-module"]
+        }
 	}
 }

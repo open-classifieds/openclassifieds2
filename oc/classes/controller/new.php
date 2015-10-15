@@ -93,12 +93,13 @@ class Controller_New extends Controller
         $locations = $locations->where('id_location', '!=', '1');
         
         // bool values from DB, to show or hide this fields in view
-        $form_show = array('captcha'    =>core::config('advertisement.captcha'),
-                           'website'    =>core::config('advertisement.website'),
-                           'phone'      =>core::config('advertisement.phone'),
-                           'location'   =>core::config('advertisement.location'),
-                           'address'    =>core::config('advertisement.address'),
-                           'price'      =>core::config('advertisement.price'));
+        $form_show = array('captcha'     =>core::config('advertisement.captcha'),
+                           'website'     =>core::config('advertisement.website'),
+                           'phone'       =>core::config('advertisement.phone'),
+                           'location'    =>core::config('advertisement.location'),
+                           'description' =>core::config('advertisement.description'),
+                           'address'     =>core::config('advertisement.address'),
+                           'price'       =>core::config('advertisement.price'));
         
         
         $id_category = NULL;

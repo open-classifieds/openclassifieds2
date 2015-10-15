@@ -24,7 +24,7 @@
 					<div class="picture pull-right">
 						<a class="pull-right" title="<?=HTML::chars($ad->title);?>" alt="<?=HTML::chars($ad->title);?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
 							<figure>
-								<img data-src="holder.js/<?=core::config('image.width_thumb')?>x<?=core::config('image.height_thumb')?>?text=<?=HTML::entities($ad->category->name)?>&amp;size=14&amp;auto=yes"  width="100%">
+								<img data-src="holder.js/<?=core::config('image.width_thumb')?>x<?=core::config('image.height_thumb')?>?<?=str_replace('+', ' ', http_build_query(array('text' => $ad->category->name, 'size' => 14, 'auto' => 'yes')))?>"  width="100%">
 							</figure>
 						</a>
 					</div>

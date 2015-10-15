@@ -302,7 +302,7 @@ class install{
         $url = 'http://'.$_SERVER['SERVER_NAME'];
         
         if ($_SERVER['SERVER_PORT'] != '80') 
-            $url = self::$url.':'.$_SERVER['SERVER_PORT'];
+            $url = $url.':'.$_SERVER['SERVER_PORT'];
         
         $url .= self::get_folder();
         

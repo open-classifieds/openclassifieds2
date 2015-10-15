@@ -39,6 +39,18 @@ class Kohana_ApcTest extends Kohana_CacheArithmeticMethodsTest {
 				'place "apc.enable_cli=1" in your php.ini file');
 		}
 
+		if ( ! Kohana::$config->load('cache.apc'))
+		{
+			Kohana::$config->load('cache')
+				->set(
+					'apc',
+					array(
+						'driver'             => 'apc',
+						'default_expire'     => 3600,
+					)
+				);
+		}
+
 		$this->cache(Cache::instance('apc'));
 	}
 
@@ -57,7 +69,7 @@ class Kohana_ApcTest extends Kohana_CacheArithmeticMethodsTest {
 	 * 
 	 * @dataProvider provider_set_get
 	 *
-	 * @param   array    data 
+	 * @param   array    data
 	 * @param   mixed    expected 
 	 * @return  void
 	 */

@@ -172,7 +172,7 @@ abstract class Kohana_Database_Query_Builder_Where extends Database_Query_Builde
 	 */
 	public function limit($number)
 	{
-		$this->_limit = $number;
+		$this->_limit = ($number === NULL) ? NULL : (int) $number;
 
 		return $this;
 	}

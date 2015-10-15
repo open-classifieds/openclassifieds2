@@ -9,7 +9,7 @@ $modules = array();
 
 foreach ($modules_iterator as $module)
 {
-	if ($module->isDir())
+	if ($module->isDir() AND ! $module->isDot())
 	{
 		$modules[$module->getFilename()] = MODPATH.$module->getFilename();
 	}

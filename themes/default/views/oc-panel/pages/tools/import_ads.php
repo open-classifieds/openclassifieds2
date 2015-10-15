@@ -11,7 +11,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title"><?=__('Upload CSV file')?></h3>
                 <p>
-                    <?=__('Please use the correct CSV format')?> <a href="http://j.mp/185WfAR"><?=__('download example')?>.</a>
+                    <?=__('Please use the correct CSV format')?> <a href="https://docs.google.com/uc?id=0B60e9iwQucDwRzlOT2NCem5maFU&export=download"><?=__('download example')?>.</a>
                     <br>
                     <span class="label label-info"><?=__('Hosting limit')?></span> 
                     upload_max_filesize: <?=ini_get('upload_max_filesize')?>, max_execution_time: <?=ini_get('max_execution_time')?><?=__('seconds')?> <?=__('limited to 10.000 at a time')?>, <?=__('1 MB file')?>.

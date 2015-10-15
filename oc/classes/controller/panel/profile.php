@@ -123,7 +123,7 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 
 			try {
 				$user->save();
-				Alert::set(Alert::SUCCESS, __('You have successfuly changed your data'));				
+				Alert::set(Alert::SUCCESS, __('You have successfully changed your data'));				
 			} catch (Exception $e) {
 				//throw 500
 				throw HTTP_Exception::factory(500,$e->getMessage());

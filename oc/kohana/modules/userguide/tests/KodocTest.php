@@ -6,7 +6,7 @@
  *
  * @package    Kohana/Userguide
  * @author     Kohana Team
- * @copyright  (c) 2012 Kohana Team
+ * @copyright  (c) 2008-2013 Kohana Team
  * @license    http://kohanaframework.org/license
  */
 class Kohana_KodocTest extends PHPUnit_Framework_TestCase
@@ -88,7 +88,7 @@ COMMENT
 			array(
 <<<'COMMENT'
 /**
- * @trailingspace 
+ * @trailingspace
  */
 COMMENT
 ,
@@ -162,11 +162,11 @@ COMMENT
 			array(
 <<<'COMMENT'
 /**
- * @copyright (c) 2012 Kohana Team
+ * @copyright (c) 2008-2013 Kohana Team
  */
 COMMENT
 ,
-				array('', array('copyright' => array('&copy; 2012 Kohana Team'))),
+				array('', array('copyright' => array('&copy; 2008-2013 Kohana Team'))),
 			),
 			array(
 <<<'COMMENT'
@@ -328,7 +328,7 @@ COMMENT
 	{
 		$this->assertSame($expected, Kodoc::parse($comment));
 	}
-	
+
 	/**
 	 * Provides test data for test_transparent_classes
 	 * @return array

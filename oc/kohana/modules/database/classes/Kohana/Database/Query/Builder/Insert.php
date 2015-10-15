@@ -31,7 +31,7 @@ class Kohana_Database_Query_Builder_Insert extends Database_Query_Builder {
 		if ($table)
 		{
 			// Set the inital table name
-			$this->_table = $table;
+			$this->table($table);
 		}
 
 		if ($columns)
@@ -47,11 +47,14 @@ class Kohana_Database_Query_Builder_Insert extends Database_Query_Builder {
 	/**
 	 * Sets the table to insert into.
 	 *
-	 * @param   mixed  $table  table name or array($table, $alias) or object
+	 * @param   string  $table  table name
 	 * @return  $this
 	 */
 	public function table($table)
 	{
+		if ( ! is_string($table))
+			throw new Kohana_Exception('INSERT INTO syntax does not allow table aliasing');
+
 		$this->_table = $table;
 
 		return $this;
@@ -86,8 +89,11 @@ class Kohana_Database_Query_Builder_Insert extends Database_Query_Builder {
 
 		// Get all of the passed values
 		$values = func_get_args();
-
-		$this->_values = array_merge($this->_values, $values);
+		
+		foreach ($values as $value)
+		{
+			$this->_values[] = $value;
+		}
 
 		return $this;
 	}

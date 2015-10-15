@@ -4,12 +4,11 @@
   array (
     'codename' => 'Punta Cana',
     'released' => '2015-09-10',
-    'blog' => 'http://open-classifieds.com/2015/00/10/open-classifieds-2-5-1/',
+    'blog' => 'http://open-classifieds.com/2015/09/10/open-classifieds-2-5-1/',
     'changelog' => 'https://github.com/open-classifieds/openclassifieds2/compare/2.5.0...2.5.1',
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?q=milestone%3A2.5.1+is%3Aclosed',
     'download' => 'http://j.mp/oc_251',
   ),
-
   '2.5.0' => 
   array (
     'codename' => 'Las Galeras',
@@ -19,7 +18,6 @@
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?q=milestone%3A2.5.0+is%3Aclosed',
     'download' => 'http://j.mp/oc_250',
   ),
-
   '2.4.1' => 
   array (
     'codename' => 'Puerto Plata',
@@ -29,7 +27,6 @@
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?q=milestone%3A2.4.1+is%3Aclosed',
     'download' => 'http://j.mp/oc_241',
   ),
-
   '2.4.0' => 
   array (
     'codename' => 'Samana',
@@ -39,7 +36,6 @@
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=26&page=1&state=closed',
     'download' => 'http://j.mp/oc_240',
   ),
-
   '2.3.1' => 
   array (
     'codename' => 'Boca Chica',
@@ -67,7 +63,7 @@
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=23&page=1&state=closed',
     'download' => 'http://j.mp/oc_221',
   ),
- '2.2.0' => 
+  '2.2.0' => 
   array (
     'codename' => 'Dryocopus',
     'released' => '2014-08-27',
@@ -112,7 +108,7 @@
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=19&state=closed',
     'download' => 'http://j.mp/oc_216',
   ),
- '2.1.5' => 
+  '2.1.5' => 
   array (
     'codename' => 'Bogatell',
     'released' => '2014-05-01',
@@ -121,7 +117,7 @@
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=19&state=closed',
     'download' => 'http://j.mp/oc_215',
   ),
-    '2.1.4' => 
+  '2.1.4' => 
   array (
     'codename' => 'Budapest',
     'released' => '2014-03-26',
@@ -130,7 +126,6 @@
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=17&state=closed',
     'download' => 'http://j.mp/oc_214',
   ),
-
   '2.1.3' => 
   array (
     'codename' => 'Nmemba',
@@ -158,7 +153,6 @@
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=14&state=closed',
     'download' => 'http://j.mp/oc_211',
   ),
-
   '2.1' => 
   array (
     'codename' => 'Belgrade',
@@ -168,7 +162,6 @@
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=13&state=closed',
     'download' => 'http://j.mp/oc_210',
   ),
-
   '2.0.7' => 
   array (
     'codename' => 'Reoc',

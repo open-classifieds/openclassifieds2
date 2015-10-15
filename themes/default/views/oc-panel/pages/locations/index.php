@@ -13,49 +13,62 @@
         <div class="panel panel-default">
             <div class="panel-heading"><?=$location->name?></div>
             <div class="panel-body">
-                <ol class='plholder' id="ol_<?=$location->id_location?>" data-id="<?=$location->id_location?>">
-                    <?foreach ($locs as $loc) :?>
-                        <li data-id="<?=$loc->id_location?>" id="li_<?=$loc->id_location?>">
-                    
-                            <div class="drag-item">
-                                <span class="drag-icon"><i class="fa fa-ellipsis-v"></i><i class="fa fa-ellipsis-v"></i></span>
-                                <div class="drag-name">
-                                    <?=$loc->name?>
+                <?=FORM::open(Route::url('oc-panel',array('controller'=>'location','action'=>'delete')), array('class'=>'form-inline', 'enctype'=>'multipart/form-data'))?>
+                    <ol class='plholder' id="ol_<?=$location->id_location?>" data-id="<?=$location->id_location?>">
+                        <?foreach ($locs as $loc) :?>
+                            <li data-id="<?=$loc->id_location?>" id="li_<?=$loc->id_location?>">
+                        
+                                <div class="drag-item">
+                                    <span class="drag-icon"><i class="fa fa-ellipsis-v"></i><i class="fa fa-ellipsis-v"></i></span>
+                                    <div class="drag-name">
+                                        <?=$loc->name?>
+                                    </div>
+                                    <a class="drag-action ajax-load" title="<?=__('Browse childs')?>"
+                                        href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'index'))?>?id_location=<?=$loc->id_location?>">
+                                        <?=__('Browse')?>
+                                    </a>
+                                    <a class="drag-action ajax-load" title="<?=__('Edit')?>"
+                                        href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'update','id'=>$loc->id_location))?>">
+                                        <i class="fa fa-pencil-square-o"></i>
+                                    </a>
+                                    <a 
+                                        href="<?=Route::url('oc-panel', array('controller'=> 'location', 'action'=>'delete','id'=>$loc->id_location))?>" 
+                                        class="drag-action index-delete" 
+                                        title="<?=__('Are you sure you want to delete? We will move the siblings locations and ads to the parent of this location.')?>" 
+                                        data-id="li_<?=$loc->id_location?>" 
+                                        data-placement="left" 
+                                        data-href="<?=Route::url('oc-panel', array('controller'=> 'location', 'action'=>'delete','id'=>$loc->id_location))?>" 
+                                        data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                        data-btnCancelLabel="<?=__('No way!')?>">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                    </a>
+                                    <span class="drag-action">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input name="locations[]" value="<?=$loc->id_location?>" type="checkbox">
+                                            </label>
+                                        </div>
+                                    </span>
                                 </div>
-                                <a class="drag-action ajax-load" title="<?=__('Browse childs')?>"
-                                    href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'index'))?>?id_location=<?=$loc->id_location?>">
-                                    <?=__('Browse')?>
-                                </a>
-                                <a class="drag-action ajax-load" title="<?=__('Edit')?>"
-                                    href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'update','id'=>$loc->id_location))?>">
-                                    <i class="fa fa-pencil-square-o"></i>
-                                </a>
-                                <a 
-                                    href="<?=Route::url('oc-panel', array('controller'=> 'location', 'action'=>'delete','id'=>$loc->id_location))?>" 
-                                    class="drag-action index-delete" 
-                                    title="<?=__('Are you sure you want to delete? We will move the siblings locations and ads to the parent of this location.')?>" 
-                                    data-id="li_<?=$loc->id_location?>" 
-                                    data-placement="left" 
-                                    data-href="<?=Route::url('oc-panel', array('controller'=> 'location', 'action'=>'delete','id'=>$loc->id_location))?>" 
-                                    data-btnOkLabel="<?=__('Yes, definitely!')?>" 
-                                    data-btnCancelLabel="<?=__('No way!')?>">
-                                    <i class="glyphicon glyphicon-trash"></i>
-                                </a>
-                            </div>
+                        
+                            </li><!--li_<?=$loc->id_location?>-->
+                        <?endforeach?>
+                    </ol><!--ol_1-->
                     
-                        </li><!--li_<?=$loc->id_location?>-->
-                    <?endforeach?>
-                </ol><!--ol_1-->
-                
-                <span id='ajax_result' data-url='<?=Route::url('oc-panel',array('controller'=>'location','action'=>'saveorder'))?>'></span>
-                
-                <?if(count($locs) > 0) :?>
-                    <p>
-                        <button data-toggle="modal" data-target="#delete-all" class="btn btn-danger pull-right">
-                            <?=__('Delete all locations')?>
-                        </button>
-                    </p>
-                <?endif?>
+                    <span id='ajax_result' data-url='<?=Route::url('oc-panel',array('controller'=>'location','action'=>'saveorder'))?>'></span>
+                    
+                    <?if(count($locs) > 0) :?>
+                        <p class="text-right">
+                            <button data-toggle="modal" data-target="#delete-all" class="btn btn-danger">
+                                <?=__('Delete all locations')?>
+                            </button>
+
+                            <button name="delete" type="submit" class="btn btn-danger">
+                                <?=__('Delete selected locations')?>
+                            </button>
+                        </p>
+                    <?endif?>
+                <?=FORM::close()?>
             </div>
         </div>
     </div>
@@ -144,7 +157,7 @@
                     <div class="panel-heading"><?="<a target='_blank' href='http://docs.yclas.com/use-import-tool-categories-locations/'>"._('Upload CSV file')."</a>"?></div>
                     <div class="panel-body">
                         <p>
-                            <?=__('Please use the correct CSV format')?> <a href="https://mega.co.nz/#!BxZDzDCC!ANjH-uKxKhcaYwI2_xy0QQWVtvWK510ObGLAaUp_rWQ"><?=__('download example')?>.</a>
+                            <?=__('Please use the correct CSV format')?> <a href="https://docs.google.com/uc?id=0B60e9iwQucDwa2VjRXAtV0FXVlk&export=download"><?=__('download example')?>.</a>
                         </p>
                         <hr>
                         <?= FORM::open(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool'.'?id_parent='.Core::get('id_location', 1))), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
@@ -183,6 +196,7 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal"><?=__('Cancel')?></button>
                     <button type="submit" class="btn btn-danger" name="confirmation" value="1"><?=__('Delete')?></button>
                 </div>
+            <input type="hidden" name="id_location" value="<?=Core::get('id_location')?>"></div>
             <?= FORM::close()?>
         </div>
     </div>

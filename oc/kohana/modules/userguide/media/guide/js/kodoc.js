@@ -32,41 +32,6 @@ $(document).ready(function()
 		});
 	});
 
-	// Collapsing menus
-	$('#kodoc-topics li:has(li)').each(function()
-	{
-		var $this = $(this);
-		var toggle = $('<span class="toggle"></span>');
-		var menu = $this.find('>ul,>ol');
-
-		toggle.click(function()
-		{
-			if (menu.is(':visible'))
-			{
-				menu.stop(true, true).slideUp('fast');
-				toggle.html('+');
-			}
-			else
-			{
-				menu.stop(true, true).slideDown('fast');
-				toggle.html('&ndash;');
-			}
-		});
-
-		$this.find('>span').click(function()
-		{
-			// Menu without a link
-			toggle.click();
-		});
-
-		if ( ! $this.is(':has(a.current)'))
-		{
-			menu.hide();
-		}
-
-		toggle.html(menu.is(':visible') ? '&ndash;' : '+').prependTo($this);
-	});
-
 // Show source links
 
 	$('#kodoc-main .method-source').each(function()

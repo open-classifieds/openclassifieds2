@@ -26,7 +26,7 @@
                                 <?elseif(( $icon_src = $ad->location->get_icon() )!==FALSE ):?>
                                     <img src="<?=$icon_src?>" alt="<?=HTML::chars($ad->title)?>" >
                                 <?else:?>
-                                    <img data-src="holder.js/<?=core::config('image.width_thumb')?>x<?=core::config('image.height_thumb')?>?text=<?=HTML::entities($ad->category->name)?>&amp;size=14&amp;auto=yes" alt="<?=HTML::chars($ad->title)?>"> 
+                                    <img data-src="holder.js/<?=core::config('image.width_thumb')?>x<?=core::config('image.height_thumb')?>?<?=str_replace('+', ' ', http_build_query(array('text' => $ad->category->name, 'size' => 14, 'auto' => 'yes')))?>" alt="<?=HTML::chars($ad->title)?>"> 
                                 <?endif?> 
                             <?endif?>
                         </a>

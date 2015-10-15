@@ -99,7 +99,7 @@ h6:hover a.permalink {
 #kodoc-content,
 #kodoc-footer { float: left; clear: both; width: 100%; }
 
-#kodoc-header { padding: 58px 0 2em; background: #77c244 url(../img/header.png) center top repeat-x; }
+#kodoc-header { padding: 20px 0 2em; background: #77c244 url(../img/header.png) center top repeat-x; }
 	#kodoc-logo { display: block; float: left; }
 	#kodoc-menu { float: right; margin-top: 12px; background: #113c32; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
 	#kodoc-menu ul { float: left; margin: 0; padding: 0 0.5em 0 0; }
@@ -125,11 +125,23 @@ h6:hover a.permalink {
 
 #kodoc-topics {  }
 	#kodoc-topics ul,
-	#kodoc-topics ol { list-style-type:none; margin: 0; padding: 0;}
+	#kodoc-topics ol { list-style-type:none; margin: 0 0 0 0; padding: 0;}
 		#kodoc-topics ul li,
 		#kodoc-topics ol li { margin:0; padding: 0; margin-left: 1em; }
 		#kodoc-topics ul li a.current,
 		#kodoc-topics ol li a.current { font-weight: bold; }
+	
+	#kodoc-topics > ul > li { 
+		margin-bottom: 20px; 
+	}
+
+	#kodoc-topics > ul > li > a,
+	#kodoc-topics > ul > li > span {
+		font-weight: bold;
+		color: #EE8C0E;
+	}
+
+
 	#kodoc-topics span,
 	#kodoc-topics a { display: block; padding: 0; margin: 0; }
 	#kodoc-topics span { cursor: pointer; }

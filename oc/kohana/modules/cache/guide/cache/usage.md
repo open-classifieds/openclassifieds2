@@ -9,7 +9,7 @@ Creating a new _Kohana Cache_ instance is simple, however it must be done using 
      // Create a new instance of cache using the default group
      $cache = Cache::instance();
 
-The default group will use whatever is set to [Cache::$default] and must have a corresponding [configuration](cache.config) definition for that group.
+The default group will use whatever is set to [Cache::$default] and must have a corresponding [configuration](config) definition for that group.
 
 To create a cache instance using a group other than the _default_, simply provide the group name as an argument.
 
@@ -18,7 +18,7 @@ To create a cache instance using a group other than the _default_, simply provid
 
 If there is a cache instance already instantiated then you can get it directly from the class member.
 
- [!!] Beware that this can cause issues if you do not test for the instance before trying to access it.
+[!!] Beware that this can cause issues if you do not test for the instance before trying to access it.
 
      // Check for the existance of the cache driver
      if (isset(Cache::$instances['memcache']))
@@ -36,11 +36,11 @@ If there is a cache instance already instantiated then you can get it directly f
 
 The cache library supports scalar and object values, utilising object serialization where required (or not supported by the caching engine). This means that the majority or objects can be cached without any modification.
 
- [!!] Serialisation does not work with resource handles, such as filesystem, curl or socket resources.
+[!!] Serialisation does not work with resource handles, such as filesystem, curl or socket resources.
 
 ### Setting a value to cache
 
-Setting a value to cache using the [Cache::set] method can be done in one of two ways; either using the Cache instance interface, which is good for atomic operations; or getting an instance and using that for multiple operations.
+Setting a value to cache using the [Cache::set] method can be done in one of two ways: either using the Cache instance interface, which is good for atomic operations, or getting an instance and using that for multiple operations.
 
 The first example demonstrates how to quickly load and set a value to the default cache instance.
 
@@ -104,7 +104,7 @@ In cases where the requested key is not available or the entry has expired, a de
 
 It is possible to retrieve values from cache grouped by tag, using the [Cache::find] method with drivers that support tagging.
 
- [!!] The __Memcachetag__ driver does not support the `Cache::find($tag)` interface and will throw an exception.
+[!!] The __Memcachetag__ driver does not support the `Cache::find($tag)` interface and will throw an exception.
 
      // Get an instance of cache
      $cache = Cache::instance('memcachetag');

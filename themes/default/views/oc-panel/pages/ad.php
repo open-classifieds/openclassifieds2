@@ -131,7 +131,7 @@
 				<div class="checkbox">
 				    <label>
 				        <input type="checkbox" id="<?= $ad->id_ad.'_'?>" class="checkbox">
-				    </labe>
+				    </label>
 				</div>
 			</td>
 

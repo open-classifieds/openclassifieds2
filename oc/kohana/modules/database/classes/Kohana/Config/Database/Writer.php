@@ -3,6 +3,15 @@
 /**
  * Database writer for the config system
  *
+ * Schema for configuration table:
+ * 
+ *    CREATE TABLE IF NOT EXISTS `config` (
+ *      `group_name` varchar(128) NOT NULL,
+ *      `config_key` varchar(128) NOT NULL,
+ *      `config_value` text,
+ *       PRIMARY KEY (`group_name`,`config_key`)
+ *     ) ENGINE=InnoDB;
+ *
  * @package    Kohana
  * @category   Configuration
  * @author     Kohana Team

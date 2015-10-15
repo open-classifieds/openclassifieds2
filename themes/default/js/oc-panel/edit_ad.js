@@ -460,6 +460,8 @@ function createCustomFieldsByCategory (customfields) {
                                                                                     'class'       : 'form-control',
                                                                                     'placeholder' : customfield.label,
                                                                                     'data-type'   : customfield.type,
+                                                                                    'data-toggle' : 'tooltip',
+                                                                                    'title'       : customfield.tooltip,
                                                                                     'required'    : customfield.required,
                                                                                     'value'       : $('#custom-fields').data('customfield-values')[customfield.label],
                                                                                 }));
@@ -472,6 +474,8 @@ function createCustomFieldsByCategory (customfields) {
                                                                                         'rows'        : 10,
                                                                                         'cols'        : 50,
                                                                                         'data-type'   : customfield.type,
+                                                                                        'data-toggle' : 'tooltip',
+                                                                                        'title'       : customfield.tooltip,
                                                                                         'required'    : customfield.required,
                                                                                     }).append($('#custom-fields').data('customfield-values')[customfield.label]));
                 break;
@@ -482,6 +486,8 @@ function createCustomFieldsByCategory (customfields) {
                                                                                     'class'       : 'form-control',
                                                                                     'placeholder' : customfield.label,
                                                                                     'data-type'   : customfield.type,
+                                                                                    'data-toggle' : 'tooltip',
+                                                                                    'title'       : customfield.tooltip,
                                                                                     'required'    : customfield.required,
                                                                                     'value'       : $('#custom-fields').data('customfield-values')[customfield.label],
                                                                                 }));
@@ -496,6 +502,8 @@ function createCustomFieldsByCategory (customfields) {
                                                                                     'class'       : 'form-control',
                                                                                     'placeholder' : customfield.label,
                                                                                     'data-type'   : customfield.type,
+                                                                                    'data-toggle' : 'tooltip',
+                                                                                    'title'       : customfield.tooltip,
                                                                                     'required'    : customfield.required,
                                                                                     'value'       : $('#custom-fields').data('customfield-values')[customfield.label],
                                                                                 }));
@@ -510,6 +518,8 @@ function createCustomFieldsByCategory (customfields) {
                                                                                     'class'            : 'form-control',
                                                                                     'placeholder'      : customfield.label,
                                                                                     'data-type'        : customfield.type,
+                                                                                    'data-toggle'      : 'tooltip',
+                                                                                    'title'            : customfield.tooltip,
                                                                                     'data-date-format' : 'yyyy-mm-dd',
                                                                                     'required'         : customfield.required,
                                                                                     'value'       : $('#custom-fields').data('customfield-values')[customfield.label],
@@ -523,6 +533,8 @@ function createCustomFieldsByCategory (customfields) {
                                                                                     'class'       : 'form-control',
                                                                                     'placeholder' : customfield.label,
                                                                                     'data-type'   : customfield.type,
+                                                                                    'data-toggle' : 'tooltip',
+                                                                                    'title'       : customfield.tooltip,
                                                                                     'required'    : customfield.required,
                                                                                     'value'       : $('#custom-fields').data('customfield-values')[customfield.label],
                                                                                 }));
@@ -556,6 +568,8 @@ function createCustomFieldsByCategory (customfields) {
                                                                                                         'id'          : idx,
                                                                                                         'name'        : idx,
                                                                                                         'data-type'   : customfield.type,
+                                                                                                        'data-toggle' : 'tooltip',
+                                                                                                        'title'       : customfield.tooltip,
                                                                                                         'required'    : customfield.required,
                                                                                                         'value'       : radioidx + 1,
                                                                                                         'checked'     : (value == $('#custom-fields').data('customfield-values')[customfield.label]) ? true:false,
@@ -569,12 +583,19 @@ function createCustomFieldsByCategory (customfields) {
                                                                                     'id'          : idx,
                                                                                     'name'        : idx,
                                                                                     'data-type'   : customfield.type,
+                                                                                    'data-toggle' : 'tooltip',
+                                                                                    'title'       : customfield.tooltip,
                                                                                     'required'    : customfield.required,
                                                                                     'checked'     : $('#custom-fields').data('customfield-values')[customfield.label],
                                                                                 }));
                 break;
         }
-    })
+    });
+
+    $('input[data-toggle=tooltip]').tooltip({
+        placement: "right",
+        trigger: "focus"
+    });
 }
 
 $(function(){
@@ -609,6 +630,28 @@ $(function(){
             }).fail(function() {
                 $('#processing-modal').modal('hide');
             });
+        });
+    });
+
+    $(".img-primary").click(function(e) {
+        e.preventDefault();
+        var href = $(this).attr('href');
+        var title = $(this).data('title');
+        var text = $(this).data('text');
+        var img_id = $(this).attr('value');
+        
+        $('#processing-modal').modal('show');
+        $.ajax({
+            type: "POST",
+            url: href,
+            data: {primary_image: img_id},
+            cache: false
+        }).done(function(result) {
+            $('#processing-modal').modal('hide');
+            window.location.href = href;
+        }).fail(function() {
+            $('#processing-modal').modal('hide');
+            window.location.href = href;
         });
     }); 
 });

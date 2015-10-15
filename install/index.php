@@ -109,6 +109,22 @@ else
                         <div class="off-canvas animated">
                             <form method="post" action="">
                                 <div class="panel-1">
+                                    <div class="form-group">
+                                        <h3><?=__('Site Language')?></h3>
+                                        <select id="LANGUAGE" name="LANGUAGE" class="form-control" onchange="window.location.href='?LANGUAGE='+this.options[this.selectedIndex].value" required>
+                                            <?php
+                                                $languages = scandir("languages");
+                                                foreach ($languages as $lang) 
+                                                {    
+                                                    if (strpos($lang,'.')==false && $lang!='.' && $lang!='..' )
+                                                    {
+                                                        $sel = ( strtolower($lang)==strtolower(install::$locale)) ? ' selected="selected"' : '';
+                                                        echo "<option$sel value=\"$lang\">$lang</option>";
+                                                    }
+                                                }
+                                            ?>
+                                        </select>
+                                    </div>
                                     <h3><?=__('System Check')?></h3>
                                     <ul class="list-unstyled list-requirements">
                                         <?foreach (install::requirements() as $name => $values):
@@ -172,22 +188,6 @@ else
     
                                             <div class="panel-3">
                                                 <h3><?=__('Site Configuration')?></h3>
-                                                <div class="form-group">
-                                                    <label for="LANGUAGE" class="control-label"><?=__("Site Language")?></label>
-                                                    <select id="LANGUAGE" name="LANGUAGE" class="form-control" onchange="window.location.href='?LANGUAGE='+this.options[this.selectedIndex].value" required>
-                                                        <?php
-                                                            $languages = scandir("languages");
-                                                            foreach ($languages as $lang) 
-                                                            {    
-                                                                if( strpos($lang,'.')==false && $lang!='.' && $lang!='..' )
-                                                                {
-                                                                    $sel = ( strtolower($lang)==strtolower(install::$locale)) ? ' selected="selected"' : '';
-                                                                    echo "<option$sel value=\"$lang\">$lang</option>";
-                                                                }
-                                                            }
-                                                        ?>
-                                                    </select>
-                                                </div>
                                                 <div class="form-group hidden animated site-adv">
                                                     <label for="SITE_URL" class="control-label"><?=__("Site URL");?>:</label>
                                                     <input type="text" id="SITE_URL" name="SITE_URL" class="form-control" size="75" value="<?=core::request('SITE_URL',install::$url)?>" required>

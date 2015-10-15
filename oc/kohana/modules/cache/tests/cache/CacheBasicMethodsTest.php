@@ -166,6 +166,17 @@ TESTTEXT;
 			),
 			array(
 				array(
+					'id'      => 'test ttl 0 means never expire',
+					'value'   => 'cache value that should last',
+					'ttl'     => 0,
+					'wait'    => 1,
+					'type'    => 'string',
+					'default' => NULL
+				),
+				'cache value that should last'
+			),
+			array(
+				array(
 					'id'      => 'bar',
 					'value'   => 'foo',
 					'ttl'     => 3,
@@ -196,6 +207,28 @@ TESTTEXT;
 					'default' => NULL,
 				),
 				$html_text
+			),
+			array(
+				array(
+					'id'      => 'test with 60*5',
+					'value'   => 'blabla',
+					'ttl'     => 60*5,
+					'wait'    => FALSE,
+					'type'    => 'string',
+					'default' => NULL,
+				),
+				'blabla'
+			),
+			array(
+				array(
+					'id'      => 'test with 60*50',
+					'value'   => 'bla bla',
+					'ttl'     => 60*50,
+					'wait'    => FALSE,
+					'type'    => 'string',
+					'default' => NULL,
+				),
+				'bla bla'
 			)
 		);
 	}

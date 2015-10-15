@@ -170,7 +170,7 @@ class Kohana_Minion_CLI {
 			// Create temporary file
 			file_put_contents($vbscript, 'wscript.echo(InputBox("'.addslashes($text).'"))');
 
-			$password = shell_exec('cscript //nologo '.escapeshellarg($text));
+			$password = shell_exec('cscript //nologo '.escapeshellarg($vbscript));
 
 			// Remove temporary file.
 			unlink($vbscript);
@@ -278,7 +278,7 @@ class Kohana_Minion_CLI {
 	 * @copyright  2010 - 2011 Fuel Development Team
 	 * @link       http://fuelphp.com
 	 * @param string $text the text to color
-	 * @param atring $foreground the foreground color
+	 * @param string $foreground the foreground color
 	 * @param string $background the background color
 	 * @return string the color coded string
 	 */

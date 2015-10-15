@@ -45,7 +45,7 @@ class Controller_Api_Favorites extends Api_User {
                 if (Model_Favorite::favorite($this->user->id_user,$id_ad)===TRUE)
                     $this->rest_output(__('Favorite'));
                 else
-                    $this->_error(__('Something went worng'),501);
+                    $this->_error(__('Something went wrong'),501);
             }
             else
                 $this->_error(__('Ad not provided'),404);

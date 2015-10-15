@@ -1,2915 +1,6277 @@
-# items to display"
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: LiangWei <Banemail@gmail.com>\n"
-"Language-Team: \n"
+"Project-Id-Version: 2.5.1\n"
+"POT-Creation-Date: 2015-10-09 23:53:44\n"
+"PO-Revision-Date: 2015-10-09 23:53:44\n"
+"Last-Translator: admin <chen420@gmail.com>\n"
+"Language-Team: en\n"
+"Language: zh\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_CN\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Open Classifieds 2.5.1\n"
 
-msgid "After how many days an Ad will expire. 0 for never"
-msgstr "信息将在多少天后过期？0表示永不过期"
+#: String 0
+msgid " Frequently Asked Questions - FAQ"
+msgstr " 常见问答 - FAQ"
 
 #: String 1
-msgid "Expire days"
-msgstr "过期前剩余天数"
-
-#: String 2
-msgid "Advertisements in home"
-msgstr "首页广告"
-
-#: String 3
-msgid "You can choose what ads you want to display in home."
-msgstr "你可以选择那些广告显示在首页"
-
-#: String 4
-msgid ""
-"You can choose if tehres random related ads displayed at the advertisement"
-msgstr "您可以选择是否随机显示相关广告"
-
-#: String 5
-msgid "Ad expiration date"
-msgstr "广告到期时间"
-
-#: String 6
-msgid "Use parent categories"
-msgstr "使用上一级分类"
-
-#: String 7
-msgid "Number of images"
-msgstr "图片数"
-
-#: String 8
-msgid "Number of images displayed"
-msgstr "显示图片数"
-
-#: String 9
-msgid "Parent category"
-msgstr "上级分类"
-
-#: String 10
-msgid "parent_category field"
-msgstr "上级分类栏位"
-
-#: String 11
-msgid "Address field"
-msgstr "地址栏位"
-
-#: String 12
-msgid "Displays the field Address in the Ad form."
-msgstr "在广告表格显示地址字段。"
-
-#: String 13
-msgid "Google map default latitude coordinates"
-msgstr "谷歌地图默认纬度"
-
-#: String 14
-msgid "Latitude coordinates"
-msgstr "纬度"
-
-#: String 15
-msgid "Map longitude coordinates"
-msgstr "地图经度"
-
-#: String 16
-msgid "Longitude coordinates"
-msgstr "经度"
-
-#: String 17
-msgid "Google map default longitude coordinates"
-msgstr "谷歌地图默认经度"
-
-#: String 18
-msgid "Map latitude coordinates"
-msgstr "地图纬度"
-
-#: String 19
-msgid "Google map default zoom level "
-msgstr "默认谷歌地图缩放级别"
-
-#: String 20
-msgid "Google Maps in Ad"
-msgstr "谷歌地图中的广告"
-
-#: String 21
-msgid "Displays the google maps in the Ad."
-msgstr "在广告显示谷歌地图。"
-
-#: String 22
-msgid "Google map zoom level"
-msgstr "谷歌地图缩放级别"
-
-#: String 23
-msgid "Zoom level"
-msgstr "缩放级别"
-
-#: String 24
-msgid "Advertisement Configuration"
-msgstr "配置公告"
-
-#: String 25
-msgid "User paypal link"
-msgstr "链接到PayPal用户"
-
-#: String 26
-msgid "Sandbox"
-msgstr "沙箱"
-
-#: String 27
-msgid "The paypal email address where the payments will be sent"
-msgstr "paypal电子邮件地址，用以接收付款"
-
-#: String 28
-msgid "Paypal currency"
-msgstr "paypal货币"
-
-#: String 29
-msgid "Currency"
-msgstr "货币"
-
-#: String 30
-msgid "Please be sure you are using a currency that paypal supports."
-msgstr "请确保使用通过paypal管理的货币。"
-
-#: String 31
-msgid "Paypal mail address"
-msgstr "paypal的电子邮件地址"
-
-#: String 32
-msgid "Paypal account"
-msgstr "Paypal账户"
-
-#: String 33
-msgid "Smtp password"
-msgstr "SMTP密码"
-
-#: String 34
-msgid "Notify me on new ad"
-msgstr "每当有新的广告时通知我"
-
-#: String 35
-msgid "Payments Configuration"
-msgstr "配置付款"
-
-#: String 36
-msgid ""
-"List of payment configuration values. Replace input fields with new desired "
-"values."
-msgstr "付款配置列表。在输入字段中填充所需的值。"
-
-#: String 37
-msgid "Featured ads"
-msgstr "高亮显示广告"
-
-#: String 38
-msgid "Featured ads will be highlighted for a defined number of days."
-msgstr "广告将被高亮显示一个定义的天数。"
-
-#: String 39
-msgid "Bring to top Ad"
-msgstr "放一个广告在分类的顶部"
-
-#: String 40
-msgid "Days"
-msgstr "天"
-
-#: String 41
-msgid "Brings your Ad to the top of the listing."
-msgstr "将您的广告在列表的顶部。"
-
-#: String 42
-msgid "To top price"
-msgstr "置顶价格"
-
-#: String 43
-msgid "How much the user needs to pay to top up an Ad"
-msgstr "把广告在分类的顶部的价格"
-
-#: String 45
-msgid "Featured length"
-msgstr "高亮显示的时间长度"
-
-#: String 46
-msgid "Price for featuring the Ad"
-msgstr "高亮显示广告价格"
-
-#: String 47
-msgid "Pricing"
-msgstr "定价"
-
-#: String 48
-msgid "How much the user needs to pay to feature an Ad"
-msgstr "高亮显示广告价格"
-
-#: String 49
-msgid "Days Featured"
-msgstr "在高亮显示的天数"
-
-#: String 50
-msgid "Phone field"
-msgstr "电话栏位"
-
-#: String 51
-msgid "Displays the field Phone in the Ad form."
-msgstr "信息表格中显示的电话栏目。"
-
-#: String 54
-msgid "Base URL"
-msgstr "基本URL"
-
-#: String 55
-msgid ""
-"Is a base path of your site (e.g. http://open-classifieds.com/). Everything "
-"else is built based on this field."
-msgstr "这是您的网站的基地址（例如http://open-classifieds.com/）。其余地址从此建成。"
-
-#: String 56
-msgid "Base URL path"
-msgstr "基本URL"
-
-#: String 57
-msgid "Site description"
-msgstr "网站说明"
-
-#: String 58
-msgid "Here you can declare your display name. This is seen by everyone!"
-msgstr "在这里，您可以在网站上设置您的显示名称。将被他人看见"
-
-#: String 59
-msgid "Enables the site to maintenance"
-msgstr "打开站点维护模式"
-
-#: String 60
-msgid "Landing page"
-msgstr "主页"
-
-#: String 61
-msgid "It changes landing page of website"
-msgstr "这会改变你的网站的主页"
-
-#: String 62
-msgid "Site name"
-msgstr "网站名称"
-
-#: String 63
-msgid "Advertisements per page"
-msgstr "每页显示的广告"
-
-#: String 64
-msgid ""
-"This is to control how many advertisements are being displayed per page. "
-"Insert an integer value, as a number limit."
-msgstr "可以控制每页显示的广告数量。插入一个整数，作为限制。"
-
-#: String 65
-msgid ""
-"Number format is how you want to display numbers related to advertisements. "
-"More specific advertisement price. Every country have a specific way of "
-"dealing with decimal digits."
-msgstr "数字格式允许您控制您要如何显示数字广告。更具体地，广告的价格。所有国家都有处理小数位数的一种特殊方式。"
-
-#: String 66
-msgid "Money format"
-msgstr "货币格式"
-
-#: String 67
-msgid "Decimal representation"
-msgstr "十进制表示"
-
-#: String 68
-msgid "Date format"
-msgstr "日期格式"
-
-#: String 69
-msgid ""
-"Each advertisement have a publish date. By selecting format, you can change "
-"how it is shown on your website."
-msgstr "每个广告都有公布的日期。选择日期格式，可以更改网站上的展示。"
-
-#: String 70
-msgid "How many ads are going to appear in the map of your site."
-msgstr "指定有多少广告包含在您的网站地图。"
-
-#: String 71
-msgid "Advertisements in Map"
-msgstr "网站地图中的广告"
-
-#: String 72
-msgid "Number of ads per page"
-msgstr "每页显示的广告数"
-
-#: String 73
-msgid "Advertisements in RSS"
-msgstr "RSS中的消息"
-
-#: String 74
-msgid "Number of Ads"
-msgstr "广告数量"
-
-#: String 75
-msgid "How many ads are going to appear in the RSS of your site."
-msgstr "网站的RSS提要中包括的广告数量。"
-
-#: String 76
-msgid "Maintenance Mode"
-msgstr "维护模式"
-
-#: String 77
-msgid "All configurations"
-msgstr "所有配置"
-
-#: String 78
-msgid "Enables Captcha"
-msgstr "打开验证码"
-
-#: String 79
-msgid "Upload file"
-msgstr "导入文件"
-
-#: String 80
-msgid "Captcha appears in the form."
-msgstr "在表格显示验证码。"
-
-#: String 81
-msgid "Enables Contact Form"
-msgstr "打开联系表格"
-
-#: String 82
-msgid "Contact form appears int he ad."
-msgstr "在广告中查看联系人的形式"
-
-#: String 83
-msgid "Displays the field Price in the Ad form."
-msgstr "在广告表格显示价格字段。"
-
-#: String 84
-msgid "Price field"
-msgstr "价格栏位"
-
-#: String 85
-msgid "Website field"
-msgstr "站点地址栏位"
-
-#: String 86
-msgid "Displays the field Website in the Ad form."
-msgstr "在广告表格中显示网站地址。"
-
-#: String 87
-msgid "Displays location select"
-msgstr "显示位置选择"
-
-#: String 88
-msgid "Displays the Select Location in the Ad form."
-msgstr "在广告表格显示选择地址。"
-
-#: String 89
-msgid "Deactivated"
-msgstr "禁用"
-
-#: String 90
-msgid "Terms of Service"
-msgstr "使用条款"
-
-#: String 91
-msgid "Replacement of a banedword"
-msgstr "禁忌词汇的检查"
-
-#: String 92
-msgid ""
-"Baned word replacement replaces selected array with string that you provided."
-msgstr "用您选择的选定文本替换禁忌词汇。"
-
-#: String 93
-msgid "General Configuration"
-msgstr "常规设置"
-
-#: String 94
-msgid "General site settings."
-msgstr "一般网站设置。"
-
-#: String 96
-msgid "You need to write your baned words enable the service."
-msgstr "您必须输入自己的禁用词来激活此服务。"
-
-#: String 97
-msgid "Disqus Comments"
-msgstr "评论 Disque"
-
-#: String 98
-msgid "You need to write your disqus ID to enable the service."
-msgstr "你必须完成你的DISQUS ID来激活此服务。"
-
-#: String 100
-msgid "Baned words are separated with coma (,)"
-msgstr "用逗号分割单词"
-
-#: String 101
-msgid "Smtp user"
-msgstr "SMTP用户"
-
-#: String 102
-msgid "Smtp auth"
-msgstr "SMTP认证"
-
-#: String 103
-msgid " New"
-msgstr "新"
-
-#: String 105
-msgid "Date"
-msgstr "日期"
-
-#: String 106
-msgid "Not published"
-msgstr "未公开"
-
-#: String 107
-msgid "Unavailable"
-msgstr "不可用"
-
-#: String 110
-msgid "Automatic emails sent to users"
-msgstr "自动发送给用户的电子邮件"
-
-#: String 111
-msgid "Actions"
-msgstr "活动"
-
-#: String 112
-msgid "Are you sure you want to delete?"
-msgstr "您确定要删除它？"
-
-#: String 114
-msgid "Unconfirmed"
-msgstr "未确认"
-
-#: String 115
-msgid "Activate?"
-msgstr "确认激活？"
-
-#: String 116
-msgid "Deactivate featured"
-msgstr "禁用高亮"
-
-#: String 117
-msgid "Deactivate featured?"
-msgstr "禁用高亮？"
-
-#: String 118
-msgid "Are you sure you want to deactivate featured advertisement?"
-msgstr "您确定要禁用的广告高亮？"
-
-#: String 119
-msgid "Edit Profile"
-msgstr "编辑个人资料"
-
-#: String 120
-msgid "Type your password twice to change"
-msgstr "输入两次密码，以确认"
-
-#: String 121
-msgid "Are you sure you want to make it featured?"
-msgstr "你确定你想要把这个突出显示？"
-
-#: String 122
-msgid "Make featured?"
-msgstr "突出显示？"
-
-#: String 123
-msgid "Activate"
-msgstr "激活"
-
-#: String 124
-msgid "Refresh listing, go to top?"
-msgstr "刷新列表，回到顶部？"
-
-#: String 125
-msgid "Go to top"
-msgstr "往上"
-
-#: String 126
-msgid "Are you sure you want to refresh listing and go to top?"
-msgstr "您确定要重新加载列表并回到顶部？"
-
-#: String 127
-msgid " advertisements"
-msgstr "分类广告"
-
-#: String 128
-msgid "Remember Password"
-msgstr "记住我的密码"
-
-#: String 129
-msgid "Contact us"
-msgstr "联系我们"
-
-#: String 130
-msgid " of "
-msgstr "的"
-
-#: String 131
-msgid "Advanced search"
-msgstr "高级搜索"
-
-#: String 132
-msgid "Desktop Version"
-msgstr "桌面版本"
-
-#: String 133
-msgid "Public Profile"
-msgstr "公开的个人资料"
-
-#: String 136
-msgid "Change the main color scheme and style of the theme"
-msgstr "更改主题的配色方案和样式"
-
-#: String 137
-msgid "Change the header color scheme and style of the theme"
-msgstr "更改页眉和风格的主题颜色"
-
-#: String 138
-msgid "Change the theme of List Elements"
-msgstr "改变广告清单的主题"
-
-#: String 139
-msgid "Change the theme of Featured Elements"
-msgstr "更改突出显示广告的主题"
-
-#: String 140
-msgid "Profile"
-msgstr "资料"
-
-#: String 141
-msgid "Logout"
-msgstr "退出"
-
-#: String 142
-msgid "My Advertisements"
-msgstr "我的广告"
-
-#: String 144
-msgid "Public profile"
-msgstr "公开的个人资料"
-
-#: String 145
-msgid "Visit Site"
-msgstr "访问该网页"
-
-#: String 146
-msgid "Change the color scheme and style of the theme"
-msgstr "更改主题的颜色和样式"
-
-#: String 147
-msgid "Phone Number"
-msgstr "电话号码"
-
-#: String 148
-msgid "Publisher"
-msgstr "编辑"
-
-#: String 149
-msgid "Profile Picture"
-msgstr "个人图像"
-
-#: String 150
-msgid "Last Login"
-msgstr "最后登陆"
-
-#: String 151
-msgid "advertisements"
-msgstr "广告"
-
-#: String 152
-msgid "Not yet published"
-msgstr "尚未公布"
-
-#: String 153
-msgid "Profile picture"
-msgstr "个人图像"
-
-#: String 154
-msgid "Edit Advertisement"
-msgstr "修改广告"
-
-#: String 157
-msgid "Check for updates"
-msgstr "检查更新"
-
-#: String 159
-msgid "Selection of nice extras for your installation."
-msgstr "安装额外的小配件。"
-
-#: String 161
-msgid "Subscriptions"
-msgstr "订阅"
-
-#: String 162
-msgid "Roles access"
-msgstr "查看角色"
-
-#: String 163
-msgid "Optimize"
-msgstr "优化"
-
-#: String 164
-msgid "Logs"
-msgstr "日志"
-
-#: String 166
-msgid "Limited Offer!"
-msgstr "限时优惠！"
-
-#: String 167
-msgid "Valid Until"
-msgstr "有效期至"
-
-#: String 168
-msgid "Smtp active"
-msgstr "活跃​​的SMTP"
-
-#: String 169
-msgid "Email From"
-msgstr "从电子邮件"
-
-#: String 170
-msgid "Smtp ssl"
-msgstr "SMTP的SSL"
-
-#: String 171
-msgid "Smtp host"
-msgstr "SMTP主机"
-
-#: String 172
-msgid "Smtp port"
-msgstr "SMTP端口"
-
-#: String 173
-msgid ""
-"Email from where we send the emails, also used for software communications."
-msgstr "“发件人”栏，用在标示电子邮件和通信。"
-
-#: String 174
-msgid "Notify email"
-msgstr "电子邮件通知"
-
-#: String 175
-msgid "Preview"
-msgstr "预览"
-
-#: String 176
-msgid "Email Configuration"
-msgstr "配置电子邮件"
-
-#: String 177
-msgid ""
-"List of general configuration values. Replace input fields with new desired "
-"values"
-msgstr "一般配置值的列表。在输入字段中的填写新值"
-
-#: String 178
-msgid "If you need to send many emails with a high delivery rate check"
-msgstr "如果您需要高密度发送大量的电子邮件"
-
-#: String 179
-msgid "User Roles"
-msgstr "用户角色"
-
-#: String 180
-msgid "Users"
-msgstr "用户"
-
-#: String 181
-msgid "Unsubscribe?"
-msgstr "退订？"
-
-#: String 182
-msgid "Unsubscribe to all"
-msgstr "退订所有"
-
-#: String 183
-msgid "Statistics"
-msgstr "统计"
-
-#: String 184
-msgid "Today"
-msgstr "今天"
-
-#: String 185
-msgid "Yesterday"
-msgstr "昨天"
-
-#: String 186
-msgid "Unsubscribe to all?"
-msgstr "退订所有？"
-
-#: String 187
-msgid "Max Price"
-msgstr "最高价格"
-
-#: String 188
-msgid "Id_User"
-msgstr "用户Id"
-
-#: String 189
-msgid "Delete image"
-msgstr "删除图像"
-
-#: String 191
-msgid "Min Price"
-msgstr "最低价格"
-
-#: String 192
-msgid "Last 30 days"
-msgstr "最近30天"
-
-#: String 193
-msgid "Total"
-msgstr "总"
-
-#: String 194
-msgid "Views and Contacts statistic"
-msgstr "统计视图和联系人"
-
-#: String 195
-msgid "Orders"
-msgstr "订单"
-
-#: String 196
-msgid "Newsletters"
-msgstr "简讯"
-
-#: String 197
-msgid "Payment"
-msgstr "付款"
-
-#: String 198
-msgid "Filter"
-msgstr "筛选过滤"
-
-#: String 199
-msgid "To"
-msgstr "为"
-
-#: String 200
-msgid "Contacts"
-msgstr "联系"
-
-#: String 201
-msgid "Visits"
-msgstr "浏览次数"
-
-#: String 202
-msgid "Charts"
-msgstr "图表"
-
-#: String 203
-msgid "From"
-msgstr "的"
-
-#: String 206
-msgid "To install new theme choose zip file."
-msgstr "请选择一个zip文件来安装一个新的主题"
-
-#: String 209
-msgid "Available Themes"
-msgstr "可用的主题"
-
-#: String 210
-msgid "Available Mobile Themes"
-msgstr "可用手机主题"
-
-#: String 212
-msgid "Install theme"
-msgstr "安装主题"
-
-#: String 213
-msgid "Current Theme"
-msgstr "当前主题"
-
-#: String 214
-msgid "Using mobile theme"
-msgstr "使用手机主题"
-
-#: String 215
-msgid "Disable"
-msgstr "禁用"
-
-#: String 216
-msgid "Options"
-msgstr "选项"
-
-#: String 217
-msgid "Themes Market"
-msgstr "主题市场"
-
-#: String 218
-msgid "Here you can find a selection of our premium themes."
-msgstr "在这里，你可以找到一些我们的付费主题。"
-
-#: String 219
-msgid ""
-"Are you sure you want to delete? All data contained in this field will be "
-"deleted."
-msgstr "您确定要删除吗？在此字段中的所有数据都将被删除"
-
-#: String 220
-msgid "Custom menu"
-msgstr "自定义菜单"
-
-#: String 221
-msgid "Menu type"
-msgstr "菜单样式"
-
-#: String 222
-msgid "Custom"
-msgstr "个性化"
-
-#: String 223
-msgid "Default"
-msgstr "故障"
-
-#: String 224
-msgid ""
-"Here are listed specific theme configuration values. Replace input fields "
-"with new desired values for the theme."
-msgstr "主题的配置值列表。为这个主题填写新值。"
-
-#: String 225
-msgid "Check"
-msgstr "检查"
-
-#: String 226
-msgid "All themes include support, updates and 1 site license."
-msgstr "所有主题包括支持，更新和一个站点的许可。"
-
-#: String 227
-msgid "Also white labeled and free of ads"
-msgstr "另外没有标志，无广告"
-
-#: String 228
-msgid "Please insert here the license for your theme."
-msgstr "请您填入您的许可号"
-
-#: String 229
-msgid "License"
-msgstr "许可证"
-
-#: String 230
-msgid "You can change the look and feel of your website here."
-msgstr "你可以在这里更改您的网站的外观。"
-
-#: String 231
-msgid "From Email"
-msgstr "发邮件给"
-
-#: String 232
-msgid "Delete All Unconfirmed"
-msgstr "凡是不确认将被删除"
-
-#: String 233
-msgid "Delete All Unconfirmed?"
-msgstr "清除一切未确认？"
-
-#: String 234
-msgid "Delete All Spam?"
-msgstr "删除所有垃圾邮件？"
-
-#: String 235
-msgid "Delete All Spam"
-msgstr "所有的垃圾邮件将被删除"
-
-#: String 236
-msgid "Are you sure you want to make it to_top?"
-msgstr "您确定要移动到它的类的顶部？"
-
-#: String 237
-msgid "Delete All Unavailable"
-msgstr "不可用都被清除"
-
-#: String 238
-msgid "Delete All Unavailable?"
-msgstr "清除一切不可用？"
-
-#: String 239
-msgid "Unavailable Sort"
-msgstr "无法排序"
-
-#: String 240
 msgid " Unavailable"
 msgstr "不可用"
 
-#: String 241
-msgid "Unconfirmed Sort"
-msgstr "未经证实的类型"
-
-#: String 242
+#: String 2
 msgid " Unconfirmed"
 msgstr "未确认"
 
-#: String 243
-msgid "to_top"
-msgstr "顶部"
+#: String 3
+msgid " advertisements"
+msgstr "分类广告"
 
-#: String 244
-msgid "Are you sure you want to make it to top?"
-msgstr "您确定要移动到它的分类的顶部？"
+#: String 4
+msgid " of "
+msgstr "的"
 
-#: String 245
-msgid "Key"
-msgstr "关键字"
+#: String 5
+msgid "# items to display"
+msgstr ""
 
-#: String 248
-msgid "Email Settings"
-msgstr "邮件设置"
+#: String 6
+msgid "%d Ads imported, click process to start migration"
+msgstr ""
 
-#: String 249
-msgid "You can send a mass email to all active users."
-msgstr "您可以发送群发邮件给所有的活跃用户。"
+#: String 7
+msgid "%d advertisement for %s"
+msgstr ""
 
-#: String 250
-msgid "Browse Themes"
-msgstr "浏览主题"
+#: String 8
+msgid "%d advertisements for %s"
+msgstr ""
 
-#: String 251
-msgid "Upgrade your Open Classifieds site to activate this feature."
-msgstr "升级你的网站，以启用此功能。"
+#: String 9
+msgid "%s ago"
+msgstr ""
 
-#: String 252
-msgid "Deactivate Featured"
-msgstr "禁用高亮"
+#: String 10
+msgid "%s copied from %s to %s"
+msgstr ""
 
-#: String 253
-msgid "Social Authentication Settings"
-msgstr "社会身份验证设置"
+#: String 11
+msgid "%u advertisements have been permanently deleted"
+msgstr ""
 
-#: String 256
-msgid "Create Menu Item"
-msgstr "创建一个菜单链接"
+#: String 12
+msgid "1 MB file"
+msgstr ""
 
-#: String 257
-msgid "Default links"
-msgstr "默认链接"
+#: String 13
+msgid "100"
+msgstr ""
 
-#: String 258
-msgid "Where do you want the widget displayed?"
-msgstr "要显示这个小工具？"
+#: String 14
+msgid "1000"
+msgstr ""
 
-#: String 259
-msgid "Available widgets"
-msgstr "可用的小工具"
+#: String 15
+msgid ":field does not match the required format"
+msgstr ""
 
-#: String 260
-msgid "Close"
-msgstr "关闭"
+#: String 16
+msgid ":field must be a color"
+msgstr ""
 
-#: String 261
-msgid ""
-"Sure you want to delete the widget? You can move it to the inactive "
-"placeholder"
-msgstr "你真的要删除这个小工具？你可以留着它，并通过移动它到非活动部件的空间，使其处于非活动状态"
+#: String 17
+msgid ":field must be a credit card number"
+msgstr ""
 
-#: String 262
-msgid "Save changes"
-msgstr "保存更改"
+#: String 18
+msgid ":field must be a date"
+msgstr ""
 
-#: String 263
-msgid "Optional Advertisement Fields"
-msgstr "广告可选字段"
+#: String 19
+msgid ":field must be a decimal with :param2 places"
+msgstr ""
 
-#: String 264
-msgid "Optional Fields"
-msgstr "可选字段"
+#: String 20
+msgid ":field must be a digit"
+msgstr ""
 
-#: String 266
-msgid "New field"
-msgstr "新栏目"
+#: String 21
+msgid ":field must be a phone number"
+msgstr ""
 
-#: String 269
-msgid "Thanks for using our website."
-msgstr "感谢您使用我们的网站。"
+#: String 22
+msgid ":field must be a url"
+msgstr ""
 
-#: String 282
-msgid "Custom fields are only available with premium themes!"
-msgstr "自定义字段可在付费主题使用！"
+#: String 23
+msgid ":field must be an email address"
+msgstr ""
 
-#: String 284
-msgid "Views and Ads statistics"
-msgstr "统计视图和公告"
+#: String 24
+msgid ":field must be an ip address"
+msgstr ""
 
-#: String 285
-msgid "Sales"
-msgstr "销售"
+#: String 25
+msgid ":field must be at least :param2 characters long"
+msgstr ""
 
-#: String 286
-msgid "Sales statistics"
-msgstr "销售统计"
+#: String 26
+msgid ":field must be exactly :param2 characters long"
+msgstr ""
 
-#: String 287
-msgid "Edit Custom Field"
-msgstr "编辑自定义字段"
+#: String 27
+msgid ":field must be numeric"
+msgstr ""
 
-#: String 288
-msgid "Label"
-msgstr "标签"
+#: String 28
+msgid ":field must be one of the available options"
+msgstr ""
 
-#: String 289
-msgid "Site Usage Statistics"
-msgstr "访问该网站的统计数据"
+#: String 29
+msgid ":field must be the same as :param3"
+msgstr ""
 
-#: String 291
-msgid "listing"
-msgstr "列出"
+#: String 30
+msgid ":field must be within the range of :param2 to :param3"
+msgstr ""
 
-#: String 292
-msgid "rss"
-msgstr "RSS"
+#: String 31
+msgid ":field must contain a valid email domain"
+msgstr ""
 
-#: String 293
-msgid "Url"
-msgstr "网址"
+#: String 32
+msgid ":field must contain only letters"
+msgstr ""
 
-#: String 294
-msgid "Icon"
-msgstr "图标"
+#: String 33
+msgid ":field must contain only letters and numbers"
+msgstr ""
 
-#: String 296
-msgid "Values"
-msgstr "值"
+#: String 34
+msgid ":field must contain only numbers, letters and dashes"
+msgstr ""
 
-#: String 297
-msgid "Number"
-msgstr "数量"
+#: String 35
+msgid ":field must equal :param2"
+msgstr ""
 
-#: String 298
-msgid "Number Decimal"
-msgstr "十进制"
+#: String 36
+msgid ":field must not be empty"
+msgstr ""
 
-#: String 299
-msgid "Select"
-msgstr "选择"
+#: String 37
+msgid ":field must not exceed :param2 characters long"
+msgstr ""
 
-#: String 301
-msgid "Text Long"
-msgstr "长文本"
+#: String 38
+msgid "A button with the page title appears next to other pay button, onclick model opens with description."
+msgstr ""
 
-#: String 302
-msgid "Text 256 Chars"
-msgstr "256个字符的文本"
+#: String 39
+msgid "A user with the email you specified already exists"
+msgstr ""
 
-#: String 303
-msgid "Comma separated for select"
-msgstr "由逗号分隔的选择项"
+#: String 40
+msgid "API Password"
+msgstr ""
 
-#: String 304
-msgid "Required"
-msgstr "需要"
+#: String 41
+msgid "API Username"
+msgstr ""
 
-#: String 305
-msgid "Searchable"
-msgstr "搜索"
+#: String 42
+msgid "AWS Access Key"
+msgstr ""
 
-#: String 306
-msgid "New Custom Field"
-msgstr "新的自定义字段"
+#: String 43
+msgid "AWS Secret Key"
+msgstr ""
 
-#: String 307
-msgid "Spam Sort"
-msgstr "分拣垃圾邮件"
+#: String 44
+msgid "About"
+msgstr ""
 
-#: String 308
-msgid "Log"
-msgstr "登陆"
-
-#: String 309
-msgid "Disqus for blog"
-msgstr "博客Disqus"
-
-#: String 310
-msgid "Once set to TRUE, enables blog posts"
-msgstr "设定为真，将激活的博客文章"
-
-#: String 311
-msgid "Disqus for Blog Comments"
-msgstr "DISQUS的博客评论"
-
-#: String 314
-msgid "Activates Blog posting"
-msgstr "活跃激活博客文章"
-
-#: String 315
-msgid "Once set to TRUE, enables search to look for key words in description"
-msgstr "一旦设置为True，激活描述中关键字的主动搜索"
-
-#: String 316
-msgid "Akismet Key"
-msgstr "Akismet关键字"
-
-#: String 317
-msgid ""
-"Providing akismet key will activate this feature. This feature deals with "
-"spam posts and emails."
-msgstr "提供激活Akismet功能，这是因为有垃圾邮件和信息。"
-
-#: String 318
+#: String 45
 msgid "Accept Terms Alert"
 msgstr "接受条款"
 
-#: String 319
-msgid "Include search by description"
-msgstr "包括描述进行详细搜索"
-
-#: String 322
-msgid "from_email"
-msgstr "电子邮件"
-
-#: String 323
-msgid "From email"
-msgstr "电子邮件"
-
-#: String 325
-msgid "seotitle"
-msgstr "搜索引擎优化标题"
-
-#: String 326
-msgid "title"
-msgstr "标题"
-
-#: String 327
-msgid "description"
-msgstr "描述"
-
-#: String 328
-msgid "locale"
-msgstr "地区"
-
-#: String 332
-msgid "Locale"
-msgstr "地区"
-
-#: String 333
-msgid "Watermark position"
-msgstr "水印的位置"
-
-#: String 335
-msgid "Image height in pixels(px)"
-msgstr "以像素为单位的高度（像素）"
-
-#: String 336
-msgid ""
-"Each image is resized when uploaded. This is the height of big image. Note: "
-"you can leave this field blank to set AUTO height resize."
-msgstr ""
-"当它被上传到您的服务器的重设每个图像的大小。在这里，您可以指定大图片的大�"
-"��。注：您可以将此字段留空了自动调整大小。"
-
-#: String 337
-msgid "Image width"
-msgstr "图像宽度"
-
-#: String 338
-msgid "Each image is resized when uploaded. This is the width of big image."
-msgstr "当它被上传到您的服务器的每个图像的大小。在这里，您可以指定大图片的宽度。"
-
-#: String 339
-msgid "Image width in pixels(px)"
-msgstr "以像素为单位的宽度（像素）"
-
-#: String 340
-msgid "Image height"
-msgstr "图片高度"
-
-#: String 341
-msgid "Image size in mega bites(Mb)"
-msgstr "最大的影像，以兆字节（MB）"
-
-#: String 342
-msgid "Allowed image formats"
-msgstr "接受图像格式"
-
-#: String 343
-msgid ""
-"Set this up to restrict image formats that are being uploaded to your server."
-msgstr "可让您选择，并限制允许上传到你的服务器映像的图像格式。"
-
-#: String 344
-msgid "Max image size"
-msgstr "最大图像尺寸"
-
-#: String 345
-msgid ""
-"Control the size of images being uploaded. Enter an integer value to set "
-"maximum image size in mega bites(Mb)."
-msgstr "控制被上传到你的服务器的图像的大小。输入一个整数值来设置最大图像大小以兆字节（MB）。"
-
-#: String 346
-msgid "Thumb height"
-msgstr "预览的高度"
-
-#: String 347
-msgid ""
-"Thumb is a small image resized to fit certain elements. This is height of "
-"this image."
-msgstr "缩略图是调整大小以适应某些项目的小图像。这是图像的高度。"
-
-#: String 348
-msgid "Image Quality"
-msgstr "图像质量"
-
-#: String 350
-msgid "Appends watermark to images"
-msgstr "添加水印的图像"
-
-#: String 351
-msgid "Watermark path"
-msgstr "标记水印"
-
-#: String 352
-msgid "Choose the quality of the stored images (1-100% of the original)."
-msgstr "选择录制的图像（原1-100％）的质量。"
-
-#: String 353
-msgid "Image quality"
-msgstr "图像质量"
-
-#: String 354
-msgid "Thumb height in pixels(px)"
-msgstr "缩略图的像素高度（像素）"
-
-#: String 355
-msgid "Thumb width"
-msgstr "宽度缩略图"
-
-#: String 356
-msgid ""
-"Thumb is a small image resized to fit certain elements. This is width of "
-"this image."
-msgstr "缩略图是调整大小以适应某些项目的小图像。这是图像的宽度。"
-
-#: String 357
-msgid "Thumb width in pixels(px)"
-msgstr "缩略图的像素宽度（像素）"
-
-#: String 358
-msgid "created"
-msgstr "创建"
-
-#: String 359
-msgid "status"
-msgstr "状态"
-
-#: String 360
-msgid "Config file"
-msgstr "配置文件"
-
-#: String 361
-msgid "Delete expired"
-msgstr "删除过期的内容"
-
-#: String 362
-msgid "Optimize Database"
-msgstr "优化数据库"
-
-#: String 363
-msgid "Database space"
-msgstr "数据库空间"
-
-#: String 364
-msgid "Space to optimize"
-msgstr "空间优化"
-
-#: String 365
-msgid "Delete all"
-msgstr "删除所有"
-
-#: String 366
-msgid "Cache configuration information"
-msgstr "高速缓存配置参数"
-
-#: String 367
-msgid "Expire time"
-msgstr "超时"
-
-#: String 368
-msgid "Update on publish"
-msgstr "每次发布都更新"
-
-#: String 371
-msgid "Table"
-msgstr "表"
-
-#: String 372
-msgid "Rows"
-msgstr "线"
-
-#: String 373
-msgid "Latest"
-msgstr "最后"
-
-#: String 374
-msgid "Information"
-msgstr "信息"
-
-#: String 375
-msgid "Current"
-msgstr "当前"
-
-#: String 376
-msgid "System Logs"
-msgstr "系统日志"
-
-#: String 377
-msgid "Reading log file"
-msgstr "读取日志文件"
-
-#: String 378
-msgid "Version"
-msgstr "版本"
-
-#: String 379
-msgid "Your Hash Key for this installation is"
-msgstr "您关于安装的clé de hachage，是"
-
-#: String 380
-msgid "Size"
-msgstr "大小"
-
-#: String 381
-msgid "Save size"
-msgstr "记录大小"
-
-#: String 382
-msgid "Versions"
-msgstr "版本"
-
-#: String 383
-msgid "Open Classifieds release history information."
-msgstr "历史版本"
-
-#: String 384
-msgid "Generate"
-msgstr "生成"
-
-#: String 385
-msgid "Next sitemap"
-msgstr "下页网站地图"
-
-#: String 386
-msgid ""
-"Are you sure you want to delete? We will move the siblings locations and ads "
-"to the parent of this location."
-msgstr "您确定要删除这个位置？有关广告将与父分类位置关联。"
-
-#: String 388
-msgid "Translations files available in the system."
-msgstr "系统中可用的翻译文件。"
-
-#: String 389
-msgid "Scan"
-msgstr "阅读"
-
-#: String 390
-msgid "New translation"
-msgstr "新的翻译"
-
-#: String 391
-msgid "New location"
-msgstr "新的地方"
-
-#: String 392
-msgid ""
-"Change the order of your locations. Keep in mind that more than 2 levels "
-"nested probably won´t be displayed in the theme (it is not recommended)."
-msgstr ""
-"更改处所的秩序。请记住，两个以上的嵌套级别将可能不会被主题（最�"
-"��2个建议水平）显示。"
-
-#: String 393
-msgid ""
-"Change the order of your categories. Keep in mind that more than 2 levels "
-"nested probably won´t be displayed in the theme (it is not recommended)."
-msgstr "改变你的类别的顺序。请记住，超越2级嵌套的子类别可能不会被显示主题（最多2个建议的水平）。"
-
-#: String 394
-msgid "New category"
-msgstr "新类别"
-
-#: String 396
-msgid ""
-"Are you sure you want to delete? We will move the siblings categories and "
-"ads to the parent of this category."
-msgstr "您确定要删除它？子分类和与此相关的广告将被移动到父类。"
-
-#: String 397
-msgid "Language"
-msgstr "语言"
-
-#: String 398
-msgid "Active"
-msgstr "资产"
-
-#: String 399
-msgid "Your PHP time limit is"
-msgstr "PHP运行时最大时间是"
-
-#: String 400
-msgid "Cancel"
-msgstr "取消"
-
-#: String 401
-msgid "Migrate"
-msgstr "迁移"
-
-#: String 402
-msgid "Last time generated"
-msgstr "最后生成"
-
-#: String 403
-msgid "Save"
-msgstr "保存"
-
-#: String 404
-msgid "Translation"
-msgstr "翻译"
-
-#: String 405
-msgid "Here you can modify any text you find in your web."
-msgstr "在这里，你可以改变登载在网站上所有文本。"
-
-#: String 406
-msgid "Original Translation"
-msgstr "原译"
-
-#: String 407
-msgid "Copy all?, Be aware this will replace all your texts."
-msgstr "全部复制？请注意，这将取代所有的文字。"
-
-#: String 408
-msgid "Translate all?, Be aware this will replace all your texts."
-msgstr "翻译？请注意，这将取代所有的文字。"
-
-#: String 409
-msgid "Download"
-msgstr "下载"
-
-#: String 410
-msgid "Slideshow"
-msgstr "幻灯片"
-
-#: String 411
-msgid "Edit advertisement"
-msgstr "修改广告"
-
-#: String 412
-msgid "Advertisement is active and published"
-msgstr "该广告已激活并发表"
-
-#: String 413
-msgid "Advertisement is updated!"
-msgstr "该广告被更新！"
-
-#: String 414
-msgid "Advertisement is updated"
-msgstr "该广告被更新"
-
-#: String 415
-msgid "You dont have permission to access this link"
-msgstr "您没有权限访问此链接"
-
-#: String 416
-msgid "Advertisement is deactivated"
-msgstr "该公告被禁用"
-
-#: String 417
-msgid "This is not your advertisement."
-msgstr "这不是您的广告。"
-
-#: String 418
-msgid "Image is uploaded."
-msgstr "图像已经加载"
-
-#: String 419
-msgid "Edit profile"
-msgstr "编辑个人资料"
-
-#: String 420
-msgid "You have successfuly changed your data"
-msgstr "您已成功更改您的信息"
-
-#: String 421
-msgid "My Advertisement page "
-msgstr "我的广告"
-
-#: String 422
-msgid "Stats"
-msgstr "统计"
-
-#: String 423
-msgid "No Subscriptions"
-msgstr "没有订阅"
-
-#: String 424
-msgid "Advertisement is deleted"
-msgstr "这则广告被删除"
-
-#: String 425
-msgid "Warning, something went wrong while deleting"
-msgstr "注意，在删除时发生错误"
-
-#: String 426
-msgid "Warning, Advertisement is already marked as spam"
-msgstr "警告，该广告已被标记为垃圾邮件"
-
-#: String 427
-msgid "Advertisement is marked as spam"
-msgstr "这则广告被标记为垃圾邮件"
-
-#: String 428
-msgid "Advertisement is featured"
-msgstr "突出显示信息"
-
-#: String 429
-msgid "You do not have any advertisements waiting to be published"
-msgstr "你没有广告等待发布"
-
-#: String 430
-msgid "Moderation"
-msgstr "节制"
-
-#: String 431
-msgid "Welcome"
-msgstr "主页"
-
-#: String 432
-msgid "Social Auth"
-msgstr "社会身份验证"
-
-#: String 433
-msgid "Social Authentication for login"
-msgstr "以社会验证身份连接"
-
-#: String 434
-msgid "Advertisements"
-msgstr "分类广告"
-
-#: String 435
-msgid "Image is not valid. Please try again."
-msgstr "该图像是无效的，再试试，谢谢"
-
-#: String 436
-msgid "Nothing is provided"
-msgstr "未提供资料"
-
-#: String 437
-msgid "Market"
-msgstr "市场"
-
-#: String 438
-msgid "Saved"
-msgstr "记录"
-
-#: String 439
-msgid "Page"
-msgstr "页面"
-
-#: String 440
-msgid "contents"
-msgstr "内容"
-
-#: String 441
-msgid "You dont have any "
-msgstr "你没有"
-
-#: String 442
-msgid "Widget parameter missing"
-msgstr "一个小工具缺少参数"
-
-#: String 443
-msgid "Widgets"
-msgstr "小工具"
-
-#: String 444
-msgid "Update"
-msgstr "更新"
-
-#: String 448
-msgid "Create"
-msgstr "创建"
-
-#: String 449
-msgid "is created"
-msgstr "已经创建"
-
-#: String 450
-msgid "Category not deleted"
-msgstr "未删去类别"
-
-#: String 451
-msgid "Category deleted"
-msgstr "删除的类别"
-
-#: String 453
-msgid "Change password"
-msgstr "更改密码"
-
-#: String 454
-msgid "Password is changed"
-msgstr "密码修改"
-
-#: String 455
-msgid "Categories"
-msgstr "分类"
-
-#: String 456
-msgid "Content is not deleted"
-msgstr "内容不会被删除"
-
-#: String 457
-msgid "Edit"
-msgstr "修改"
-
-#: String 458
-msgid "is edited"
-msgstr "已发表"
-
-#: String 460
-msgid "Content is deleted"
-msgstr "内容已删除"
-
-#: String 461
-msgid "Advertisement is to top"
-msgstr "这则广告是放在顶部"
-
-#: String 462
-msgid "Newsletter"
-msgstr "简讯"
-
-#: String 464
-msgid "Location not deleted"
-msgstr "未删除的地方"
-
-#: String 465
-msgid "Settings"
-msgstr "设置"
-
-#: String 466
-msgid "Advertisement"
-msgstr "广告"
-
-#: String 467
-msgid "Email Configuration updated"
-msgstr "配置电子邮件更新"
-
-#: String 468
-msgid "Location deleted"
-msgstr "地方已删除"
-
-#: String 469
-msgid "Locations"
-msgstr "地方"
-
-#: String 470
-msgid "Migration"
-msgstr "迁移"
-
-#: String 471
-msgid "Database cleaned"
-msgstr "数据库清理"
-
-#: String 472
-msgid "Review database connection parameters"
-msgstr "连接参数汇总到数据库"
-
-#: String 473
-msgid "seconds"
-msgstr "秒"
-
-#: String 474
-msgid "General"
-msgstr "一般"
-
-#: String 475
-msgid "General Configuration updated"
-msgstr "一般配置更新"
-
-#: String 476
-msgid "User Profile"
-msgstr "用户配置文件"
-
-#: String 478
-msgid "Some errors in the form"
-msgstr "有错误的表格"
-
-#: String 479
-msgid "You are in maintenance mode, only you can see the website"
-msgstr "你是在维护模式下，您只能访问网站"
-
-#: String 480
-msgid "Item created"
-msgstr "创建元素"
-
-#: String 481
-msgid "Edit Custom Field for Advertisement"
-msgstr "编辑自定义字段的广告"
-
-#: String 482
-msgid "New Custom Field for Advertisement"
-msgstr "对于广告的自定义字段"
-
-#: String 483
-msgid "Payments"
-msgstr "付款"
-
-#: String 484
-msgid "Custom Fields"
-msgstr "自定义字段"
-
-#: String 485
-msgid "Custom Fields for Advertisements"
-msgstr "对于广告的自定义字段"
-
-#: String 486
-msgid "New"
-msgstr "新"
-
-#: String 487
-msgid "Open Classifieds migration"
-msgstr "打开迁移公告"
-
-#: String 488
-msgid "Sitemap Configuration updated"
-msgstr "网站地图配置更新"
-
-#: String 489
-msgid "List"
-msgstr "表"
-
-#: String 490
-msgid "Translations"
-msgstr "翻译"
-
-#: String 491
-msgid "Edit Translation"
-msgstr "编辑翻译"
-
-#: String 492
-msgid "Language saved"
-msgstr "语言保存"
-
-#: String 493
-msgid "Tools"
-msgstr "工具"
-
-#: String 494
-msgid "Menu not created"
-msgstr "未创建菜单"
-
-#: String 495
-msgid "Menu created"
-msgstr "菜单已创建"
-
-#: String 496
-msgid "Email sent to all the users"
-msgstr "E-mail发送给所有用户"
-
-#: String 497
-msgid "Mail not sent"
-msgstr "电子邮件未发送"
-
-#: String 498
-msgid "Menu"
-msgstr "菜单"
-
-#: String 499
-msgid "Menu deleted"
-msgstr "删除菜单"
-
-#: String 500
-msgid "Optimize DB"
-msgstr "优化数据库"
-
-#: String 501
-msgid "Database Optimized"
-msgstr "优化数据库"
-
-#: String 505
-msgid "Sitemap"
-msgstr "网站地图"
-
-#: String 507
-msgid "System logs"
-msgstr "系统日志"
-
-#: String 508
-msgid "Cache"
-msgstr "缓存"
-
-#: String 509
-msgid "All cache deleted"
-msgstr "缓存已被清除"
-
-#: String 510
-msgid "Deleted expired cache"
-msgstr "所有过期的缓存内容已被删除"
-
-#: String 511
-msgid "PHP Info"
-msgstr "PHP的信息"
-
-#: String 512
-msgid "You are not using latest version of OC, please update."
-msgstr "您不使用OC的最新版本。请更新。"
-
-#: String 513
-msgid "Updates"
-msgstr "更新"
-
-#: String 514
-msgid "Phone"
-msgstr "电话"
-
-#: String 515
-msgid "Address"
-msgstr "地址"
-
-#: String 516
-msgid "Ip address"
-msgstr "IP地址"
-
-#: String 517
-msgid "Published"
-msgstr "发布时间"
-
-#: String 518
-msgid "Status"
-msgstr "状态"
-
-#: String 519
-msgid "SEO title"
-msgstr "搜索引擎优化标题"
-
-#: String 520
-msgid "Title"
-msgstr "标题"
-
-#: String 521
-msgid "User"
-msgstr "用户"
-
-#: String 522
-msgid "Category"
-msgstr "类别"
-
-#: String 523
-msgid "Location"
-msgstr "地方"
-
-#: String 524
-msgid "Type"
-msgstr "类型"
-
-#: String 525
-msgid "Has images"
-msgstr "包含图像"
-
-#: String 526
-msgid "Something went wrong with uploading pictures, please check format"
-msgstr "在发送照片时有一个问题，请检查大小"
-
-#: String 527
-msgid "Home"
-msgstr "主页"
-
-#: String 528
-msgid "Invalid Email"
-msgstr "无效的电子邮件"
-
-#: String 531
-msgid "Publish new advertisement"
-msgstr "发布新广告"
-
-#: String 532
-msgid "New profile has been created. Welcome "
-msgstr "您的个人资料已经被创建。欢迎"
-
-#: String 533
-msgid "Last login"
-msgstr "最后连接"
-
-#: String 534
-msgid "Email"
-msgstr "电子邮件"
-
-#: String 535
-msgid "Password"
-msgstr "密码"
-
-#: String 536
-msgid "Role"
-msgstr "角色"
-
-#: String 537
-msgid "Last modified"
-msgstr "最后更新"
-
-#: String 538
-msgid "Error on mail delivery, not sent"
-msgstr "发送电​​子邮件时出错，未发送"
-
-#: String 540
-msgid "Success"
-msgstr "成功"
-
-#: String 541
-msgid "Error"
-msgstr "错误"
-
-#: String 542
-msgid "search"
-msgstr "搜索"
-
-#: String 543
-msgid "contact"
-msgstr "联系"
-
-#: String 544
-msgid "maintenance"
-msgstr "维护"
-
-#: String 545
-msgid "Warning"
-msgstr "注意"
-
-#: String 546
-msgid "Info"
-msgstr "信息"
-
-#: String 547
-msgid "Benchmark"
-msgstr "标示图"
-
-#: String 548
-msgid "Application Execution"
-msgstr "执行时间"
-
-#: String 550
-msgid "No sitemap generated"
-msgstr "不会产生任何站点地图"
-
-#: String 551
-msgid "publish new"
-msgstr "发布新广告"
-
-#: String 552
-msgid "map"
-msgstr "广告地图"
-
-#: String 553
-msgid "Parent deep"
-msgstr "顶级分类"
-
-#: String 554
-msgid "Seoname"
-msgstr "搜索引擎优化的名字"
-
-#: String 555
-msgid "Description"
-msgstr "描述"
-
-#: String 556
-msgid "Price"
-msgstr "价格"
-
-#: String 557
-msgid "Parent"
-msgstr "上一级分类"
-
-#: String 558
-msgid "Created"
-msgstr "创建"
-
-#: String 560
-msgid "Id"
-msgstr "ID"
-
-#: String 561
-msgid "Name"
-msgstr "名称"
-
-#: String 562
-msgid "Order"
-msgstr "订单"
-
-#: String 563
-msgid ""
-"This post has been considered as spam! We are sorry but we cant publish this "
-"advertisement."
-msgstr "该帖子已被标记为垃圾邮件！我们很遗憾，我们不能发布您的广告。"
-
-#: String 564
-msgid "Advertisement is published. Congratulations!"
-msgstr "广告已经发布，恭喜你！"
-
-#: String 565
-msgid "Email to recover password sent"
-msgstr "发送恢复密码电​​子邮件"
-
-#: String 566
-msgid "Remember password"
-msgstr "记住密码"
-
-#: String 567
-msgid "User not in database"
-msgstr "这个用户名/电子邮件地址不存在"
-
-#: String 568
-msgid "User already exists"
-msgstr "此用户名/帐号已被注册"
-
-#: String 569
-msgid "Passwords do not match"
-msgstr "密码不匹配"
-
-#: String 570
-msgid "Login"
-msgstr "注册"
-
-#: String 571
-msgid "Wrong email or password"
-msgstr "错误的电子邮件和密码"
-
-#: String 572
-msgid "all"
-msgstr "所有"
-
-#: String 573
-msgid "Page "
-msgstr "页面"
-
-#: String 574
-msgid "Your advertisement is successfully activated! Thank you!"
-msgstr "您的广告已成功激活！谢谢！"
-
-#: String 575
-msgid "Advanced Search"
-msgstr "高级搜索"
-
-#: String 576
-msgid "Themes"
-msgstr "主题"
-
-#: String 577
-msgid "Theme Options"
-msgstr "主题选项"
-
-#: String 578
-msgid "Zip file faild to extract, please try again."
-msgstr "zip文件没有解压，请再试一次"
-
-#: String 579
-msgid "Is not valid format, please use ZIP format"
-msgstr "是不是一个有效的格式，请选择一个zip文件"
-
-#: String 580
-msgid "You have succesfully installed the theme!"
-msgstr "您已经安装了这个主题！"
-
-#: String 583
-msgid "Theme License"
-msgstr "主题授权号"
-
-#: String 584
-msgid "There was an error activating your license."
-msgstr "错误激活许可证"
-
-#: String 585
-msgid "Theme configuration updated"
-msgstr "主题配置更新"
-
-#: String 586
-msgid "Mobile Theme updated"
-msgstr "手机主题更新"
-
-#: String 587
-msgid "Appearance configuration updated"
-msgstr "配置外观更新"
-
-#: String 588
-msgid "Theme activated, thanks."
-msgstr "主题激活，谢谢！"
-
-#: String 589
-msgid "Latest post published"
-msgstr "最新发布"
-
-#: String 590
-msgid "Latest published"
-msgstr "最新广告"
-
-#: String 591
-msgid "Advertisement to top"
-msgstr "顶部公告"
-
-#: String 592
-msgid "Advertisement to featured"
-msgstr "高亮广告"
-
-#: String 593
-msgid " category"
-msgstr "类别"
-
-#: String 594
-msgid "Order could not be loaded"
-msgstr "该命令无法加载"
-
-#: String 595
-msgid "Contact Us"
-msgstr "联系我们"
-
-#: String 596
-msgid "Map"
-msgstr "地图"
-
-#: String 597
-msgid "Captcha is not correct"
-msgstr "在验证码错误。请输入新验证码。"
-
-#: String 598
-msgid ""
-"Advertisement is created but needs to be validated first before it is "
-"published."
-msgstr "您的广告已经创建，但我们必须在其公布之前进行验证，谢谢您耐心等待！"
-
-#: String 599
-msgid ""
-"Advertisement is posted but first you need to activate. Please check your "
-"email!"
-msgstr "您的广告已被保存，但是你必须首先激活它。请检查你的电子邮件！"
-
-#: String 600
-msgid ""
-"Advertisement is received, but first administrator needs to validate. Thank "
-"you for being patient!"
-msgstr "您的广告已被接受，但管理员必须验证它。感谢您的耐心！"
-
-#: String 601
-msgid "Advertisement is posted. Congratulations!"
-msgstr "您的广告已发布。恭喜！"
-
-#: String 602
-msgid "Your message has been sent"
-msgstr "您的邮件已发送"
-
-#: String 603
-msgid "Message not sent"
-msgstr "该消息未发送"
-
-#: String 604
-msgid "We need your email address to complete"
-msgstr "我们需要您的电子邮件地址来完成"
-
-#: String 605
-msgid "Welcome!"
-msgstr "欢迎！"
-
-#: String 606
-msgid "Error: please try again!"
-msgstr "错误，请重试！"
-
-#: String 607
-msgid "Register new user"
-msgstr "新用户注册"
-
-#: String 609
-msgid "You are unsubscribed"
-msgstr "您已取消订阅"
-
-#: String 610
-msgid ""
-"This email has been considered as spam! We are sorry but we can not send "
-"this email."
-msgstr "此电子邮件地址已被标记为垃圾邮件，我们很抱歉，但我们不能发送此电子邮件"
-
-#: String 611
-msgid "Check the form for errors"
-msgstr "检查表格的填写错误"
-
-#: String 612
-msgid "You made some mistake"
-msgstr "有一个错误"
-
-#: String 613
-msgid "Thank you for subscribing"
-msgstr "感谢您的注册"
-
-#: String 614
-msgid "Please to see the changes delete the cache"
-msgstr "要查看更改，请清除缓存"
-
-#: String 615
-msgid "Delete All"
-msgstr "一切都被清除"
-
-#: String 616
-msgid "User name"
-msgstr "用户名"
-
-#: String 617
-msgid "Host name"
-msgstr "服务器主机名"
-
-#: String 619
-msgid "Database charset"
-msgstr "数据库的字符"
-
-#: String 620
-msgid "Table prefix"
-msgstr "表名前缀"
-
-#: String 621
-msgid "Database Configuration"
-msgstr "配置数据库"
-
-#: String 622
-msgid ""
-"You need the Hash Key to re-install. You can find this value if you lost it "
-"at"
-msgstr "要重新安装你所需的clé de Hashage。如果你忘了，你可以在以下文件中找到它的值："
-
-#: String 623
-msgid "Admin Password"
-msgstr "管理员密码"
-
-#: String 624
-msgid "Sample data"
-msgstr "创建示例分类"
-
-#: String 625
-msgid "Creates few sample categories to start with"
-msgstr "创造了20个的英语分类，如就业，地点，语言等以快速开始"
-
-#: String 626
-msgid "Hash Key"
-msgstr "Clé de Hashage"
-
-#: String 627
-msgid ""
-"Allows multiple installations in one database if you give each one a unique "
-"prefix"
-msgstr "允许多个设备通过指定一个不同的前缀共享同一个数据库"
-
-#: String 628
-msgid "Only numbers, letters, and underscores"
-msgstr "只允许数字，字母和下划线"
-
-#: String 629
-msgid "No"
-msgstr "不"
-
-#: String 630
-msgid "Yes"
-msgstr "是的"
-
-#: String 631
-msgid "URL to your Logo. Recommended size 250px x 40px. Leave blank for none."
-msgstr "您的Logo的网址。推荐250x 40大小。将此字段留空，如果你不想使用Logo。"
-
-#: String 632
-msgid "Short description that appears after the site name."
-msgstr "站点的名称后的简介或标语。"
-
-#: String 633
-msgid "Numbers of ads to display in home slider"
-msgstr "显示在主页幻灯片的广告数目"
-
-#: String 634
-msgid "Display breadcrumb"
-msgstr "显示面包屑"
-
-#: String 635
-msgid "Change the admin color theme"
-msgstr "变更管理的色彩主题"
-
-#: String 636
-msgid "Install"
-msgstr "安装"
-
-#: String 637
-msgid "Ocacu classifieds community registration"
-msgstr "在社区门户Ocacu上发布你的网站。"
-
-#: String 638
-msgid "Terms"
-msgstr "条款"
-
-#: String 640
-msgid "Administrator email"
-msgstr "管理员电子邮件"
-
-#: String 644
-msgid "Thanks for using Open Classifieds."
-msgstr "感谢您使用。"
-
-#: String 645
-msgid "Your installation version is"
-msgstr "你安装的版本"
-
-#: String 647
-msgid "We really appreciate it"
-msgstr "我们非常感谢"
-
-#: String 648
-msgid "Make a donation"
-msgstr "捐赠"
-
-#: String 649
-msgid "Congratulations"
-msgstr "祝贺您"
-
-#: String 650
-msgid "Installation done"
-msgstr "安装完成"
-
-#: String 651
-msgid "Please now erase the folder"
-msgstr "现在，您可以删除该文件夹"
-
-#: String 652
-msgid "Go to Your Website"
-msgstr "详见网站"
-
-#: String 654
-msgid "Latest News"
-msgstr "最新消息"
-
-#: String 656
-msgid "Site URL"
-msgstr "网站网址"
-
-#: String 657
-msgid "Site Name"
-msgstr "网站名称"
-
-#: String 658
-msgid "Time Zone"
-msgstr "时区"
-
-#: String 659
-msgid "New Install"
-msgstr "新安装"
-
-#: String 660
-msgid "Site Language"
-msgstr "网站语言"
-
-#: String 661
-msgid "Site Configuration"
-msgstr "站点配置"
-
-#: String 662
-msgid "Welcome to"
-msgstr "安装"
-
-#: String 663
-msgid "installation"
-msgstr "安装"
-
-#: String 664
-msgid "Welcome to the super easy and fast installation"
-msgstr "欢迎来到这个超级方便，快捷的安装程序"
-
-#: String 665
-msgid "If you need any help please check our professional services"
-msgstr "如果您需要帮助，请不要犹豫，联系我们的专业服务"
-
-#: String 666
-msgid "Where you want the sidebar to appear"
-msgstr "侧边栏的位置"
-
-#: String 668
-msgid "Go Top!"
-msgstr "置顶！"
-
-#: String 669
-msgid "Your Advertisement can go on top again! For only "
-msgstr "置顶您的广告只需"
-
-#: String 670
-msgid "Your Advertisement can go to featured! For only "
-msgstr "高亮显示您的广告只需"
-
-#: String 671
-msgid "Go Featured!"
-msgstr "高亮！"
-
-#: String 672
-msgid "Hits"
-msgstr "浏览次数"
-
-#: String 673
-msgid "We do not have any advertisements in this category"
-msgstr "我们没有此类别的广告"
-
-#: String 674
-msgid "Spam"
-msgstr "垃圾邮件"
-
-#: String 675
-msgid "Publish Date"
-msgstr "发布日期"
-
-#: String 676
-msgid "Deactivate?"
-msgstr "禁用？"
-
-#: String 677
-msgid "Deactivate"
-msgstr "禁用"
-
-#: String 678
-msgid "Spam?"
-msgstr "垃圾邮件？"
-
-#: String 679
-msgid "Buy Now"
-msgstr "现在购买"
-
-#: String 680
-msgid "New password"
-msgstr "新密码"
-
-#: String 681
-msgid "Mobile Version"
-msgstr "手机版"
-
-#: String 682
-msgid "We are working on our site, please visit later. Thanks"
-msgstr "网站装修中！请你过几分钟再回来"
-
-#: String 683
-msgid "Header tool bar gets fixed in the top"
-msgstr "在页面顶部附加工具标题栏"
-
-#: String 684
-msgid "Publish new "
-msgstr "发布信息"
-
-#: String 686
-msgid "Remember me"
-msgstr "记住我的登陆"
-
-#: String 687
-msgid "Forgot password?"
-msgstr "忘记密码？"
-
-#: String 688
-msgid "Repeat password"
-msgstr "重复密码"
-
-#: String 689
-msgid "Type your password twice"
-msgstr "输入两次您的密码"
-
-#: String 690
-msgid "Social Login"
-msgstr "社会身份验证"
-
-#: String 691
-msgid "Send"
-msgstr "发送"
-
-#: String 692
-msgid "New Advertisement"
-msgstr "新广告"
-
-#: String 693
-msgid "User account will be created"
-msgstr "将自动为您创建用户帐户"
-
-#: String 696
-msgid "Please wait while we transfer you to Paypal"
-msgstr "请稍候，您将被重定向到PayPal"
-
-#: String 697
-msgid "Click here if you are not redirected"
-msgstr "如果30秒后未重定向，请点击这里"
-
-#: String 698
-msgid "I accept"
-msgstr "我接受"
-
-#: String 699
-msgid "Listing random position banner, allows HTML"
-msgstr "随机展示列表，允许HTML。"
-
-#: String 700
-msgid "Footer banner, allows HTML"
-msgstr "页脚横幅，允许HTML。"
-
-#: String 701
-msgid "Right side"
-msgstr "右边"
-
-#: String 702
-msgid "Left side"
-msgstr "左边"
-
-#: String 703
-msgid "Display slider in listing"
-msgstr "列表显示"
-
-#: String 704
-msgid "Header banner, allows HTML"
-msgstr "标题横幅，允许HTML。"
-
-#: String 705
-msgid "Publish new"
-msgstr "发布信息"
-
-#: String 706
-msgid "Listing"
-msgstr "广告"
-
-#: String 708
-msgid "Images"
-msgstr "图像/照片"
-
-#: String 709
-msgid "Website"
-msgstr "网站或博客"
-
-#: String 710
-msgid "Terms of service"
-msgstr "使用条款"
-
-#: String 711
-msgid "We do not have any blog post"
-msgstr "没有任何信息"
-
-#: String 712
-msgid "Delete"
-msgstr "删除"
-
-#: String 713
-msgid "Forgot password"
-msgstr "忘记密码"
-
-#: String 714
-msgid "Register"
-msgstr "马上加入"
-
-#: String 715
-msgid "Read more"
-msgstr "了解更多"
-
-#: String 716
-msgid "Delete?"
-msgstr "删除吗？"
-
-#: String 718
-msgid "Installation"
-msgstr "安装"
-
-#: String 719
-msgid "Earn money from your site"
-msgstr "利用您的网页赚钱"
-
-#: String 720
-msgid "HTML/text content here"
-msgstr "你的文字或HTML内容"
-
-#: String 721
-msgid "Banner Format"
-msgstr "横幅格式"
-
-#: String 722
-msgid "Adserum publisher ID"
-msgstr "Adserum发布者ID"
-
-#: String 723
-msgid "Title displayed"
-msgstr "显示标题"
-
-#: String 724
-msgid "Text title displayed"
-msgstr "显示的文本标题"
-
-#: String 725
-msgid "HTML textarea"
-msgstr "HTML文本框"
-
-#: String 726
-msgid "Map title displayed"
-msgstr "显示地图标题"
-
-#: String 727
-msgid "Map height in pixels"
-msgstr "以像素为单位的地图高度"
-
-#: String 728
-msgid "Zoom in the map"
-msgstr "在地图上显示缩放工具"
-
-#: String 729
-msgid "Text"
-msgstr "文本"
-
-#: String 730
-msgid "Display categories"
-msgstr "查看所有类别"
-
-#: String 731
-msgid "Categories title displayed"
-msgstr "显示的类别名称"
-
-#: String 732
-msgid "Ads title displayed"
-msgstr "显示广告名称"
-
-#: String 733
-msgid "Number of ads to display"
-msgstr "广告显示数量"
-
-#: String 734
-msgid "Display Locations"
-msgstr "显示地方"
-
-#: String 735
-msgid "Locations title displayed"
-msgstr "显示地方名称"
-
-#: String 736
-msgid "Contact"
-msgstr "联系"
-
-#: String 737
-msgid "Featured Ads"
-msgstr "高亮广告"
-
-#: String 738
-msgid "Popular Ads last month"
-msgstr "上月热门广告"
-
-#: String 739
-msgid "Ads"
-msgstr "分类广告"
-
-#: String 740
-msgid "Ads reader"
-msgstr "公告阅读器"
-
-#: String 741
-msgid "Type ads to display"
-msgstr "广告显示类型"
-
-#: String 742
-msgid "Latest Ads"
-msgstr "最新广告"
-
-#: String 743
-msgid "Google Maps with ads"
-msgstr "谷歌地图与广告"
-
-#: String 745
-msgid "Last"
-msgstr "最后"
-
-#: String 746
-msgid "Next"
-msgstr "下一个"
-
-#: String 747
-msgid "Submit"
-msgstr "发送"
-
-#: String 748
-msgid "Other"
-msgstr "其他"
-
-#: String 749
-msgid "Pages"
-msgstr "页面"
-
-#: String 750
-msgid "Previous"
-msgstr "前一个"
-
-#: String 751
-msgid "First"
-msgstr "第一"
-
-#: String 752
-msgid "Check form for errors"
-msgstr "检查表格错误"
-
-#: String 753
-msgid "Item updated"
-msgstr "元素更新"
-
-#: String 754
+#: String 46
 msgid "Access not allowed"
 msgstr "未经授权的访问"
 
-#: String 755
-msgid "Panel"
-msgstr "控制面板"
+#: String 47
+msgid "Account Number"
+msgstr ""
 
-#: String 756
-msgid "Display CMS pages"
-msgstr "显示页CMS"
+#: String 48
+msgid "Action"
+msgstr ""
 
-#: String 757
-msgid "Page title displayed"
-msgstr "显示的网页的标题"
+#: String 49
+msgid "Action Value:"
+msgstr ""
 
-#: String 759
-msgid "Maximum Price"
-msgstr "最高价格"
+#: String 50
+msgid "Actions"
+msgstr "活动"
 
-#: String 761
-msgid "Increment Step"
-msgstr "增加量"
+#: String 51
+msgid "Activate"
+msgstr "激活"
 
-#: String 762
-msgid "Minimum Price"
-msgstr "最低价格"
+#: String 52
+msgid "Activate?"
+msgstr "确认激活？"
 
-#: String 763
-msgid "Subscribe title displayed"
-msgstr "显示预定标题"
+#: String 53
+msgid "Activates Blog posting"
+msgstr "活跃激活博客文章"
 
-#: String 764
-msgid "Subscribe"
-msgstr "订阅"
+#: String 54
+msgid "Activates FAQ"
+msgstr ""
 
-#: String 765
-msgid "Subscribe for categories"
-msgstr "订阅类别"
+#: String 55
+msgid "Activates Forums"
+msgstr ""
 
-#: String 768
-msgid "Contact form"
-msgstr "联系表格"
+#: String 56
+msgid "Activates Messaging System"
+msgstr ""
 
-#: String 769
-msgid "Share"
-msgstr "分享"
+#: String 57
+msgid "Active"
+msgstr "资产"
 
-#: String 770
-msgid "Send Message"
-msgstr "发送消息"
+#: String 58
+msgid "Active Region Action"
+msgstr ""
 
-#: String 771
-msgid "Captcha"
-msgstr "验证码"
+#: String 59
+msgid "Ad"
+msgstr ""
 
-#: String 772
-msgid "views"
-msgstr "浏览次数"
+#: String 60
+msgid "Ad Not Found"
+msgstr ""
 
-#: String 773
-msgid "ads"
-msgstr "广告"
+#: String 61
+msgid "Ad Tools"
+msgstr ""
 
-#: String 774
-msgid "users"
-msgstr "用户"
+#: String 62
+msgid "Ad expiration date"
+msgstr "广告到期时间"
 
-#: String 775
-msgid "File"
-msgstr "文件"
+#: String 63
+msgid "Ad not provided"
+msgstr ""
 
-#: String 776
-msgid "Message"
-msgstr "信息"
+#: String 64
+msgid "Add"
+msgstr ""
 
-#: String 777
+#: String 65
+msgid "Add Custom Fields"
+msgstr ""
+
+#: String 66
+msgid "Add New Review"
+msgstr ""
+
+#: String 67
+msgid "Add a chat room"
+msgstr ""
+
+#: String 68
+msgid "Add a plan"
+msgstr ""
+
+#: String 69
+msgid "Add custom field"
+msgstr ""
+
+#: String 70
 msgid "Add latest comments"
 msgstr "包括最新的评论"
 
-#: String 778
-msgid "Comments"
-msgstr "评论"
+#: String 71
+msgid "Add names for multiple categories, for each one push enter."
+msgstr ""
 
-#: String 779
-msgid "Number of comments to display"
-msgstr "意见显示数量"
+#: String 72
+msgid "Add names for multiple locations, for each one push enter."
+msgstr ""
 
-#: String 780
-msgid "Subject"
-msgstr "主题"
+#: String 73
+msgid "Add to Favorites"
+msgstr ""
 
-#: String 781
-msgid "Unsubscribe"
-msgstr "退订"
+#: String 74
+msgid "Added Custom Fields"
+msgstr ""
 
-#: String 782
+#: String 75
+msgid "Address"
+msgstr "地址"
+
+#: String 76
+msgid "Address field"
+msgstr "地址栏位"
+
+#: String 77
+msgid "Adds content to contact page"
+msgstr ""
+
+#: String 78
+msgid "Admin Password"
+msgstr "管理员密码"
+
+#: String 79
+msgid "Admin Privileged"
+msgstr ""
+
+#: String 80
+msgid "Admin Role can not be modified!"
+msgstr ""
+
+#: String 81
+msgid "Admin Tools to editing ads"
+msgstr ""
+
+#: String 82
+msgid "Administrator email"
+msgstr "管理员电子邮件"
+
+#: String 83
+msgid "Ads"
+msgstr "分类广告"
+
+#: String 84
+msgid "Ads deleted"
+msgstr ""
+
+#: String 85
+msgid "Ads reader"
+msgstr "公告阅读器"
+
+#: String 86
+msgid "Ads title displayed"
+msgstr "显示广告名称"
+
+#: String 87
+msgid "Advanced Search"
+msgstr "高级搜索"
+
+#: String 88
+msgid "Advanced option"
+msgstr ""
+
+#: String 89
+msgid "Advanced options"
+msgstr ""
+
+#: String 90
+msgid "Advanced search"
+msgstr "高级搜索"
+
+#: String 91
+msgid "Advertisement"
+msgstr "广告"
+
+#: String 92
+msgid "Advertisement Configuration"
+msgstr "配置公告"
+
+#: String 93
+msgid "Advertisement Custom Fields"
+msgstr ""
+
+#: String 94
+msgid "Advertisement Display Options"
+msgstr ""
+
+#: String 95
+msgid "Advertisement Fields"
+msgstr ""
+
+#: String 96
 msgid "Advertisement Title"
 msgstr "广告标题"
 
-#: String 783
-msgid "Database name"
-msgstr "数据库使用名称"
+#: String 97
+msgid "Advertisement has been permanently deleted"
+msgstr ""
 
-#: String 784
-msgid "Cannot connect to server"
-msgstr "无法连接到服务器"
+#: String 98
+msgid "Advertisement is active and published"
+msgstr "该广告已激活并发表"
 
-#: String 785
-msgid "No database name was given"
-msgstr "没有给定数据库的名字"
+#: String 99
+msgid "Advertisement is deactivated"
+msgstr "该公告被禁用"
 
-#: String 786
+#: String 100
+msgid "Advertisement is marked as spam"
+msgstr "这则广告被标记为垃圾邮件"
+
+#: String 101
+msgid "Advertisement is posted but first you need to activate. Please check your email!"
+msgstr "您的广告已被保存，但是你必须首先激活它。请检查你的电子邮件！"
+
+#: String 102
+msgid "Advertisement is posted. Congratulations!"
+msgstr "您的广告已发布。恭喜！"
+
+#: String 103
+msgid "Advertisement is received, but first administrator needs to validate. Thank you for being patient!"
+msgstr "您的广告已被接受，但管理员必须验证它。感谢您的耐心！"
+
+#: String 104
+msgid "Advertisement is updated"
+msgstr "该广告被更新"
+
+#: String 105
+msgid "Advertisement is updated, but first administrator needs to validate. Thank you for being patient!"
+msgstr ""
+
+#: String 106
+msgid "Advertisement not found"
+msgstr ""
+
+#: String 107
+msgid "Advertisements"
+msgstr "分类广告"
+
+#: String 108
+msgid "Advertisements in Map"
+msgstr "网站地图中的广告"
+
+#: String 109
+msgid "Advertisements in RSS"
+msgstr "RSS中的消息"
+
+#: String 110
+msgid "Advertisements in home"
+msgstr "首页广告"
+
+#: String 111
+msgid "Advertisements per page"
+msgstr "每页显示的广告"
+
+#: String 112
+msgid "After how many days an Ad will expire. 0 for never"
+msgstr "信息将在多少天后过期？0表示永不过期"
+
+#: String 113
+msgid "Akismet Key"
+msgstr "Akismet关键字"
+
+#: String 114
+msgid "All"
+msgstr ""
+
+#: String 115
+msgid "All active users."
+msgstr ""
+
+#: String 116
+msgid "All ads"
+msgstr ""
+
+#: String 117
+msgid "All ads are processed! Congrats!"
+msgstr ""
+
+#: String 118
+msgid "All cache deleted"
+msgstr "缓存已被清除"
+
+#: String 119
+msgid "All categories were deleted."
+msgstr ""
+
+#: String 120
+msgid "All configurations"
+msgstr "所有配置"
+
+#: String 121
+msgid "All data contained will be deleted."
+msgstr ""
+
+#: String 122
+msgid "All locations were deleted."
+msgstr ""
+
+#: String 123
+msgid "All rights reserved"
+msgstr ""
+
+#: String 124
+msgid "All themes include support, updates and 1 site license."
+msgstr "所有主题包括支持，更新和一个站点的许可。"
+
+#: String 125
+msgid "Allow uploading images in publish new."
+msgstr ""
+
+#: String 126
+msgid "Allowed image formats"
+msgstr "接受图像格式"
+
+#: String 127
+msgid "Allows multiple installations in one database if you give each one a unique prefix"
+msgstr "允许多个设备通过指定一个不同的前缀共享同一个数据库"
+
+#: String 128
+msgid "Also white labeled and free of ads"
+msgstr "另外没有标志，无广告"
+
+#: String 129
+msgid "Alternative Payment"
+msgstr ""
+
+#: String 130
+msgid "Amazon S3 Bucket Name"
+msgstr ""
+
+#: String 131
+msgid "Amazon S3 Configuration"
+msgstr ""
+
+#: String 132
+msgid "Amazon S3 active"
+msgstr ""
+
+#: String 133
+msgid "Amount"
+msgstr ""
+
+#: String 134
+msgid "Analytics Tracking ID"
+msgstr ""
+
+#: String 135
+msgid "Any"
+msgstr ""
+
+#: String 136
+msgid "Appearance"
+msgstr ""
+
+#: String 137
+msgid "Appearance configuration updated"
+msgstr "配置外观更新"
+
+#: String 138
+msgid "Appears when user registers."
+msgstr ""
+
+#: String 139
+msgid "Appends watermark to images"
+msgstr "添加水印的图像"
+
+#: String 140
+msgid "Application Execution"
+msgstr "执行时间"
+
+#: String 141
+msgid "Apply discounts."
+msgstr ""
+
+#: String 142
+msgid "Archive"
+msgstr ""
+
+#: String 143
+msgid "Archived"
+msgstr ""
+
+#: String 144
+msgid "Are you sure you want to deactivate featured advertisement?"
+msgstr "您确定要禁用的广告高亮？"
+
+#: String 145
+msgid "Are you sure you want to delete all the categories?"
+msgstr ""
+
+#: String 146
+msgid "Are you sure you want to delete all the locations?"
+msgstr ""
+
+#: String 147
+msgid "Are you sure you want to delete?"
+msgstr "您确定要删除它？"
+
+#: String 148
+msgid "Are you sure you want to delete? All data contained in this field will be deleted."
+msgstr "您确定要删除吗？在此字段中的所有数据都将被删除"
+
+#: String 149
+msgid "Are you sure you want to delete? We will move the siblings locations and ads to the parent of this location."
+msgstr "您确定要删除这个位置？有关广告将与父分类位置关联。"
+
+#: String 150
+msgid "Are you sure you want to make it featured?"
+msgstr "你确定你想要把这个突出显示？"
+
+#: String 151
+msgid "Are you sure you want to refresh listing and go to top?"
+msgstr "您确定要重新加载列表并回到顶部？"
+
+#: String 152
+msgid "Are you sure you want to remove featured ad?"
+msgstr ""
+
+#: String 153
+msgid "Are you sure you want to remove it?"
+msgstr ""
+
+#: String 154
+msgid "Are you sure you want to update?"
+msgstr ""
+
+#: String 155
+msgid "Are you sure?"
+msgstr ""
+
+#: String 156
+msgid "At least one image format should be allowed."
+msgstr ""
+
+#: String 157
+msgid "Authorize API Login"
+msgstr ""
+
+#: String 158
+msgid "Authorize transaction Key"
+msgstr ""
+
+#: String 159
+msgid "Auto Locate Visitors"
+msgstr ""
+
+#: String 160
+msgid "Available Mobile Themes"
+msgstr "可用手机主题"
+
+#: String 161
+msgid "Available Themes"
+msgstr "可用的主题"
+
+#: String 162
 msgid "Available databases"
 msgstr "可用数据库"
 
-#: String 787
-msgid "Invalid query"
-msgstr "无效请求"
+#: String 163
+msgid "Available widgets"
+msgstr "可用的小工具"
 
-#: String 788
-msgid "Loaded extensions"
-msgstr "加载的扩展"
+#: String 164
+msgid "BBCODE editor appears in description field."
+msgstr ""
 
-#: String 789
-msgid "Included files"
-msgstr "包含的文件"
+#: String 165
+msgid "BBCODE editor on description field"
+msgstr ""
 
-#: String 793
-msgid "Environment"
-msgstr "环境"
+#: String 166
+msgid "Background Color"
+msgstr ""
 
-#: String 795
-msgid "Parent frame"
-msgstr "父框架"
+#: String 167
+msgid "Backup all your files and database"
+msgstr ""
 
-#: String 797
-msgid "RSS title displayed"
-msgstr "标题提要"
+#: String 168
+msgid "Banned word replacement replaces selected array with the string you provided."
+msgstr ""
 
-#: String 801
-msgid "RSS url address"
-msgstr "RSS订阅地址"
+#: String 169
+msgid "Banned words"
+msgstr ""
 
-#: String 802
-msgid "How often we refresh the RSS, in seconds"
-msgstr "RSS的刷新率，单位秒"
+#: String 170
+msgid "Banned words are separated with coma (,)"
+msgstr ""
 
-#: String 803
-msgid "Share on social networks."
-msgstr "分享到社交网络"
+#: String 171
+msgid "Banned words replacement"
+msgstr ""
 
-#: String 804
-msgid "RSS"
-msgstr "RSS"
+#: String 172
+msgid "Benchmark"
+msgstr "标示图"
 
-#: String 805
-msgid "RSS reader with cache"
-msgstr "RSS阅读器与缓存"
+#: String 173
+msgid "Bitpay api key"
+msgstr ""
 
-#: String 806
-msgid "Number items to display"
-msgstr "要显示的项目数量"
+#: String 174
+msgid "Black List"
+msgstr ""
 
-#: String 808
-msgid "Search"
-msgstr "搜索"
+#: String 175
+msgid "Black list"
+msgstr ""
 
-#: String 809
-msgid "Links"
-msgstr "连接"
+#: String 176
+msgid "Blog"
+msgstr ""
 
-#: String 810
-msgid "Links title displayed"
-msgstr "显示的链接名称"
+#: String 177
+msgid "Blog post"
+msgstr ""
 
-#: String 811
-msgid "Target"
-msgstr "目标"
+#: String 178
+msgid "Blog post created"
+msgstr ""
 
-#: String 812
-msgid "New tab or window"
-msgstr "新的选项卡或窗口"
+#: String 179
+msgid "Blog post updated"
+msgstr ""
 
-#: String 813
-msgid "Featured"
-msgstr "突出显示"
+#: String 180
+msgid "Bring to top Ad"
+msgstr "放一个广告在分类的顶部"
 
-#: String 814
-msgid "Featured title displayed"
-msgstr "显示标题"
+#: String 181
+msgid "Browse"
+msgstr ""
 
-#: String 817
-msgid "Display site stats"
-msgstr "查看网站统计"
+#: String 182
+msgid "Browse Themes"
+msgstr "浏览主题"
 
-#: String 818
+#: String 183
+msgid "Browse childs"
+msgstr ""
+
+#: String 184
+msgid "Bulk"
+msgstr ""
+
+#: String 185
+msgid "Bulk coupon generator"
+msgstr ""
+
+#: String 186
+msgid "Buy Now"
+msgstr "现在购买"
+
+#: String 187
+msgid "Buy a Theme"
+msgstr ""
+
+#: String 188
+msgid "Buy product"
+msgstr ""
+
+#: String 189
+msgid "CSS"
+msgstr ""
+
+#: String 190
+msgid "CSS file not saved"
+msgstr ""
+
+#: String 191
+msgid "CSS file saved"
+msgstr ""
+
+#: String 192
+msgid "Cache"
+msgstr "缓存"
+
+#: String 193
+msgid "Cache configuration information"
+msgstr "高速缓存配置参数"
+
+#: String 194
+msgid "Can be seen and edited only by admin."
+msgstr ""
+
+#: String 195
+msgid "Can be seen in the list of ads while browsing."
+msgstr ""
+
+#: String 196
+msgid "Can be seen in the user profile."
+msgstr ""
+
+#: String 197
+msgid "Cancel"
+msgstr "取消"
+
+#: String 198
+msgid "Cannot connect to server"
+msgstr "无法连接到服务器"
+
+#: String 199
+msgid "Cannot delete widget %s"
+msgstr ""
+
+#: String 200
+msgid "Can’t get it to work?"
+msgstr ""
+
+#: String 201
+msgid "Captcha"
+msgstr "验证码"
+
+#: String 202
+msgid "Captcha appears in the form."
+msgstr "在表格显示验证码。"
+
+#: String 203
+msgid "Captcha is not correct"
+msgstr "在验证码错误。请输入新验证码。"
+
+#: String 204
+msgid "Card Number"
+msgstr ""
+
+#: String 205
+msgid "Cars"
+msgstr ""
+
+#: String 206
+msgid "Categories"
+msgstr "分类"
+
+#: String 207
+msgid "Categories successfully imported."
+msgstr ""
+
+#: String 208
+msgid "Categories title displayed"
+msgstr "显示的类别名称"
+
+#: String 209
+msgid "Category"
+msgstr "类别"
+
+#: String 210
+msgid "Category %s is a paid category: %d"
+msgstr ""
+
+#: String 211
+msgid "Category created"
+msgstr ""
+
+#: String 212
+msgid "Category deleted"
+msgstr "删除的类别"
+
+#: String 213
+msgid "Category details"
+msgstr ""
+
+#: String 214
+msgid "Category icon"
+msgstr ""
+
+#: String 215
+msgid "Category not deleted"
+msgstr "未删去类别"
+
+#: String 216
+msgid "Category not found"
+msgstr ""
+
+#: String 217
+msgid "Change Location"
+msgstr ""
+
+#: String 218
+msgid "Change password"
+msgstr "更改密码"
+
+#: String 219
+msgid "Change plan"
+msgstr ""
+
+#: String 220
+msgid "Change the admin color theme"
+msgstr "变更管理的色彩主题"
+
+#: String 221
+msgid "Change the color scheme and style of the theme"
+msgstr "更改主题的颜色和样式"
+
+#: String 222
+msgid "Change the color theme"
+msgstr ""
+
+#: String 223
+msgid "Change the header color scheme and style of the theme"
+msgstr "更改页眉和风格的主题颜色"
+
+#: String 224
+msgid "Change the main color scheme and style of the theme"
+msgstr "更改主题的配色方案和样式"
+
+#: String 225
+msgid "Change the order of your categories. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended)."
+msgstr "改变你的类别的顺序。请记住，超越2级嵌套的子类别可能不会被显示主题（最多2个建议的水平）。"
+
+#: String 226
+msgid "Change the order of your forums. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended)."
+msgstr ""
+
+#: String 227
+msgid "Change the order of your locations. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended)."
+msgstr "更改处所的秩序。请记住，两个以上的嵌套级别将可能不会被主题（最多2个建议水平）显示。"
+
+#: String 228
+msgid "Change the theme of Featured Elements"
+msgstr "更改突出显示广告的主题"
+
+#: String 229
+msgid "Change the theme of List Elements"
+msgstr "改变广告清单的主题"
+
+#: String 230
+msgid "Changelog"
+msgstr ""
+
+#: String 231
+msgid "Charts"
+msgstr "图表"
+
+#: String 232
+msgid "Chat"
+msgstr ""
+
+#: String 233
+msgid "Chat height in PX"
+msgstr ""
+
+#: String 234
+msgid "Chat room"
+msgstr ""
+
+#: String 235
+msgid "Check"
+msgstr "检查"
+
+#: String 236
+msgid "Check for updates"
+msgstr "检查更新"
+
+#: String 237
+msgid "Check form for errors"
+msgstr "检查表格错误"
+
+#: String 238
+msgid "Check the form for errors"
+msgstr "检查表格的填写错误"
+
+#: String 239
+msgid "Checkbox"
+msgstr ""
+
+#: String 240
+msgid "Checked for new versions."
+msgstr ""
+
+#: String 241
+msgid "Checkout"
+msgstr ""
+
+#: String 242
+msgid "Choose 1 or several categories"
+msgstr ""
+
+#: String 243
+msgid "Choose the quality of the stored images (1-100% of the original)."
+msgstr "选择录制的图像（原1-100％）的质量。"
+
+#: String 244
+msgid "City"
+msgstr ""
+
+#: String 245
+msgid "Classifieds"
+msgstr ""
+
+#: String 246
+msgid "Click here if you are not redirected"
+msgstr "如果30秒后未重定向，请点击这里"
+
+#: String 247
+msgid "Click to proceed"
+msgstr ""
+
+#: String 248
+msgid "Close"
+msgstr "关闭"
+
+#: String 249
+msgid "Collapse menu"
+msgstr ""
+
+#: String 250
+msgid "Color:"
+msgstr ""
+
+#: String 251
+msgid "Comma separated for select"
+msgstr "由逗号分隔的选择项"
+
+#: String 252
+msgid "Comments"
+msgstr "评论"
+
+#: String 253
+msgid "Comments Configuration"
+msgstr ""
+
+#: String 254
+msgid "Config file"
+msgstr "配置文件"
+
+#: String 255
+msgid "Congratulations"
+msgstr "祝贺您"
+
+#: String 256
+msgid "Contact"
+msgstr "联系"
+
+#: String 257
+msgid "Contact Us"
+msgstr "联系我们"
+
+#: String 258
+msgid "Contact form"
+msgstr "联系表格"
+
+#: String 259
+msgid "Contact form appears in the ad."
+msgstr ""
+
+#: String 260
+msgid "Contact page content"
+msgstr ""
+
+#: String 261
+msgid "Contact us"
+msgstr "联系我们"
+
+#: String 262
+msgid "Contacts"
+msgstr "联系"
+
+#: String 263
+msgid "Content"
+msgstr ""
+
+#: String 264
+msgid "Content shift right to left"
+msgstr ""
+
+#: String 265
+msgid "Content that will be displayed to the user after he publishes an ad"
+msgstr ""
+
+#: String 266
+msgid "Continent"
+msgstr ""
+
+#: String 267
+msgid "Continue"
+msgstr ""
+
+#: String 268
+msgid "Control the size of images being uploaded. Enter an integer value to set maximum image size in mega bites(Mb)."
+msgstr "控制被上传到你的服务器的图像的大小。输入一个整数值来设置最大图像大小以兆字节（MB）。"
+
+#: String 269
+msgid "Convert"
+msgstr ""
+
+#: String 270
+msgid "Convert Address into Lat/Lon:"
+msgstr ""
+
+#: String 271
+msgid "Cookie consent"
+msgstr ""
+
+#: String 272
+msgid "Copy all?, Be aware this will replace all your texts."
+msgstr "全部复制？请注意，这将取代所有的文字。"
+
+#: String 273
+msgid "Could not create bitpay invoice"
+msgstr ""
+
+#: String 274
+msgid "Count visits"
+msgstr ""
+
+#: String 275
+msgid "Count visits ads"
+msgstr ""
+
+#: String 276
+msgid "Country"
+msgstr ""
+
+#: String 277
+msgid "County"
+msgstr ""
+
+#: String 278
+msgid "Coupon"
+msgstr ""
+
+#: String 279
+msgid "Coupon %s created"
+msgstr ""
+
+#: String 280
+msgid "Coupon %s not created"
+msgstr ""
+
+#: String 281
+msgid "Coupon %s not created, errors: %s"
+msgstr ""
+
+#: String 282
+msgid "Coupon %s not imported"
+msgstr ""
+
+#: String 283
+msgid "Coupon %s not imported, errors: %s"
+msgstr ""
+
+#: String 284
+msgid "Coupon %s not updated"
+msgstr ""
+
+#: String 285
+msgid "Coupon %s not updated, errors: %s"
+msgstr ""
+
+#: String 286
+msgid "Coupon %s updated"
+msgstr ""
+
+#: String 287
+msgid "Coupon Name"
+msgstr ""
+
+#: String 288
+msgid "Coupon added!"
+msgstr ""
+
+#: String 289
+msgid "Coupon deleted."
+msgstr ""
+
+#: String 290
+msgid "Coupon name"
+msgstr ""
+
+#: String 291
+msgid "Coupon not valid, expired or already used."
+msgstr ""
+
+#: String 292
+msgid "Coupons"
+msgstr ""
+
+#: String 293
+msgid "Coupons successfully imported."
+msgstr ""
+
+#: String 294
+msgid "Create"
+msgstr "创建"
+
+#: String 295
+msgid "Create Blog Post"
+msgstr ""
+
+#: String 296
+msgid "Create DB"
+msgstr ""
+
+#: String 297
+msgid "Create DB."
+msgstr ""
+
+#: String 298
+msgid "Create Menu Item"
+msgstr "创建一个菜单链接"
+
+#: String 299
+msgid "Create a new profile at"
+msgstr ""
+
+#: String 300
+msgid "Create all new %s from original"
+msgstr ""
+
+#: String 301
+msgid "Create coupon"
+msgstr ""
+
+#: String 302
+msgid "Create custom fields among predefined templates."
+msgstr ""
+
+#: String 303
+msgid "Create new forum"
+msgstr ""
+
+#: String 304
+msgid "Created"
+msgstr "创建"
+
+#: String 305
+msgid "Creates few sample categories to start with"
+msgstr "创造了20个的英语分类，如就业，地点，语言等以快速开始"
+
+#: String 306
+msgid "Crontab"
+msgstr ""
+
+#: String 307
+msgid "Currency"
+msgstr "货币"
+
+#: String 308
+msgid "Current"
+msgstr "当前"
+
+#: String 309
+msgid "Current CSS file"
+msgstr ""
+
+#: String 310
+msgid "Current Theme"
+msgstr "当前主题"
+
+#: String 311
+msgid "Custom"
+msgstr "个性化"
+
+#: String 312
+msgid "Custom CSS"
+msgstr ""
+
+#: String 313
+msgid "Custom Fields"
+msgstr "自定义字段"
+
+#: String 314
+msgid "Custom Fields Templates"
+msgstr ""
+
+#: String 315
+msgid "Custom Fields for Advertisements"
+msgstr "对于广告的自定义字段"
+
+#: String 316
+msgid "Custom Fields for Users"
+msgstr ""
+
+#: String 317
+msgid "Custom Fields for users"
+msgstr ""
+
+#: String 318
+msgid "Custom fields are only available with premium themes!"
+msgstr "自定义字段可在付费主题使用！"
+
+#: String 319
+msgid "Custom fields in search"
+msgstr ""
+
+#: String 320
+msgid "Custom info"
+msgstr ""
+
+#: String 321
+msgid "Custom menu"
+msgstr "自定义菜单"
+
+#: String 322
+msgid "Customize your profile, upload a photo, description and change your password."
+msgstr ""
+
+#: String 323
+msgid "Customize your website look and feel by choosing one of the many available themes and changing theme options."
+msgstr ""
+
+#: String 324
+msgid "DB Configuration"
+msgstr ""
+
+#: String 325
+msgid "Database Configuration"
+msgstr "配置数据库"
+
+#: String 326
+msgid "Database Optimized"
+msgstr "优化数据库"
+
+#: String 327
+msgid "Database charset"
+msgstr "数据库的字符"
+
+#: String 328
+msgid "Database cleaned"
+msgstr "数据库清理"
+
+#: String 329
+msgid "Database name"
+msgstr "数据库使用名称"
+
+#: String 330
+msgid "Database space"
+msgstr "数据库空间"
+
+#: String 331
+msgid "Date"
+msgstr "日期"
+
+#: String 332
+msgid "Date Paid"
+msgstr ""
+
+#: String 333
+msgid "Date format"
+msgstr "日期格式"
+
+#: String 334
+msgid "Days"
+msgstr "天"
+
+#: String 335
+msgid "Deactivate"
+msgstr "禁用"
+
+#: String 336
+msgid "Deactivate featured"
+msgstr "禁用高亮"
+
+#: String 337
+msgid "Deactivate featured?"
+msgstr "禁用高亮？"
+
+#: String 338
+msgid "Deactivate?"
+msgstr "禁用？"
+
+#: String 339
+msgid "Deactivated"
+msgstr "禁用"
+
+#: String 340
+msgid "Debug Mode"
+msgstr ""
+
+#: String 341
+msgid "Decimal representation"
+msgstr "十进制表示"
+
+#: String 342
+msgid "Default"
+msgstr "故障"
+
+#: String 343
+msgid "Default links"
+msgstr "默认链接"
+
+#: String 344
+msgid "Default state for list/grid in listing"
+msgstr ""
+
+#: String 345
+msgid "Default value:"
+msgstr ""
+
+#: String 346
+msgid "Delete"
+msgstr "删除"
+
+#: String 347
+msgid "Delete All"
+msgstr "一切都被清除"
+
+#: String 348
+msgid "Delete All?"
+msgstr ""
+
+#: String 349
+msgid "Delete all"
+msgstr "删除所有"
+
+#: String 350
+msgid "Delete all categories"
+msgstr ""
+
+#: String 351
+msgid "Delete all locations"
+msgstr ""
+
+#: String 352
+msgid "Delete expired"
+msgstr "删除过期的内容"
+
+#: String 353
+msgid "Delete icon"
+msgstr ""
+
+#: String 354
+msgid "Delete icon?"
+msgstr ""
+
+#: String 355
+msgid "Delete image"
+msgstr "删除图像"
+
+#: String 356
+msgid "Delete photo"
+msgstr ""
+
+#: String 357
+msgid "Delete photo?"
+msgstr ""
+
+#: String 358
+msgid "Delete?"
+msgstr "删除吗？"
+
+#: String 359
+msgid "Deleted"
+msgstr ""
+
+#: String 360
+msgid "Deleted expired cache"
+msgstr "所有过期的缓存内容已被删除"
+
+#: String 361
+msgid "Description"
+msgstr "描述"
+
+#: String 362
+msgid "Description of your site in no more than 160 characters."
+msgstr ""
+
+#: String 363
+msgid "Desktop Version"
+msgstr "桌面版本"
+
+#: String 364
+msgid "Details"
+msgstr ""
+
+#: String 365
+msgid "Direct Message"
+msgstr ""
+
+#: String 366
+msgid "Direct message from %s"
+msgstr ""
+
+#: String 367
+msgid "Direct message from %s to %s"
+msgstr ""
+
+#: String 368
+msgid "Disable"
+msgstr "禁用"
+
+#: String 369
+msgid "Disable category counter badge"
+msgstr ""
+
+#: String 370
+msgid "Disables generated map on homepage"
+msgstr ""
+
+#: String 371
+msgid "Disallow nude pictures"
+msgstr ""
+
+#: String 372
+msgid "Disallows (blocks) Bots and Crawlers"
+msgstr ""
+
+#: String 373
+msgid "Disallows (blocks) Bots and Crawlers on this website"
+msgstr ""
+
+#: String 374
+msgid "Disallows Bots and Crawlers on the website"
+msgstr ""
+
+#: String 375
+msgid "Discount"
+msgstr ""
+
+#: String 376
+msgid "Discount Amount"
+msgstr ""
+
+#: String 377
+msgid "Discount Percentage"
+msgstr ""
+
+#: String 378
+msgid "Discount off"
+msgstr ""
+
+#: String 379
+msgid "Display CMS pages"
+msgstr "显示页CMS"
+
+#: String 380
 msgid "Display Featured Ads"
 msgstr "显示未来的广告"
 
-#: String 819
+#: String 381
+msgid "Display Interactive Map"
+msgstr ""
+
+#: String 382
+msgid "Display Locations"
+msgstr "显示地方"
+
+#: String 383
+msgid "Display Mode"
+msgstr ""
+
+#: String 384
+msgid "Display breadcrumb"
+msgstr "显示面包屑"
+
+#: String 385
+msgid "Display categories"
+msgstr "查看所有类别"
+
+#: String 386
+msgid "Display footer visual"
+msgstr ""
+
+#: String 387
+msgid "Display site stats"
+msgstr "查看网站统计"
+
+#: String 388
+msgid "Display slider in home"
+msgstr ""
+
+#: String 389
+msgid "Display slider in listing"
+msgstr "列表显示"
+
+#: String 390
+msgid "Display top banner"
+msgstr ""
+
+#: String 391
+msgid "Displays location select"
+msgstr "显示位置选择"
+
+#: String 392
+msgid "Displays the Select Location in the Ad form."
+msgstr "在广告表格显示选择地址。"
+
+#: String 393
+msgid "Displays the field Address in the Ad form."
+msgstr "在广告表格显示地址字段。"
+
+#: String 394
+msgid "Displays the field Phone in the Ad form."
+msgstr "信息表格中显示的电话栏目。"
+
+#: String 395
+msgid "Displays the field Price in the Ad form."
+msgstr "在广告表格显示价格字段。"
+
+#: String 396
+msgid "Displays the field Website in the Ad form."
+msgstr "在广告表格中显示网站地址。"
+
+#: String 397
+msgid "Displays the google maps in the Ad."
+msgstr "在广告显示谷歌地图。"
+
+#: String 398
+msgid "Displays the google maps in the Publish new form."
+msgstr ""
+
+#: String 399
+msgid "Disqus"
+msgstr ""
+
+#: String 400
+msgid "Disqus Comments"
+msgstr "评论 Disque"
+
+#: String 401
+msgid "Disqus for Blog Comments"
+msgstr "DISQUS的博客评论"
+
+#: String 402
+msgid "Disqus for FAQ"
+msgstr ""
+
+#: String 403
+msgid "Disqus for FAQ Comments"
+msgstr ""
+
+#: String 404
+msgid "Disqus for blog"
+msgstr "博客Disqus"
+
+#: String 405
+msgid "Distance"
+msgstr ""
+
+#: String 406
+msgid "Done"
+msgstr ""
+
+#: String 407
+msgid "Download"
+msgstr "下载"
+
+#: String 408
+msgid "Each advertisement has a publish date. By selecting format, you can change how it is shown on your website."
+msgstr ""
+
+#: String 409
+msgid "Each image is resized when uploaded. This is the height of big image. Note: you can leave this field blank to set AUTO height resize."
+msgstr "当它被上传到您的服务器的重设每个图像的大小。在这里，您可以指定大图片的大小。注：您可以将此字段留空了自动调整大小。"
+
+#: String 410
+msgid "Each image is resized when uploaded. This is the width of big image."
+msgstr "当它被上传到您的服务器的每个图像的大小。在这里，您可以指定大图片的宽度。"
+
+#: String 411
+msgid "Edit"
+msgstr "修改"
+
+#: String 412
+msgid "Edit Advertisement"
+msgstr "修改广告"
+
+#: String 413
+msgid "Edit Blog Post"
+msgstr ""
+
+#: String 414
+msgid "Edit Custom Field"
+msgstr "编辑自定义字段"
+
+#: String 415
+msgid "Edit Custom Field for Advertisement"
+msgstr "编辑自定义字段的广告"
+
+#: String 416
+msgid "Edit Forum"
+msgstr ""
+
+#: String 417
+msgid "Edit Menu"
+msgstr ""
+
+#: String 418
+msgid "Edit Profile"
+msgstr "编辑个人资料"
+
+#: String 419
+msgid "Edit Topic"
+msgstr ""
+
+#: String 420
+msgid "Edit Translation"
+msgstr "编辑翻译"
+
+#: String 421
+msgid "Edit advertisement"
+msgstr "修改广告"
+
+#: String 422
+msgid "Edit category"
+msgstr ""
+
+#: String 423
+msgid "Edit forum"
+msgstr ""
+
+#: String 424
+msgid "Edit location"
+msgstr ""
+
+#: String 425
+msgid "Edit profile"
+msgstr "编辑个人资料"
+
+#: String 426
+msgid "ElasticEmail Configuration"
+msgstr ""
+
+#: String 427
+msgid "ElasticEmail active"
+msgstr ""
+
+#: String 428
+msgid "Email"
+msgstr "电子邮件"
+
+#: String 429
+msgid "Email Configuration"
+msgstr "配置电子邮件"
+
+#: String 430
+msgid "Email Configuration updated"
+msgstr "配置电子邮件更新"
+
+#: String 431
+msgid "Email From"
+msgstr "从电子邮件"
+
+#: String 432
+msgid "Email Settings"
+msgstr "邮件设置"
+
+#: String 433
+msgid "Email Setup and emails configuration values. Replace input fields with new desired values"
+msgstr ""
+
+#: String 434
+msgid "Email confirmation on"
+msgstr ""
+
+#: String 435
+msgid "Email confirmation with Moderation"
+msgstr ""
+
+#: String 436
+msgid "Email from where we send the emails, also used for software communications."
+msgstr "“发件人”栏，用在标示电子邮件和通信。"
+
+#: String 437
+msgid "Email sent"
+msgstr ""
+
+#: String 438
+msgid "Email to recover password sent"
+msgstr "发送恢复密码电​​子邮件"
+
+#: String 439
+msgid "Enable"
+msgstr ""
+
+#: String 440
+msgid "Enable Additional Features"
+msgstr ""
+
+#: String 441
+msgid "Enable reCAPTCHA as captcha provider"
+msgstr ""
+
+#: String 442
+msgid "Enable reviews"
+msgstr ""
+
+#: String 443
+msgid "Enabled"
+msgstr ""
+
+#: String 444
+msgid "Enables Captcha"
+msgstr "打开验证码"
+
+#: String 445
+msgid "Enables Contact Form"
+msgstr "打开联系表格"
+
+#: String 446
+msgid "Enables an alert to accept cookies"
+msgstr ""
+
+#: String 447
+msgid "Enables reviews for ads and the users."
+msgstr ""
+
+#: String 448
+msgid "Enables the site to maintenance"
+msgstr "打开站点维护模式"
+
+#: String 449
+msgid "Enter keyword..."
+msgstr ""
+
+#: String 450
+msgid "Environment"
+msgstr "环境"
+
+#: String 451
+msgid "Error"
+msgstr "错误"
+
+#: String 452
+msgid "Error on mail delivery, not sent"
+msgstr "发送电​​子邮件时出错，未发送"
+
+#: String 453
+msgid "Error: please try again!"
+msgstr "错误，请重试！"
+
+#: String 454
+msgid "Ex. Url for Open Url Action."
+msgstr ""
+
+#: String 455
+msgid "Expiration Date"
+msgstr ""
+
+#: String 456
+msgid "Expire days"
+msgstr "过期前剩余天数"
+
+#: String 457
+msgid "Export"
+msgstr ""
+
+#: String 458
+msgid "Export all"
+msgstr ""
+
+#: String 459
+msgid "Extra Info"
+msgstr ""
+
+#: String 460
+msgid "FALSE"
+msgstr ""
+
+#: String 461
+msgid "FAQ"
+msgstr ""
+
+#: String 462
+msgid "Facebook Comments"
+msgstr ""
+
+#: String 463
+msgid "Facebook comments"
+msgstr ""
+
+#: String 464
+msgid "Failed to load content"
+msgstr ""
+
+#: String 465
+msgid "Favorite"
+msgstr ""
+
+#: String 466
+msgid "Favorite not found"
+msgstr ""
+
+#: String 467
+msgid "Favorited"
+msgstr ""
+
+#: String 468
+msgid "Feature ad"
+msgstr ""
+
+#: String 469
+msgid "Featured"
+msgstr "突出显示"
+
+#: String 470
+msgid "Featured Ads"
+msgstr "高亮广告"
+
+#: String 471
+msgid "Featured Ads Random"
+msgstr ""
+
+#: String 472
+msgid "Featured Plan"
+msgstr ""
+
+#: String 473
+msgid "Featured Plans"
+msgstr ""
+
+#: String 474
+msgid "Featured Random"
+msgstr ""
+
+#: String 475
+msgid "Featured ads"
+msgstr "高亮显示广告"
+
+#: String 476
+msgid "Featured ads will be highlighted for a defined number of days."
+msgstr "广告将被高亮显示一个定义的天数。"
+
+#: String 477
+msgid "Featured plan updated"
+msgstr ""
+
+#: String 478
+msgid "Featured title displayed"
+msgstr "显示标题"
+
+#: String 479
+msgid "Field %s added"
+msgstr ""
+
+#: String 480
+msgid "Field %s already exists"
+msgstr ""
+
+#: String 481
+msgid "Field %s cannot be added"
+msgstr ""
+
+#: String 482
+msgid "Field %s cannot be edited"
+msgstr ""
+
+#: String 483
+msgid "Field %s cannot be removed"
+msgstr ""
+
+#: String 484
+msgid "Field %s created"
+msgstr ""
+
+#: String 485
+msgid "Field %s deleted"
+msgstr ""
+
+#: String 486
+msgid "Field %s does not exists"
+msgstr ""
+
+#: String 487
+msgid "Field %s edited"
+msgstr ""
+
+#: String 488
+msgid "Field %s removed"
+msgstr ""
+
+#: String 489
+msgid "File"
+msgstr "文件"
+
+#: String 490
+msgid "Filter"
+msgstr "筛选过滤"
+
+#: String 491
+msgid "Filter categories"
+msgstr ""
+
+#: String 492
+msgid "Filter locations"
+msgstr ""
+
+#: String 493
+msgid "Find %s‘s latitude & longitude"
+msgstr ""
+
+#: String 494
+msgid "Find latitude & longitude"
+msgstr ""
+
+#: String 495
+msgid "First"
+msgstr "第一"
+
+#: String 496
+msgid "Fixed Discount"
+msgstr ""
+
+#: String 497
+msgid "Follow the suggestions above."
+msgstr ""
+
+#: String 498
+msgid "Footer banner, allows HTML"
+msgstr "页脚横幅，允许HTML。"
+
+#: String 499
+msgid "For banned word push enter."
+msgstr ""
+
+#: String 500
+msgid "Forgot password"
+msgstr "忘记密码"
+
+#: String 501
+msgid "Forgot password?"
+msgstr "忘记密码？"
+
+#: String 502
+msgid "Forum"
+msgstr ""
+
+#: String 503
+msgid "Forum Limit, if none display all"
+msgstr ""
+
+#: String 504
+msgid "Forum Search"
+msgstr ""
+
+#: String 505
+msgid "Forum Topics"
+msgstr ""
+
+#: String 506
+msgid "Forum deleted"
+msgstr ""
+
+#: String 507
+msgid "Forum is created."
+msgstr ""
+
+#: String 508
+msgid "Forum is updated."
+msgstr ""
+
+#: String 509
+msgid "Forum not deleted"
+msgstr ""
+
+#: String 510
+msgid "Forum parent"
+msgstr ""
+
+#: String 511
+msgid "Forum topic"
+msgstr ""
+
+#: String 512
+msgid "Forum topic reader"
+msgstr ""
+
+#: String 513
+msgid "Forums"
+msgstr ""
+
+#: String 514
+msgid "FraudLabsPro api key"
+msgstr ""
+
+#: String 515
+msgid "Frequently Asked Questions"
+msgstr ""
+
+#: String 516
+msgid "Frequently asked questions"
+msgstr ""
+
+#: String 517
+msgid "Friendship and Dating"
+msgstr ""
+
+#: String 518
+msgid "From"
+msgstr "的"
+
+#: String 519
+msgid "From Email"
+msgstr "发邮件给"
+
+#: String 520
+msgid "From email"
+msgstr "电子邮件"
+
+#: String 521
+msgid "GCM API Key"
+msgstr ""
+
+#: String 522
+msgid "General"
+msgstr "一般"
+
+#: String 523
+msgid "General Configuration"
+msgstr "常规设置"
+
+#: String 524
+msgid "General Configuration updated"
+msgstr "一般配置更新"
+
+#: String 525
+msgid "General site settings."
+msgstr "一般网站设置。"
+
+#: String 526
+msgid "Generate"
+msgstr "生成"
+
+#: String 527
+msgid "Generate an interactive map for your classifieds website"
+msgstr ""
+
+#: String 528
+msgid "Get Latitude and Longitude"
+msgstr ""
+
+#: String 529
+msgid "Get our professional services"
+msgstr ""
+
+#: String 530
+msgid "Get started by creating and editing categories and locations for your site here."
+msgstr ""
+
+#: String 531
+msgid "Gets Ads Latitude and Longitude from Google Maps API using advertisements address"
+msgstr ""
+
+#: String 532
+msgid "Go Featured!"
+msgstr "高亮！"
+
+#: String 533
+msgid "Go Top!"
+msgstr "置顶！"
+
+#: String 534
+msgid "Go back"
+msgstr ""
+
+#: String 535
+msgid "Go to Website"
+msgstr ""
+
+#: String 536
+msgid "Go to Your Website"
+msgstr "详见网站"
+
+#: String 537
+msgid "Go to top"
+msgstr "往上"
+
+#: String 538
+msgid "Google Maps"
+msgstr ""
+
+#: String 539
+msgid "Google Maps Settings"
+msgstr ""
+
+#: String 540
+msgid "Google Maps in Ad"
+msgstr "谷歌地图中的广告"
+
+#: String 541
+msgid "Google Maps in Publish New"
+msgstr ""
+
+#: String 542
+msgid "Google Maps with ads"
+msgstr "谷歌地图与广告"
+
+#: String 543
+msgid "Google map default latitude coordinates"
+msgstr "谷歌地图默认纬度"
+
+#: String 544
+msgid "Google map default longitude coordinates"
+msgstr "谷歌地图默认经度"
+
+#: String 545
+msgid "Google map default zoom level "
+msgstr "默认谷歌地图缩放级别"
+
+#: String 546
+msgid "Google map zoom level"
+msgstr "谷歌地图缩放级别"
+
+#: String 547
+msgid "Grid"
+msgstr ""
+
+#: String 548
+msgid "HTML code for footer banner"
+msgstr ""
+
+#: String 549
+msgid "HTML code for header banner"
+msgstr ""
+
+#: String 550
+msgid "HTML in HEAD element"
+msgstr ""
+
+#: String 551
+msgid "HTML in footer"
+msgstr ""
+
+#: String 552
+msgid "HTML text area"
+msgstr ""
+
+#: String 553
+msgid "HTML/text content here"
+msgstr "你的文字或HTML内容"
+
+#: String 554
+msgid "Has image"
+msgstr ""
+
+#: String 555
+msgid "Has images"
+msgstr "包含图像"
+
+#: String 556
+msgid "Hash Key"
+msgstr "Clé de Hashage"
+
+#: String 557
+msgid "Have you forgotten your password?"
+msgstr ""
+
+#: String 558
+msgid "Header banner, allows HTML"
+msgstr "标题横幅，允许HTML。"
+
+#: String 559
+msgid "Header tool bar gets fixed in the top"
+msgstr "在页面顶部附加工具标题栏"
+
+#: String 560
+msgid "Heads Up!"
+msgstr ""
+
+#: String 561
+msgid "Height (px)"
+msgstr ""
+
+#: String 562
 msgid "Hello, world"
 msgstr "大家好！"
+
+#: String 563
+msgid "Help prevent card fraud with FraudLabsPro, for Stripe, 2co, Paymill and Authorize."
+msgstr ""
+
+#: String 564
+msgid "Help us improve!"
+msgstr ""
+
+#: String 565
+msgid "Here are listed specific theme configuration values. Replace input fields with new desired values for the theme."
+msgstr "主题的配置值列表。为这个主题填写新值。"
+
+#: String 566
+msgid "Here you can declare your display name. This is seen by everyone!"
+msgstr "在这里，您可以在网站上设置您的显示名称。将被他人看见"
+
+#: String 567
+msgid "Here you can find a selection of our premium themes."
+msgstr "在这里，你可以找到一些我们的付费主题。"
+
+#: String 568
+msgid "Here you can modify any text you find in your web."
+msgstr "在这里，你可以改变登载在网站上所有文本。"
+
+#: String 569
+msgid "Here you can reset your password if you forgot it."
+msgstr ""
+
+#: String 570
+msgid "Hey!"
+msgstr ""
+
+#: String 571
+msgid "Hide"
+msgstr ""
+
+#: String 572
+msgid "Hide icon on category/location description"
+msgstr ""
+
+#: String 573
+msgid "Hide page links on footer"
+msgstr ""
+
+#: String 574
+msgid "Hide translated texts"
+msgstr ""
+
+#: String 575
+msgid "Hit enter to confirm"
+msgstr ""
+
+#: String 576
+msgid "Hits"
+msgstr "浏览次数"
+
+#: String 577
+msgid "Home"
+msgstr "主页"
+
+#: String 578
+msgid "Homepage CTA Title"
+msgstr ""
+
+#: String 579
+msgid "Homepage CTA button 1 Title"
+msgstr ""
+
+#: String 580
+msgid "Homepage CTA button 1 URL"
+msgstr ""
+
+#: String 581
+msgid "Homepage CTA button 2 Title"
+msgstr ""
+
+#: String 582
+msgid "Homepage CTA button 2 URL"
+msgstr ""
+
+#: String 583
+msgid "Homepage Header Slider CTA Title 1"
+msgstr ""
+
+#: String 584
+msgid "Homepage Header Slider CTA Title 2"
+msgstr ""
+
+#: String 585
+msgid "Homepage Header Slider CTA Title 3"
+msgstr ""
+
+#: String 586
+msgid "Homepage Header Slider CTA URL 1"
+msgstr ""
+
+#: String 587
+msgid "Homepage Header Slider CTA URL 2"
+msgstr ""
+
+#: String 588
+msgid "Homepage Header Slider CTA URL 3"
+msgstr ""
+
+#: String 589
+msgid "Homepage Header Slider Image 1"
+msgstr ""
+
+#: String 590
+msgid "Homepage Header Slider Image 2"
+msgstr ""
+
+#: String 591
+msgid "Homepage Header Slider Image 3"
+msgstr ""
+
+#: String 592
+msgid "Homepage Header Slider Subtitle 1"
+msgstr ""
+
+#: String 593
+msgid "Homepage Header Slider Subtitle 2"
+msgstr ""
+
+#: String 594
+msgid "Homepage Header Slider Subtitle 3"
+msgstr ""
+
+#: String 595
+msgid "Homepage Header Slider Title 1"
+msgstr ""
+
+#: String 596
+msgid "Homepage Header Slider Title 2"
+msgstr ""
+
+#: String 597
+msgid "Homepage Header Slider Title 3"
+msgstr ""
+
+#: String 598
+msgid "Homepage Hero Description"
+msgstr ""
+
+#: String 599
+msgid "Homepage Hero Title"
+msgstr ""
+
+#: String 600
+msgid "Homepage Only Header, allows HTML"
+msgstr ""
+
+#: String 601
+msgid "Homepage background image URL"
+msgstr ""
+
+#: String 602
+msgid "Homepage site description"
+msgstr ""
+
+#: String 603
+msgid "Homepage site slogan"
+msgstr ""
+
+#: String 604
+msgid "Host name"
+msgstr "服务器主机名"
+
+#: String 605
+msgid "Hosting limit"
+msgstr ""
+
+#: String 606
+msgid "How many ads are going to appear in the RSS of your site."
+msgstr "网站的RSS提要中包括的广告数量。"
+
+#: String 607
+msgid "How many ads are going to appear in the map of your site."
+msgstr "指定有多少广告包含在您的网站地图。"
+
+#: String 608
+msgid "How much the user needs to pay to top up an Ad"
+msgstr "把广告在分类的顶部的价格"
+
+#: String 609
+msgid "How often we refresh the RSS, in seconds"
+msgstr "RSS的刷新率，单位秒"
+
+#: String 610
+msgid "How to configure %s"
+msgstr ""
+
+#: String 611
+msgid "How to create a MySQL database?"
+msgstr ""
+
+#: String 612
+msgid "I Understand"
+msgstr ""
+
+#: String 613
+msgid "I accept"
+msgstr "我接受"
+
+#: String 614
+msgid "Icon"
+msgstr "图标"
+
+#: String 615
+msgid "Icon deleted."
+msgstr ""
+
+#: String 616
+msgid "Icon file could not been saved."
+msgstr ""
+
+#: String 617
+msgid "Icon is uploaded."
+msgstr ""
+
+#: String 618
+msgid "Id"
+msgstr "ID"
+
+#: String 619
+msgid "Id Product"
+msgstr ""
+
+#: String 620
+msgid "Id_User"
+msgstr "用户Id"
+
+#: String 621
+msgid "If advertisement is marked as spam, user is also marked. Can not publish new ads or register until removed from Black List! Also will not allow users from disposable email addresses to register."
+msgstr ""
+
+#: String 622
+msgid "If you have doubts check the release notes for this version"
+msgstr ""
+
+#: String 623
+msgid "If you need any help please check our professional services"
+msgstr "如果您需要帮助，请不要犹豫，联系我们的专业服务"
+
+#: String 624
+msgid "If you wanted to go to the main page instead, click here."
+msgstr ""
+
+#: String 625
+msgid "If your locale is not listed, be sure your hosting has your locale installed."
+msgstr ""
+
+#: String 626
+msgid "Image"
+msgstr ""
+
+#: String 627
+msgid "Image Configuration"
+msgstr ""
+
+#: String 628
+msgid "Image Configuration updated"
+msgstr ""
+
+#: String 629
+msgid "Image Quality"
+msgstr "图像质量"
+
+#: String 630
+msgid "Image configuration"
+msgstr ""
+
+#: String 631
+msgid "Image configuration values. Replace input fields with new desired values"
+msgstr ""
+
+#: String 632
+msgid "Image folder is missing and cannot be created with mkdir. Please correct to be able to upload images."
+msgstr ""
+
+#: String 633
+msgid "Image height"
+msgstr "图片高度"
+
+#: String 634
+msgid "Image height in pixels(px)"
+msgstr "以像素为单位的高度（像素）"
+
+#: String 635
+msgid "Image is not valid. Please try again."
+msgstr "该图像是无效的，再试试，谢谢"
+
+#: String 636
+msgid "Image is uploaded."
+msgstr "图像已经加载"
+
+#: String 637
+msgid "Image quality"
+msgstr "图像质量"
+
+#: String 638
+msgid "Image size in mega bites(Mb)"
+msgstr "最大的影像，以兆字节（MB）"
+
+#: String 639
+msgid "Image type is not supported"
+msgstr ""
+
+#: String 640
+msgid "Image width"
+msgstr "图像宽度"
+
+#: String 641
+msgid "Image width in pixels(px)"
+msgstr "以像素为单位的宽度（像素）"
+
+#: String 642
+msgid "Images"
+msgstr "图像/照片"
+
+#: String 643
+msgid "Import"
+msgstr ""
+
+#: String 644
+msgid "Import Ads"
+msgstr ""
+
+#: String 645
+msgid "Import Categories"
+msgstr ""
+
+#: String 646
+msgid "Import Locations"
+msgstr ""
+
+#: String 647
+msgid "Import cities"
+msgstr ""
+
+#: String 648
+msgid "Import continents"
+msgstr ""
+
+#: String 649
+msgid "Import counties/regions"
+msgstr ""
+
+#: String 650
+msgid "Import countries"
+msgstr ""
+
+#: String 651
+msgid "Import states/provinces"
+msgstr ""
+
+#: String 652
+msgid "Import tool"
+msgstr ""
+
+#: String 653
+msgid "Import tool for ads"
+msgstr ""
+
+#: String 654
+msgid "Import tool for locations and categories"
+msgstr ""
+
+#: String 655
+msgid "In Stock"
+msgstr ""
+
+#: String 656
+msgid "In this page you can see the requirements checks we do before we install."
+msgstr ""
+
+#: String 657
+msgid "Inactive Region Color"
+msgstr ""
+
+#: String 658
+msgid "Inbox"
+msgstr ""
+
+#: String 659
+msgid "Include auto locate visitors"
+msgstr ""
+
+#: String 660
+msgid "Include search by description"
+msgstr "包括描述进行详细搜索"
+
+#: String 661
+msgid "Included files"
+msgstr "包含的文件"
+
+#: String 662
+msgid "Increment Step"
+msgstr "增加量"
+
+#: String 663
+msgid "Infinite scroll"
+msgstr ""
+
+#: String 664
+msgid "Info"
+msgstr "信息"
+
+#: String 665
+msgid "Install"
+msgstr "安装"
+
+#: String 666
+msgid "Install theme"
+msgstr "安装主题"
+
+#: String 667
+msgid "Install theme from license."
+msgstr ""
+
+#: String 668
+msgid "Installation"
+msgstr "安装"
+
+#: String 669
+msgid "Installation Folder"
+msgstr ""
+
+#: String 670
+msgid "Installation done"
+msgstr "安装完成"
+
+#: String 671
+msgid "Interactive Map"
+msgstr ""
+
+#: String 672
+msgid "Interactive Regions"
+msgstr ""
+
+#: String 673
+msgid "Interactive map"
+msgstr ""
+
+#: String 674
+msgid "Interactive map is only available with premium themes!"
+msgstr ""
+
+#: String 675
+msgid "Interactivity"
+msgstr ""
+
+#: String 676
+msgid "Invalid Email"
+msgstr "无效的电子邮件"
+
+#: String 677
+msgid "Invalid query"
+msgstr "无效请求"
+
+#: String 678
+msgid "Ip address"
+msgstr "IP地址"
+
+#: String 679
+msgid "Is not of valid size. Size is limited to %s MB per image"
+msgstr ""
+
+#: String 680
+msgid "Is not valid format, please use ZIP format"
+msgstr "是不是一个有效的格式，请选择一个zip文件"
+
+#: String 681
+msgid "It changes landing page of website"
+msgstr "这会改变你的网站的主页"
+
+#: String 682
+msgid "It is either not existing, moved or deleted. Make sure the URL is correct."
+msgstr ""
+
+#: String 683
+msgid "It looks like you have been about to publish a new advertisement, if you leave before submitting your changes will be lost."
+msgstr ""
+
+#: String 684
+msgid "It will be the first line of the tooltip."
+msgstr ""
+
+#: String 685
+msgid "It will be the second line of the tooltip."
+msgstr ""
+
+#: String 686
+msgid "Item created"
+msgstr "创建元素"
+
+#: String 687
+msgid "Item updated"
+msgstr "元素更新"
+
+#: String 688
+msgid "Items per page"
+msgstr ""
+
+#: String 689
+msgid "Jobs"
+msgstr ""
+
+#: String 690
+msgid "Keep Aspect Ratio"
+msgstr ""
+
+#: String 691
+msgid "Key"
+msgstr "关键字"
+
+#: String 692
+msgid "Label"
+msgstr "标签"
+
+#: String 693
+msgid "Landing page"
+msgstr "主页"
+
+#: String 694
+msgid "Language"
+msgstr "语言"
+
+#: String 695
+msgid "Language folder cannot be created with mkdir. Please correct to be able to create new translation."
+msgstr ""
+
+#: String 696
+msgid "Language saved"
+msgstr "语言保存"
+
+#: String 697
+msgid "Last"
+msgstr "最后"
+
+#: String 698
+msgid "Last 30 days"
+msgstr "最近30天"
+
+#: String 699
+msgid "Last Answer"
+msgstr ""
+
+#: String 700
+msgid "Last Login"
+msgstr "最后登陆"
+
+#: String 701
+msgid "Last Message"
+msgstr ""
+
+#: String 702
+msgid "Last login"
+msgstr "最后连接"
+
+#: String 703
+msgid "Last modified"
+msgstr "最后更新"
+
+#: String 704
+msgid "Last time generated"
+msgstr "最后生成"
+
+#: String 705
+msgid "Latest"
+msgstr "最后"
+
+#: String 706
+msgid "Latest Ads"
+msgstr "最新广告"
+
+#: String 707
+msgid "Latest News"
+msgstr "最新消息"
+
+#: String 708
+msgid "Latest Published Ads"
+msgstr ""
+
+#: String 709
+msgid "Latest post published"
+msgstr "最新发布"
+
+#: String 710
+msgid "Latest published"
+msgstr "最新广告"
+
+#: String 711
+msgid "Latitude"
+msgstr ""
+
+#: String 712
+msgid "Latitude coordinates"
+msgstr "纬度"
+
+#: String 713
+msgid "Leave a review"
+msgstr ""
+
+#: String 714
+msgid "Left side"
+msgstr "左边"
+
+#: String 715
+msgid "License"
+msgstr "许可证"
+
+#: String 716
+msgid "License validation error, please insert again."
+msgstr ""
+
+#: String 717
+msgid "License will be activated in %s domain."
+msgstr ""
+
+#: String 718
+msgid "Limited Offer!"
+msgstr "限时优惠！"
+
+#: String 719
+msgid "Links"
+msgstr "连接"
+
+#: String 720
+msgid "Links title displayed"
+msgstr "显示的链接名称"
+
+#: String 721
+msgid "List"
+msgstr "表"
+
+#: String 722
+msgid "List of all postings in"
+msgstr ""
+
+#: String 723
+msgid "List of payment configuration values. Replace input fields with new desired values."
+msgstr "付款配置列表。在输入字段中填充所需的值。"
+
+#: String 724
+msgid "Listing"
+msgstr "广告"
+
+#: String 725
+msgid "Listing Options"
+msgstr ""
+
+#: String 726
+msgid "Listing random position banner, allows HTML"
+msgstr "随机展示列表，允许HTML。"
+
+#: String 727
+msgid "Listings"
+msgstr ""
+
+#: String 728
+msgid "Loaded extensions"
+msgstr "加载的扩展"
+
+#: String 729
+msgid "Locale"
+msgstr "地区"
+
+#: String 730
+msgid "Locate me"
+msgstr ""
+
+#: String 731
+msgid "Location"
+msgstr "地方"
+
+#: String 732
+msgid "Location created"
+msgstr ""
+
+#: String 733
+msgid "Location deleted"
+msgstr "地方已删除"
+
+#: String 734
+msgid "Location details"
+msgstr ""
+
+#: String 735
+msgid "Location icon"
+msgstr ""
+
+#: String 736
+msgid "Location not deleted"
+msgstr "未删除的地方"
+
+#: String 737
+msgid "Location not found"
+msgstr ""
+
+#: String 738
+msgid "Locations"
+msgstr "地方"
+
+#: String 739
+msgid "Locations successfully imported."
+msgstr ""
+
+#: String 740
+msgid "Locations title displayed"
+msgstr "显示地方名称"
+
+#: String 741
+msgid "Log"
+msgstr "登陆"
+
+#: String 742
+msgid "Login"
+msgstr "注册"
+
+#: String 743
+msgid "Login has been temporarily disabled due to too many unsuccessful login attempts. Please try again in 24 hours."
+msgstr ""
+
+#: String 744
+msgid "Login has been temporarily disabled due to too many unsuccessful login attempts. Please try again in a minute."
+msgstr ""
+
+#: String 745
+msgid "Login to"
+msgstr ""
+
+#: String 746
+msgid "Login to reply"
+msgstr ""
+
+#: String 747
+msgid "Logout"
+msgstr "退出"
+
+#: String 748
+msgid "Logs"
+msgstr "日志"
+
+#: String 749
+msgid "Longitude"
+msgstr ""
+
+#: String 750
+msgid "Longitude coordinates"
+msgstr "经度"
+
+#: String 751
+msgid "MANDATORY"
+msgstr ""
+
+#: String 752
+msgid "Mail not sent"
+msgstr "电子邮件未发送"
+
+#: String 753
+msgid "Maintenance"
+msgstr ""
+
+#: String 754
+msgid "Maintenance Mode"
+msgstr "维护模式"
+
+#: String 755
+msgid "Make featured?"
+msgstr "突出显示？"
+
+#: String 756
+msgid "Manage ads you published and edit them through this tab, you can also ask to feature or place your ad to top here."
+msgstr ""
+
+#: String 757
+msgid "Map"
+msgstr "地图"
+
+#: String 758
+msgid "Map Border Color"
+msgstr ""
+
+#: String 759
+msgid "Map Border Width (px)"
+msgstr ""
+
+#: String 760
+msgid "Map Settings"
+msgstr ""
+
+#: String 761
+msgid "Map View"
+msgstr ""
+
+#: String 762
+msgid "Map height in pixels"
+msgstr "以像素为单位的地图高度"
+
+#: String 763
+msgid "Map latitude coordinates"
+msgstr "地图纬度"
+
+#: String 764
+msgid "Map longitude coordinates"
+msgstr "地图经度"
+
+#: String 765
+msgid "Map on homepage"
+msgstr ""
+
+#: String 766
+msgid "Map saved."
+msgstr ""
+
+#: String 767
+msgid "Map title displayed"
+msgstr "显示地图标题"
+
+#: String 768
+msgid "Mark as paid"
+msgstr ""
+
+#: String 769
+msgid "Markers (Coordinates)"
+msgstr ""
+
+#: String 770
+msgid "Markers (Text Location)"
+msgstr ""
+
+#: String 771
+msgid "Market"
+msgstr "市场"
+
+#: String 772
+msgid "Max Price"
+msgstr "最高价格"
+
+#: String 773
+msgid "Max image size"
+msgstr "最大图像尺寸"
+
+#: String 774
+msgid "Maximum Price"
+msgstr "最高价格"
+
+#: String 775
+msgid "Maximum file size of"
+msgstr ""
+
+#: String 776
+msgid "Menu"
+msgstr "菜单"
+
+#: String 777
+msgid "Menu created"
+msgstr "菜单已创建"
+
+#: String 778
+msgid "Menu deleted"
+msgstr "删除菜单"
+
+#: String 779
+msgid "Menu not created"
+msgstr "未创建菜单"
+
+#: String 780
+msgid "Menu not updated"
+msgstr ""
+
+#: String 781
+msgid "Menu type"
+msgstr "菜单样式"
+
+#: String 782
+msgid "Menu updated"
+msgstr ""
+
+#: String 783
+msgid "Message"
+msgstr "信息"
+
+#: String 784
+msgid "Message not found"
+msgstr ""
+
+#: String 785
+msgid "Message not sent"
+msgstr "该消息未发送"
+
+#: String 786
+msgid "Messages"
+msgstr ""
+
+#: String 787
+msgid "Messaging"
+msgstr ""
+
+#: String 788
+msgid "Method not found "
+msgstr ""
+
+#: String 789
+msgid "Migrate"
+msgstr "迁移"
+
+#: String 790
+msgid "Migration"
+msgstr "迁移"
+
+#: String 791
+msgid "Min Price"
+msgstr "最低价格"
+
+#: String 792
+msgid "Minimum Price"
+msgstr "最低价格"
+
+#: String 793
+msgid "Mobile Theme updated"
+msgstr "手机主题更新"
+
+#: String 794
+msgid "Mobile Version"
+msgstr "手机版"
+
+#: String 795
+msgid "Moderation"
+msgstr "节制"
+
+#: String 796
+msgid "Moderation on"
+msgstr ""
+
+#: String 797
+msgid "Money format"
+msgstr "货币格式"
+
+#: String 798
+msgid "More"
+msgstr ""
+
+#: String 799
+msgid "More ads"
+msgstr ""
+
+#: String 800
+msgid "Multi select category and location search"
+msgstr ""
+
+#: String 801
+msgid "My Advertisements"
+msgstr "我的广告"
+
+#: String 802
+msgid "My Favorites"
+msgstr ""
+
+#: String 803
+msgid "My Payments"
+msgstr ""
+
+#: String 804
+msgid "My Profile"
+msgstr ""
+
+#: String 805
+msgid "My ads"
+msgstr ""
+
+#: String 806
+msgid "My payments"
+msgstr ""
+
+#: String 807
+msgid "My subscriptions"
+msgstr ""
+
+#: String 808
+msgid "NOPUBLISHED"
+msgstr ""
+
+#: String 809
+msgid "Name"
+msgstr "名称"
+
+#: String 810
+msgid "Name (A-Z)"
+msgstr ""
+
+#: String 811
+msgid "Name (Z-A)"
+msgstr ""
+
+#: String 812
+msgid "Name of your chat room/channel"
+msgstr ""
+
+#: String 813
+msgid "New"
+msgstr "新"
+
+#: String 814
+msgid "New Advertisement"
+msgstr "新广告"
+
+#: String 815
+msgid "New Category"
+msgstr ""
+
+#: String 816
+msgid "New Custom Field"
+msgstr "新的自定义字段"
+
+#: String 817
+msgid "New Custom Field for Advertisement"
+msgstr "对于广告的自定义字段"
+
+#: String 818
+msgid "New Custom Field for Users"
+msgstr ""
+
+#: String 819
+msgid "New Forum"
+msgstr ""
+
+#: String 820
+msgid "New Forum Topic"
+msgstr ""
+
+#: String 821
+msgid "New Install"
+msgstr "新安装"
+
+#: String 822
+msgid "New Location"
+msgstr ""
+
+#: String 823
+msgid "New Message from %s"
+msgstr ""
+
+#: String 824
+msgid "New Topic"
+msgstr ""
+
+#: String 825
+msgid "New Topic is not available as a feature."
+msgstr ""
+
+#: String 826
+msgid "New field"
+msgstr "新栏目"
+
+#: String 827
+msgid "New forum"
+msgstr ""
+
+#: String 828
+msgid "New forum topic"
+msgstr ""
+
+#: String 829
+msgid "New password"
+msgstr "新密码"
+
+#: String 830
+msgid "New tab or window"
+msgstr "新的选项卡或窗口"
+
+#: String 831
+msgid "New translation"
+msgstr "新的翻译"
+
+#: String 832
+msgid "Newest"
+msgstr ""
+
+#: String 833
+msgid "Newsletter"
+msgstr "简讯"
+
+#: String 834
+msgid "Newsletters"
+msgstr "简讯"
+
+#: String 835
+msgid "Next"
+msgstr "下一个"
+
+#: String 836
+msgid "No"
+msgstr "不"
+
+#: String 837
+msgid "No Subscriptions"
+msgstr "没有订阅"
+
+#: String 838
+msgid "No database name was given"
+msgstr "没有给定数据库的名字"
+
+#: String 839
+msgid "No results match"
+msgstr ""
+
+#: String 840
+msgid "No way!"
+msgstr ""
+
+#: String 841
+msgid "None"
+msgstr ""
+
+#: String 842
+msgid "None (0) advertisement has been deleted"
+msgstr ""
+
+#: String 843
+msgid "Not any ad to be processed"
+msgstr ""
+
+#: String 844
+msgid "Not paid"
+msgstr ""
+
+#: String 845
+msgid "Not possible to auto update"
+msgstr ""
+
+#: String 846
+msgid "Not published"
+msgstr "未公开"
+
+#: String 847
+msgid "Not valid email."
+msgstr ""
+
+#: String 848
+msgid "Not yet published"
+msgstr "尚未公布"
+
+#: String 849
+msgid "Not your advertisement"
+msgstr ""
+
+#: String 850
+msgid "Nothing found, sorry!"
+msgstr ""
+
+#: String 851
+msgid "Nothing is provided"
+msgstr "未提供资料"
+
+#: String 852
+msgid "Notify email"
+msgstr "电子邮件通知"
+
+#: String 853
+msgid "Notify me on new ad"
+msgstr "每当有新的广告时通知我"
+
+#: String 854
+msgid "Number"
+msgstr "数量"
+
+#: String 855
+msgid "Number Coupons"
+msgstr ""
+
+#: String 856
+msgid "Number Decimal"
+msgstr "十进制"
+
+#: String 857
+msgid "Number format is how you want to display numbers related to advertisements. More specific advertisement price. Every country have a specific way of dealing with decimal digits."
+msgstr "数字格式允许您控制您要如何显示数字广告。更具体地，广告的价格。所有国家都有处理小数位数的一种特殊方式。"
+
+#: String 858
+msgid "Number of Ads"
+msgstr "广告数量"
+
+#: String 859
+msgid "Number of ads per page"
+msgstr "每页显示的广告数"
+
+#: String 860
+msgid "Number of ads to display"
+msgstr "广告显示数量"
+
+#: String 861
+msgid "Number of advertisements in listing slider"
+msgstr ""
+
+#: String 862
+msgid "Number of comments to display"
+msgstr "意见显示数量"
+
+#: String 863
+msgid "Number of coupons"
+msgstr ""
+
+#: String 864
+msgid "Number of images"
+msgstr "图片数"
+
+#: String 865
+msgid "Number of images displayed"
+msgstr "显示图片数"
+
+#: String 866
+msgid "Number of items to display"
+msgstr ""
+
+#: String 867
+msgid "Number of unique coupons to generate"
+msgstr ""
+
+#: String 868
+msgid "Numbers of ads to display in home slider"
+msgstr "显示在主页幻灯片的广告数目"
+
+#: String 869
+msgid "Numbers of ads to display on homepage. Recommended 5."
+msgstr ""
+
+#: String 870
+msgid "OK"
+msgstr ""
+
+#: String 871
+msgid "Oldest"
+msgstr ""
+
+#: String 872
+msgid "Once logged in your Google Analytics, you can find the Tracking ID in the Accounts List or in the Property Settings"
+msgstr ""
+
+#: String 873
+msgid "Once set to TRUE, enables FAQ"
+msgstr ""
+
+#: String 874
+msgid "Once set to TRUE, enables Messaging System"
+msgstr ""
+
+#: String 875
+msgid "Once set to TRUE, enables auto locate visitors"
+msgstr ""
+
+#: String 876
+msgid "Once set to TRUE, enables blog posts"
+msgstr "设定为真，将激活的博客文章"
+
+#: String 877
+msgid "Once set to TRUE, enables forums posts"
+msgstr ""
+
+#: String 878
+msgid "Once set to TRUE, enables multi select category and location search"
+msgstr ""
+
+#: String 879
+msgid "Once set to TRUE, enables search to look for key words in description"
+msgstr "一旦设置为True，激活描述中关键字的主动搜索"
+
+#: String 880
+msgid "Only Admin"
+msgstr ""
+
+#: String 881
+msgid "Only administrators can publish"
+msgstr ""
+
+#: String 882
+msgid "Only for paid transactions"
+msgstr ""
+
+#: String 883
+msgid "Only if you have a premium theme you will be able to filter by users!"
+msgstr ""
+
+#: String 884
+msgid "Only numbers, letters, and underscores"
+msgstr "只允许数字，字母和下划线"
+
+#: String 885
+msgid "Open Classifieds is an amazing free Open Source Software. By buying a theme you help us keep the project alive and updated. Thanks!"
+msgstr ""
+
+#: String 886
+msgid "Open Classifieds migration"
+msgstr "打开迁移公告"
+
+#: String 887
+msgid "Open URL (new window)"
+msgstr ""
+
+#: String 888
+msgid "Open URL (same window)"
+msgstr ""
+
+#: String 889
+msgid "Optimize"
+msgstr "优化"
+
+#: String 890
+msgid "Optimize DB"
+msgstr "优化数据库"
+
+#: String 891
+msgid "Optimize Database"
+msgstr "优化数据库"
+
+#: String 892
+msgid "Optional Advertisement Fields"
+msgstr "广告可选字段"
+
+#: String 893
+msgid "Optional Fields"
+msgstr "可选字段"
+
+#: String 894
+msgid "Options"
+msgstr "选项"
+
+#: String 895
+msgid "Or"
+msgstr ""
+
+#: String 896
+msgid "Order"
+msgstr "订单"
+
+#: String 897
+msgid "Order could not be loaded"
+msgstr "该命令无法加载"
+
+#: String 898
+msgid "Orders"
+msgstr "订单"
+
+#: String 899
+msgid "Original Translation"
+msgstr "原译"
+
+#: String 900
+msgid "Other"
+msgstr "其他"
+
+#: String 901
+msgid "PHP Info"
+msgstr "PHP的信息"
+
+#: String 902
+msgid "PHP internal call"
+msgstr ""
+
+#: String 903
+msgid "PUBLISHED"
+msgstr ""
+
+#: String 904
+msgid "Page"
+msgstr "页面"
+
+#: String 905
+msgid "Page "
+msgstr "页面"
+
+#: String 906
+msgid "Page %d"
+msgstr ""
+
+#: String 907
+msgid "Page Not Found"
+msgstr ""
+
+#: String 908
+msgid "Page not found"
+msgstr ""
+
+#: String 909
+msgid "Page title displayed"
+msgstr "显示的网页的标题"
+
+#: String 910
+msgid "Pages"
+msgstr "页面"
+
+#: String 911
+msgid "Paid"
+msgstr ""
+
+#: String 912
+msgid "Panel"
+msgstr "控制面板"
+
+#: String 913
+msgid "Paramater for the action."
+msgstr ""
+
+#: String 914
+msgid "Parent"
+msgstr "上一级分类"
+
+#: String 915
+msgid "Parent category"
+msgstr "上级分类"
+
+#: String 916
+msgid "Parent deep"
+msgstr "顶级分类"
+
+#: String 917
+msgid "Parent frame"
+msgstr "父框架"
+
+#: String 918
+msgid "Password"
+msgstr "密码"
+
+#: String 919
+msgid "Password is changed"
+msgstr "密码修改"
+
+#: String 920
+msgid "Passwords do not match"
+msgstr "密码不匹配"
+
+#: String 921
+msgid "Pay"
+msgstr ""
+
+#: String 922
+msgid "Pay With Card"
+msgstr ""
+
+#: String 923
+msgid "Pay with Bitcoin"
+msgstr ""
+
+#: String 924
+msgid "Pay with Card"
+msgstr ""
+
+#: String 925
+msgid "Pay with Credit Card"
+msgstr ""
+
+#: String 926
+msgid "Pay with Paypal"
+msgstr ""
+
+#: String 927
+msgid "Payment"
+msgstr "付款"
+
+#: String 928
+msgid "Payment on"
+msgstr ""
+
+#: String 929
+msgid "Payment with Moderation"
+msgstr ""
+
+#: String 930
+msgid "Payments"
+msgstr "付款"
+
+#: String 931
+msgid "Payments Configuration"
+msgstr "配置付款"
+
+#: String 932
+msgid "Payments Configuration updated"
+msgstr ""
+
+#: String 933
+msgid "Paymethod"
+msgstr ""
+
+#: String 934
+msgid "Paymill private key"
+msgstr ""
+
+#: String 935
+msgid "Paymill public key"
+msgstr ""
+
+#: String 936
+msgid "Paypal Email"
+msgstr ""
+
+#: String 937
+msgid "Paypal account"
+msgstr "Paypal账户"
+
+#: String 938
+msgid "Paypal link stock control"
+msgstr ""
+
+#: String 939
+msgid "Paypal mail address"
+msgstr "paypal的电子邮件地址"
+
+#: String 940
+msgid "Percentage Discount"
+msgstr ""
+
+#: String 941
+msgid "Phone"
+msgstr "电话"
+
+#: String 942
+msgid "Phone field"
+msgstr "电话栏位"
+
+#: String 943
+msgid "Photo deleted."
+msgstr ""
+
+#: String 944
+msgid "Pick a category..."
+msgstr ""
+
+#: String 945
+msgid "Pick a location..."
+msgstr ""
+
+#: String 946
+msgid "Please be sure you are using a currency that your payment gateway supports."
+msgstr ""
+
+#: String 947
+msgid "Please check your email"
+msgstr ""
+
+#: String 948
+msgid "Please check your messages"
+msgstr ""
+
+#: String 949
+msgid "Please choose your closest location"
+msgstr ""
+
+#: String 950
+msgid "Please enter a valid URL."
+msgstr ""
+
+#: String 951
+msgid "Please enter a valid credit card number."
+msgstr ""
+
+#: String 952
+msgid "Please enter a valid date (ISO)."
+msgstr ""
+
+#: String 953
+msgid "Please enter a valid date."
+msgstr ""
+
+#: String 954
+msgid "Please enter a valid email address."
+msgstr ""
+
+#: String 955
+msgid "Please enter a valid format."
+msgstr ""
+
+#: String 956
+msgid "Please enter a valid number."
+msgstr ""
+
+#: String 957
+msgid "Please enter a value between {0} and {1} characters long."
+msgstr ""
+
+#: String 958
+msgid "Please enter a value between {0} and {1}."
+msgstr ""
+
+#: String 959
+msgid "Please enter a value greater than or equal to {0}."
+msgstr ""
+
+#: String 960
+msgid "Please enter a value less than or equal to {0}."
+msgstr ""
+
+#: String 961
+msgid "Please enter a value with a valid extension."
+msgstr ""
+
+#: String 962
+msgid "Please enter at least {0} characters."
+msgstr ""
+
+#: String 963
+msgid "Please enter no more than {0} characters."
+msgstr ""
+
+#: String 964
+msgid "Please enter only digits."
+msgstr ""
+
+#: String 965
+msgid "Please enter the same value again."
+msgstr ""
+
+#: String 966
+msgid "Please fill your card details."
+msgstr ""
+
+#: String 967
+msgid "Please fix this field."
+msgstr ""
+
+#: String 968
+msgid "Please insert here the license for your theme."
+msgstr "请您填入您的许可号"
+
+#: String 969
+msgid "Please insert here your custom CSS."
+msgstr ""
+
+#: String 970
+msgid "Please login before posting"
+msgstr ""
+
+#: String 971
+msgid "Please login to unsubscribe."
+msgstr ""
+
+#: String 972
+msgid "Please now erase the folder"
+msgstr "现在，您可以删除该文件夹"
+
+#: String 973
+msgid "Please pay before we publish your advertisement."
+msgstr ""
+
+#: String 974
+msgid "Please to see the changes delete the cache"
+msgstr "要查看更改，请清除缓存"
+
+#: String 975
+msgid "Please use the correct CSV format"
+msgstr ""
+
+#: String 976
+msgid "Please wait while we transfer you to Paypal"
+msgstr "请稍候，您将被重定向到PayPal"
+
+#: String 977
+msgid "Please, first create some Forums."
+msgstr ""
+
+#: String 978
+msgid "Please, first create some categories."
+msgstr ""
+
+#: String 979
+msgid "Please, login before contacting"
+msgstr ""
+
+#: String 980
+msgid "Please, login before posting advertisement!"
+msgstr ""
+
+#: String 981
+msgid "Popular Ads last month"
+msgstr "上月热门广告"
+
+#: String 982
+msgid "Post Review"
+msgstr ""
+
+#: String 983
+msgid "Post directly"
+msgstr ""
+
+#: String 984
+msgid "Post in paid category"
+msgstr ""
+
+#: String 985
+msgid "Posted by"
+msgstr ""
+
+#: String 986
+msgid "Posted on"
+msgstr ""
+
+#: String 987
+msgid "Posted on "
+msgstr ""
+
+#: String 988
+msgid "Posting advertisements is not yet available."
+msgstr ""
+
+#: String 989
+msgid "Preview"
+msgstr "预览"
+
+#: String 990
+msgid "Previous"
+msgstr "前一个"
+
+#: String 991
+msgid "Price"
+msgstr "价格"
+
+#: String 992
+msgid "Price (High)"
+msgstr ""
+
+#: String 993
+msgid "Price (Low)"
+msgstr ""
+
+#: String 994
+msgid "Price field"
+msgstr "价格栏位"
+
+#: String 995
+msgid "Price from"
+msgstr ""
+
+#: String 996
+msgid "Price to"
+msgstr ""
+
+#: String 997
+msgid "Pricing"
+msgstr "定价"
+
+#: String 998
+msgid "Print this"
+msgstr ""
+
+#: String 999
+msgid "Proceed with Update"
+msgstr ""
+
+#: String 1000
+msgid "Process"
+msgstr ""
+
+#: String 1001
+msgid "Process Queue"
+msgstr ""
+
+#: String 1002
+msgid "Processing..."
+msgstr ""
+
+#: String 1003
+msgid "Product"
+msgstr ""
+
+#: String 1004
+msgid "Product could not be loaded"
+msgstr ""
+
+#: String 1005
+msgid "Profile"
+msgstr "资料"
+
+#: String 1006
+msgid "Profile Options"
+msgstr ""
+
+#: String 1007
+msgid "Profile Picture"
+msgstr "个人图像"
+
+#: String 1008
+msgid "Profile image"
+msgstr ""
+
+#: String 1009
+msgid "Profile picture"
+msgstr "个人图像"
+
+#: String 1010
+msgid "Providing akismet key will activate this feature. This feature deals with spam posts and emails."
+msgstr "提供激活Akismet功能，这是因为有垃圾邮件和信息。"
+
+#: String 1011
+msgid "Province"
+msgstr ""
+
+#: String 1012
+msgid "Public Profile"
+msgstr "公开的个人资料"
+
+#: String 1013
+msgid "Public profile"
+msgstr "公开的个人资料"
+
+#: String 1014
+msgid "Publish"
+msgstr ""
+
+#: String 1015
+msgid "Publish Date"
+msgstr "发布日期"
+
+#: String 1016
+msgid "Publish Options"
+msgstr ""
+
+#: String 1017
+msgid "Publish new"
+msgstr "发布信息"
+
+#: String 1018
+msgid "Publish new "
+msgstr "发布信息"
+
+#: String 1019
+msgid "Publish new advertisement"
+msgstr "发布新广告"
+
+#: String 1020
+msgid "Publish new topic"
+msgstr ""
+
+#: String 1021
+msgid "Published"
+msgstr "发布时间"
+
+#: String 1022
+msgid "Publisher"
+msgstr "编辑"
+
+#: String 1023
+msgid "Purchase"
+msgstr ""
+
+#: String 1024
+msgid "Push notifications"
+msgstr ""
+
+#: String 1025
+msgid "Push notifications for your native app. Using Google Cloud Messaging, insert your API Key here."
+msgstr ""
+
+#: String 1026
+msgid "Put your website on maintenance mode until you want to launch it, manage other general settings and create custom fields through this tab."
+msgstr ""
+
+#: String 1027
+msgid "QR code"
+msgstr ""
+
+#: String 1028
+msgid "Queue cleaned"
+msgstr ""
+
+#: String 1029
+msgid "Quick category creator."
+msgstr ""
+
+#: String 1030
+msgid "Quick location creator."
+msgstr ""
+
+#: String 1031
+msgid "RSS"
+msgstr "RSS"
+
+#: String 1032
+msgid "RSS reader with cache"
+msgstr "RSS阅读器与缓存"
+
+#: String 1033
+msgid "RSS title displayed"
+msgstr "标题提要"
+
+#: String 1034
+msgid "RSS url address"
+msgstr "RSS订阅地址"
+
+#: String 1035
+msgid "Radio"
+msgstr ""
+
+#: String 1036
+msgid "Rate"
+msgstr ""
+
+#: String 1037
+msgid "Rating"
+msgstr ""
+
+#: String 1038
+msgid "Read More"
+msgstr ""
+
+#: String 1039
+msgid "Read carefully"
+msgstr ""
+
+#: String 1040
+msgid "Read more"
+msgstr "了解更多"
+
+#: String 1041
+msgid "Reading log file"
+msgstr "读取日志文件"
+
+#: String 1042
+msgid "Real State"
+msgstr ""
+
+#: String 1043
+msgid "Refresh listing, go to top?"
+msgstr "刷新列表，回到顶部？"
+
+#: String 1044
+msgid "Region"
+msgstr ""
+
+#: String 1045
+msgid "Region Code:"
+msgstr ""
+
+#: String 1046
+msgid "Region to Display"
+msgstr ""
+
+#: String 1047
+msgid "Regional Settings"
+msgstr ""
+
+#: String 1048
+msgid "Regions"
+msgstr ""
+
+#: String 1049
+msgid "Register"
+msgstr "马上加入"
+
+#: String 1050
+msgid "Register for free at %s"
+msgstr ""
+
+#: String 1051
+msgid "Register new user"
+msgstr "新用户注册"
+
+#: String 1052
+msgid "Reinstall System"
+msgstr ""
+
+#: String 1053
+msgid "Related ads"
+msgstr ""
+
+#: String 1054
+msgid "Relative path to the image to use as watermark"
+msgstr ""
+
+#: String 1055
+msgid "Release Date"
+msgstr ""
+
+#: String 1056
+msgid "Release Notes"
+msgstr ""
+
+#: String 1057
+msgid "Remember Password"
+msgstr "记住我的密码"
+
+#: String 1058
+msgid "Remember me"
+msgstr "记住我的登陆"
+
+#: String 1059
+msgid "Remember password"
+msgstr "记住密码"
+
+#: String 1060
+msgid "Remove"
+msgstr ""
+
+#: String 1061
+msgid "Remove Featured"
+msgstr ""
+
+#: String 1062
+msgid "Remove featured?"
+msgstr ""
+
+#: String 1063
+msgid "Removed featured ad"
+msgstr ""
+
+#: String 1064
+msgid "Repeat password"
+msgstr "重复密码"
+
+#: String 1065
+msgid "Replace"
+msgstr ""
+
+#: String 1066
+msgid "Replace Original"
+msgstr ""
+
+#: String 1067
+msgid "Replace Translation"
+msgstr ""
+
+#: String 1068
+msgid "Replacement of a banned word"
+msgstr ""
+
+#: String 1069
+msgid "Replies"
+msgstr ""
+
+#: String 1070
+msgid "Reply"
+msgstr ""
+
+#: String 1071
+msgid "Reply added, thanks!"
+msgstr ""
+
+#: String 1072
+msgid "Reply created."
+msgstr ""
+
+#: String 1073
+msgid "Reply here"
+msgstr ""
+
+#: String 1074
+msgid "Require login to contact"
+msgstr ""
+
+#: String 1075
+msgid "Require login to post"
+msgstr ""
+
+#: String 1076
+msgid "Require only the logged in users to contact."
+msgstr ""
+
+#: String 1077
+msgid "Require only the logged in users to post."
+msgstr ""
+
+#: String 1078
+msgid "Required"
+msgstr "需要"
+
+#: String 1079
+msgid "Required field to register."
+msgstr ""
+
+#: String 1080
+msgid "Required field to submit a new ad."
+msgstr ""
+
+#: String 1081
+msgid "Requires address to pay for extra security"
+msgstr ""
+
+#: String 1082
+msgid "Reset"
+msgstr ""
+
+#: String 1083
+msgid "Restricts likely nude pictures that are being uploaded to your server."
+msgstr ""
+
+#: String 1084
+msgid "Review"
+msgstr ""
+
+#: String 1085
+msgid "Review database connection parameters"
+msgstr "连接参数汇总到数据库"
+
+#: String 1086
+msgid "Reviews"
+msgstr ""
+
+#: String 1087
+msgid "Reviews Configuration"
+msgstr ""
+
+#: String 1088
+msgid "Reviews are only available with premium themes!"
+msgstr ""
+
+#: String 1089
+msgid "Reviews for paid transactions"
+msgstr ""
+
+#: String 1090
+msgid "Right side"
+msgstr "右边"
+
+#: String 1091
+msgid "Role"
+msgstr "角色"
+
+#: String 1092
+msgid "Roles"
+msgstr ""
+
+#: String 1093
+msgid "Rows"
+msgstr "线"
+
+#: String 1094
+msgid "S3 Domain Name"
+msgstr ""
+
+#: String 1095
+msgid "SEO title"
+msgstr "搜索引擎优化标题"
+
+#: String 1096
+msgid "SMTP Configuration"
+msgstr ""
+
+#: String 1097
+msgid "SPAM"
+msgstr ""
+
+#: String 1098
+msgid "Sales"
+msgstr "销售"
+
+#: String 1099
+msgid "Sales statistics"
+msgstr "销售统计"
+
+#: String 1100
+msgid "Sample data"
+msgstr "创建示例分类"
+
+#: String 1101
+msgid "Sandbox"
+msgstr "沙箱"
+
+#: String 1102
+msgid "Save"
+msgstr "保存"
+
+#: String 1103
+msgid "Save changes"
+msgstr "保存更改"
+
+#: String 1104
+msgid "Save plan"
+msgstr ""
+
+#: String 1105
+msgid "Save size"
+msgstr "记录大小"
+
+#: String 1106
+msgid "Saved"
+msgstr "记录"
+
+#: String 1107
+msgid "Scan"
+msgstr "阅读"
+
+#: String 1108
+msgid "Search"
+msgstr "搜索"
+
+#: String 1109
+msgid "Search in"
+msgstr ""
+
+#: String 1110
+msgid "Search in ads will include this field as well."
+msgstr ""
+
+#: String 1111
+msgid "Search results"
+msgstr ""
+
+#: String 1112
+msgid "Search users by name or email"
+msgstr ""
+
+#: String 1113
+msgid "Searchable"
+msgstr "搜索"
+
+#: String 1114
+msgid "Secret Word"
+msgstr ""
+
+#: String 1115
+msgid "Seems a nude picture so you cannot upload it"
+msgstr ""
+
+#: String 1116
+msgid "Select"
+msgstr "选择"
+
+#: String 1117
+msgid "Select Some Options"
+msgstr ""
+
+#: String 1118
+msgid "Select a color scheme"
+msgstr ""
+
+#: String 1119
+msgid "Select a forum"
+msgstr ""
+
+#: String 1120
+msgid "Select an Option"
+msgstr ""
+
+#: String 1121
+msgid "Select another"
+msgstr ""
+
+#: String 1122
+msgid "Select from files"
+msgstr ""
+
+#: String 1123
+msgid "Select some categories first."
+msgstr ""
+
+#: String 1124
+msgid "Select some locations first."
+msgstr ""
+
+#: String 1125
+msgid "Selecting parent category also selects child categories."
+msgstr ""
+
+#: String 1126
+msgid "Selection of nice extras for your installation."
+msgstr "安装额外的小配件。"
+
+#: String 1127
+msgid "Send"
+msgstr "发送"
+
+#: String 1128
+msgid "Send Message"
+msgstr "发送消息"
+
+#: String 1129
+msgid "Send message"
+msgstr ""
+
+#: String 1130
+msgid "Seo Title"
+msgstr ""
+
+#: String 1131
+msgid "Seoname"
+msgstr "搜索引擎优化的名字"
+
+#: String 1132
+msgid "Seotitle"
+msgstr ""
+
+#: String 1133
+msgid "Set max layout width in pixels"
+msgstr ""
+
+#: String 1134
+msgid "Set query slogan for home search"
+msgstr ""
+
+#: String 1135
+msgid "Set the subtitle for the banner"
+msgstr ""
+
+#: String 1136
+msgid "Set the title for the banner"
+msgstr ""
+
+#: String 1137
+msgid "Set this up to restrict image formats that are being uploaded to your server."
+msgstr "可让您选择，并限制允许上传到你的服务器映像的图像格式。"
+
+#: String 1138
+msgid "Set up your cron at your hosting / cPanel, every minute"
+msgstr ""
+
+#: String 1139
+msgid "Settings"
+msgstr "设置"
+
+#: String 1140
+msgid "Share"
+msgstr "分享"
+
+#: String 1141
+msgid "Share on social networks."
+msgstr "分享到社交网络"
+
+#: String 1142
+msgid "Shipping"
+msgstr ""
+
+#: String 1143
+msgid "Short description that appears after the site name."
+msgstr "站点的名称后的简介或标语。"
+
+#: String 1144
+msgid "Show"
+msgstr ""
+
+#: String 1145
+msgid "Show Listing"
+msgstr ""
+
+#: String 1146
+msgid "Show Profile"
+msgstr ""
+
+#: String 1147
+msgid "Show QR code"
+msgstr ""
+
+#: String 1148
+msgid "Show Register"
+msgstr ""
+
+#: String 1149
+msgid "Show Tooltip"
+msgstr ""
+
+#: String 1150
+msgid "Show advanced options"
+msgstr ""
+
+#: String 1151
+msgid "Show big query search in HOME"
+msgstr ""
+
+#: String 1152
+msgid "Show listing"
+msgstr ""
+
+#: String 1153
+msgid "Show locations in HOME"
+msgstr ""
+
+#: String 1154
+msgid "Show profile"
+msgstr ""
+
+#: String 1155
+msgid "Show register"
+msgstr ""
+
+#: String 1156
+msgid "Show sharing buttons"
+msgstr ""
+
+#: String 1157
+msgid "Show translated texts"
+msgstr ""
+
+#: String 1158
+msgid "Since"
+msgstr ""
+
+#: String 1159
+msgid "Site Configuration"
+msgstr "站点配置"
+
+#: String 1160
+msgid "Site Description"
+msgstr ""
+
+#: String 1161
+msgid "Site Language"
+msgstr "网站语言"
+
+#: String 1162
+msgid "Site Name"
+msgstr "网站名称"
+
+#: String 1163
+msgid "Site Statistics"
+msgstr ""
+
+#: String 1164
+msgid "Site URL"
+msgstr "网站网址"
+
+#: String 1165
+msgid "Site Usage Statistics"
+msgstr "访问该网站的统计数据"
+
+#: String 1166
+msgid "Site currency"
+msgstr ""
+
+#: String 1167
+msgid "Site description"
+msgstr "网站说明"
+
+#: String 1168
+msgid "Site name"
+msgstr "网站名称"
+
+#: String 1169
+msgid "Sitemap"
+msgstr "网站地图"
+
+#: String 1170
+msgid "Sitemap Configuration updated"
+msgstr "网站地图配置更新"
+
+#: String 1171
+msgid "Size"
+msgstr "大小"
+
+#: String 1172
+msgid "Slideshow"
+msgstr "幻灯片"
+
+#: String 1173
+msgid "Smtp active"
+msgstr "活跃​​的SMTP"
+
+#: String 1174
+msgid "Smtp auth"
+msgstr "SMTP认证"
+
+#: String 1175
+msgid "Smtp host"
+msgstr "SMTP主机"
+
+#: String 1176
+msgid "Smtp password"
+msgstr "SMTP密码"
+
+#: String 1177
+msgid "Smtp port"
+msgstr "SMTP端口"
+
+#: String 1178
+msgid "Smtp ssl"
+msgstr "SMTP的SSL"
+
+#: String 1179
+msgid "Smtp user"
+msgstr "SMTP用户"
+
+#: String 1180
+msgid "Social Auth"
+msgstr "社会身份验证"
+
+#: String 1181
+msgid "Social Auth updated"
+msgstr ""
+
+#: String 1182
+msgid "Social Authentication Settings"
+msgstr "社会身份验证设置"
+
+#: String 1183
+msgid "Social Authentication for login"
+msgstr "以社会验证身份连接"
+
+#: String 1184
+msgid "Social Login"
+msgstr "社会身份验证"
+
+#: String 1185
+msgid "Social authentication is only available with premium themes!"
+msgstr ""
+
+#: String 1186
+msgid "Software DB Updated to latest version!"
+msgstr ""
+
+#: String 1187
+msgid "Software Requirements"
+msgstr ""
+
+#: String 1188
+msgid "Some errors in the form"
+msgstr "有错误的表格"
+
+#: String 1189
+msgid "Some errors were encountered, please check the details you entered."
+msgstr ""
+
+#: String 1190
+msgid "Something went worng"
+msgstr ""
+
+#: String 1191
+msgid "Something went wrong uploading your logo"
+msgstr ""
+
+#: String 1192
+msgid "Something went wrong with uploading pictures, please check format"
+msgstr "在发送照片时有一个问题，请检查大小"
+
+#: String 1193
+msgid "Something went wrong, please check format of the file! Remove single quotes or strange characters, in case you have any."
+msgstr ""
+
+#: String 1194
+msgid "Sorry there isn’t. Go to your website now!"
+msgstr ""
+
+#: String 1195
+msgid "Sorry, deleting %s locale emails is not allowed"
+msgstr ""
+
+#: String 1196
+msgid "Sort"
+msgstr ""
+
+#: String 1197
+msgid "Sort by in listing"
+msgstr ""
+
+#: String 1198
+msgid "Space to optimize"
+msgstr "空间优化"
+
+#: String 1199
+msgid "Spam"
+msgstr "垃圾邮件"
+
+#: String 1200
+msgid "Spam Sort"
+msgstr "分拣垃圾邮件"
+
+#: String 1201
+msgid "Spam?"
+msgstr "垃圾邮件？"
+
+#: String 1202
+msgid "Start installation"
+msgstr ""
+
+#: String 1203
+msgid "State"
+msgstr ""
+
+#: String 1204
+msgid "Statistics"
+msgstr "统计"
+
+#: String 1205
+msgid "Stats"
+msgstr "统计"
+
+#: String 1206
+msgid "Status"
+msgstr "状态"
+
+#: String 1207
+msgid "Stripe private key"
+msgstr ""
+
+#: String 1208
+msgid "Stripe public key"
+msgstr ""
+
+#: String 1209
+msgid "Subject"
+msgstr "主题"
+
+#: String 1210
+msgid "Submit"
+msgstr "发送"
+
+#: String 1211
+msgid "Subscribe"
+msgstr "订阅"
+
+#: String 1212
+msgid "Subscribe for categories"
+msgstr "订阅类别"
+
+#: String 1213
+msgid "Subscribe title displayed"
+msgstr "显示预定标题"
+
+#: String 1214
+msgid "Subscribed to emails"
+msgstr ""
+
+#: String 1215
+msgid "Subscriptions"
+msgstr "订阅"
+
+#: String 1216
+msgid "Success"
+msgstr "成功"
+
+#: String 1217
+msgid "Successfully imported latitude and longitude info from your ads."
+msgstr ""
+
+#: String 1218
+msgid "Support"
+msgstr ""
+
+#: String 1219
+msgid "Sure you want to delete the widget?"
+msgstr ""
+
+#: String 1220
+msgid "Switch off custom CSS"
+msgstr ""
+
+#: String 1221
+msgid "System Check"
+msgstr ""
+
+#: String 1222
+msgid "System Logs"
+msgstr "系统日志"
+
+#: String 1223
+msgid "System logs"
+msgstr "系统日志"
+
+#: String 1224
+msgid "TRUE"
+msgstr ""
+
+#: String 1225
+msgid "TRUE or FALSE"
+msgstr ""
+
+#: String 1226
+msgid "Table"
+msgstr "表"
+
+#: String 1227
+msgid "Table %s not found"
+msgstr ""
+
+#: String 1228
+msgid "Table prefix"
+msgstr "表名前缀"
+
+#: String 1229
+msgid "Target"
+msgstr "目标"
+
+#: String 1230
+msgid "Terms of Service"
+msgstr "使用条款"
+
+#: String 1231
+msgid "Terms of service"
+msgstr "使用条款"
+
+#: String 1232
+msgid "Text"
+msgstr "文本"
+
+#: String 1233
+msgid "Text 256 Chars"
+msgstr "256个字符的文本"
+
+#: String 1234
+msgid "Text Long"
+msgstr "长文本"
+
+#: String 1235
+msgid "Text title displayed"
+msgstr "显示的文本标题"
+
+#: String 1236
+msgid "Thank you for subscribing"
+msgstr "感谢您的注册"
+
+#: String 1237
+msgid "Thanks"
+msgstr ""
+
+#: String 1238
+msgid "Thanks for submitting your advertisement"
+msgstr ""
+
+#: String 1239
+msgid "Thanks for using Open Classifieds."
+msgstr "感谢您使用。"
+
+#: String 1240
+msgid "Thanks for using our website."
+msgstr "感谢您使用我们的网站。"
+
+#: String 1241
+msgid "Thanks for your payment!"
+msgstr ""
+
+#: String 1242
+msgid "Thanks for your review!"
+msgstr ""
+
+#: String 1243
+msgid "Thanks page"
+msgstr ""
+
+#: String 1244
+msgid "The paypal email address where the payments will be sent"
+msgstr "paypal电子邮件地址，用以接收付款"
+
+#: String 1245
+msgid "The requested page"
+msgstr ""
+
+#: String 1246
+msgid "Theme License"
+msgstr "主题授权号"
+
+#: String 1247
+msgid "Theme Options"
+msgstr "主题选项"
+
+#: String 1248
+msgid "Theme activated, thanks."
+msgstr "主题激活，谢谢！"
+
+#: String 1249
+msgid "Theme configuration updated"
+msgstr "主题配置更新"
+
+#: String 1250
+msgid "Theme could not be downloaded"
+msgstr ""
+
+#: String 1251
+msgid "Theme downloaded"
+msgstr ""
+
+#: String 1252
+msgid "Themes"
+msgstr "主题"
+
+#: String 1253
+msgid "Themes Market"
+msgstr "主题市场"
+
+#: String 1254
+msgid "Themes Updated"
+msgstr ""
+
+#: String 1255
+msgid "There was an error activating your license."
+msgstr "错误激活许可证"
+
+#: String 1256
+msgid "This advertisement doesn´t exist, or is not yet published!"
+msgstr ""
+
+#: String 1257
+msgid "This email has been considered as spam! We are sorry but we can not send this email."
+msgstr "此电子邮件地址已被标记为垃圾邮件，我们很抱歉，但我们不能发送此电子邮件"
+
+#: String 1258
+msgid "This field is required."
+msgstr ""
+
+#: String 1259
+msgid "This is a list of users marked as spammers. To understand how this feature works, please read this article"
+msgstr ""
+
+#: String 1260
+msgid "This is not your advertisement."
+msgstr "这不是您的广告。"
+
+#: String 1261
+msgid "This is permanent! No backups, no restores, no magic undo button. We warned you, ok?"
+msgstr ""
+
+#: String 1262
+msgid "This is to control how many advertisements are being displayed per page. Insert an integer value, as a number limit."
+msgstr "可以控制每页显示的广告数量。插入一个整数，作为限制。"
+
+#: String 1263
+msgid "This license is in use in the theme %s"
+msgstr ""
+
+#: String 1264
+msgid "This order was already paid."
+msgstr ""
+
+#: String 1265
+msgid "This post has been considered as spam! We are sorry but we can not publish this advertisement."
+msgstr ""
+
+#: String 1266
+msgid "This process can take few minutes DO NOT interrupt it"
+msgstr ""
+
+#: String 1267
+msgid "Thumb height"
+msgstr "预览的高度"
+
+#: String 1268
+msgid "Thumb height in pixels(px)"
+msgstr "缩略图的像素高度（像素）"
+
+#: String 1269
+msgid "Thumb is a small image resized to fit certain elements. This is the height for this image."
+msgstr ""
+
+#: String 1270
+msgid "Thumb is a small image resized to fit certain elements. This is width of this image."
+msgstr "缩略图是调整大小以适应某些项目的小图像。这是图像的宽度。"
+
+#: String 1271
+msgid "Thumb width"
+msgstr "宽度缩略图"
+
+#: String 1272
+msgid "Thumb width in pixels(px)"
+msgstr "缩略图的像素宽度（像素）"
+
+#: String 1273
+msgid "Tickets"
+msgstr ""
+
+#: String 1274
+msgid "Time Zone"
+msgstr "时区"
+
+#: String 1275
+msgid "Title"
+msgstr "标题"
+
+#: String 1276
+msgid "Title *"
+msgstr ""
+
+#: String 1277
+msgid "Title displayed"
+msgstr "显示标题"
+
+#: String 1278
+msgid "Title:"
+msgstr ""
+
+#: String 1279
+msgid "To"
+msgstr "为"
+
+#: String 1280
+msgid "To buy this product you first need to register"
+msgstr ""
+
+#: String 1281
+msgid "To continue your experience with %s you can get back to the main website by clicking here."
+msgstr ""
+
+#: String 1282
+msgid "To get paid via Credit card you need a %s account"
+msgstr ""
+
+#: String 1283
+msgid "To go back to the previous page, click the Back button."
+msgstr ""
+
+#: String 1284
+msgid "To include your custom HTML code (reference to JS or CSS files, etc.) in the footer of the rendered page."
+msgstr ""
+
+#: String 1285
+msgid "To include your custom HTML code (validation metadata, reference to JS/CSS files, etc.) in the HEAD element of the rendered page."
+msgstr ""
+
+#: String 1286
+msgid "To install new theme choose zip file."
+msgstr "请选择一个zip文件来安装一个新的主题"
+
+#: String 1287
+msgid "To top price"
+msgstr "置顶价格"
+
+#: String 1288
+msgid "Today"
+msgstr "今天"
+
+#: String 1289
+msgid "Toggle navigation"
+msgstr ""
+
+#: String 1290
+msgid "Tools"
+msgstr "工具"
+
+#: String 1291
+msgid "Tools title displayed"
+msgstr ""
+
+#: String 1292
+msgid "Tooltip"
+msgstr ""
+
+#: String 1293
+msgid "Tooltip Text Color"
+msgstr ""
+
+#: String 1294
+msgid "Tooltip:"
+msgstr ""
+
+#: String 1295
+msgid "Top banner background image URL"
+msgstr ""
+
+#: String 1296
+msgid "Top up ad"
+msgstr ""
+
+#: String 1297
+msgid "Topic"
+msgstr ""
+
+#: String 1298
+msgid "Topic is updated."
+msgstr ""
+
+#: String 1299
+msgid "Topics"
+msgstr ""
+
+#: String 1300
+msgid "Total"
+msgstr "总"
+
+#: String 1301
+msgid "Transaction not successful!"
+msgstr ""
+
+#: String 1302
+msgid "Translate all?, Be aware this will replace all your texts."
+msgstr "翻译？请注意，这将取代所有的文字。"
+
+#: String 1303
+msgid "Translation"
+msgstr "翻译"
+
+#: String 1304
+msgid "Translations"
+msgstr "翻译"
+
+#: String 1305
+msgid "Translations files available in the system."
+msgstr "系统中可用的翻译文件。"
+
+#: String 1306
+msgid "Translations regenarated"
+msgstr ""
+
+#: String 1307
+msgid "Turn off sidebar in advertisement page"
+msgstr ""
+
+#: String 1308
+msgid "Type"
+msgstr "类型"
+
+#: String 1309
+msgid "Type address"
+msgstr ""
+
+#: String 1310
+msgid "Type ads to display"
+msgstr "广告显示类型"
+
+#: String 1311
+msgid "Type your password twice"
+msgstr "输入两次您的密码"
+
+#: String 1312
+msgid "Type your password twice to change"
+msgstr "输入两次密码，以确认"
+
+#: String 1313
+msgid "UNAVAILABLE"
+msgstr ""
+
+#: String 1314
+msgid "UNCONFIRMED"
+msgstr ""
+
+#: String 1315
+msgid "Unavailable"
+msgstr "不可用"
+
+#: String 1316
+msgid "Unavailable Sort"
+msgstr "无法排序"
+
+#: String 1317
+msgid "Unconfirmed"
+msgstr "未确认"
+
+#: String 1318
+msgid "Unconfirmed Sort"
+msgstr "未经证实的类型"
+
+#: String 1319
+msgid "Unread"
+msgstr ""
+
+#: String 1320
+msgid "Unsubscribe"
+msgstr "退订"
+
+#: String 1321
+msgid "Unsubscribe to all?"
+msgstr "退订所有？"
+
+#: String 1322
+msgid "Unsubscribe?"
+msgstr "退订？"
+
+#: String 1323
+msgid "Up to"
+msgstr ""
+
+#: String 1324
+msgid "Update"
+msgstr "更新"
+
+#: String 1325
+msgid "Update Topic"
+msgstr ""
+
+#: String 1326
+msgid "Update coupon"
+msgstr ""
+
+#: String 1327
+msgid "Update folder `%s` not found."
+msgstr ""
+
+#: String 1328
+msgid "Updated to "
+msgstr ""
+
+#: String 1329
+msgid "Updates"
+msgstr "更新"
+
+#: String 1330
+msgid "Updating, do not close this window."
+msgstr ""
+
+#: String 1331
+msgid "Upgrade your Open Classifieds site to activate this feature."
+msgstr "升级你的网站，以启用此功能。"
+
+#: String 1332
+msgid "Upload"
+msgstr ""
+
+#: String 1333
+msgid "Upload CSV file"
+msgstr ""
+
+#: String 1334
+msgid "Upload category icon"
+msgstr ""
+
+#: String 1335
+msgid "Upload file"
+msgstr "导入文件"
+
+#: String 1336
+msgid "Upload image logo"
+msgstr ""
+
+#: String 1337
+msgid "Upload location icon"
+msgstr ""
+
+#: String 1338
+msgid "Upload your Logo. Recommended size 250px x 40px. Leave blank for none."
+msgstr ""
+
+#: String 1339
+msgid "Upload your Logo. Recommended size W:200px x H:120px. Leave blank for none."
+msgstr ""
+
+#: String 1340
+msgid "Upload your favicon. Leave blank for none."
+msgstr ""
+
+#: String 1341
+msgid "Upload your logo. Recommended size 250px x 40px. Leave blank for none."
+msgstr ""
+
+#: String 1342
+msgid "Url"
+msgstr "网址"
+
+#: String 1343
+msgid "Use parent categories"
+msgstr "使用上一级分类"
+
+#: String 1344
+msgid "Use the form below to help you get the coordinates values"
+msgstr ""
+
+#: String 1345
+msgid "User"
+msgstr "用户"
+
+#: String 1346
+msgid "User %s has been removed from black list."
+msgstr ""
+
+#: String 1347
+msgid "User Profile"
+msgstr "用户配置文件"
+
+#: String 1348
+msgid "User account will be created"
+msgstr "将自动为您创建用户帐户"
+
+#: String 1349
+msgid "User already exists"
+msgstr "此用户名/帐号已被注册"
+
+#: String 1350
+msgid "User name"
+msgstr "用户名"
+
+#: String 1351
+msgid "User not found"
+msgstr ""
+
+#: String 1352
+msgid "User not in database"
+msgstr "这个用户名/电子邮件地址不存在"
+
+#: String 1353
+msgid "User paypal link"
+msgstr "链接到PayPal用户"
+
+#: String 1354
+msgid "Users"
+msgstr "用户"
+
+#: String 1355
+msgid "Users marked a spam"
+msgstr ""
+
+#: String 1356
+msgid "Users not logged last 3 months"
+msgstr ""
+
+#: String 1357
+msgid "Users with featured ads expired."
+msgstr ""
+
+#: String 1358
+msgid "Users with featured ads."
+msgstr ""
+
+#: String 1359
+msgid "Users without published ads."
+msgstr ""
+
+#: String 1360
+msgid "Uses CDN for CSS/JS"
+msgstr ""
+
+#: String 1361
+msgid "Using mobile theme"
+msgstr "使用手机主题"
+
+#: String 1362
+msgid "Valid Date"
+msgstr ""
+
+#: String 1363
+msgid "Valid Until"
+msgstr "有效期至"
+
+#: String 1364
+msgid "Valid until"
+msgstr ""
+
+#: String 1365
+msgid "Values"
+msgstr "值"
+
+#: String 1366
+msgid "Version"
+msgstr "版本"
+
+#: String 1367
+msgid "View Advertisement"
+msgstr ""
+
+#: String 1368
+msgid "Views and Ads"
+msgstr ""
+
+#: String 1369
+msgid "Views and Ads statistics"
+msgstr "统计视图和公告"
+
+#: String 1370
+msgid "Views and Contacts statistic"
+msgstr "统计视图和联系人"
+
+#: String 1371
+msgid "Visit Site"
+msgstr "访问该网页"
+
+#: String 1372
+msgid "Visits"
+msgstr "浏览次数"
+
+#: String 1373
+msgid "Warning"
+msgstr "注意"
+
+#: String 1374
+msgid "Warning, something went wrong while deleting"
+msgstr "注意，在删除时发生错误"
+
+#: String 1375
+msgid "Warning, something went wrong while deleting Ad with id %u"
+msgstr ""
+
+#: String 1376
+msgid "Watermark"
+msgstr ""
+
+#: String 1377
+msgid "Watermark path"
+msgstr "标记水印"
+
+#: String 1378
+msgid "Watermark position"
+msgstr "水印的位置"
+
+#: String 1379
+msgid "We are working on our site, please visit later. Thanks"
+msgstr "网站装修中！请你过几分钟再回来"
+
+#: String 1380
+msgid "We can not copy the %s since the locale %s already has existing %s"
+msgstr ""
+
+#: String 1381
+msgid "We can not read file %s"
+msgstr ""
+
+#: String 1382
+msgid "We detected you are currently off-line, please connect to gain full experience."
+msgstr ""
+
+#: String 1383
+msgid "We do not have any FAQ-s"
+msgstr ""
+
+#: String 1384
+msgid "We do not have any advertisements in this category"
+msgstr "我们没有此类别的广告"
+
+#: String 1385
+msgid "We do not have any blog post"
+msgstr "没有任何信息"
+
+#: String 1386
+msgid "We do not have any blog posts"
+msgstr ""
+
+#: String 1387
+msgid "We do not have any reviews for this product"
+msgstr ""
+
+#: String 1388
+msgid "We had a problem downloading latest version, try later please."
+msgstr ""
+
+#: String 1389
+msgid "We had, issues with your transaction. Please try paying with another paymethod."
+msgstr ""
+
+#: String 1390
+msgid "We have detected some incompatibilities, installation may not work as expected but you can try."
+msgstr ""
+
+#: String 1391
+msgid "We need your email address to complete"
+msgstr "我们需要您的电子邮件地址来完成"
+
+#: String 1392
+msgid "We use cookies to track usage and preferences"
+msgstr ""
+
+#: String 1393
+msgid "We will move all the ads to home category."
+msgstr ""
+
+#: String 1394
+msgid "We will move all the ads to home location."
+msgstr ""
+
+#: String 1395
+msgid "We will move the siblings categories and ads to the parent of this category."
+msgstr ""
+
+#: String 1396
+msgid "We will remove all the forum posts and answers."
+msgstr ""
+
+#: String 1397
+msgid "Web site slogan"
+msgstr ""
+
+#: String 1398
+msgid "Website"
+msgstr "网站或博客"
+
+#: String 1399
+msgid "Website field"
+msgstr "站点地址栏位"
+
+#: String 1400
+msgid "Welcome"
+msgstr "主页"
+
+#: String 1401
+msgid "Welcome to"
+msgstr "安装"
+
+#: String 1402
+msgid "Welcome to the super easy and fast installation"
+msgstr "欢迎来到这个超级方便，快捷的安装程序"
+
+#: String 1403
+msgid "Welcome!"
+msgstr "欢迎！"
+
+#: String 1404
+msgid "Where do you want the widget displayed?"
+msgstr "要显示这个小工具？"
+
+#: String 1405
+msgid "Where you want the sidebar to appear"
+msgstr "侧边栏的位置"
+
+#: String 1406
+msgid "Widget %s deleted"
+msgstr ""
+
+#: String 1407
+msgid "Widget %s saved in %s"
+msgstr ""
+
+#: String 1408
+msgid "Widget created in %s"
+msgstr ""
+
+#: String 1409
+msgid "Widget parameter missing"
+msgstr "一个小工具缺少参数"
+
+#: String 1410
+msgid "Widgets"
+msgstr "小工具"
+
+#: String 1411
+msgid "Width (px)"
+msgstr ""
+
+#: String 1412
+msgid "Work environment"
+msgstr ""
+
+#: String 1413
+msgid "Wrong Api Key"
+msgstr ""
+
+#: String 1414
+msgid "Wrong Api User Token"
+msgstr ""
+
+#: String 1415
+msgid "Wrong Captcha"
+msgstr ""
+
+#: String 1416
+msgid "Wrong email or password"
+msgstr "错误的电子邮件和密码"
+
+#: String 1417
+msgid "Wrong user name or password"
+msgstr ""
+
+#: String 1418
+msgid "Yes"
+msgstr "是的"
+
+#: String 1419
+msgid "Yes, Keep me updated!"
+msgstr ""
+
+#: String 1420
+msgid "Yes, definitely!"
+msgstr ""
+
+#: String 1421
+msgid "Yesterday"
+msgstr "昨天"
+
+#: String 1422
+msgid "You already added a review"
+msgstr ""
+
+#: String 1423
+msgid "You are assigning a parent category that does not exist"
+msgstr ""
+
+#: String 1424
+msgid "You are assigning a parent location that does not exist"
+msgstr ""
+
+#: String 1425
+msgid "You are in maintenance mode, only you can see the website"
+msgstr "你是在维护模式下，您只能访问网站"
+
+#: String 1426
+msgid "You are not using latest version, please update."
+msgstr ""
+
+#: String 1427
+msgid "You are now viewing the back panel at %s here you can manage your ads, favorites, payments and more."
+msgstr ""
+
+#: String 1428
+msgid "You are now viewing your admin panel, where you can control almost everything in your classifieds site."
+msgstr ""
+
+#: String 1429
+msgid "You are responsible for any damages or down time at your site"
+msgstr ""
+
+#: String 1430
+msgid "You are selecting a location that does not exist"
+msgstr ""
+
+#: String 1431
+msgid "You are unsubscribed"
+msgstr "您已取消订阅"
+
+#: String 1432
+msgid "You can change the look and feel of your website here."
+msgstr "你可以在这里更改您的网站的外观。"
+
+#: String 1433
+msgid "You can check payments you made and see your favorites list here"
+msgstr ""
+
+#: String 1434
+msgid "You can choose if you wish to display amount of visits at each advertisement."
+msgstr ""
+
+#: String 1435
+msgid "You can choose if you wish to display random related ads at each advertisement"
+msgstr ""
+
+#: String 1436
+msgid "You can choose if you wish to display sharing buttons at each advertisement."
+msgstr ""
+
+#: String 1437
+msgid "You can choose what ads you want to display in home."
+msgstr "你可以选择那些广告显示在首页"
+
+#: String 1438
+msgid "You can leave it blank for no action."
+msgstr ""
+
+#: String 1439
+msgid "You can move it to the inactive placeholder"
+msgstr ""
+
+#: String 1440
+msgid "You can not review yourself."
+msgstr ""
+
+#: String 1441
+msgid "You can not set as parent the same category"
+msgstr ""
+
+#: String 1442
+msgid "You can not set as parent the same location"
+msgstr ""
+
+#: String 1443
+msgid "You can only add a review if you bought this product"
+msgstr ""
+
+#: String 1444
+msgid "You can try a new search or publish a new topic ;)"
+msgstr ""
+
+#: String 1445
+msgid "You did not confirmed your delete action."
+msgstr ""
+
+#: String 1446
+msgid "You do not have any advertisements waiting to be published"
+msgstr "你没有广告等待发布"
+
+#: String 1447
+msgid "You do not have permissions to access %s"
+msgstr ""
+
+#: String 1448
+msgid "You dont have permission to access this link"
+msgstr "您没有权限访问此链接"
+
+#: String 1449
+msgid "You don’t have any messages yet."
+msgstr ""
+
+#: String 1450
+msgid "You got %d ads to get processed"
+msgstr ""
+
+#: String 1451
+msgid "You have an old version and automatic update is not possible. Please read the release notes and the manual update instructions."
+msgstr ""
+
+#: String 1452
+msgid "You have been contacted for these ads"
+msgstr ""
+
+#: String 1453
+msgid "You have reached the maximum number of custom fields allowed."
+msgstr ""
+
+#: String 1454
+msgid "You have succesfully installed the theme!"
+msgstr "您已经安装了这个主题！"
+
+#: String 1455
+msgid "You have successfuly changed your data"
+msgstr "您已成功更改您的信息"
+
+#: String 1456
+msgid "You have successfuly unsubscribed"
+msgstr ""
+
+#: String 1457
+msgid "You need help or you have some questions"
+msgstr ""
+
+#: String 1458
+msgid "You need the Hash Key to re-install. You can find this value if you lost it at"
+msgstr "要重新安装你所需的clé de Hashage。如果你忘了，你可以在以下文件中找到它的值："
+
+#: String 1459
+msgid "You need to enable paypal link to allow only reviews on purchases."
+msgstr ""
+
+#: String 1460
+msgid "You need to write reCAPTCHA Site Key to enable the service."
+msgstr ""
+
+#: String 1461
+msgid "You need to write your Facebook APP ID to enable the service."
+msgstr ""
+
+#: String 1462
+msgid "You need to write your banned words to enable the service."
+msgstr ""
+
+#: String 1463
+msgid "You need to write your disqus ID to enable the service."
+msgstr "你必须完成你的DISQUS ID来激活此服务。"
+
+#: String 1464
+msgid "You need to write your reCAPTCHA Secret Key to enable the service."
+msgstr ""
+
+#: String 1465
+msgid "You thought there was more?"
+msgstr ""
+
+#: String 1466
+msgid "You will need also a SSL certificate"
+msgstr ""
+
+#: String 1467
+msgid "Your Advertisement can go on top again! For only "
+msgstr "置顶您的广告只需"
+
+#: String 1468
+msgid "Your Advertisement can go to featured! For only "
+msgstr "高亮显示您的广告只需"
+
+#: String 1469
+msgid "Your Hash Key for this installation is"
+msgstr "您关于安装的clé de hachage，是"
+
+#: String 1470
+msgid "Your PHP time limit is"
+msgstr "PHP运行时最大时间是"
+
+#: String 1471
+msgid "Your advertisement is successfully activated! Thank you!"
+msgstr "您的广告已成功激活！谢谢！"
+
+#: String 1472
+msgid "Your installation version is"
+msgstr "你安装的版本"
+
+#: String 1473
+msgid "Your message has been sent"
+msgstr "您的邮件已发送"
+
+#: String 1474
+msgid "Your profile has been disable for posting, due to recent spam content! If you think this is a mistake please contact us."
+msgstr ""
+
+#: String 1475
+msgid "Your search did not match any advertisement."
+msgstr ""
+
+#: String 1476
+msgid "Your sitemap XML to submit to engines"
+msgstr ""
+
+#: String 1477
+msgid "Zip file failed to extract, please try again."
+msgstr ""
+
+#: String 1478
+msgid "Zoom in the map"
+msgstr "在地图上显示缩放工具"
+
+#: String 1479
+msgid "Zoom level"
+msgstr "缩放级别"
+
+#: String 1480
+msgid "a couple of days"
+msgstr ""
+
+#: String 1481
+msgid "a couple of decades"
+msgstr ""
+
+#: String 1482
+msgid "a couple of hours"
+msgstr ""
+
+#: String 1483
+msgid "a couple of months"
+msgstr ""
+
+#: String 1484
+msgid "a couple of years"
+msgstr ""
+
+#: String 1485
+msgid "a few minutes"
+msgstr ""
+
+#: String 1486
+msgid "a few years"
+msgstr ""
+
+#: String 1487
+msgid "a long time"
+msgstr ""
+
+#: String 1488
+msgid "about a day"
+msgstr ""
+
+#: String 1489
+msgid "about a decade"
+msgstr ""
+
+#: String 1490
+msgid "about a month"
+msgstr ""
+
+#: String 1491
+msgid "about a week"
+msgstr ""
+
+#: String 1492
+msgid "about a year"
+msgstr ""
+
+#: String 1493
+msgid "ads"
+msgstr "广告"
+
+#: String 1494
+msgid "advertisements"
+msgstr "广告"
+
+#: String 1495
+msgid "all"
+msgstr "所有"
+
+#: String 1496
+msgid "arguments"
+msgstr ""
+
+#: String 1497
+msgid "blog section."
+msgstr ""
+
+#: String 1498
+msgid "buy your SSL certificate here"
+msgstr ""
+
+#: String 1499
+msgid "category"
+msgstr ""
+
+#: String 1500
+msgid "community forums."
+msgstr ""
+
+#: String 1501
+msgid "contact"
+msgstr "联系"
+
+#: String 1502
+msgid "coupons left"
+msgstr ""
+
+#: String 1503
+msgid "disallow_nudes"
+msgstr ""
+
+#: String 1504
+msgid "download example"
+msgstr ""
+
+#: String 1505
+msgid "email"
+msgstr ""
+
+#: String 1506
+msgid "formats only"
+msgstr ""
+
+#: String 1507
+msgid "forum title displayed"
+msgstr ""
+
+#: String 1508
+msgid "forums"
+msgstr ""
+
+#: String 1509
+msgid "frequently asked questions."
+msgstr ""
+
+#: String 1510
+msgid "from %s"
+msgstr ""
+
+#: String 1511
+msgid "from_email"
+msgstr "电子邮件"
+
+#: String 1512
+msgid "has been disable for posting, due to recent spam content!"
+msgstr ""
+
+#: String 1513
+msgid "images allowed."
+msgstr ""
+
+#: String 1514
+msgid "import Categories"
+msgstr ""
+
+#: String 1515
+msgid "import Locations"
+msgstr ""
+
+#: String 1516
+msgid "import coupons"
+msgstr ""
+
+#: String 1517
+msgid "in"
+msgstr ""
+
+#: String 1518
+msgid "in %s"
+msgstr ""
+
+#: String 1519
+msgid "installation"
+msgstr "安装"
+
+#: String 1520
+msgid "is created"
+msgstr "已经创建"
+
+#: String 1521
+msgid "is edited"
+msgstr "已发表"
+
+#: String 1522
+msgid "is not found"
+msgstr ""
+
+#: String 1523
+msgid "less than a day"
+msgstr ""
+
+#: String 1524
+msgid "less than a month"
+msgstr ""
+
+#: String 1525
+msgid "less than a week"
+msgstr ""
+
+#: String 1526
+msgid "less than a year"
+msgstr ""
+
+#: String 1527
+msgid "less than an hour"
+msgstr ""
+
+#: String 1528
+msgid "license"
+msgstr ""
+
+#: String 1529
+msgid "limited to 10.000 at a time"
+msgstr ""
+
+#: String 1530
+msgid "listing"
+msgstr "列出"
+
+#: String 1531
+msgid "locale"
+msgstr "地区"
+
+#: String 1532
+msgid "location"
+msgstr ""
+
+#: String 1533
+msgid "maintenance"
+msgstr "维护"
+
+#: String 1534
+msgid "map"
+msgstr "广告地图"
+
+#: String 1535
+msgid "moments"
+msgstr ""
+
+#: String 1536
+msgid "new topic"
+msgstr ""
+
+#: String 1537
+msgid "official homepage, get your post listed now."
+msgstr ""
+
+#: String 1538
+msgid "on"
+msgstr ""
+
+#: String 1539
+msgid "only available with premium themes!"
+msgstr ""
+
+#: String 1540
+msgid "only valid for"
+msgstr ""
+
+#: String 1541
+msgid "or"
+msgstr ""
+
+#: String 1542
+msgid "page"
+msgstr ""
+
+#: String 1543
+msgid "parent_category field"
+msgstr "上级分类栏位"
+
+#: String 1544
+msgid "publish new"
+msgstr "发布新广告"
+
+#: String 1545
+msgid "reCAPTCHA Configuration"
+msgstr ""
+
+#: String 1546
+msgid "reCAPTCHA Secret Key"
+msgstr ""
+
+#: String 1547
+msgid "reCAPTCHA Site Key"
+msgstr ""
+
+#: String 1548
+msgid "reCaptcha Secret Key"
+msgstr ""
+
+#: String 1549
+msgid "reCaptcha Site Key"
+msgstr ""
+
+#: String 1550
+msgid "replace"
+msgstr ""
+
+#: String 1551
+msgid "required"
+msgstr ""
+
+#: String 1552
+msgid "reviews"
+msgstr ""
+
+#: String 1553
+msgid "rss"
+msgstr "RSS"
+
+#: String 1554
+msgid "search"
+msgstr "搜索"
+
+#: String 1555
+msgid "searchable"
+msgstr ""
+
+#: String 1556
+msgid "seconds"
+msgstr "秒"
+
+#: String 1557
+msgid "secret"
+msgstr ""
+
+#: String 1558
+msgid "seotitle"
+msgstr "搜索引擎优化标题"
+
+#: String 1559
+msgid "several decades"
+msgstr ""
+
+#: String 1560
+msgid "title"
+msgstr "标题"
+
+#: String 1561
+msgid "to"
+msgstr ""
+
+#: String 1562
+msgid "user"
+msgstr ""
+
+#: String 1563
+msgid "users"
+msgstr "用户"
+
+#: String 1564
+msgid "valid until"
+msgstr ""
+
+#: String 1565
+msgid "views"
+msgstr "浏览次数"
+

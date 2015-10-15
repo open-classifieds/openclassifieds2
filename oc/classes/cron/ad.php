@@ -19,7 +19,8 @@ class Cron_Ad {
         //find expired ads of yesterday
         $ads = new Model_Ad();
         $ads = $ads ->where('status','=',Model_Ad::STATUS_PUBLISHED)
-                    ->where(DB::expr('DATE(featured)'),'=', Date::format('-1 days','Y-m-d'))
+                    ->where('featured','<', Date::unix2mysql())
+                    ->where('featured','IS NOT',NULL)
                     ->find_all();
 
         foreach ($ads as $ad) 
@@ -28,6 +29,17 @@ class Cron_Ad {
 
             $ad->user->email('ad-expired', array('[AD.NAME]'      =>$ad->title,
                                                  '[URL.EDITAD]'   =>$edit_url));
+
+            //unset featured ad
+            $ad->featured = NULL;
+            try
+            {
+                $ad->save();
+            }
+            catch (Exception $e)
+            {
+                throw HTTP_Exception::factory(500,$e->getMessage());
+            }
         }
     }
 

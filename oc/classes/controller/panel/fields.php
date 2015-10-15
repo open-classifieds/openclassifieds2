@@ -73,7 +73,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                     Alert::set(Alert::SUCCESS,sprintf(__('Field %s created'),$name));
                 }
                 else
-                    Alert::set(Alert::ERROR,sprintf(__('Field %s already exists'),$name));
+                    Alert::set(Alert::WARNING,sprintf(__('Field %s already exists'),$name));
  
 
             } catch (Exception $e) {
@@ -590,7 +590,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                         Alert::set(Alert::SUCCESS,sprintf(__('Field %s created'),$name));
                     }
                     else
-                        Alert::set(Alert::ERROR,sprintf(__('Field %s already exists'),$name));
+                        Alert::set(Alert::WARNING,sprintf(__('Field %s already exists'),$name));
                 
                 
                 } catch (Exception $e) {

@@ -76,7 +76,7 @@ This query would generate the following SQL:
 
 Often you will want the results in a particular order and rather than sorting the results, it's better to have the results returned to you in the correct order. You can do this by using the order_by() method. It takes the column name and an optional direction string as the parameters. Multiple `order_by()` methods can be used to add additional sorting capability.
 
-    $query = DB::select()->from(`posts`)->order_by(`published`, `DESC`);
+    $query = DB::select()->from('posts')->order_by('published', 'DESC');
 
 This query would generate the following SQL:
 

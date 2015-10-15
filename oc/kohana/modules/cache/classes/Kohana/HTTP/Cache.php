@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 /**
- * HTTT Caching adaptor class that provides caching services to the
+ * HTTP Caching adaptor class that provides caching services to the
  * [Request_Client] class, using HTTP cache control logic as defined in
  * RFC 2616.
  *
@@ -36,7 +36,7 @@ class Kohana_HTTP_Cache {
 	 *          )
 	 *      );
 	 *
-	 * @uses    [Cache]
+	 * @uses    Cache
 	 * @param   mixed   $cache      cache engine to use
 	 * @param   array   $options    options to set to this class
 	 * @return  HTTP_Cache
@@ -298,7 +298,7 @@ class Kohana_HTTP_Cache {
 	 * Controls whether the response can be cached. Uses HTTP
 	 * protocol to determine whether the response can be cached.
 	 *
-	 * @link    RFC 2616 http://www.w3.org/Protocols/rfc2616/
+	 * @link    http://www.w3.org/Protocols/rfc2616/rfc2616.html RFC 2616
 	 * @param   Response  $response The Response
 	 * @return  boolean
 	 */

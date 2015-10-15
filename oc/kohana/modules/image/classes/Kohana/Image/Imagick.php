@@ -314,6 +314,7 @@ class Kohana_Image_Imagick extends Image {
 		switch ($format)
 		{
 			case 'jpg':
+			case 'jpe':
 			case 'jpeg':
 				$type = IMAGETYPE_JPEG;
 			break;

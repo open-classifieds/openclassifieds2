@@ -5,8 +5,8 @@
  * @package    Kohana/Userguide
  * @category   Base
  * @author     Kohana Team
- * @copyright  (c) 2009-2012 Kohana Team
- * @license    http://kohanaphp.com/license
+ * @copyright  (c) 2008-2013 Kohana Team
+ * @license    http://kohanaframework.org/license
  */
 class Kohana_Kodoc_Property extends Kodoc {
 

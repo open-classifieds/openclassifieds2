@@ -233,66 +233,63 @@ class Controller_Panel_Category extends Auth_Crud {
     {
         $this->auto_render = FALSE;
 
-        $category = new Model_Category($this->request->param('id'));
+        $categories = array();
 
-        //update the elements related to that ad
-        if ($category->loaded())
+        if ($id_category = $this->request->param('id'))
+            $categories[] = $id_category;
+        elseif (core::post('categories'))
+            $categories = core::post('categories');
+
+        if (count($categories) > 0)
         {
-            //check if the parent is loaded/exists avoiding errors, if doesnt exist to the root
-            $parent_cat = new Model_Category($category->id_category_parent);
-            if ($parent_cat->loaded())
-                $id_category_parent = $category->id_category_parent;
-            else
-                $id_category_parent = 1;
-            
-
-            //update all the siblings this category has and set the category parent
-            $query = DB::update('categories')
-                        ->set(array('id_category_parent' => $id_category_parent))
-                        ->where('id_category_parent','=',$category->id_category)
-                        ->execute();
-
-            //update all the ads this category has and set the category parent
-            $query = DB::update('ads')
-                        ->set(array('id_category' => $id_category_parent))
-                        ->where('id_category','=',$category->id_category)
-                        ->execute();
-            
-            //delete icon_delete
-            $root = DOCROOT.'images/categories/'; //root folder
-            if (is_dir($root))
+            foreach ($categories as $id_category)
             {
-                @unlink($root.$category->seoname.'.png');
-            
-                // delete icon from Amazon S3
-                if(core::config('image.aws_s3_active'))
-                    $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/categories/'.$category->seoname.'.png');
-            
-                // update category info
-                $category->has_image = 0;
-                $category->last_modified = Date::unix2mysql();
-                $category->save();            
-            }
+                $category = new Model_Category($id_category);
 
-            try
-            {
-                $category->delete();
-                $this->template->content = 'OK';
+                //update the elements related to that ad
+                if ($category->loaded())
+                {
+                    //check if the parent is loaded/exists avoiding errors, if doesnt exist to the root
+                    $parent_cat = new Model_Category($category->id_category_parent);
+                    if ($parent_cat->loaded())
+                        $id_category_parent = $category->id_category_parent;
+                    else
+                        $id_category_parent = 1;
+                    
 
-                //recalculating the deep of all the categories
-                $this->action_deep();
-                Core::delete_cache();
-                Alert::set(Alert::SUCCESS, __('Category deleted'));
-                
-            }
-            catch (Exception $e)
-            {
-                 Alert::set(Alert::ERROR, $e->getMessage());
+                    //update all the siblings this category has and set the category parent
+                    $query = DB::update('categories')
+                                ->set(array('id_category_parent' => $id_category_parent))
+                                ->where('id_category_parent','=',$category->id_category)
+                                ->execute();
+
+                    //update all the ads this category has and set the category parent
+                    $query = DB::update('ads')
+                                ->set(array('id_category' => $id_category_parent))
+                                ->where('id_category','=',$category->id_category)
+                                ->execute();
+                    
+                    try
+                    {
+                        $category_name = $category->name;
+                        $category->delete();
+                        $this->template->content = 'OK';
+
+                        //recalculating the deep of all the categories
+                        $this->action_deep();
+                        Core::delete_cache();
+                        Alert::set(Alert::SUCCESS, sprintf(__('Category %s deleted'), $category_name));
+                        
+                    }
+                    catch (Exception $e)
+                    {
+                         Alert::set(Alert::ERROR, $e->getMessage());
+                    }
+                }
+                else
+                     Alert::set(Alert::ERROR, __('Category not deleted'));
             }
         }
-        else
-             Alert::set(Alert::ERROR, __('Category not deleted'));
-
         
         HTTP::redirect(Route::url('oc-panel',array('controller'  => 'category','action'=>'index')));  
 

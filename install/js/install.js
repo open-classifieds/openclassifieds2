@@ -29,7 +29,9 @@ $(function(){
                             $('.panel-1 .scotch-panel-wrapper:first').animate({height:height}, 300);
                         },
                         beforePanelClose: function() {
-                            $('.panel-1 .scotch-panel-wrapper:first').animateAuto("height", 300);
+                            $('.panel-1 .scotch-panel-wrapper:first').css({height:'auto'});
+                            var height = $('.panel-1 .scotch-panel-wrapper:first').height();
+                            $('.panel-1 .scotch-panel-wrapper:first').animate({height:height}, 300);
                         },
                     });
     
