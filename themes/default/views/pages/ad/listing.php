@@ -33,6 +33,18 @@
 </div><!--end of recomentadion-->
 
 <?if(count($ads)):?>
+	<?= 
+		FORM::open(Route::url('search'), array('class'=>'col-xs-12 col-md-6', 'method'=>'GET', 'action'=>'')); 
+		echo FORM::hidden('location[]', Model_Location::current()->loaded()?Model_Location::current()->seoname:NULL);
+		echo FORM::hidden('category[]', Model_Category::current()->loaded()?Model_Category::current()->seoname:NULL);
+	?>
+		<div class="form-group">
+			<input type="text" name="search" class="search-query form-control" placeholder="Search this Category">
+		</div>  
+	<?= 
+			
+		FORM::close()
+	?>
     <div class="btn-group pull-right">
         <?if (core::config('advertisement.map')==1):?>
             <a href="<?=Route::url('map')?>?category=<?=Model_Category::current()->loaded()?Model_Category::current()->seoname:NULL?>&location=<?=Model_Location::current()->loaded()?Model_Location::current()->seoname:NULL?>" 
