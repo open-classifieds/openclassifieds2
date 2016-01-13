@@ -1,24 +1,25 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<div class="page-header">
-  <h1>
-    <?=__('Interactive Map')?> <small><a target='_blank' href='https://docs.yclas.com/how-to-add-interactive-map/'><?=__('Read more')?></a></small>
-  </h1>
-  <p>
-    <?=__("Generate an interactive map for your classifieds website")?>
-  </p>
+<div class="row">
+    <div class="col-lg-12 page-title-container">
+        <h1 class="page-header page-title"><?=__('Interactive Map')?></h1>
+        <span class="page-description"><?=__('Generate an interactive map for your classifieds website')?> <a target="_blank" href="https://docs.yclas.com/how-to-add-interactive-map/"><?=__('Read more')?></a></span>
+    </div>
 </div>
+
+
 <?if (Theme::get('premium')!=1):?>
-    <p class="well"><span class="label label-info"><?=__('Heads Up!')?></span> 
+    <p class="well">
+      <span class="label label-info"><?=__('Heads Up!')?></span> 
         <a class="btn btn-success pull-right ajax-load" title="<?=__('Browse Themes')?>" href="<?=Route::url('oc-panel',array('controller'=>'theme'))?>"><?=__('Browse Themes')?></a>
-        <?=__('Interactive map is only available with premium themes!').'<br/>'.__('Upgrade your Open Classifieds site to activate this feature.')?>
+        <?=__('Interactive map is only available with premium themes!').' '.__('Upgrade your Open Classifieds site to activate this feature.')?>
     </p>
 <?endif?>
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-12 col-lg-8">
     <form id="addimap" name="addimap" action="<?=URL::base()?><?=Request::current()->uri()?>" method="post">
       <div class="panel panel-default">
-        <div class="panel-heading"><h3 class="panel-title"><?=__('General Configuration')?></h3></div>
+        <div class="panel-heading"><h4><?=__('General Configuration')?></h4></div>
         <div class="panel-body">
           <div class="form-horizontal" id="default-settings">
             <div class="form-group">
@@ -111,9 +112,9 @@
         </div>
       </div>
       <div class="panel panel-default">
-        <div class="panel-heading"><h3 class="panel-title"><?=__('Map Settings')?></h3></div>
+        <div class="panel-heading"><h4><?=__('Map Settings')?></h4></div>
         <div class="panel-body">
-          <div id="map-settings">
+          <div id="map-settings" class="table-responsive">
             <table class="totalp">
               <tr>
                 <td><strong>
@@ -820,16 +821,17 @@
         </div>
       </div>
       <div class="panel panel-default">
-        <div class="panel-heading"><h3 class="panel-title"><?=__('Interactive Regions')?></h3></div>
+        <div class="panel-heading"><h4><?=__('Interactive Regions')?></h4></div>
         <div class="panel-body">
           <div id="map-data">
             <div id="custom-action"></div>
             <input type="hidden" name="places" id="places" value="">
             <input type="hidden" name="custom_action" value="">
-            <div id="simple-table">
+            <div id="simple-table" class="table-responsive">
               <table id="add-table">
                 <tr>
-                  <td><table id="add-table-simple">
+                  <td>
+                    <table id="add-table-simple">
                       <tr>
                         <td><?=__('Region Code:')?></td>
                         <td><?=__('Title:')?></td>
@@ -838,7 +840,7 @@
                         <td><?=__('Color:')?></td>
                         <td></td>
                       </tr>
-                      <tr style="vertical-align: baseline;">
+                      <tr>
                         <td><input name="cd" type="text" id="cd" size="15" />
                           <br />
                           <small>
@@ -867,7 +869,7 @@
                           </small></td>
                         <td><input name="cl" type="text" id="cl" size="15" value="#6699CC" class="color {hash:true, adjust:false}"  />
                           <br /></td>
-                        <td><input type="button" value="<?=__('Add')?>" onclick="addPlaceToTable();" />
+                        <td><input type="button" class="btn btn-primary-outline" value="<?=__('Add')?>" onclick="addPlaceToTable();" />
                           <br /></td>
                       </tr>
                     </table>
@@ -879,12 +881,12 @@
         </div>
       </div>
       <div class="panel panel-default">
-        <div class="panel-heading"><h3 class="panel-title"><?=__('Preview')?></h3></div>
+        <div class="panel-heading"><h4><?=__('Preview')?></h4></div>
         <div class="panel-body">
           <small>
             <?=__('The "Active Region Action" will not work on this preview. When an active region is clicked an alert message with the value inserted will display for debugging.')?>
           </small>
-          <div id="visualization"></div>
+          <div id="visualization" class="table-responsive"></div>
           <div class="clear"></div>
           <hr>
           <div class="form-actions">

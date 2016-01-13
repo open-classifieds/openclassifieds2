@@ -10,6 +10,10 @@ $(function (){
         content: '#user-toolbar-options-all',
         hideOnClick: true, 
     });
+    $('.toolbar-page').toolbar({
+        content: '#user-toolbar-page-options',
+        hideOnClick: true, 
+    });
 	 
 });
 

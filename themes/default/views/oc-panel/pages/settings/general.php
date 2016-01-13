@@ -1,17 +1,18 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-
-
 <?=Form::errors()?>
-<div id="page-general-configuration" class="page-header">
-    <a class="btn btn-default pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'config'))?>" title="<?=__('All configurations')?>"><?=__('All configurations')?></a>
-    <h1><?=__('General Configuration')?> <small><?=__('General site settings.')?></small></h1>
+<div class="row">
+    <div class="col-lg-12 page-title-container">
+        <h1 class="page-header page-title"><?=__('General Configuration')?></h1>
+        <span class="page-description"><?=__('General site settings.')?> <a href=""><?=__('Read more')?></a></span>
+        <a class="btn btn-primary pull-right ajax-load new-btn" href="<?=Route::url('oc-panel',array('controller'=>'config'))?>" title="<?=__('All configurations')?>"><?=__('All configurations')?></a>
+    </div>
 </div>
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12 col-lg-8">
         <?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general')), array('class'=>'config', 'enctype'=>'multipart/form-data'))?>
         <div class="panel panel-default">
-            <div class="panel-heading"><?=__('General Configuration')?></div>
+            <div class="panel-heading"><h4><?=__('General Configuration')?></h4></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
@@ -180,7 +181,7 @@
                                 'id' => $forms['cookie_consent']['id'], 
                                 'data-content'=> __("Enables an alert to accept cookies"),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>__("Cookie consent"),
                                 ))?>
@@ -276,7 +277,7 @@
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading"><?=__('Regional Settings')?></div>
+            <div class="panel-heading"><h4><?=__('Regional Settings')?></h4></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
@@ -342,7 +343,7 @@
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading"><?=__("Enable Additional Features")?></div>
+            <div class="panel-heading"><h4><?=__("Enable Additional Features")?></h4></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
@@ -355,7 +356,7 @@
                                 'id' => $forms['search_by_description']['id'], 
                                 'data-content'=> __("Once set to TRUE, enables search to look for key words in description"),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>__("Include search by description"),
                                 ))?>
@@ -375,7 +376,7 @@
                                 'id' => $forms['search_multi_catloc']['id'], 
                                 'data-content'=> __("Once set to TRUE, enables multi select category and location search"),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>__("Multi select category and location search"),
                                 ))?>
@@ -389,7 +390,7 @@
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading"><?=__("Comments Configuration")?></div>
+            <div class="panel-heading"><h4><?=__("Comments Configuration")?></h4></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
@@ -401,7 +402,7 @@
                             'id' => $forms['blog_disqus']['id'], 
                             'data-original-title'=> __("Disqus for Blog Comments"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-content'=>__("You need to write your disqus ID to enable the service."),
                             ))?> 
@@ -417,7 +418,7 @@
                             'id' => $forms['faq_disqus']['id'], 
                             'data-original-title'=> __("Disqus for FAQ Comments"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-content'=>__("You need to write your disqus ID to enable the service."),
                             ))?> 
@@ -428,7 +429,7 @@
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading"><?=__("reCAPTCHA Configuration")?></div>
+            <div class="panel-heading"><h4><?=__("reCAPTCHA Configuration")?></h4></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
@@ -441,7 +442,7 @@
                                 'id' => $forms['recaptcha_active']['id'], 
                                 'data-content'=> __("If advertisement is marked as spam, user is also marked. Can not publish new ads or register until removed from Black List! Also will not allow users from disposable email addresses to register."),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>__("Black List"),
                                 ))?>
@@ -460,7 +461,7 @@
                             'id' => $forms['recaptcha_sitekey']['id'], 
                             'data-original-title'=> __("reCaptcha Site Key"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-content'=>__("You need to write reCAPTCHA Site Key to enable the service."),
                             ))?> 
@@ -476,7 +477,7 @@
                             'id' => $forms['recaptcha_secretkey']['id'], 
                             'data-original-title'=> __("reCaptcha Secret Key"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-content'=>__("You need to write your reCAPTCHA Secret Key to enable the service."),
                             ))?> 

@@ -1,0 +1,46 @@
+.folded {
+	aside {
+	    width:45px; 
+	    @include transition(all .2s ease);
+	}
+	aside li {
+		a {
+			padding:25px 15px 24px 15px;
+		}
+		.hidden-xs, .fa {
+			display:none;
+		}
+	}
+	.sidebar-search {
+		height:65px;
+		input {
+			display:none;
+		}
+	}
+	.nav-second-level {
+		position:absolute;
+		left:47px;
+		top:0;
+		z-index:2;
+		li {
+			a {
+				padding:15px;
+				width:180px;
+			}
+		}
+	}
+	#collapse-menu {
+		i {
+			@include transform(rotate(#{180}deg));
+			display:block;
+			margin:0 12px;
+		}
+		span {
+			display:none;
+		}
+	} 
+	#page-wrapper {
+		margin:0 0 0 60px;
+		@include transition(all .2s ease);
+	}
+}

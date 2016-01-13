@@ -1,8 +1,10 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<div class="page-header">
-	<h1><?=__('New Custom Field')?></h1>
-	<a target='_blank' href='https://docs.yclas.com/users-custom-fields/'><?=__('Read more')?></a>
+<div class="row">
+    <div class="col-lg-12 page-title-container">
+        <h1 class="page-header page-title"><?=__('New Custom Field')?></h1>
+        <span class="page-description"><?=__('This panel shows how many visitors your website had the past month.')?> <a target="_blank" href="https://docs.yclas.com/users-custom-fields/"><?=__('Read more')?></a></span>
+    </div>
 </div>
         
 <form class="well form-horizontal"  method="post" action="<?=Route::url('oc-panel',array('controller'=>'userfields','action'=>'new'))?>">         

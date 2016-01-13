@@ -1,23 +1,24 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<div class="page-header">
-    <a class="btn btn-primary pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'create'))?><?=Core::get('id_location') ? '?id_location_parent='.Core::get('id_location') : NULL?>" title="<?=__('New Location')?>">
-        <?=__('New Location')?>
-    </a>
-    <h1><?=($location->id_location > 1) ? $location->name.' – ':NULL?> <?=__('Locations')?></h1>
-    <p><?=__("Change the order of your locations. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended).")?> <a href="https://docs.yclas.com/how-to-add-locations/" target="_blank"><?=__('Read more')?></a></p>
+<div class="row">
+    <div class="col-lg-12 page-title-container">
+        <h1 class="page-header page-title"><?=($location->id_location > 1) ? $location->name.' – ':NULL?> <?=__('Locations')?></h1>
+        <span class="page-description"><?=__("Change the order of your locations. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended).")?> <a href="https://docs.yclas.com/how-to-add-locations/" target="_blank"><?=__('Read more')?></a></span>
+        <a class="btn btn-primary pull-right ajax-load new-btn btn-icon-left" href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'create'))?><?=Core::get('id_location') ? '?id_location_parent='.Core::get('id_location') : NULL?>" title="<?=__('New Location')?>">
+            <i class="fa fa-plus-circle"></i><?=__('New Location')?>
+        </a>
+    </div>
 </div>
 
 <div class="row">
     <div class="col-md-7">
         <div class="panel panel-default">
-            <div class="panel-heading"><?=$location->name?></div>
+            <div class="panel-heading"><h4><?=$location->name?></h4></div>
             <div class="panel-body">
                 <?=FORM::open(Route::url('oc-panel',array('controller'=>'location','action'=>'delete')), array('class'=>'form-inline', 'enctype'=>'multipart/form-data'))?>
                     <ol class='plholder' id="ol_<?=$location->id_location?>" data-id="<?=$location->id_location?>">
                         <?foreach ($locs as $loc) :?>
                             <li data-id="<?=$loc->id_location?>" id="li_<?=$loc->id_location?>">
-                        
                                 <div class="drag-item">
                                     <span class="drag-icon"><i class="fa fa-ellipsis-v"></i><i class="fa fa-ellipsis-v"></i></span>
                                     <div class="drag-name">
@@ -60,11 +61,11 @@
                     <?if(count($locs) > 0) :?>
                         <p class="text-right">
                             <button data-toggle="modal" data-target="#delete-all" class="btn btn-danger">
-                                <?=__('Delete all locations')?>
+                                <i class="glyphicon glyphicon-trash space-right"></i><?=__('Delete all locations')?>
                             </button>
 
                             <button name="delete" type="submit" class="btn btn-danger">
-                                <?=__('Delete selected locations')?>
+                                <i class="glyphicon glyphicon-trash space-right"></i><?=__('Delete selected locations')?>
                             </button>
                         </p>
                     <?endif?>
@@ -77,18 +78,15 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <span class="label label-info"><?=__('Heads Up!')?> <?=__('Quick location creator.')?></span>
+                        <span class="label label-info space-bottom"><?=__('Heads Up!')?> <?=__('Quick location creator.')?></span>
                         <p><?=__('Add names for multiple locations, for each one push enter.')?></p>
-                      
                         <?= FORM::open(Route::url('oc-panel',array('controller'=>'location','action'=>'multy_locations'.'?id_location='.Core::get('id_location', 1))), array('class'=>'form-horizontal', 'role'=>'form','enctype'=>'multipart/form-data'))?>
                             <div class="form-group">
                                 <?= FORM::label('multy_locations', __('Name').':', array('class'=>'col-sm-3 control-label', 'for'=>'multy_locations'))?>
-                                <div class="col-sm-8">
+                                <div class="col-sm-5">
                                     <?= FORM::input('multy_locations', '', array('placeholder' => __('Hit enter to confirm'), 'class' => 'form-control', 'id' => 'multy_locations', 'type' => 'text','data-role'=>'tagsinput'))?>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-3 col-sm-8">
+                                <div class="col-sm-2">
                                     <?= FORM::button('submit', __('Send'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'location','action'=>'multy_locations'.'?id_location='.Core::get('id_location', 1)))))?>
                                 </div>
                             </div>
@@ -154,12 +152,11 @@
             </div>
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><?="<a target='_blank' href='https://docs.yclas.com/use-import-tool-categories-locations/'>"._('Upload CSV file')."</a>"?></div>
+                    <div class="panel-heading"><h4><?=__("Upload CSV file")?></h4><span class="page-description"><?=__('This panel shows how many visitors your website had the past month.')?> <a target="_blank" href="https://docs.yclas.com/use-import-tool-categories-locations/"><?=__('Read more')?></a></span></div>
                     <div class="panel-body">
                         <p>
                             <?=__('Please use the correct CSV format')?> <a href="https://docs.google.com/uc?id=0B60e9iwQucDwa2VjRXAtV0FXVlk&export=download"><?=__('download example')?>.</a>
                         </p>
-                        <hr>
                         <?= FORM::open(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool'.'?id_parent='.Core::get('id_location', 1))), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="csv_file_locations"><?=__('Import Locations')?></label>

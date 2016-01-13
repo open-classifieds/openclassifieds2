@@ -4,16 +4,18 @@
 
 <?=Form::errors()?>
 
-<div class="page-header">
-    <h1><?=__('Email Configuration')?></h1>
-    <p><?=__('Email Setup and emails configuration values. Replace input fields with new desired values')?></p>
-    <p><?=sprintf(__('How to configure %s'),'<a href="https://docs.yclas.com/configure-elasticemail-open-classifieds/" target="_blank">ElasticEmail</a>')?></p>
+<div class="row">
+    <div class="col-lg-12 page-title-container">
+        <h1 class="page-header page-title"><?=__('Email Configuration')?></h1>
+        <span class="page-description"><?=__('Email Setup and emails configuration values. Replace input fields with new desired values')?> <a target="_blank" href="https://docs.yclas.com/configure-elasticemail-open-classifieds/"><?=__('Read more')?></a></span>
+    </div>
 </div>
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12 col-lg-8">
         <?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'email')), array('class'=>'form-horizontal config', 'enctype'=>'multipart/form-data'))?>
         <div class="panel panel-default">
+            <div class="panel-heading"><h4><?=__('General email configuration')?></h4><span class="page-description"><?=__('This panel shows how many visitors your website had the past month.')?> <a target="_blank" href="https://docs.yclas.com/configure-elasticemail-open-classifieds/"><?=__('Read more')?></a></span></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <?foreach ($config as $c):?>
@@ -29,7 +31,7 @@
                             'id' => $forms['notify_email']['key'], 
                             'data-content'=> __("Email from where we send the emails, also used for software communications."),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>__("Email From"),
                             'data-rule-email' => 'true',
@@ -48,7 +50,7 @@
                                 'id' => $forms['new_ad_notify']['key'], 
                                 'data-content'=> '',
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>'',                     
                                 ))?>
@@ -60,7 +62,7 @@
             </div>
         </div>
         <div class="panel panel-default">
-            <div class="panel-heading"><?="<a target='_blank' href='https://docs.yclas.com/configure-elasticemail-open-classifieds/'>".__('ElasticEmail Configuration')."</a>"?></div>
+            <div class="panel-heading"><h4><?=__('ElasticEmail Configuration')?></h4><span class="page-description"><?=__('This panel shows how many visitors your website had the past month.')?> <a target="_blank" href="https://docs.yclas.com/configure-elasticemail-open-classifieds/"><?=__('Read more')?></a></span></div>
             <div class="panel-body">
                 <div class="form-horizontal">
 
@@ -81,7 +83,7 @@
                                 'id' => $forms['elastic_active']['key'], 
                                 'data-content'=> '',
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>'',
                                 ))?>
@@ -99,7 +101,7 @@
                             'id' => $forms['elastic_username']['key'], 
                             'data-content'=> '',
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>'',              
                             ))?> 
@@ -115,7 +117,7 @@
                             'id' => $forms['elastic_password']['key'], 
                             'data-content'=> '',
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>'',          
                             ))?> 
@@ -125,7 +127,7 @@
             </div>
         </div>
         <div class="panel panel-default">
-            <div class="panel-heading"><?="<a target='_blank' href='https://docs.yclas.com/smtp-configuration/'>".__('SMTP Configuration')."</a>"?></div>
+            <div class="panel-heading"><h4><?=__('SMTP Configuration')?></h4><span class="page-description"><?=__('This panel shows how many visitors your website had the past month.')?> <a target="_blank" href="https://docs.yclas.com/smtp-configuration/"><?=__('Read more')?></a></span></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
@@ -139,7 +141,7 @@
                                 'id' => $forms['smtp_active']['key'], 
                                 'data-content'=> '',
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>'',
                                 ))?>
@@ -158,7 +160,7 @@
                                 'id' => $forms['smtp_ssl']['key'], 
                                 'data-content'=> '',
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>'',                     
                                 ))?>
@@ -175,7 +177,7 @@
                             'id' => $forms['smtp_host']['key'], 
                             'data-content'=> '',
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>'',              
                             ))?> 
@@ -190,7 +192,7 @@
                             'id' => $forms['smtp_port']['key'], 
                             'data-content'=> '',
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>'',  
                             'data-rule-digits' => 'true',
@@ -208,7 +210,7 @@
                                 'id' => $forms['smtp_auth']['key'], 
                                 'data-content'=> '',
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>'',                     
                                 ))?>
@@ -225,7 +227,7 @@
                             'id' => $forms['smtp_user']['key'], 
                             'data-content'=> '',
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>'',              
                             ))?> 
@@ -241,7 +243,7 @@
                             'id' => $forms['smtp_pass']['key'], 
                             'data-content'=> '',
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>'',              
                             ))?> 

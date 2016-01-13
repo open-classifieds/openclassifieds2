@@ -1,0 +1,151 @@
+/*!
+ * Open Classifieds Admin panel. 
+ */
+
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+    background-color: $body-bg;
+    font-family: $font-family-base;
+    color:$text-color;
+    font-size:$font-size-base;
+    a {
+        color:$brand-primary;
+    }
+}
+
+#page-wrapper {
+    margin: 0 0 0 280px;
+    padding-top:30px;
+}
+
+#wrapper {
+    width: 100%;
+    padding-top:80px;
+}
+
+.panel .slidedown .glyphicon,
+.chat .glyphicon {
+    margin-right: 5px;
+}
+
+.chat-panel .panel-body {
+    height: 350px;
+    overflow-y: scroll;
+}
+
+.login-panel {
+    margin-top: 25%;
+}
+
+.flot-chart {
+    display: block;
+    height: 400px;
+}
+
+.flot-chart-content {
+    width: 100%;
+    height: 100%;
+}
+
+.dataTables_wrapper {
+    position: relative;
+    clear: both;
+}
+
+.show-grid [class^=col-] {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid #ddd;
+    background-color: #eee!important;
+}
+
+.show-grid {
+    margin: 15px 0;
+}
+
+.huge {
+    font-size: 40px;
+}
+
+.breadcrumb {
+    background:none;
+    padding:10px 0;
+    margin:0;
+    > li + li:before {
+       content: "/" 
+    }  
+}
+
+.statcard {
+    padding:10px;
+    background:$text-color-lighter;
+    margin-bottom:15px; 
+    .statcard-desc {
+        display:inline-block;
+        color:$brand-primary;
+    }
+    canvas {
+        max-width:100%;
+        border-bottom:1px solid #eee;
+    }
+    hr {
+        margin:10px 0;
+    }
+}
+
+.media-object {
+    max-width:100%;
+}
+
+.available-themes {
+    .row {
+        padding-bottom:15px;
+        border-bottom:1px solid $gray-lighter;
+    }
+}
+
+.accordion-inner {
+    margin-left:15px;
+}
+
+.space-top {
+    margin-top:15px !important;
+}
+
+.space-right {
+    margin-right:15px !important;
+}
+
+.space-bottom {
+    margin-bottom:15px !important;
+}
+
+.space-left {
+    margin-left:15px !important;
+}
+
+.well {
+    display:inline-block;
+    width:100%;
+}
+
+.bootgrid-footer, .bootgrid-header {
+    padding:0;
+}
+
+.bootgrid-footer .infoBar, .bootgrid-header .actionBar {
+    text-align:initial;
+    .search {
+        .glyphicon {
+            display:table-cell;
+        }
+    }
+}

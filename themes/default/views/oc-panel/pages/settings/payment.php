@@ -29,23 +29,27 @@
 
 	
 <?=Form::errors()?>
-<div class="page-header">
-    <h1><?=__('Payments Configuration')?></h1>
-    <p class=""><?=__('List of payment configuration values. Replace input fields with new desired values.')?> <a target='_blank' href='https://docs.yclas.com/setup-payment-gateways/'><?=__('Read more')?></a></p>
-    <?if (Theme::get('premium')!=1):?>
-        <p class="well"><span class="label label-info"><?=__('Heads Up!')?></span> 
-            Authorize, Stripe, Paymill and Bitpay <?=__('only available with premium themes!').'<br/>'.__('Upgrade your Open Classifieds site to activate this feature.')?>
-            <a class="btn btn-success pull-right" href="<?=Route::url('oc-panel',array('controller'=>'theme'))?>"><?=__('Browse Themes')?></a>
-        </p>
-    <?endif?>
+
+<div class="row">
+    <div class="col-lg-12 page-title-container">
+        <h1 class="page-header page-title"><?=__('Payments Configuration')?></h1>
+        <span class="page-description"><?=__('List of payment configuration values. Replace input fields with new desired values.')?> <a target="_blank" href="https://docs.yclas.com/setup-payment-gateways/"><?=__('Read more')?></a></span>
+    </div>
 </div>
+
+<?if (Theme::get('premium')!=1):?>
+    <p class="well"><span class="label label-info"><?=__('Heads Up!')?></span> 
+        Authorize, Stripe, Paymill and Bitpay <?=__('only available with premium themes!').' '.__('Upgrade your Open Classifieds site to activate this feature.')?>
+        <a class="btn btn-success pull-right" href="<?=Route::url('oc-panel',array('controller'=>'theme'))?>"><?=__('Browse Themes')?></a>
+    </p>
+<?endif?>
 
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12 col-lg-8">
 		<?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment')), array('class'=>'config', 'enctype'=>'multipart/form-data'))?>
         <div class="panel panel-default">
-            <div class="panel-heading"><?=__('General Configuration')?></div>
+            <div class="panel-heading"><h4><?=__('General Configuration')?></h4></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <?foreach ($config as $c):?>
@@ -61,7 +65,7 @@
                             'id' => $forms['paypal_currency']['key'], 
                             'data-original-title'=> __("Currency"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-content'=>__("Please be sure you are using a currency that your payment gateway supports."),
                             ));?>
@@ -79,7 +83,7 @@
                                 'id' => $forms['to_featured']['key'],
                                 'data-original-title'=> __("Featured ads"),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-content'=>__("Featured ads will be highlighted for a defined number of days."), 
                                 ))?>
@@ -106,8 +110,8 @@
                                     <?$i++;endforeach?>
                                 </ul>
                             <?endif?>
-                            <button type="button" class="btn btn-primary plan-add" data-toggle="modal" data-target="#modalplan">
-                                <?=__('Add a plan')?>
+                            <button type="button" class="btn btn-primary plan-add btn-icon-left" data-toggle="modal" data-target="#modalplan">
+                                <i class="fa fa-plus-circle"></i><?=__('Add a plan')?>
                             </button>
                         </div>
                     </div>
@@ -122,7 +126,7 @@
                                 'id' => $forms['to_top']['key'],
                                 'data-content'=> '',
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>'', 
                                 ))?>
@@ -141,7 +145,7 @@
                                     'id' => $forms['pay_to_go_on_top']['key'],
                                     'data-original-title'=> __("Pricing"),
                                     'data-trigger'=>"hover",
-                                    'data-placement'=>"right",
+                                    'data-placement'=>"bottom",
                                     'data-toggle'=>"popover",
                                     'data-content'=>__("How much the user needs to pay to top up an Ad"),  
                                     'data-rule-number' => 'true',
@@ -159,7 +163,7 @@
                             'id' => $forms['alternative']['key'], 
                             'data-content'=> __("A button with the page title appears next to other pay button, onclick model opens with description."),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>__("Alternative Payment"),
                             ))?> 
@@ -169,7 +173,7 @@
             </div>
         </div>
         <div class="panel panel-default">
-            <div class="panel-heading">Paypal</div>
+            <div class="panel-heading"><h4>Paypal</h4></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     
@@ -183,7 +187,7 @@
                             'id' => $forms['paypal_account']['key'],
                             'data-original-title'=> __("Paypal mail address"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-content'=>__("The paypal email address where the payments will be sent"), 
                             ))?> 
@@ -201,7 +205,7 @@
                                 'id' => $forms['sandbox']['key'],
                                 'data-content'=> '',
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>'', 
                                 ))?>
@@ -221,7 +225,7 @@
                                 'id' => $forms['paypal_seller']['key'],
                                 'data-content'=> '',
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>'', 
                                 ))?>
@@ -241,7 +245,7 @@
                                 'id' => $forms['stock']['key'],
                                 'data-content'=> '',
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>'', 
                                 ))?>
@@ -254,16 +258,15 @@
         </div>
 
          <div class="panel panel-default">
-            <div class="panel-heading">2checkout</div>
+            <div class="panel-heading"><h4>2checkout</h4></div>
             <div class="panel-body">
                 <div class="form-horizontal">
 
                     <div class="form-group">
                         <label class="col-md-8 col-md-offset-4">
                             <p><?=sprintf(__('To get paid via Credit card you need a %s account'),'2checkout')?>.</p>
-                            <a class="btn btn-success" target="_blank" href="https://www.2checkout.com/referral?r=6008d8b2c2">
-                                <i class="glyphicon glyphicon-pencil"></i> Register for free at 2checkout</a>
-                    
+                            <a class="btn btn-success btn-icon-left" target="_blank" href="https://www.2checkout.com/referral?r=6008d8b2c2">
+                                <i class="glyphicon glyphicon-pencil"></i>Register for free at 2checkout</a>
                         </label>
                     </div>
                     
@@ -277,7 +280,7 @@
                                 'id' => $forms['twocheckout_sandbox']['key'],
                                 'data-content'=> '',
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>'', 
                                 ))?>
@@ -295,7 +298,7 @@
                             'id' => $forms['twocheckout_sid']['key'],
                             'data-content'=> __('Account Number'),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>'', 
                             ))?> 
@@ -311,7 +314,7 @@
                             'id' => $forms['twocheckout_secretword']['key'],
                             'data-content'=> __('Secret Word'),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>'', 
                             ))?> 
@@ -324,7 +327,7 @@
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading">Authorize.net</div>
+            <div class="panel-heading"><h4>Authorize.net</h4></div>
             <div class="panel-body">
                 <div class="form-horizontal">
 
@@ -349,7 +352,7 @@
                                 'id' => $forms['authorize_sandbox']['key'],
                                 'data-content'=> '',
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>'', 
                                 ))?>
@@ -367,7 +370,7 @@
                             'id' => $forms['authorize_login']['key'],
                             'data-content'=> __('Authorize API Login'),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>'', 
                             ))?> 
@@ -383,7 +386,7 @@
                             'id' => $forms['authorize_key']['key'],
                             'data-content'=> __("Authorize transaction Key"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>'', 
                             ))?> 
@@ -394,14 +397,14 @@
         </div>
         
         <div class="panel panel-default">
-            <div class="panel-heading">Paymill</div>
+            <div class="panel-heading"><h4>Paymill</h4></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
                         <label class="col-md-8 col-md-offset-4">
                             <p>To get paid via Credit card you need a Paymill account. It's free to register. They charge 2'95% of any sale.</p>
-                            <a class="btn btn-success" target="_blank" href="https://app.paymill.com/en-en/auth/register?referrer=openclassifieds">
-                                <i class="glyphicon glyphicon-pencil"></i> Register for free at Paymill</a>
+                            <a class="btn btn-success btn-icon-left" target="_blank" href="https://app.paymill.com/en-en/auth/register?referrer=openclassifieds">
+                                <i class="glyphicon glyphicon-pencil"></i>Register for free at Paymill</a>
                         </label>
                     </div>
                     
@@ -414,7 +417,7 @@
                             'id' => $forms['paymill_private']['key'],
                             'data-content'=> __("Paymill private key"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>'', 
                             ))?> 
@@ -430,7 +433,7 @@
                             'id' => $forms['paymill_public']['key'],
                             'data-content'=> __("Paymill public key"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>'', 
                             ))?> 
@@ -441,15 +444,15 @@
         </div>
         
         <div class="panel panel-default">
-            <div class="panel-heading">Stripe</div>
+            <div class="panel-heading"><h4>Stripe</h4></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     
                     <div class="form-group">
                         <label class="col-md-8 col-md-offset-4">
                             <p>To get paid via Credit card you can also use a Stripe account. It's free to register. They charge 2'95% of any sale.</p>
-                            <a class="btn btn-success" target="_blank" href="https://stripe.com">
-                                <i class="glyphicon glyphicon-pencil"></i> Register for free at Stripe</a>
+                            <a class="btn btn-success btn-icon-left" target="_blank" href="https://stripe.com">
+                                <i class="glyphicon glyphicon-pencil"></i>Register for free at Stripe</a>
                         </label>
                     </div>
                     
@@ -462,7 +465,7 @@
                             'id' => $forms['stripe_private']['key'],
                             'data-content'=> __("Stripe private key"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>'', 
                             ))?> 
@@ -478,7 +481,7 @@
                             'id' => $forms['stripe_public']['key'],
                             'data-content'=> __("Stripe public key"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>'', 
                             ))?> 
@@ -495,7 +498,7 @@
                                 'id' => $forms['stripe_address']['key'], 
                                 'data-content'=> '',
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>'',                     
                                 ))?>
@@ -514,7 +517,7 @@
                                 'id' => $forms['stripe_alipay']['key'], 
                                 'data-content'=> '',
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>'',                     
                                 ))?>
@@ -527,15 +530,15 @@
             </div>
         </div>
         <div class="panel panel-default">
-            <div class="panel-heading">Bitpay</div>
+            <div class="panel-heading"><h4>Bitpay</h4></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     
                     <div class="form-group">
                         <label class="col-md-8 col-md-offset-4">
                             <p>Accept bitcoins using Bitpay</p>
-                            <a class="btn btn-success" target="_blank" href="https://bitpay.com">
-                                <i class="glyphicon glyphicon-pencil"></i> Register for free at Bitpay</a>
+                            <a class="btn btn-success btn-icon-left" target="_blank" href="https://bitpay.com">
+                                <i class="glyphicon glyphicon-pencil"></i>Register for free at Bitpay</a>
                         </label>
                     </div>
                     
@@ -548,7 +551,7 @@
                             'id' => $forms['bitpay_apikey']['key'],
                             'data-content'=> __("Bitpay api key"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>'', 
                             ))?> 
@@ -559,15 +562,15 @@
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading">Prevent Fraud</div>
+            <div class="panel-heading"><h4>Prevent Fraud</h4></div>
             <div class="panel-body">
                 <div class="form-horizontal">
 
                     <div class="form-group">
                         <label class="col-md-8 col-md-offset-4">
                             <p><?=__('Help prevent card fraud with FraudLabsPro, for Stripe, 2co, Paymill and Authorize.')?></p>
-                            <a class="btn btn-success" target="_blank" href="http://www.fraudlabspro.com/?ref=1429">
-                                <i class="glyphicon glyphicon-pencil"></i> <?=sprintf(__('Register for free at %s'),'FraudLabsPro')?></a>
+                            <a class="btn btn-success btn-icon-left" target="_blank" href="http://www.fraudlabspro.com/?ref=1429">
+                                <i class="glyphicon glyphicon-pencil"></i><?=sprintf(__('Register for free at %s'),'FraudLabsPro')?></a>
                         </label>
                     </div>
                     <div class="form-group">
@@ -580,7 +583,7 @@
                             'id' => $forms['fraudlabspro']['key'],
                             'data-content'=> __("FraudLabsPro api key"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>'', 
                             ))?> 

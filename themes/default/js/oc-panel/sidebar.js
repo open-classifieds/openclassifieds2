@@ -21,7 +21,7 @@ if($(window).width() > '750'){
   /*Mobile case*/
   // $('.btn-colapse-sidebar').parent().css('display','none'); // hide collapse button since it doesnt work here
   var sidebar = $('.respon-left-panel');
-  var main_content = $('.main');
+  var main_content = $('.page-wrapper');
   sidebar.addClass('hide'); // when mobile always hide
   $('#mobile_header_btn, .btn-colapse-sidebar').on('click', function(){
     if(sidebar.hasClass('hide')){
@@ -112,20 +112,20 @@ $(function() {
   
 });
 
-function dropdown(event){
-  var active = $('.submenu',event);
-
-  if(active.hasClass('active'))
-  {
-    active.removeClass('active');
-    $('.submenu .side-name-link',event).addClass('hide');
-  }
-  else
-  {
-    active.addClass('active');
-    $('.submenu .side-name-link',event).removeClass('hide');
-  }
-}
+// function dropdown(event){
+//  var active = $('.submenu',event);
+//
+//  if(active.hasClass('active'))
+//  {
+//    active.removeClass('active');
+//    $('.submenu .side-name-link',event).addClass('hide');
+//  }
+//  else
+//  {
+//    active.addClass('active');
+//    $('.submenu .side-name-link',event).removeClass('hide');
+//  }
+// }
 
 // when reloaded keep acordion colapsed
 if(!$('.panel-group').hasClass('mini-col'))

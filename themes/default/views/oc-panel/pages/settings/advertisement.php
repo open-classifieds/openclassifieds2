@@ -2,16 +2,18 @@
 
 <?=Form::errors()?>
 
-<div class="page-header">
-    <h1><?=__('Advertisement Configuration')?></h1>
-    <p><?=__('List of optional fields. To activate/deactivate select "ON/OFF" in desired field.')?></p>
+<div class="row">
+    <div class="col-lg-12 page-title-container">
+        <h1 class="page-header page-title"><?=__('Advertisement Configuration')?></h1>
+        <span class="page-description"><?=__('List of optional fields. To activate/deactivate select "ON/OFF" in desired field.')?> <a href=""><?=__('Read more')?></a></span>
+    </div>
 </div>
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12 col-lg-8">
         <?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form')), array('class'=>'form-horizontal config', 'enctype'=>'multipart/form-data'))?>
         <div class="panel panel-default">
-            <div class="panel-heading"><?="<a target='_blank' href='https://docs.yclas.com/how-to-change-settings-for-ads/'>".__("Listing Options")."</a>"?></div>
+            <div class="panel-heading"><h4><?=__('Listing Options')?></h4><span class="page-description"><?=__('This panel shows how many visitors your website had the past month.')?> <a target="_blank" href="https://docs.yclas.com/how-to-change-settings-for-ads/"><?=__('Read more')?></a></span></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <?foreach ($config as $c):?>
@@ -27,7 +29,7 @@
                             'id' => $forms['advertisements_per_page']['key'], 
                             'data-content'=> __("This is to control how many advertisements are being displayed per page. Insert an integer value, as a number limit."),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>__("Number of ads per page"),
                             'data-rule-required'=>'true',
@@ -45,7 +47,7 @@
                             'id' => $forms['feed_elements']['key'], 
                             'data-original-title'=> __("Number of Ads"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-content'=>__("How many ads are going to appear in the RSS of your site."),
                             'data-rule-required'=>'true',
@@ -63,7 +65,7 @@
                             'id' => $forms['map_elements']['key'], 
                             'data-original-title'=> __("Number of Ads"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-content'=>__("How many ads are going to appear in the map of your site."),
                             'data-rule-required'=>'true',
@@ -90,7 +92,7 @@
                             'id' => $forms['sort_by']['key'],
                             'data-content'=> __("Sort by in listing"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>__("Sort by in listing"), 
                             ))?> 
@@ -118,7 +120,7 @@
                             'id' => $forms['ads_in_home']['key'],
                             'data-content'=> __("You can choose what ads you want to display in home."),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>__("Advertisements in home"), 
                             ))?> 
@@ -129,7 +131,7 @@
             </div>
         </div>
         <div class="panel panel-default">
-            <div class="panel-heading"><?="<a target='_blank' href='https://docs.yclas.com/how-to-change-settings-for-ads/'>".__("Publish Options")."</a>"?></div>
+            <div class="panel-heading"><h4><?=__('Publish Options')?></h4><span class="page-description"><?=__('This panel shows how many visitors your website had the past month.')?> <a target="_blank" href="https://docs.yclas.com/how-to-change-settings-for-ads/"><?=__('Read more')?></a></span></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
@@ -143,7 +145,7 @@
                                 'id' => $forms['login_to_post']['key'], 
                                 'data-original-title'=> __("Require login to post"),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-content'=>__("Require only the logged in users to post."),
                                 ))?>
@@ -163,7 +165,7 @@
                                 'id' => $forms['only_admin_post']['key'], 
                                 'data-original-title'=> __("Only administrators can publish"),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-content'=>__("Only administrators can publish"),
                                 ))?>
@@ -182,7 +184,7 @@
                                 'id' => $forms['expire_date']['key'], 
                                 'data-original-title'=> __("Expire days"),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-content'=>__('After how many days an Ad will expire. 0 for never'),
                                 'data-rule-required'=>'true',
@@ -204,7 +206,7 @@
                                 'id' => $forms['parent_category']['key'], 
                                 'data-original-title'=> __("parent_category field"),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-content'=>__("Use parent categories"),
                                 ))?>
@@ -224,7 +226,7 @@
                                 'id' => $forms['map_pub_new']['key'], 
                                 'data-original-title'=> __("Google Maps"),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-content'=>__("Displays the google maps in the Publish new form."),
                                 ))?>
@@ -244,7 +246,7 @@
                                 'id' => $forms['description_bbcode']['key'], 
                                 'data-original-title'=> __("BBCODE editor on description field"),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-content'=>__("BBCODE editor appears in description field."),
                                 ))?>
@@ -264,7 +266,7 @@
                                 'id' => $forms['captcha']['key'], 
                                 'data-original-title'=> __("Enables Captcha"),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-content'=>__("Captcha appears in the form."),
                                 ))?>
@@ -283,7 +285,7 @@
                                 'id' => $forms['leave_alert']['key'], 
                                 'data-original-title'=> __("Enables leave alert before submitting publish new form"),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-content'=>__("Leave alert before submitting publish new form"),
                                 ))?>
@@ -306,7 +308,7 @@
                             'id' => $forms['tos']['key'], 
                             'data-content'=> __("If you choose to use terms of service, you can select activate. And to edit content, select link 'Content' on your admin panel sidebar. Find page named 'Terms of service' click 'Edit'. In section 'Description' add content that suits you."),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>__("Terms of Service"),
                             ))?> 
@@ -322,7 +324,7 @@
                             'id' => $forms['tos']['key'], 
                             'data-content'=> __('Content that will be displayed to the user after he publishes an ad'),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>__("Thanks page"),
                             ))?> 
@@ -338,7 +340,7 @@
                             'id' => $forms['banned_words']['key'], 
                             'data-original-title'=> __("Banned words are separated with coma (,)"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-role'=>'tagsinput',
                             'data-content'=>__("You need to write your banned words to enable the service."),
@@ -355,7 +357,7 @@
                             'id' => $forms['banned_words_replacement']['key'], 
                             'data-original-title'=> __("Replacement of a banned word"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-content'=>__("Banned word replacement replaces selected array with the string you provided."),
                             ))?> 
@@ -366,7 +368,7 @@
         </div>
             
         <div class="panel panel-default">
-            <div class="panel-heading"><?="<a target='_blank' href='https://docs.yclas.com/how-to-manage-advertisement-fields/'>".__("Advertisement Fields")."</a>"?></div>
+            <div class="panel-heading"><h4><?=__('Advertisement Fields')?></h4><span class="page-description"><?=__('This panel shows how many visitors your website had the past month.')?> <a target="_blank" href="https://docs.yclas.com/how-to-manage-advertisement-fields/"><?=__('Read more')?></a></span></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
@@ -380,7 +382,7 @@
                                 'id' => $forms['description']['key'], 
                                 'data-original-title'=> __("Description field"),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-content'=>__("Displays the field Description in the Ad form."),
                                 ))?>
@@ -400,7 +402,7 @@
                                 'id' => $forms['address']['key'], 
                                 'data-original-title'=> __("Address field"),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-content'=>__("Displays the field Address in the Ad form."),
                                 ))?>
@@ -420,7 +422,7 @@
                                 'id' => $forms['phone']['key'], 
                                 'data-original-title'=> __("Phone field"),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-content'=>__("Displays the field Phone in the Ad form."),
                                 ))?>
@@ -440,7 +442,7 @@
                                 'id' => $forms['website']['key'], 
                                 'data-original-title'=> __("Website field"),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-content'=>__("Displays the field Website in the Ad form."),
                                 ))?>
@@ -460,7 +462,7 @@
                                 'id' => $forms['location']['key'], 
                                 'data-original-title'=> __("Displays location select"),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-content'=>__("Displays the Select Location in the Ad form."),
                                 ))?>
@@ -480,7 +482,7 @@
                                 'id' => $forms['price']['key'], 
                                 'data-original-title'=> __("Price field"),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-content'=>__("Displays the field Price in the Ad form."),
                                 ))?>
@@ -513,7 +515,7 @@
                             'id' => $forms['num_images']['key'], 
                             'data-original-title'=> __("Number of images"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-content'=>__("Number of images displayed"),
                             'data-rule-required'=>'true',
@@ -527,7 +529,7 @@
         </div>
             
         <div class="panel panel-default">
-            <div class="panel-heading"><?="<a target='_blank' href='https://docs.yclas.com/how-to-configure-advertisement-display-option/'>".__("Advertisement Display Options")."</a>"?></div>
+            <div class="panel-heading"><h4><?=__('Advertisement Display Options')?></h4><span class="page-description"><?=__('This panel shows how many visitors your website had the past month.')?> <a target="_blank" href="https://docs.yclas.com/how-to-configure-advertisement-display-option/"><?=__('Read more')?></a></span></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
@@ -541,7 +543,7 @@
                                 'id' => $forms['contact']['key'], 
                                 'data-original-title'=> __("Enables Contact Form"),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-content'=>__("Contact form appears in the ad."),
                                 ))?>
@@ -561,7 +563,7 @@
                                 'id' => $forms['login_to_contact']['key'], 
                                 'data-original-title'=> __("Require login to contact"),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-content'=>__("Require only the logged in users to contact."),
                                 ))?>
@@ -581,7 +583,7 @@
                                 'id' => $forms['qr_code']['key'], 
                                 'data-original-title'=> __("Show QR code"),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-content'=>__("Show QR code"),
                                 ))?>
@@ -601,7 +603,7 @@
                                 'id' => $forms['map']['key'], 
                                 'data-original-title'=> __("Google Maps"),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-content'=>__("Displays the google maps in the Ad."),
                                 ))?>
@@ -621,7 +623,7 @@
                                 'id' => $forms['count_visits']['key'], 
                                 'data-original-title'=> __("Count visits"),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-content'=>__("You can choose if you wish to display amount of visits at each advertisement."),
                                 ))?>
@@ -641,7 +643,7 @@
                                 'id' => $forms['sharing']['key'], 
                                 'data-original-title'=> __("Show sharing buttons"),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-content'=>__("You can choose if you wish to display sharing buttons at each advertisement."),
                                 ))?>
@@ -659,7 +661,7 @@
                             'id' => $forms['related']['key'],
                             'data-content'=> __("You can choose if you wish to display random related ads at each advertisement"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>__("Related ads"), 
                             'data-rule-required'=>'true',
@@ -677,7 +679,7 @@
                             'id' => $forms['fbcomments']['key'], 
                             'data-original-title'=> __("Facebook Comments"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-content'=>__("You need to write your Facebook APP ID to enable the service."),
                             ))?> 
@@ -693,7 +695,7 @@
                             'id' => $forms['disqus']['key'], 
                             'data-original-title'=> __("Disqus Comments"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-content'=>__("You need to write your disqus ID to enable the service."),
                             ))?> 
@@ -711,7 +713,7 @@
                                 'id' => $forms['logbee']['key'], 
                                 'data-original-title'=> "Logbee",
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-content'=> "Integrates your site with Logbee",
                                 ))?>
@@ -725,7 +727,7 @@
         </div>
             
         <div class="panel panel-default">
-            <div class="panel-heading"><?="<a target='_blank' href='https://docs.yclas.com/how-to-configure-Google-Map-Settings'>".__("Google Maps Settings")."</a>"?></div>
+            <div class="panel-heading"><h4><?=__('Google Maps Settings')?></h4><span class="page-description"><?=__('This panel shows how many visitors your website had the past month.')?> <a target="_blank" href="https://docs.yclas.com/how-to-configure-Google-Map-Settings"><?=__('Read more')?></a></span></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <?  $map_styles = array(
@@ -766,7 +768,7 @@
                             'id' => $forms['map_style']['key'], 
                             'data-content'=> __("Custom Google Maps styling"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>__("Google map style"),
                             ))?> 
@@ -782,7 +784,7 @@
                             'id' => $forms['map_zoom']['key'], 
                             'data-original-title'=> __("Zoom level"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-content'=>__("Google map default zoom level "),
                             'data-rule-digits' => 'true',
@@ -799,7 +801,7 @@
                             'id' => $forms['center_lat']['key'], 
                             'data-original-title'=> __("Latitude coordinates"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-content'=>__("Google map default latitude coordinates"),
                             'data-rule-number' => 'true',
@@ -816,7 +818,7 @@
                             'id' => $forms['center_lon']['key'], 
                             'data-original-title'=> __("Longitude coordinates"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-content'=>__("Google map default longitude coordinates"),
                             'data-rule-number' => 'true',
@@ -835,7 +837,7 @@
                                     'id' => $forms['auto_locate_distance']['key'], 
                                     'data-original-title'=> __("Auto locate distance"),
                                     'data-trigger'=>"hover",
-                                    'data-placement'=>"right",
+                                    'data-placement'=>"bottom",
                                     'data-toggle'=>"popover",
                                     'data-content'=>__("Sets maximum distance of closest suggested locations to the visitor."),
                                     'data-rule-number' => 'true',
@@ -852,7 +854,7 @@
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading"><a target='_blank' href='https://docs.yclas.com/review-system-works/'><?=__("Reviews Configuration")?></a></div>
+            <div class="panel-heading"><h4><?=__('Reviews Configuration')?></h4><span class="page-description"><?=__('This panel shows how many visitors your website had the past month.')?> <a target="_blank" href="https://docs.yclas.com/review-system-works/"><?=__('Read more')?></a></span></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
@@ -866,7 +868,7 @@
                                 'id' => $forms['reviews']['key'], 
                                 'data-content'=> __("Enables reviews for ads and the users."),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>__("Enable reviews"),
                                 ))?>
@@ -886,7 +888,7 @@
                                 'id' => $forms['reviews_paid']['key'], 
                                 'data-content'=> __("You need to enable paypal link to allow only reviews on purchases."),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>__("Reviews for paid transactions"),
                                 ))?>

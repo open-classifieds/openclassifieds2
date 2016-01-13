@@ -1,9 +1,12 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<div class="page-header">
-    <h1><?=__('Import tool for locations and categories')?></h1>
-	<p><a href="https://docs.yclas.com/use-import-tool-categories-locations/" target="_blank"><?=__('Read more')?></a></p>
+<div class="row">
+    <div class="col-lg-12 page-title-container">
+        <h1 class="page-header page-title"><?=__('Import tool for locations and categories')?></h1>
+        <span class="page-description"><?=__('This panel shows how many visitors your website had the past month.')?> <a target="_blank" href="https://docs.yclas.com/use-import-tool-categories-locations/"><?=__('Read more')?></a></span>
+    </div>
 </div>
+
 <div class="row">
     <div class="col-md-6">
         <div class="panel panel-default">

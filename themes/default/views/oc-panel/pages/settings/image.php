@@ -2,16 +2,18 @@
 
 <?=Form::errors()?>
 
-<div class="page-header">
-    <h1><?=__('Image Configuration')?></h1>
-    <p><?=__('Image configuration values. Replace input fields with new desired values')?></p>
+<div class="row">
+    <div class="col-lg-12 page-title-container">
+        <h1 class="page-header page-title"><?=__('Media settings')?></h1>
+        <span class="page-description"><?=__('Image configuration values. Replace input fields with new desired values')?> <a target="_blank" href=""><?=__('Read more')?></a></span>
+    </div>
 </div>
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12 col-lg-8">
         <?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'image')), array('class'=>'form-horizontal config', 'enctype'=>'multipart/form-data'))?>
         <div class="panel panel-default">
-	    <div class="panel-heading"><?="<a target='_blank' href='https://docs.yclas.com/how-to-configure-image-settings/'>".__("Image configuration")."</a>"?></div>
+        <div class="panel-heading"><h4><?=__('Image configuration')?></h4><span class="page-description"><?=__('This panel shows how many visitors your website had the past month.')?> <a target="_blank" href="https://docs.yclas.com/how-to-configure-image-settings/"><?=__('Read more')?></a></span></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <?foreach ($config as $c):?>
@@ -28,7 +30,7 @@
                             'id' => $forms['allowed_formats']['id'],
                             'data-content'=> __("Set this up to restrict image formats that are being uploaded to your server."),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>__("Allowed image formats"), 
                             ))?> 
@@ -45,7 +47,7 @@
                                 'id' => $forms['max_image_size']['id'],
                                 'data-content'=> __("Control the size of images being uploaded. Enter an integer value to set maximum image size in mega bites(Mb)."),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>__("Image size in mega bites(Mb)"), 
                                 'data-rule-required'=>'true',
@@ -66,7 +68,7 @@
                                 'id' => $forms['height']['id'], 
                                 'data-content'=> __("Each image is resized when uploaded. This is the height of big image. Note: you can leave this field blank to set AUTO height resize."),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>__("Image height in pixels(px)"),
                                 'data-rule-digits' => 'true',
@@ -86,7 +88,7 @@
                                 'id' => $forms['width']['id'],
                                 'data-content'=> __("Each image is resized when uploaded. This is the width of big image."),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>__("Image width in pixels(px)"), 
                                 'data-rule-digits' => 'true',
@@ -106,7 +108,7 @@
                                 'id' => $forms['height_thumb']['id'],
                                 'data-content'=> __("Thumb is a small image resized to fit certain elements. This is the height for this image."),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>__("Thumb height in pixels(px)"), 
                                 'data-rule-digits' => 'true',
@@ -126,7 +128,7 @@
                                 'id' => $forms['width_thumb']['id'],
                                 'data-content'=> __("Thumb is a small image resized to fit certain elements. This is width of this image."),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>__("Thumb width in pixels(px)"),
                                 'data-rule-digits' => 'true',
@@ -146,7 +148,7 @@
                                 'id' => $forms['quality']['id'],
                                 'data-content'=> __("Choose the quality of the stored images (1-100% of the original)."),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>__("Image Quality"),
                                 'data-rule-required'=>'true',
@@ -167,7 +169,7 @@
                                 'id' => $forms['watermark']['id'], 
                                 'data-content'=> __("Appends watermark to images"),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>__("Watermark"),
                                 ))?>
@@ -186,7 +188,7 @@
                             'id' => $forms['watermark_path']['id'],
                             'data-content'=> __("Relative path to the image to use as watermark"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>__("Watermark path"), 
                             ))?> 
@@ -202,7 +204,7 @@
                             'id' => $forms['watermark_position']['id'],
                             'data-content'=> __("Watermark position"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>__("Watermark position"), 
                             ))?> 
@@ -219,7 +221,7 @@
                                 'id' => $forms['disallow_nudes']['id'],
                                 'data-content'=> __("Restricts likely nude pictures that are being uploaded to your server."),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>__("disallow_nudes"),
                                 ))?>
@@ -233,7 +235,7 @@
         </div>
         
         <div class="panel panel-default">
-            <div class="panel-heading"><?=__("Amazon S3 Configuration")?></div>
+            <div class="panel-heading"><h4><?=__("Amazon S3 Configuration")?></h4><span class="page-description"><?=__('This panel shows how many visitors your website had the past month.')?> <a target="_blank" href="https://docs.yclas.com/how-to-configure-image-settings/"><?=__('Read more')?></a></span></div>
             <div class="panel-body">
                 <div class="form-horizontal">
         
@@ -247,7 +249,7 @@
                                 'id' => $forms['aws_s3_active']['key'], 
                                 'data-content'=> __('Amazon S3 active'),
                                 'data-trigger'=>"hover",
-                                'data-placement'=>"right",
+                                'data-placement'=>"bottom",
                                 'data-toggle'=>"popover",
                                 'data-original-title'=>'',
                                 ))?>
@@ -266,7 +268,7 @@
                             'id' => $forms['aws_access_key']['key'], 
                             'data-content'=> __('AWS Access Key'),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>'',              
                             ))?> 
@@ -282,7 +284,7 @@
                             'id' => $forms['aws_secret_key']['key'], 
                             'data-content'=> __('AWS Secret Key'),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>'',          
                             ))?> 
@@ -298,7 +300,7 @@
                             'id' => $forms['aws_s3_bucket']['key'], 
                             'data-content'=> __('Amazon S3 Bucket Name'),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>'',          
                             ))?> 
@@ -320,7 +322,7 @@
                             'id' => $forms['aws_s3_domain']['key'],
                             'data-content'=> __("S3 Domain Name"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-original-title'=>__("S3 Domain Name"), 
                             ))?> 

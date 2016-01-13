@@ -1,0 +1,122 @@
+.btn {
+    border-radius:3px;
+    @include transition(all .2s ease);
+    font-size:14px;
+    &:active, &.active {
+        box-shadow:none;
+    }
+}
+
+.btn-sm {
+    font-size:12px !important;
+}
+
+.btn-default {
+    color:$text-color;
+}
+
+.btn-default-outline {
+    border-color: $text-color;
+    color: $text-color;
+    background: 0 0;
+    &:hover, &:focus, &.active {
+        border-color: $text-color;
+        color: $white;
+        background-color: $text-color;
+    }
+}
+
+.btn-primary-outline {
+    border-color: $brand-primary;
+    color: $brand-primary;
+    background: 0 0;
+    &:hover, &:focus, &.active {
+        border-color: $brand-primary;
+        color: $white;
+        background-color: $brand-primary;
+    }
+}
+
+.btn-success-outline {
+    border-color: $brand-success;
+    color: $brand-success;
+    background: 0 0;
+    &:hover, &:focus, &.active {
+        border-color: $brand-success;
+        color: $white;
+        background-color: $brand-success;
+    }
+}
+
+.btn-info-outline {
+    border-color: $brand-info;
+    color: $brand-info;
+    background: 0 0;
+    &:hover, &:focus, &.active {
+        border-color: $brand-info;
+        color: $white;
+        background-color: $brand-info;
+    }
+}
+
+.btn-warning-outline {
+    border-color: $brand-warning;
+    color: $brand-warning;
+    background: 0 0;
+    &:hover, &:focus, &.active {
+        border-color: $brand-warning;
+        color: $white;
+        background-color: $brand-warning;
+    }
+}
+
+.btn-danger-outline {
+    border-color: $brand-danger;
+    color: $brand-danger;
+    background: 0 0;
+    &:hover, &:focus, &.active {
+        border-color: $brand-danger;
+        color: $white;
+        background-color: $brand-danger;
+    }
+}
+
+.btn-in-group {
+    margin-left:15px; 
+    padding:6px 10px;
+}
+
+.new-btn {
+    margin-top:25px;
+    margin-bottom:5px !important;
+}
+
+.note-toolbar {
+    .btn {
+        margin:0;
+    }
+}
+
+.btns-top {
+    .btn {
+        margin-left:15px;
+    }
+}
+
+.btn-right-absolute {
+    position:absolute;
+    right:15px;
+    top:9px;
+}
+
+.btn-icon-left {
+    .fa, .icon, .glyphicon {
+        margin-right:8px;
+    }
+}
+
+.tool-items {
+    .btn {
+        margin:0 1px;
+    }
+}

@@ -1,47 +1,50 @@
-<div class="page-header">
-    <div class="dropdown pull-right">
-        &nbsp;
-        <button class="btn btn-default dropdown-toggle" type="button" id="datesMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            <span class="fa fa-tasks"></span>
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="datesMenu">
-            <li><a href="?<?=http_build_query(['rel' => ''] + ['from_date' => date('Y-m-d', strtotime('-30 days'))] + ['to_date' => date('Y-m-d', strtotime('now'))] + Request::current()->query())?>"><?=__('Last 30 days')?></a></li>
-            <li><a href="?<?=http_build_query(['rel' => ''] + ['from_date' => date('Y-m-d', strtotime('-1 month'))] + ['to_date' => date('Y-m-d', strtotime('now'))] + Request::current()->query())?>"><?=__('Last month')?></a></li>
-            <li><a href="?<?=http_build_query(['rel' => ''] + ['from_date' => date('Y-m-d', strtotime('-3 months'))] + ['to_date' => date('Y-m-d', strtotime('now'))] + Request::current()->query())?>"><?=__('Last 3 months')?></a></li>
-            <li><a href="?<?=http_build_query(['rel' => ''] + ['from_date' => date('Y-m-d', strtotime('-6 months'))] + ['to_date' => date('Y-m-d', strtotime('now'))] + Request::current()->query())?>"><?=__('Last 6 months')?></a></li>
-            <li><a href="?<?=http_build_query(['rel' => ''] + ['from_date' => date('Y-m-d', strtotime('-1 year'))] + ['to_date' => date('Y-m-d', strtotime('now'))] + Request::current()->query())?>"><?=__('Last year')?></a></li>
-            <li><a href="?<?=http_build_query(['rel' => ''] + ['from_date' => '2014-11-01'] + ['to_date' => date('Y-m-d', strtotime('now'))] + Request::current()->query())?>"><?=__('All time')?></a></li>
-        </ul>
+<div class="row">
+    <div class="col-lg-12 page-title-container">
+        <h1 class="page-header page-title"><?=$title?></h1>
     </div>
-    <form name="date" class="form-inline pull-right" method="post" action="<?=URL::current()?>">
-        <div class="form-group">
-            <div class="input-group">
-                <div class="input-group-addon"><?=__('From')?></div>
-                <input type="text" class="form-control" id="from_date" name="from_date" value="<?=$from_date?>" data-date="<?=$from_date?>" data-date-format="yyyy-mm-dd">
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-        </div>
-        <span>-</span>
-        <div class="form-group">
-            <div class="input-group">
-                <div class="input-group-addon"><?=__('To')?></div>
-                <input type="text" class="form-control" id="to_date" name="to_date" value="<?=$to_date?>" data-date="<?=$to_date?>" data-date-format="yyyy-mm-dd">
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-        </div>
-    </form>
-    <div class="clearfix"></div>
 </div>
-
+<div class="row">
+    <div class="col-xs-12 space-bottom">
+        <form name="date" class="form-inline pull-left form-hidden-elements" method="post" action="<?=URL::current()?>">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><?=__('From')?></div>
+                    <input type="text" class="form-control" id="from_date" name="from_date" value="<?=$from_date?>" data-date="<?=$from_date?>" data-date-format="yyyy-mm-dd">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+            <span>-</span>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><?=__('To')?></div>
+                    <input type="text" class="form-control" id="to_date" name="to_date" value="<?=$to_date?>" data-date="<?=$to_date?>" data-date-format="yyyy-mm-dd">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </form>
+        <div class="dropdown pull-left">
+            <button class="btn btn-default dropdown-toggle btn-in-group" type="button" id="datesMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <span class="fa fa-tasks"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="datesMenu">
+                <li><a href="?<?=http_build_query(['rel' => ''] + ['from_date' => date('Y-m-d', strtotime('-30 days'))] + ['to_date' => date('Y-m-d', strtotime('now'))] + Request::current()->query())?>"><?=__('Last 30 days')?></a></li>
+                <li><a href="?<?=http_build_query(['rel' => ''] + ['from_date' => date('Y-m-d', strtotime('-1 month'))] + ['to_date' => date('Y-m-d', strtotime('now'))] + Request::current()->query())?>"><?=__('Last month')?></a></li>
+                <li><a href="?<?=http_build_query(['rel' => ''] + ['from_date' => date('Y-m-d', strtotime('-3 months'))] + ['to_date' => date('Y-m-d', strtotime('now'))] + Request::current()->query())?>"><?=__('Last 3 months')?></a></li>
+                <li><a href="?<?=http_build_query(['rel' => ''] + ['from_date' => date('Y-m-d', strtotime('-6 months'))] + ['to_date' => date('Y-m-d', strtotime('now'))] + Request::current()->query())?>"><?=__('Last 6 months')?></a></li>
+                <li><a href="?<?=http_build_query(['rel' => ''] + ['from_date' => date('Y-m-d', strtotime('-1 year'))] + ['to_date' => date('Y-m-d', strtotime('now'))] + Request::current()->query())?>"><?=__('Last year')?></a></li>
+                <li><a href="?<?=http_build_query(['rel' => ''] + ['from_date' => '2014-11-01'] + ['to_date' => date('Y-m-d', strtotime('now'))] + Request::current()->query())?>"><?=__('All time')?></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-12">
         <div class="statcard statcard-success">
             <div class="p-a">
-                <span class="statcard-desc"><?=$title?></span>
                 <h2 class="statcard-number">
                     <?if ($current_total !== NULL) :?>
                         <?=Num::format($current_total, 0)?>
