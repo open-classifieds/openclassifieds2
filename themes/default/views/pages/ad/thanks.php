@@ -3,7 +3,7 @@
 <div class="page-header">
     <?if ($page->loaded()):?>
         <h1><?=$page->title?></h1>
-        <?=$page->description?>
+        <div class="text-description"><?=$page->description?></div>
     <?else:?>
         <h2><?=__('Thanks for submitting your advertisement')?></h2>
     <?endif?>

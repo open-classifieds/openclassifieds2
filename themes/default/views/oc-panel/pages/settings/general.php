@@ -192,6 +192,23 @@
                     </div>
 
                     <div class="form-group">
+                        <?= FORM::label($forms['email_domains']['key'], __('Allowed email domains'), array('class'=>'control-label col-sm-4', 'for'=>$forms['email_domains']['key']))?>
+                        <div class="col-sm-8">
+                            <?= FORM::input($forms['email_domains']['key'], $forms['email_domains']['value'], array(
+                            'placeholder' => __('For email domain push enter.'), 
+                            'class' => 'tips form-control', 
+                            'id' => $forms['email_domains']['key'], 
+                            'data-original-title'=> __("Email domains are separated with coma (,)"),
+                            'data-trigger'=>"hover",
+                            'data-placement'=>"right",
+                            'data-toggle'=>"popover",
+                            'data-role'=>'tagsinput',
+                            'data-content'=>__("You need to write your email domains to enable the service."),
+                            ))?> 
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <?= FORM::label($forms['analytics']['id'], "<a target='_blank' href='https://docs.yclas.com/how-to-add-tracking-codes/'>".__('Analytics Tracking ID')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['analytics']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::input($forms['analytics']['key'], $forms['analytics']['value'], array(

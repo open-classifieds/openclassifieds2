@@ -5,7 +5,7 @@
 	<div class="page-header">
 		<h1><?=$content->title?></h1>
 	</div>
-	<?=$content->description?>
+	<div class="text-description"><?=$content->description?></div>
 	<br>
 <?else:?>
 	<div class="page-header">
@@ -50,6 +50,7 @@
 				<div class="col-md-5 col-sm-offset-2">
 					<?if (Core::config('general.recaptcha_active')):?>
 						<?=Captcha::recaptcha_display()?>
+						<div id="recaptcha1"></div>
 					<?else:?>
 						<?=__('Captcha')?>*:<br />
 						<?=captcha::image_tag('contact')?><br />

@@ -34,9 +34,22 @@
 
 <?if(count($ads)):?>
     <div class="btn-group pull-right">
+        <?if(core::config('general.auto_locate')):?>
+            <button
+                class="btn btn-sm btn-default <?=core::request('userpos') == 1 ? 'active' : NULL?>"
+                id="myLocationBtn"
+                type="button"
+                data-toggle="modal"
+                data-target="#myLocation"
+                data-marker-title="<?=__('My Location')?>"
+                data-marker-error="<?=__('Cannot determine address at this location.')?>"
+                data-href="?<?=http_build_query(['userpos' => 1] + Request::current()->query())?>">
+                <i class="glyphicon glyphicon-map-marker"></i> <?=sprintf(__('%s from you'), i18n::format_measurement(Core::config('advertisement.auto_locate_distance', 1)))?>
+            </button>
+        <?endif?>
         <?if (core::config('advertisement.map')==1):?>
             <a href="<?=Route::url('map')?>?category=<?=Model_Category::current()->loaded()?Model_Category::current()->seoname:NULL?>&location=<?=Model_Location::current()->loaded()?Model_Location::current()->seoname:NULL?>" 
-                class="btn btn-default btn-sm <?=(core::cookie('list/grid')==0)?'active':''?>">
+                class="btn btn-default btn-sm">
                 <span class="glyphicon glyphicon-globe"></span> <?=__('Map')?>
             </a>
         <?endif?>
@@ -161,8 +174,49 @@
 
   <?=$pagination?>
  <?elseif (count($ads) == 0):?>
+    <?if(core::config('general.auto_locate') AND core::request('userpos') == 1):?>
+        <div class="btn-group pull-right">
+            <button
+                class="btn btn-sm btn-default <?=core::request('userpos') == 1 ? 'active' : NULL?>"
+                id="myLocationBtn"
+                type="button"
+                data-toggle="modal"
+                data-target="#myLocation"
+                data-href="?<?=http_build_query(['userpos' => 1] + Request::current()->query())?>">
+                <i class="glyphicon glyphicon-map-marker"></i> <?=sprintf(__('%s from you'), i18n::format_measurement(Core::config('advertisement.auto_locate_distance', 1)))?>
+            </button>
+        </div>
+        <div class="clearfix"></div>
+    <?endif?>
  <!-- Case when we dont have ads for specific category / location -->
   <div class="page-header">
       <h3><?=__('We do not have any advertisements in this category')?></h3>
   </div>
+<?endif?>
+
+<?if(core::config('general.auto_locate')):?>
+    <div class="modal fade" id="myLocation" tabindex="-1" role="dialog" aria-labelledby="myLocationLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="input-group">
+                        <input type="hidden" name="latitude" id="myLatitude" value="" disabled>
+                        <input type="hidden" name="longitude" id="myLongitude" value="" disabled>
+                        <?=FORM::input('myAddress', Request::current()->post('address'), array('class'=>'form-control', 'id'=>'myAddress', 'placeholder'=>__('Where do you want to search?')))?>
+                        <span class="input-group-btn">
+                            <button id="setMyLocation" class="btn btn-default" type="button"><?=__('Ok')?></button>
+                        </span>
+                    </div>
+                    <br>
+                    <div id="mapCanvas"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=__('Close')?></button>
+                    <?if (core::request('userpos') == 1) :?>
+                        <a class="btn btn-danger" href="?<?=http_build_query(['userpos' => NULL] + Request::current()->query())?>"><?=__('Remove')?></a>
+                    <?endif?>
+                </div>
+            </div>
+        </div>
+    </div>
 <?endif?>

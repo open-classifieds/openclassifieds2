@@ -49,7 +49,7 @@
                                                     <li>
                                                         <a title="<?=HTML::chars($chi['name'])?>" href="<?=Route::url('list', array('category'=>$chi['seoname'],'location'=>$loc_seoname))?>">
                                                             <?if (Theme::get('category_badge') != 1) : ?>
-                                                                <span class="pull-right badge badge-success"><?=$chi['count']?></span>
+                                                                <span class="pull-right badge badge-success"><?=number_format($chi['count'])?></span>
                                                             <?endif?>
                                                             <span class="<?=Theme::get('category_badge') != 1 ? 'badged-name' : NULL?>"><?=$chi['name']?></span>
                                                         </a>

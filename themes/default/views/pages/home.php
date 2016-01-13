@@ -62,7 +62,7 @@
                                         <li class="list-group-item">
                                             <a title="<?=HTML::chars($chi['name'])?>" href="<?=Route::url('list', array('category'=>$chi['seoname'], 'location'=>$user_location ? $user_location->seoname : NULL))?>"><?=$chi['name'];?> 
                                                 <?if (Theme::get('category_badge')!=1) : ?>
-                                                    <span class="pull-right badge badge-success"><?=$chi['count']?></span>
+                                                    <span class="pull-right badge badge-success"><?=number_format($chi['count'])?></span>
                                                 <?endif?>
                                             </a>
                                         </li>

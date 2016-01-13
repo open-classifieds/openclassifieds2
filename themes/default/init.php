@@ -3,7 +3,7 @@
   * Theme Name: Ocean Free
   * Description: Clean free theme that includes full admin. It has publicity. Do not delete this theme, all the views depend in this theme.
   * Tags: HTML5, Admin, Free
-  * Version: 2.6.0
+  * Version: 2.6.1
   * Author: Chema <chema@open-classifieds.com> , <slobodan@open-classifieds.com>
   * License: GPL v3
   */
@@ -45,18 +45,13 @@ Theme::$styles = array( '//cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.cs
 if (Theme::$skin!='default')
     Theme::$styles = array_merge(Theme::$styles, array('css/color-'.Theme::$skin.'.css' => 'screen'));
 
-Theme::$scripts['footer']	= array('//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
-                                    '//cdn.jsdelivr.net/bootstrap/3.3.6/js/bootstrap.min.js',
-                                    '//cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
-                                    Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'chosen')),
-                                    'js/jquery.validate.min.js',
-                                    Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'validate')),
+Theme::$scripts['footer'] = array(  '//cdn.jsdelivr.net/g/jquery@1.10.2,bootstrap@3.3.6,bootstrap.datepicker@0.1,chosen@1.0.0,jquery.validation@1.11.1,holder@2.8.1',
                                     '//cdn.jsdelivr.net/blueimp-gallery/2.14.0/js/jquery.blueimp-gallery.min.js',
                                     '//cdn.jsdelivr.net/bootstrap.image-gallery/3.1.0/js/bootstrap-image-gallery.min.js',
-                                    '//cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
-                                    '//cdn.jsdelivr.net/holder/2.8.1/holder.min.js',
+                                    Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'chosen')),
+                                    Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'validate')),
                                     'js/bootstrap-slider.js',
-                                    'js/favico-0.3.8.min.js',
+                                    'js/favico.min.js',
                                     'js/default.init.js?v='.Core::VERSION,
                                     'js/theme.init.js?v='.Core::VERSION,
                                     );

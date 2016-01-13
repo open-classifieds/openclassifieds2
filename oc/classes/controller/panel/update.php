@@ -11,6 +11,73 @@
 class Controller_Panel_Update extends Controller_Panel_OC_Update {    
 
     /**
+     * This function will upgrade DB that didn't existed in versions prior to 2.7.0
+     */
+    public function action_270()
+    {
+        try
+        {
+            DB::query(Database::UPDATE,"INSERT INTO `".self::$db_prefix."config` (`group_name`, `config_key`, `config_value`) VALUES ('email', 'smtp_secure', (SELECT IF(config_value=0,'','ssl') as config_value FROM `".self::$db_prefix."config`as oconf WHERE `config_key` = 'smtp_ssl' AND `group_name`='email' LIMIT 1) );")->execute();
+        }catch (exception $e) {}
+
+        try
+        {
+            DB::query(Database::UPDATE,"DELETE FROM `".self::$db_prefix."config` WHERE `config_key` = 'smtp_ssl' AND `group_name`='email' LIMIT 1;")->execute();
+        }catch (exception $e) {}
+    }
+
+    /**
+     * This function will upgrade DB that didn't existed in versions prior to 2.6.1
+     */
+    public function action_261()
+    {
+        //remove innodb
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE `".self::$db_prefix."ads` DROP FOREIGN KEY `".self::$db_prefix."ads_FK_id_user_AT_users`")->execute();
+            DB::query(Database::UPDATE,"ALTER TABLE `".self::$db_prefix."ads` DROP FOREIGN KEY `".self::$db_prefix."ads_FK_id_category_AT_categories`")->execute();
+        }catch (exception $e) {}
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE `".self::$db_prefix."ads` ENGINE = MyISAM")->execute();
+        }catch (exception $e) {}
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE `".self::$db_prefix."locations` ENGINE = MyISAM")->execute();
+        }catch (exception $e) {}
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE `".self::$db_prefix."categories` ENGINE = MyISAM")->execute();
+        }catch (exception $e) {}
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE `".self::$db_prefix."users` ENGINE = MyISAM")->execute();
+        }catch (exception $e) {}
+
+
+        //new configs
+        $configs = array(
+                        array( 'config_key'     => 'email_domains',
+                               'group_name'     => 'general',
+                               'config_value'   => ''),
+                        array( 'config_key'     => 'cron',
+                               'group_name'     => 'general',
+                               'config_value'   => '0'),
+                        array( 'config_key'     => 'paysbuy',
+                               'group_name'     => 'payment',
+                               'config_value'   => ''),
+                        array( 'config_key'     => 'paysbuy_sandbox',
+                               'group_name'     => 'payment',
+                               'config_value'   => '0'),
+                        array( 'config_key'     => 'validate_banned_words',
+                               'group_name'     => 'advertisement',
+                               'config_value'   => '0'),
+                        );
+        
+        Model_Config::config_array($configs);  
+    }
+
+    /**
      * This function will upgrade DB that didn't existed in versions prior to 2.6.0
      */
     public function action_260()

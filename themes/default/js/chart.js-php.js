@@ -45,7 +45,8 @@ function loadChartJsPhp() {
 $('a[data-toggle=tab').on('shown.bs.tab', function (e) {
 
     for (var i in ChartJSPHP) {
-        ChartJSPHP[i].destroy();
+        if (typeof ChartJSPHP[i].destroy == 'function')
+            ChartJSPHP[i].destroy();
     }
     
     loadChartJsPhp();

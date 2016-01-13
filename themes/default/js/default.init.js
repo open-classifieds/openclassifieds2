@@ -57,6 +57,38 @@ $(function(){
 //validate auth pages
 $(function(){
     
+    $.validator.addMethod(
+        "emaildomain",
+        function(value, element, domains) {
+            if (domains.length === 0)
+                return true;
+
+            for (var i = 0; i < domains.length; i++) {
+                if (value.indexOf(("@" + domains[i]), value.length - ("@" + domains[i]).length) !== -1) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+    );
+
+    $.validator.addMethod(
+        "nobannedwords",
+        function(value, element, words) {
+            if (words.length === 0)
+                return true;
+
+            for (var i = 0; i < words.length; i++) {
+                if (value.indexOf(words[i]) !== -1) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    );
+
     var $params = {rules:{}, messages:{}};
     $params['rules']['email'] = {required: true, email: true};
 
@@ -65,9 +97,10 @@ $(function(){
     });
 
     var $register_params = {rules:{}, messages:{}};
-    $register_params['rules']['email'] = {required: true, email: true};
+    $register_params['rules']['email'] = {required: true, email: true, emaildomain: $('.register :input[name="email"]').data('domain')};
     $register_params['rules']['password1'] = {required: true};
     $register_params['rules']['password2'] = {required: true};
+    $register_params['messages']['email'] = {"emaildomain" : $('.register :input[name="email"]').data('error')};
 
     $(".register").each(function() {
         $(this).validate($register_params)
@@ -165,4 +198,66 @@ $(function(){
         else
             $('.off-line').hide();
     }, 250);
+});
+
+$(function(){
+    // Check for LocalStorage support.
+    if (localStorage && $('#Widget_RecentlySearched')) {
+        $('.Widget_RecentlySearched').hide();
+        var recentSearches = [];
+
+        if (localStorage["recentSearches"]) {
+            $('.Widget_RecentlySearched').show();
+            recentSearches = JSON.parse(localStorage['recentSearches']);
+
+            var list = $('ul#Widget_RecentlySearched')
+
+            $.each(recentSearches, function(i) {
+
+                values = JSON.parse(this);
+                var text = '';
+
+                $.each(values, function(j) {
+                    if (jQuery.type(this) === 'string' && this != '' && this != values.serialize)
+                        text = text + this + ' - ';
+                })
+
+                text = text.slice(0,-3)
+
+                var li = $('<li/>')
+                    .appendTo(list);
+                var a = $('<a/>')
+                    .attr('href', $('#Widget_RecentlySearched').data('url') + '?' + values.serialize)
+                    .text(text)
+                    .appendTo(li);
+            })
+        }
+
+        form = 'form[action*="' + $('#Widget_RecentlySearched').data('url') + '"]';
+
+        // Add an event listener for form submissions
+        $(form).on('submit', function() {
+
+            var $inputs = $(this).find(':input:not(:button):not(:checkbox):not(:radio)');
+            var values = {};
+
+            $inputs.each(function() {
+                if (this.name) {
+                    values[this.name] = $(this).val();
+                }
+            });
+
+            values['serialize'] = $(this).serialize();
+
+            values = JSON.stringify(values);
+
+            recentSearches.unshift(values);
+            if (recentSearches.length > $('#Widget_RecentlySearched').data('max-items')) { 
+                recentSearches.pop();
+            }
+
+            localStorage['recentSearches'] = JSON.stringify(recentSearches);
+        });
+
+    }
 });

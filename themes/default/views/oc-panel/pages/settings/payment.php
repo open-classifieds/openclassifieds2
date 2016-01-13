@@ -258,7 +258,7 @@
         </div>
 
          <div class="panel panel-default">
-            <div class="panel-heading"><h4>2checkout</h4></div>
+            <div class="panel-heading"><?="<a target='_blank' href='https://docs.yclas.com/2checkout-configuration/'>".__('2checkout')."</a>"?></div>
             <div class="panel-body">
                 <div class="form-horizontal">
 
@@ -562,7 +562,57 @@
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading"><h4>Prevent Fraud</h4></div>
+            <div class="panel-heading">Paysbuy</div>
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    
+                    <div class="form-group">
+                        <label class="col-md-8 col-md-offset-4">
+                            <p>Accept BAHT using Paysbuy</p>
+                            <a class="btn btn-success" target="_blank" href="https://paysbuy.com">
+                                <i class="glyphicon glyphicon-pencil"></i> Register for free at Paysbuy</a>
+                        </label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <?= FORM::label($forms['paysbuy']['key'], __('Paysbuy account'), array('class'=>'col-md-4 control-label', 'for'=>$forms['paysbuy']['key']))?>
+                        <div class="col-md-8">
+                            <?= FORM::input($forms['paysbuy']['key'], $forms['paysbuy']['value'], array(
+                            'placeholder' => "", 
+                            'class' => 'tips form-control', 
+                            'id' => $forms['paysbuy']['key'],
+                            'data-content'=> __("Paysbuy account email"),
+                            'data-trigger'=>"hover",
+                            'data-placement'=>"right",
+                            'data-toggle'=>"popover",
+                            'data-original-title'=>'', 
+                            ))?> 
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <?= FORM::label($forms['paysbuy_sandbox']['key'], __('Sandbox'), array('class'=>'col-md-4 control-label', 'for'=>$forms['paysbuy_sandbox']['key']))?>
+                        <div class="col-md-8">
+                            <div class="onoffswitch">
+                                <?= Form::checkbox($forms['paysbuy_sandbox']['key'], 1, (bool) $forms['paysbuy_sandbox']['value'], array(
+                                'placeholder' => __("TRUE or FALSE"), 
+                                'class' => 'onoffswitch-checkbox', 
+                                'id' => $forms['paysbuy_sandbox']['key'], 
+                                'data-content'=> '',
+                                'data-trigger'=>"hover",
+                                'data-placement'=>"right",
+                                'data-toggle'=>"popover",
+                                'data-original-title'=>'',                     
+                                ))?>
+                                <?= FORM::label($forms['paysbuy_sandbox']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['paysbuy_sandbox']['key']))?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Prevent Fraud</div>
             <div class="panel-body">
                 <div class="form-horizontal">
 

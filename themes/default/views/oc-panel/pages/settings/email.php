@@ -150,22 +150,18 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <?= FORM::label($forms['smtp_ssl']['key'], __('Smtp ssl'), array('class'=>'control-label col-sm-4', 'for'=>$forms['smtp_ssl']['key']))?>
+                        <?= FORM::label($forms['smtp_secure']['key'], __('Smtp secure'), array('class'=>'control-label col-sm-4', 'for'=>$forms['smtp_secure']['key']))?>
                         <div class="col-sm-8">
-                            <div class="onoffswitch">
-                                <?= FORM::hidden($forms['smtp_ssl']['key'], 0);?>
-                                <?= Form::checkbox($forms['smtp_ssl']['key'], 1, (bool) $forms['smtp_ssl']['value'], array(
-                                'placeholder' => __("TRUE or FALSE"), 
-                                'class' => 'onoffswitch-checkbox', 
-                                'id' => $forms['smtp_ssl']['key'], 
-                                'data-content'=> '',
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"bottom",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>'',                     
-                                ))?>
-                                <?= FORM::label($forms['smtp_ssl']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['smtp_ssl']['key']))?>
-                            </div>
+                            <?= FORM::select($forms['smtp_secure']['key'], array(''=>__("None"),'ssl'=>'SSL','tls'=>'TLS'), $forms['smtp_secure']['value'], array(
+                            'placeholder' => $forms['smtp_secure']['value'], 
+                            'class' => 'tips form-control input-sm ', 
+                            'id' => $forms['smtp_secure']['key'],
+                            'data-content'=> __("Smtp secure"),
+                            'data-trigger'=>"hover",
+                            'data-placement'=>"right",
+                            'data-toggle'=>"popover",
+                            'data-original-title'=>__("Smtp secure"), 
+                            ))?> 
                         </div>
                     </div>
                     <div class="form-group">

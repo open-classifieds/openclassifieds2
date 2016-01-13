@@ -38,6 +38,9 @@ class Controller_Panel_Ad extends Auth_Controller {
 			if(core::config('general.search_by_description') == TRUE)
 	        	$ads = $ads->or_where('description', 'like', '%'.$q.'%');
 		}
+
+        if (is_numeric(Core::request('filter__id_user')))
+            $ads = $ads->where('id_user', '=',Core::request('filter__id_user'));
 		
         $ads_count = clone $ads;
 		$res_count = $ads_count->count_all();
@@ -197,10 +200,8 @@ class Controller_Panel_Ad extends Auth_Controller {
 					if ($spam_ad->status != Model_Ad::STATUS_SPAM)
 					{
 						//mark user as spamer
-						$user = new Model_User($spam_ad->user->id_user);
-						if($user->loaded())
-							$user->user_spam();
-
+						$spam_ad->user->user_spam();
+                        //mark as as spam
 						$spam_ad->status = Model_Ad::STATUS_SPAM;
 						
 						try{

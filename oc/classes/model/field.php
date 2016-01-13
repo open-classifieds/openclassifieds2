@@ -259,8 +259,11 @@ class Model_Field {
         $new_fields =  array();
 
         //using order they send us
-        foreach ($order as $name) 
-            $new_fields[$name] = $fields[$name];
+        foreach ($order as $name)
+        {
+            if (isset($fields[$name]))
+                $new_fields[$name] = $fields[$name];
+        } 
        
         //save configs
         $conf = new Model_Config();

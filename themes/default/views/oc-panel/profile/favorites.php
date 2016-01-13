@@ -2,7 +2,9 @@
 
 <div class="page-header">
     <h1><?=__('My Favorites')?></h1>
-    <a target='_blank' href='https://docs.yclas.com/add-chosen-ads-favourites/'><?=__('Read more')?></a></small>
+    <?if (Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN) :?>
+        <small><a target='_blank' href='https://docs.yclas.com/add-chosen-ads-favourites/'><?=__('Read more')?></a></small>
+    <?endif?>
 </div>
 
 <div class="panel panel-default">
@@ -18,7 +20,7 @@
             <tbody>
                 <?foreach($favorites as $favorite):?>
                     <tr id="tr<?=$favorite->id_favorite?>">
-                        <td><a target="_blank" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$favorite->ad->category->seoname,'seotitle'=>$favorite->ad->seotitle))?>"><?= wordwrap($favorite->ad->title, 15, "<br />\n"); ?></a></td>
+                        <td><a target="_blank" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$favorite->ad->category->seoname,'seotitle'=>$favorite->ad->seotitle))?>"><?= wordwrap($favorite->ad->title, 150, "<br />\n"); ?></a></td>
                         <td><?= Date::format($favorite->created, core::config('general.date_format'))?></td>
                         <td>
                             <a 

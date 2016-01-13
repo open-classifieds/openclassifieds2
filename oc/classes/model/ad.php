@@ -131,7 +131,7 @@ class Model_Ad extends ORM {
             $rules['description'] = array(array('min_length', array(':value', 5)), array('max_length', array(':value', 65535)), );
         
         if (core::config('payment.stock')==1)
-            $rules['stock'] =  array(array('not_empty'),array('numeric'));
+            $rules['stock'] =  array(array('numeric'));
         
         return $rules;
     }
@@ -924,7 +924,7 @@ class Model_Ad extends ORM {
                                 $cf_value = ($cf_value)?'checkbox_'.$cf_value:NULL;
                                 break;
                             case 'radio':
-                                $cf_value = $cf_config->$cf_name->values[$cf_value-1];
+                                $cf_value = isset($cf_config->$cf_name->values[$cf_value-1]) ? $cf_config->$cf_name->values[$cf_value-1] : NULL;
                                 break;
                             case 'date':
                                 $cf_value = Date::format($cf_value, core::config('general.date_format'));

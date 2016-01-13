@@ -87,7 +87,7 @@
                         <tr>
                             <td><p><?= $ad->id_user?></p></td>
                             <td>	
-                                <a href="<?=Route::url('profile', array('seoname'=>$owner->seoname))?>" alt=""><?= $owner->seoname?></a>
+                                <a href="<?=Route::url('profile', array('seoname'=>$owner->seoname))?>" alt="<?=HTML::chars($owner->seoname)?>"><?= $owner->seoname?></a>
                             </td>
                             <td><p><?= $owner->name?></p></td>
                             <td>	

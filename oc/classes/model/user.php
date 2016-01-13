@@ -11,6 +11,33 @@
 class Model_User extends Model_OC_User {
 
     /**
+     * global Model User instance get from controller so we can access from anywhere like Model_User::current()
+     * @var Model_User
+     */
+    protected static $_current = NULL;
+
+    /**
+     * returns the current user used when navidating the site, not the current loged user!
+     * @return Model_User
+     */
+    public static function current()
+    {
+        //we don't have so let's retrieve
+        if (self::$_current === NULL AND 
+            Request::current()->param('seoname') != NULL AND  
+            strtolower(Request::current()->action())=='profile' AND  
+            strtolower(Request::current()->controller())=='user' )
+        {
+            self::$_current = new self;
+            self::$_current = self::$_current->where('seoname','=', Request::current()->param('seoname'))
+             ->where('status','=', Model_User::STATUS_ACTIVE)
+             ->limit(1)->cached()->find();
+        }
+
+        return self::$_current;
+    }
+
+    /**
      * saves the user review rates recalculating it
      * @return [type] [description]
      */
@@ -47,6 +74,9 @@ class Model_User extends Model_OC_User {
        
         foreach ($ads as $ad) 
             $ad->delete();
+        
+        //bye profile pic
+        $this->delete_image();
         
         //delete favorites
         DB::delete('favorites')->where('id_user', '=',$this->id_user)->execute();
@@ -157,7 +187,7 @@ class Model_User extends Model_OC_User {
                                 $cf_value = ($cf_value)?'checkbox_'.$cf_value:NULL;
                                 break;
                             case 'radio':
-                                $cf_value = $cf_config->$cf_name->values[$cf_value-1];
+                                $cf_value = isset($cf_config->$cf_name->values[$cf_value-1]) ? $cf_config->$cf_name->values[$cf_value-1] : NULL;
                                 break;
                             case 'date':
                                 $cf_value = Date::format($cf_value, core::config('general.date_format'));

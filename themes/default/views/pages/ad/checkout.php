@@ -98,7 +98,7 @@ catch(e){}
                             </td>
                             <td class="col-md-9">
                                 <?=__('Coupon')?> '<?=$order->coupon->name?>'
-                                <?=__('valid until')?> <?=Date::format($order->coupon->valid_date)?>.
+                                <?=sprintf(__('valid until %s'), Date::format($order->coupon->valid_date, core::config('general.date_format')))?>.
                             </td>
                             <td class="col-md-2 text-center text-danger">
                                 -<?=i18n::format_currency($discount, $order->currency)?>
@@ -159,6 +159,9 @@ catch(e){}
                         <?endif?>
                         <?if(($two = twocheckout::form($order)) != ''):?>
                             <li class="text-right"><?=$two?></li>
+                        <?endif?>
+                        <?if(($paysbuy = paysbuy::form($order)) != ''):?>
+                            <li class="text-right"><?=$paysbuy?></li>
                         <?endif?>
                         <?if( ($alt = $order->alternative_pay_button()) != ''):?>
                             <li class="text-right"><?=$alt?></li>

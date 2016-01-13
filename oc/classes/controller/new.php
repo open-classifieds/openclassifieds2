@@ -166,6 +166,12 @@ class Controller_New extends Controller
                     ->rule('name', 'max_length', array(':value', 145));
                 }
 
+                // Optional banned words validation
+                if (core::config('advertisement.validate_banned_words'))
+                {
+                    $validation = $validation->rule('title', 'no_banned_words');
+                    $validation = $validation->rule('description', 'no_banned_words');
+                }
 
                 if($validation->check())
                 {       

@@ -179,11 +179,17 @@ class Controller_Ad extends Controller {
         }
         
         //if sort by distance
-        if (core::request('sort') == 'distance' AND Model_User::get_userlatlng())
+        if ((core::request('sort') == 'distance' OR core::request('userpos') == 1) AND Model_User::get_userlatlng())
         {
-            $ads->select(array(DB::expr('degrees(acos(sin(radians('.$_COOKIE['mylat'].')) * sin(radians(`latitude`)) + cos(radians('.$_COOKIE['mylat'].')) * cos(radians(`latitude`)) * cos(radians(abs('.$_COOKIE['mylng'].' - `longitude`))))) * 69.172'), 'distance'))
+            $ads->select(array(DB::expr('degrees(acos(sin(radians('.$_COOKIE['mylat'].')) * sin(radians(`latitude`)) + cos(radians('.$_COOKIE['mylat'].')) * cos(radians(`latitude`)) * cos(radians(abs('.$_COOKIE['mylng'].' - `longitude`))))) * 111.321'), 'distance'))
             ->where('latitude','IS NOT',NULL)
             ->where('longitude','IS NOT',NULL);
+        }
+
+        if (core::request('userpos') == 1 AND Model_User::get_userlatlng())
+        {
+            $location_distance = Core::config('general.measurement') == 'imperial' ? (Num::round(Core::config('advertisement.auto_locate_distance') * 1.60934)) : Core::config('advertisement.auto_locate_distance');
+            $ads->where(DB::expr('degrees(acos(sin(radians('.$_COOKIE['mylat'].')) * sin(radians(`latitude`)) + cos(radians('.$_COOKIE['mylat'].')) * cos(radians(`latitude`)) * cos(radians(abs('.$_COOKIE['mylng'].' - `longitude`))))) * 111.321'),'<=',$location_distance);
         }
     
         // featured ads
@@ -261,7 +267,7 @@ class Controller_Ad extends Controller {
                     break;
                 //distance
                 case 'distance':
-                    if (Model_User::get_userlatlng())
+                    if (Model_User::get_userlatlng() AND core::config('general.auto_locate'))
                     $ads->order_by('distance','asc')->order_by('published','asc');
                     break;
                 //oldest first
@@ -322,7 +328,7 @@ class Controller_Ad extends Controller {
 			{
                 //throw 404
                 if ($ad->status == Model_Ad::STATUS_UNAVAILABLE OR $ad->status == Model_Ad::STATUS_NOPUBLISHED)
-                    throw HTTP_Exception::factory(404,__("This advertisement doesn't exist, or is not yet published!"));
+                    throw HTTP_Exception::factory(404,__('This advertisement doesn´t exist, or is not yet published!'));
 
                 Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
 
@@ -871,6 +877,11 @@ class Controller_Ad extends Controller {
             $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/jquery.infinitescroll/2.0b2/jquery.infinitescroll.js';
             $this->template->scripts['footer'][] = 'js/listing.js';
         }
+        if(core::config('general.auto_locate'))
+        {
+            Theme::$scripts['footer'][] = '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7';
+            Theme::$scripts['footer'][] = '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js';
+        }
         $this->template->scripts['footer'][] = 'js/jquery.toolbar.js';
         $this->template->scripts['footer'][] = 'js/sort.js';
 
@@ -896,6 +907,14 @@ class Controller_Ad extends Controller {
         	// filter by each variable
         	$ads = new Model_Ad();
 
+            //if sort by distance
+            if ((core::request('sort') == 'distance' OR core::request('userpos') == 1) AND Model_User::get_userlatlng())
+            {
+                $ads->select(array(DB::expr('degrees(acos(sin(radians('.$_COOKIE['mylat'].')) * sin(radians(`latitude`)) + cos(radians('.$_COOKIE['mylat'].')) * cos(radians(`latitude`)) * cos(radians(abs('.$_COOKIE['mylng'].' - `longitude`))))) * 111.321'), 'distance'))
+                ->where('latitude','IS NOT',NULL)
+                ->where('longitude','IS NOT',NULL);
+            }
+
         	// early filter
 	        $ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED);
 
@@ -905,12 +924,10 @@ class Controller_Ad extends Controller {
 	            $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', Date::unix2mysql());
 	        }
 
-            //if sort by distance
-            if (core::request('sort') == 'distance' AND Model_User::get_userlatlng())
+            if (core::request('userpos') == 1 AND Model_User::get_userlatlng())
             {
-                $ads->select(array(DB::expr('degrees(acos(sin(radians('.$_COOKIE['mylat'].')) * sin(radians(`latitude`)) + cos(radians('.$_COOKIE['mylat'].')) * cos(radians(`latitude`)) * cos(radians(abs('.$_COOKIE['mylng'].' - `longitude`))))) * 69.172'), 'distance'))
-                ->where('latitude','IS NOT',NULL)
-                ->where('longitude','IS NOT',NULL);
+                $location_distance = Core::config('general.measurement') == 'imperial' ? (Num::round(Core::config('advertisement.auto_locate_distance') * 1.60934)) : Core::config('advertisement.auto_locate_distance');
+                $ads->where(DB::expr('degrees(acos(sin(radians('.$_COOKIE['mylat'].')) * sin(radians(`latitude`)) + cos(radians('.$_COOKIE['mylat'].')) * cos(radians(`latitude`)) * cos(radians(abs('.$_COOKIE['mylng'].' - `longitude`))))) * 111.321'),'<=',$location_distance);
             }
 
 	        if(!empty($search_advert) OR (core::get('search')!==NULL AND strlen(core::get('search'))>=3))
@@ -1136,7 +1153,7 @@ class Controller_Ad extends Controller {
                         break;
                     //distance
                     case 'distance':
-                        if (Model_User::get_userlatlng())
+                        if (Model_User::get_userlatlng() AND core::config('general.auto_locate'))
                         $ads->order_by('distance','asc')->order_by('published','asc');
                         break;
                     //oldest first

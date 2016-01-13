@@ -315,69 +315,95 @@ class Model_Location extends ORM {
       return $location->$attr;
     }
 
+
     /**
-   * counts the location ads
-   * @return array
-   */
+     * counts how many ads have each location
+     * @return array
+     */
     public static function get_location_count()
     {
-        if ( ($locs_count = Core::cache('locs_count'))===NULL)
+        //name used in the cache for storage
+        $cache_name = 'get_location_count';
+
+        if ( ($locs_count = Core::cache($cache_name))===NULL)
         {
+
             $expr_date = (is_numeric(core::config('advertisement.expire_date')))?core::config('advertisement.expire_date'):0;
             $db_prefix = Database::instance('default')->table_prefix();
 
-            $locs = DB::select('l.*')
-                  ->select(array(DB::select(DB::expr('COUNT("id_ad")'))
-                          ->from(array('ads','a'))
-                          ->where('a.id_location','=',DB::expr($db_prefix.'l.id_location'))
-                          ->where(DB::expr('IF('.$expr_date.' <> 0, DATE_ADD( published, INTERVAL '.$expr_date.' DAY), DATE_ADD( NOW(), INTERVAL 1 DAY))'), '>', Date::unix2mysql())
-                          ->where('a.status','=',Model_Ad::STATUS_PUBLISHED)
-                          ->group_by('id_location'), 'count'))
-                  ->from(array('locations', 'l'))
-                  ->order_by('order','asc')
-                  ->as_object()
-                  ->cached()
-                  ->execute();
+            //get the locations that have ads id_location->num ads
+            $count_ads = DB::select('l.id_location' , array(DB::expr('COUNT("a.id_ad")'),'count'))
+                        ->from(array('locations', 'l'))
+                        ->join(array('ads','a'))
+                        ->using('id_location')
+                        ->where(DB::expr('IF('.$expr_date.' <> 0, DATE_ADD( published, INTERVAL '.$expr_date.' DAY), DATE_ADD( NOW(), INTERVAL 1 DAY))'), '>', Date::unix2mysql())
+                        ->where('a.status','=',Model_Ad::STATUS_PUBLISHED)
+                        ->group_by('l.id_location')
+                       ->order_by('l.order','asc')
+                       ->cached()
+                       ->execute();
 
-            //array where we store the locations with the count
-            $locs_count = array();
+            $count_ads = $count_ads->as_array('id_location');
 
-            //array to store parents_id with the count. So later we can easily add them up
-            $parent_count = array();
+            //get all the locations ORM so we can use the functions, do not use root location
+            $locations = new self();
+            $locations = $locations->where('id_location','!=',1)->order_by('order','asc')->cached()->find_all();
 
-            foreach ($locs as $l) 
+
+            //getting the count of ads into the parents
+            $parents_count = array();
+            foreach ($locations as $location) 
             {
-                $locs_count[$l->id_location] = array(   'id_location'         => $l->id_location,
-                                                        'seoname'             => $l->seoname,
-                                                        'name'                => $l->name,
-                                                        'id_location_parent'  => $l->id_location_parent,
-                                                        'parent_deep'         => $l->parent_deep,
-                                                        'order'               => $l->order,
-                                                        'has_siblings'        => FALSE,
-                                                        'count'               => (is_numeric($l->count))?$l->count:0
-                                                        );
-                //counting the ads the parent have
-                if ($l->id_location_parent!=0)
+                //this one has ads so lets add it to the parents
+                if (isset($count_ads[$location->id_location]))
                 {
-                    if (!isset($parent_count[$l->id_location_parent]))
-                        $parent_count[$l->id_location_parent] = 0;
+                    //adding himself if doesnt exists
+                    if (!isset($parents_count[$location->id_location]))
+                    {
+                        $parents_count[$location->id_location] = $count_ads[$location->id_location];
+                        $parents_count[$location->id_location]['has_siblings'] = FALSE;
+                    }
 
-                    $parent_count[$l->id_location_parent]+=$l->count;
+                    //for each parent of this location add the count
+                    foreach ($location->get_parents_ids() as $id ) 
+                    {
+                        if (isset($parents_count[$id]))
+                            $parents_count[$id]['count']+= $count_ads[$location->id_location]['count'];
+                        else
+                            $parents_count[$id]['count'] = $count_ads[$location->id_location]['count'];
+
+                        $parents_count[$id]['has_siblings'] = TRUE;
+                    }
                 }
-              
             }
 
-            foreach ($parent_count as $id_location => $count) 
+            //generating the array
+            $locs_count = array();
+            foreach ($locations as $location) 
             {
-                //attaching the count to the parents so we know each parent how many ads have
-                $locs_count[$id_location]['count'] += $count;
-                $locs_count[$id_location]['has_siblings'] = TRUE;
+                $has_siblings = isset($parents_count[$location->id_location])?$parents_count[$location->id_location]['has_siblings']:FALSE;
+                
+                //they may not have counted the siblings since the count was 0 but he actually has siblings...
+                if ($has_siblings===FALSE AND count($location->get_siblings_ids())>0)
+                    $has_siblings = TRUE;
+
+                $locs_count[$location->id_location] = array(    'id_location'         => $location->id_location,
+                                                                'seoname'             => $location->seoname,
+                                                                'name'                => $location->name,
+                                                                'id_location_parent'  => $location->id_location_parent,
+                                                                'parent_deep'         => $location->parent_deep,
+                                                                'order'               => $location->order,
+                                                                'has_siblings'        => $has_siblings,
+                                                                'count'               => isset($parents_count[$location->id_location])?$parents_count[$location->id_location]['count']:0,
+                                                                );
+                //counting the ads the parent have
             }
 
-            Core::cache('locs_count',$locs_count);
-        }      
-      
-      return $locs_count;
+            //cache the result is expensive!
+            Core::cache($cache_name,$locs_count);
+        }
+
+        return $locs_count;
     }
 
 
@@ -445,6 +471,46 @@ class Model_Location extends ORM {
         //not loaded
         return NULL;
     }
+
+    /**
+     * returns all the parents ids, used to count ads
+     * @return array
+     */
+    public function get_parents_ids()
+    {
+        if ($this->loaded())
+        {
+            //name used in the cache for storage
+            $cache_name = 'get_parents_ids_location_'.$this->id_location;
+
+            if ( ($ids_parents = Core::cache($cache_name))===NULL)
+            {
+                //array that contains all the parents as keys (1,2,3,4,..)
+                $ids_parents = array();
+
+                if ($this->id_location_parent!=1)
+                {
+                    //adding the parent only if loaded
+                    if ($this->parent->loaded())
+                    {
+                        $ids_parents[] = $this->parent->id_location;
+                        $ids_parents = array_merge($ids_parents,$this->parent->get_parents_ids()); //recursive 
+                    }
+                    //removing repeated values
+                    $ids_parents = array_unique($ids_parents);  
+                }
+
+                //cache the result is expensive!
+                Core::cache($cache_name,$ids_parents);
+            }
+
+            return $ids_parents;
+        }
+
+        //not loaded
+        return NULL;
+    }
+
 
     /**
      * return the title formatted for the URL

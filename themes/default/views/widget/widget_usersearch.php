@@ -26,30 +26,32 @@
                     </div>
                 </div>
             </div>
-            <!-- Fields coming from user custom fields feature -->
-            <?foreach($widget->custom_fields as $name=>$field):?>
-                <?if (isset($field['searchable']) AND $field['searchable']):?>
-                    <div class="form-group">
-                        <?$cf_name = 'cf_'.$name?>
-                        <?if($field['type'] == 'select' OR $field['type'] == 'radio') {
-                            $select = array('' => $field['label']);
-                            foreach ($field['values'] as $select_name) {
-                                $select[$select_name] = $select_name;
-                            }
-                        } else $select = $field['values']?>
-                        <div class="col-xs-12">
-                            <?= FORM::label('cf_'.$name, $field['label'], array('for'=>'cf_'.$name))?>
-                            <?=Form::cf_form_field('cf_'.$name, array(
-                            'display'   => $field['type'],
-                            'label'     => $field['label'],
-                            'tooltip'   => (isset($field['tooltip']))? $field['tooltip'] : "",
-                            'default'   => $field['values'],
-                            'options'   => (!is_array($field['values']))? $field['values'] : $select,
-                            ),core::get('cf_'.$name), FALSE, TRUE)?> 
+            <?if ($widget->custom != FALSE) :?>
+                <!-- Fields coming from user custom fields feature -->
+                <?foreach($widget->custom_fields as $name=>$field):?>
+                    <?if (isset($field['searchable']) AND $field['searchable']):?>
+                        <div class="form-group">
+                            <?$cf_name = 'cf_'.$name?>
+                            <?if($field['type'] == 'select' OR $field['type'] == 'radio') {
+                                $select = array('' => $field['label']);
+                                foreach ($field['values'] as $select_name) {
+                                    $select[$select_name] = $select_name;
+                                }
+                            } else $select = $field['values']?>
+                            <div class="col-xs-12">
+                                <?= FORM::label('cf_'.$name, $field['label'], array('for'=>'cf_'.$name))?>
+                                <?=Form::cf_form_field('cf_'.$name, array(
+                                'display'   => $field['type'],
+                                'label'     => $field['label'],
+                                'tooltip'   => (isset($field['tooltip']))? $field['tooltip'] : "",
+                                'default'   => $field['values'],
+                                'options'   => (!is_array($field['values']))? $field['values'] : $select,
+                                ),core::get('cf_'.$name), FALSE, TRUE)?> 
+                            </div>
                         </div>
-                    </div>
-                <?endif?>
-            <?endforeach?>
+                    <?endif?>
+                <?endforeach?>
+            <?endif?>
             <!-- /endcustom fields -->
         <?endif?>
         <div class="clearfix"></div>

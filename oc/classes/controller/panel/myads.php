@@ -334,7 +334,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                             ->where('status','=',Model_Order::STATUS_CREATED)
                             ->where('id_ad','=',$form->id_ad)->find_all();
 
-            Breadcrumbs::add(Breadcrumb::factory()->set_title("Update"));
+            Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Update')));
             $this->template->content = View::factory('oc-panel/profile/edit_ad', array('ad'            => $form,
                                                                                        'extra_payment' => $extra_payment,
                                                                                        'orders'        => $orders));

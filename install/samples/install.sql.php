@@ -67,7 +67,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_api_token` (`api_token`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_seoname` (`seoname`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_provider_AND_uid` (`hybridauth_provider_name`,`hybridauth_provider_uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')."categories` (
@@ -84,7 +84,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `has_image` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_category`) USING BTREE,
   UNIQUE KEY `".core::request('TABLE_PREFIX')."categories_IK_seo_name` (`seoname`)
-) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."locations` (
@@ -101,7 +101,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `longitude` float(10,6) NULL DEFAULT NULL,
   PRIMARY KEY (`id_location`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."loations_UK_seoname` (`seoname`)
-) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."ads` (
@@ -133,10 +133,8 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   KEY `".core::request('TABLE_PREFIX')."ads_IK_id_category` (`id_category`),
   KEY `".core::request('TABLE_PREFIX')."ads_IK_title` (`title`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."ads_UK_seotitle` (`seotitle`),
-  KEY `".core::request('TABLE_PREFIX')."ads_IK_status` (`status`),
-  CONSTRAINT `".core::request('TABLE_PREFIX')."ads_FK_id_user_AT_users` FOREIGN KEY (`id_user`) REFERENCES `".core::request('TABLE_PREFIX')."users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `".core::request('TABLE_PREFIX')."ads_FK_id_category_AT_categories` FOREIGN KEY (`id_category`) REFERENCES `".core::request('TABLE_PREFIX')."categories` (`id_category`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+  KEY `".core::request('TABLE_PREFIX')."ads_IK_status` (`status`)
+) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."visits` (
@@ -381,15 +379,6 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."content` (`id_
 (64, 'cs_CZ', 0, 'Změna hesla [SITE.NAME]', 'auth-remember', 'Dobrý den [USER.NAME],\n\nKlikněte na tento link  [URL.QL]\n\nDěkujeme!', '".core::request('ADMIN_EMAIL')."', '2013-07-30 08:31:01', 'email', 1),
 (65, 'cs_CZ', 0, 'Vítejte na [SITE.NAME]!', 'auth-register', 'Vítejte [USER.NAME],\n\nJsme rádi, že jste se k nám připojili! [URL.QL]\n\nZapamatujte si Vaše přihlašovací údaje:\nEmail: [USER.EMAIL]\nHeslo: [USER.PWD]\n\nJiž nemáme Vaše původní heslo.\n\nPřejeme příjemný zbytek dne!', '".core::request('ADMIN_EMAIL')."', '2013-07-30 08:32:10', 'email', 1),
 
-(66, 'fr_FR', 0, 'Félicitations! Votre annonce `[AD.NAME]` a bien été créée sur [SITE.NAME]!', 'ads-confirm', 'Bienvenue [USER.NAME],\n\nMerci d''avoir publié une annonce sur [SITE.NAME]! \n\nVeuillez cliquer sur ce lien [URL.QL] pour la confirmer.\n\nCordialement,', '".core::request('ADMIN_EMAIL')."', '2013-07-30 08:37:55', 'email', 1),
-(67, 'fr_FR', 0, 'Nouvelle annonce créée sur [SITE.NAME]', 'ads-user-check', 'Bonjour [USER.NAME],\n\nL''annonce a bien été créée sous le compte [USER.NAME]. Vous pouvez cliquer sur ce lien pour la voir [URL.AD]\n\nSi vous n''êtes pas à l''origine de cette annonce, cliquez sur ce lien pour nous contacter [URL.CONTACT].', '".core::request('ADMIN_EMAIL')."', '2013-07-30 08:39:00', 'email', 1),
-(68, 'fr_FR', 0, 'Félicitations! Votre annonce `[AD.NAME]` a bien été créée sur [SITE.NAME]', 'ads-notify', 'Bonjour [USER.NAME],\n\nMerci d''avoir publié une annonce sur [SITE.NAME]!\n\nVous pouvez modifier votre annonce ici [URL.QL].\n\nPour l''instant, votre annonce est en attente de publication, elle doit encore être validée par le responsable des annonces.\n\nNous sommes désolés pour la gène occasionnée. Elle sera confirmée dès que possible.\n\nCordialement,', '".core::request('ADMIN_EMAIL')."', '2013-07-30 08:41:07', 'email', 1),
-(69, 'fr_FR', 0, '[EMAIL.SENDER] souhaite vous contacter!', 'contact-admin', 'Bonjour Administrateur,\n\n[EMAIL.SENDER]: [EMAIL.FROM] a un message pour vous:\n\n[EMAIL.BODY]\n\nCordialement,', '".core::request('ADMIN_EMAIL')."', '2013-07-30 08:43:24', 'email', 1),
-(70, 'fr_FR', 0, 'Votre annonce sur [SITE.NAME] a été activée', 'ads-activated', 'Bonjour [USER.OWNER],\n\nNous vous informons que votre annonce [URL.QL] est activée!\nElle est désormais visible de tous.\n\nEn espérant ne vous avoir pas fait trop attendre.\n\nCordialement,', '".core::request('ADMIN_EMAIL')."', '2013-07-30 08:45:03', 'email', 1),
-(72, 'fr_FR', 0, 'Bonjour [USER.NAME]', 'user-contact', 'Vous avez reçu un message au sujet de votre annonce.\nL''utilisateur [EMAIL.SENDER] [EMAIL.FROM] vous a envoyé le message suivant:\n[EMAIL.BODY].\n\nCordialement,', '".core::request('ADMIN_EMAIL')."', '2013-07-30 08:48:14', 'email', 1),
-(73, 'fr_FR', 0, 'Changement de mot de passe pour [SITE.NAME]', 'auth-remember', 'Bonjour [USER.NAME],\n\nVeuillez suivre ce lien [URL.QL]\n\nMerci!', '".core::request('ADMIN_EMAIL')."', '2013-07-30 08:49:56', 'email', 1),
-(74, 'fr_FR', 0, 'Bienvenue sur [SITE.NAME]!', 'auth-register', 'Bienvenue [USER.NAME],\n\nNous sommes ravis de votre participation! [URL.QL]\nRappelez-vous vos informations d''utilisateur:\nEmail: [USER.EMAIL]\nMot de passe: [USER.PWD]\n\nNous n''avons plus votre mot de passe original.\n\nCordialement,', '".core::request('ADMIN_EMAIL')."', '2013-07-30 08:51:20', 'email', 1),
-
 (75, 'da_DK', 0, 'Din annonce `[AD.NAME]` blev oprettet på [SITE.NAME]!', 'ads-confirm', 'Velkommen [USER.NAME],\n\nTak for din annonce på [SITE.NAME]!\n\nFølge dette link for at bekræfte annoncen.\n\nMed venlig hilsen', '".core::request('ADMIN_EMAIL')."', '2013-07-30 08:55:52', 'email', 1),
 (76, 'da_DK', 0, 'Annonce oprettet på [SITE.NAME]!', 'ads-user-check', 'Hej [USER.NAME],\n\nAnnoncen er oprettet under din profil [USER.NAME]! Du kan følge dette link for at se din annonce: [URL.AD]\n\nHvis det ikke er dig der har oprettet denne annonce, så kontakt os her: [URL.CONTACT].', '".core::request('ADMIN_EMAIL')."', '2013-07-30 08:56:56', 'email', 1),
 (77, 'da_DK', 0, 'Din annonce `[AD.NAME]` blev oprettet på [SITE.NAME]!', 'ads-notify', 'Hej [USER.NAME],\n\nTak for din annonce på [SITE.NAME]! \n\nDu kan redigere din annonce her [URL.QL].\n\nDin annonce er endnu ikke udgivet, da den skal valideres af en administrator. \n\nVi validerer annoncer så hurtigt vi kan, og undskylder på forhånd for ventetiden.\n\nMed venlig hilsen', '".core::request('ADMIN_EMAIL')."', '2013-07-30 08:58:35', 'email', 1),
@@ -470,6 +459,30 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."content` (`id_
 (152, 'es_ES', 0, 'Tu anuncio [AD.NAME] ha expirado', 'ad-expired', 'Hola [USER.NAME], Tu anuncio [AD.NAME] ha expirado \r\n\r\nPor favor, revisa tu anuncio aquí [URL.EDITAD]', '".core::request('ADMIN_EMAIL')."', '2014-10-28 03:52:59', 'email', 1),
 (153, 'es_ES', 0, 'Opinión nueva para [AD.TITLE] [RATE]', 'ad-review', '[URL.QL]\r\n\r\n[RATE]\r\n\r\n[DESCRIPTION]', '".core::request('ADMIN_EMAIL')."', '2014-10-28 03:52:15', 'email', 1);");
 
+mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."content` (`locale`, `title`, `seotitle`, `description`, `from_email`, `type`, `status`) VALUES
+('fr_FR', 'Félicitations! Votre annonce a bien été créée sur [SITE.NAME]!', 'ads-confirm', 'Bienvenue [USER.NAME],<br /><br />\n<br /><br />\nMerci d''avoir créé une anonnce sur [SITE.NAME]! <br /><br />\n<br /><br />\nVeuillez cliquer sur ce lien [URL.QL] pour la confirmer.<br /><br />\n<br /><br />\nCordialement!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+('fr_FR', 'Félicitations! Votre annonce a été créée sur [SITE.NAME]!', 'ads-notify', 'Bonjour [USER.NAME],<br /><br />\n<br /><br />\nMerci d''avoir créé une anonnce sur [SITE.NAME]! <br /><br />\n<br /><br />\nVous pouvez modifier votre annonce ici [URL.QL].<br /><br />\n<br /><br />\nVotre annonce est en attente de publication, elle doit encore être validée par l''administrateur. Nous allons l''examiner dès que possible. <br /><br />\n<br /><br />\nNous sommes désolés pour le délai et la gène occasionnée. Merci de votre compréhension.<br /><br />\n<br /><br />\nCordialement!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+('fr_FR', '[EMAIL.SENDER] souhaite vous contacter!', 'contact-admin', 'Bonjour Administrateur,<br /><br />\n<br /><br />\n[EMAIL.SENDER]: [EMAIL.FROM], a un message pour vous:<br /><br />\n<br /><br />\n[EMAIL.BODY] <br /><br />\n<br /><br />\nCordialement!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+('fr_FR', 'Votre annonce sur [SITE.NAME] a été activée!', 'ads-activated', 'Bonjour [USER.OWNER],<br /><br />\n<br /><br />\nNous vous informons que votre annonce [URL.QL] a été activée!<br /><br />\nElle est désormais visible de tous sur le site. <br /><br />\n<br /><br />\nEn espérant ne pas vous avoir fait trop attendre. <br /><br />\n<br /><br />\nCordialement!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+('fr_FR', 'Bonjour [USER.NAME]!', 'user-new', 'Bienvenue sur [SITE.NAME]. <br /><br />\n<br /><br />\nNous sommes ravis de votre participation,<br /><br />\nVous pouvez vous connecter avec votre email: [USER.EMAIL], <br /><br />\net votre mot de passe: [USER.PWD]. <br /><br />\n<br /><br />\nLe mot de passe a été généré automatiquement; pour le remplacer par votre mot de passe préféré, cliquez sur ce lien: [URL.PWCH]. <br /><br />\n<br /><br />\nMerci de votre confiance! <br /><br />\n<br /><br />\nCordialement!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+('fr_FR', 'Bonjour [USER.NAME]!', 'user-contact', 'Vous avez été contacté au sujet de votre annonce. <br /><br />\nL''utilisateur [EMAIL.SENDER] [EMAIL.FROM] vous a envoyé le message suivant:<br /><br />\n[EMAIL.BODY]. <br /><br />\n<br /><br />\nCordialement!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+('fr_FR', 'Changement de mot de passe [SITE.NAME]', 'auth-remember', 'Bonjour [USER.NAME],<br /><br />\n<br /><br />\nVeuillez suivre ce lien [URL.QL]<br /><br />\n<br /><br />\nMerci!!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+('fr_FR', 'Bienvenue sur [SITE.NAME]!', 'auth-register', 'Bienvenue [USER.NAME],<br /><br />\n<br /><br />\nNous sommes ravis de votre participation! [URL.QL]<br /><br />\nVoici pour rappel vos informations de connexion:<br /><br />\nEmail: [USER.EMAIL]<br /><br />\nMot de passe: [USER.PWD]<br /><br />\n<br /><br />\nPour des raisons de sécurité, nous ne gardons pas votre mot de passe original.<br /><br />\n<br /><br />\nCordialement!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+('fr_FR', 'Bonjour [USER.NAME]!', 'user-profile-contact', 'L''utilisateur [Email.SENDER] [EMAIL.From] a un message pour vous: [EMAIL.SUBJECT] [EMAIL.BODY]. Cordialement,', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+('fr_FR', 'L''annonce `[AD.NAME]` a été créée sur [SITE.NAME]!', 'ads-user-check', 'Bonjour [USER.NAME], l''annonce a été créée avec votre compte [USER.NAME]! Vous pouvez visiter ce lien pour Cliquez ici pour accéder à votre annonce: [URL.AD] Si vous n''êtes pas l''auteur de cette annonce, cliquez sur le lien pour nous contacter: [URL.CONTACT].', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+('fr_FR', 'L''annonce `[AD.TITLE]` vient d''être publiée sur [SITE.NAME]!', 'ads-subscribers', 'Bonjour, Vous êtes peut être intéressé(e) par cette nouvelle annonce! Cliquez sur ce lien pour Cliquez ici pour accéder à votre annonce: [URL.AD]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+('fr_FR', 'L''annonce `[AD.TITLE]` vient d''être créée sur [SITE.NAME]!', 'ads-to-admin', 'Cliquez ici pour voir l''annnonce [URL.AD]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+('fr_FR', 'L''annonce `[AD.TITLE]` a été vendue sur [SITE.NAME]!', 'ads-sold', 'Numéro de commande: [ORDER.ID] ID de produit: [PRODUCT.ID] Veuillez svp vérifier votre compte pour le paiement entrant. Cliquez ici pour accéder à votre annonce: [URL.AD]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+('fr_FR', 'L''annonce `[AD.TITLE]` est en rupture de stock sur [SITE.NAME]!', 'out-of-stock', 'Bonjour [USER.NAME]. Comme votre annonce est en rupture de stock, il n''est pas posible pour les visiteurs du site de la voir. Si vous souhaitez augmenter sa disponibilité et ainsi activer votre annonce, veuillez svp cliquer sur le lien suivant: [URL.EDIT]. Cordialement!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+('fr_FR', 'Reçu pour votre commande [ORDER.DESC] # [ORDER.ID]', 'new-order', 'Bonjour [USER.NAME], Merci pour votre commande [ORDER.DESC]. Veuillez svp régler votre commande et procéder à son paiement ici: [URL.CHECKOUT]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+('fr_FR', 'Votre annonce [AD.NAME] a expiré', 'ad-expired', 'Bonjour [USER.NAME], Votre annonce [AD.NAME] a expiré. Veuillez svp vérifier votre annonce ici: [URL.EDITAD]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+('fr_FR', 'L''annonce `[AD.TITLE]` a été achetée sur [SITE.NAME]!', 'ads-purchased', 'Numéro de commande: [ORDER.ID] ID du produit: [PRODUCT.ID] Pour toute question ou demande veuillez svp contacter l''administrateur du site [SITE.NAME] Cliquez ici pour accéder à votre annonce: [URL.AD]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+('fr_FR', 'Mot de passe modifié [SITE.NAME]', 'password-changed', 'Bonjour [USER.NAME], Votre mot de passe a été changé. Voici vos nouvelles informations de connexion: Email: [USER.EMAIL] Mot de passe: [USER.PWD] . Pour des raisons de sécurité, nous ne gardons pas votre mot de passe original. Cordialement!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+('fr_FR', 'Votre annonce [AD.NAME] va expirer', 'ad-to-expire', 'Bonjour [USER.NAME], Votre annonce [AD.NAME] va bientôt expirer. Veuillez svp vérifier votre annonce en cliquant sur ce lien: [URL.EDITAD]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+('fr_FR', 'Nouvelle réponse: [TITRE]', 'messaging-reply', '[URL.QL]\r\n\r\n[DESCRIPTION]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+('fr_FR', '[FROM.NAME] vous a envoyé un message direct', 'messaging-user-contact', 'Bonjour [TO.NAME], [FROM.NAME] a un message pour vous: [description] [URL.QL] Cordialement!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+('fr_FR', 'Nouveau commentaire sur votre annonce [AD.TITLE] [RATE]', 'ad-review', 'Bonjour, une nouveau commentaire et une appréciation ont été publiés pour votre annonce. [URL.QL]\r\n\r\n[RATE]\r\n\r\n[DESCRIPTION]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+('fr_FR', 'Bonjour [TO.NAME]!', 'messaging-ad-contact', 'Vous avez été contacté au sujet de votre annonce: `[AD.NAME]`. L''utilisateur [FROM.NAME] a un message pour vous: [DESCRIPTION] [URL.QL] Cordialement!', '".core::request('ADMIN_EMAIL')."', 'email', 1);");
 
 
 /**
@@ -539,6 +552,8 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('payment', 'twocheckout_secretword', ''),
 ('payment', 'twocheckout_sandbox', 0),
 ('payment', 'fraudlabspro', ''),
+('payment', 'paysbuy', ''),
+('payment', 'paysbuy_sandbox', '0'),
 ('general', 'api_key', '".core::generate_password(32)."'),
 ('general', 'number_format', '%n'),
 ('general', 'date_format', 'd-m-y'),
@@ -577,6 +592,8 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('general', 'adblock', 0),
 ('general', 'search_multi_catloc', 0),
 ('general', 'gcm_apikey', ''),
+('general', 'email_domains', ''),
+('general', 'cron', 1),
 ('image', 'allowed_formats', 'jpeg,jpg,png,'),
 ('image', 'max_image_size', '5'),
 ('image', 'height', ''),
@@ -636,13 +653,14 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('advertisement', 'sharing', '0'),
 ('advertisement', 'logbee', 0),
 ('advertisement', 'leave_alert', 1),
+('advertisement', 'validate_banned_words', 0),
 ('email', 'notify_email', '".core::request('ADMIN_EMAIL')."'),
 ('email', 'smtp_active', 0),
 ('email', 'new_ad_notify', 0),
 ('email', 'smtp_host', ''),
 ('email', 'smtp_port', ''),
 ('email', 'smtp_auth', 0),
-('email', 'smtp_ssl', 0),
+('email', 'smtp_secure', ''),
 ('email', 'smtp_user', ''),
 ('email', 'smtp_pass', ''),
 ('email', 'elastic_active', 0),

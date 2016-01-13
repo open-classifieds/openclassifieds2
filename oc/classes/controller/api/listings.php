@@ -52,6 +52,28 @@ class Controller_Api_Listings extends Api_Auth {
                         ->where_close();
                 }
 
+                //getting all the ads of a category.
+                if ( isset($this->_filter_params['id_category']) AND is_numeric($this->_filter_params['id_category']['value']))
+                {
+                    $category = new Model_Category($this->_filter_params['id_category']['value']);
+                    if ($category->loaded())
+                    {
+                        $ads->where('id_category', 'in', $category->get_siblings_ids());
+                        unset($this->_filter_params['id_category']);
+                    }    
+                }
+
+                //getting all the ads of a location.
+                if ( isset($this->_filter_params['id_location']) AND is_numeric($this->_filter_params['id_location']['value']))
+                {
+                    $location = new Model_Location($this->_filter_params['id_location']['value']);
+                    if ($location->loaded())
+                    {
+                        $ads->where('id_location', 'in', $location->get_siblings_ids());
+                        unset($this->_filter_params['id_location']);
+                    }    
+                }
+
                 //filter results by param, verify field exists and has a value
                 $ads->api_filter($this->_filter_params);
 

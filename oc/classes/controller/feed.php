@@ -145,6 +145,66 @@ class Controller_Feed extends Controller {
     
     }
 
+    public function action_profile()
+    {
+        $this->auto_render = FALSE;
+        $xml = 'FALSE';
+
+        $seoname = $this->request->param('seoname',NULL);
+        if ($seoname!==NULL)
+        {
+            $user = new Model_User();
+            $user->where('seoname','=', $seoname)
+                 ->where('status','=', Model_User::STATUS_ACTIVE)
+                 ->limit(1)->cached()->find();
+            
+            if ($user->loaded())
+            {
+
+                $info = array(
+                                'title'       => 'RSS '.$user->name,
+                                'pubDate'     => date("r"),
+                                'description' => $user->name.' - '.$user->description,
+                                'generator'   => 'Open Classifieds',
+                ); 
+                
+                $items = array();
+
+                //last ads, you can modify this value at: advertisement.feed_elements
+                $ads = new Model_Ad();
+                $ads    ->where('status','=',Model_Ad::STATUS_PUBLISHED)
+                        ->where('id_user','=',$user->id_user)
+                        ->order_by('published','desc')
+                        ->limit(Core::config('advertisement.feed_elements'));
+
+                $ads = $ads->cached()->find_all();
+
+                foreach($ads as $a)
+                {
+                    $url= Route::url('ad',  array('category'=>$a->category->seoname,'seotitle'=>$a->seotitle));
+                    $item = array(
+                                        'title'         => htmlspecialchars($a->title,ENT_QUOTES),
+                                        'link'          => $url,
+                                        'pubDate'       => Date::mysql2unix($a->published),
+                                        'description'   => htmlspecialchars(Text::removebbcode($a->description),ENT_QUOTES),
+                                        'guid'          => $url,
+                                  );
+                    if($a->get_first_image() !== NULL)
+                    {
+                        $item['description'] = '<img src="'.$a->get_first_image().'" />'.$item['description'];
+                    }
+
+                    $items[] = $item;
+                }
+                $xml = Feed::create($info, $items);
+            }
+        }
+  
+        $this->response->headers('Content-type','text/xml');
+        $this->response->body($xml);
+    
+    }
+
     public function action_info()
     {
 

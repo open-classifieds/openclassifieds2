@@ -113,10 +113,11 @@ class Controller_Panel_Tools extends Controller_Panel_OC_Tools {
                     }
                     else
                     {
-                        foreach ($cat_array as $cat) {
+                        foreach ($cat_array as $cat) 
+                        {
                             
                             //category parent was sent?
-                            if($cat[1])
+                            if(isset($cat[1]))
                             {
                                 $category_parent = new Model_Category();
                                 $category_parent->where('name','=',$cat[1])->limit(1)->find();

@@ -11,6 +11,33 @@
 class Kohana_Exception extends Kohana_Kohana_Exception {
 
 
+    /**
+     * Creates a new translated exception.
+     *
+     *     throw new Kohana_Exception('Something went terrible wrong, :user',
+     *         array(':user' => $user));
+     *
+     * @param   string          $message    error message
+     * @param   array           $variables  translation variables
+     * @param   integer|string  $code       the exception code
+     * @param   Exception       $previous   Previous exception
+     * @return  void
+     */
+    public function __construct($message = "", array $variables = NULL, $code = 0, Exception $previous = NULL)
+    {
+        
+        //when exceptions where thrown we where getting a ErrorException [ Fatal Error ]: Call to undefined function __()
+        //since i18n was not loaded yet. nasty but works...
+        if (!function_exists('__'))
+        {
+            function __($message,$variables = NULL)
+            {
+                return is_array($variables) ? strtr($message, $variables):$message;
+            }
+        }
+
+        parent::__construct($message , $variables , $code , $previous );
+    }
 
     /**
      * Get a Response object representing the exception

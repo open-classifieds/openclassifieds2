@@ -46,6 +46,9 @@
   <link rel="alternate" type="application/atom+xml" title="RSS Forum <?=HTML::chars(Core::config('general.site_name'))?> - <?=Model_Forum::current()->name?>" href="<?=Route::url('rss-forum', array('forum'=>Model_Forum::current()->seoname))?>" />
   <?endif?>
 <?endif?>
+<?if (Model_User::current()!=NULL AND Model_User::current()->loaded()):?>
+  <link rel="alternate" type="application/atom+xml" title="RSS Profile - <?=HTML::chars(Model_User::current()->name)?>" href="<?=Route::url('rss-profile', array('seoname'=>Model_User::current()->seoname))?>" />
+  <?endif?>
 <link rel="alternate" type="application/atom+xml" title="RSS <?=HTML::chars(Core::config('general.site_name'))?>" href="<?=Route::url('rss')?>" />
 
 

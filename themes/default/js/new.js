@@ -240,9 +240,31 @@ $('textarea[name=description]:not(.disable-bbcode)').sceditorBBCodePlugin({
 	
 // paste plain text in sceditor
 $(".sceditor-container iframe").contents().find("body").bind('paste', function(e) {
-    e.preventDefault();
-    var text = (e.originalEvent || e).clipboardData.getData('text/plain');
-    $(".sceditor-container iframe")[0].contentWindow.document.execCommand('insertText', false, text);
+    var text = ''; var that = $(this);
+
+    if (e.clipboardData)
+        text = e.clipboardData.getData('text/plain');
+    else if (window.clipboardData)
+        text = window.clipboardData.getData('Text');
+    else if (e.originalEvent.clipboardData)
+        text = $('<div></div>').text(e.originalEvent.clipboardData.getData('text'));
+
+        
+    if (document.queryCommandSupported('insertText')) {
+        $(".sceditor-container iframe")[0].contentWindow.document.execCommand('insertHTML', false, $(text).html());
+        return false;
+    }
+    else { // IE > 7
+        that.find('*').each(function () {
+             $(this).addClass('within');
+        });
+
+        setTimeout(function () {
+            that.find('*').each(function () {
+                $(this).not('.within').contents().unwrap();
+            });
+        }, 1);
+    }
 });	
 
 // google map set marker on address
@@ -432,8 +454,12 @@ $(function(){
                                             }
                                         }
                                     };
-    $params['messages']['price'] =   {"regex" : $('.post_new :input[name="price"]').data('error')};
-    $params['messages']['captcha'] =   {"remote" : $('.post_new :input[name="captcha"]').data('error')};
+    $params['rules']['email'] = {emaildomain: $('.post_new :input[name="email"]').data('domain')};
+    $params['rules']['description'] = {nobannedwords: $('.post_new :input[name="description"]').data('bannedwords')};
+    $params['messages']['price'] = {"regex" : $('.post_new :input[name="price"]').data('error')};
+    $params['messages']['captcha'] = {"remote" : $('.post_new :input[name="captcha"]').data('error')};
+    $params['messages']['email'] = {"emaildomain" : $('.post_new :input[name="email"]').data('error')};
+    $params['messages']['description'] = {"nobannedwords" : $('.post_new :input[name="description"]').data('error')};
 
     $.validator.setDefaults({ ignore: ":hidden:not(select)" });
     var $form = $(".post_new");
@@ -477,7 +503,9 @@ function clearFileInput($input) {
             $input.unwrap().appendTo($tmpEl).unwrap();
         } else {
             $input.wrap('<form>').closest('form').trigger('reset').unwrap();
-        }   
+        }
+    } else if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+        $input.replaceWith($input.clone());
     } else {
         $input.val('');
     }

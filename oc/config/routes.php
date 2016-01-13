@@ -207,6 +207,15 @@ Route::set('profile', 'user/<seoname>')
         'action'     => 'profile',
 ));
 
+/**
+ * rss for user
+ */
+Route::set('rss-profile','user/<seoname>.xml')
+->defaults(array(
+        'controller' => 'feed',    
+        'action'     => 'profile',
+));
+
 
 /**
  * Item / ad view (public)

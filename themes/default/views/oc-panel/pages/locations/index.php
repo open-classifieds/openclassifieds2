@@ -60,8 +60,8 @@
                     
                     <?if(count($locs) > 0) :?>
                         <p class="text-right">
-                            <button data-toggle="modal" data-target="#delete-all" class="btn btn-danger">
-                                <i class="glyphicon glyphicon-trash space-right"></i><?=__('Delete all locations')?>
+                            <button type="button" data-toggle="modal" data-target="#delete-all" class="btn btn-danger">
+                                <?=__('Delete all locations')?>
                             </button>
 
                             <button name="delete" type="submit" class="btn btn-danger">

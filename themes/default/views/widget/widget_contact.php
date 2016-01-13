@@ -52,6 +52,7 @@
 				<div class="col-xs-12">
 					<?if (Core::config('general.recaptcha_active')):?>
 						<?=Captcha::recaptcha_display()?>
+						<div id="recaptcha2"></div>
 					<?else:?>
 						<?=__('Captcha')?>*:<br />
 						<?=captcha::image_tag('contact')?><br />

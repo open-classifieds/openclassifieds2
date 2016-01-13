@@ -347,6 +347,25 @@
                             ))?> 
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <?= FORM::label($forms['validate_banned_words']['key'], __('Validate banned words'), array('class'=>'control-label col-sm-4', 'for'=>$forms['validate_banned_words']['key']))?>
+                        <div class="col-sm-8">
+                            <div class="onoffswitch">
+                                <?= FORM::hidden($forms['validate_banned_words']['key'], 0);?>
+                                <?= FORM::checkbox($forms['validate_banned_words']['key'], 1, (bool) $forms['validate_banned_words']['value'], array(
+                                'class' => 'onoffswitch-checkbox', 
+                                'id' => $forms['validate_banned_words']['key'], 
+                                'data-original-title'=> __("Enables banned words validation"),
+                                'data-trigger'=>"hover",
+                                'data-placement'=>"right",
+                                'data-toggle'=>"popover",
+                                'data-content'=>__("Enables banned words validation"),
+                                ))?>
+                                <?= FORM::label($forms['validate_banned_words']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['validate_banned_words']['key']))?>
+                            </div>
+                        </div>
+                    </div>
                     
                     <div class="form-group">
                         <?= FORM::label($forms['banned_words_replacement']['key'], __('Banned words replacement'), array('class'=>'control-label col-sm-4', 'for'=>$forms['banned_words_replacement']['key']))?>

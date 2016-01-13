@@ -77,7 +77,13 @@
 						<div class="form-group">
 							<div class="col-md-9">
 								<?= FORM::label('description', __('Description'), array('for'=>'description', 'spellcheck'=>TRUE))?>
-								<?= FORM::textarea('description', Request::current()->post('description'), array('class'=>'form-control'.((Core::config("advertisement.description_bbcode"))? NULL:' disable-bbcode'), 'name'=>'description', 'id'=>'description' ,  'rows'=>10, 'required'))?>
+								<?=FORM::textarea('description', Request::current()->post('description'), array('class'=>'form-control'.((Core::config("advertisement.description_bbcode"))? NULL:' disable-bbcode'), 
+									'name'=>'description', 
+									'id'=>'description', 
+									'rows'=>10, 
+									'required',
+									'data-bannedwords' => (core::config('advertisement.banned_words') != '') ? json_encode(explode(',', core::config('advertisement.banned_words'))) : '',
+									'data-error' => __('This field must not contain banned words ({0})')))?>
 							</div>
 						</div>
 					<?endif?>
@@ -192,7 +198,14 @@
 						<div class="form-group">
 							<div class="col-md-4">
 								<?= FORM::label('email', (core::config('payment.paypal_seller')==1)?__('Paypal Email'):__('Email'), array('for'=>'email'))?>
-								<?= FORM::input('email', Request::current()->post('email'), array('class'=>'form-control', 'id'=>'email', 'type'=>'email' ,'required','placeholder'=>(core::config('payment.paypal_seller')==1)?__('Paypal Email'):__('Email')))?>
+								<?= FORM::input('email', Request::current()->post('email'), array('class'=>'form-control',
+									'id'=>'email',
+									'type'=>'email',
+									'required',
+									'placeholder' => (core::config('payment.paypal_seller')==1) ? __('Paypal Email') : __('Email'),
+									'data-domain' => (core::config('general.email_domains') != '') ? json_encode(explode(',', core::config('general.email_domains'))) : '',
+									'data-error' => __('Email must contain a valid email domain')
+									))?>
 							</div>
 						</div>
 					<?endif?>
@@ -211,6 +224,7 @@
 							<div class="col-md-4">
 								<?if (Core::config('general.recaptcha_active')):?>
 									<?=Captcha::recaptcha_display()?>
+									<div id="recaptcha1"></div>
 								<?else:?>
 									<?= FORM::label('captcha', __('Captcha'), array('for'=>'captcha'))?>
 									<span id="helpBlock" class="help-block"><?=captcha::image_tag('publish_new')?></span>

@@ -103,7 +103,7 @@ class Controller_User extends Controller {
 
         $users = $users->limit($pagination->items_per_page)
                         ->offset($pagination->offset)
-                        ->cached()->find_all();
+                        ->find_all();
         
 
         //if home page is the users

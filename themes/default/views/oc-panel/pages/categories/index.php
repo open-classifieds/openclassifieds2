@@ -60,8 +60,8 @@
                     <span id='ajax_result' data-url='<?=Route::url('oc-panel',array('controller'=>'category','action'=>'saveorder'))?>'></span>
                     <?if(count($cats) > 1) :?>
                         <p class="text-right">
-                            <button data-toggle="modal" data-target="#delete-all" class="btn btn-danger">
-                                <i class="glyphicon glyphicon-trash space-right"></i><?=__('Delete all categories')?>
+                            <button type="button" data-toggle="modal" data-target="#delete-all" class="btn btn-danger">
+                                <?=__('Delete all categories')?>
                             </button>
 
                             <button name="delete" type="submit" class="btn btn-danger">
