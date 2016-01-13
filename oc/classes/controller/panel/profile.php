@@ -74,7 +74,7 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 
         if (Core::post('photo_delete') AND $user->delete_image()==TRUE )
             Alert::set(Alert::SUCCESS, __('Photo deleted.'));
-        else
+        elseif(isset($_FILES['profile_image']))
         {
             //get image
             $image = $_FILES['profile_image']; //file post
