@@ -112,25 +112,16 @@ class Auth_Controller extends Controller
     	            //default theme
     	            else
     	            {
-    	                $theme_css = array('css/paper-bootstrap.min.css' => 'screen');
+    	                $theme_css = array('css/style.css'=>'screen');
     	            }
 
-                	$common_css = array('css/chosen.min.css' => 'screen',
-                						'css/jquery.sceditor.default.theme.min.css' => 'screen',
-                                        'css/loadingbar.css'=>'screen', 
-                						'css/icon-picker.min.css'=>'screen', 
-                						'css/font-awesome.min.css'=>'screen', 
-                						'css/summernote.css'=>'screen', 
-                						'css/bootstrap-tour.min.css'=>'screen',
-                						'css/sweet-alert.min.css'=>'screen',
-                                        'css/admin-styles.css?v='.Core::VERSION => 'screen');
+                	$common_css = array('css/other.css'=>'screen');
 
                 	Theme::$styles = array_merge($theme_css,$common_css);
 
     	            Theme::$scripts['footer'] = array('js/jquery-1.10.2.js',
     	            								  'js/jquery.cookie.min.js',	
     	            								  'js/iconPicker.min.js',
-    	            								  'js/oc-panel/sidebar.js?v='.Core::VERSION,	
     												  'js/jquery.sceditor.bbcode.min.js',
     												  'js/summernote.min.js',
     												  'js/summernote-ext-video.js',
@@ -147,8 +138,10 @@ class Auth_Controller extends Controller
     											      '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
                                                       'js/jquery.bootgrid.min.js',
                                                       'js/query.bootgrid.fa.min.js',
+                                                      'js/oc-panel/metismenu.min.js',
+                                                      'js/oc-panel/fastclick.min.js',
                                                       'js/oc-panel/theme.init.js?v='.Core::VERSION,
-                                                      );
+                    );
     			}
     			else
     			{
@@ -160,42 +153,27 @@ class Auth_Controller extends Controller
     	            //default theme
     	            else
     	            {
-    	                $theme_css = array('//cdn.jsdelivr.net/bootswatch/3.3.6/paper/bootstrap.min.css' => 'screen');
+    	                $theme_css = array('css/style.css'=>'screen');
     	            }
 
-                	$common_css = array('//cdn.jsdelivr.net/chosen/1.0.0/chosen.css' => 'screen', 
-                                        'css/jquery.sceditor.default.theme.min.css' => 'screen',
-                                        'css/loadingbar.css'=>'screen', 
-                                        'css/icon-picker.min.css'=>'screen', 
-                                        '//cdn.jsdelivr.net/fontawesome/4.5.0/css/font-awesome.min.css'=>'screen', 
-                                        '//cdn.jsdelivr.net/summernote/0.6.16/summernote.css'=>'screen', 
-                                        '//cdn.jsdelivr.net/bootstrap-tour/0.10.1/css/bootstrap-tour.min.css'=>'screen',
-                                        '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.css'=>'screen',
-                                        'css/admin-styles.css?v='.Core::VERSION => 'screen');
+                	$common_css = array('css/other.css'=>'screen'); 
 
                 	Theme::$styles = array_merge($theme_css,$common_css);
 
-    	            Theme::$scripts['footer'] = array('//code.jquery.com/jquery-1.10.2.min.js',
-    											      '//cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js',
-    	            								  'js/iconPicker.min.js',
-    	            								  'js/oc-panel/sidebar.js?v='.Core::VERSION,	
-    												  'js/jquery.sceditor.bbcode.min.js',
-    											      '//cdn.jsdelivr.net/summernote/0.6.16/summernote.min.js',
+    	            Theme::$scripts['footer'] = array('//cdn.jsdelivr.net/g/jquery@2.0.0,jquery.cookie@1.4.1,bootstrap@3.3.6,chosen@1.1.0,sweetalert@1.1.3,bootstrap-tour@0.10.2,summernote@0.6.16,sceditor@1.4.3(jquery.sceditor.bbcode.min.js)',
+                                                      'js/iconPicker.min.js',	
     											      'js/summernote-ext-video.js',
-    												  '//cdn.jsdelivr.net/bootstrap/3.3.6/js/bootstrap.min.js', 
-    											      '//cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
-                                                      'js/bootstrap-tour.min.js',
     											      Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'bstour')),
                                                       'js/oc-panel/'.(Auth::instance()->get_user()->id_role!=Model_Role::ROLE_ADMIN) ? 'tour-user.js' : 'tour.js',	
                                                       Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'chosen')),
-                                                      'js/oc-panel/sidebar.js?v='.Core::VERSION,	
-                                                      '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.min.js',
                                                       'js/favico.min.js',
                                                       '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7',
                                                       '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
                                                       '//'.((Kohana::$environment!== Kohana::DEVELOPMENT)? 'market.'.Core::DOMAIN.'':'eshop.lo').'/embed.js',
                                                       'js/jquery.bootgrid.min.js',
                                                       'js/query.bootgrid.fa.min.js',
+                                                      'js/oc-panel/metismenu.min.js',
+                                                      'js/oc-panel/fastclick.min.js',
                                                       'js/oc-panel/theme.init.js?v='.Core::VERSION,
                                                       );
     	        }

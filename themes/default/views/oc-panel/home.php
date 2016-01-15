@@ -1,36 +1,129 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<div id="page-welcome" class="page-header">
-    <h1><?=__('Welcome')?> <?=Auth::instance()->get_user()->name?></h1>
+<div class="row">
+    <div class="col-lg-12 page-title-container">
+        <h1 class="page-header page-title"><?=core::config('general.site_name')?> <?=__('panel')?></h1>
+        <span class="page-description"><?=__('This is the main overview page of your Open Classifieds website.')?> <a href=""><?=__('Read more')?></a>
+    </div>
 </div>
 
-<p>
-    <?=__('Thanks for using Open Classifieds.')?> 
-    <?=__('Your installation version is')?> <span class="label label-info"><?=core::VERSION?></span> 
-    <a class="btn btn-xs btn-primary pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'update','action'=>'index'))?>?reload=1" title="<?=__('Check for updates')?>">
-        <?=__('Check for updates')?>                
-    </a>
-</p>
+<div class="row" id="intro-panel">
+    <div class="col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="page-header"><?=__('Welcome')?> <?=Auth::instance()->get_user()->name?></h3>
+                <a class="close-panel"><i class="fa fa-close"></i><span><?=__('Hide')?></span></a>
+            </div>
+            <div class="panel-body">
+                <p><?=__('Thanks for using Open Classifieds. If you have any questions you can you can click the help button in the upper right corner. <br />')?> <?=__('Your installation version is')?> <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'update','action'=>'index'))?>?reload=1" title="<?=__('Check for updates')?>"><?=core::VERSION?> <?=__('(update available)')?></a>.</p>
+                <h4 class="page-header"><?=__('Lets get started')?></h4><br />
+                <a class="start-link ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'content','action'=>'page'))?>"><i class="linecons li_note"></i><?=__('Create or edit content')?></a><a class="start-link ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'options'))?>"><i class="linecons li_photo"></i><?=__('Change the theme options')?></a><a class="start-link ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'settings','action'=>'general'))?>"><i class="linecons li_params"></i><?=__('Edit the settings of this website')?></a>
+            </div>
+        </div>
+    </div>
+</div>
 
-<p>
-    <?=__('You need help or you have some questions')?>
-    <?if(Theme::get('premium')!=1):?>
-        <a class="btn btn-info btn-xs" target="_blank" href="http://forums.open-classifieds.com/"><i class="glyphicon glyphicon-wrench"></i> <?=__('Forum')?></a>
-    <?else:?>
-        <a class="btn btn-info btn-xs" target="_blank" href="http://market.open-classifieds.com/oc-panel/support/index"><i class="glyphicon glyphicon-wrench"></i> <?=__('Support')?></a>
-    <?endif?>
-    <a class="btn btn-info btn-xs" target="_blank" href="http://open-classifieds.com/support/"><i class="glyphicon glyphicon-question-sign"></i> <?=__('FAQ')?></a>
-    <a class="btn btn-info btn-xs" target="_blank" href="http://open-classifieds.com/blog/"><i class="glyphicon glyphicon-pencil"></i> <?=__('Blog')?></a>
-</p>
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-3 block">
+        <div class="panel panel-blue">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="linecon li_eye"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">27</div>
+                        <div><?=__('New visits')?></div>
+                    </div>
+                </div>
+            </div>
+            <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'stats','action'=>'index'))?>">
+                <div class="panel-footer">
+                    <span class="pull-left"><?=__('View details')?></span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-3 block">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="linecon li_user"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">16</div>
+                        <div><?=__('New users')?></div>
+                    </div>
+                </div>
+            </div>
+            <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'stats','action'=>'index'))?>">
+                <div class="panel-footer">
+                    <span class="pull-left"><?=__('View details')?></span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-3 block">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="linecon li_note"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">12</div>
+                        <div><?=__('New advertisements')?></div>
+                    </div>
+                </div>
+            </div>
+            <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'ad','action'=>'index'))?>">
+                <div class="panel-footer">
+                    <span class="pull-left"><?=__('View details')?></span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-3 block">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="linecon li_banknote"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">4</div>
+                        <div><?=__('New orders')?></div>
+                    </div>
+                </div>
+            </div>
+            <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'order','action'=>'index'))?>">
+                <div class="panel-footer">
+                    <span class="pull-left"><?=__('View details')?></span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
 
 <div class="row">
     <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><?=__('Site Statistics')?></h3>
+                <i class="fa fa-bar-chart-o fa-fw"></i><h4><?=__('Site Statistics')?></h4><span class="page-description"><?=__('This panel shows how many visitors your website had the past month.')?> <a href=""><?=__('Read more')?></a>
             </div>
             <div class="panel-body">
-                <table class="table table-bordered table-condensed">
+                <h4 class="empty text-center"><?=__('There are no site statistics yet ...')?></h4>
+                <!--<table class="table table-bordered table-condensed">
                     <thead>
                         <tr>
                             <th></th>
@@ -63,43 +156,18 @@
                             <td><?=$orders_total?></td>
                         </tr>
                     </tbody>
-                </table>
-                
-                <ul class="nav nav-tabs" id="statsTabs">
-                    <li class="active"><a href="#views" data-toggle="tab"><?=__('Views and Ads')?></a></li>
-                    <li><a href="#sales" data-toggle="tab"><?=__('Sales')?></a></li>
-                </ul>
-                
-                <div class="tab-content" >
-                    <!-- VIEWS TAB -->
-                    <div class="tab-pane fade in active" id="views">
-                        <h6 class="text-center"><?=__('Views and Ads statistics')?></h6>
-                        <div>
-                            <?=Chart::line($stats_daily, array('height'  => 300,
-                                                               'width'   => 400,
-                                                               'options' => array('responsive' => true, 'maintainAspectRatio' => false, 'scaleShowVerticalLines' => false, 'multiTooltipTemplate' => '<%= datasetLabel %> - <%= value %>')))?>
-                        </div>
-                    </div>
-                    <!-- SALES TAB -->
-                    <div class="tab-pane fade in" id="sales">
-                        <h6 class="text-center"><?=__('Sales statistics')?></h6>
-                        <div>
-                            <?=Chart::line($stats_orders, array('height'  => 300,
-                                                                'width'   => 400,
-                                                                'options' => array('responsive' => true, 'maintainAspectRatio' => false, 'scaleShowVerticalLines' => false, 'multiTooltipTemplate' => '<%= datasetLabel %> - <%= value %>')))?>
-                        </div>
-                    </div>
-                </div>
+                </table>-->
             </div>
         </div>
     </div><!-- /.col-md-6 -->
     <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><?=__('Latest Published Ads')?></h3>
+                <i class="fa fa-file-text-o"></i><h4><?=__('Latest Published Ads')?></h4><span class="page-description"><?=__('This panel shows the latest published ads on your website.')?> <a href=""><?=__('Read more')?></a>
             </div>
             <div class="panel-body">
-                <table class="table table-bordered">
+                <h4 class="empty text-center"><?=__('There are no published ads yet ...')?></h4>
+                <!--<table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -140,7 +208,7 @@
                             <?endforeach?>
                         </tbody>
                     <?endif?>
-                </table>
+                </table>-->
             </div>
         </div>
     </div><!-- /.col-md-6 -->
@@ -148,7 +216,7 @@
 
 <div class="row">
     <div class="col-md-4 col-sm-12 col-xs-12">
-        <div class="panel panel-primary">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Open-Classifieds <?=__('Latest News')?></h3>
             </div>
@@ -162,7 +230,7 @@
         </div>
     </div>
     <div class="col-md-4 col-sm-12 col-xs-12">
-        <div class="panel panel-primary">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Tweets by @openclassifieds</h3>
             </div>
@@ -173,7 +241,7 @@
         </div>
     </div>
     <div class="col-md-4 col-sm-12 col-xs-12">
-        <div class="panel panel-primary">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Open-Classifieds on Facebook</h3>
             </div>

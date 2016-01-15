@@ -1,0 +1,132 @@
+@media(max-width:992px) { 
+    .form-horizontal {
+        .control-label {
+            text-align:left;
+        }
+    }
+}
+
+@media(max-width:768px) {
+    h1 {font-size:24px;}
+    h2 {font-size:22px;}
+    h3 {font-size:20px;}
+    h4 {font-size:18px;}
+    h5 {font-size:16px;}
+    h6 {font-size:14px;}
+    .label {margin-bottom:5px !important;}
+    header {
+        .nav {
+            li {
+                a.bigger {
+                    line-height:76px;
+                }
+            }
+        }
+        .fa {
+            margin:0;
+        }
+        .dropdown-toggle {
+            .fa {
+                margin-left:15px;
+            }
+        }
+        .navbar-brand {
+            .fa {
+                margin-left:0;
+            }
+        }
+        .dropdown-menu {
+            .fa {
+                margin-right:15px;
+            }
+        }
+    }
+    .sidebar {
+        width:45px;
+        margin-left:-15px;
+        .sidebar-search {
+            height:70px;
+            input {
+                display:none;
+            }
+        }
+        li {
+            .hidden-xs, .fa {
+                display:none;
+            }
+            a {
+                padding:25px 15px 24px 15px;
+            }
+            i {
+                margin:0;
+            }
+        }
+        #collapse-menu {
+            display:none;
+        }
+    }
+    .nav-second-level {
+        position:absolute;
+        left:47px;
+        top:0;
+        z-index:2;
+        li {
+            a {
+                padding:15px;
+                width:180px;
+            }
+        }
+    }
+    #page-wrapper {
+        margin:0 0 0 50px;
+    }
+    .panel {
+        .close-panel {
+            span {
+                display:none;
+            }
+        }
+    }
+    .form-hidden-elements {
+        span {
+            display:none;
+        }
+    }
+    .btn, .label {
+        margin-bottom:5px;
+        font-size:12px;
+    }
+    #advert_search {
+        width:100%;
+    }
+    .bootgrid-header {
+        .actionBar {
+            .search {
+                width:100%;
+                margin:0 0 10px 0;
+            }
+        }
+    }
+    .form-in-header {
+        form {
+            width:100%;
+            .form-group {
+                width:50%;
+                display:inline-block;
+            }
+            .btn {
+                width:48%; 
+                margin:0;
+                padding:8px 0 7px 0;
+            }
+        }
+    }
+}
+
+@media(min-width:768px) {
+    .dropdown-li:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
+}
+

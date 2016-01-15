@@ -2,15 +2,18 @@
 
 
 <?=Form::errors()?>
-<div id="page-general-configuration" class="page-header">
-    <h1><?=__('Plugins')?></h1>
+<div class="row">
+    <div class="col-lg-12 page-title-container">
+        <h1 class="page-header page-title"><?=__('Plugins')?></h1>
+        <span class="page-description"><?=__('This panel shows how many visitors your website had the past month.')?> <a target="_blank" href=""><?=__('Read more')?></a></span>
+    </div>
 </div>
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12 col-lg-8">
         <?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'plugins')), array('class'=>'config', 'enctype'=>'multipart/form-data'))?>
             <div class="panel panel-default">
-                <div class="panel-heading"><?=__('Enable or disable plugins')?></div>
+                <div class="panel-heading"><h4><?=__('Enable or disable plugins')?></h4></div>
                 <div class="panel-body">
                     <div class="form-horizontal">
                         <div class="form-group">
@@ -23,7 +26,7 @@
                                     'id' => $forms['blog']['id'], 
                                     'data-content'=> __("Once set to TRUE, enables blog posts"),
                                     'data-trigger'=>"hover",
-                                    'data-placement'=>"right",
+                                    'data-placement'=>"bottom",
                                     'data-toggle'=>"popover",
                                     'data-original-title'=>__("Activates Blog posting"),
                                     ))?>
@@ -43,7 +46,7 @@
                                     'id' => $forms['forums']['id'], 
                                     'data-content'=> __("Once set to TRUE, enables forums posts"),
                                     'data-trigger'=>"hover",
-                                    'data-placement'=>"right",
+                                    'data-placement'=>"bottom",
                                     'data-toggle'=>"popover",
                                     'data-original-title'=>__("Activates Forums"),
                                     ))?>
@@ -62,7 +65,7 @@
                                     'id' => $forms['faq']['id'], 
                                     'data-content'=> __("Once set to TRUE, enables FAQ"),
                                     'data-trigger'=>"hover",
-                                    'data-placement'=>"right",
+                                    'data-placement'=>"bottom",
                                     'data-toggle'=>"popover",
                                     'data-original-title'=>__("Activates FAQ"),
                                     ))?>
@@ -82,7 +85,7 @@
                                     'id' => $forms['messaging']['id'],
                                     'data-content'=> __("Once set to TRUE, enables Messaging System"),
                                     'data-trigger'=>"hover",
-                                    'data-placement'=>"right",
+                                    'data-placement'=>"bottom",
                                     'data-toggle'=>"popover",
                                     'data-original-title'=>__("Activates Messaging System"),
                                     ))?>
@@ -102,7 +105,7 @@
                                     'id' => $forms['black_list']['id'], 
                                     'data-content'=> __("If advertisement is marked as spam, user is also marked. Can not publish new ads or register until removed from Black List! Also will not allow users from disposable email addresses to register."),
                                     'data-trigger'=>"hover",
-                                    'data-placement'=>"right",
+                                    'data-placement'=>"bottom",
                                     'data-toggle'=>"popover",
                                     'data-original-title'=>__("Black List"),
                                     ))?>
@@ -122,7 +125,7 @@
                                     'id' => $forms['auto_locate']['id'], 
                                     'data-content'=> __("Once set to TRUE, enables auto locate visitors"),
                                     'data-trigger'=>"hover",
-                                    'data-placement'=>"right",
+                                    'data-placement'=>"bottom",
                                     'data-toggle'=>"popover",
                                     'data-original-title'=>__("Include auto locate visitors"),
                                     ))?>
@@ -142,7 +145,7 @@
                                     'id' => $forms['social_auth']['id'], 
                                     'data-content'=> __("Once set to TRUE, enables social auth"),
                                     'data-trigger'=>"hover",
-                                    'data-placement'=>"right",
+                                    'data-placement'=>"bottom",
                                     'data-toggle'=>"popover",
                                     'data-original-title'=>__("Social Auth"),
                                     ))?>
@@ -162,7 +165,7 @@
                                     'id' => $forms['adblock']['id'], 
                                     'data-content'=> __("Once set to TRUE, enables adblock detection"),
                                     'data-trigger'=>"hover",
-                                    'data-placement'=>"right",
+                                    'data-placement'=>"bottom",
                                     'data-toggle'=>"popover",
                                     'data-original-title'=>__("Adblock Detection"),
                                     ))?>

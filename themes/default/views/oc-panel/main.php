@@ -34,8 +34,10 @@
       <script type="text/javascript" src="//cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
     <![endif]-->
     
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,700' rel='stylesheet' type='text/css'>
+    
     <?=Theme::styles($styles,'default')?>	
-	<?=Theme::scripts($scripts,'header','default')?>
+	  <?=Theme::scripts($scripts,'header','default')?>
     <link rel="shortcut icon" href="<?=core::config('general.base_url').'images/favicon.ico'?>">
 
     <?if (Auth::instance()->get_user()->id_role==Model_Role::ROLE_ADMIN OR Auth::instance()->get_user()->id_role==Model_Role::ROLE_MODERATOR):?>
@@ -53,35 +55,24 @@
   </head>
 
   <body>
-	<?=$header?>
-  <?=View::factory('oc-panel/sidebar',array('user'=>$user))?>
-    <div class="bs-docs-nav">
-  
-		
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main pull-left" id="content">
-				<?=Breadcrumbs::render('oc-panel/breadcrumbs')?>      
-				<?=Alert::show()?>
-                <?if (!isset($_COOKIE['donation_alert'])  AND Theme::get('premium')!=1 AND $user->id_role==Model_Role::ROLE_ADMIN):?>
-                   <div class="alert alert-warning fade in">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick='setCookie("donation_alert",1,7)'>×</button>
-                    <h4><?=__('Help us improve!')?></h4>
-                    <p><?=__('Open Classifieds is an amazing free Open Source Software. By buying a theme you help us keep the project alive and updated. Thanks!')?></p>
-                    <p>
-                      <a href="<?=Route::url('oc-panel',array('controller'=>'market'))?>" class="btn btn-success">
-                        <i class="glyphicon glyphicon-gift"></i> <?=__('Buy a Theme')?>
-                       </a>
-                    </p>
-                  </div>
-                <?endif?>
-				<?=$content?>
-                <?=(Kohana::$environment === Kohana::DEVELOPMENT)? View::factory('profiler'):''?>
-	    	</div><!--/span--> 
-	    	
-    
-    </div><!--/.fluid-->
-    <div class="clearfix"></div>
-    <?=$footer?>
-	<?=Theme::scripts($scripts,'footer','default')?>
+    <div id="wrapper">
+      <?=$header?>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12">
+            <?=View::factory('oc-panel/sidebar',array('user'=>$user))?>
+            <div id="page-wrapper">
+              <?=Breadcrumbs::render('oc-panel/breadcrumbs')?>
+              <?=Alert::show()?>
+              <?=$content?>
+              <?=(Kohana::$environment === Kohana::DEVELOPMENT)? View::factory('profiler'):''?>
+              <?=$footer?>
+            </div>
+          </div>
+        </div>
+      </div>  
+    </div>
+  	<?=Theme::scripts($scripts,'footer','default')?>
   
   </body>
 </html>

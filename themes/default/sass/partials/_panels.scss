@@ -1,0 +1,135 @@
+.panel {
+	background:$white;
+    position:relative;
+    .panel-heading {
+        h1, h2, h3, h4, h5, h5, h6 {
+            display:inline;
+        }
+        .close-panel {
+            position:absolute;
+            right:15px;
+            top:15px;
+            color:$text-color;
+            font-size:12px;
+            cursor:pointer;
+            i {
+                margin-right:5px; 
+            }
+            &:hover, &:focus {
+                text-decoration:none;
+                i {
+                    color:$brand-danger;
+                }
+            }
+        }
+    }
+    .empty {
+        margin: 50px auto;
+    }
+    .panel-footer {
+
+    }   
+}
+
+.panel-default {
+	.panel-heading {
+		background:$white;
+		border-bottom:1px solid $body-bg;
+		padding:15px;
+        h1, h2, h3, h4, h5, h6 {
+            color:$text-color;
+        }
+		i {
+			color:$text-color;
+			margin-right:15px;
+            font-size:20px;
+		}
+	}
+    .note-toolbar {
+        i  {
+            font-size:12px;
+            margin:0;
+        }
+    }
+}
+
+.panel-primary {
+
+}
+
+.panel-blue {
+    border-color: $material-blue;
+    .panel-heading {
+        border-color: $material-blue;
+        color: $white;
+        background-color: $material-blue;
+    }
+    a {
+        color:$material-blue;
+    }
+}
+
+.panel-green {
+    border-color: $material-green;
+    .panel-heading {
+        border-color: $material-green;
+        color: $white;
+        background-color: $material-green;
+    }
+    a {
+        color:$material-green;
+    }
+}
+
+.panel-red {
+    border-color: $material-red;
+    .panel-heading {
+        border-color: $material-red;
+        color: $white;
+        background-color: $material-red;
+    }
+    a {
+        color:$material-red;
+    }
+}
+
+.panel-yellow {
+    border-color: $material-yellow;
+    .panel-heading {
+        border-color: $material-yellow;
+        color: $white;
+        background-color: $material-yellow;
+    }
+    a {
+        color:$material-yellow;
+    }
+}
+
+.block {
+    .panel-heading {
+        i {
+            font-size:54px;
+        }
+    }
+}
+
+.start-link {
+    display:inline-block;
+    color:$text-color;
+    margin:0 40px 20px 0;
+    padding-left:30px;
+    font-weight:700;
+    position:relative;
+    i {
+        margin-right:15px;
+        font-size:20px;
+        position:absolute;
+        left:0;
+        top:-5px;
+    }
+    &:hover, &:focus {
+        color:$brand-primary;
+        text-decoration:none;
+
+    }
+}

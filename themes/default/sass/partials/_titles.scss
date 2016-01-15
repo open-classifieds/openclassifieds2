@@ -1,0 +1,33 @@
+h1, h2, h3, h4, h5, h6 {
+	font-weight:700;
+	color:$text-color; 
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6 {
+	font-weight:700;
+}
+
+.page-header {
+	display:inline-block;
+	border:0;
+	margin:20px 0;
+	padding:0;
+}
+
+.page-title-container {
+	margin-bottom:30px;
+}
+
+.page-title {
+	margin-bottom:0;
+}
+
+.page-description {
+	display:inline;
+	padding-left:15px;
+	color:$text-color;
+	a {
+		font-weight:700;
+	}
+}
+
