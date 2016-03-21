@@ -205,6 +205,12 @@ class Controller_Panel_Auth extends Controller {
 	 */
 	public function action_register()
 	{
+        //general.private_site
+        if( Core::config('general.private_site') == TRUE)
+        {
+            $this->redirect(Route::url('default'));
+        }
+        
 		$this->template->meta_description = __('Create a new profile at').' '.core::config('general.site_name');
 		$this->template->content = View::factory('pages/auth/register');
 		$this->template->content->msg = '';
