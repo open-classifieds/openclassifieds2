@@ -204,86 +204,112 @@ class Controller_Panel_Auth extends Controller {
 	 *
 	 */
 	public function action_register()
-	{
-		$this->template->meta_description = __('Create a new profile at').' '.core::config('general.site_name');
-		$this->template->content = View::factory('pages/auth/register');
-		$this->template->content->msg = '';
-		
-		//if user loged in redirect home
-		if (Auth::instance()->logged_in())
-		{
-			$this->redirect(Route::get('oc-panel')->uri());
-		}
+    {
+        //general.private_site
+        if( Core::config('general.private_site') == TRUE)
+        {
+            $this->redirect(Route::url('default'));
+        }
+        
+        //validates captcha
+        if (Core::post('ajaxValidateCaptcha'))
+        {
+            $this->auto_render = FALSE;
+            $this->template = View::factory('js');
+
+            if (captcha::check('register', TRUE))
+                $this->template->content = 'true';
+            else
+                $this->template->content = 'false';
+            
+            return;
+        }
+
+        $this->template->meta_description = __('Create a new profile at').' '.core::config('general.site_name');
+        $this->template->content = View::factory('pages/auth/register');
+        $this->template->content->msg = '';
+        //if user loged in redirect home
+        if (Auth::instance()->logged_in())
+        {
+            $this->redirect(Route::get('oc-panel')->uri());
+        }
         elseif ($this->request->post())
         {
-            $validation =   Validation::factory($this->request->post())
-                            ->rule('name', 'not_empty')
-                            ->rule('email', 'not_empty')
-                            ->rule('email', 'email')
-                            ->rule('email', 'email_domain')
-                            ->rule('password1', 'not_empty')
-                            ->rule('password2', 'not_empty')
-                            ->rule('password1', 'matches', array(':validation', 'password1', 'password2'));
+            if(captcha::check('register')) {
+                $validation =   Validation::factory($this->request->post())
+                                ->rule('name', 'not_empty')
+                                ->rule('email', 'not_empty')
+                                ->rule('email', 'email')
+                                ->rule('email', 'email_domain')
+                                ->rule('password1', 'not_empty')
+                                ->rule('password2', 'not_empty')
+                                ->rule('password1', 'matches', array(':validation', 'password1', 'password2'));
 
-            if ($validation->check())
-            {
-                //posting data so try to remember password
-                if (CSRF::valid('register'))
+                if ($validation->check())
                 {
-                    $email = core::post('email');
-                
-                    //check we have this email in the DB
-                    $user = new Model_User();
-                    $user = $user->where('email', '=', $email)
-                            ->limit(1)
-                            ->find();
+                    //posting data so try to remember password
+                    if (CSRF::valid('register'))
+                    {
+                        $email = core::post('email');
                     
-                    if ($user->loaded())
-                    {
-                        Form::set_errors(array(__('User already exists')));
-                    }
-                    else
-                    {
-                        //creating the user
-                        $user = Model_User::create_email($email,core::post('name'),core::post('password1'));
-
-                        //add custom fields
-                        $save_cf = FALSE;
-                        foreach ($this->request->post() as $custom_field => $value) 
+                        //check we have this email in the DB
+                        $user = new Model_User();
+                        $user = $user->where('email', '=', $email)
+                                ->limit(1)
+                                ->find();
+                        
+                        if ($user->loaded())
                         {
-                            if (strpos($custom_field,'cf_')!==FALSE)
-                            {
-                                $user->$custom_field = $value;
-                                $save_cf = TRUE;
-                            }
+                            Form::set_errors(array(__('User already exists')));
                         }
-                        //saves the user only if there was CF
-                        if($save_cf === TRUE)
-                            $user->save();
-                    
-                        //login the user
-                        Auth::instance()->login(core::post('email'), core::post('password1'));
-                    
-                        Alert::set(Alert::SUCCESS, __('Welcome!'));
-                        //login the user
-                        $this->redirect(Core::post('auth_redirect',Route::url('oc-panel')));
-                    
+                        else
+                        {
+                            //creating the user
+                            $user = Model_User::create_email($email,core::post('name'),core::post('password1'));
+
+                            //add custom fields
+                            $save_cf = FALSE;
+                            foreach ($this->request->post() as $custom_field => $value) 
+                            {
+                                if (strpos($custom_field,'cf_')!==FALSE)
+                                {
+                                    $user->$custom_field = $value;
+                                    $save_cf = TRUE;
+                                }
+                            }
+                            //saves the user only if there was CF
+                            if($save_cf === TRUE)
+                                $user->save();
+                        
+                            //login the user
+                            Auth::instance()->login(core::post('email'), core::post('password1'));
+                        
+                            Alert::set(Alert::SUCCESS, __('Welcome!'));
+                            //login the user
+                            $this->redirect(Core::post('auth_redirect',Route::url('oc-panel')));
+                        
+                        }
                     }
                 }
+                else
+                {
+                    $errors = $validation->errors('auth');
+                    
+                    foreach ($errors as $error) 
+                        Alert::set(Alert::ALERT, $error);                
+                }
+            
             }
             else
             {
-                $errors = $validation->errors('auth');
-                
-                foreach ($errors as $error) 
-                    Alert::set(Alert::ALERT, $error);                
+                Alert::set(Alert::ALERT, __('Captcha is not correct'));
             }
-		}
-	
-		//template header
-		$this->template->title            = __('Register new user');
-			
-	}
+        }
+    
+        //template header
+        $this->template->title            = __('Register new user');
+            
+    }
     
 	/**
 	 *

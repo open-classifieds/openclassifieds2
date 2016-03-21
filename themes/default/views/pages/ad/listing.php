@@ -147,7 +147,7 @@
               <?}?>  
               <?if ($ad->price==0 AND core::config('advertisement.free')==1){?>
                   <li class="price"><?=__('Price');?>: <b><?=__('Free');?></b></li>
-              <?}?>  
+              <? }?>  
           </ul>
        
           <?if(core::config('advertisement.description')!=FALSE):?>

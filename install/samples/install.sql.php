@@ -602,6 +602,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('general', 'base_url', '".core::request('SITE_URL')."'),
 ('general', 'moderation', 0),
 ('general', 'maintenance', 0),
+('general', 'private_site', 0),
 ('general', 'analytics', ''),
 ('general', 'translate', ''),
 ('general', 'site_name', '".core::request('SITE_NAME')."'),
