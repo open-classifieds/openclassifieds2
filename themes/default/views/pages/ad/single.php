@@ -66,7 +66,8 @@
 
     <div class="well ">
         <?if ($ad->price>0):?>
-            <span class="label label-danger"><?= __('Price');?> : <?=i18n::money_format( $ad->price)?></span>
+            <div class="my-future-ddm"></div>
+            <span class="label label-danger price-convert"><?= __('Price');?> : <?=i18n::money_format( $ad->price)?></span>
         <?endif?>
         <?if ($ad->price==0 AND core::config('advertisement.free')==1):?>
             <span class="label label-danger"><?= __('Price');?> : <?=__('Free');?></span>
