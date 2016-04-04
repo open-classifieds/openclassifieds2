@@ -58,3 +58,7 @@ $(function(){
         }
     }).height(maxHeight);
 });
+
+$(function(){ // document ready
+    $('.my-future-ddm').curry(); // startup curry
+});
