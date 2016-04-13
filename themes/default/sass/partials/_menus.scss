@@ -20,40 +20,15 @@
 .sidebar-nav {
 	margin-top: 15px;
 	li {
-		//background:$text-color-lighter;
 		background:$sidebar-bg;
 		font-weight:500;
 		position:relative;
-		text-transform: uppercase;
-		font-size: 13px;
-		//border-bottom: 1px solid #e7e7e7;
-		&.active {
-			//background-color: #eee;
-			a:before {
-				content:"";
-				height:100%;
-				position:absolute;
-				width:5px;
-				left:-5px;
-				background:$brand-primary;
-				top:0;
-			}
-			.nav-second-level a:before {
-				display:none;
-			}
-			.icon:before { 
-		    	content: "\f068";
-		    	font-family: FontAwesome;
-			    font-style: normal;
-			    font-weight: normal;
-			    text-decoration: inherit;
-			    font-size:12px;
-		    }
-		}
+		font-size: 14px;
 		a {
 			color:$white-darker;
 			position:relative;
 			padding:14px 30px 14px 55px;
+			@include transition(all .1s ease);
 			&:hover, &:focus, &.active {
 				color:$white-dark;
 				background:$sidebar-second-bg;
@@ -65,10 +40,33 @@
 				left:30px;
 				top:13px;
 			}
+			.arrow {
+				@include transition(all .1s ease);
+			}
+		}
+		&.active {
+			a:first-of-type {
+				color:$brand-primary;
+				&:after {
+					content:"";
+					height:100%;
+					position:absolute;
+					width:5px;
+					left:0px;
+					background:$brand-primary;
+					top:0;
+					opacity:1;
+				}
+				.arrow {
+					@include transform(rotate(#{-90}deg));
+				}
+			}		
+			.linecon:after {
+				display:none !important;
+			}
 		}
 	}
 	#collapse-menu {
-		//background:$white;
 		background:$sidebar-bg;
 		border:none;
 		cursor:pointer;
@@ -93,15 +91,26 @@
 	}
 	.nav-second-level {
 		z-index:99 !important;
-	}
-	.nav-second-level li {
-		background:$sidebar-second-bg;
-		border-bottom: 0!important;
-		a {
-			font-weight:400;
-			text-transform: none;
-			font-size: 14px;
-			padding: 10px 30px 10px 55px;
+		li {
+			border-bottom: 0 !important;
+			&:after {
+				display:none;
+			}
+			a {
+				font-weight:400;
+				text-transform: none;
+				font-size: 12px;
+				padding: 14px 30px 14px 55px;		
+				color:#b6bbca !important;
+				&:after {
+					display:none;
+				}
+			}
+			span { 
+				&:after {
+					display:none;
+				}
+			}
 		}
 	}
 	.nav-second-level li:first-child a {
@@ -118,7 +127,6 @@
 		}
 	}
 	.sidebar-search {
-		//background:$white;
 		background:$sidebar-bg;
 		font-weight:400;
 		padding: 15px 30px 15px 15px;
