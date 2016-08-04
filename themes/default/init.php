@@ -3,7 +3,7 @@
   * Theme Name: Ocean Free
   * Description: Clean free theme that includes full admin. It has publicity. Do not delete this theme, all the views depend in this theme.
   * Tags: HTML5, Admin, Free
-  * Version: 2.1
+  * Version: 2.1.1
   * Author: Chema <chema@garridodiaz.com> , <slobodan.josifovic@gmail.com>
   * License: GPL v3
   */
@@ -20,7 +20,7 @@ Widgets::$theme_placeholders	= array('footer', 'sidebar');
  */
 
 Theme::$styles = array( 'http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css' => 'screen',
-                        'css/styles.css?v=2.1' => 'screen',
+                        'css/styles.css?v=2.1.1' => 'screen',
                         'http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen',
                         'css/slider.css' => 'screen',
                         'http://cdn.jsdelivr.net/chosen/1.0.0/chosen.css' => 'screen',
@@ -39,7 +39,7 @@ Theme::$scripts['footer']	= array('http://ajax.googleapis.com/ajax/libs/jquery/1
                                     'js/bootstrap-image-gallery.min.js',
                                     'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js',
                                     'http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
-                                    'js/theme.init.js?v=2.1',
+                                    'js/theme.init.js?v=2.1.1',
                                     );
 
 

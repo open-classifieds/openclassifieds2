@@ -1,5 +1,15 @@
 <?php defined('SYSPATH') or die('No direct script access.');
                 return array (
+  '2.1.1' => 
+  array (
+    'codename' => 'Damascus',
+    'released' => '2014-01-xx',
+    'blog' => 'http://open-classifieds.com/',
+    'changelog' => 'https://github.com/open-classifieds/openclassifieds2/commits/2.1.1',
+    'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=14&state=closed',
+    'download' => 'http://j.mp/oc_211',
+  ),
+
   '2.1' => 
   array (
     'codename' => 'Belgrade',

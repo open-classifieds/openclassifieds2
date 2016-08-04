@@ -59,7 +59,7 @@ include 'install.php';
         <?php 
         //getting the php info clean!
         ob_start();                                                                                                        
-        phpinfo();                                                                                                     
+        @phpinfo();  // for those with shared hosts limitations                                                                                                   
         $phpinfo = ob_get_contents();                                                                                         
         ob_end_clean();  
         //strip the body html                                                                                                  
@@ -94,7 +94,7 @@ include 'install.php';
             	<div class="well sidebar-nav">
             	
             		<ul class="nav nav-list">
-            			<li class="nav-header"><?php echo __("Requirements")?> <?php echo VERSION?></li>
+            			<li class="nav-header"><?php echo __("Requirements")?> OC v.<?php echo VERSION?></li>
             			<li class="divider"></li>
             			
             			<?php foreach ($checks as $name => $values):
@@ -103,10 +103,12 @@ include 'install.php';
 
             				if ($values['result'] == FALSE)
             					$msg .= $values['message'].'<br>';
+
+						$color = $values['result']?'success':'important'; // http://getbootstrap.com/2.3.2/components.html#labels-badges
             			?>
 
             				<li><i class="icon-<?php echo ($values['result'])?"ok":"remove"?>"></i> 
-            					<?php echo $name?>
+                                            <?php printf ('<span class="label label-%s">%s</span>',$color,$name);?>
             				</li>
             			<?php endforeach?>
 
@@ -189,9 +191,8 @@ include 'install.php';
 		    foreach ($languages as $lang) {
 			    
 			    if( strpos($lang,'.')==false && $lang!='.' && $lang!='..' ){
-				    if ($lang==$locale_language)  $sel= "selected=selected";
-				    else $sel = "";
-				    echo "<option $sel value=\"$lang\">$lang</option>";
+                                $sel = ($lang==$locale_language) ? ' selected="selected"' : '';
+                                echo "<option$sel value=\"$lang\">$lang</option>";
 			    }
 		    }
 		    ?>
@@ -296,7 +297,7 @@ include 'install.php';
 <div class="control-group">
 	<label class="control-label"><?php echo __("Database charset")?>:</label>
 	<div class="controls">
-	<input type="text" name="DB_CHARSET" value="<?php echo cP('DB_CHARSET','utf8')?>"  class="span6"   />
+	<input type="text" name="DB_CHARSET" value="<?php echo cP('DB_CHARSET','utf8')?>"  class="span3"   />
 	</div>
 </div>
 
@@ -317,7 +318,7 @@ include 'install.php';
         <label class="checkbox">
             <input type="checkbox" name="OCAKU" checked />
             <?php echo __("Ocacu classifieds community registration")?> <a target="_blank" href="http://ocacu.com/en/terms.html">
-                <?php echo __('Terms')?></a>
+            <br><?php echo __('Terms')?></a>
         </label>
     </div>
 </div>

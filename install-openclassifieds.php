@@ -13,7 +13,7 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 ini_set('display_errors', 1);
 @set_time_limit(0);
 
-define('VERSION','2.1');
+define('VERSION','2.1.1');
 
 
 class OC{
@@ -358,10 +358,12 @@ $succeed    = TRUE;
 
                             if ($values['result'] == FALSE)
                                 $msg .= $values['message'].'<br>';
+
+                                $color = $values['result']?'success':'important'; // http://getbootstrap.com/2.3.2/components.html#labels-badges
                         ?>
 
                             <li><i class="icon-<?php echo ($values['result'])?"ok":"remove"?>"></i> 
-                                <?php echo $name?>
+                            <?php printf ('<span class="label label-%s">%s</span>',$color,$name);?>
                             </li>
                         <?php endforeach?>
 
