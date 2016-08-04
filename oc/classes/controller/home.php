@@ -55,4 +55,35 @@ class Controller_Home extends Controller {
 		
 	}
 
+    /**
+     * action to fix theme redirect of 21, comment this if ou are not using it.
+     * @return [type] [description]
+     */
+    public function fix()//action_fix()
+    {
+        //delete default theme values
+        $conf = new Model_Config();
+        $conf->where('group_name','=','theme')
+                    ->where('config_key','=','default')
+                    ->limit(1)->find();
+
+        if ($conf->loaded())
+        {
+            $conf->config_value = NULL;
+            $conf->save();
+            
+        }
+        
+        //set theme to default
+        Theme::set_theme('default');
+
+        //clean cache
+        Cache::instance()->delete_all();
+        Theme::delete_minified();
+            
+        //redirect home
+        Alert::set(Alert::SUCCESS, __('Default theme seted'));
+        $this->request->redirect(Route::url('default')); 
+    }
+
 } // End Welcome

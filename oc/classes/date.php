@@ -17,36 +17,63 @@ class Date extends Kohana_Date {
      * @param string $format
      * @return string
      */
-	public static function format($date, $format='d/m/Y')
-	{
-	   return date($format, strtotime($date));
-	}
-	
-	/**
-	 * 
-	 * Converts a Unix time stamp to a MySQL date
-	 * @param integer $date
-	 * @return string
-	 */
-	public static function unix2mysql($date = NULL)
-	{
-		if($date === NULL)
-		{
-			$date = time();
-		}
-	    return date(Date::$timestamp_format,$date);
-	}
-	
-	/**
-	 * 
-	 * Converts a MySQL date to a Unix date
-	 * @param unknown_type $date
-	 * @return number
-	 */
-	public static function mysql2unix($date)
-	{
-	    return strtotime($date);
-	}
+    public static function format($date, $format='d/m/Y')
+    {
+       return date($format, strtotime($date));
+    }
+    
+    /**
+     * 
+     * Converts a Unix time stamp to a MySQL date
+     * @param integer $date
+     * @return string
+     */
+    public static function unix2mysql($date = NULL)
+    {
+        if($date === NULL)
+        {
+            $date = time();
+        }
+        return date(Date::$timestamp_format,$date);
+    }
+    
+    /**
+     * 
+     * Converts a MySQL date to a Unix date
+     * @param unknown_type $date
+     * @return number
+     */
+    public static function mysql2unix($date)
+    {
+        return strtotime($date);
+    }
+
+    /**
+     * shortcut fot DateTime::createFromFormat
+     * @param  string $date          
+     * @param  string $input_format  
+     * @param  string $output_format 
+     * @return mixed                
+     */
+    public static function from_format($date, $input_format = 'd/m/yy', $output_format = 'm-d-Y')
+    {
+        if($date === NULL)
+            $date = time();
+
+        $datetime = DateTime::createFromFormat($input_format, $date);
+
+        switch ($output_format) 
+        {
+            case 'unix':
+                return date::unix2mysql($datetime->getTimestamp());
+                break;
+            
+            default:
+                return $datetime->format($output_format);
+                break;
+        }
+
+    }
 
     /**
      * get an array range with dates in a specific format
@@ -119,7 +146,7 @@ class Date extends Kohana_Date {
         }
         return $time;
     }
-	
+    
    
     
 } // End Date
