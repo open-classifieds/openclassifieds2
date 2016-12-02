@@ -380,9 +380,7 @@ class Controller_Panel_Settings extends Auth_Controller {
 
         // all form config values
         $imageconf = new Model_Config();
-        $config = $imageconf->where('group_name', '=', 'image')
-                            ->where('config_key','NOT LIKE','aws_%')
-                            ->find_all();
+        $config = $imageconf->where('group_name', '=', 'image')->find_all();
 
         // save only changed values
         if($this->request->post())
