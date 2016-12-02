@@ -407,7 +407,8 @@ class Controller_Panel_Settings extends Auth_Controller {
                             ->rule('image_watermark_position', 'not_empty')
                             ->rule('image_watermark_position', 'digit')
                             ->rule('image_watermark_position', 'range', array(':value', 0, 2))
-                            ->rule('image_disallow_nudes', 'range', array(':value', 0, 1));
+                            ->rule('image_disallow_nudes', 'range', array(':value', 0, 1))
+                            ->rule('image_aws_s3_active', 'range', array(':value', 0, 1));
             
             if ($validation->check()) {
                 foreach ($config as $c) 
@@ -449,6 +450,19 @@ class Controller_Panel_Settings extends Auth_Controller {
                                     break;
                             }
                             $config_res[$c->group_name][$c->config_key][0] = $s3_domain.'/';
+                        }
+
+                        // check if aws_s3_active changed
+                        if($c->config_key == 'aws_s3_active')
+                        {
+                            $ads = new Model_Ad();
+                            $ads = $ads->where('has_images','!=',0)
+                                        ->find_all();
+
+                            foreach ($ads as $ad)
+                            {
+                                $ad->import_export_s3();
+                            }
                         }
     
                         $c->config_value = $config_res[$c->group_name][$c->config_key][0];

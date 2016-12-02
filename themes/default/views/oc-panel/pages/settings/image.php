@@ -190,6 +190,64 @@
                     </div>
 
                     <hr>
+
+                    <div class="form-group">
+                        <?= FORM::label($forms['aws_s3_active']['id'], __('Amazon S3 active'), array('class'=>'control-label', 'for'=>$forms['aws_s3_active']['id']))?>
+                        <div class="radio radio-primary">
+                            <?=Form::radio($forms['aws_s3_active']['key'], 1, (bool) $forms['aws_s3_active']['value'], array('id' => $forms['aws_s3_active']['key'].'1'))?>
+                            <?=Form::label($forms['aws_s3_active']['key'].'1', __('Enabled'))?>
+                            <?=Form::radio($forms['aws_s3_active']['key'], 0, ! (bool) $forms['aws_s3_active']['value'], array('id' => $forms['aws_s3_active']['key'].'0'))?>
+                            <?=Form::label($forms['aws_s3_active']['key'].'0', __('Disabled'))?>
+                        </div>
+                        <span class="help-block">
+                            <?=__("Activating Amazon S3 will move all the images to the S3 bucket.")?>
+                        </span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <?= FORM::label($forms['aws_access_key']['id'], __('AWS Access Key'), array('class'=>'control-label', 'for'=>$forms['aws_access_key']['id']))?>
+                        <?=FORM::input($forms['aws_access_key']['key'], $forms['aws_access_key']['value'], array(
+                            'placeholder' => "AWS Access Key", 
+                            'class' => 'tips form-control', 
+                            'id' => $forms['aws_access_key']['id'],
+                        ))?> 
+                        <span class="help-block">
+                            <?=__("AWS Access Key")?>
+                        </span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <?= FORM::label($forms['aws_secret_key']['id'], __('AWS Secret Key'), array('class'=>'control-label', 'for'=>$forms['aws_secret_key']['id']))?>
+                        <?=FORM::input($forms['aws_secret_key']['key'], $forms['aws_secret_key']['value'], array(
+                            'placeholder' => "AWS Secret Key", 
+                            'class' => 'tips form-control', 
+                            'id' => $forms['aws_secret_key']['id'],
+                        ))?>
+                    </div>
+                    
+                    <div class="form-group">
+                        <?= FORM::label($forms['aws_s3_bucket']['id'], __('Amazon S3 Bucket Name'), array('class'=>'control-label', 'for'=>$forms['aws_s3_bucket']['id']))?>
+                        <?=FORM::input($forms['aws_s3_bucket']['key'], $forms['aws_s3_bucket']['value'], array(
+                            'placeholder' => "Amazon S3 Bucket Name", 
+                            'class' => 'tips form-control', 
+                            'id' => $forms['aws_s3_bucket']['id'],
+                        ))?>
+                    </div>
+                    
+                    <?  if (($aws_s3_domain = strpos($forms['aws_s3_domain']['value'], 's3.amazonaws.com')) !== FALSE) 
+                            $forms['aws_s3_domain']['value'] = ($aws_s3_domain > 0) ? 'bn-s3' : 's3-bn';
+                    ?>
+                    <div class="form-group">
+                        <?= FORM::label($forms['aws_s3_domain']['id'], __('S3 Domain Name'), array('class'=>'control-label', 'for'=>$forms['aws_s3_domain']['id']))?>
+                        <?=FORM::select($forms['aws_s3_domain']['key'], array("bn"=>"bucket_name","bn-s3"=>"bucket_name.s3.amazonaws.com","s3-bn"=>"s3.amazonaws.com/bucket_name"), $forms['aws_s3_domain']['value'], array(
+                            'placeholder' => $forms['aws_s3_domain']['value'], 
+                            'class' => 'tips form-control', 
+                            'id' => $forms['aws_s3_domain']['id'],
+                        ))?>
+                    </div>
+
+                    <hr>
+
                     <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'image'))))?>
                 </div>
             </div>
