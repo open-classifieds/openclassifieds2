@@ -545,6 +545,52 @@ class Model_Ad extends ORM {
     }
 
     /**
+     * import/export s3/hd        
+     */
+    public function import_export_s3()
+    {
+        require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
+        $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
+
+        $directory = DOCROOT;
+
+        // export from disk to Amazon S3
+        if(!core::config('image.aws_s3_active'))
+        {
+            for ($i=1; $i <= $this->has_images; $i++) 
+            {
+                $filename_original  = $this->image_name($i);            
+                $filename_thumb     = $this->image_name($i,'thumb'); 
+                
+                // Put image and thumb to Amazon S3
+                $s3->putObject($s3->inputFile($directory.$filename_original), core::config('image.aws_s3_bucket'), $filename_original, S3::ACL_PUBLIC_READ);
+                $s3->putObject($s3->inputFile($directory.$filename_thumb), core::config('image.aws_s3_bucket'), $filename_thumb, S3::ACL_PUBLIC_READ);
+                
+                // Delete the original image and thumbnail from the disk
+                @unlink($directory.$filename_original);
+                @unlink($directory.$filename_thumb);
+            }
+        }
+        // import from S3 to disk
+        else
+        {
+            for ($i=1; $i <= $this->has_images; $i++) 
+            {   
+                $filename_original  = $this->image_name($i);            
+                $filename_thumb     = $this->image_name($i,'thumb'); 
+
+                //get image info
+                $s3->getObject(core::config('image.aws_s3_bucket'), $filename_original, $directory.$filename_original);
+                $s3->getObject(core::config('image.aws_s3_bucket'), $filename_thumb, $directory.$filename_thumb);
+
+                // // // delete ad images 
+                $s3->deleteObject(core::config('image.aws_s3_bucket'), $filename_original);
+                $s3->deleteObject(core::config('image.aws_s3_bucket'), $filename_thumb);
+            }
+        }
+    }
+
+    /**
      * returns the images path name
      * @param  integer $id      
      * @param  string  $type    
