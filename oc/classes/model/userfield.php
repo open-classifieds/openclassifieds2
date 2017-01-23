@@ -13,7 +13,7 @@ class Model_UserField {
     private $_db_prefix = NULL; //db prefix
     private $_db        = NULL; //db instance
     private $_bs        = NULL; //blacksmith module instance
-    private $_name_prefix = 'cf_'; //prefix used in front of the column name
+    private $_name_prefix = 'ucf_'; //prefix used in front of the column name
 
     public function __construct()
     {
