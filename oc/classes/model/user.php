@@ -1015,9 +1015,9 @@ class Model_User extends ORM {
             foreach($this->_table_columns as $value)
             {   
                 //we want only those that are custom fields
-                if(strpos($value['column_name'],'cf_') !== FALSE) 
+                if(strpos($value['column_name'],'ucf_') !== FALSE) 
                 {
-                    $cf_name  = str_replace('cf_', '', $value['column_name']);
+                    $cf_name  = str_replace('ucf_', '', $value['column_name']);
                     $cf_column_name = $value['column_name'];
                     $cf_value = $this->$cf_column_name;
 

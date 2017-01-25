@@ -352,7 +352,7 @@ class Controller_Panel_Auth extends Controller {
                             $save_cf = FALSE;
                             foreach ($this->request->post() as $custom_field => $value) 
                             {
-                                if (strpos($custom_field,'cf_')!==FALSE)
+                                if (strpos($custom_field,'ucf_')!==FALSE)
                                 {
                                     $user->$custom_field = $value;
                                     $save_cf = TRUE;
