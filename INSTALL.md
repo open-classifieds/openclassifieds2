@@ -20,7 +20,7 @@ Be aware that 2.0.x uses different URL structure and that themes are not compati
 * Uncompress and upload files
 * Run the installation at http://yourdomain.com/
 * Follow the steps
-* Choose a different Database or use a different table prefix, we recommend using oc2_
+* Choose a different Database or use a different table prefix, we recommend using yclas_
 * Got to the admin for migration of data http://yourdomain.com/oc-panel/tools/migration
 * Put the details of your old DB connection
 * Please wait can take a while…
