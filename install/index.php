@@ -65,10 +65,12 @@ else
     <meta name="description" content="" >
     <meta name="copyright" content="Yclas Self-Hosted <?=install::VERSION?>" >
     <meta name="author" content="Yclas Self-Hosted">
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="noindex">
 
     <link rel="shortcut icon" href="https://yclas.com/images/favicon.ico?v0.1" />
 
-    <link href="//cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.jsdelivr.net/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="//cdn.jsdelivr.net/fontawesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="//cdn.jsdelivr.net/chosen/1.1.0/chosen.min.css" rel="stylesheet">
     <link href="//cdn.jsdelivr.net/animatecss/3.3.0/animate.min.css" rel="stylesheet">

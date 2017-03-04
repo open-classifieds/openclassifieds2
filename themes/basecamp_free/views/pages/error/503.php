@@ -6,10 +6,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="We are working on our site, please visit later. Thanks">
+    <meta name="author" content="Yclas">
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="noindex">
     <title><?=Core::config('general.site_name')?> - <?=__('Maintenance')?></title>
-    <link href="//cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.jsdelivr.net/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <style type="text/css">
