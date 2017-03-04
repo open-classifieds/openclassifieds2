@@ -1,9 +1,14 @@
-<html>
+<html lang="en">
 <head>
     <title><?=$title?></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Maps">
+    <meta name="author" content="Yclas">
     <script type="text/javascript" src="//maps.google.com/maps/api/js?libraries=geometry&v=3&key=<?=core::config('advertisement.gm_api_key')?>&language=<?=i18n::get_display_language(i18n::$locale)?>"></script>
-    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/maplace.js/0.1.3/maplace.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/maplace-js/0.2.7/maplace.min.js"></script>
     
     <script type="text/javascript">
       var locations = [
