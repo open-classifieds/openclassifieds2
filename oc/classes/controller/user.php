@@ -128,7 +128,7 @@ class Controller_User extends Controller {
 
         if (Theme::get('infinite_scroll'))
         {
-            $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/jquery.infinitescroll/2.0b2/jquery.infinitescroll.js';
+            $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/jquery.infinitescroll/2.1/jquery.infinitescroll.js';
             $this->template->scripts['footer'][] = 'js/users.js';
         }
 
