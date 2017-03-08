@@ -13,7 +13,7 @@
 <?if (Theme::get('premium')==1):?>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <?else:?>
-<meta name="author" content="open-classifieds.com">
+<meta name="author" content="yclas.com">
 <?endif?>
 <meta name="application-name" content="<?=core::config('general.site_name')?>" data-baseurl="<?=core::config('general.base_url')?>">
 <?if (core::config('general.landing_page')!=NULL 
