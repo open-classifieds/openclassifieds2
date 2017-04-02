@@ -11,7 +11,7 @@
                                       'meta_copyright'    => $meta_copyright,
                                       'amphtml'           => $amphtml,))?> 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 7]><link rel="stylesheet" href="//blueimp.github.com/cdn/css/bootstrap-ie6.min.css"><![endif]-->
+    <!--[if lt IE 7]><link rel="stylesheet" href="https://raw.githubusercontent.com/ddouble/bsie/master/bootstrap/css/bootstrap-ie6.min.csss"><![endif]-->
     <!--[if lt IE 9]>
       <script type="text/javascript" src="//cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
     <![endif]-->
