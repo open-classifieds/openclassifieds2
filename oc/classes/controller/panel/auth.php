@@ -13,7 +13,7 @@ class Controller_Panel_Auth extends Controller {
         //if user loged in redirect home
         if (Auth::instance()->logged_in())
         {
-            Auth::instance()->login_redirect();
+            $this->redirect(Route::url('oc-panel'));
         }
         //private site only allows post to login
         elseif(!$_POST AND core::config('general.private_site')==1)
