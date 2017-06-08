@@ -530,11 +530,14 @@ class Model_Ad extends ORM {
         @unlink($file);
 
 
-        $this->has_images++;
 
         try 
         {
+            //don't save images now, save them on the increment query
+            unset($this->has_images);
             $this->save();
+            DB::update($this->_table_name)->set(array('has_images' => DB::expr('has_images + 1')))->where($this->_primary_key, '=', $this->id_ad)->execute();
+            $this->reload();
             return TRUE;
         } 
         catch (Exception $e) 
@@ -647,12 +650,16 @@ class Model_Ad extends ORM {
                 @rename($this->image_name(($i+1),'thumb'), $this->image_name($i,'thumb'));
             }
         }
-        $this->has_images = ($this->has_images > 0) ? $this->has_images-1 : 0;
+
         $this->last_modified = Date::unix2mysql();
 
         try 
         {
+            //avoid saving has_images
+            unset($this->has_images);
             $this->save();
+            DB::update($this->_table_name)->set(array('has_images' => DB::expr('has_images -1')))->where($this->_primary_key, '=', $this->id_ad)->execute();
+            $this->reload();
             return TRUE;
         } 
         catch (Exception $e) 
