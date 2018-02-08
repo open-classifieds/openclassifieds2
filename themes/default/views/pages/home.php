@@ -1,4 +1,9 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
+
+<?if(core::config('advertisement.homepage_map') == 1):?>
+    <?=View::factory('pages/map/home')?>
+<?endif?>
+
 <?if(core::config('advertisement.ads_in_home') != 3):?>
     <div class="well">
         <h3>
@@ -84,6 +89,11 @@
         <?endforeach?>
     </div>
 </div>
+
+<?if(core::config('advertisement.homepage_map') == 2):?>
+    <?=View::factory('pages/map/home')?>
+<?endif?>
+
 <div id="modalAllCategories" class="modal fade" tabindex="-1" data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'categories'))?>">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">

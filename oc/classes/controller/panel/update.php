@@ -66,6 +66,15 @@ class Controller_Panel_Update extends Auth_Controller {
             array( 'config_key'     => 'oauth2_url_resource_owner_details',
                    'group_name'     => 'social',
                    'config_value'   => ''),
+            array( 'config_key'     => 'homepage_map',
+                   'group_name'     => 'advertisement',
+                   'config_value'   => '0'),
+            array( 'config_key'     => 'homepage_map_height',
+                   'group_name'     => 'advertisement',
+                   'config_value'   => ''),
+            array( 'config_key'     => 'homepage_map_allowfullscreen',
+                   'group_name'     => 'advertisement',
+                   'config_value'   => '1'),
             );
 
 

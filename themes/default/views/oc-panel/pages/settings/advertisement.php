@@ -889,7 +889,58 @@
                             <?= FORM::hidden($forms['auto_locate_distance']['key'], $forms['auto_locate_distance']['value']);?>
                         <?endif?>
                     </div>
+                    
                     <hr>
+                    
+                    <h4><?=__('Google Maps on Homepage')?>
+                        <a target="_blank" href="https://docs.yclas.com//">
+                            <i class="fa fa-question-circle"></i>
+                        </a>
+                    </h4>
+
+                    <div>
+                        <div class="form-group">
+                            <?=FORM::label($forms['homepage_map']['key'], __("Homepage Map"), array('class'=>'control-label', 'for'=>$forms['homepage_map']['key']))?>
+                            <?=FORM::select($forms['homepage_map']['key'], array('None', 'Top', 'Bottom'), $forms['homepage_map']['value'], array(
+                                'placeholder' => "None",
+                                'class' => 'form-control',
+                                'id' => $forms['homepage_map']['key'],
+                            ))?>
+                            <span class="help-block">
+                                <?=__("Select where to show the map in the homepage.")?>
+                            </span>
+                        </div>
+
+                        <div class="form-group">
+                            <?=FORM::label($forms['homepage_map_height']['key'], __('Homepage Map height'), array('class'=>'control-label', 'for'=>$forms['homepage_map_height']['key']))?>
+                            <?=FORM::input($forms['homepage_map_height']['key'], $forms['homepage_map_height']['value'], array(
+                                'placeholder' => "400",
+                                'class' => 'form-control',
+                                'id' => $forms['homepage_map_height']['key'],
+                                'type' => 'number',
+                                'data-rule-digits' => 'true',
+                            ))?>
+                            <span class="help-block">
+                                <?=__("Enter the height of the homepage map.")?>
+                            </span>
+                        </div>
+
+                        <div class="form-group">
+                            <?=FORM::label($forms['homepage_map_allowfullscreen']['key'], "Homepage Map full screen option", array('class'=>'control-label', 'for'=>$forms['homepage_map_allowfullscreen']['key']))?>
+                            <div class="radio radio-primary">
+                                <?=Form::radio($forms['homepage_map_allowfullscreen']['key'], 1, (bool) $forms['homepage_map_allowfullscreen']['value'], array('id' => $forms['homepage_map_allowfullscreen']['key'].'1'))?>
+                                <?=Form::label($forms['homepage_map_allowfullscreen']['key'].'1', __('Enabled'))?>
+                                <?=Form::radio($forms['homepage_map_allowfullscreen']['key'], 0, ! (bool) $forms['homepage_map_allowfullscreen']['value'], array('id' => $forms['homepage_map_allowfullscreen']['key'].'0'))?>
+                                <?=Form::label($forms['homepage_map_allowfullscreen']['key'].'0', __('Disabled'))?>
+                            </div>
+                            <span class="help-block">
+                                <?=__("Enable full screen option.")?>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <hr>
+
                     <p>
                         <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form'))))?>
                     </p>

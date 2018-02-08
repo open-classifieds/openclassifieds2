@@ -650,6 +650,11 @@ label {
 	display: none;
 }
 
+/**** Homepage Map *****/
+.homepage_map{
+	padding: 50px 0;
+}
+
 /**** Home - Ad Grid *****/
 .home_grid {
 	margin: 0 -10px 20px -10px

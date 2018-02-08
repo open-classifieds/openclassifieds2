@@ -210,6 +210,11 @@ ol, ul {
 
 .min-h{min-height: 119px!important; display:block;}
 
+/* Homepage Map */
+.homepage_map{
+  margin: 10px 0;
+}
+
 .panel-home-categories {
     border: 1px solid #e3e3e3;
 }
