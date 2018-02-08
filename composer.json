@@ -1,0 +1,9 @@
+{
+    "require": {
+        "ext-mbstring": "*",
+        "ext-gd": "*",
+        "ext-soap": "*",
+        "php": ">=5.4.0",
+        "ext-mcrypt": "*"
+    }
+}
