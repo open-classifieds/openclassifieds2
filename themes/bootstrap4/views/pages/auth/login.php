@@ -1,0 +1,2 @@
+<?= View::factory('auth/login') ?>
+
