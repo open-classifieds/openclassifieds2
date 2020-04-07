@@ -10,22 +10,13 @@
     <?= FORM::open(Route::url('profiles'), array('class'=>'form-horizontal', 'method'=>'GET', 'action'=>''))?>
         <!-- if categories on show selector of categories -->
         <div class="form-group">
-            <div class="col-xs-12">  
+            <div class="col-xs-12">
                 <?= FORM::label('search', _e('Search'), array('class'=>'', 'for'=>'search'))?>
                 <input type="text" id="search" name="search" class="form-control" value="" placeholder="<?=__('Search')?>">
             </div>
         </div>
-        
+
         <?if (Theme::get('premium')==1) :?>
-            <!-- Fields coming from custom fields feature -->
-            <div id="widget-custom-fields" data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'categories'))?>" data-customfield-values='<?=json_encode(Request::current()->query())?>'>
-                <div id="widget-custom-field-template" class="form-group hidden">
-                    <div class="col-xs-12">
-                        <div data-label></div>
-                        <div data-input></div>
-                    </div>
-                </div>
-            </div>
             <?if ($widget->custom != FALSE) :?>
                 <!-- Fields coming from user custom fields feature -->
                 <?foreach($widget->custom_fields as $name=>$field):?>
@@ -46,7 +37,7 @@
                                 'tooltip'   => (isset($field['tooltip']))? $field['tooltip'] : "",
                                 'default'   => $field['values'],
                                 'options'   => (!is_array($field['values']))? $field['values'] : $select,
-                                ),core::get('cf_'.$name), FALSE, TRUE)?> 
+                                ),core::get('cf_'.$name), FALSE, TRUE)?>
                             </div>
                         </div>
                     <?endif?>
@@ -55,7 +46,7 @@
             <!-- /endcustom fields -->
         <?endif?>
         <div class="clearfix"></div>
-    
-        <?= FORM::button('submit', __('Search'), array('type'=>'submit', 'class'=>'btn btn-primary'))?> 
+
+        <?= FORM::button('submit', __('Search'), array('type'=>'submit', 'class'=>'btn btn-primary'))?>
     <?= FORM::close()?>
 </div>
