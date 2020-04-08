@@ -123,7 +123,23 @@ class Controller_Api_Listings extends Api_Auth {
                     $a['thumb'] = $ad->get_first_image();
                     $a['customfields'] = Model_Field::get_by_category($ad->id_category);
                     foreach ($a['customfields'] as $key => $values)
+                    {
+                        if($values['type'] == 'checkbox_group')
+                        {
+                            foreach ($values['grouped_values'] as $grouped_key => $grouped_value) {
+                                $a['customfields']['cf_' . $grouped_key] = $values;
+                                $a['customfields']['cf_' . $grouped_key]['label'] = $grouped_value;
+                                $a['customfields']['cf_' . $grouped_key]['parent'][$key] = $values;
+                                $a['customfields']['cf_' . $grouped_key]['value'] = $a['cf_'. $grouped_key];
+                            }
+
+                            unset($a['customfields'][$key]);
+
+                            continue;
+                        }
+
                         $a['customfields'][$key]['value'] = $a[$key];
+                    }
 
                     //sorting by distance, lets add it!
                     if (isset($ad->distance))
@@ -168,7 +184,23 @@ class Controller_Api_Listings extends Api_Auth {
                     $a['user']     = Controller_Api_Users::get_user_array($ad->user);
                     $a['customfields'] = Model_Field::get_by_category($ad->id_category);
                     foreach ($a['customfields'] as $key => $values)
+                    {
+                        if($values['type'] == 'checkbox_group')
+                        {
+                            foreach ($values['grouped_values'] as $grouped_key => $grouped_value) {
+                                $a['customfields']['cf_' . $grouped_key] = $values;
+                                $a['customfields']['cf_' . $grouped_key]['label'] = $grouped_value;
+                                $a['customfields']['cf_' . $grouped_key]['parent'][$key] = $values;
+                                $a['customfields']['cf_' . $grouped_key]['value'] = $a['cf_'. $grouped_key];
+                            }
+
+                            unset($a['customfields'][$key]);
+
+                            continue;
+                        }
+
                         $a['customfields'][$key]['value'] = $a[$key];
+                    }
                     //sorting by distance, lets add it!
                     if (isset($ad->distance))
                         $a['distance'] = i18n::format_measurement($ad->distance);
