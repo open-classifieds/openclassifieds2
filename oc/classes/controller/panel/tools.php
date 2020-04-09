@@ -262,6 +262,31 @@ class Controller_Panel_Tools extends Auth_Controller {
         //sending a CSV
         if($_POST)
         {
+            if($country = Core::post('country') AND in_array($country, $this->valid_import_countries()))
+            {
+                $location_chunks = array_chunk(json_decode(Core::curl_get_contents('https://raw.githubusercontent.com/yclas/geo/master/countries/' . $country . '.json'), TRUE), 250);
+
+                foreach ($location_chunks as $location_chunk) {
+                    $query = DB::insert('locations', ['id_location', 'id_location_parent', 'name', 'seoname']);
+
+                    foreach ($location_chunk as $location_data) {
+                        $query->values($location_data);
+                    }
+
+                    try {
+                        $query->execute();
+                    } catch ( Database_Exception $e ) {
+                        Kohana::$log->add(Log::ERROR, 'LOCATION IMPORT ' . print_r($e, TRUE));
+                    }
+                }
+
+                Core::delete_cache();
+
+                Alert::set(Alert::SUCCESS, __('Locations successfully imported.'));
+
+                $this->redirect(Route::url('oc-panel', ['controller' => 'location', 'action' => 'index']));
+            }
+
             foreach($_FILES as $file => $path)
             {
                 $csv = $path["tmp_name"];
@@ -809,5 +834,101 @@ class Controller_Panel_Tools extends Auth_Controller {
         Alert::set(Alert::SUCCESS, __('Successfully imported latitude and longitude info from your ads.'));
 
         $this->redirect(Route::url('oc-panel',array('controller'=>'import','action'=>'csv')));
+    }
+
+    protected function valid_import_countries()
+    {
+        return [
+            'AD-Andorra',
+            'AF-Afghanistan',
+            'AG-Antigua-and-Barbuda',
+            'AL-Albania',
+            'AO-Angola',
+            'AR-Argentina',
+            'AT-Austria',
+            'AU-Australia',
+            'AW-Aruba',
+            'BB-Barbados',
+            'BE-Belgium',
+            'BM-Bermuda',
+            'BO-Bolivia',
+            'BR-Brazil',
+            'BS-Bahamas',
+            'BZ-Belize',
+            'CA-Canada',
+            'CH-Switzerland',
+            'CI-Ivory-Coast',
+            'CL-Chile',
+            'CN-China',
+            'CR-Costa-Rica',
+            'CU-Cuba',
+            'CZ-Czech-Republic',
+            'DE-Germany',
+            'DK-Denmark',
+            'DO-Dominican-Republic',
+            'DZ-Algeria',
+            'EC-Ecuador',
+            'ES-Spain',
+            'FI-Finland',
+            'FR-France',
+            'GB-United-Kingdom',
+            'GH-Ghana',
+            'GL-Greenland',
+            'GQ-Equatorial-Guinea',
+            'GR-Greece',
+            'GT-Guatemala',
+            'GY-Guyana',
+            'HK-Hong-Kong',
+            'HN-Honduras',
+            'HR-Croatia',
+            'HT-Haiti',
+            'ID-Indonesia',
+            'IE-Ireland',
+            'IL-Israel',
+            'IN-India',
+            'IR-Iran',
+            'IT-Italy',
+            'JM-Jamaica',
+            'JP-Japan',
+            'KE-Kenya',
+            'KH-Cambodia',
+            'LB-Lebanon',
+            'LC-Saint-Lucia',
+            'LK-Sri-Lanka',
+            'LU-Luxembourg',
+            'LV-Latvia',
+            'MA-Morocco',
+            'MX-Mexico',
+            'MY-Malaysia',
+            'NG-Nigeria',
+            'NI-Nicaragua',
+            'NL-Netherlands',
+            'NO-Norway',
+            'PA-Panama',
+            'PE-Peru',
+            'PG-Papua-New-Guinea',
+            'PH-Philippines',
+            'PK-Pakistan',
+            'PL-Poland',
+            'PR-Puerto-Rico',
+            'PS-Palestinian-Territory',
+            'PT-Portugal',
+            'PY-Paraguay',
+            'RO-Romania',
+            'RS-Serbia',
+            'RU-Russia',
+            'SE-Sweden',
+            'SG-Singapore',
+            'SM-San-Marino',
+            'SV-El-Salvador',
+            'TH-Thailand',
+            'TR-Turkey',
+            'UA-Ukraine',
+            'US-United-States',
+            'UY-Uruguay',
+            'VE-Venezuela',
+            'ZA-South-Africa',
+            'ZW-Zimbabwe',
+        ];
     }
 }
