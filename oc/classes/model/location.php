@@ -850,6 +850,30 @@ class Model_Location extends ORM {
         return $this->get_translation('description', $locale);
     }
 
+    /**
+     * gets an array of valid import countries, stores file for 1 week
+     * @return array
+     */
+    public static function valid_import_countries()
+    {
+        $file = APPPATH.'valid_import_countries.json';
+
+        //return cached data if the file exists and is newer than 1 week
+        if (file_exists($file) AND filemtime($file) > strtotime('-1 week'))
+        {
+            return json_decode(File::read($file), TRUE);
+        }
+
+        $data = Core::curl_get_contents('https://cdn.jsdelivr.net/gh/yclas/geo@master/countries.json', 5);
+
+        if ($data)
+        {
+            File::write($file, $data);
+        }
+
+        return json_decode(File::read($file), TRUE);
+    }
+
 protected $_table_columns =
 array (
   'id_location' =>
