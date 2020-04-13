@@ -70,11 +70,6 @@ class Social {
         require_once Kohana::find_file('vendor/', 'codebird-php/codebird');
     }
 
-    public static function include_vendor_instagram()
-    {
-        require_once Kohana::find_file('vendor/', 'Instagram-API/vendor/autoload');
-    }
-
     public static function include_vendor_pinterest()
     {
         require_once Kohana::find_file('vendor/', 'Pinterest/vendor/dirkgroenen/pinterest-api-php/autoload');
@@ -87,12 +82,6 @@ class Social {
             if(core::config('advertisement.twitter'))
                 self::twitter($ad);
 
-            if(core::config('advertisement.facebook'))
-                self::facebook($ad);
-
-            if(core::config('advertisement.instagram'))
-                self::instagram($ad);
-
             if(core::config('advertisement.pinterest'))
                 self::pinterest($ad);
         }
@@ -104,12 +93,6 @@ class Social {
         {
             if(core::config('advertisement.twitter'))
                 self::twitter($ad);
-
-            if(core::config('advertisement.facebook'))
-                self::facebook($ad);
-
-            if(core::config('advertisement.instagram'))
-                self::instagram($ad);
 
             if(core::config('advertisement.pinterest'))
                 self::pinterest($ad);
@@ -168,59 +151,6 @@ class Social {
         }
     }
 
-    public static function instagram(Model_Ad $ad)
-    {
-
-        if(!method_exists('Core','yclas_url') AND core::config('advertisement.instagram_username')!='' AND core::config('advertisement.instagram_password')){
-
-            $file = $ad->get_first_image('image');
-
-            if($file !== NULL)
-            {
-                self::include_vendor_instagram();
-
-                $url_ad = Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
-
-                $caption = $ad->title;
-
-                if($ad->category->id_category_parent != 1 AND $ad->category->parent->loaded())
-                    $caption .= ' - '.$ad->category->parent->name;
-
-                // Instagram caption characters limit is 2200 !!
-                $caption .= '-'.$ad->category->name;
-
-                if($ad->id_location != 1 AND $ad->location->loaded())
-                {
-                    if($ad->location->id_location_parent != 1 AND $ad->location->parent->loaded())
-                        $caption .= ', '.$ad->location->parent->name;
-
-                    $caption .= '-'.$ad->location->name;
-                }
-
-                if($ad->price>0)
-                    $caption .= ', '.html_entity_decode(i18n::money_format($ad->price, $ad->currency()));
-
-                $caption .= ' - '.Text::limit_chars(Text::removebbcode($ad->description), 100, NULL, TRUE);
-                $caption .= ' - '.$url_ad;
-                $caption .= self::GenerateHashtags($ad);
-
-                // image path needs to be the path on the disk
-                $img_path = substr_replace(APPPATH, '', -3).$ad->image_path().substr($file, strrpos($file, '/') + 1);
-
-                $i = new \InstagramAPI\Instagram();
-
-                try {
-                    $i->login(core::config('advertisement.instagram_username'), core::config('advertisement.instagram_password'));
-                    $photo = new \InstagramAPI\Media\Photo\InstagramPhoto($img_path);
-                    $i->timeline->uploadPhoto($photo->getFile(), ['caption' => $caption]);
-                } catch (Exception $e) {
-                    echo 'Error posting to Instagram: ' . $e->getMessage();
-                }
-
-            }
-        }
-    }
-
     public static function twitter(Model_Ad $ad)
     {
         self::include_vendor_twitter();
@@ -260,57 +190,6 @@ class Social {
         {
             Kohana::$log->add(Log::ERROR, 'Twitter auto-post: ' . $reply->errors[0]->message);
         }
-    }
-
-    public static function facebook(Model_Ad $ad)
-    {
-        $page_access_token = core::config('advertisement.facebook_access_token');
-        $page_id = core::config('advertisement.facebook_id');
-        $app_secret = core::config('advertisement.facebook_app_secret');
-
-        $appsecret_proof = hash_hmac('sha256', $page_access_token, $app_secret);
-
-        $url_ad = Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
-
-        $description = $ad->description;
-
-        if($ad->price>0)
-            $description .= ' - '.__('Price').': '.html_entity_decode(i18n::money_format($ad->price, $ad->currency()));
-
-        $message = $ad->title;
-
-        if($ad->category->id_category_parent != 1 AND $ad->category->parent->loaded())
-            $message .= ', '.$ad->category->parent->name;
-
-        $message .= ' - '.$ad->category->name;
-
-        if($ad->id_location != 1)
-        {
-            if($ad->location->id_location_parent != 1 AND $ad->location->parent->loaded())
-                $message .= ', '.$ad->location->parent->name;
-
-            $message .= ' - '.$ad->location->name;
-        }
-
-        $data['link'] = $url_ad;
-        $data['message'] = $message.' - '.$description.' '.self::GenerateHashtags($ad);
-        $data['caption'] = core::config('general.base_url').' | '.core::config('general.site_name');
-
-        $data['access_token'] = $page_access_token;
-
-        $post_url = 'https://graph.facebook.com/'.$page_id.'/feed?appsecret_proof='.$appsecret_proof.'&scope=publish_stream,status_update';
-        $ch = curl_init();
-
-        curl_setopt($ch, CURLOPT_URL, $post_url);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $return = curl_exec($ch);
-        curl_close($ch);
-
-        if(strpos($return,'error') AND Auth::instance()->logged_in() AND Auth::instance()->get_user()->is_admin())
-            Alert::set(Alert::ALERT, $return);
-
     }
 
     public static function GetAccessToken()
