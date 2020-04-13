@@ -468,7 +468,7 @@ class Controller_Ad extends Controller {
 
 
                 if($ad->get_first_image() !== NULL)
-                    Controller::$image = $ad->get_first_image();
+                    Controller::$image = $ad->get_first_image('image');
 
                 $view_file = 'pages/ad/single';
 
@@ -651,7 +651,7 @@ class Controller_Ad extends Controller {
 
 
                 if($ad->get_first_image() !== NULL)
-                    Controller::$image = $ad->get_first_image();
+                    Controller::$image = $ad->get_first_image('image');
 
                 $reviews = new Model_Review();
                 $reviews = $reviews->where('id_ad','=',$ad->id_ad)
