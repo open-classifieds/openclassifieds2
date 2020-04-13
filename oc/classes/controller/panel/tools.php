@@ -262,6 +262,31 @@ class Controller_Panel_Tools extends Auth_Controller {
         //sending a CSV
         if($_POST)
         {
+            if($country = Core::post('country') AND array_key_exists($country, Model_Location::valid_import_countries()))
+            {
+                $location_chunks = array_chunk(json_decode(Core::curl_get_contents('https://raw.githubusercontent.com/yclas/geo/master/countries/' . $country . '.json'), TRUE), 250);
+
+                foreach ($location_chunks as $location_chunk) {
+                    $query = DB::insert('locations', ['id_location', 'id_location_parent', 'name', 'seoname']);
+
+                    foreach ($location_chunk as $location_data) {
+                        $query->values($location_data);
+                    }
+
+                    try {
+                        $query->execute();
+                    } catch ( Database_Exception $e ) {
+                        Kohana::$log->add(Log::ERROR, 'LOCATION IMPORT ' . print_r($e, TRUE));
+                    }
+                }
+
+                Core::delete_cache();
+
+                Alert::set(Alert::SUCCESS, __('Locations successfully imported.'));
+
+                $this->redirect(Route::url('oc-panel', ['controller' => 'location', 'action' => 'index']));
+            }
+
             foreach($_FILES as $file => $path)
             {
                 $csv = $path["tmp_name"];
