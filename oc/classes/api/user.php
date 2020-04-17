@@ -12,7 +12,7 @@ class Api_User extends Api_Controller {
         if (Theme::get('premium')!=1)
             $this->_error('You need a premium theme to use the API',401);
         
-        $key = Core::request('user_token');
+        $key = isset($_SERVER['HTTP_USER_TOKEN'])?$_SERVER['HTTP__USER_TOKEN']:Core::request('user_token');
 
         //try authenticate the user
         if ($key == NULL OR ($this->user = Auth::instance()->api_login($key))==FALSE)
