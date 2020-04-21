@@ -106,6 +106,20 @@ class Controller_Plan extends Controller {
                     HTTP::redirect(Route::url('pricing'));
                 }
             }
+            elseif ( Core::config('general.subscriptions_expire') == TRUE)
+            {
+                // potential user ads to be reenabled
+                $amount_ads_to_use = (New Model_Ad)
+                    ->where('status', '=', Model_Ad::STATUS_UNAVAILABLE)
+                    ->where('id_user', '=', $this->user->id_user)
+                    ->count_all();
+
+                if ($amount_ads_to_use > $plan->amount_ads)
+                {
+                    Alert::set(Alert::WARNING, __('Plan has a fewer amount of ads than you have on your account.'));
+                    HTTP::redirect(Route::url('pricing'));
+                }
+            }
 
             $order = Model_Order::new_order(NULL, $this->user, $plan->id_plan, $plan->price, core::config('payment.paypal_currency'), __('Subscription to ').$plan->name);
 
