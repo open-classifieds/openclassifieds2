@@ -277,7 +277,7 @@ class Controller_Panel_Translations extends Auth_Controller {
         foreach ($en_array_order as $origin => $value) 
         {
             //do we have the translation?
-            if (isset($origin_translation[$origin]) AND !empty($origin_translation[$origin])>0)
+            if (isset($origin_translation[$origin]) AND !empty($origin_translation[$origin]))
             {
                 $translated = $origin_translation[$origin];
             }
