@@ -1236,7 +1236,7 @@ class Controller_Ad extends Controller {
 	        $category = NULL;
 	        $location = NULL;
 
-            if (core::config('general.search_multi_catloc') AND Theme::$is_mobile === FALSE) //mobile native menus don't support multiple selection
+            if (core::config('general.search_multi_catloc') ) 
             {
                 //filter by category
                 if (is_array(core::get('category')))

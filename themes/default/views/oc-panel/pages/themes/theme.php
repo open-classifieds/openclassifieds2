@@ -44,19 +44,6 @@
                             <?endif?>
                         </h4>
                         <p><?=$selected['Description']?></p>
-                        <?if(Core::config('appearance.theme_mobile')!=''):?>
-                            <p>
-                                <?=__('Using mobile theme')?> <code><?=Core::config('appearance.theme_mobile')?></code>
-                                <a class="btn btn-xs btn-warning" title="<?=__('Disable')?>" 
-                                    href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'mobile','id'=>'disable'))?>">
-                                    <i class="fa fa-minus"></i> <?=__('Disable')?>
-                                </a>
-                                <a class="btn btn-xs btn-primary" title="<?=__('Options')?>" 
-                                    href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'options','id'=>Core::config('appearance.theme_mobile')))?>">
-                                    <i class="fa fa-wrench"></i> <?=__('Options')?>
-                                </a>
-                            </p>
-                        <?endif?>
                     </div>
                 </div>
             </div>
@@ -103,46 +90,6 @@
     </div>
 <?endif?>
 
-<?
-$a_m_themes = core::count($mobile_themes);
-if(Core::config('appearance.theme_mobile')!='')
-    $a_m_themes--;
-
-if ($a_m_themes>0):?>
-
-    <h2 class="page-header page-title">
-        <?=__('Available Mobile Themes')?>
-    </h2>
-
-    <hr>
-
-    <div class="row">
-        <?$i=0; foreach ($mobile_themes as $theme=>$info):?>
-            <?if(Core::config('appearance.theme_mobile')!==$theme):?>
-                <?if ($i%3==0):?><div class="clearfix"></div><?endif?>
-                <div class="col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <?if ($scr = Theme::get_theme_screenshot($theme)):?>
-                                <img class="img-rounded img-responsive" src="<?=$scr?>">
-                            <?endif?>
-
-                            <div class="caption">
-                                <h3><?=$info['Name']?></h3>
-                                <p><?=$info['Description']?></p>
-                                <p><?=$info['License']?> v<?=$info['Version']?></p>
-                                <p>
-                                    <a class="btn btn-primary" href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'index','id'=>$theme))?>"><?=__('Activate')?></a>
-                                    <a class="btn btn-default" target="_blank" href="<?=Route::url('default')?>?theme=<?=$theme?>"><?=__('Preview')?></a>    
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?$i++;endif?>
-        <?endforeach?>
-    </div>
-<?endif?>
 
 <?if (core::count($market)>0):?>
 <h2><?=__('Themes Market')?></h2>

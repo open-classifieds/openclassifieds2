@@ -31,7 +31,7 @@ class Controller_Panel_Theme extends Auth_Controller {
         $options = NULL;
         $data    = NULL;
 
-        //this is how we manage the mobile options, or if we want to set other theme options without enableing it. ;)
+        //this is how we manage other theme options without enableing it. ;)
         if($this->request->param('id'))
         {
            $options = Theme::get_options($this->request->param('id'));
@@ -126,8 +126,6 @@ class Controller_Panel_Theme extends Auth_Controller {
         //getting the themes
         $themes = Theme::get_installed_themes();
 
-        $mobile_themes = Theme::get_installed_themes(TRUE);
-  
         //getting themes from market
         $market = array();
         $json = Core::get_market();
@@ -137,8 +135,7 @@ class Controller_Panel_Theme extends Auth_Controller {
             {
                 //we add only those the user doesn't have installed
                 if ( strtolower($theme['type']) == 'themes' 
-                    AND!in_array(strtolower($theme['seoname']), array_keys($themes))
-                    AND !in_array(strtolower($theme['seoname']), array_keys($mobile_themes)) )
+                    AND!in_array(strtolower($theme['seoname']), array_keys($themes)) )
                     $market[] = $theme;
             }
         }    
@@ -156,24 +153,14 @@ class Controller_Panel_Theme extends Auth_Controller {
                  $this->redirect(Route::url('oc-panel',array('controller'=>'theme','action'=> 'license','id'=>$theme) ));
             }
 
-            //activating a mobile theme
-            if (in_array($theme, array_keys($mobile_themes)) )
-            {
-                Theme::set_mobile_theme($theme);
-                Alert::set(Alert::SUCCESS, __('Mobile Theme updated'));
-            }
-            else
-            {
-                Theme::set_theme($theme);
-                Alert::set(Alert::SUCCESS, __('Appearance configuration updated'));
-            }
-            
+            Theme::set_theme($theme);
+            Alert::set(Alert::SUCCESS, __('Appearance configuration updated'));
+                        
             $this->redirect(Route::url('oc-panel',array('controller'=>'theme','action'=> (!isset($opt['premium']))?'index':'options')));
         }
 
         $this->template->content = View::factory('oc-panel/pages/themes/theme', array('market' => $market,
                                                                                     'themes' => $themes, 
-                                                                                    'mobile_themes' => $mobile_themes,
                                                                                     'selected'=>Theme::get_theme_info(Theme::$theme)));
     }
 
@@ -191,11 +178,7 @@ class Controller_Panel_Theme extends Auth_Controller {
         {
             if (Theme::license(core::request('license'),$theme)==TRUE)
             {
-                 //activating a mobile theme
-                if (in_array($theme, array_keys(Theme::get_installed_themes(TRUE))) )
-                    Theme::set_mobile_theme($theme);
-                else
-                    Theme::set_theme($theme);
+                Theme::set_theme($theme);
 
                 Model_Config::set_value('license','number',core::request('license'));
                 Model_Config::set_value('license','date',time()+7*24*60*60);
@@ -262,26 +245,6 @@ class Controller_Panel_Theme extends Auth_Controller {
             
         }
     }
-
-    /**
-     * mobile theme selector
-     * @return [view] 
-     */
-    public function action_mobile()
-    {
-
-        // save only changed values
-        if($this->request->param('id'))
-        {
-            Theme::set_mobile_theme($this->request->param('id'));
-            
-            Alert::set(Alert::SUCCESS, __('Mobile Theme updated'));
-            $this->redirect(Route::url('oc-panel',array('controller'=>'theme','action'=>'index')));
-        }
-
-       
-    }
-
 
     /**
      * download theme from license key

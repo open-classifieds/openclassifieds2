@@ -15,7 +15,6 @@ class Theme {
     public static $theme        = 'default';
     public static $parent_theme = NULL; //used for child themes
     public static $skin         = ''; //skin that the theme is using, used in premium themes
-    public static $is_mobile    = FALSE; //used to determinate if $theme is mobile
     private static $views_path  = 'views';
     public  static $scripts     = array();
     public  static $styles      = array();
@@ -358,62 +357,16 @@ class Theme {
     }
 
     /**
-     * detect if visitor browser is mobile
-     * @return boolean/theme name
-     */
-    public static function is_mobile()
-    {
-        $is_mobile = FALSE;
-
-        //we check if we are forcing not to show mobile
-        if( Core::get('theme')!=Core::config('appearance.theme_mobile') AND Core::get('theme')!==NULL)
-        {
-            $is_mobile = FALSE;
-        }
-        //check if we selected a mobile theme
-        elseif ( Core::config('appearance.theme_mobile')!='' )
-        {
-
-            //they are forcing to show the mobile
-            if ( Core::get('theme')==Core::config('appearance.theme_mobile')
-                OR Cookie::get('theme')==Core::config('appearance.theme_mobile'))
-            {
-                $is_mobile = TRUE;
-            }
-            //none of this scenarios try to detect if ismobile
-            else
-            {
-                require Kohana::find_file('vendor', 'Mobile-Detect/Mobile_Detect','php');
-                $detect = new Mobile_Detect();
-                if ($detect->isMobile() AND ! $detect->isTablet())
-                    $is_mobile = TRUE;
-            }
-        }
-
-        self::$is_mobile = $is_mobile;
-
-        return ($is_mobile)?Core::config('appearance.theme_mobile'):FALSE;
-    }
-
-
-    /**
      * initialize theme
      * @param  string $theme forcing theme to load used in the admin
      * @return void
      */
     public static function initialize($theme = NULL)
     {
-
         //we are not forcing the view of other theme
         if ($theme === NULL)
         {
-            //first we check if it's a mobile device
-            if(($mobile_theme = self::is_mobile())!==FALSE)
-            {
-               $theme = $mobile_theme;
-            }
-            else
-                $theme = Core::config('appearance.theme');
+            $theme = Core::config('appearance.theme');
 
             //if we allow the user to select the theme, perfect for the demo
             if (Core::config('appearance.allow_query_theme')=='1')
@@ -483,49 +436,11 @@ class Theme {
 
     }
 
-
-     /**
-     * sets the theme we need to use in front
-     * @param string $theme
-     */
-    public static function set_mobile_theme($theme)
-    {
-        if ($theme == 'disable' OR !file_exists(self::theme_init_path($theme)))
-            $theme = '';
-
-        // save theme to DB
-        $conf = new Model_Config();
-        $conf->where('group_name','=','appearance')
-                    ->where('config_key','=','theme_mobile')
-                    ->limit(1)->find();
-
-        if (!$conf->loaded())
-        {
-            $conf->group_name = 'appearance';
-            $conf->config_key = 'theme_mobile';
-        }
-
-        $conf->config_value = $theme;
-
-        try
-        {
-            $conf->save();
-            return TRUE;
-        }
-        catch (Exception $e)
-        {
-            throw HTTP_Exception::factory(500,$e->getMessage());
-        }
-
-    }
-
-
     /**
      * Read the folder /themes/ for themes
-     * @param  boolean $only_mobile set to true an returns the mobile themes
      * @return array
      */
-    public static function get_installed_themes($only_mobile = FALSE)
+    public static function get_installed_themes()
     {
         //read folders in theme folder
         $folder = DOCROOT.'themes';
@@ -539,11 +454,7 @@ class Theme {
             {
                 if ( ($info = self::get_theme_info($file->getFilename())) !==FALSE )
                 {
-
-                    if ($only_mobile AND $info['Mobile']=='TRUE')
-                        $themes[$file->getFilename()] = $info;
-                    elseif(!$only_mobile AND $info['Mobile']!='TRUE')
-                        $themes[$file->getFilename()] = $info;
+                    $themes[$file->getFilename()] = $info;
                 }
 
             }
@@ -576,7 +487,6 @@ class Theme {
             'Version'     => 'Version',
             'License'     => 'License',
             'Tags'        => 'Tags',
-            'Mobile'      => 'Mobile',
             'Parent'      => 'Parent Theme',
         ));
     }
@@ -765,37 +675,6 @@ class Theme {
     {
         if (Kohana::$environment === Kohana::DEVELOPMENT)
             return TRUE;
-
-/*        if ($current_theme === NULL)
-            $current_theme = Theme::$theme;
-
-        //getting the licenses unique. to avoid downloading twice
-        $themes = core::config('theme');
-
-        //child  theme can use parent license, so we remove the parent from the list
-        $parent_theme = self::get_theme_parent($current_theme);
-        if ( $parent_theme !==NULL AND isset($themes[$parent_theme]))
-            unset($themes[$parent_theme]);
-
-        //remove current theme from themes checking list
-        if (isset($themes[$current_theme]))
-            unset($themes[$current_theme]);
-
-        //for the remaining themes checking the values
-        foreach ($themes as $theme=>$settings)
-        {
-            $settings = json_decode($settings,TRUE);
-            //theme has a license
-            if (isset($settings['license']))
-            {
-                //license is already in use in that theme
-                if ($settings['license'] == $l)
-                {
-                    Alert::set(Alert::INFO, sprintf(__('This license is in use in the theme %s'),$theme));
-                    return FALSE;
-                }
-            }
-        }*/
 
         $api_url = Core::market_url().'/api/license/'.$l.'/?domain='.parse_url(URL::base(), PHP_URL_HOST);
 
