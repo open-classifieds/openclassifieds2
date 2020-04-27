@@ -13,7 +13,7 @@
         <input type="hidden" name="item_number" value="<?=$order_id?>">
         <input type="hidden" name="amount" value="<?=$amount?>">
         <input type="hidden" name="quantity" value="1">
-        <input type="hidden" name="undefined_quantity" value="0">
+        <input type="hidden" name="undefined_quantity" value="1">
         <input type="hidden" name="no_shipping" value="0">
         <input type="hidden" name="shipping" value="0">
         <input type="hidden" name="shipping2" value="0">
