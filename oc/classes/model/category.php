@@ -125,7 +125,7 @@ class Model_Category extends ORM {
                     'parent_deep'       => array(),
                     'seoname'           => array(array('not_empty'), array('max_length', array(':value', 145)), ),
                     'description'       => array(),
-                    'price'             => array(),
+                    'price'             => array(array('not_empty'), array('numeric')),
                     'last_modified'     => array(),
                     'has_images'            => array(array('numeric')),
                     );
@@ -623,6 +623,8 @@ class Model_Category extends ORM {
 
         $form->fields['order']['display_as']   = 'select';
         $form->fields['order']['options']      = range(1, 100);
+
+        $form->fields['price']['value']   = $this->price ?? 0;
     }
 
 
