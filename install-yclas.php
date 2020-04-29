@@ -149,9 +149,9 @@ class install{
                                     'mandatory' => TRUE,
                                     'result'    => (extension_loaded('curl'))
                                     ),
-                'GD'        =>array('message'   => 'Install requires the <a href="http://php.net/gd">GD</a> v2 for the Image class',
+                'Imagick'   =>array('message'   => 'Install requires the <a href="https://www.php.net/manual/en/book.imagick.php">Imagick</a> class',
                                     'mandatory' => TRUE,
-                                    'result'    => (function_exists('gd_info'))
+                                    'result'    => (class_exists('Imagick'))
                                     ),
                 'MySQL'     =>array('message'   => 'Install requires the <a href="http://php.net/mysqli">MySQLi</a> extension to support MySQL databases.',
                                     'mandatory' => TRUE,
