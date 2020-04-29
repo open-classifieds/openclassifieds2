@@ -635,7 +635,7 @@ class Api_Controller extends Kohana_Controller {
         $this->before();
 
         //maintenance mode
-        if (core::config('general.maintenance')==1)
+        if (core::config('general.maintenance')==1 AND !Auth::instance()->logged_in())
         {
             $this->rest_output(array('ERROR' => 'Maintenance mode'),503);
         }
