@@ -91,13 +91,68 @@
 <?endif?>
 
 
-<?if (core::count($market)>0):?>
-<h2><?=__('Themes Market')?></h2>
-<p><?=__('Here you can find a selection of our premium themes.')?></p>
-<p class="text-success"><?=__('All themes include support, updates and 1 site license.')?></p> <?=__('Also white labeled and free of ads')?>!
+<?if (core::count($templates)>0):?>
+<h2><?=__('Pro Themes')?></h2>
 
-<?=View::factory('oc-panel/pages/market/listing',array('market'=>$market))?>    
+<p><?=__('Here you can find a selection of our Pro themes.')?></p> <a class="btn btn-primary btn-xl" href="https://yclas.com/self-hosted.html"><?=__('Buy Pro version to get them all')?></a>
+<div class="row">
+<?$i=0;
+foreach ($templates as $item):?>
+    <?if ($i%3==0):?><div class="clearfix"></div><?endif?>
+    <div class="col-md-4 col-sm-4 theme">
+        <div class="panel-body">
+        <div class="caption">
+        <?if (empty($item['screenshot'])===FALSE):?>
+            <img  class="thumb_market" src="<?=$item['screenshot']?>">
+        <?else:?>
+             <img class="thumb_market" src="//www.placehold.it/300x200&text=<?=$item['titlename']?>">
+        <?endif?>   
+        
+        <div class="caption">
+            <h3><?=$item['name']?></h3>
+            <p>
+                <?if (empty($item['demo_url'])===FALSE):?>
+                    <a class="btn btn-default btn-block" target="_blank" href="<?=$item['demo_url']?>">
+                        <i class="glyphicon  glyphicon-eye-open"></i>
+                            <?=__('Preview')?>
+                    </a>    
+                <?endif?>
+            </p>
+            <p>
+                <?=Text::bb2html($item['description'])?>
+            </p>
+        </div>
+        </div>   
+        </div>
+    </div>
+    <?$i++;
+    endforeach?>
+</div>
 <?endif?>
+
+    <div class="col-md-4 col-sm-4 theme">
+        <div class="panel panel-default">
+        <div class="panel-body">
+        <div class="caption">
+            <h3>Custom Theme</h3>
+            <p>
+                <span class="label label-info">From $200</span>
+                <span class="label label-success">themes</span>
+            </p>
+            <p>
+                Want to make your classified ads site unique to look more professional for your customers? You can have a theme designed specially for you!
+
+                <a class="btn btn-primary"  href="https://yclas.com/contact.html">
+                    <i class="glyphicon  glyphicon-shopping-cart"></i>  Get a quote!
+                </a>  
+            </p>
+            
+        </div>
+        </div>
+        </div>
+    </div>
+
+
 
 <div class="modal fade" id="install-theme" tabindex="-1" role="dialog" aria-labelledby="installTheme" aria-hidden="true">
     <div class="modal-dialog">

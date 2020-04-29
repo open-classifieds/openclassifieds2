@@ -463,6 +463,31 @@ class Theme {
         return $themes;
     }
 
+    /**
+     * get templates from json hosted currently at our site
+     * @param  boolean $reload
+     * @return void
+     */
+    public static function get_pro_templates($reload = FALSE)
+    {
+        $url = (Kohana::$environment == Kohana::DEVELOPMENT) ? 'http://yclas.lo':'https://yclas.com';
+        $url = $url.'/api/v1/templates';
+        
+        //try to get the json from the cache
+        $templates = Core::cache($url);
+
+        //not cached :(
+        if ($templates === NULL OR  $reload === TRUE)
+        {
+            $templates = Core::curl_get_contents($url.'?r='.time());
+            //save the json
+            Core::cache($url,$templates,strtotime('+7 day'));
+        }
+
+        return json_decode($templates,TRUE);
+
+    }
+
 
     /**
      * returns the info regarding to the theme stores at init.php

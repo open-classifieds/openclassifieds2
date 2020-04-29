@@ -126,17 +126,17 @@ class Controller_Panel_Theme extends Auth_Controller {
         //getting the themes
         $themes = Theme::get_installed_themes();
 
-        //getting themes from market
-        $market = array();
-        $json = Core::get_market();
+        //getting themes from templates
+        $templates = array();
+        $json = Theme::get_pro_templates();
         if(is_array($json))
         {    
+            $json = $json['templates'];
             foreach ($json as $theme) 
             {
                 //we add only those the user doesn't have installed
-                if ( strtolower($theme['type']) == 'themes' 
-                    AND!in_array(strtolower($theme['seoname']), array_keys($themes)) )
-                    $market[] = $theme;
+                if (!in_array(strtolower($theme['seoname']), array_keys($themes)) )
+                    $templates[] = $theme;
             }
         }    
 
@@ -159,7 +159,7 @@ class Controller_Panel_Theme extends Auth_Controller {
             $this->redirect(Route::url('oc-panel',array('controller'=>'theme','action'=> (!isset($opt['premium']))?'index':'options')));
         }
 
-        $this->template->content = View::factory('oc-panel/pages/themes/theme', array('market' => $market,
+        $this->template->content = View::factory('oc-panel/pages/themes/theme', array('templates' => $templates,
                                                                                     'themes' => $themes, 
                                                                                     'selected'=>Theme::get_theme_info(Theme::$theme)));
     }

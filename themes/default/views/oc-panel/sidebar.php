@@ -112,9 +112,6 @@
                             <li>
                                 <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'theme', 'action'=>'css'))?>"><?=__('Custom CSS')?></a>
                             </li>
-                            <li>
-                                <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'market'))?>"><?=__('Market')?></a>
-                            </li>
                             <?if ($user->has_access_to_any('settings,config')):?>
                                 <li>
                                     <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))?>"><?=__('Settings')?> - <?=__('General')?></a>
@@ -270,7 +267,6 @@
                         <?=Theme::admin_link(__('Widgets'), 'widget','index','oc-panel')?>
                         <?=Theme::admin_link(__('Menu'), 'menu','index','oc-panel')?>
                         <?=Theme::admin_link(__('Custom CSS'), 'theme','css','oc-panel')?>
-                        <?=Theme::admin_link(__('Market'), 'market','index','oc-panel')?>
                     </ul>
                 </li>
                 <?if ($user->has_access_to_any('settings,config')):?>

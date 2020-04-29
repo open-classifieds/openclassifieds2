@@ -160,7 +160,7 @@ class Api_Controller extends Kohana_Controller {
         {
             // 404 action doesnt exists!
             if (!method_exists($this,'action_'.$action_requested))
-                $this->error(__('Method not found ').$action_requested,404);
+                $this->_error(__('Method not found ').$action_requested,404);
         }
         //method doesnt exists
         elseif (!isset($this->_action_map[$method]))
