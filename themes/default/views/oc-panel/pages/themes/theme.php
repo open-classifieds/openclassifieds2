@@ -37,7 +37,7 @@
                         <h4 class="media-heading">
                             <?=$selected['Name']?>
                             <?if (Theme::has_options()):?>
-                                <a class="btn btn-xs btn-primary ajax-load" title="<?=__('Theme Options')?>" 
+                                <a class="btn btn-xs btn-primary ajax-load" title="<?=__('Theme Options')?>"
                                     href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'options'))?>">
                                     <i class="fa fa-wrench"></i> <?=__('Theme Options')?>
                                 </a>
@@ -62,14 +62,13 @@
         <?$i=0;
         foreach ($themes as $theme=>$info):?>
             <?if(Theme::$theme!==$theme):?>
-            <?if ($i%3==0):?><div class="clearfix"></div><?endif?>
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <?if ($scr = Theme::get_theme_screenshot($theme)):?>
                             <img class="img-rounded img-responsive" src="<?=$scr?>">
                         <?endif?>
-                        
+
                         <div class="caption">
                             <h3><?=$info['Name']?></h3>
                             <p><?=$info['Description']?></p>
@@ -77,15 +76,15 @@
                             <p>
                                 <a class="btn btn-primary btn-block" href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'index','id'=>$theme))?>"><?=__('Activate')?></a>
                                 <?if (Core::config('appearance.allow_query_theme')=='1'):?>
-                                <a class="btn btn-default btn-block" target="_blank" href="<?=Route::url('default')?>?theme=<?=$theme?>"><?=__('Preview')?></a> 
-                                <?endif?>   
+                                <a class="btn btn-default btn-block" target="_blank" href="<?=Route::url('default')?>?theme=<?=$theme?>"><?=__('Preview')?></a>
+                                <?endif?>
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
-            <?$i++;
-            endif?>
+            <?$i++;endif?>
+            <?if ($i%3==0):?><div class="clearfix"></div><?endif?>
         <?endforeach?>
     </div>
 <?endif?>
@@ -95,10 +94,12 @@
 <h2><?=__('Pro Themes')?></h2>
 
 <p><?=__('Here you can find a selection of our Pro themes.')?></p> <a class="btn btn-primary btn-xl" href="https://yclas.com/self-hosted.html"><?=__('Buy Pro version to get them all')?></a>
+
+<hr>
+
 <div class="row">
 <?$i=0;
 foreach ($templates as $item):?>
-    <?if ($i%3==0):?><div class="clearfix"></div><?endif?>
     <div class="col-md-4 col-sm-4 theme">
         <div class="panel-body">
         <div class="caption">
@@ -106,8 +107,8 @@ foreach ($templates as $item):?>
             <img  class="thumb_market" src="<?=$item['screenshot']?>">
         <?else:?>
              <img class="thumb_market" src="//www.placehold.it/300x200&text=<?=$item['titlename']?>">
-        <?endif?>   
-        
+        <?endif?>
+
         <div class="caption">
             <h3><?=$item['name']?></h3>
             <p>
@@ -115,21 +116,22 @@ foreach ($templates as $item):?>
                     <a class="btn btn-default btn-block" target="_blank" href="<?=$item['demo_url']?>">
                         <i class="glyphicon  glyphicon-eye-open"></i>
                             <?=__('Preview')?>
-                    </a>    
+                    </a>
                 <?endif?>
             </p>
             <p>
                 <?=Text::bb2html($item['description'])?>
             </p>
         </div>
-        </div>   
+        </div>
         </div>
     </div>
-    <?$i++;
-    endforeach?>
+    <?$i++; if ($i%3==0):?><div class="clearfix"></div><?endif?>
+    <?endforeach?>
 </div>
 <?endif?>
 
+<div class="row">
     <div class="col-md-4 col-sm-4 theme">
         <div class="panel panel-default">
         <div class="panel-body">
@@ -144,14 +146,14 @@ foreach ($templates as $item):?>
 
                 <a class="btn btn-primary"  href="https://yclas.com/contact.html">
                     <i class="glyphicon  glyphicon-shopping-cart"></i>  Get a quote!
-                </a>  
+                </a>
             </p>
-            
+
         </div>
         </div>
         </div>
     </div>
-
+</div>
 
 
 <div class="modal fade" id="install-theme" tabindex="-1" role="dialog" aria-labelledby="installTheme" aria-hidden="true">
@@ -164,25 +166,25 @@ foreach ($templates as $item):?>
             <div class="modal-body">
                 <?=FORM::open(Route::url('oc-panel',array('controller'=>'theme','action'=>'download')))?>
                     <div class="form-group">
-                        <?=FORM::label('license', __('Install theme from license.'), array('class'=>'control-label', 'for'=>'license' ))?> 
+                        <?=FORM::label('license', __('Install theme from license.'), array('class'=>'control-label', 'for'=>'license' ))?>
                         <input type="text" name="license" id="license" placeholder="<?=__('license')?>" class="form-control"/>
                     </div>
-                    <button 
-                        type="button" 
-                        class="btn btn-primary submit" 
-                        title="<?=__('Are you sure?')?>" 
+                    <button
+                        type="button"
+                        class="btn btn-primary submit"
+                        title="<?=__('Are you sure?')?>"
                         data-text="<?=sprintf(__('License will be activated in %s domain.'), parse_url(URL::base(), PHP_URL_HOST))?>"
-                        data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                        data-btnOkLabel="<?=__('Yes, definitely!')?>"
                         data-btnCancelLabel="<?=__('No way!')?>">
                         <?=__('Download')?>
                     </button>
                 <?=FORM::close()?>
-                
+
                 <hr>
 
                 <?=FORM::open(Route::url('oc-panel',array('controller'=>'theme','action'=>'install_theme')), array('enctype'=>'multipart/form-data'))?>
                     <div class="form-group">
-                        <?=FORM::label('theme_file', __('To install new theme choose zip file.'), array('class'=>'control-label', 'for'=>'theme_file' ))?> 
+                        <?=FORM::label('theme_file', __('To install new theme choose zip file.'), array('class'=>'control-label', 'for'=>'theme_file' ))?>
                         <input type="file" name="theme_file" id="theme_file" class="form-control" />
                     </div>
                     <?=FORM::button('submit', __('Upload'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'theme','action'=>'install_theme'))))?>
