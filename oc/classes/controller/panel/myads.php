@@ -333,6 +333,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                                                         '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.min.js',
                                                         '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js',
                                                         'js/load-image.all.min.js',
+                                                        '//cdn.jsdelivr.net/npm/exif-js',
                                                         'js/oc-panel/edit_ad.js');
 
             $this->template->scripts['async_defer'][] = '//maps.google.com/maps/api/js?libraries=geometry&v=3&key='.core::config("advertisement.gm_api_key").'&callback=initLocationsGMap&language='.i18n::get_gmaps_language(i18n::$locale);
