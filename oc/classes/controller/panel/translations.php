@@ -59,15 +59,16 @@ class Controller_Panel_Translations extends Auth_Controller {
             $folder     = DOCROOT.'languages/'.$language.'/LC_MESSAGES/';
             
             // if folder does not exist, try to make it
-            if ( !file_exists($folder) AND ! @mkdir($folder, 0775, true)) { // mkdir not successful ?
+            if ( !file_exists($folder) AND ! @mkdir($folder, 0775, true)) 
+            { // mkdir not successful ?
                 Alert::set(Alert::ERROR, __('Language folder cannot be created with mkdir. Please correct to be able to create new translation.'));
                 HTTP::redirect(Route::url('oc-panel',array('controller'  => 'translations')));  
             };
             
             // write an empty .po file for $language
-            $out = 'msgid ""'.PHP_EOL;
-            $out .= 'msgstr ""'.PHP_EOL;
+            $out = 'msgid ""'.PHP_EOL.'msgstr ""'.PHP_EOL;
             File::write($folder.'messages.po', $out);
+            File::write($folder.'apps.po', $out);
             
             Alert::set(Alert::SUCCESS, $this->request->param('id').' '.__('Language saved'));
         }
@@ -80,23 +81,25 @@ class Controller_Panel_Translations extends Auth_Controller {
 
     public function action_edit()
     {
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Edit Translation')));  
-        $this->template->title = __('Edit Translation');     
+        $language   = $this->language_fix($this->request->param('id'));
+        $translation_file = core::request('translation_file','messages');
+
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Edit Translation').' "'.$language.'" "'.$translation_file.'"'));  
+        $this->template->title = __('Edit Translation').' "'.$language.'" "'.$translation_file.'"';     
         $this->template->bind('content', $content);
         $content = View::factory('oc-panel/pages/translations/edit');
         $this->template->scripts['footer'][] = 'js/oc-panel/translations.js';
 
-        $language   = $this->language_fix($this->request->param('id'));
 
         //get the translated ad not translated.
-        list($translation_array,$untranslated_array) = $this->get_translation($language);
+        list($translation_array,$untranslated_array) = $this->get_translation($language,$translation_file);
         
         //watch out at any standard php installation there's a limit of 1000 posts....edit php.ini max_input_vars = 10000 to amend it.
         if($this->request->post() AND is_array(Core::post('translations')) )
         {
             $data_translated = Core::post('translations');
 
-            if ($this->save_translation($language,$translation_array,$data_translated))
+            if ($this->save_translation($language,$translation_array,$data_translated,$translation_file))
                 Alert::set(Alert::SUCCESS, $language.' '.__('Language saved'));
             else
                 Alert::set(Alert::ALERT, $language);
@@ -160,6 +163,7 @@ class Controller_Panel_Translations extends Auth_Controller {
         $content->cont_untranslated = core::count($untranslated_array);
         $content->total_items       = core::count($translation_array);
         $content->pagination        = $pagination->render();
+        $content->translation_file  = $translation_file;
 
     }
 
@@ -170,6 +174,7 @@ class Controller_Panel_Translations extends Auth_Controller {
         $replace    = Core::request('replace', Core::request('value'));
         $where      = Core::request('where','original');
         $exact      = (bool) Core::request('exact','0');
+        $translation_file = core::request('translation_file','messages');
 
         //d([$search, $replace, $where, $exact]);
 
@@ -179,7 +184,7 @@ class Controller_Panel_Translations extends Auth_Controller {
         //read translated mo
         //get the translated ad not translated.
         //merge original with translated
-        list($translation_array,$untranslated_array) = $this->get_translation($language);
+        list($translation_array,$untranslated_array) = $this->get_translation($language,$translation_file);
 
         //array of new translations
         $data_translated = array();
@@ -221,12 +226,12 @@ class Controller_Panel_Translations extends Auth_Controller {
             }            
         }
 
-        if ($this->save_translation($language,$translation_array,$data_translated))
+        if ($this->save_translation($language,$translation_array,$data_translated,$translation_file))
             Alert::set(Alert::SUCCESS, $language.' '.__('Language saved'));
         else
             Alert::set(Alert::ALERT, $language);
 
-        $this->redirect(Route::url('oc-panel',array('controller'  => 'translations','action'=>'edit','id'=>$language)));
+        $this->redirect(Route::url('oc-panel',array('controller'  => 'translations','action'=>'edit','id'=>$language)).'?translation_file='.$translation_file);
               
     }
 
@@ -235,17 +240,20 @@ class Controller_Panel_Translations extends Auth_Controller {
      * @param  string $language 
      * @return array           
      */
-    public function get_translation($language)
+    public function get_translation($language,$translation_file = 'messages')
     {
-        $mo_translation = i18n::get_language_path($language);
+        $mo_translation = i18n::get_language_path($language,$translation_file);
 
+        // write an empty .po file for $language
         if(!file_exists($mo_translation))
         {
-            Alert::set(Alert::ERROR, $language);
-            $this->redirect(Route::url('oc-panel',array('controller'  => 'translations')));
+            File::write($mo_translation, 'msgid ""'.PHP_EOL.'msgstr ""'.PHP_EOL);
+
+            //Alert::set(Alert::ERROR, $language);
+            //$this->redirect(Route::url('oc-panel',array('controller'  => 'translations')));
         }
 
-        $base_translation = i18n::get_language_path();
+        $base_translation = i18n::get_language_path(NULL,$translation_file);
 
         //pear gettext scripts
         require_once Kohana::find_file('vendor', 'GT/Gettext','php');
@@ -305,13 +313,13 @@ class Controller_Panel_Translations extends Auth_Controller {
      * @param  array $data_translated   
      * @return bool                    
      */
-    public function save_translation($language,$translation_array, $data_translated)
+    public function save_translation($language,$translation_array, $data_translated,$translation_file = 'messages')
     {
         //.po to .mo script
         require_once Kohana::find_file('vendor', 'php-mo/php-mo','php');
 
         //we save always in the custom file
-        $mo_translation = i18n::get_language_custom_path($language);
+        $mo_translation = i18n::get_language_custom_path($language,$translation_file);
 
         //changing the translation_array with the posted values
         foreach($data_translated as $key => $value)

@@ -180,16 +180,16 @@ class I18n extends Kohana_I18n {
      * @param string $language
      * @return string
      */
-    public static function get_language_path($language = NULL)
+    public static function get_language_path($language = NULL,$translation_file = 'messages')
     {
         if ($language===NULL)
-            return DOCROOT.'languages/messages.po';
+            return DOCROOT.'languages/'.$translation_file.'.po';
         else
         {
-            if (file_exists($custom_po = self::get_language_custom_path($language)))
+            if (file_exists($custom_po = self::get_language_custom_path($language,$translation_file)))
                 return $custom_po;
             else
-                return DOCROOT.'languages/'.$language.'/LC_MESSAGES/messages.po';
+                return DOCROOT.'languages/'.$language.'/LC_MESSAGES/'.$translation_file.'.po';
         }
     }
 
@@ -198,9 +198,9 @@ class I18n extends Kohana_I18n {
      * @param string $language
      * @return array
      */
-    public static function get_language_custom_path($language)
+    public static function get_language_custom_path($language,$translation_file = 'messages')
     {
-        return DOCROOT.'languages/'.$language.'/LC_MESSAGES/custom-messages.po';
+        return DOCROOT.'languages/'.$language.'/LC_MESSAGES/custom-'.$translation_file.'.po';
     }
 
     /**

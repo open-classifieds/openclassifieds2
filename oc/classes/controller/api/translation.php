@@ -24,8 +24,7 @@ class Controller_Api_Translation extends Api_Auth {
             try
             {
                 $locale = array_key_exists($this->request->param('id'),i18n::get_languages())?$this->request->param('id'):'en_US';
-
-                $translations =  $this->translations($locale,(core::request('all')==1)?TRUE:FALSE);
+                $translations =  $this->translations($locale,((core::request('all')==1)?TRUE:FALSE),core::request('file','apps'));
                 if ($translations == FALSE)
                     $this->_error('Translation '.$locale.' not found',404);
                 else
@@ -47,8 +46,8 @@ class Controller_Api_Translation extends Api_Auth {
             {
                 $locale = array_key_exists($this->request->param('id'),i18n::get_languages())?$this->request->param('id'):'en_US';
                 $q = core::request('q');
-
-                if (array_key_exists($q,$t = $this->translations($locale)))
+                $t = $this->translations($locale, FALSE,core::request('file','apps'));
+                if (is_array($t) AND array_key_exists($q,$t))
                      $this->rest_output([$locale => [$q =>$t[$q]]]);
                 else
                     $this->_error($locale.' Translation "'.$q.'" not found',404);
@@ -65,18 +64,18 @@ class Controller_Api_Translation extends Api_Auth {
     }
 
     /*
-    gets translated words only
+        gets translated words only
      */
-    private function translations($language, $get_all = FALSE)
+    private function translations($language, $get_all = FALSE, $translation_file = 'apps')
     {
         if ($get_all === TRUE)
-            return $this->translations_all($language);
+            return $this->translations_all($language, $translation_file);
 
-        $mo_translation = i18n::get_language_path($language);
+        $mo_translation = i18n::get_language_path($language, $translation_file);
         if(!file_exists($mo_translation))
             return FALSE;
 
-        $base_translation = i18n::get_language_path();
+        $base_translation = i18n::get_language_path(NULL, $translation_file);
 
         //pear gettext scripts
         require_once Kohana::find_file('vendor', 'GT/Gettext','php');
@@ -103,15 +102,15 @@ class Controller_Api_Translation extends Api_Auth {
     }
 
     /*
-    gets all translations inclding missing
+        gets all translations inclding missing
      */
-    private function translations_all($language)
+    private function translations_all($language, $translation_file = 'apps')
     {
-        $mo_translation = i18n::get_language_path($language);
+        $mo_translation = i18n::get_language_path($language, $translation_file);
         if(!file_exists($mo_translation))
             return FALSE;
 
-        $base_translation = i18n::get_language_path();
+        $base_translation = i18n::get_language_path(NULL, $translation_file);
 
         //pear gettext scripts
         require_once Kohana::find_file('vendor', 'GT/Gettext','php');

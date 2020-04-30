@@ -1,4 +1,4 @@
-<h1 class="page-header page-title"><?=__('Translations')?> <?=$edit_language?></h1>
+<h1 class="page-header page-title"><?=__('Translations')?> "<?=$edit_language?>" "<?=$translation_file?>"</h1>
 <hr>
 
 <p>
@@ -10,6 +10,7 @@
     <div class="form-group">
         <input type="text" class="form-control input-sm search-query" name="search" placeholder="<?=__('search')?>" value="<?=HTML::chars(core::request('search'))?>">
     </div>
+    <input type="hidden" name="translation_file" value="<?=$translation_file?>" >
     <button type="submit" class="btn btn-primary"><?=__('Search')?></button>
 </form>
 
@@ -24,13 +25,14 @@
             <option value="original"><?=__('Replace Original')?></option>
             <option value="translation"><?=__('Replace Translation')?></option>
         </select>
+        <input type="hidden" name="translation_file" value="<?=$translation_file?>" >
     <button type="submit" class="btn btn-warning"><?=__('Replace')?></button>
 </form>
 
 <div class="panel panel-default">
     <div class="panel-body">
         <form enctype="multipart/form-data" class="form form-horizontal" accept-charset="utf-8" method="post" action="<?=str_replace('rel=ajax', '', URL::current())?>">
-        
+            <input type="hidden" name="translation_file" value="<?=$translation_file?>" >
             <table class="table table-bordered">
             <tr>
                 <th>#</th>
@@ -50,11 +52,11 @@
 
             <button type="submit" class="btn btn-primary pull-right" name="translation[submit]"><i class="glyphicon glyphicon-hdd"></i> <?=__('Save')?></button>
 
-            <a  class="btn btn-danger pull-right" href="<?=Request::current()->url()?>?translated=1" title="<?=__('Hide translated texts')?>" >
+            <a  class="btn btn-danger pull-right" href="<?=Request::current()->url()?>?translated=1&translation_file=<?=$translation_file?>" title="<?=__('Hide translated texts')?>" >
                 <i class="glyphicon glyphicon-eye-close"></i> 
             </a>
             
-            <a  class="btn btn-primary pull-right" href="<?=Request::current()->url()?>" title="<?=__('Show translated texts')?>">
+            <a  class="btn btn-primary pull-right" href="<?=Request::current()->url()?>?translation_file=<?=$translation_file?>" title="<?=__('Show translated texts')?>">
                 <i class="glyphicon glyphicon-eye-open"></i> 
             </a>
         

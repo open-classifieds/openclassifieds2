@@ -53,9 +53,16 @@
                         <ul class="list-inline">
                             <li>
                                 <a class="btn btn-warning ajax-load" 
+                                    href="<?=Route::url('oc-panel', array('controller'=>'translations','action'=>'edit','id'=>$language))?>?translation_file=apps" 
+                                    rel"tooltip" title="<?=__('Edit')?> Apps">
+                                    <i class="glyphicon glyphicon-pencil"></i> Apps 
+                                </a>
+                            </li>
+                            <li>
+                                <a class="btn btn-success ajax-load" 
                                     href="<?=Route::url('oc-panel', array('controller'=>'translations','action'=>'edit','id'=>$language))?>" 
-                                    rel"tooltip" title="<?=__('Edit')?>">
-                                    <i class="glyphicon glyphicon-pencil"></i>
+                                    rel"tooltip" title="<?=__('Edit')?> Web">
+                                    <i class="glyphicon glyphicon-pencil"></i> Web
                                 </a>
                             </li>
                             <li>
