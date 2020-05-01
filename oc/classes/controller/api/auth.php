@@ -126,12 +126,9 @@ class Controller_Api_Auth extends Api_Auth {
                 //saves the user only if there was CF
                 if($save_cf === TRUE)
                     $user->save();
-
-                //create the API token since he registered int he app
-                $res = $user->as_array();
-                $res['user_token'] = $user->api_token();
-
-                $this->rest_output(array('user' => $res));
+                
+                $user->reload();
+                $this->rest_output( array('user' => self::get_user_array($user)) );
             }
 
         }

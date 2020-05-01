@@ -2655,7 +2655,7 @@ class Controller_Panel_Update extends Auth_Controller {
             //activate default theme
             Model_Config::set_value('appearance','theme','default');
 
-            Theme::download(Core::config('license.number'));
+            Core::download(Core::config('license.number'));
 
             //activate original theme
             Model_Config::set_value('appearance','theme',$current_theme);

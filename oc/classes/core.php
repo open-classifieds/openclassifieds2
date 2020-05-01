@@ -233,10 +233,7 @@ class Core {
         //if older than a month or ?reload=1 force reload
         if ( time() > strtotime('+1 week',filemtime($version_file)) OR $reload === TRUE )
         {
-            if (Core::DOMAIN == 'open-eshop.com')
-                $url = 'https://'.Core::DOMAIN.'/files/versions.json';
-            else
-                $url = 'https://raw.githubusercontent.com/yclas/yclas/master/versions.json';
+            $url = 'https://raw.githubusercontent.com/yclas/yclas/master/versions.json';
 
             //read from oc/versions.json on CDN
             $json = Core::curl_get_contents($url.'?r='.time());
@@ -253,31 +250,6 @@ class Core {
             }
 
         }
-    }
-
-
-    /**
-     * get market from json hosted currently at our site
-     * @param  boolean $reload
-     * @return void
-     */
-    public static function get_market($reload = FALSE)
-    {
-        $market_url = Core::market_url().'/api/products';
-
-        //try to get the json from the cache
-        $market = Core::cache($market_url);
-
-        //not cached :(
-        if ($market === NULL OR  $reload === TRUE)
-        {
-            $market = Core::curl_get_contents($market_url.'?r='.time());
-            //save the json
-            Core::cache($market_url,$market,strtotime('+1 day'));
-        }
-
-        return json_decode($market,TRUE);
-
     }
 
     /**
@@ -423,22 +395,6 @@ class Core {
         $url = ($url == NULL)?URL::current():$url;
         $url = urlencode($url);
         return '<img src="//chart.googleapis.com/chart?chs='.$size.'x'.$size.'&cht=qr&chld='.$EC_level.'|'.$margin.'&chl='.$url.'" alt="QR code" width="'.$size.'" height="'.$size.'"/>';
-    }
-
-    /**
-     * [ocacu description]
-     * @return void
-     */
-    public static function status()
-    {
-        //first time install notify of installation to ocacu once month
-        if (Core::config('general.ocacu') < strtotime('-1 month'))
-        {
-            $url = (Kohana::$environment!== Kohana::DEVELOPMENT)? 'https://yclas.com':'http://yclas.lo';
-            $url = $url.'/api/status/?siteUrl='.URL::base();
-            if (Core::curl_get_contents($url,5))
-                Model_Config::set_value('general','ocacu',time());
-        }
     }
 
     /**
@@ -683,30 +639,6 @@ class Core {
 
     }
 
-    /**
-     * get the correct url for the market
-     * @param  boolean $with_protocol adds protocol to the url
-     * @return string
-     */
-    public static function market_url($with_protocol = TRUE)
-    {
-        $url = '';
-
-        if (Kohana::$environment!== Kohana::DEVELOPMENT)
-        {
-            if (Core::DOMAIN == 'yclas.com')
-                $url = 'selfhosted.yclas.com';
-            else
-                $url = 'market.'.Core::DOMAIN;
-        }
-        else
-            $url = 'eshop.lo';
-
-        if ($with_protocol === TRUE)
-            $url = (Core::is_HTTPS() ? 'https://' : 'http://').$url;
-
-        return $url;
-    }
 
     /**
      * count the entries of a list
@@ -725,6 +657,98 @@ class Core {
         }
 
         return NULL;
+    }
+
+
+    /**
+     * get the correct url for yclas
+     * @param  boolean $with_protocol adds protocol to the url
+     * @return string
+     */
+    public static function yclas_url_()
+    {
+        return (Kohana::$environment == Kohana::DEVELOPMENT) ? 'http://yclas.lo':'https://yclas.com';
+    }
+
+    /**
+     * [ocacu description]
+     * @return void
+     */
+    public static function status()
+    {
+        if (Kohana::$environment === Kohana::DEVELOPMENT)
+            return TRUE;
+
+        //first time install notify of installation to ocacu once month
+        if (Core::config('general.ocacu') < strtotime('-1 month'))
+        {
+            $url = Core::yclas_url_().'/api/status/?siteUrl='.URL::base();
+            if (Core::curl_get_contents($url,5))
+                Model_Config::set_value('general','ocacu',time());
+        }
+
+        if (Core::config('license.number')!=NULL AND Core::config('license.date') < time() )
+        {   
+            if (self::license()!=TRUE)
+            {
+                Model_Config::set_value('license','date',NULL);
+                Model_Config::set_value('license','number',NULL);
+                Alert::set(Alert::INFO, __('License validation error, please insert again.'));
+                HTTP::redirect(Route::url('oc-panel',array('controller'=>'home', 'action'=>'license')));
+            }
+        }
+        
+    }
+
+
+    public static function license($l = NULL)
+    {
+        if (Kohana::$environment === Kohana::DEVELOPMENT)
+            return TRUE;
+
+        if ($l === NULL)
+            $l = Core::config('license.number');
+
+        $api_url = Core::yclas_url_().'/api/v1//license/'.$l.'/?domain='.parse_url(URL::base(), PHP_URL_HOST);
+        $result  = json_decode(Core::curl_get_contents($api_url));
+        
+        if ($result == TRUE)
+        {
+            Model_Config::set_value('license','number',core::request('license'));
+            Model_Config::set_value('license','date',time()+7*24*60*60);
+        }
+        
+        return $result;
+    }
+
+    public static function download($l)
+    {
+        $download_url = Core::yclas_url_().'/api/v1/download/'.$l.'/?domain='.parse_url(URL::base(), PHP_URL_HOST);
+        $fname = DOCROOT.'themes/'.$l.'.zip'; //root folder
+        $file_content = core::curl_get_contents($download_url);
+
+        if ($file_content!='false')
+        {
+            // saving zip file to dir.
+            file_put_contents($fname, $file_content);
+            $zip = new ZipArchive;
+            if ($zip_open = $zip->open($fname))
+            {
+                //if theres nothing in that ZIP file...zip corrupted :(
+                if ($zip->getNameIndex(0)===FALSE)
+                    return FALSE;
+
+                $theme_name = (substr($zip->getNameIndex(0), 0,-1));
+                File::delete(DOCROOT.'themes/'.$theme_name);
+                $zip->extractTo(DOCROOT.'themes/');
+                $zip->close();
+                File::delete($fname);
+                Alert::set(Alert::SUCCESS, $theme_name.' Updated');
+                return $theme_name;
+            }
+        }
+
+        return FALSE;
     }
 
 } //end core

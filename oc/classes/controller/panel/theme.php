@@ -150,7 +150,7 @@ class Controller_Panel_Theme extends Auth_Controller {
 
             if (isset($opt['premium']) AND Core::config('license.number') == NULL)
             {
-                 $this->redirect(Route::url('oc-panel',array('controller'=>'theme','action'=> 'license','id'=>$theme) ));
+                $this->redirect(Route::url('oc-panel',array('controller'=>'home','action'=> 'license') ));
             }
 
             Theme::set_theme($theme);
@@ -162,41 +162,6 @@ class Controller_Panel_Theme extends Auth_Controller {
         $this->template->content = View::factory('oc-panel/pages/themes/theme', array('templates' => $templates,
                                                                                     'themes' => $themes, 
                                                                                     'selected'=>Theme::get_theme_info(Theme::$theme)));
-    }
-
-
-   /**
-     * theme selector
-     * @return [view] 
-     */
-    public function action_license()
-    {
-        $theme = $this->request->param('id',Theme::$theme);
-
-        // save only changed values
-        if(core::request('license'))
-        {
-            if (Theme::license(core::request('license'),$theme)==TRUE)
-            {
-                Theme::set_theme($theme);
-
-                Model_Config::set_value('license','number',core::request('license'));
-                Model_Config::set_value('license','date',time()+7*24*60*60);
-
-                Alert::set(Alert::SUCCESS, __('Theme activated, thanks.'));
-                $this->redirect(Route::url('oc-panel',array('controller'=>'theme','action'=> 'index')));
-            }
-            else
-            {
-                Alert::set(Alert::INFO, __('There was an error activating your license.'));
-            }            
-        }
-
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Theme License')));  
-        $this->template->title = __('Theme License');     
-        $this->template->scripts['footer'][] = 'js/oc-panel/license.js';
-
-        $this->template->content = View::factory('oc-panel/pages/themes/license', array('theme' => Theme::$theme));
     }
     
     /**
@@ -236,9 +201,6 @@ class Controller_Panel_Theme extends Auth_Controller {
                     $this->redirect(Route::url('oc-panel',array('controller'=>'theme', 'action'=>'index')));
                 }
 
-                //check license from the zip name
-                //$license = substr($zip_theme['name'],0, -4);
-
                 Alert::set(Alert::SUCCESS, $zip_theme['name'].' '.__('You have successfully installed the theme!'));
                 $this->redirect(Route::url('oc-panel',array('controller'=>'theme', 'action'=>'index')));
             }
@@ -246,25 +208,6 @@ class Controller_Panel_Theme extends Auth_Controller {
         }
     }
 
-    /**
-     * download theme from license key
-     * @return [view] 
-     */
-    public function action_download()
-    {
-        // save only changed values
-        if($license = core::request('license'))
-        {
-            if (($theme = Theme::download($license))!=FALSE)
-            {
-                Alert::set(Alert::SUCCESS, __('Theme downloaded').' '.$theme);
-                $this->redirect(Route::url('oc-panel',array('controller'=>'theme', 'action'=>'license','id'=>$theme)).'?license='.$license);
-            }
-        }
-
-        Alert::set(Alert::ALERT, __('Theme could not be downloaded'));
-        $this->redirect(Route::url('oc-panel',array('controller'=>'theme', 'action'=>'index')));
-    }
 
     /**
      * custom css for default theme

@@ -26,7 +26,7 @@
                 </p>
             </div>
             <hr>
-            <form action="<?= Route::url('oc-panel',array('controller'=>'theme','action'=> 'license'))?>" method="post">
+            <form action="<?= Route::url('oc-panel',array('controller'=>'home','action'=> 'license'))?>" method="post">
                 <div class="form-group">
                     <label class="control-label text-info"><?=__('Please insert here your license')?></label>
                     <input class="form-control" type="text" name="license" value="" placeholder="<?=__('License')?>">
@@ -41,6 +41,12 @@
                     <?=__('Check')?>
                 </button>
             </form>
+        </div>
+    </div>
+<?elseif (Auth::instance()->get_user()->is_admin()):?>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-title"><span class="text-info">Yclas Self-Hosted Pro Version</span></div>
         </div>
     </div>
 <? endif ?>

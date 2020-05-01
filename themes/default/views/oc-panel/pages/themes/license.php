@@ -1,9 +1,9 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <?=Form::errors()?>
-<h1 class="page-header page-title"><?=__('Theme License')?> <?=(Request::current()->param('id')!==NULL)?Request::current()->param('id'):Theme::$theme?></h1>
+<h1 class="page-header page-title"><?=__('Pro License')?></h1>
 <hr>
-    <p><?=__('Please insert here the license for your theme.')?></p>
+    <p><?=__('Please insert here your Pro License.')?></p>
 
 <div class="row">
     <div class="col-md-12">

@@ -11,8 +11,6 @@ class Controller_Panel_Home extends Auth_Controller {
              ! Auth::instance()->get_user()->is_translator())
             HTTP::redirect(Route::url('oc-panel',array('controller'  => 'myads','action'=>'index')));  
         
-        Core::status();
-
         $this->template->scripts['footer'] = array('js/chart.min.js', 'js/chart.js-php.js', 'js/oc-panel/license.js');
 
         $this->template->title = __('Welcome');
@@ -342,6 +340,53 @@ class Controller_Panel_Home extends Auth_Controller {
 
         die('OK');
     }
+
+    /**
+     * theme selector
+     * @return [view] 
+     */
+    public function action_license()
+    {
+        // save only changed values
+        if(core::request('license'))
+        {
+            if (Core::license(core::request('license'))==TRUE)
+            {
+                Alert::set(Alert::SUCCESS, __('Pro activated, thanks.'));
+                $this->redirect(Route::url('oc-panel',array('controller'=>'home','action'=> 'index')));
+            }
+            else
+            {
+                Alert::set(Alert::INFO, __('There was an error activating your license.'));
+            }            
+        }
+
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Pro License')));  
+        $this->template->title = __('Pro License');     
+        $this->template->scripts['footer'][] = 'js/oc-panel/license.js';
+
+        $this->template->content = View::factory('oc-panel/pages/themes/license');
+    }
     
+
+    /**
+     * download theme from license key
+     * @return [view] 
+     */
+    public function action_download()
+    {
+        // save only changed values
+        if($license = core::request('license'))
+        {
+            if (Core::download($license)!=FALSE)
+            {
+                Alert::set(Alert::SUCCESS, __('Pro version downloaded'));
+                $this->redirect(Route::url('oc-panel',array('controller'=>'home', 'action'=>'license')).'?license='.$license);
+            }
+        }
+
+        Alert::set(Alert::ALERT, __('Pro version could not be downloaded'));
+        $this->redirect(Route::url('oc-panel',array('controller'=>'home', 'action'=>'license')));
+    }
 
 }

@@ -164,7 +164,18 @@ foreach ($templates as $item):?>
                 <h4 id="installTheme" class="modal-title"><?=__('Install theme')?></h4>
             </div>
             <div class="modal-body">
-                <?=FORM::open(Route::url('oc-panel',array('controller'=>'theme','action'=>'download')))?>
+
+                <?=FORM::open(Route::url('oc-panel',array('controller'=>'theme','action'=>'install_theme')), array('enctype'=>'multipart/form-data'))?>
+                    <div class="form-group">
+                        <?=FORM::label('theme_file', __('To install new theme choose zip file.'), array('class'=>'control-label', 'for'=>'theme_file' ))?>
+                        <input type="file" name="theme_file" id="theme_file" class="form-control" />
+                    </div>
+                    <?=FORM::button('submit', __('Upload'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'theme','action'=>'install_theme'))))?>
+                <?=FORM::close()?>
+
+                <hr>
+
+                <?=FORM::open(Route::url('oc-panel',array('controller'=>'home','action'=>'download')))?>
                     <div class="form-group">
                         <?=FORM::label('license', __('Install theme from license.'), array('class'=>'control-label', 'for'=>'license' ))?>
                         <input type="text" name="license" id="license" placeholder="<?=__('license')?>" class="form-control"/>
@@ -180,15 +191,6 @@ foreach ($templates as $item):?>
                     </button>
                 <?=FORM::close()?>
 
-                <hr>
-
-                <?=FORM::open(Route::url('oc-panel',array('controller'=>'theme','action'=>'install_theme')), array('enctype'=>'multipart/form-data'))?>
-                    <div class="form-group">
-                        <?=FORM::label('theme_file', __('To install new theme choose zip file.'), array('class'=>'control-label', 'for'=>'theme_file' ))?>
-                        <input type="file" name="theme_file" id="theme_file" class="form-control" />
-                    </div>
-                    <?=FORM::button('submit', __('Upload'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'theme','action'=>'install_theme'))))?>
-                <?=FORM::close()?>
             </div>
         </div>
     </div>

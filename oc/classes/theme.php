@@ -14,7 +14,7 @@ class Theme {
 
     public static $theme        = 'default';
     public static $parent_theme = NULL; //used for child themes
-    public static $skin         = ''; //skin that the theme is using, used in premium themes
+    public static $skin         = ''; //skin that the theme is using
     private static $views_path  = 'views';
     public  static $scripts     = array();
     public  static $styles      = array();
@@ -470,8 +470,7 @@ class Theme {
      */
     public static function get_pro_templates($reload = FALSE)
     {
-        $url = (Kohana::$environment == Kohana::DEVELOPMENT) ? 'http://yclas.lo':'https://yclas.com';
-        $url = $url.'/api/v1/templates';
+        $url = Core::yclas_url_().'/api/v1/templates';
         
         //try to get the json from the cache
         $templates = Core::cache($url);
@@ -670,72 +669,6 @@ class Theme {
 
         self::save($theme);
     }
-
-    public static function checker()
-    {
-        if (Kohana::$environment=== Kohana::DEVELOPMENT)
-            return TRUE;
-
-        if (self::get('premium')!=1
-                OR (strtolower(Request::current()->controller())=='theme' AND strtolower(Request::current()->action())=='license')
-                OR !Auth::instance()->logged_in() OR $_POST)
-            return TRUE;
-
-        if (self::get('premium')==1 AND (Core::config('license.date') < time() OR Core::config('license.date')==NULL))
-        {
-            if (self::license(Core::config('license.number'))==TRUE)
-            {
-                Model_Config::set_value('license','date',time()+7*24*60*60);
-                HTTP::redirect(URL::current());
-            }
-            elseif (Auth::instance()->get_user()->is_admin())
-            {
-                Alert::set(Alert::INFO, __('License validation error, please insert again.'));
-                HTTP::redirect(Route::url('oc-panel',array('controller'=>'theme', 'action'=>'license')));
-            }
-        }
-    }
-
-    public static function license($l, $current_theme = NULL)
-    {
-        if (Kohana::$environment === Kohana::DEVELOPMENT)
-            return TRUE;
-
-        $api_url = Core::market_url().'/api/license/'.$l.'/?domain='.parse_url(URL::base(), PHP_URL_HOST);
-
-        return json_decode(Core::curl_get_contents($api_url));
-    }
-
-    public static function download($l)
-    {
-        $download_url = Core::market_url().'/api/download/'.$l.'/?domain='.parse_url(URL::base(), PHP_URL_HOST);
-        $fname = DOCROOT.'themes/'.$l.'.zip'; //root folder
-        $file_content = core::curl_get_contents($download_url);
-
-        if ($file_content!='false')
-        {
-            // saving zip file to dir.
-            file_put_contents($fname, $file_content);
-            $zip = new ZipArchive;
-            if ($zip_open = $zip->open($fname))
-            {
-                //if theres nothing in that ZIP file...zip corrupted :(
-                if ($zip->getNameIndex(0)===FALSE)
-                    return FALSE;
-
-                $theme_name = (substr($zip->getNameIndex(0), 0,-1));
-                File::delete(DOCROOT.'themes/'.$theme_name);
-                $zip->extractTo(DOCROOT.'themes/');
-                $zip->close();
-                File::delete($fname);
-                Alert::set(Alert::SUCCESS, $theme_name.' Updated');
-                return $theme_name;
-            }
-        }
-
-        return FALSE;
-    }
-
 
     /**
      * saves thme options as json 'theme.NAMETHEME' = array json

@@ -104,9 +104,6 @@ class Controller extends Kohana_Controller
     public function before($template = NULL)
     {
         parent::before();
-
-        Theme::checker();
-
         $this->private_site();
         $this->maintenance();
 

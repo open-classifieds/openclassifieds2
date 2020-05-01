@@ -63,7 +63,8 @@ class Auth_Controller extends Controller
 	 */
 	public function before($template = NULL)
 	{
-        Theme::checker();
+        if ($this->user->is_admin())
+            Core::status();
 
         $this->maintenance();
         $this->private_site();
