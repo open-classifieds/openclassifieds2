@@ -125,7 +125,7 @@ class Model_Category extends ORM {
                     'parent_deep'       => array(),
                     'seoname'           => array(array('not_empty'), array('max_length', array(':value', 145)), ),
                     'description'       => array(),
-                    'price'             => array(array('not_empty'), array('numeric')),
+                    'price'             => array(array('not_empty')),
                     'last_modified'     => array(),
                     'has_images'            => array(array('numeric')),
                     );
