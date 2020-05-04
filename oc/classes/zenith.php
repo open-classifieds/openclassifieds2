@@ -22,7 +22,7 @@ class zenith {
      */
     public static function button(Model_Order $order)
     {
-        if (Core::config('payment.zenith_merchantid') != '' AND Core::config('payment.zenith_uid') != '' AND Core::config('payment.zenith_pwd') != '' AND Theme::get('premium')==1)
+        if (Core::config('payment.zenith_merchantid') != '' AND Core::config('payment.zenith_uid') != '' AND Core::config('payment.zenith_pwd') != '' AND Core::extra_features() == TRUE)
         {
             $merchantid = Core::config('payment.zenith_merchantid'); // customer code
             $uid = Core::config('payment.zenith_uid'); // customer code

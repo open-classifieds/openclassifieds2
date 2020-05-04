@@ -87,7 +87,7 @@ class Securepay {
     {
         if ( Core::config('payment.securepay_merchant')!='' AND 
             Core::config('payment.securepay_password')!='' AND 
-            Theme::get('premium')==1 AND
+            Core::extra_features() == TRUE AND
             $order->loaded())
         {
             // GMT / UTC "YYYYMMDDHHMMSS"

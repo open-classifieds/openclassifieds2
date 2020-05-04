@@ -12,7 +12,7 @@
     <meta name="keywords" content="<?=$meta_keywords?>" >
     <meta name="description" content="<?=$meta_description?>" >
     
-    <?if (Theme::get('premium')!=1):?>
+    <?if (Core::extra_features() == FALSE):?>
     <meta name="author" content="open-classifieds.com">
     <meta name="copyright" content="<?=Core::config('general.site_name')?>" >
     <?else:?>

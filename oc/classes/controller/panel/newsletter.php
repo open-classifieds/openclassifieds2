@@ -99,7 +99,7 @@ class Controller_Panel_Newsletter extends Auth_Controller {
                 $users = array_merge($users,$query->as_array());
             }
             
-            if (Theme::get('premium')==1)
+            if (Core::extra_features() == TRUE)
             {
                 if (core::post('send_featured_expired')=='on')
                 {

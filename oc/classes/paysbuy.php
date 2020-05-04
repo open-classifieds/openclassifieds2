@@ -27,7 +27,7 @@ class paysbuy {
      */
     public static function form(Model_Order $order)
     {
-        if ( Core::config('payment.paysbuy')!=''  AND Theme::get('premium')==1)
+        if ( Core::config('payment.paysbuy')!=''  AND Core::extra_features() == TRUE)
         {
             $form_action = ( Core::config('payment.paysbuy_sandbox') == 1)?self::url_sandbox_gateway:self::url_gateway;
 

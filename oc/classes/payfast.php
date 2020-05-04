@@ -225,7 +225,7 @@ class payfast {
      */
     public static function form(Model_Order $order)
     {
-        if ( Core::config('payment.payfast_merchant_id')!='' AND Core::config('payment.payfast_merchant_key')!='' AND Theme::get('premium')==1)
+        if ( Core::config('payment.payfast_merchant_id')!='' AND Core::config('payment.payfast_merchant_key')!='' AND Core::extra_features() == TRUE)
         {
             $form_action = ( Core::config('payment.payfast_sandbox') == 1) ? self::url_sandbox_gateway : self::url_gateway;
 

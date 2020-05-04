@@ -19,7 +19,7 @@ class Bitpay
      */
     public static function button(Model_Order $order)
     {
-        if (Core::config('payment.bitpay_token') != '' AND Theme::get('premium') == 1 AND
+        if (Core::config('payment.bitpay_token') != '' AND Core::extra_features() == TRUE AND
             Auth::instance()->logged_in() AND $order->loaded()) {
 
             require_once Kohana::find_file('vendor', 'bitpay/vendor/autoload', 'php');

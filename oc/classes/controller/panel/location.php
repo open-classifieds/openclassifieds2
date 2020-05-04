@@ -638,7 +638,7 @@ class Controller_Panel_Location extends Auth_Crud {
     {
         $location = new Model_Location($this->request->param('id'));
 
-        if (Theme::get('premium') != 1)
+        if (Core::extra_features() == FALSE)
         {
             Alert::set(Alert::INFO, __('Translations is only available in the PRO version!') . ' ' . __('Upgrade your Yclas site to activate this feature.'));
             $this->redirect(Route::url('oc-panel', array('controller' => 'location', 'action' => 'update', 'id' => $location->id_category)));

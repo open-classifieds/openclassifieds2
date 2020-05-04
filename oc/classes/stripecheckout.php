@@ -75,7 +75,7 @@ class StripeCheckout {
             return NULL;
         }
 
-        if (Theme::get('premium') != 1)
+        if (Core::extra_features() == FALSE)
         {
             return NULL;
         }
@@ -153,7 +153,7 @@ class StripeCheckout {
             return NULL;
         }
 
-        if (Theme::get('premium') != 1)
+        if (Core::extra_features() == FALSE)
         {
             return NULL;
         }
@@ -263,7 +263,7 @@ class StripeCheckout {
             return NULL;
         }
 
-        if (Theme::get('premium') != 1)
+        if (Core::extra_features() == FALSE)
         {
             return NULL;
         }

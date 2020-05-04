@@ -283,7 +283,7 @@
                             </div>
                         <?endif?>
                         <!-- Fields coming from custom fields feature -->
-                        <?if (Theme::get('premium')==1):?>
+                        <?if (Core::extra_features() == TRUE):?>
                             <div id="custom-fields"
                                 data-customfield-values='<?=htmlspecialchars(json_encode($ad->custom_columns(0, TRUE)), ENT_QUOTES)?>'
                                 <?=(Auth::instance()->get_user()->is_admin() OR Auth::instance()->get_user()->is_moderator()) ? 'data-admin-privilege': NULL?>

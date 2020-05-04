@@ -22,7 +22,7 @@ class paguelofacil {
      */
     public static function button(Model_Order $order)
     {
-        if (Core::config('payment.paguelofacil_cclw') != '' AND Theme::get('premium')==1)
+        if (Core::config('payment.paguelofacil_cclw') != '' AND Core::extra_features() == TRUE)
         {
             $cclw = Core::config('payment.paguelofacil_cclw'); // customer code
 

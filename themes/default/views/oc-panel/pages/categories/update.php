@@ -99,7 +99,7 @@
                 </form>
             </div>
         </div>
-        <?if (Theme::get('premium')==1):?>
+        <?if (Core::extra_features() == TRUE):?>
                 <div class="panel panel-default">
                     <div class="panel panel-default">
                         <div class="panel-heading">

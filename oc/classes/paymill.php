@@ -44,7 +44,7 @@ class Paymill {
     {
         if ( Core::config('payment.paymill_private')!='' AND 
             Core::config('payment.paymill_public')!='' AND 
-            Theme::get('premium')==1)
+            Core::extra_features() == TRUE)
         {
             foreach (Theme::$scripts['footer'] as $key=>$js)
             {
@@ -67,7 +67,7 @@ class Paymill {
     {
         if ( Core::config('payment.paymill_private')!='' AND 
             Core::config('payment.paymill_public')!='' AND 
-            Theme::get('premium')==1 AND
+            Core::extra_features() == TRUE AND
             $order->loaded())
         {
             return View::factory('pages/paymill/button',array('order'=>$order));

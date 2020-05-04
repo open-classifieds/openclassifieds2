@@ -13,7 +13,7 @@
     </p>
 <hr>
 
-<?if (Theme::get('premium')!=1):?>
+<?if (Core::extra_features() == FALSE):?>
     <div class="alert alert-info fade in">
         <p>
             <strong><?=__('Heads Up!')?></strong> 

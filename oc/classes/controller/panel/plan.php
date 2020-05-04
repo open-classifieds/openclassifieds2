@@ -13,7 +13,7 @@ class Controller_Panel_Plan extends Auth_CrudAjax {
      */
     function __construct(Request $request, Response $response)
     {
-        if (Theme::get('premium')!=1)
+        if (Core::extra_features() == FALSE)
         {
             Alert::set(Alert::INFO,  __('Upgrade your Yclas site to PRO to activate this feature.'));
         }

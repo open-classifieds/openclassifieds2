@@ -67,7 +67,7 @@
 									</td>
 									<td class="col-md-3 text-center"><?=i18n::format_currency(($order->coupon->loaded())?$order->original_price():$order->original_price(), $order->currency)?></td>
 								</tr>
-								<?if (Theme::get('premium')==1 AND $order->coupon->loaded()):?>
+								<?if (Core::extra_features() == TRUE AND $order->coupon->loaded()):?>
 			                        <?$discount = ($order->coupon->discount_amount==0)?($order->original_price() * $order->coupon->discount_percentage/100):$order->coupon->discount_amount;?>
 			                        <tr>
 			                            <td class="col-md-9">

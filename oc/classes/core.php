@@ -751,6 +751,11 @@ class Core {
         return FALSE;
     }
 
+    public static function extra_features()
+    {
+        return (Core::config('license.number')!=NULL AND Core::config('license.date') >= time())?TRUE:FALSE;
+    }
+
 } //end core
 
 /**

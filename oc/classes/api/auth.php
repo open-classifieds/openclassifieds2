@@ -7,7 +7,7 @@ class Api_Auth extends Api_Controller {
     {
         parent::before();
 
-        if (Theme::get('premium')!=1)
+        if (Core::extra_features() == FALSE)
             $this->_error('You need a premium theme to use the API',401);
 
         $key = isset($_SERVER['HTTP_APIKEY'])?$_SERVER['HTTP_APIKEY']:Core::request('apikey');

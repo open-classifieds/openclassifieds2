@@ -17,7 +17,7 @@ class Serfinsa {
      */
     public static function button(Model_Order $order)
     {
-        if(Core::config('payment.serfinsa_token') != '' AND Theme::get('premium') == 1 AND $order->loaded())
+        if(Core::config('payment.serfinsa_token') != '' AND Core::extra_features() == TRUE AND $order->loaded())
         {
             return View::factory('pages/serfinsa/button', compact('order'));
         }

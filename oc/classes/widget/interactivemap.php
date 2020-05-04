@@ -46,7 +46,7 @@ class Widget_Interactivemap extends Widget
     public function render()
     {
         //only on views disctict to home if map_active is TRUE
-        if  (Theme::get('premium')==1 
+        if  (Core::extra_features() == TRUE 
                 AND (!Core::Config('appearance.map_active') OR strtolower(Request::current()->controller()) != 'home'))
         {
             $this->before();

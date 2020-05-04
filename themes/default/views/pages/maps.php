@@ -7,7 +7,7 @@
     <?endif?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="<?=__('Maps')?>">
-    <?if (Theme::get('premium')!=1):?>
+    <?if (Core::extra_features() == FALSE):?>
         <meta name="author" content="yclas.com">
     <?endif?>
     <script type="text/javascript" src="//maps.google.com/maps/api/js?libraries=geometry&v=3&key=<?=core::config('advertisement.gm_api_key')?>&language=<?=i18n::get_display_language(i18n::$locale)?>"></script>

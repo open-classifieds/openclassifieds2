@@ -75,7 +75,7 @@ class StripeKO {
             return NULL;
         }
 
-        if (Core::config('payment.stripe_private')!='' AND Core::config('payment.stripe_public')!='' AND Theme::get('premium')==1)
+        if (Core::config('payment.stripe_private')!='' AND Core::config('payment.stripe_public')!='' AND Core::extra_features() == TRUE)
         {
             return View::factory('pages/stripe/button',array('order'=>$order));
         }
@@ -100,7 +100,7 @@ class StripeKO {
             Core::config('payment.stripe_connect')==TRUE AND
             Core::config('payment.stripe_private')!='' AND
             Core::config('payment.stripe_public')!='' AND
-            Theme::get('premium')==1 AND
+            Core::extra_features() == TRUE AND
             $order->id_product == Model_Order::PRODUCT_AD_SELL )
         {
             if ($order->ad->price != NULL AND $order->ad->price > 0 AND
@@ -127,7 +127,7 @@ class StripeKO {
             Core::config('payment.stripe_connect')==TRUE AND
             Core::config('payment.stripe_private')!='' AND
             Core::config('payment.stripe_public')!='' AND
-            Theme::get('premium')==1)
+            Core::extra_features() == TRUE)
         {
             if ($ad->price != NULL AND $ad->price > 0 AND
                 (core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1)))

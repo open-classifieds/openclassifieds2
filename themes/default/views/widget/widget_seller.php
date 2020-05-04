@@ -29,7 +29,7 @@
     <?if($widget->last_login):?>
         <p><b><?=_e('Last Login')?>:</b> <?=$widget->user->last_login?></p>
     <?endif?>
-    <?if($widget->custom_fields AND Theme::get('premium')==1):?>
+    <?if($widget->custom_fields AND Core::extra_features() == TRUE):?>
         <p>
             <ul class="list-unstyled">
                 <?foreach ($widget->user->custom_columns(TRUE) as $name => $value):?>

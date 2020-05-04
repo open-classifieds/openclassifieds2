@@ -29,7 +29,7 @@ class payline {
      */
     public static function button(Model_Order $order)
     {
-        if (Core::config('payment.payline_merchant_id') != '' AND Core::config('payment.payline_access_key') != '' AND Core::config('payment.payline_contract_number') != '' AND Theme::get('premium')==1)
+        if (Core::config('payment.payline_merchant_id') != '' AND Core::config('payment.payline_access_key') != '' AND Core::config('payment.payline_contract_number') != '' AND Core::extra_features() == TRUE)
         {
             require_once Kohana::find_file('vendor', 'payline/autoload', 'php');
 

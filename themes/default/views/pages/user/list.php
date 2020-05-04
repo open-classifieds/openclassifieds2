@@ -13,7 +13,7 @@
                         <input type="text" id="search" name="search" class="form-control" value="<?=core::request('search')?>" placeholder="<?=__('Search')?>">
                     </div>
                 </div>
-                <?if (Theme::get('premium')==1):?>
+                <?if (Core::extra_features() == TRUE):?>
                 <!-- Fields coming from user custom fields feature -->
                 <?foreach(Model_UserField::get_all() as $name=>$field):?>
                     <?if(isset($field['searchable']) AND $field['searchable']):?>

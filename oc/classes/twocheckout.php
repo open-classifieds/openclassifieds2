@@ -49,7 +49,7 @@ class twocheckout {
      */
     public static function form(Model_Order $order)
     {
-        if ( Core::config('payment.twocheckout_sid')!=''  AND Core::config('payment.twocheckout_secretword')!='' AND Theme::get('premium')==1)
+        if ( Core::config('payment.twocheckout_sid')!=''  AND Core::config('payment.twocheckout_secretword')!='' AND Core::extra_features() == TRUE)
         {
             $form_action = ( Core::config('payment.twocheckout_sandbox') == 1)?self::url_sandbox_gateway:self::url_gateway;
 

@@ -8,7 +8,7 @@ class Controller_Social extends Controller {
         if (Auth::instance()->logged_in())
             Auth::instance()->login_redirect();
 
-        if (core::config('social.oauth2_enabled')==FALSE AND Theme::get('premium')==1)
+        if (core::config('social.oauth2_enabled')==FALSE AND Core::extra_features() == TRUE)
             $this->redirect(Route::url('default'));
 
         require_once Kohana::find_file('vendor', 'oauth2/vendor/autoload','php');

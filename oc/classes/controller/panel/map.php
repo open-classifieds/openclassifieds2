@@ -20,7 +20,7 @@ class Controller_Panel_Map extends Auth_Controller {
         $map_settings = Core::post('current_settings',Core::Config('appearance.map_settings'));
 
         // change map
-        if( Theme::get('premium')==1 AND Core::post('jscode') )
+        if( Core::extra_features() == TRUE AND Core::post('jscode') )
         {
             Model_Config::set_value('appearance','map_active',Core::post('map_active'));
             Model_Config::set_value('appearance','map_settings',Core::post('current_settings'));

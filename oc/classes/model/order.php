@@ -67,7 +67,7 @@ class Model_Order extends ORM {
                             self::PRODUCT_AD_SELL       =>  __('Buy product'),
                             self::PRODUCT_APP_FEE       =>  __('Application Fee'),
                         );
-        if (Core::config('general.subscriptions')==TRUE AND Theme::get('premium')==1 )
+        if (Core::config('general.subscriptions')==TRUE AND Core::extra_features() == TRUE )
         {
             $plans = new Model_Plan();
             $plans = $plans->where('status','=',1)

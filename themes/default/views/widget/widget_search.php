@@ -89,7 +89,7 @@
                 </div>
             <?endif?>
         <?endif?>
-        <?if (Theme::get('premium')==1 AND $widget->custom == TRUE) :?>
+        <?if (Core::extra_features() == TRUE AND $widget->custom == TRUE) :?>
             <!-- Fields coming from custom fields feature -->
             <div id="widget-custom-fields" data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'categories'))?>" data-customfield-values='<?=json_encode(Request::current()->query())?>'>
                 <div id="widget-custom-field-template" class="form-group hidden">

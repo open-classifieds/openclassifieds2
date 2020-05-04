@@ -10,7 +10,7 @@
 <?if (isset($_SERVER['SERVER_ADDR'])):?>
 <meta name="server_addr" content="<?=$_SERVER['SERVER_ADDR']?>">
 <?endif?>
-<?if (Theme::get('premium')==1):?>
+<?if (Core::extra_features() == TRUE):?>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <?else:?>
 <meta name="author" content="yclas.com">

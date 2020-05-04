@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<?if ($ad->status != Model_Ad::STATUS_PUBLISHED AND $permission === FALSE AND ($ad->id_user != $user) OR (Theme::get('premium')!=1)):?>
+<?if ($ad->status != Model_Ad::STATUS_PUBLISHED AND $permission === FALSE AND ($ad->id_user != $user) OR (Core::extra_features() == FALSE)):?>
 
 <div class="page-header">
 	<h1><?= __('This advertisement doesn´t exist, or is not yet published!')?></h1>

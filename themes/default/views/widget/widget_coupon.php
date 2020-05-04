@@ -1,4 +1,4 @@
-<?if(Theme::get('premium')==1 AND Model_Coupon::available()):?>
+<?if(Core::extra_features() == TRUE AND Model_Coupon::available()):?>
 <div class="panel-heading">
     <h3 class="panel-title"><?=$widget->text_title?></h3>
 </div>

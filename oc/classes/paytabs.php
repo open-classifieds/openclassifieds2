@@ -90,7 +90,7 @@ class paytabs {
      */
     public static function button(Model_Order $order)
     {
-        if (Core::config('payment.paytabs_merchant_email')!='' AND Core::config('payment.paytabs_secret_key')!='' AND Theme::get('premium')==1)
+        if (Core::config('payment.paytabs_merchant_email')!='' AND Core::config('payment.paytabs_secret_key')!='' AND Core::extra_features() == TRUE)
         {
             // PayTabs Merchant Account Details
             $pt = new paytabs();

@@ -22,7 +22,7 @@ class robokassa {
      */
     public static function button(Model_Order $order)
     {
-        if (Core::config('payment.robokassa_login')!='' AND Core::config('payment.robokassa_pass1')!='' AND Theme::get('premium')==1)
+        if (Core::config('payment.robokassa_login')!='' AND Core::config('payment.robokassa_pass1')!='' AND Core::extra_features() == TRUE)
         {
             // your registration data
             $mrh_login = Core::config('payment.robokassa_login');      // your login here

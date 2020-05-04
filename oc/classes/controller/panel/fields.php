@@ -161,7 +161,7 @@ class Controller_Panel_Fields extends Auth_Controller {
         $name   = $this->request->param('id');
         $field  = new Model_Field();
 
-        if (Theme::get('premium') != 1)
+        if (Core::extra_features() == FALSE)
         {
             Alert::set(Alert::INFO, __('Translations is only available in the PRO version!') . ' ' . __('Upgrade your Yclas site to activate this feature.'));
             $this->redirect(Route::url('oc-panel', ['controller' => 'fields', 'action' => 'update', 'id' => $name]));

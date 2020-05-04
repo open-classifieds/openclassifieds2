@@ -9,7 +9,7 @@ class Api_User extends Api_Controller {
     {
         parent::before();
 
-        if (Theme::get('premium')!=1)
+        if (Core::extra_features() == FALSE)
             $this->_error('You need a premium theme to use the API',401);
         
         $key = isset($_SERVER['HTTP_USER_TOKEN'])?$_SERVER['HTTP__USER_TOKEN']:Core::request('user_token');

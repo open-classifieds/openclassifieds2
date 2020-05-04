@@ -1,4 +1,4 @@
-<?if (Theme::get('premium')==1):?>
+<?if (Core::extra_features() == TRUE):?>
     <?if (core::count($providers = Social::enabled_providers()) > 0 OR core::config('social.oauth2_enabled') == TRUE) :?>
         <ul class="list-inline social-providers">
             <?foreach ($providers as $key => $provider) :?>

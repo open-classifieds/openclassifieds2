@@ -25,7 +25,7 @@ class MercadoPago {
      */
     public static function button(Model_Order $order)
     {
-        if (Core::config('payment.mercadopago_client_id')!='' AND Core::config('payment.mercadopago_client_secret')!='' AND Theme::get('premium')==1)
+        if (Core::config('payment.mercadopago_client_id')!='' AND Core::config('payment.mercadopago_client_secret')!='' AND Core::extra_features() == TRUE)
         {
             // Include Mercadopago library
             require Kohana::find_file('vendor/mercadopago', 'mercadopago');

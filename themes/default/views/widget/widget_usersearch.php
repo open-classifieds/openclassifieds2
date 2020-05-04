@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <?if (Theme::get('premium')==1) :?>
+        <?if (Core::extra_features() == TRUE) :?>
             <?if ($widget->custom != FALSE) :?>
                 <!-- Fields coming from user custom fields feature -->
                 <?foreach($widget->custom_fields as $name=>$field):?>

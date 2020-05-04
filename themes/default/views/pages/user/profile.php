@@ -49,7 +49,7 @@
             <?if ($user->last_login!=NULL):?>
             <li><strong><?=_e('Last Login')?>:</strong> <?= Date::format($user->last_login, core::config('general.date_format'))?></li>
             <?endif?>
-            <?if (Theme::get('premium')==1):?>
+            <?if (Core::extra_features() == TRUE):?>
                 <?foreach ($user->custom_columns(TRUE) as $name => $value):?>
                 	<?if($value!=''):?>
                         <?if($name!='whatsapp' AND $name!='skype' AND $name!='telegram'):?>
@@ -68,7 +68,7 @@
                 <?endforeach?>
             <?endif?>
         </ul>
-        <?if (Theme::get('premium')==1):?>
+        <?if (Core::extra_features() == TRUE):?>
             <?if(isset($user->cf_whatsapp) AND strlen($user->cf_whatsapp) > 6):?>
                 <a href="https://api.whatsapp.com/send?phone=<?=$user->cf_whatsapp?>" title="Chat with <?=$user->name?>" alt="Whatsapp"><i class="fa fa-2x fa-whatsapp" style="color:#43d854"></i></a>
             <?endif?>
