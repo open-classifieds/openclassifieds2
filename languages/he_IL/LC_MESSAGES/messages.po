@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yclas\n"
 "POT-Creation-Date: 2020-02-09 01:38+0000\n"
-"PO-Revision-Date: 2020-02-12 09:27\n"
+"PO-Revision-Date: 2020-05-04 17:42\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 #: install/index.php:63
 #: install-yclas.php:695
 msgid "Installation"
-msgstr ""
+msgstr "התקנה"
 
 #: install/index.php:104
 #: install/views/form.php:7
