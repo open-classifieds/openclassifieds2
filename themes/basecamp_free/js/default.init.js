@@ -536,7 +536,7 @@ $('.show-all-categories').click(function() {
             $('#modalAllCategories .modal-body .list-group').empty();
             $('#modalAllCategories').modal('show');
             $.each(result.categories, function (idx, category) {
-                $("#modalAllCategories .modal-body .list-group").append('<li class="list-group-item"><a href="/' + category.seoname + '">' + category.name + '</a></li>');
+                $("#modalAllCategories .modal-body .list-group").append('<li class="list-group-item"><a href="/' + category.seoname + '">' + category.translate_name + '</a></li>');
             });
         }
     });
