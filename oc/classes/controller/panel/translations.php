@@ -100,7 +100,10 @@ class Controller_Panel_Translations extends Auth_Controller {
             $data_translated = Core::post('translations');
 
             if ($this->save_translation($language,$translation_array,$data_translated,$translation_file))
+            {
+                Model_Config::set_value('translations','lastupdate-'.($translation_file=='apps'?'apps-':'').$language, time());
                 Alert::set(Alert::SUCCESS, $language.' '.__('Language saved'));
+            }    
             else
                 Alert::set(Alert::ALERT, $language);
 
@@ -227,7 +230,10 @@ class Controller_Panel_Translations extends Auth_Controller {
         }
 
         if ($this->save_translation($language,$translation_array,$data_translated,$translation_file))
+        {
+            Model_Config::set_value('translations','lastupdate-'.($translation_file=='apps'?'apps.':'').$language, time());
             Alert::set(Alert::SUCCESS, $language.' '.__('Language saved'));
+        }
         else
             Alert::set(Alert::ALERT, $language);
 

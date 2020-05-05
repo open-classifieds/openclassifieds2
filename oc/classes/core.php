@@ -753,6 +753,9 @@ class Core {
 
     public static function extra_features()
     {
+        if (Kohana::$environment === Kohana::DEVELOPMENT)
+            return TRUE;
+        
         return (Core::config('license.number')!=NULL AND Core::config('license.date') >= time())?TRUE:FALSE;
     }
 

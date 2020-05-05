@@ -8,7 +8,13 @@ class Controller_Api_Translation extends Api_Auth {
         $selectable_languages = [];
 
         foreach (i18n::get_languages() as $language) 
-            $selectable_languages[$language] = i18n::get_display_language($language);
+        {
+            $selectable_languages[$language] =  [
+                                                    'name' =>i18n::get_display_language($language),
+                                                    'last_update_apps' => Core::Config('translations.lastupdate-apps-'.$language),
+                                                    'last_update_messages' => Core::Config('translations.lastupdate-'.$language),
+                                                ];
+        }    
 
         $this->rest_output(array('locales' => $selectable_languages),200);
     }
