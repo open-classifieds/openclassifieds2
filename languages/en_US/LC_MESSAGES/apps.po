@@ -187,7 +187,7 @@ msgid "your_website"
 msgstr "Your website"
 
 #: String 44
-msgid "nex_step:_product_photos"
+msgid "nex_step_product_photos"
 msgstr "Nex step: Product photos"
 
 #: String 45
@@ -215,11 +215,11 @@ msgid "filter_by_category"
 msgstr "Filter by category"
 
 #: String 51
-msgid "i_forgot_my_password,_reset_it"
+msgid "i_forgot_my_password_reset_it"
 msgstr "I forgot my password, reset it"
 
 #: String 52
-msgid "i_don´t_have_an_account,_register"
+msgid "i_don´t_have_an_account_register"
 msgstr "I don´t have an account, register"
 
 #: String 53
