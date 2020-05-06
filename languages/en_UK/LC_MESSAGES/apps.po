@@ -219,7 +219,7 @@ msgid "i_forgot_my_password_reset_it"
 msgstr "I forgot my password, reset it"
 
 #: String 52
-msgid "i_don´t_have_an_account_register"
+msgid "i_dont_have_an_account_register"
 msgstr "I don´t have an account, register"
 
 #: String 53
