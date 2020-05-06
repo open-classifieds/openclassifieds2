@@ -1,0 +1,231 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: yclas-2020-05-06\n"
+"POT-Creation-Date: 2020-05-06 12:16:51\n"
+"PO-Revision-Date: 2020-05-06 12:16:51\n"
+"Language-Team: en\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Yclas.com\n"
+
+#: String 0
+msgid "marketplace"
+msgstr "Marketplace"
+
+#: String 1
+msgid "search_for_products"
+msgstr "Search for products"
+
+#: String 2
+msgid "are_you_sure_you_want_to_logout"
+msgstr "Are you sure you want to logout?"
+
+#: String 3
+msgid "logout"
+msgstr "Logout"
+
+#: String 4
+msgid "cancel"
+msgstr "Cancel"
+
+#: String 5
+msgid "save"
+msgstr "Save"
+
+#: String 6
+msgid "my_products"
+msgstr "My Products"
+
+#: String 7
+msgid "market"
+msgstr "Market"
+
+#: String 8
+msgid "favs"
+msgstr "Favs"
+
+#: String 9
+msgid "inbox"
+msgstr "Inbox"
+
+#: String 10
+msgid "me"
+msgstr "Me"
+
+#: String 11
+msgid "search"
+msgstr "Search"
+
+#: String 12
+msgid "inbox"
+msgstr "Inbox"
+
+#: String 13
+msgid "write_message"
+msgstr "Write message…"
+
+#: String 14
+msgid "log_in"
+msgstr "Log in"
+
+#: String 15
+msgid "username"
+msgstr "Username"
+
+#: String 16
+msgid "email"
+msgstr "Email"
+
+#: String 17
+msgid "password"
+msgstr "Password"
+
+#: String 18
+msgid "name"
+msgstr "Name"
+
+#: String 19
+msgid "last_name"
+msgstr "Last Name"
+
+#: String 20
+msgid "next"
+msgstr "Next"
+
+#: String 21
+msgid "i_accept_the_terms_and_conditions"
+msgstr "I accept the Terms and Conditions"
+
+#: String 22
+msgid "create_account"
+msgstr "Create account"
+
+#: String 23
+msgid "search_for_products"
+msgstr "Search for products"
+
+#: String 24
+msgid "my_favorites"
+msgstr "My favorites"
+
+#: String 25
+msgid "my_marketplace"
+msgstr "My Marketplace"
+
+#: String 26
+msgid "category"
+msgstr "Category"
+
+#: String 27
+msgid "product_description"
+msgstr "Product description"
+
+#: String 28
+msgid "call_about_this_product"
+msgstr "Call about this product"
+
+#: String 29
+msgid "message_about_this_product"
+msgstr "Message about this product"
+
+#: String 30
+msgid "back"
+msgstr "Back"
+
+#: String 31
+msgid "categories"
+msgstr "Categories"
+
+#: String 32
+msgid "search_for_categories"
+msgstr "Search for categories"
+
+#: String 33
+msgid "new_product_info"
+msgstr "New product info"
+
+#: String 34
+msgid "product_title"
+msgstr "Product title"
+
+#: String 35
+msgid "enter_the_new_product_title"
+msgstr "Enter the new product title"
+
+#: String 36
+msgid "select_category"
+msgstr "Select category"
+
+#: String 37
+msgid "description"
+msgstr "Description"
+
+#: String 38
+msgid "350_characters_max"
+msgstr "350 characters max."
+
+#: String 39
+msgid "price"
+msgstr "Price"
+
+#: String 40
+msgid "phone_number"
+msgstr "Phone number"
+
+#: String 41
+msgid "your_phone_number"
+msgstr "Your phone number"
+
+#: String 42
+msgid "website"
+msgstr "Website"
+
+#: String 43
+msgid "your_website"
+msgstr "Your website"
+
+#: String 44
+msgid "nex_step:_product_photos"
+msgstr "Nex step: Product photos"
+
+#: String 45
+msgid "new_product_images"
+msgstr "New product images"
+
+#: String 46
+msgid "tap_to_add_a_new_image"
+msgstr "Tap to add a new image"
+
+#: String 47
+msgid "loaded_images"
+msgstr "Loaded images"
+
+#: String 48
+msgid "delete"
+msgstr "Delete"
+
+#: String 49
+msgid "publish_product"
+msgstr "Publish product"
+
+#: String 50
+msgid "filter_by_category"
+msgstr "Filter by category"
+
+#: String 51
+msgid "i_forgot_my_password,_reset_it"
+msgstr "I forgot my password, reset it"
+
+#: String 52
+msgid "i_don´t_have_an_account,_register"
+msgstr "I don´t have an account, register"
+
+#: String 53
+msgid "go_back"
+msgstr "Go back"
+
+#: String 54
+msgid "login_to_my_account"
+msgstr "Login to my account
