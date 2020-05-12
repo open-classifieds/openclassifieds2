@@ -143,7 +143,7 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 	public function action_edit()
     {
         $this->template->styles = ['css/jasny-bootstrap.min.css' => 'screen', '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.bootstrap3.min.css' => 'screen'];
-        $this->template->scripts['footer'] = ['js/jasny-bootstrap.min.js', 'js/canvasResize.js', 'js/load-image.all.min.js', 'js/oc-panel/edit_profile.js','//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js', '//cdn.jsdelivr.net/npm/exif-js'];
+        $this->template->scripts['footer'] = ['js/jasny-bootstrap.min.js', 'js/canvasResize.js', 'js/load-image.all.min.js', 'js/oc-panel/edit_profile.js','//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js'];
 
         if(core::config('advertisement.map_pub_new'))
         {

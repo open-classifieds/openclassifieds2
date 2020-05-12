@@ -21,64 +21,64 @@ abstract class Image extends Kohana_Image {
         if (function_exists('exif_read_data') AND in_array(exif_imagetype($this->file), array(IMAGETYPE_JPEG,IMAGETYPE_TIFF_II,IMAGETYPE_TIFF_MM)))
         {
             $exif = @exif_read_data($this->file);
-            
+
             $exif_orientation = isset($exif['Orientation'])?$exif['Orientation']:0;
-            
+
             $rotate = 0;
             $flip = FALSE;
-            
-            switch($exif_orientation) { 
-                case 1: 
+
+            switch($exif_orientation) {
+                case 1:
                     $rotate = 0;
                     $flip = FALSE;
-                break; 
-            
-                case 2: 
+                break;
+
+                case 2:
                     $rotate = 0;
                     $flip = TRUE;
-                break; 
-            
-                case 3: 
+                break;
+
+                case 3:
                     $rotate = 180;
                     $flip = FALSE;
-                break; 
-                
-                case 4: 
+                break;
+
+                case 4:
                     $rotate = 180;
                     $flip = TRUE;
-                break; 
-                
-                case 5: 
-                    $rotate = 90;
-                    $flip = TRUE;
-                break; 
-                
-                case 6: 
-                    $rotate = 90;
-                    $flip = FALSE;
-                break; 
-                
-                case 7: 
+                break;
+
+                case 5:
                     $rotate = 270;
                     $flip = TRUE;
-                break; 
-                
-                case 8: 
+                break;
+
+                case 6:
                     $rotate = 270;
                     $flip = FALSE;
-                break; 
+                break;
+
+                case 7:
+                    $rotate = 90;
+                    $flip = TRUE;
+                break;
+
+                case 8:
+                    $rotate = 90;
+                    $flip = FALSE;
+                break;
             }
-            
+
             if ($flip)
                 $this->flip(Image::HORIZONTAL);
-                
+
             if ($rotate > 0)
                 $this->rotate($rotate);
         }
 
         //default return the object so we can concatenate
         return $this;
-        
+
     }
 
     /**
@@ -90,7 +90,7 @@ abstract class Image extends Kohana_Image {
     */
 
     public function is_nude_image($threshold = .5) {
-        
+
         // Get the width, height and type from the uploaded image
         list($width, $height, $type) = getimagesize($this->file);
 
@@ -124,22 +124,22 @@ abstract class Image extends Kohana_Image {
 
         for($x = 0; $x < $width; $x += $inc)
         for($y = 0; $y < $height; $y += $inc) {
-                    
+
         // Get color of a pixel
         $color = imagecolorat($resource, $x, $y);
         // RGB array of pixel's color
         $color = array(($color >> 16) & 0xFF, ($color >> 8) & 0xFF, $color & 0xFF);
-                    
+
         list($r, $g, $b) = $color;
-                    
+
         // Exclude white/black colors from calculation, presumably background
         if((($r > $white) && ($g > $white) && ($b > $white)) ||
         (($r < $black) && ($g < $black) && ($b < $black))) continue;
-                    
+
         // Converg pixel RGB color to YCbCr, coefficients already divided by 255
         $Cb = 128 + (-0.1482 * $r) + (-0.291 * $g) + (0.4392 * $b);
         $Cr = 128 + (0.4392 * $r) + (-0.3678 * $g) + (-0.0714 * $b);
-        
+
         // Increase counter, if necessary
         if(($Cb >= $Cb1) && ($Cb <= $Cb2) && ($Cr >= $Cr1) && ($Cr <= $Cr2))
             $count++;
@@ -150,7 +150,7 @@ abstract class Image extends Kohana_Image {
             return ($count / $total) >= $threshold;
 
         return FALSE;
-        
+
     }
-    
+
 } // End Image
