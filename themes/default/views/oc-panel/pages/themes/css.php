@@ -10,14 +10,17 @@
 </h1>
 
 <hr>
-    
+
 <p>
-    <?=__('Please insert here your custom CSS.')?>. <?=__('Current CSS file')?>  <?=HTML::anchor(Theme::get_custom_css())?>
+    <?=__('Please insert here your custom CSS.')?>
+    <? if (Theme::get_custom_css()): ?>
+        <?=__('Current CSS file')?>  <?=HTML::anchor(Theme::get_custom_css())?>
+    <? endif ?>
 </p>
 
 <div class="row">
     <div class="col-md-12">
-        <form action="<?=URL::base()?><?=Request::current()->uri()?>" method="post"> 
+        <form action="<?=URL::base()?><?=Request::current()->uri()?>" method="post">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="form-group">
@@ -29,12 +32,12 @@
                             <?=Form::label('css_active'.'0', __('Disabled'))?>
                         </div>
                      </div>
-                        
+
                     <div class="form-group">
                         <label class="control-label"><?=__('CSS')?></label>
                         <textarea rows="30" class="form-control" name="css"><?=$css_content?></textarea>
                     </div>
-                        
+
                     <hr>
                     <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary'))?>
                 </div>
