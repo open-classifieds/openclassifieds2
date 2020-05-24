@@ -23,7 +23,7 @@
                         <?= FORM::label('category', _e('Categories'), array('class'=>'', 'for'=>'category_widget_search'))?>
                         <select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="category<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="category_widget_search" class="form-control" data-placeholder="<?=__('Categories')?>">
                             <option></option>
-                            <?function lili_search($item, $key, $params){?>
+                            <?$lili_search_function_name = 'lili_search' . $widget->created; $lili_search_function_name = function($item, $key, $params){?>
                                 <?if (core::config('general.search_multi_catloc')):?>
                                     <option value="<?=$params['cats'][$key]['seoname']?>" data-id="<?=$params['cats'][$key]['id']?>" <?=(is_array($params['selected_category']) AND in_array($params['cats'][$key]['seoname'], $params['selected_category']))?"selected":''?> ><?=$params['cats'][$key]['translate_name']?></option>
                                 <?else:?>
@@ -31,13 +31,13 @@
                                 <?endif?>
                                 <?if (core::count($item)>0):?>
                                     <optgroup label="<?=$params['cats'][$key]['translate_name']?>">
-                                        <? if (is_array($item)) array_walk($item, 'lili_search', array('cats' => $params['cats'], 'selected_category' => $params['selected_category']));?>
+                                        <? if (is_array($item)) array_walk($item, $lili_search_function_name, array('cats' => $params['cats'], 'selected_category' => $params['selected_category']));?>
                                     </optgroup>
                                 <?endif?>
-                            <?}
+                            <?};
                             $cat_order = $widget->cat_order_items;
                             if (is_array($cat_order))
-                                array_walk($cat_order , 'lili_search', array('cats' => $widget->cat_items, 'selected_category' => $widget->selected_category));?>
+                                array_walk($cat_order , $lili_search_function_name, array('cats' => $widget->cat_items, 'selected_category' => $widget->selected_category));?>
                         </select>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                             <?= FORM::label('location_widget_search', _e('Locations'), array('class'=>'', 'for'=>'location_widget_search' ))?>
                             <select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="location<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="location_widget_search" class="form-control" data-placeholder="<?=__('Locations')?>">
                                 <option></option>
-                                <?function lolo_search($item, $key, $params){?>
+                                <?$lolo_search_function_name = 'lolo_search' . $widget->created; $lolo_search_function_name = function($item, $key, $params){?>
                                     <?if (core::config('general.search_multi_catloc')):?>
                                         <option value="<?=$params['locs'][$key]['seoname']?>" data-id="<?=$params['locs'][$key]['id']?>" <?=(is_array($params['selected_location']) AND in_array($params['locs'][$key]['seoname'], $params['selected_location']))?"selected":''?> ><?=$params['locs'][$key]['translate_name']?></option>
                                     <?else:?>
@@ -60,13 +60,13 @@
                                     <?endif?>
                                     <?if (core::count($item)>0):?>
                                         <optgroup label="<?=$params['locs'][$key]['translate_name']?>">
-                                            <? if (is_array($item)) array_walk($item, 'lolo_search', array('locs' => $params['locs'], 'selected_location' => $params['selected_location']));?>
+                                            <? if (is_array($item)) array_walk($item, $lolo_search_function_name, array('locs' => $params['locs'], 'selected_location' => $params['selected_location']));?>
                                         </optgroup>
                                     <?endif?>
-                                <?}
+                                <?};
                                 $loc_order_search = $widget->loc_order_items;
                                 if (is_array($loc_order_search))
-                                    array_walk($loc_order_search , 'lolo_search', array('locs' => $widget->loc_items, 'selected_location' => $widget->selected_location));?>
+                                    array_walk($loc_order_search , $lolo_search_function_name, array('locs' => $widget->loc_items, 'selected_location' => $widget->selected_location));?>
                             </select>
                         </div>
                     </div>
