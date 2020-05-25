@@ -23,7 +23,7 @@
                         <?= FORM::label('category', _e('Categories'), array('class'=>'', 'for'=>'category_widget_search'))?>
                         <select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="category<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="category_widget_search" class="form-control" data-placeholder="<?=__('Categories')?>">
                             <option></option>
-                            <?$lili_search_function_name = 'lili_search' . $widget->created; $lili_search_function_name = function($item, $key, $params){?>
+                            <?$lili_search_function_name = 'lili_search' . $widget->created; $lili_search_function_name = function($item, $key, $params) use (&$lili_search_function_name) {?>
                                 <?if (core::config('general.search_multi_catloc')):?>
                                     <option value="<?=$params['cats'][$key]['seoname']?>" data-id="<?=$params['cats'][$key]['id']?>" <?=(is_array($params['selected_category']) AND in_array($params['cats'][$key]['seoname'], $params['selected_category']))?"selected":''?> ><?=$params['cats'][$key]['translate_name']?></option>
                                 <?else:?>
@@ -52,7 +52,7 @@
                             <?= FORM::label('location_widget_search', _e('Locations'), array('class'=>'', 'for'=>'location_widget_search' ))?>
                             <select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="location<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="location_widget_search" class="form-control" data-placeholder="<?=__('Locations')?>">
                                 <option></option>
-                                <?$lolo_search_function_name = 'lolo_search' . $widget->created; $lolo_search_function_name = function($item, $key, $params){?>
+                                <?$lolo_search_function_name = 'lolo_search' . $widget->created; $lolo_search_function_name = function($item, $key, $params) use (&$lolo_search_function_name){?>
                                     <?if (core::config('general.search_multi_catloc')):?>
                                         <option value="<?=$params['locs'][$key]['seoname']?>" data-id="<?=$params['locs'][$key]['id']?>" <?=(is_array($params['selected_location']) AND in_array($params['locs'][$key]['seoname'], $params['selected_location']))?"selected":''?> ><?=$params['locs'][$key]['translate_name']?></option>
                                     <?else:?>
