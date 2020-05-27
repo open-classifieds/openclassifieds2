@@ -11,9 +11,7 @@
 
 class Auth_Controller extends Controller
 {
-
 	/**
-	 *
 	 * Contruct that checks you are loged in before nothing else happens!
 	 */
 	function __construct(Request $request, Response $response)
@@ -23,7 +21,6 @@ class Auth_Controller extends Controller
 
 		// Assign a response to the controller
 		$this->response = $response;
-
 
 		//login control, don't do it for auth controller so we dont loop
 		if ($this->request->controller()!='auth')
@@ -50,8 +47,6 @@ class Auth_Controller extends Controller
 
 		//the user was loged in and with the right permissions
         parent::__construct($request,$response);
-
-
 	}
 
 
@@ -67,148 +62,76 @@ class Auth_Controller extends Controller
             Core::status();
 
         $this->maintenance();
+
         $this->private_site();
 
-		if($this->auto_render===TRUE)
-		{
-            // Load the template
-            $this->template = ($template===NULL)?'oc-panel/main':$template;
-            //if its and ajx request I want only the content
-            if(Core::get('rel')=='ajax')
-                $this->template = 'oc-panel/content';
-            $this->template = View::factory($this->template);
-
-            // Initialize empty values
-            $this->template->title            = __('Panel').' - '.core::config('general.site_name');
-            $this->template->meta_keywords    = '';
-            $this->template->meta_description = '';
-            $this->template->meta_copyright   = 'Yclas '.Core::VERSION;
-            $this->template->header           = '';
-            $this->template->content          = '';
-            $this->template->footer           = '';
-            $this->template->styles           = array();
-            $this->template->scripts          = array();
-            $this->template->user             = Auth::instance()->get_user();
-
-            //non ajax request
-            if (Core::get('rel')!='ajax')
-            {
-    			$this->template->header           = View::factory('oc-panel/header');
-    			$this->template->footer           = View::factory('oc-panel/footer');
-
-    			/**
-    			 * custom options for the theme
-    			 * @var array
-    			 */
-    			Theme::$options = Theme::get_options();
-    			//we load earlier the theme since we need some info
-    			Theme::load();
-
-    			if (Theme::get('cdn_files') == FALSE)
-    			{
-    				//other color
-    	            if (Theme::get('admin_theme')!='bootstrap' AND Theme::get('admin_theme')!='')
-    	            {
-    	                $theme_css = array('css/style.css'=>'screen');
-    	            }
-    	            //default theme
-    	            else
-    	            {
-    	                $theme_css = array('css/style.css'=>'screen');
-    	            }
-
-                	$common_css = array('css/other.css'=>'screen');
-
-                	Theme::$styles = array_merge($common_css, $theme_css);
-
-    	            Theme::$scripts['footer'] = array('js/jquery.min.js',
-    	            								  'js/jquery.cookie.min.js',
-    	            								  'js/iconPicker.min.js',
-    												  'js/jquery.sceditor.bbcode.min.js',
-                                                      'js/jquery.sceditor.plaintext.min.js',
-    												  'js/summernote.min.js',
-    												  'js/bootstrap.min.js',
-    											      'js/select2.min.js',
-                                                      'js/mousetrap.min.js',
-    											      'js/bootstrap-tour.min.js',
-    											      Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'bstour')),
-    											      'js/oc-panel/tour.js',
-    											      Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'select2')),
-    											      'js/sweet-alert.min.js',
-    											      'js/favico.min.js',
-                                                      'js/bootstrap-colorpicker.min.js',
-                                                      'js/jquery.bootgrid.min.js',
-                                                      'js/query.bootgrid.fa.min.js',
-                                                      'js/oc-panel/metismenu.min.js',
-                                                      'js/oc-panel/theme.init.js?v='.Core::VERSION,
-                                                      'js/oc-panel/sidebar.js?v='.Core::VERSION,
-                    );
-    			}
-    			else
-    			{
-    	            //other color
-    	            if (Theme::get('admin_theme')!='bootstrap' AND Theme::get('admin_theme')!='')
-    	            {
-    	                $theme_css = array('css/style.css'=>'screen');
-    	            }
-    	            //default theme
-    	            else
-    	            {
-    	                $theme_css = array('css/style.css?v='.Core::VERSION=>'screen');
-    	            }
-
-                	$common_css = array('css/other.css?v='.Core::VERSION=>'screen');
-
-                	Theme::$styles = array_merge($theme_css,$common_css);
-
-                    Theme::$scripts['footer'] = array(  '//cdn.jsdelivr.net/jquery/1.12.3/jquery.min.js',
-                                                        '//cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js',
-                                                        'js/iconPicker.min.js',
-                                                        'js/jquery.sceditor.bbcode.min.js',
-                                                        'js/jquery.sceditor.plaintext.min.js',
-                                                        '//cdn.jsdelivr.net/summernote/0.8.1/summernote.min.js',
-                                                        '//cdn.jsdelivr.net/npm/bootstrap@3.4.0/dist/js/bootstrap.min.js',
-                                                        '//cdn.jsdelivr.net/select2/4.0.3/js/select2.min.js',
-                                                        '//cdn.jsdelivr.net/mousetrap/1.6.0/mousetrap.min.js',
-                                                        'js/bootstrap-tour.min.js',
-                                                          Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'bstour')),
-                                                        'js/oc-panel/tour.js',
-                                                          Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'select2')),
-                                                        'js/sweet-alert.min.js',
-                                                        'js/favico.min.js',
-                                                        'js/bootstrap-colorpicker.min.js',
-                                                        'js/jquery.bootgrid.min.js',
-                                                        'js/query.bootgrid.fa.min.js',
-                                                        'js/oc-panel/metismenu.min.js',
-                                                        'js/oc-panel/theme.init.js?v='.Core::VERSION,
-                                                        'js/oc-panel/sidebar.js?v='.Core::VERSION,
-                                                      );
-    	        }
-            }
-
-		}
-
-
-	}
-
-
-
-    /**
-     * Fill in default values for our properties before rendering the output.
-     */
-    public function after()
-    {
-        //ajax request
-        if (Core::get('rel')=='ajax')
+		if($this->auto_render !== TRUE)
         {
-            // Add defaults to template variables.
-            $this->template->styles  = $this->template->styles;
-            $this->template->scripts = array_reverse($this->template->scripts);
-            $this->response->body($this->template->render());
+            return;
         }
-        else
-            parent::after();
-    }
 
+        // Load the template
+        $this->template = $template === NULL ? 'oc-panel/layouts/master' : $template;
 
+        $this->template = View::factory($this->template);
+
+        // Initialize empty values
+        $this->template->title            = __('Panel').' - '.core::config('general.site_name');
+        $this->template->meta_keywords    = '';
+        $this->template->meta_description = '';
+        $this->template->meta_copyright   = 'Yclas '.Core::VERSION;
+        $this->template->header           = '';
+        $this->template->content          = '';
+        $this->template->footer           = '';
+        $this->template->styles           = [];
+        $this->template->scripts          = [];
+        $this->template->user             = Auth::instance()->get_user();
+        $this->template->panel_title      = NULL;
+
+		//custom options for the theme
+		Theme::$options = Theme::get_options();
+
+		//we load earlier the theme since we need some info
+		Theme::load();
+
+        Theme::$styles = [];
+        Theme::$scripts['footer'] = [];
+
+        Form::$errors_tpl = '<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a>
+                        <p><strong>%s</strong></p>
+                        <ul>%s</ul></div>';
+        Form::$error_tpl    = '<div class="alert "><a class="close" data-dismiss="alert">×</a>%s</div>';
+        Alert::$tpl = '
+  <div x-data="{ show: true }" x-show="show" x-transition:enter="transform ease-out duration-300 transition" x-transition:enter-start="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2" x-transition:enter-end="translate-y-0 opacity-100 sm:translate-x-0" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="mb-8">
+
+<div class="rounded-md bg-green-50 p-4 %s">
+  <div class="flex">
+    <div class="flex-shrink-0">
+      <svg class="h-5 w-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+      </svg>
+    </div>
+    <div class="ml-3">
+      <h3 class="text-sm leading-5 font-medium text-green-800">
+        %s
+      </h3>
+      <div class="mt-2 text-sm leading-5 text-green-700">
+        <p>
+          %s
+        </p>
+      </div>
+    </div>
+    <div class="ml-auto pl-3">
+      <div class="-mx-1.5 -my-1.5">
+        <button @click="show = false" class="inline-flex rounded-md p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:bg-green-100 transition ease-in-out duration-150">
+          <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>';
+	}
 }

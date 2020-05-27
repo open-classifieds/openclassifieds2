@@ -1,98 +1,78 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<ul class="nav nav-tabs nav-tabs-simple">
-    <li <?=(Request::current()->action()=='optimize') ? 'class="active"' : NULL?>>
-        <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'optimize'))?>"
-            title="<?=HTML::chars(__('Optimize'))?>"
-            class="ajax-load">
-            <?=__('Optimize')?>
-        </a>
-    </li>
-    <li <?=(Request::current()->action()=='sitemap') ? 'class="active"' : NULL?>>
-        <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'sitemap'))?>"
-            title="<?=HTML::chars(__('Sitemap'))?>"
-            class="ajax-load">
-            <?=__('Sitemap')?>
-        </a>
-    </li>
-    <li <?=(Request::current()->action()=='migration') ? 'class="active"' : NULL?>>
-        <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'migration'))?>"
-            title="<?=HTML::chars(__('Migration'))?>"
-            class="ajax-load">
-            <?=__('Migration')?>
-        </a>
-    </li>
-    <li <?=(Request::current()->action()=='cache') ? 'class="active"' : NULL?>>
-        <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'cache'))?>"
-            title="<?=HTML::chars(__('Cache'))?>"
-            class="ajax-load">
-            <?=__('Cache')?>
-        </a>
-    </li>
-    <li <?=(Request::current()->action()=='logs') ? 'class="active"' : NULL?>>
-        <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'logs'))?>"
-            title="<?=HTML::chars(__('Logs'))?>"
-            class="ajax-load">
-            <?=__('Logs')?>
-        </a>
-    </li>
-    <li <?=(Request::current()->action()=='phpinfo') ? 'class="active"' : NULL?>>
-        <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'phpinfo'))?>"
-            title="<?=HTML::chars(__('PHP Info'))?>"
-            class="ajax-load">
-            <?=__('PHP Info')?>
-        </a>
-    </li>
-    <?if(Core::config('general.algolia_search') == 1):?>
-        <li <?=(Request::current()->action()=='index') ? 'class="active"' : NULL?>>
-            <a href="<?=Route::url('oc-panel',array('controller'=>'algolia','action'=>'index'))?>"
-                title="Algolia"
-                class="ajax-load">
-                Algolia Search
+<div class="lg:flex lg:items-center lg:justify-between">
+    <div class="flex-1 min-w-0">
+        <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
+            <?= __('Optimize database') ?>
+        </h2>
+        <div class="mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap">
+            <div class="mt-2 flex items-center text-sm leading-5 text-gray-500 sm:mr-6">
+                <?=__('Database space')?>: <?=round($total_space, 2)?> KB
+            </div>
+            <div class="mt-2 flex items-center text-sm leading-5 text-gray-500 sm:mr-6">
+                <?=__('Space to optimize')?>: <?=round($total_gain, 2)?> KB
+            </div>
+        </div>
+    </div>
+    <div class="mt-5 flex lg:mt-0 lg:ml-4">
+        <span class="shadow-sm rounded-md">
+            <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'optimize'))?>?force=1" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-700 active:bg-blue-700 transition duration-150 ease-in-out">
+                <?= __('Optimize') ?>
             </a>
-        </li>
-    <?endif?>
-</ul>
+        </span>
+    </div>
+</div>
 
-<div class="panel panel-default">
-    <div class="panel-body">
-        <ul class="list-inline pull-right">
-            <li>
-                <a class="btn btn-primary pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'optimize'))?>?force=1" title="<?=__('Optimize')?>">
-                    <?=__('Optimize')?>
-                </a>
-            </li>
-        </ul>
-        <h1 class="page-header page-title">
-            <?=__('Optimize Database')?>
-        </h1>
-        <hr>
-        <ul class="list-unstyled">
-            <li><?=__('Database space')?> <?=round($total_space,2)?> KB</li>
-            <li><?=__('Space to optimize')?> <?=round($total_gain,2)?> KB</li>
-        </ul>
-        <div class="panel panel-default">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th><?=__('Table')?></th>
-                        <th><?=__('Rows')?></th>
-                        <th><?=__('Size')?> KB</th>
-                        <th><?=__('Save size')?> KB</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <?foreach ($tables as $table):?>
-                        <tr class="<?=($table['gain']>0)?'warning':''?>">
-                            <td><?=$table['name']?></td>
-                            <td><?=$table['rows']?></td>
-                            <td><?=$table['space']?></td>
-                            <td><?=$table['gain']?></td>
+<div class="bg-white overflow-hidden shadow rounded-lg mt-8">
+    <div class="flex flex-col">
+        <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+            <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+                <table class="min-w-full">
+                    <thead>
+                        <tr>
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                <?= __('Table') ?>
+                            </th>
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                <?= __('Rows') ?>
+                            </th>
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                <?= __('Size') ?> Kb
+                            </th>
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                <?= __('Save size') ?> Kb
+                            </th>
                         </tr>
-                    <?endforeach?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody class="bg-white">
+                        <?foreach ($tables as $key => $table):?>
+                            <? $last_item = $key === count($tables) - 1 ?>
+                                <tr class="<?= $table['gain']>0 ? 'bg-yellow-50' : '' ?>">
+                                    <td class="px-6 py-4 whitespace-no-wrap <?= $last_item ? '' : 'border-b' ?> border-gray-200">
+                                        <div class="text-sm leading-5 text-gray-900">
+                                            <?=$table['name']?>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-no-wrap <?= $last_item ? '' : 'border-b' ?> border-gray-200">
+                                        <div class="text-sm leading-5 text-gray-900">
+                                            <?=$table['rows']?>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-no-wrap <?= $last_item ? '' : 'border-b' ?> border-gray-200">
+                                        <div class="text-sm leading-5 text-gray-900">
+                                            <?=$table['space']?>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-no-wrap <?= $last_item ? '' : 'border-b' ?> border-gray-200">
+                                        <div class="text-sm leading-5 text-gray-900">
+                                            <?=$table['gain']?>
+                                        </div>
+                                    </td>
+                                </tr>
+                        <? endforeach ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

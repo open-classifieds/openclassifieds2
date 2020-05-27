@@ -1,46 +1,38 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<h1 class="page-header page-title">
-    <?=__('Media')?>
-    <a target="_blank" href="https://docs.yclas.com/how-to-manage-uploaded-images/">
-        <i class="fa fa-question-circle"></i>
-    </a>
-</h1>
-<hr>
+<div class="md:flex md:items-center md:justify-between">
+    <div class="flex-1 min-w-0">
+        <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
+            <?= __('Media') ?>
+        </h2>
+    </div>
+</div>
 
-<div class="panel panel-default">
-	<div class="table-responsive">
-		<table class="table table-striped">
-			<thead>
-				<th></th>
-				<th><?=__('Image')?></th>
-				<th><?=__('URL')?></th>
-				<th></th>
-			</thead>
-			<tbody>
-				<?foreach ($images as $key => $image):?>
-					<tr id="tr<?=$key?>">
-						<td class="nowrap">
-							<div style="max-width:200px;">
-								<a class="thumbnail" href="<?=$image['url']?>" target="_blank"><img src="<?=$image['url']?>"></a>
-							</div>
-						</td>
-						<td><?=$image['name']?></td>
-						<td><?=$image['url']?></td>
-						<td class="nowrap">
-							<a 
-								href="<?=Route::url('oc-panel', array('controller'=> Request::current()->controller(), 'action'=>'delete'))?>?name=<?=$image['name']?>" 
-								class="btn btn-danger index-delete" 
-								title="<?=__('Are you sure you want to delete?')?>" 
-								data-id="tr<?=$key?>" 
-								data-btnOkLabel="<?=__('Yes, definitely!')?>" 
-								data-btnCancelLabel="<?=__('No way!')?>">
-								<i class="glyphicon glyphicon-trash"></i>
-							</a>
-						</td>
-					</tr>
-				<?endforeach?>
-			</tbody>
-		</table>
+<div class="bg-white overflow-hidden shadow rounded-lg mt-8">
+	<div class="flex flex-col">
+	    <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+	        <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+	            <table class="min-w-full">
+	                <thead>
+	                    <tr>
+	                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
+	                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+	                            <?= __('Image') ?>
+	                        </th>
+	                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+	                            <?= __('URL') ?>
+	                        </th>
+	                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
+	                    </tr>
+	                </thead>
+	                <tbody class="bg-white">
+	                    <?foreach ($images as $key => $image):?>
+	                        <? $last_item = $key === count($images) - 1 ?>
+	                        <?= View::factory('oc-panel/pages/cmsimages/_image', ['image' => $image, 'last_item' => $last_item]) ?>
+	                    <? endforeach ?>
+	                </tbody>
+	            </table>
+	        </div>
+	    </div>
 	</div>
 </div>

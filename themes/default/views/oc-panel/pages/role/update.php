@@ -3,28 +3,28 @@
 <hr>
 <form action="<?=Route::url('oc-panel',array('controller'=>'role','action'=>'update','id'=>$role->id_role))?>" method="post" accept-charset="utf-8" class="form form-horizontal" >  
 
-    <div class="row">
-        <div class="col-md-12">
+    <div class="flex flex-wrap">
+        <div class="md:w-full pr-4 pl-4">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <input type="hidden" name="id_role" value="<?=$role->id_role?>" />
-                    <div class="form-group ">
-                        <label for="name" class="col-md-3 control-label"><?=__('Name')?></label>
-                        <div class="col-md-5 col-sm-5 col-xs-12">
+                    <div class="mb-4 ">
+                        <label for="name" class="md:w-1/4 pr-4 pl-4 control-label"><?=__('Name')?></label>
+                        <div class="md:w-2/5 pr-4 pl-4 sm:w-2/5 pr-4 pl-4 sm:w-full pr-4 pl-4">
                             <input type="text" id="name" name="name" value="<?=$role->name?>" maxlength="45" />
                         </div>
                     </div>
                 
-                    <div class="form-group">
-                        <label for="description" class="col-md-3 control-label"><?=__('Description')?></label>
-                        <div class="col-md-5 col-sm-5 col-xs-12">
+                    <div class="mb-4">
+                        <label for="description" class="md:w-1/4 pr-4 pl-4 control-label"><?=__('Description')?></label>
+                        <div class="md:w-2/5 pr-4 pl-4 sm:w-2/5 pr-4 pl-4 sm:w-full pr-4 pl-4">
                             <input type="text" name="description" maxlength="245" value="<?=$role->description?>" />
                         </div>
                     </div>
                     
-                    <div class="form-group">
-                        <div class="col-md-offset-3 col-md-offset-3 col-md-5 col-sm-5 col-xs-12">
-                            <button type="submit" name="submit" class="btn btn-primary"><?=__('Update')?></button>
+                    <div class="mb-4">
+                        <div class="col-md-offset-3 col-md-offset-3 md:w-2/5 pr-4 pl-4 sm:w-2/5 pr-4 pl-4 sm:w-full pr-4 pl-4">
+                            <button type="submit" name="submit" class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  text-blue-100 bg-blue-500 hover:bg-blue-400"><?=__('Update')?></button>
                         </div>
                     </div>
                 </div>
@@ -32,10 +32,10 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="flex flex-wrap">
         <?$i=0; foreach ($controllers as $controller=>$actions):?>
-            <?if ($i%3==0):?></div><div class="row"><?endif?>
-                <div class="col-md-4">
+            <?if ($i%3==0):?></div><div class="flex flex-wrap"><?endif?>
+                <div class="md:w-1/3 pr-4 pl-4">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <h4>
@@ -60,7 +60,7 @@
     </div><!--/row-->
 
     <div class="form-actions">
-        <button type="submit" name="submit" class="btn btn-primary"><?=__('Update')?></button>
+        <button type="submit" name="submit" class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  text-blue-100 bg-blue-500 hover:bg-blue-400"><?=__('Update')?></button>
     </div>
 
 </form>

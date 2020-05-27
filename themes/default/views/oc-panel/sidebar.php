@@ -2,12 +2,12 @@
 
 <aside class="sidebar" role="navigation">
     <div class="sidebar-nav">
-        <ul class="nav" id="side-menu">
+        <ul class="flex flex-wrap list-none p-0 pl-0 mb-0" id="side-menu">
             <li class="sidebar-search hidden-xs">
-                <div class="input-group custom-search-form">
-                    <input type="text" class="form-control" data-keybinding='["command+shift+s", "ctrl+shift+s"]' placeholder="<?=__('Search...')?>">
+                <div class="relative flex items-stretch w-full custom-search-form">
+                    <input type="text" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-800 border border-gray-500 rounded" data-keybinding='["command+shift+s", "ctrl+shift+s"]' placeholder="<?=__('Search...')?>">
                     <span class="input-group-btn">
-                        <button class="btn" type="button" role="button">
+                        <button class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal " type="button" role="button">
                             <i class="fa fa-search"></i>
                         </button>
                     </span>
@@ -204,7 +204,7 @@
             <? if($user->is_admin() OR $user->is_moderator()):?>
                 <li>
                     <a href="#"><i class="linecon li_display"></i> <span class="hidden-xs"><?=__('Panel')?></span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
+                    <ul class="flex flex-wrap list-none p-0 pl-0 mb-0 nav-second-level">
                         <li>
                             <a href="<?=Route::url('oc-panel',array('controller'=>'home'))?>"><?=__('Home')?></a>
                         </li>
@@ -214,7 +214,7 @@
                 </li>
                 <li>
                     <a href="#"><i class="linecon li_tag"></i> <span class="hidden-xs"><?=__('Classifieds')?></span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
+                    <ul class="flex flex-wrap list-none p-0 pl-0 mb-0 nav-second-level">
                         <?=Theme::admin_link(__('Advertisements'),'ad','','oc-panel')?>
                         <?if( in_array(core::config('general.moderation'), Model_Ad::$moderation_status)  ):  // payment with moderation?>
                             <?=Theme::admin_link(__('Moderation'),'ad','moderate','oc-panel')?>
@@ -235,7 +235,7 @@
                 </li>
                 <li>
                     <a href="#"><i class="linecon li_note"></i> <span class="hidden-xs"><?=__('Content')?></span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level nav-mobile-moved">
+                    <ul class="flex flex-wrap list-none p-0 pl-0 mb-0 nav-second-level nav-mobile-moved">
                         <?if (core::config('general.blog')==1):?>
                             <?=Theme::admin_link(__('Blog'), 'blog','index','oc-panel')?>
                         <?endif?>
@@ -259,7 +259,7 @@
                 </li>
                 <li>
                     <a href="#"><i class="linecon li_photo"></i> <span class="hidden-xs"><?=__('Appearance')?></span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level nav-mobile-moved">
+                    <ul class="flex flex-wrap list-none p-0 pl-0 mb-0 nav-second-level nav-mobile-moved">
                         <?=Theme::admin_link(__('Themes'), 'theme','index','oc-panel')?>
                         <?if (Theme::has_options()):?>
                             <?=Theme::admin_link(__('Theme Options'), 'theme','options','oc-panel')?>
@@ -272,7 +272,7 @@
                 <?if ($user->has_access_to_any('settings,config')):?>
                 <li>
                     <a href="#"><i class="linecon li_params"></i> <span class="hidden-xs"><?=__('Settings')?></span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level nav-mobile-moved">
+                    <ul class="flex flex-wrap list-none p-0 pl-0 mb-0 nav-second-level nav-mobile-moved">
                         <?=Theme::admin_link(__('General'), 'settings','general','oc-panel')?>
                         <?=Theme::admin_link(__('Advertisement'), 'settings','form','oc-panel')?>
                         <?=Theme::admin_link(__('Email settings'), 'settings','email','oc-panel')?>
@@ -289,7 +289,7 @@
                 <?if ($user->has_access_to_any('user,role,access')):?>
                 <li>
                     <a href="#"><i class="linecon li_user"></i> <span class="hidden-xs"><?=__('Users')?></span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level nav-mobile-moved">
+                    <ul class="flex flex-wrap list-none p-0 pl-0 mb-0 nav-second-level nav-mobile-moved">
                         <?=Theme::admin_link(__('Users'),'user','index','oc-panel')?>
                         <?=Theme::admin_link(__('Roles'),'role','index','oc-panel')?>
                         <?=Theme::admin_link(__('User custom Fields'), 'userfields','index','oc-panel')?>
@@ -303,7 +303,7 @@
                 <?if ($user->has_access_to_any('tools')):?>
                 <li>
                     <a href="#"><i class="linecon li_lab"></i> <span class="hidden-xs"><?=__('Extra')?></span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level nav-mobile-moved">
+                    <ul class="flex flex-wrap list-none p-0 pl-0 mb-0 nav-second-level nav-mobile-moved">
                         <?=Theme::admin_link(__('Tools'), 'tools','optimize','oc-panel')?>
                         <?=Theme::admin_link(__('Crontab'), 'crontab','index','oc-panel')?>
                         <?=Theme::admin_link(__('Import Ads'), 'import','index','oc-panel')?>
@@ -317,7 +317,7 @@
             <?endif?>
             <? if($user->is_translator()):?>
                 <a href="#"><i class="linecon li_note"></i> <span class="hidden-xs"><?=__('Content')?></span><span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level nav-mobile-moved">
+                <ul class="flex flex-wrap list-none p-0 pl-0 mb-0 nav-second-level nav-mobile-moved">
                     <?if (core::config('general.blog')==1):?>
                         <?=Theme::admin_link(__('Blog'), 'blog','index','oc-panel')?>
                     <?endif?>

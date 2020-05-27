@@ -6,19 +6,19 @@
     <p>
         <?=__('Your installation version is')?> <span class="label label-info"><?=core::VERSION?></span>
     </p>
-    
-<div class="alert alert-danger" role="alert">
+
+<div class="relative px-3 py-3 mb-4 border rounded text-red-800 border-red-600 bg-red-200" role="alert">
 <?if ($can_update==FALSE):?>
-    <h4 class="alert-heading"><?=__('Not possible to auto update')?></h4>
+    <h4 class=""><?=__('Not possible to auto update')?></h4>
     <p>
         <?=__('You have an old version and automatic update is not possible. Please read the release notes and the manual update instructions.')?>
         <br>
-        <a target="_blank"  class="btn btn-default" href="<?=$version['blog']?>"><?=__('Release Notes')?> <?=$latest_version?></a>
+        <a target="_blank"  class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  btn-default" href="<?=$version['blog']?>"><?=__('Release Notes')?> <?=$latest_version?></a>
     </p>
 <?else:?>
-    <h2 class="alert-heading"><?=__('Read carefully')?>!</h2>
+    <h2 class=""><?=__('Read carefully')?>!</h2>
     <p>
-        <ul>
+        <ul class="list-disc pl-4">
             <li><?=__('Backup all your files and database')?>. <a target="_blank" href="https://docs.yclas.com/backup-classifieds-site/"><?=__('Read more')?></a></li>
             <li><?=__('This process can take few minutes DO NOT interrupt it')?></li>
             <li><?=__('If you have doubts check the release notes for this version')?>. <a target="_blank" href="<?=$version['changelog']?>"><?=__('Release Notes')?> <?=$latest_version?></a></li>
@@ -26,12 +26,12 @@
         </ul>
     </p>
     <br>
-    <a class="btn btn-warning confirm-button"
-            title="<?=__('Are you sure you want to update?')?>" 
+    <a class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  text-yellow-100 bg-yellow-500 hover:bg-yellow-400 confirm-button"
+            title="<?=__('Are you sure you want to update?')?>"
             data-text="<?=__('This process can take few minutes DO NOT interrupt it')?>"
-            data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+            data-btnOkLabel="<?=__('Yes, definitely!')?>"
             data-btnCancelLabel="<?=__('No way!')?>"
-            href="<?=Route::url('oc-panel',array('controller'=>'update','action'=>'latest'))?>" 
+            href="<?=Route::url('oc-panel',array('controller'=>'update','action'=>'latest'))?>"
     >
     <span class="glyphicon  glyphicon-refresh"></span> <?=__('Proceed with Update')?>
     </a>
@@ -40,12 +40,12 @@
 
 
 <!--/well-->
-<div class="modal modal-statc fade" id="processing-modal" data-backdrop="static" data-keyboard="false">
+<div class="modal modal-statc " id="processing-modal" data-backdrop="static" data-keyboard="false">
     <div class="modal-body">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title"><?=__('Updating, do not close this window.')?></h4>
+                    <h4 class="modal-title"><?=__('Updating, do not absolute pin-t pin-b pin-r px-4 py-3 this window.')?></h4>
                 </div>
                 <div class="modal-body">
                     <div class="progress progress-striped active">

@@ -1,127 +1,108 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<ul class="nav nav-tabs nav-tabs-simple">
-    <li <?=(Request::current()->action()=='optimize') ? 'class="active"' : NULL?>>
-        <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'optimize'))?>"
-            title="<?=HTML::chars(__('Optimize'))?>"
-            class="ajax-load">
-            <?=__('Optimize')?>
-        </a>
-    </li>
-    <li <?=(Request::current()->action()=='sitemap') ? 'class="active"' : NULL?>>
-        <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'sitemap'))?>"
-            title="<?=HTML::chars(__('Sitemap'))?>"
-            class="ajax-load">
-            <?=__('Sitemap')?>
-        </a>
-    </li>
-    <li <?=(Request::current()->action()=='migration') ? 'class="active"' : NULL?>>
-        <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'migration'))?>"
-            title="<?=HTML::chars(__('Migration'))?>"
-            class="ajax-load">
-            <?=__('Migration')?>
-        </a>
-    </li>
-    <li <?=(Request::current()->action()=='cache') ? 'class="active"' : NULL?>>
-        <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'cache'))?>"
-            title="<?=HTML::chars(__('Cache'))?>"
-            class="ajax-load">
-            <?=__('Cache')?>
-        </a>
-    </li>
-    <li <?=(Request::current()->action()=='logs') ? 'class="active"' : NULL?>>
-        <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'logs'))?>"
-            title="<?=HTML::chars(__('Logs'))?>"
-            class="ajax-load">
-            <?=__('Logs')?>
-        </a>
-    </li>
-    <li <?=(Request::current()->action()=='phpinfo') ? 'class="active"' : NULL?>>
-        <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'phpinfo'))?>"
-            title="<?=HTML::chars(__('PHP Info'))?>"
-            class="ajax-load">
-            <?=__('PHP Info')?>
-        </a>
-    </li>
-    <?if(Core::config('general.algolia_search') == 1):?>
-        <li <?=(Request::current()->action()=='index') ? 'class="active"' : NULL?>>
-            <a href="<?=Route::url('oc-panel',array('controller'=>'algolia','action'=>'index'))?>"
-                title="Algolia"
-                class="ajax-load">
-                Algolia Search
+<div class="md:flex md:items-center md:justify-between">
+    <div class="flex-1 min-w-0">
+        <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
+            <?= __('Cache') ?>
+        </h2>
+    </div>
+    <div class="mt-4 flex md:mt-0 md:ml-4">
+        <span class="shadow-sm rounded-md">
+            <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'cache'))?>?force=1" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-gray-800 active:bg-gray-50 transition duration-150 ease-in-out">
+                <?= __('Delete all') ?>
             </a>
-        </li>
-    <?endif?>
-</ul>
+        </span>
 
-<div class="panel panel-default">
-    <div class="panel-body">
-        <ul class="list-inline pull-right">
-            <li>
-                <a class="btn btn-warning pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'cache'))?>?force=1" title="<?=__('Delete all')?>">
-                    <?=__('Delete all')?>
-                </a>
-            </li>
-            <li>
-                <a class="btn btn-primary pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'cache'))?>?force=2" title="<?=__('Delete expired')?>">
-                    <?=__('Delete expired')?>
-                </a>
-            </li>
-        </ul>
-        <h1 class="page-header page-title">
-            <?=__('Cache')?>
-            <a target="_blank" href="https://docs.yclas.com/modify-cache-time/">
-                <i class="fa fa-question-circle"></i>
+        <span class="ml-3 shadow-sm rounded-md">
+            <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'cache'))?>?force=2" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-700 active:bg-blue-700 transition duration-150 ease-in-out">
+                <?= __('Delete expired') ?>
             </a>
-        </h1>
-        <hr>
-        <div class="panel panel-default">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th><?=__('Config file')?></th>
-                        <th><?=APPPATH?>config/cache.php</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?foreach ($cache_config as $key => $value):?>
+        </span>
+    </div>
+</div>
+
+<div class="bg-white overflow-hidden shadow rounded-lg mt-8">
+    <div class="flex flex-col">
+        <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+            <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+                <table class="min-w-full">
+                    <tbody class="bg-white">
                         <tr>
-                            <td><?=$key?></td>
-                            <td><?=print_r($value,1)?></td>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                <div class="text-sm leading-5 text-gray-900">
+                                    <?=__('Config file')?>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                <div class="text-sm leading-5 text-gray-900">
+                                    <?=APPPATH?>config/cache.php
+                                </div>
+                            </td>
                         </tr>
-                    <?endforeach?>
-                </tbody>
-            </table>
-            <?if(Core::config('cache.default')=='apcu'):?>
-            <h2>APCu stats</h2>
-            <table class="table table-striped">
-            <?foreach (array_merge(apcu_cache_info(),apcu_sma_info()) as $key => $value):?>
-
-                <?if ( (!empty($value) OR is_numeric($value)) AND $key!='block_lists' ):?>
-                <tr>
-                    <td><?=$key?></td>
-                    <td>
-                    <?
-                        switch ($key) {
-                            case 'start_time':
-                                echo Date::unix2mysql($value);
-                                break;
-                            case 'seg_size':
-                            case 'avail_mem':
-                            case 'mem_size':
-                                echo Text::bytes($value);
-                                break;
-                            default:
-                                print_r($value);
-                                break;
-                        }
-                    ?>
-                    </td>
-                </tr>
-                <?endif?>
-            <?endforeach?>
-            </table>
-            <?endif?>
+                        <?foreach ($cache_config as $key => $value):?>
+                            <? $last_item = $key === count($cache_config) - 1 ?>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-no-wrap <?= $last_item ? '' : 'border-b' ?> border-gray-200">
+                                    <div class="text-sm leading-5 text-gray-900">
+                                        <?= $key ?>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-no-wrap <?= $last_item ? '' : 'border-b' ?> border-gray-200">
+                                    <div class="text-sm leading-5 text-gray-900">
+                                        <?=print_r($value,1)?>
+                                    </div>
+                                </td>
+                            </tr>
+                        <? endforeach ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
+
+<? if (Core::config('cache.default') == 'apcu'): ?>
+    <div class="bg-white overflow-hidden shadow rounded-lg mt-8">
+        <div class="flex flex-col">
+            <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+                <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+                    <table class="min-w-full">
+                        <tbody class="bg-white">
+                            <?foreach ($cache_config = array_merge(apcu_cache_info(),apcu_sma_info()) as $key => $value):?>
+                                <? $last_item = $key === count($cache_config) - 1 ?>
+                                <?if ( (!empty($value) OR is_numeric($value)) AND $key!='block_lists' ):?>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-no-wrap <?= $last_item ? '' : 'border-b' ?> border-gray-200">
+                                            <div class="text-sm leading-5 text-gray-900">
+                                                <?= $key ?>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-no-wrap <?= $last_item ? '' : 'border-b' ?> border-gray-200">
+                                            <div class="text-sm leading-5 text-gray-900">
+                                                <?
+                                                    switch ($key) {
+                                                        case 'start_time':
+                                                            echo Date::unix2mysql($value);
+                                                            break;
+                                                        case 'seg_size':
+                                                        case 'avail_mem':
+                                                        case 'mem_size':
+                                                            echo Text::bytes($value);
+                                                            break;
+                                                        default:
+                                                            print_r($value);
+                                                            break;
+                                                    }
+                                                ?>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <? endif ?>
+                            <? endforeach ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+<? endif ?>

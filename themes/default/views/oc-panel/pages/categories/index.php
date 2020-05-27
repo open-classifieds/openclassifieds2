@@ -1,213 +1,163 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<ul class="list-inline pull-right">
-    <li>
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#hide-categories">
-            <?=__('Hide Categories')?>
-        </button>
-    </li>
-    <li>
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#quick-creator" id="quick-creator-btn">
-            <?=__('Quick creator')?>
-        </button>
-    </li>
-    <li>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#import-tool">
-            <i class="fa fa-upload"></i>&nbsp; <?=__('Import')?>
-        </button>
-    </li>
-    <li>
-        <a class="btn btn-primary ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'category','action'=>'create'))?>" title="<?=__('New Category')?>">
-            <i class="fa fa-plus-circle"></i>&nbsp; <?=__('New Category')?>
-        </a>
-    </li>
-</ul>
+<div class="md:flex md:items-center md:justify-between">
+    <div class="flex-1 min-w-0">
+        <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
+            <?= __('Categories') ?>
+        </h2>
+    </div>
+    <div class="mt-4 flex md:mt-0 md:ml-4">
+        <span class="ml-3 shadow-sm rounded-md">
+            <a href="<?=Route::url('oc-panel',array('controller'=>'category','action'=>'create'))?>" title="<?=__('New')?>" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-700 active:bg-blue-700 transition duration-150 ease-in-out">
+                <?= __('New category') ?>
+            </a>
+        </span>
+    </div>
+</div>
 
-<h1 class="page-header page-title">
-    <?=__('Categories')?>
-    <a target="_blank" href="https://docs.yclas.com/how-to-add-categories/">
-        <i class="fa fa-question-circle"></i>
-    </a>
-</h1>
-
-<hr>
-
-<p>
-    <?=__('Change the order of your categories. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended).')?>
-</p>
-
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <div class="panel-title"><?=__('Home')?></div>
-            </div>
-            <?=FORM::open(Route::url('oc-panel',array('controller'=>'category','action'=>'delete')), array('class'=>'form-inline', 'enctype'=>'multipart/form-data'))?>
-                <div class="panel-body table-responsive">
-                    <ol class='plholder' id="ol_1" data-id="1">
-                        <?function lili($item, $key,$cats){?>
-                            <li data-id="<?=$key?>" id="li_<?=$key?>">
-                                <div class="drag-item">
-                                    <span class="drag-icon">
-                                        <i class="fa fa-ellipsis-v"></i><i class="fa fa-ellipsis-v"></i>
-                                    </span>
-                                    <div class="drag-name">
-                                        <?=$cats[$key]['name']?>
-                                    </div>
-                                    <a class="drag-action ajax-load" title="<?=__('Edit')?>"
-                                        href="<?=Route::url('oc-panel',array('controller'=>'category','action'=>'update','id'=>$key))?>">
-                                        <i class="fa fa-pencil-square-o"></i>
-                                    </a>
-                                    <a 
-                                        href="<?=Route::url('oc-panel', array('controller'=> 'category', 'action'=>'delete','id'=>$key))?>" 
-                                        class="drag-action index-delete" 
-                                        title="<?=__('Are you sure you want to delete?')?>" 
-                                        data-id="li_<?=$key?>" 
-                                        data-text="<?=__('We will move the siblings categories and ads to the parent of this category.')?>"
-                                        data-btnOkLabel="<?=__('Yes, definitely!')?>" 
-                                        data-btnCancelLabel="<?=__('No way!')?>">
-                                        <i class="glyphicon glyphicon-trash"></i>
-                                    </a>
-                                    <span class="drag-action">
-                                        <div class="checkbox check-success">
-                                            <input name="categories[]" value="<?=$key?>" type="checkbox" id="checkbox_<?=$key?>">
-                                            <label for="checkbox_<?=$key?>"></label>
-                                        </div>
-                                    </span>
+<div class="bg-white overflow-hidden shadow rounded-lg mt-8">
+    <div class="bg-white shadow overflow-hidden sm:rounded-md">
+        <ul class='sortable' id="ul_1" data-id="1">
+            <?function lili2($item, $key, $cats){?>
+                <? $last_item = $key === count($cats) - 1 ?>
+                <li class="<?= $last_item ? '' : 'border-b' ?> border-gray-200" data-id="<?=$key?>" id="li_<?=$key?>">
+                    <a href="<?=Route::url('oc-panel',['controller'=>'category','action'=>'update','id'=>$key])?>" class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
+                        <div class="flex items-center px-4 py-4 sm:px-6">
+                            <div class="min-w-0 flex-1 flex items-center">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-4 w-4 text-gray-400 cursor-move" fill="currentColor" viewBox="0 0 32 32">
+                                        <path d="M9.125 27.438h4.563v4.563H9.125zm9.188 0h4.563v4.563h-4.563zm-9.188-9.125h4.563v4.563H9.125zm9.188 0h4.563v4.563h-4.563zM9.125 9.125h4.563v4.563H9.125zm9.188 0h4.563v4.563h-4.563zM9.125 0h4.563v4.563H9.125zm9.188 0h4.563v4.563h-4.563z"></path>
+                                    </svg>
                                 </div>
-                    
-                                <ol data-id="<?=$key?>" id="ol_<?=$key?>">
-                                    <? if (is_array($item)) array_walk($item, 'lili', $cats);?>
-                                </ol><!--ol_<?=$key?>-->
-                    
-                            </li><!--li_<?=$key?>-->
-                        <?}
-                        if(is_array($order))
-                            array_walk($order, 'lili',$cats);?>
-                    </ol><!--ol_1-->
-                    <span id='ajax_result' data-url='<?=Route::url('oc-panel',array('controller'=>'category','action'=>'saveorder'))?>'></span>
-                </div>
-                <?if(core::count($cats) > 1) :?>
-                    <div class="panel-footer">
-                        <div class="text-right">
-                            <button type="button" data-toggle="modal" data-target="#delete-all" class="btn btn-danger">
-                                <?=__('Delete all categories')?>
-                            </button>
-
-                            <button name="delete" type="submit" class="btn btn-danger">
-                                <i class="glyphicon glyphicon-trash"></i>&nbsp; <?=__('Delete selected categories')?>
-                            </button>
+                                <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4 items-center">
+                                    <div>
+                                        <div class="text-sm leading-5 text-gray-900 truncate"><?=$cats[$key]['name']?></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <svg class="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
                         </div>
-                    </div>
-                <?endif?>
-            <?=FORM::close()?>
-        </div>
+                    </a>
+
+                    <ul data-id="<?=$key?>" id="ul_<?=$key?>">
+                        <? if (is_array($item)) array_walk($item, 'lili2', $cats);?>
+                    </ul>
+                </li>
+            <?}array_walk($order, 'lili2',$cats);?>
+        </ul>
     </div>
 </div>
 
-<div class="modal fade" id="delete-all" tabindex="-1" role="dialog" aria-labelledby="deleteCategories" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <?= FORM::open(Route::url('oc-panel',array('controller'=>'category','action'=>'delete_all'), array('class'=>'form-horizontal', 'role'=>'form')))?>
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times-circle"></i></button>
-                    <h4 id="deleteCategories" class="modal-title"><?=__('Are you sure you want to delete all the categories?')?></h4>
-                </div>
-                <div class="modal-body">
-                    <div class="alert alert-danger">
-                        <p><?=__('We will move all the ads to home category.')?> <?=__('This is permanent! No backups, no restores, no magic undo button. We warned you, ok?')?></p>
-                    </div>
-                </div>
-                <div class="modal-body text-right">
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=__('Cancel')?></button>
-                    <button type="submit" class="btn btn-danger" name="confirmation" value="1"><?=__('Delete')?></button>
-                </div>
-            <?= FORM::close()?>
-        </div>
-    </div>
+<div class="flex justify-end mt-4">
+    <span id="ajax_result" data-url="<?=Route::url('oc-panel', ['controller'=>'category','action'=>'saveorder'])?>"></span>
 </div>
 
-<div class="modal fade" id="quick-creator" tabindex="-1" role="dialog" aria-labelledby="quickCategories" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <?=FORM::open(Route::url('oc-panel',array('controller'=>'category','action'=>'multy_categories')), array('role'=>'form','enctype'=>'multipart/form-data'))?>
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times-circle"></i></button>
-                    <h4 id="quickCategories" class="modal-title"><?=__('Quick category creator.')?></h4>
-                </div>
-                <div class="modal-body">
-                    <p><?=__('Add names for multiple categories, for each one push enter.')?></p>
-                    <div class="form-group">
-                        <?=FORM::label('multy_categories', __('Name'), array('class'=>'control-label', 'for'=>'multy_categories'))?>
-                        <div>
-                            <?=FORM::input('multy_categories', '', array('placeholder' => __('Hit enter to confirm'), 'class' => 'form-control', 'id' => 'multy_categories', 'type' => 'text','data-role'=>'tagsinput'))?>
-                        </div>
+<?=FORM::open(Route::url('oc-panel',array('controller'=>'category','action'=>'multy_categories')), array('role'=>'form','enctype'=>'multipart/form-data'))?>
+    <div class="bg-white shadow sm:rounded-lg mt-8">
+        <div class="px-4 py-5 sm:p-6">
+            <h3 class="text-lg leading-6 font-medium text-gray-900">
+                <?= __('Quick category creator') ?>
+            </h3>
+            <div class="mt-2 max-w-xl text-sm leading-5 text-gray-500">
+                <p>
+                    <?= __('Separate each category with a comma.') ?>
+                </p>
+            </div>
+            <div class="mt-5 sm:flex sm:items-center">
+                <div class="max-w-xs w-full">
+                    <?=FORM::label('multy_categories', __('Categories'), array('class'=>'sr-only'))?>
+                    <div class="relative rounded-md shadow-sm">
+                        <?=FORM::input('multy_categories', '', array('placeholder' => 'e.g. Category A, Category B, Category C', 'class' => 'form-input block w-full sm:text-sm sm:leading-5'))?>
                     </div>
                 </div>
-                <div class="modal-footer text-right">
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=__('Cancel')?></button>
-                    <?=FORM::button('submit', __('Send'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'category','action'=>'multy_categories'))))?>
-                </div>
-            <?=FORM::close()?>
+                <span class="mt-3 w-ful inline-flex rounded-md shadow-sm sm:mt-0 sm:ml-3 sm:w-auto">
+                    <?=FORM::button('submit', __('Send'), array('type'=>'submit', 'class'=>'w-full inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150 sm:w-auto sm:text-sm sm:leading-5'))?>
+                </span>
+            </div>
         </div>
     </div>
-</div>
+<?=FORM::close()?>
 
-<div class="modal fade" id="import-tool" tabindex="-1" role="dialog" aria-labelledby="importCategories" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <?=FORM::open(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')), array('enctype'=>'multipart/form-data'))?>
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times-circle"></i></button>
-                    <h4 id="importCategories" class="modal-title"><?=__('Upload CSV file')?></h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label class="control-label" for="csv_file_categories">
-                            <?=__('Import Categories')?>
-                        </label>
-                        <input type="file" name="csv_file_categories" id="csv_file_categories" class="form-control">
-                        <span class="help-block">
-                            <?=__('Please use the correct CSV format')?> <a href="https://docs.google.com/uc?id=0B60e9iwQucDwTm1NRGlqcEZwdGM&export=download"><?=__('download example')?></a>.
-                        </span>
-                    </div>
-                </div>
-                <div class="modal-footer text-right">
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=__('Cancel')?></button>
-                    <?=FORM::button('submit', __('Upload'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool'))))?>
-                </div>
-            <?=FORM::close()?>
-        </div>
-    </div>
-</div>
-
-<div class="modal" id="hide-categories" tabindex="-1" role="dialog" aria-labelledby="hideCategories" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <?=FORM::open(Route::url('oc-panel',array('controller'=>'category','action'=>'hide_homepage_categories')), array('enctype'=>'multipart/form-data'))?>
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times-circle"></i></button>
-                    <h4 id="hideCategories" class="modal-title"><?=__('Hide Categories')?></h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <?$categories = array()?>
-                        <?foreach ((new Model_Category)->where('id_category','!=','1')->order_by('order','asc')->find_all()->cached() as $category) {
+<?=FORM::open(Route::url('oc-panel',array('controller'=>'category','action'=>'hide_homepage_categories')), array('role'=>'form','enctype'=>'multipart/form-data'))?>
+    <div class="bg-white shadow sm:rounded-lg mt-8">
+        <div class="px-4 py-5 sm:p-6">
+            <h3 class="text-lg leading-6 font-medium text-gray-900">
+                <?= __('Hide Categories') ?>
+            </h3>
+            <div class="mt-2 max-w-xl text-sm leading-5 text-gray-500">
+                <p>
+                    <?= __('Hide categories from homepage.') ?>
+                </p>
+            </div>
+            <div class="mt-5 sm:flex sm:items-start">
+                <div class="max-w-xs w-full">
+                    <?$categories = []?>
+                    <?
+                        foreach ((new Model_Category)->where('id_category','!=','1')->order_by('order','asc')->find_all()->cached() as $category) {
                             $categories[$category->id_category] = $category->name;
-                        }?>
-                        <?=FORM::label('Hide categories from homepage', __('Hide categories from homepage'), array('class'=>'control-label', 'for'=>'Hide categories from homepage'))?>
+                        }
+                    ?>
+                    <?=FORM::label('hide_homepage_categories', __('Categories'), array('class'=>'sr-only'))?>
+                    <div class="relative rounded-md shadow-sm">
                         <?=FORM::hidden('hide_homepage_categories[]', NULL)?>
-                        <?=FORM::select('hide_homepage_categories[]', $categories, $hide_homepage_categories, array( 
-                            'class' => 'form-control', 
-                            'id' => 'hide_homepage_categories', 
-                        ))?> 
+                        <?=FORM::select('hide_homepage_categories[]', $categories, $hide_homepage_categories, array(
+                            'class' => 'form-multiselect block w-full sm:text-sm sm:leading-5',
+                            'id' => 'hide_homepage_categories',
+                        ))?>
                     </div>
                 </div>
-                <div class="modal-footer text-right">
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=__('Cancel')?></button>
-                    <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'category','action'=>'hide_homepage_categories'))))?>
+                <span class="mt-3 w-ful inline-flex rounded-md shadow-sm sm:mt-0 sm:ml-3 sm:w-auto">
+                    <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'w-full inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150 sm:w-auto sm:text-sm sm:leading-5'))?>
+                </span>
+            </div>
+        </div>
+    </div>
+<?=FORM::close()?>
+
+<?=FORM::open(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')), array('enctype'=>'multipart/form-data'))?>
+    <div class="bg-white shadow sm:rounded-lg mt-8">
+        <div class="px-4 py-5 sm:p-6">
+            <h3 class="text-lg leading-6 font-medium text-gray-900">
+                <?=__('Import Categories')?>
+            </h3>
+            <div class="mt-2 max-w-xl text-sm leading-5 text-gray-500">
+                <p>
+                    <?=__('Please use the correct CSV format')?> <a class="hover:underline" href="https://docs.google.com/uc?id=0B60e9iwQucDwTm1NRGlqcEZwdGM&export=download"><?=__('download example')?></a>.
+                </p>
+            </div>
+            <div class="mt-5 sm:flex sm:items-center">
+                <div class="max-w-xs w-full">
+                    <?=Form::label('csv_file_categories', __('csv_file_categories'), ['class' => 'sr-only', 'for' => 'csv_file_categories'])?>
+                    <div class="relative rounded-md shadow-sm">
+                        <input type="file" name="csv_file_categories" id="csv_file_categories" />
+                    </div>
                 </div>
-            <?=FORM::close()?>
+                <span class="mt-3 w-ful inline-flex rounded-md shadow-sm sm:mt-0 sm:ml-3 sm:w-auto">
+                    <?=Form::button('submit', __('Upload'), ['type'=>'submit', 'class'=>'w-full inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150 sm:w-auto sm:text-sm sm:leading-5'])?>
+                </span>
+            </div>
+        </div>
+    </div>
+<?=Form::close()?>
+
+<div class="bg-white shadow sm:rounded-lg mt-8">
+    <div class="px-4 py-5 sm:p-6">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">
+            <?= __('Delete all categories') ?>
+        </h3>
+        <div class="mt-2 max-w-xl text-sm leading-5 text-gray-500">
+            <p>
+                <?= __('This is permanent! No backups, no restores, no magic undo button. We warned you, ok?') ?>
+            </p>
+        </div>
+        <div class="mt-5">
+            <a href="<?=Route::url('oc-panel', ['controller' => 'category', 'action'=>'delete_all'])?>" role="button" class="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-50 focus:outline-none focus:border-red-300 focus:shadow-outline-red active:bg-red-200 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                <?= __('Delete') ?>
+            </a>
         </div>
     </div>
 </div>

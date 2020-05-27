@@ -7,12 +7,12 @@
 </h1>
 <hr>
 
-<div class="row">
-    <div class="col-md-12 col-lg-12">
+<div class="flex flex-wrap">
+    <div class="md:w-full pr-4 pl-4 lg:w-full pr-4 pl-4">
         <?=FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'plugins')), array('class'=>'config ajax-load', 'enctype'=>'multipart/form-data'))?>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <div class="form-group">
+                    <div class="mb-4">
                         <?=FORM::label($forms['blog']['id'], __("Blog System"), array('class'=>'control-label', 'for'=>$forms['blog']['id']))?>
                         <a target="_blank" href="https://docs.yclas.com/how-to-create-a-blog/">
                             <i class="fa fa-question-circle"></i>
@@ -27,7 +27,7 @@
 
                     <hr>
 
-                    <div class="form-group">
+                    <div class="mb-4">
                         <?=FORM::label($forms['forums']['id'], __("Forum System"), array('class'=>'control-label', 'for'=>$forms['forums']['id']))?>
                         <a target="_blank" href="https://docs.yclas.com/showcase-how-to-build-a-forum-with-oc/">
                             <i class="fa fa-question-circle"></i>
@@ -42,7 +42,7 @@
 
                     <hr>
 
-                    <div class="form-group">
+                    <div class="mb-4">
                         <?=FORM::label($forms['faq']['id'], __("FAQ System"), array('class'=>'control-label', 'for'=>$forms['faq']['id']))?>
                         <a target="_blank" href="https://docs.yclas.com/create-frequent-asked-questions-faq/">
                             <i class="fa fa-question-circle"></i>
@@ -57,7 +57,7 @@
 
                     <hr>
 
-                    <div class="form-group">
+                    <div class="mb-4">
                         <?=FORM::label($forms['messaging']['id'], __("Messaging System"), array('class'=>'control-label', 'for'=>$forms['messaging']['id']))?>
                         <a target="_blank" href="https://docs.yclas.com/how-to-use-messaging-system/">
                             <i class="fa fa-question-circle"></i>
@@ -72,7 +72,7 @@
 
                     <hr>
 
-                    <div class="form-group">
+                    <div class="mb-4">
                         <?=FORM::label($forms['black_list']['id'], __("Black List"), array('class'=>'control-label', 'for'=>$forms['black_list']['id']))?>
                         <a target="_blank" href="https://docs.yclas.com/activate-blacklist-works/">
                             <i class="fa fa-question-circle"></i>
@@ -90,7 +90,7 @@
 
                     <hr>
 
-                    <div class="form-group">
+                    <div class="mb-4">
                         <?=FORM::label($forms['auto_locate']['id'], __("Auto Locate Visitors"), array('class'=>'control-label', 'for'=>$forms['auto_locate']['id']))?>
                         <div class="radio radio-primary">
                             <?=Form::radio($forms['auto_locate']['key'], 1, (bool) $forms['auto_locate']['value'], array('id' => $forms['auto_locate']['key'].'1'))?>
@@ -105,7 +105,7 @@
 
                     <hr>
 
-                    <div class="form-group">
+                    <div class="mb-4">
                         <?=FORM::label($forms['social_auth']['id'], __('Social Auth'), array('class'=>'control-label', 'for'=>$forms['social_auth']['id']))?>
                         <a target="_blank" href="https://docs.yclas.com/how-to-login-using-social-auth-facebook-google-twitter/">
                             <i class="fa fa-question-circle"></i>
@@ -120,7 +120,7 @@
 
                     <hr>
 
-                    <div class="form-group">
+                    <div class="mb-4">
                         <?=FORM::label($forms['adblock']['id'], __('Adblock Detection'), array('class'=>'control-label', 'for'=>$forms['adblock']['id']))?>
                         <div class="radio radio-primary">
                             <?=Form::radio($forms['adblock']['key'], 1, (bool) $forms['adblock']['value'], array('id' => $forms['adblock']['key'].'1'))?>
@@ -132,7 +132,7 @@
 
                     <hr>
 
-                    <div class="form-group">
+                    <div class="mb-4">
                         <?=FORM::label($forms['subscriptions']['id'], __('Subscriptions / Memberships'), array('class'=>'control-label', 'for'=>$forms['subscriptions']['id']))?>
                         <a target="_blank" href="https://docs.yclas.com/membership-plans/">
                             <i class="fa fa-question-circle"></i>
@@ -147,7 +147,7 @@
 
                     <hr>
 
-                    <div class="form-group">
+                    <div class="mb-4">
                         <?=FORM::label($forms['add_to_home_screen']['id'], __('Show the Add to Home Screen dialog'), array('class'=>'control-label', 'for'=>$forms['add_to_home_screen']['id']))?>
                         <div class="radio radio-primary">
                             <?=Form::radio($forms['add_to_home_screen']['key'], 1, (bool) $forms['add_to_home_screen']['value'], array('id' => $forms['add_to_home_screen']['key'].'1'))?>

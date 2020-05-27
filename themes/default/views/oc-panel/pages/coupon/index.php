@@ -2,26 +2,26 @@
 
 <ul class="list-inline pull-right">
     <li>
-        <form class="form-inline" method="get" action="<?=URL::current();?>">
-            <div class="form-group">
-                <input type="text" class="form-control" name="name" placeholder="<?=__('Coupon name')?>" value="<?=HTML::chars(core::get('name'))?>">
+        <form class="flex items-center" method="get" action="<?=URL::current();?>">
+            <div class="mb-4">
+                <input type="text" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-800 border border-gray-500 rounded" name="name" placeholder="<?=__('Coupon name')?>" value="<?=HTML::chars(core::get('name'))?>">
             </div>
-            <button type="submit" class="btn"><?=__('Search')?></button>
+            <button type="submit" class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal "><?=__('Search')?></button>
         </form>
     </li>
     <li>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#import-tool">
+        <button type="button" class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  text-blue-100 bg-blue-500 hover:bg-blue-400" data-toggle="modal" data-target="#import-tool">
             <i class="fa fa-upload"></i>&nbsp; <?=__('Import')?>
         </button>
     </li>
     <li>
-        <a class="btn btn-primary" href="<?=Route::url($route, array('controller'=> Request::current()->controller(), 'action'=>'bulk')) ?>">
+        <a class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  text-blue-100 bg-blue-500 hover:bg-blue-400" href="<?=Route::url($route, array('controller'=> Request::current()->controller(), 'action'=>'bulk')) ?>">
             <i class="glyphicon glyphicon-list-alt"></i>
             <?=__('Bulk')?>
-        </a>  
+        </a>
     </li>
     <li>
-        <a class="btn btn-primary" href="<?=Route::url($route, array('controller'=> Request::current()->controller(), 'action'=>'create')) ?>">
+        <a class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  text-blue-100 bg-blue-500 hover:bg-blue-400" href="<?=Route::url($route, array('controller'=> Request::current()->controller(), 'action'=>'create')) ?>">
             <i class="glyphicon glyphicon-pencil"></i>
             <?=__('New')?>
         </a>
@@ -39,11 +39,11 @@
 <?if (Core::extra_features() == FALSE):?>
     <div class="alert alert-info fade in">
         <p>
-            <strong><?=__('Heads Up!')?></strong> 
+            <strong><?=__('Heads Up!')?></strong>
             <?=__('only available with PRO version!').'<br/>'.__('Upgrade your Yclas site to activate this feature.')?>
         </p>
         <p>
-            <a class="btn btn-info" href="https://yclas.com/self-hosted.html">
+            <a class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  text-teal-100 bg-teal-500 hover:bg-teal-400" href="https://yclas.com/self-hosted.html">
                 <?=__('Upgrade to PRO now')?>
             </a>
         </p>
@@ -51,8 +51,8 @@
 <?endif?>
 
 <div class="panel panel-default">
-    <div class="table-responsive">
-        <table class="table table-striped">
+    <div class="block w-full overflow-auto scrolling-touch">
+        <table class="w-full max-w-full mb-4 bg-transparent table-striped">
             <thead>
                 <tr>
                     <th><?=__('Name')?></th>
@@ -88,19 +88,19 @@
 
                         <?if ($controller->allowed_crud_action('delete') OR $controller->allowed_crud_action('update')):?>
                             <td class="nowrap">
-                                <div class="btn-group">
+                                <div class="relative inline-flex align-middle">
                                     <?if ($controller->allowed_crud_action('update')):?>
-                                        <a title="<?=__('Edit')?>" class="btn btn-primary" href="<?=Route::url($route, array('controller'=> Request::current()->controller(), 'action'=>'update','id'=>$element->pk()))?>">
+                                        <a title="<?=__('Edit')?>" class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  text-blue-100 bg-blue-500 hover:bg-blue-400" href="<?=Route::url($route, array('controller'=> Request::current()->controller(), 'action'=>'update','id'=>$element->pk()))?>">
                                            <i class="glyphicon glyphicon-edit"></i>
                                         </a>
                                     <?endif?>
                                     <?if ($controller->allowed_crud_action('delete')):?>
-                                        <a 
-                                            href="<?=Route::url($route, array('controller'=> Request::current()->controller(), 'action'=>'delete','id'=>$element->pk()))?>" 
-                                            class="btn btn-danger index-delete" 
-                                            data-title="<?=__('Are you sure you want to delete?')?>" 
-                                            data-id="tr<?=$element->pk()?>" 
-                                            data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                        <a
+                                            href="<?=Route::url($route, array('controller'=> Request::current()->controller(), 'action'=>'delete','id'=>$element->pk()))?>"
+                                            class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  text-red-100 bg-red-500 hover:bg-red-400 index-delete"
+                                            data-title="<?=__('Are you sure you want to delete?')?>"
+                                            data-id="tr<?=$element->pk()?>"
+                                            data-btnOkLabel="<?=__('Yes, definitely!')?>"
                                             data-btnCancelLabel="<?=__('No way!')?>">
                                             <i class="glyphicon glyphicon-trash"></i>
                                         </a>
@@ -115,28 +115,28 @@
     </div>
     <div class="panel-footer text-right">
         <?if ($controller->allowed_crud_action('export')):?>
-            <a class="btn btn-success" href="<?=Route::url($route, array('controller'=> Request::current()->controller(), 'action'=>'export')) ?>" title="<?=__('Export')?>">
+            <a class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  text-green-100 bg-green-500 hover:bg-green-400" href="<?=Route::url($route, array('controller'=> Request::current()->controller(), 'action'=>'export')) ?>" title="<?=__('Export')?>">
                 <i class="fa fa-download"></i>
                 &nbsp;<?=__('Export all')?>
-            </a>                
+            </a>
         <?endif?>
     </div>
 </div>
 
 <div class="text-center"><?=$pagination?></div>
 
-<div class="modal fade" id="import-tool" tabindex="-1" role="dialog" aria-labelledby="importCoupons" aria-hidden="true">
+<div class="modal " id="import-tool" tabindex="-1" role="dialog" aria-labelledby="importCoupons" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <?=FORM::open(Route::url('oc-panel',array('controller'=>'coupon','action'=>'import')), array('class'=>'', 'enctype'=>'multipart/form-data'))?>
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times-circle"></i></button>
+                    <button type="button" class="absolute top-0 bottom-0 right-0 px-4 py-3" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times-circle"></i></button>
                     <h4 id="importCoupons" class="modal-title"><?=__('Upload CSV file')?></h4>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
+                    <div class="mb-4">
                         <label for=""><?=__('import coupons')?></label>
-                        <input type="file" name="csv_file_coupons" id="csv_file_coupons" class="form-control"/>
+                        <input type="file" name="csv_file_coupons" id="csv_file_coupons" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-800 border border-gray-500 rounded"/>
                         <p class="help-block">
                             <?=__('Please use the correct CSV format')?>, <?=__('limited to 10.000 at a time')?>, <?=__('1 MB file')?>.
                             <br>
@@ -145,7 +145,7 @@
                     </div>
                 </div>
                 <div class="modal-footer text-right">
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=__('Cancel')?></button>
+                    <button type="button" class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  btn-default" data-dismiss="modal"><?=__('Cancel')?></button>
                     <?=FORM::button('submit', __('Upload'), array('type'=>'submit','id'=>'csv_upload', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'coupon','action'=>'import'))))?>
                 </div>
             <?=FORM::close()?>

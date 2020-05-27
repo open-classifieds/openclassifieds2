@@ -18,24 +18,24 @@
             <?=__('The interactive map is only included in the PRO version!').' '.__('Upgrade your Yclas site to activate this feature.')?>
         </p>
         <p>
-            <a class="btn btn-info" href="https://yclas.com/self-hosted.html">
+            <a class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  text-teal-100 bg-teal-500 hover:bg-teal-400" href="https://yclas.com/self-hosted.html">
                 <?=__('Upgrade to PRO now')?>
             </a>
         </p>
     </div>
 <?endif?>
 
-<div class="row">
-  <div class="col-md-12 col-lg-12">
+<div class="flex flex-wrap">
+  <div class="md:w-full pr-4 pl-4 lg:w-full pr-4 pl-4">
     <form id="addimap" name="addimap" action="<?=URL::base()?><?=Request::current()->uri()?>" method="post">
       <div class="panel panel-default">
         <div class="panel-body">
           <h4><?=__('General Configuration')?></h4>
           <hr>
           <div class="form-horizontal" id="default-settings">
-            <div class="form-group">
+            <div class="mb-4">
               <?= FORM::label('map_active', __('Map on homepage'), array('class'=>'control-label col-sm-4', 'for'=>'map_active'))?>
-              <div class="col-sm-8">
+              <div class="sm:w-2/3 pr-4 pl-4">
                 <div class="radio radio-primary">
                   <?=Form::radio('map_active', 1, (bool) $map_active, array('id' => 'map_active'.'1'))?>
                   <?=Form::label('map_active'.'1', __('Enabled'))?>
@@ -44,80 +44,80 @@
                 </div>
               </div>
             </div>
-            <div class="form-group">
-              <label class="control-label col-sm-4" for="bg_color">
+            <div class="mb-4">
+              <label class="control-label sm:w-1/3 pr-4 pl-4" for="bg_color">
                 <?=__('Background Color')?>
               </label>
-              <div class="col-sm-8">
-                <input type="text" name="bg_color" class="form-control color {hash:true, adjust:false}" value="#FFFFFF" onchange="drawVisualization();">
+              <div class="sm:w-2/3 pr-4 pl-4">
+                <input type="text" name="bg_color" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-800 border border-gray-500 rounded color {hash:true, adjust:false}" value="#FFFFFF" onchange="drawVisualization();">
               </div>
             </div>
-            <div class="form-group">
-              <label class="control-label col-sm-4" for="border_color">
+            <div class="mb-4">
+              <label class="control-label sm:w-1/3 pr-4 pl-4" for="border_color">
                 <?=__('Map Border Color')?>
               </label>
-              <div class="col-sm-8">
-                <input type="text" name="border_color" class="form-control color {hash:true, adjust:false}" value="#FFFFFF" onchange="drawVisualization();">
+              <div class="sm:w-2/3 pr-4 pl-4">
+                <input type="text" name="border_color" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-800 border border-gray-500 rounded color {hash:true, adjust:false}" value="#FFFFFF" onchange="drawVisualization();">
               </div>
             </div>
-            <div class="form-group">
-              <label class="control-label col-sm-4" for="border_stroke">
+            <div class="mb-4">
+              <label class="control-label sm:w-1/3 pr-4 pl-4" for="border_stroke">
                 <?=__('Map Border Width (px)')?>
               </label>
-              <div class="col-sm-8">
-                <input type="text" name="border_stroke" class="form-control" value="0" onchange="drawVisualization();">
+              <div class="sm:w-2/3 pr-4 pl-4">
+                <input type="text" name="border_stroke" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-800 border border-gray-500 rounded" value="0" onchange="drawVisualization();">
               </div>
             </div>
-            <div class="form-group">
-              <label class="control-label col-sm-4" for="ina_color">
+            <div class="mb-4">
+              <label class="control-label sm:w-1/3 pr-4 pl-4" for="ina_color">
                 <?=__('Inactive Region Color')?>
               </label>
-              <div class="col-sm-8">
-                <input type="text" name="ina_color" class="form-control color {hash:true, adjust:false}" value="#f5f5f5" onchange="drawVisualization();">
+              <div class="sm:w-2/3 pr-4 pl-4">
+                <input type="text" name="ina_color" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-800 border border-gray-500 rounded color {hash:true, adjust:false}" value="#f5f5f5" onchange="drawVisualization();">
               </div>
             </div>
-            <div class="form-group">
-              <label class="control-label col-sm-4" for="tooltip_color">
+            <div class="mb-4">
+              <label class="control-label sm:w-1/3 pr-4 pl-4" for="tooltip_color">
                 <?=__('Tooltip Text Color')?>
               </label>
-              <div class="col-sm-8">
-                <input type="text" name="tooltip_color" class="form-control color {hash:true, adjust:false}" value="#444444" onchange="drawVisualization();">
+              <div class="sm:w-2/3 pr-4 pl-4">
+                <input type="text" name="tooltip_color" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-800 border border-gray-500 rounded color {hash:true, adjust:false}" value="#444444" onchange="drawVisualization();">
               </div>
             </div>
-            <div class="form-group">
-              <label class="control-label col-sm-4" for="marker_size">
+            <div class="mb-4">
+              <label class="control-label sm:w-1/3 pr-4 pl-4" for="marker_size">
                 <?= __('Markers Size') ?>
               </label>
-              <div class="col-sm-8">
-                <input type="text" name="marker_size" class="form-control" value="10" onchange="drawVisualization();">
+              <div class="sm:w-2/3 pr-4 pl-4">
+                <input type="text" name="marker_size" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-800 border border-gray-500 rounded" value="10" onchange="drawVisualization();">
               </div>
             </div>
-            <div class="form-group">
-              <label class="control-label col-sm-4" for="width">
+            <div class="mb-4">
+              <label class="control-label sm:w-1/3 pr-4 pl-4" for="width">
                 <?=__('Width (px)')?>
               </label>
-              <div class="col-sm-8">
-                <input type="text" name="width" class="form-control" value="0" onchange="drawVisualization();">
+              <div class="sm:w-2/3 pr-4 pl-4">
+                <input type="text" name="width" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-800 border border-gray-500 rounded" value="0" onchange="drawVisualization();">
               </div>
             </div>
-            <div class="form-group">
-              <label class="control-label col-sm-4" for="height">
+            <div class="mb-4">
+              <label class="control-label sm:w-1/3 pr-4 pl-4" for="height">
                 <?=__('Height (px)')?>
               </label>
-              <div class="col-sm-8">
-                <input type="text" name="height" class="form-control" value="400" onchange="drawVisualization();">
+              <div class="sm:w-2/3 pr-4 pl-4">
+                <input type="text" name="height" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-800 border border-gray-500 rounded" value="400" onchange="drawVisualization();">
               </div>
             </div>
-            <div class="form-group">
-              <div class="col-sm-8 col-sm-offset-4">
+            <div class="mb-4">
+              <div class="sm:w-2/3 pr-4 pl-4 col-sm-offset-4">
                 <div class="checkbox check-success">
                   <?= Form::checkbox('responsive', 1, FALSE, array('id' => 'responsive')) ?>
                   <label for="responsive"><?= __('Responsive  (Beta)') ?></label>
                 </div>
               </div>
             </div>
-            <div class="form-group">
-              <div class="col-sm-8 col-sm-offset-4">
+            <div class="mb-4">
+              <div class="sm:w-2/3 pr-4 pl-4 col-sm-offset-4">
                 <div class="checkbox check-success">
                   <?=Form::checkbox('aspect_ratio', 1, TRUE, array('id' => 'aspratio'))?>
                   <label for="aspratio"><?=__('Keep Aspect Ratio')?></label>
@@ -134,9 +134,9 @@
           <small><?= __('Some maps will use the Google Geocoding API to convert the region code text into readable data for the API. If your maps are not displaying, get a <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank">Geocoding API key</a> and place it here.') ?></small>
           <hr>
           <div class="form-horizontal">
-            <div class="form-group">
-              <div class="col-sm-8">
-                <input id="geoapi" name="geoapi" class="form-control" onchange="drawVisualization();">
+            <div class="mb-4">
+              <div class="sm:w-2/3 pr-4 pl-4">
+                <input id="geoapi" name="geoapi" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-800 border border-gray-500 rounded" onchange="drawVisualization();">
               </div>
             </div>
           </div>
@@ -146,7 +146,7 @@
         <div class="panel-body">
           <h4><?=__('Map Settings')?></h4>
           <hr>
-          <div id="map-settings" class="table-responsive">
+          <div id="map-settings" class="block w-full overflow-auto scrolling-touch">
             <table class="totalp">
               <tr>
                 <td><strong>
@@ -871,7 +871,7 @@
             <div id="custom-action"></div>
             <input type="hidden" name="places" id="places" value="">
             <input type="hidden" name="custom_action" value="">
-            <div id="simple-table" class="table-responsive">
+            <div id="simple-table" class="block w-full overflow-auto scrolling-touch">
               <table id="add-table">
                 <tr>
                   <td>
@@ -913,7 +913,7 @@
                           </small></td>
                         <td><input name="cl" type="text" id="cl" size="15" value="#6699CC" class="color {hash:true, adjust:false}"  />
                           <br /></td>
-                        <td><input type="button" class="btn btn-primary-outline" value="<?=__('Add')?>" onclick="addPlaceToTable();" />
+                        <td><input type="button" class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  btn-primary-outline" value="<?=__('Add')?>" onclick="addPlaceToTable();" />
                           <br /></td>
                       </tr>
                     </table>
@@ -931,7 +931,7 @@
           <small>
             <?=__('The "Active Region Action" will not work on this preview. When an active region is clicked an alert message with the value inserted will display for debugging.')?>
           </small>
-          <div id="visualization" class="table-responsive"></div>
+          <div id="visualization" class="block w-full overflow-auto scrolling-touch"></div>
           <div class="clear"></div>
           <hr>
           <div class="form-actions">

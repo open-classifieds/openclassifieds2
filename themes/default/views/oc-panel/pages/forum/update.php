@@ -1,44 +1,35 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<h1 class="page-header page-title"><?=__('Edit Forum')?></h1>
-<hr>
+<?php defined('SYSPATH') or die('No direct script access.');?>
 
-<div class="panel panel-default">
-    <div class="panel-body">
-    <?= FORM::open(Route::url('oc-panel',array('controller'=>'forum','action'=>'update','id'=>$forum->id_forum)), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
-    	<fieldset>
-        <div class="form-group">
-            <?= FORM::label('name', __('Name'), array('class'=>'col-md-3 control-label', 'for'=>'name'))?>
-            <div class="col-md-5">
-                <?= FORM::input('name', $forum->name, array('placeholder' => __('Name'), 'class' => 'form-control', 'id' => 'name', 'required'))?>
-            </div>
+<div class="md:flex md:items-center md:justify-between">
+    <div class="flex-1 min-w-0">
+        <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
+            <?= $forum->name ?>
+        </h2>
+    </div>
+</div>
+
+<div class="mt-8">
+    <?= FORM::open(Route::url('oc-panel', ['controller' => 'forum', 'action' => 'update', 'id' => $forum->id_forum])) ?>
+        <?= View::factory('oc-panel/pages/forum/_form', ['forum' => $forum, 'parent_forums' => $parent_forums]) ?>
+    <?= FORM::close() ?>
+</div>
+
+<div class="bg-white shadow sm:rounded-lg mt-8">
+    <div class="px-4 py-5 sm:p-6">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">
+            <?= __('Delete this :object', [':object' => __('forum')]) ?>
+        </h3>
+        <div class="mt-2 max-w-xl text-sm leading-5 text-gray-500">
+            <p>
+                <?= __('You\'re about to delete ":object". This is permanent!', [':object' => $forum->name]) ?>
+            </p>
         </div>
-        <div class="form-group">
-            <?= FORM::label('id_forum_parent', __('Forum parent'), array('class'=>'col-md-3 control-label', 'for'=>'id_forum_parent'))?>
-            <div class="col-md-5">
-                <select name="id_forum_parent" id="id_forum_parent" class="form-control" placeholder="<?=__('Forum parent')?>">
-                    <option value="0"><?=__('None')?></option>
-                    <?foreach($forum_parents as $id => $name):?>
-                        <option value="<?=$id?>" <?=($forum->id_forum_parent == $id)?'selected="selected"':NULL?>><?=$name?></option>
-                    <?endforeach?>
-                </select>
-            </div>
+        <div class="mt-5">
+            <a href="<?=Route::url('oc-panel', ['controller' => 'forum', 'action'=>'delete', 'id' => $forum->id_forum])?>" role="button" class="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-50 focus:outline-none focus:border-red-300 focus:shadow-outline-red active:bg-red-200 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                <?= __('Delete :object', [':object' => __('forum')]) ?>
+            </a>
         </div>
-        <div class="form-group">
-            <?= FORM::label('description', __('Description'), array('class'=>'col-md-3 control-label', 'for'=>'description'))?>
-            <div class="col-md-7">
-                <?= FORM::textarea('description', $forum->description, array('class'=>'form-control','id' => 'description'))?>
-            </div>
-        </div>
-        <div class="form-group">
-            <?= FORM::label('seoname', __('Seoname'), array('class'=>'col-md-3 control-label', 'for'=>'seoname'))?>
-            <div class="col-md-5">
-                <?= FORM::input('seoname', $forum->seoname, array('placeholder' => __('Seoname'), 'class' => 'form-control', 'id' => 'seoname'))?>
-            </div>
-        </div>
-        <div class="form-actions">
-            <?= FORM::button('submit', __('Update'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('oc-panel',array('controller'=>'forum','action'=>'update'))))?>
-        </div>
-    </fieldset>
-    <?= FORM::close()?>
+    </div>
 </div>

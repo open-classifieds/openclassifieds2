@@ -471,7 +471,7 @@ class Theme {
     public static function get_pro_templates($reload = FALSE)
     {
         $url = Core::yclas_url_().'/api/v1/templates';
-        
+
         //try to get the json from the cache
         $templates = Core::cache($url);
 
@@ -570,6 +570,18 @@ class Theme {
         }
     }
 
+    public static function admin_sidebar_link($label, $controller, $action = 'index', $svg = NULL)
+    {
+        if (Auth::instance()->get_user()->has_access($controller, $action))
+        {
+            return View::factory('oc-panel/layouts/_nav-link', [
+                'label' => $label,
+                'svg' => $svg,
+                'url'=> Route::url('oc-panel', ['controller' => $controller, 'action' => $action]),
+                'is_active' => strtolower(Request::current()->controller()) == $controller ? TRUE : FALSE
+            ]);
+        }
+    }
 
     /**
      * nav_link generates a link for main nav-bar

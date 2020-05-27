@@ -22,8 +22,8 @@
       </a>
     <?endif?>
   </p>
-<div class="row">
-    <div class="col-md-8">
+<div class="flex flex-wrap">
+    <div class="md:w-2/3 pr-4 pl-4">
         <div class="panel panel-default">
             <div class="panel-body">
                 <?=$form->render()?>
@@ -35,31 +35,31 @@
                   <h3 class="panel-title"><?=__('Change password')?></h3>
               </div>
               <div class="panel-body">
-                  <div class="row">
-                      <div class="col-md-8">
+                  <div class="flex flex-wrap">
+                      <div class="md:w-2/3 pr-4 pl-4">
                           <form class="form-horizontal"  method="post" action="<?=Route::url('oc-panel',array('controller'=>'user','action'=>'changepass','id'=>$form->object->id_user))?>">         
                               <?=Form::errors()?>  
                                     
-                              <div class="form-group">
-                                  <label class="col-xs-4 control-label"><?=__('New password')?></label>
-                                  <div class="col-sm-8">
-                                  <input class="form-control" type="password" name="password1" placeholder="<?=__('Password')?>">
+                              <div class="mb-4">
+                                  <label class="sm:w-1/3 pr-4 pl-4 control-label"><?=__('New password')?></label>
+                                  <div class="sm:w-2/3 pr-4 pl-4">
+                                  <input class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-800 border border-gray-500 rounded" type="password" name="password1" placeholder="<?=__('Password')?>">
                                   </div>
                               </div>
                                 
-                              <div class="form-group">
-                                  <label class="col-xs-4 control-label"><?=__('Repeat password')?></label>
-                                  <div class="col-sm-8">
-                                  <input class="form-control" type="password" name="password2" placeholder="<?=__('Password')?>">
+                              <div class="mb-4">
+                                  <label class="sm:w-1/3 pr-4 pl-4 control-label"><?=__('Repeat password')?></label>
+                                  <div class="sm:w-2/3 pr-4 pl-4">
+                                  <input class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-800 border border-gray-500 rounded" type="password" name="password2" placeholder="<?=__('Password')?>">
                                       <p class="help-block">
                                             <?=__('Type your password twice to change')?>
                                       </p>
                                   </div>
                               </div>
                                     
-                              <div class="form-group">
-                                  <div class="col-md-offset-4 col-md-8">
-                                      <button type="submit" class="btn btn-primary"><?=__('Update')?></button>
+                              <div class="mb-4">
+                                  <div class="col-md-offset-4 md:w-2/3 pr-4 pl-4">
+                                      <button type="submit" class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  text-blue-100 bg-blue-500 hover:bg-blue-400"><?=__('Update')?></button>
                                   </div>
                               </div>
                                     

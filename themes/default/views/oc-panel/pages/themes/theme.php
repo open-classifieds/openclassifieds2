@@ -2,196 +2,183 @@
 
 <?=Form::errors()?>
 
-<ul class="list-inline pull-right">
-    <li>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#install-theme">
-            <i class="fa fa-download"></i> <?=__('Install theme')?>
-        </button>
-    </li>
-</ul>
+<div class="md:flex md:items-center md:justify-between">
+    <div class="flex-1 min-w-0">
+        <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
+            <?= __('Themes') ?>
+        </h2>
+    </div>
+</div>
 
-<h1 class="page-header page-title" id="page-themes">
-    <?=__('Themes')?>
-    <a target="_blank" href="https://docs.yclas.com/how-to-change-theme/">
-        <i class="fa fa-question-circle"></i>
-    </a>
-</h1>
-
-<hr>
-
-<p><?=__('You can change the look and feel of your website here.')?></p>
-
-<div class="row">
-    <div class="col-xs-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <div class="panel-title"><?=__('Current Theme')?></div>
+<div class="mt-8">
+    <div>
+        <h3 class="text-xs leading-4 font-semibold text-gray-500 uppercase tracking-wider">
+        <?= __('Current theme') ?></h3>
+    </div>
+    <div class="mt-2 grid gap-6 max-w-lg mx-auto lg:grid-cols-3 lg:max-w-none">
+        <div class="flex flex-col">
+            <div class="flex-shrink-0 rounded-lg shadow-lg overflow-hidden">
+                <img class="h-48 w-full object-cover" src="<?= Theme::get_theme_screenshot(Theme::$theme) ?>" alt="" />
             </div>
-            <div class="panel-body">
-                <div class="media">
-                    <?if ($scr = Theme::get_theme_screenshot(Theme::$theme))?>
-                    <div class="media-left">
-                        <img class="media-object" style="max-width:150px;" src="<?=$scr?>">
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">
-                            <?=$selected['Name']?>
-                            <?if (Theme::has_options()):?>
-                                <a class="btn btn-xs btn-primary ajax-load" title="<?=__('Theme Options')?>"
-                                    href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'options'))?>">
-                                    <i class="fa fa-wrench"></i> <?=__('Theme Options')?>
+            <div class="flex-1 py-6 flex flex-col justify-between">
+                <div class="flex-1">
+                    <h4 class="text-xl leading-7 font-semibold text-gray-900">
+                        <?=$selected['Name']?>
+                    </h4>
+                    <?if (Theme::has_options()):?>
+                        <p class="mt-2 text-sm leading-5 font-medium text-blue-600">
+                            <span class="inline-flex rounded-md shadow-sm">
+                                <a href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'options'))?>" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150">
+                                    <?= __('Options') ?>
                                 </a>
-                            <?endif?>
-                        </h4>
-                        <p><?=$selected['Description']?></p>
-                    </div>
+                            </span>
+                        </p>
+                    <?endif?>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<h2 class="page-header page-title">
-    <?=__('Available Themes')?>
-</h2>
-
-<hr>
-
 <? if (core::count($themes)>1):?>
-    <div class="row">
-        <?$i=0;
-        foreach ($themes as $theme=>$info):?>
-            <?if(Theme::$theme!==$theme):?>
-            <div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <?if ($scr = Theme::get_theme_screenshot($theme)):?>
-                            <img class="img-rounded img-responsive" src="<?=$scr?>">
-                        <?endif?>
+    <div class="mt-8">
+        <div>
+            <h3 class="text-xs leading-4 font-semibold text-gray-500 uppercase tracking-wider">
+                <?= __('Available themes') ?>
+            </h3>
+        </div>
+        <div class="mt-2 grid gap-6 max-w-lg mx-auto lg:grid-cols-3 lg:max-w-none">
+            <? foreach ($themes as $theme=>$info):?>
+                <?if(Theme::$theme!==$theme):?>
+                    <div class="flex flex-col">
+                        <div class="flex-shrink-0 rounded-lg shadow-lg overflow-hidden">
+                            <img class="h-48 w-full object-cover" src="<?= Theme::get_theme_screenshot($theme) ?>" alt="" />
+                        </div>
+                        <div class="flex-1 py-6 flex flex-col justify-between">
+                            <div class="flex-1 flex items-center justify-between">
+                                <h4 class="text-xl leading-7 font-semibold text-gray-900">
+                                    <?=$info['Name']?>
+                                </h4>
+                                <p class="text-sm leading-5 font-medium text-blue-600">
+                                    <span class="inline-flex rounded-md shadow-sm">
+                                        <a href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'options'))?>" class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs leading-4 font-medium rounded text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150">
+                                            <?= __('Activate') ?>
+                                        </a>
+                                    </span>
+                                    <?if (Core::config('appearance.allow_query_theme')=='1'):?>
+                                        <span class="inline-flex rounded-md shadow-sm ml-2">
+                                            <a target="_blank" href="<?=Route::url('default')?>?theme=<?=$theme?>" class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs leading-4 font-medium rounded text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150">
+                                                <?=__('Preview')?>
+                                            </a>
+                                        </span>
+                                    <?endif?>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                <?endif?>
+            <?endforeach?>
+        </div>
+    </div>
+<? endif ?>
 
-                        <div class="caption">
-                            <h3><?=$info['Name']?></h3>
-                            <p><?=$info['Description']?></p>
-                            <p><?=$info['License']?> v<?=$info['Version']?></p>
-                            <p>
-                                <a class="btn btn-primary btn-block" href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'index','id'=>$theme))?>"><?=__('Activate')?></a>
-                                <?if (Core::config('appearance.allow_query_theme')=='1'):?>
-                                <a class="btn btn-default btn-block" target="_blank" href="<?=Route::url('default')?>?theme=<?=$theme?>"><?=__('Preview')?></a>
-                                <?endif?>
-                            </p>
+<? if (core::count($templates)>0):?>
+    <div class="mt-8">
+        <div>
+            <h3 class="text-xs leading-4 font-semibold text-gray-500 uppercase tracking-wider">
+                <?=__('Pro Themes')?>
+            </h3>
+        </div>
+        <div class="mt-2 grid gap-6 max-w-lg mx-auto lg:grid-cols-3 lg:max-w-none">
+            <? foreach ($templates as $item):?>
+                <div class="flex flex-col">
+                    <div class="flex-shrink-0 rounded-lg shadow-lg overflow-hidden">
+                        <?if (empty($item['screenshot'])===FALSE):?>
+                            <img class="h-48 w-full object-cover" src="<?=$item['screenshot']?>">
+                        <?else:?>
+                            <img class="h-48 w-full object-cover" src="//www.placehold.it/300x200&text=<?=$item['titlename']?>">
+                        <?endif?>
+                    </div>
+                    <div class="flex-1 py-6 flex flex-col justify-between">
+                        <div class="flex-1 flex items-center justify-between">
+                            <h4 class="text-xl leading-7 font-semibold text-gray-900">
+                                <?=$item['name']?>
+                            </h4>
+                            <?if (empty($item['demo_url'])===FALSE):?>
+                                <p class="text-sm leading-5 font-medium text-blue-600">
+                                    <span class="inline-flex rounded-md shadow-sm">
+                                        <a target="_blank" href="<?=$item['demo_url']?>" class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs leading-4 font-medium rounded text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150">
+                                            <?= __('Preview') ?>
+                                        </a>
+                                    </span>
+                                </p>
+                            <?endif?>
                         </div>
                     </div>
                 </div>
-            </div>
-            <?$i++;endif?>
-            <?if ($i%3==0):?><div class="clearfix"></div><?endif?>
-        <?endforeach?>
-    </div>
-<?endif?>
-
-
-<?if (core::count($templates)>0):?>
-<h2><?=__('Pro Themes')?></h2>
-
-<p><?=__('Here you can find a selection of our Pro themes.')?></p> <a class="btn btn-primary btn-xl" href="https://yclas.com/self-hosted.html"><?=__('Buy Pro version to get them all')?></a>
-
-<hr>
-
-<div class="row">
-<?$i=0;
-foreach ($templates as $item):?>
-    <div class="col-md-4 col-sm-4 theme">
-        <div class="panel-body">
-        <div class="caption">
-        <?if (empty($item['screenshot'])===FALSE):?>
-            <img  class="thumb_market" src="<?=$item['screenshot']?>">
-        <?else:?>
-             <img class="thumb_market" src="//www.placehold.it/300x200&text=<?=$item['name']?>">
-        <?endif?>
-
-        <div class="caption">
-            <h3><?=$item['name']?></h3>
-            <p>
-                <?if (empty($item['demo_url'])===FALSE):?>
-                    <a class="btn btn-default btn-block" target="_blank" href="<?=$item['demo_url']?>">
-                        <i class="glyphicon  glyphicon-eye-open"></i>
-                            <?=__('Preview')?>
-                    </a>
-                <?endif?>
-            </p>
-            <p>
-                <?=Text::bb2html($item['description'])?>
-            </p>
-        </div>
-        </div>
+            <?endforeach?>
         </div>
     </div>
-    <?$i++; if ($i%3==0):?><div class="clearfix"></div><?endif?>
-    <?endforeach?>
-</div>
-<?endif?>
+<? endif ?>
 
-<div class="row">
-    <div class="col-md-4 col-sm-4 theme">
-        <div class="panel panel-default">
-        <div class="panel-body">
-        <div class="caption">
-            <h3>Custom Theme</h3>
-            <p>
-                <span class="label label-info">From $200</span>
-                <span class="label label-success">themes</span>
-            </p>
+<div class="bg-white shadow sm:rounded-lg mt-8">
+    <div class="px-4 py-5 sm:p-6">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">
+            <?= __('Custom themes') ?>
+        </h3>
+        <div class="mt-2 max-w-xl text-sm leading-5 text-gray-500">
             <p>
                 Want to make your classified ads site unique to look more professional for your customers? You can have a theme designed specially for you!
-
-                <a class="btn btn-primary"  href="https://yclas.com/contact.html">
-                    <i class="glyphicon  glyphicon-shopping-cart"></i>  Get a quote!
-                </a>
             </p>
-
         </div>
-        </div>
+        <div class="mt-3 text-sm leading-5">
+            <a href="https://yclas.com/contact.html" class="font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+                Get a quote! &rarr;
+            </a>
         </div>
     </div>
 </div>
 
-
-<div class="modal fade" id="install-theme" tabindex="-1" role="dialog" aria-labelledby="installTheme" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times-circle"></i></button>
-                <h4 id="installTheme" class="modal-title"><?=__('Install theme')?></h4>
-            </div>
-            <div class="modal-body">
-
-                <?=FORM::open(Route::url('oc-panel',array('controller'=>'theme','action'=>'install_theme')), array('enctype'=>'multipart/form-data'))?>
-                    <div class="form-group">
-                        <?=FORM::label('theme_file', __('To install new theme choose zip file.'), array('class'=>'control-label', 'for'=>'theme_file' ))?>
-                        <input type="file" name="theme_file" id="theme_file" class="form-control" />
+<div class="grid gap-6 lg:grid-cols-2">
+    <?=Form::open(Route::url('oc-panel',array('controller'=>'theme','action'=>'install_theme')), array('enctype'=>'multipart/form-data'))?>
+        <div class="bg-white shadow sm:rounded-lg mt-8">
+            <div class="px-4 py-5 sm:p-6">
+                <h3 class="text-lg leading-6 font-medium text-gray-900">
+                    <?=__('Install theme from Zip file')?>
+                </h3>
+                <div class="mt-5 sm:flex sm:items-center">
+                    <div class="max-w-xs w-full">
+                        <?=Form::label('theme_file', __('theme_file'), ['class' => 'sr-only', 'for' => 'theme_file'])?>
+                        <div class="relative rounded-md shadow-sm">
+                            <input type="file" name="theme_file" id="theme_file" />
+                        </div>
                     </div>
-                    <?=FORM::button('submit', __('Upload'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'theme','action'=>'install_theme'))))?>
-                <?=FORM::close()?>
-
-                <hr>
-
-                <?=FORM::open(Route::url('oc-panel',array('controller'=>'home','action'=>'download')))?>
-                    <div class="form-group">
-                        <?=FORM::label('license', __('Install theme from license.'), array('class'=>'control-label', 'for'=>'license' ))?>
-                        <input type="text" name="license" id="license" placeholder="<?=__('license')?>" class="form-control"/>
-                    </div>
-                    <button
-                        type="button"
-                        class="btn btn-primary submit"
-                        title="<?=__('Are you sure?')?>"
-                        data-text="<?=sprintf(__('License will be activated in %s domain.'), parse_url(URL::base(), PHP_URL_HOST))?>"
-                        data-btnOkLabel="<?=__('Yes, definitely!')?>"
-                        data-btnCancelLabel="<?=__('No way!')?>">
-                        <?=__('Download')?>
-                    </button>
-                <?=FORM::close()?>
-
+                    <span class="mt-3 w-ful inline-flex rounded-md shadow-sm sm:mt-0 sm:ml-3 sm:w-auto">
+                        <?=Form::button('submit', __('Upload'), ['type'=>'submit', 'class'=>'w-full inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150 sm:w-auto sm:text-sm sm:leading-5'])?>
+                    </span>
+                </div>
             </div>
         </div>
-    </div>
+    <?=Form::close()?>
+
+    <?=Form::open(Route::url('oc-panel',array('controller'=>'theme','action'=>'download')))?>
+        <div class="bg-white shadow sm:rounded-lg mt-8">
+            <div class="px-4 py-5 sm:p-6">
+                <h3 class="text-lg leading-6 font-medium text-gray-900">
+                    <?=__('Install theme from license')?>
+                </h3>
+                <div class="mt-5 sm:flex sm:items-center">
+                    <div class="max-w-xs w-full">
+                        <?=Form::label('license', __('License'), ['class' => 'sr-only', 'for' => 'license'])?>
+                        <div class="relative rounded-md shadow-sm">
+                            <?=Form::input('license', Core::request('license'), ['placeholder' => __('License'), 'class' => 'form-input block w-full sm:text-sm sm:leading-5', 'required'])?>
+                        </div>
+                    </div>
+                    <span class="mt-3 w-ful inline-flex rounded-md shadow-sm sm:mt-0 sm:ml-3 sm:w-auto">
+                        <?=Form::button('submit', __('Download'), ['type'=>'submit', 'class'=>'w-full inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150 sm:w-auto sm:text-sm sm:leading-5'])?>
+                    </span>
+                </div>
+            </div>
+        </div>
+    <?=Form::close()?>
 </div>

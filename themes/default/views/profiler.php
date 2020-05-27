@@ -9,8 +9,22 @@ $group_stats      = Profiler::group_stats();
 $group_cols       = array('min', 'max', 'average', 'total');
 $application_cols = array('min', 'max', 'average', 'current');
 ?>
-<h2 id="profiler-header" class="profiler_header">Profiler</h2>
-<a href="#kohana_error"><button type="button" class="btn btn-primary pull-right">jump to ENVIRONMENT</button></a>
+
+<div class="md:flex md:items-center md:justify-between py-8">
+    <div class="flex-1 min-w-0">
+        <h2 id="profiler-header" class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
+            Profiler
+        </h2>
+    </div>
+    <div class="mt-4 flex md:mt-0 md:ml-4">
+        <span class="ml-3 shadow-sm rounded-md">
+            <a href="#kohana_error" role="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-700 active:bg-blue-700 transition duration-150 ease-in-out">
+                jump to ENVIRONMENT
+            </a>
+        </span>
+    </div>
+</div>
+
 <div class="kohana">
 	<?php foreach (Profiler::groups() as $group => $benchmarks): ?>
 	<table class="profiler">

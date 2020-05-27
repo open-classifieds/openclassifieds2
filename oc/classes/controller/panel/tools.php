@@ -19,8 +19,9 @@ class Controller_Panel_Tools extends Auth_Controller {
 
     public function action_index()
     {
-        //@todo just a view with links?
-        HTTP::redirect(Route::url('oc-panel',array('controller'  => 'update','action'=>'index')));
+        $this->template->panel_title = __('Tools');
+
+        $this->template->content = View::factory('oc-panel/pages/tools/index');
     }
 
 

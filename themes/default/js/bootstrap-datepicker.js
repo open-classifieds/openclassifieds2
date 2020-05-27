@@ -53,7 +53,7 @@
 		} else if ('dateForceParse' in this.element.data()) {
 			this.forceParse = this.element.data('date-force-parse');
 		}
-		 
+
 
 		this.picker = $(DPGlobal.template)
 							.appendTo(this.isInline ? this.element : 'body')
@@ -925,9 +925,9 @@
 		},
 		headTemplate: '<thead>'+
 							'<tr>'+
-								'<th class="prev"><i class="fa fa-angle-left"/></th>'+
+								'<th class="prev"> < </th>'+
 								'<th colspan="5" class="switch"></th>'+
-								'<th class="next"><i class="fa fa-angle-right"/></th>'+
+								'<th class="next"> > </th>'+
 							'</tr>'+
 						'</thead>',
 		contTemplate: '<tbody><tr><td colspan="7"></td></tr></tbody>',

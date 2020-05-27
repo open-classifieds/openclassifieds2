@@ -58,12 +58,12 @@ for ($i = $n7; $i <= $n8; $i++)
 
 <?if(!Theme::get('rtl')):?>
 
-  <ul class="pagination">
-		<li <?=(!$first_page)?'class="disabled"':''?>>
+  <ul class="flex list-none p-0 pl-0 rounded">
+		<li <?=(!$first_page)?'class="opacity-75"':''?>>
 			<a class="ajax-load" title="<?=__('First')?> <?=$page->title()?>" href="<?=HTML::chars($page->url($first_page))?>" rel="first"><i class="glyphicon glyphicon-step-backward"></i></a>
 		</li>
 	
-		<li <?=(!$previous_page)?'class="disabled"':''?>>
+		<li <?=(!$previous_page)?'class="opacity-75"':''?>>
 			<a class="ajax-load" title="<?=__('Previous')?> <?=$page->title()?>" href="<?=HTML::chars($page->url($previous_page))?>" rel="prev" id="prev"><i class="glyphicon glyphicon-backward"></i></a>
 		</li>
 
@@ -73,22 +73,22 @@ for ($i = $n7; $i <= $n8; $i++)
             </li>
         <?php endforeach ?>
 
-		<li <?=(!$next_page)?'class="disabled"':''?>>
+		<li <?=(!$next_page)?'class="opacity-75"':''?>>
 			<a class="ajax-load" title="<?=__('Next')?> <?=$page->title()?>" href="<?=HTML::chars($page->url($next_page)) ?>" rel="next" id="next"><i class="glyphicon glyphicon-forward"></i></a>
 		</li>
 
-		<li <?=(!$last_page)?'class="disabled"':''?>>
+		<li <?=(!$last_page)?'class="opacity-75"':''?>>
 			<a class="ajax-load" title="<?=__('Last')?> <?=$page->title()?>" href="<?=HTML::chars($page->url($last_page)) ?>" rel="last" id="last" data-last="<?=$last_page?>"><i class="glyphicon glyphicon-step-forward"></i></a>
 		</li>
 
   </ul><!-- .pagination -->
 <?else:?>
-  <ul class="pagination">
-		<li <?=(!$first_page)?'class="disabled"':''?>>
+  <ul class="flex list-none p-0 pl-0 rounded">
+		<li <?=(!$first_page)?'class="opacity-75"':''?>>
 			<a class="ajax-load" title="<?=__('First')?> <?=$page->title()?>" href="<?=HTML::chars($page->url($first_page))?>" rel="first"><i class="glyphicon glyphicon-step-forward"></i></a>
 		</li>
 	
-		<li <?=(!$previous_page)?'class="disabled"':''?>>
+		<li <?=(!$previous_page)?'class="opacity-75"':''?>>
 			<a class="ajax-load" title="<?=__('Previous')?> <?=$page->title()?>" href="<?=HTML::chars($page->url($previous_page))?>" rel="prev" id="prev"><i class="glyphicon glyphicon-forward"></i></a>
 		</li>
 
@@ -98,11 +98,11 @@ for ($i = $n7; $i <= $n8; $i++)
             </li>
         <?php endforeach ?>
 
-		<li <?=(!$next_page)?'class="disabled"':''?>>
+		<li <?=(!$next_page)?'class="opacity-75"':''?>>
 			<a class="ajax-load" title="<?=__('Next')?> <?=$page->title()?>" href="<?=HTML::chars($page->url($next_page)) ?>" rel="next" id="next"><i class="glyphicon glyphicon-backward"></i></a>
 		</li>
 
-		<li <?=(!$last_page)?'class="disabled"':''?>>
+		<li <?=(!$last_page)?'class="opacity-75"':''?>>
 			<a class="ajax-load" title="<?=__('Last')?> <?=$page->title()?>" href="<?=HTML::chars($page->url($last_page)) ?>" rel="last" id="last" data-last="<?=$last_page?>"><i class="glyphicon glyphicon-step-backward"></i></a>
 		</li>
 

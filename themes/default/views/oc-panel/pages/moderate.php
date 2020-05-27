@@ -13,7 +13,7 @@
 <div class="panel panel-default">
     <div>
         <form method="GET" enctype="multipart/form-data">
-            <table class="table table-striped">
+            <table class="w-full max-w-full mb-4 bg-transparent table-striped">
                 <thead>
                     <tr>
                         <th class="sorting_disabled">
@@ -34,13 +34,13 @@
                         <!-- in case there are no ads we dont show buttons -->
                         <?if(isset($ads)):?>
                             <th class="sorting_disabled nowrap">
-                                <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                <div class="relative">
+                                    <button class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  btn-default  inline-block w-0 h-0 ml-1 align border-b-0 border-t-1 border-r-1 border-l-1" type="button" data-toggle="relative">
                                         <i class="fa fa-cog"></i>
                                     </button>
-                                    <ul class="dropdown-menu dropdown-menu-right">
+                                    <ul class=" absolute left-0 z-50 float-left hidden list-none p-0	 py-2 mt-1 text-base bg-white border border-grey-400 rounded dropdown-menu-right">
                                         <li>
-                                            <button class="btn btn-block btn-link activate"
+                                            <button class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  block w-full font-normal blue bg-transparent activate"
                                                 data-toggle="confirmation"
                                                 formaction="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate'))?>"
                                                 data-btnOkLabel="<?=__('Yes, definitely!')?>"
@@ -51,7 +51,7 @@
                                         </li>
                                         <?if(Core::get('status') != Model_Ad::STATUS_SPAM):?>
                                             <li>
-                                                <button class="btn btn-block btn-link spam"
+                                                <button class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  block w-full font-normal blue bg-transparent spam"
                                                     data-toggle="confirmation"
                                                     formaction="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam'))?>"
                                                     data-btnOkLabel="<?=__('Yes, definitely!')?>"
@@ -62,7 +62,7 @@
                                             </li>
                                         <?endif?>
                                         <li>
-                                            <button class="btn btn-block btn-link delete"
+                                            <button class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  block w-full font-normal blue bg-transparent delete"
                                                 data-toggle="confirmation"
                                                 formaction="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete'))?>"
                                                 data-btnOkLabel="<?=__('Yes, definitely!')?>"
@@ -90,7 +90,7 @@
                                 <td>
                                     <a
                                         href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate','id'=>$ad->id_ad, 'current_url'=>$current_url))?>"
-                                        class="btn btn-success index-moderation"
+                                        class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  text-green-100 bg-green-500 hover:bg-green-400 index-moderation"
                                         title="<?=__('Activate?')?>"
                                         data-id="tr<?=$ad->id_ad?>"
                                         data-btnOkLabel="<?=__('Yes, definitely!')?>"
@@ -143,17 +143,17 @@
 
                                 <td><?= Date::format($ad->created, core::config('general.date_format'))?></td>
                                 <td class="nowrap">
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary"
+                                    <div class="relative inline-flex align-middle">
+                                        <a class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  text-blue-100 bg-blue-500 hover:bg-blue-400"
                                             href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"
                                             rel="tooltip" title="<?=__('Edit')?>">
                                             <i class="fa fa-pencil"></i>
                                         </a>
-                                        <div class="btn-group">
-                                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                        <div class="relative inline-flex align-middle">
+                                            <button class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  btn-default  inline-block w-0 h-0 ml-1 align border-b-0 border-t-1 border-r-1 border-l-1" type="button" data-toggle="relative">
                                                 <i class="fa fa-cog"></i>
                                             </button>
-                                            <ul class="dropdown-menu dropdown-menu-right">
+                                            <ul class=" absolute left-0 z-50 float-left hidden list-none p-0	 py-2 mt-1 text-base bg-white border border-grey-400 rounded dropdown-menu-right">
                                                 <li>
                                                     <a
                                                         href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad, 'current_url'=>$current_url))?>"

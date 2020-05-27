@@ -21,7 +21,7 @@ class Auth_CrudAjax extends Auth_Crud
 
     /**
      * @var $_filter_fields ORM fields we allow to filter, exact match, will render a search form on the indexcrud with this fields
-     * Currently supported filter types while rendering: 
+     * Currently supported filter types while rendering:
      * DATE, will create 2 inputs from/to dates with datepicker and do a between
      * RANGE, will create 2 inputs to do a between, perfect for pricing
      * INPUT, normal search, needs to be exact match
@@ -36,11 +36,11 @@ class Auth_CrudAjax extends Auth_Crud
 
 
     /**
-     * @var $_buttons_actions by default the TD have, update, delete. 
-     * With this array you can add extra buttons in a TD. 
+     * @var $_buttons_actions by default the TD have, update, delete.
+     * With this array you can add extra buttons in a TD.
      * Needs to be done in the construct if you want to use dynamic urls if not can be done as static on the top of the class
      * Used in view bootgrid.php
-     * Example: 
+     * Example:
      * function __construct(Request $request, Response $response)
      * {
      *    parent::__construct($request, $response);
@@ -57,7 +57,7 @@ class Auth_CrudAjax extends Auth_Crud
     /**
      * will use this array to change the caption of a field using a belongs_to or has one.
      * Example: protected $_fields_caption = array( 'id_role'   => array('model'=>'role','caption'=>'name') );
-     * when rendering id_role instead of $object-id_role will do $object->role->name 
+     * when rendering id_role instead of $object-id_role will do $object->role->name
      * @var array
      */
     protected $_fields_caption = array();
@@ -90,8 +90,8 @@ class Auth_CrudAjax extends Auth_Crud
                 {
                     $result = array();
                     $query = DB::select($value['field'])->distinct(TRUE)->from($value['table'])->execute();
-                    foreach ($query->as_array() as $k => $v) 
-                        $result[current($v)] = current($v);                
+                    foreach ($query->as_array() as $k => $v)
+                        $result[current($v)] = current($v);
                 }
                 elseif ($value['type']=='SELECT')
                 {
@@ -104,14 +104,14 @@ class Auth_CrudAjax extends Auth_Crud
                     {
                         $k = $v[$key];
                         $result[$k] = $v[$val];
-                    } 
+                    }
                 }
                 $this->_filter_fields[$field] = $result;
             }
         }
-        
+
         //get the filters
-        foreach (array_merge($_GET,$_POST) as $key => $value) 
+        foreach (array_merge($_GET,$_POST) as $key => $value)
         {
             //with values
             if (isset($value) AND $value!='')
@@ -126,10 +126,10 @@ class Auth_CrudAjax extends Auth_Crud
                     //add it to the filter
                     if ($from!=NULL AND $to!=NULL)
                         $this->_filter_post[$var] = array($from,$to);
-                    
+
                 }
                 //any other value that is not a date
-                elseif ( strpos($key,'filter__')!==FALSE 
+                elseif ( strpos($key,'filter__')!==FALSE
                     AND strpos($key,'filter__to__')===FALSE )
                 {
                     $this->_filter_post[str_replace('filter__', '', $key)] = $value;
@@ -141,21 +141,20 @@ class Auth_CrudAjax extends Auth_Crud
     /**
      *
      * Loads a basic list info
-     * @param string $view template to render 
+     * @param string $view template to render
      */
     public function action_index($view = NULL)//, $extra_info_view = NULL)
     {
         $this->template->title = __($this->_orm_model);
 
-        $this->template->scripts['footer'][] = 'js/bootstrap-datepicker.js';
         $this->template->scripts['footer'][] = Route::url($this->_route_name, array('controller'=> Request::current()->controller(), 'action'=>'bootgrid'));
         $this->template->styles = array('css/jquery.bootgrid.min.css' => 'screen','//cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen');
-        
+
         $elements = ORM::Factory($this->_orm_model);//->find_all();
 
         if ($view === NULL)
             $view = 'oc-panel/crud/indexajax';
-        
+
         if ($this->_extra_info_view!==NULL)
         {
             $this->_extra_info_view = View::factory($this->_extra_info_view)->render();
@@ -175,31 +174,31 @@ class Auth_CrudAjax extends Auth_Crud
     public function action_ajax()
     {
         $elements = ORM::Factory($this->_orm_model);
-        
+
         //search searchPhrase: from an array specified in the controller. If none search does not appear. do in bootdrig action
         if (Core::post('searchPhrase')!==NULL AND core::count($this->_search_fields) > 0)
         {
-            foreach ($this->_search_fields as $field) 
+            foreach ($this->_search_fields as $field)
                 $elements->or_where($field,'LIKE','%'.Core::post('searchPhrase').'%');
         }
 
         //extra filters
-        foreach ($this->_filter_post as $field => $value) 
+        foreach ($this->_filter_post as $field => $value)
         {
             //forced null value
             if ($value === NULL)
             {
                 $elements->where($field,'IS',NULL);
-            } 
+            }
             elseif ($value === 'NOT NULL')
             {
                 $elements->where($field,'IS NOT',NULL);
-            }   
+            }
             //range search or date
             elseif (is_array($value))
             {
                 $elements->where($field,'BETWEEN',$value);
-            }    
+            }
             //search by caption we try to resolve
             elseif (isset($this->_fields_caption[$field]))
             {
@@ -216,7 +215,7 @@ class Auth_CrudAjax extends Auth_Crud
                         foreach ($search as $res)
                             $result[] = $res->$field;
                         $elements->where($field,'IN',$result);
-                    }    
+                    }
                     else//not found normal search then ;)
                         $elements->where($field,'LIKE','%'.$value.'%');
                 }
@@ -256,7 +255,7 @@ class Auth_CrudAjax extends Auth_Crud
         ->find_all();
 
         $rows = array();
-        foreach ($elements as $element) 
+        foreach ($elements as $element)
         {
             foreach($this->_index_fields as $field)
             {
@@ -268,7 +267,7 @@ class Auth_CrudAjax extends Auth_Crud
                     if (exec::is_callable($function = $this->_fields_caption[$field]))
                     {
                         $result[$field] = call_user_func($function,$element->$field);
-                    }  
+                    }
                     else
                     {
                         $model   = $this->_fields_caption[$field]['model'];
@@ -278,7 +277,7 @@ class Auth_CrudAjax extends Auth_Crud
                 }
                 else
                     $result[$field] = Text::limit_chars(strip_tags($element->$field));
-            }   
+            }
 
             $rows[]  = $result;
             $result  = array();
@@ -290,7 +289,7 @@ class Auth_CrudAjax extends Auth_Crud
                          'rows'      => $rows,
                          'total'     => $pagination->total_items
                         );
-        
+
         $this->auto_render = FALSE;
         //$this->response->headers('Content-type','application/javascript');//why the heck doesnt work with this???
         $this->template = View::factory('js');
