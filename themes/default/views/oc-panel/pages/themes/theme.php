@@ -106,7 +106,7 @@ foreach ($templates as $item):?>
         <?if (empty($item['screenshot'])===FALSE):?>
             <img  class="thumb_market" src="<?=$item['screenshot']?>">
         <?else:?>
-             <img class="thumb_market" src="//www.placehold.it/300x200&text=<?=$item['titlename']?>">
+             <img class="thumb_market" src="//www.placehold.it/300x200&text=<?=$item['name']?>">
         <?endif?>
 
         <div class="caption">
