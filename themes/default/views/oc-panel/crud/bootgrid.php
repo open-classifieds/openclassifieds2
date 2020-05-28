@@ -31,10 +31,10 @@ var grid = $("#grid-data-api").bootgrid({
         dropDownMenuText: "dropdown-text", // must be a unique class name or constellation of class names within the actionDropDown
         footer: "tw-bootgrid-footer",
         header: "tw-bootgrid-header",
-        icon: "icon glyphicon",
-        iconColumns: "glyphicon-th-list",
+        icon: "inline-block h-4 w-4 text-gray-500",
+        iconColumns: "<svg fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\"><path d=\"M4 6h16M4 10h16M4 14h16M4 18h16\"></path></svg>",
         iconDown: "glyphicon-chevron-down",
-        iconRefresh: "glyphicon-refresh",
+        iconRefresh: "<svg fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\"><path d=\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\"></path></svg>",
         iconSearch: "glyphicon-search",
         iconUp: "glyphicon-chevron-up",
         infos: "infos", // must be a unique class name or constellation of class names within the header and footer,
