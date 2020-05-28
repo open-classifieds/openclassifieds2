@@ -1,92 +1,21 @@
 body.dragging, body.dragging * {
-  cursor: move !important;
+    cursor: move !important;
 }
+
 .dragged {
     position: absolute;
-    top: 0;
-    opacity: .5;
+    opacity: 0.5;
     z-index: 2000;
 }
 
-ol.plholder {
-    padding: 0;
-}
-
-ol.plholder li {
-    cursor: move !important;
-    display: block;
-    padding: 0;
-    width: 100%;
-}
-
-ol.plholder li.inactive {
-    cursor: auto !important;
-}
-
-ol.plholder ol {
-    padding-left: 26px;
-}
-
-ol.plholder li.placeholder {
+ul.sortable li.placeholder {
     position: relative;
-    margin: 0;
-    padding: 0;
-    border: none;
 }
 
-ol.plholder li.placeholder:before {
+ul.sortable li.placeholder:before {
     position: absolute;
-    content: "";
-    width: 0;
-    height: 0;
-    margin-top: -5px;
-    left: -5px;
-    top: -4px;
-    border: 5px solid transparent;
-    border-left-color: #4CAF50;
-    border-right: none;
-    color: #4CAF50;
 }
 
-ol.plholder li .drag-item {
-    display: -webkit-flex;
-    display: flex;
-    margin-bottom: 10px;
-}
-ol.plholder li .drag-icon {
-    padding: 6px 10px 0 0;
-    display: inline-block;
-    letter-spacing: 1px;
-    white-space: nowrap;
-    font-size: 16px;
-    color: #BBBBBB;
-}
-ol.plholder li .drag-name {
-    width: 100%;
-    border: 1px solid #CCCCCC;
-    border-radius: 3px;
-    padding: 8px 10px;
-}
-ol.plholder li .drag-action {
-    padding: 6px 0 0 17px;
-    display: inline-block;
-    letter-spacing: 1px;
-    white-space: nowrap;
-    color: #BBBBBB;
-    font-size: 11px;
-    text-transform: uppercase;
-}
-ol.plholder li .drag-action .fa,
-ol.plholder li .drag-action .glyphicon {
-    font-size: 16px;
-    margin-top: 4px;
-}
-ol.plholder li .drag-action.index-delete {
-    margin: 0;
-}
-ol.plholder li .drag-action:hover {
-    color: #4CAF50;
-}
-ol.plholder li .drag-action.index-delete:hover {
-    color: #E51C23;
+ul.sortable ul {
+    padding-left: 26px;
 }

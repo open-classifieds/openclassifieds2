@@ -7,22 +7,11 @@
 
 class Controller_Panel_Settings extends Auth_Controller {
 
-    public function before($template = NULL)
-    {
-        parent::before();
-
-       Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Settings'))->set_url(Route::url('oc-panel',array('controller' => 'settings', 'action' => 'general'))));
-
-        $this->template->styles  = array('css/pnotify.custom.min.css' => 'screen');
-
-        $this->template->scripts['footer'][]= 'js/jquery.validate.min.js';
-        $this->template->scripts['footer'][]= 'js/pnotify.custom.min.js';
-        $this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
-    }
-
     public function action_index()
     {
-        HTTP::redirect(Route::url('oc-panel',array('controller'  => 'settings','action'=>'general')));
+        $this->template->panel_title = __('Settings');
+
+        $this->template->content = View::factory('oc-panel/pages/settings/index');
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<ul class="nav nav-tabs nav-tabs-simple">
+<ul class="flex flex-wrap list-none p-0 pl-0 mb-0 border border-t-0 border-r-0 border-l-0 border-b-1 border-grey-400 nav-tabs-simple">
     <li <?=(Request::current()->action()=='optimize') ? 'class="active"' : NULL?>>
         <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'optimize'))?>"
             title="<?=HTML::chars(__('Optimize'))?>"
@@ -58,7 +58,7 @@
     <div class="panel-body">
         <ul class="list-inline pull-right">
             <li>
-                <a class="btn btn-warning pull-right" href="<?=Route::url('oc-panel',array('controller'=>'algolia','action'=>'index'))?>?reindex=1" title="<?=__('Re-index')?>">
+                <a class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  text-yellow-100 bg-yellow-500 hover:bg-yellow-400 pull-right" href="<?=Route::url('oc-panel',array('controller'=>'algolia','action'=>'index'))?>?reindex=1" title="<?=__('Re-index')?>">
                     <?=__('Re-index')?>
                 </a>
             </li>
@@ -68,7 +68,7 @@
         </h1>
         <hr>
         <div class="panel panel-default">
-            <table class="table table-striped">
+            <table class="w-full max-w-full mb-4 bg-transparent table-striped">
                 <thead>
                     <tr>
                         <th><?=__('Indices')?></th>

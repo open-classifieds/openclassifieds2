@@ -10,8 +10,8 @@
 
 <hr>
 
-<div class="row">
-    <div class="col-md-6">
+<div class="flex flex-wrap">
+    <div class="md:w-1/2 pr-4 pl-4">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="panel-title"><?=__('Upload CSV file')?></div>
@@ -32,9 +32,9 @@
                 </p>
 
                 <?= FORM::open(Route::url('oc-panel', ['controller' => 'importusers', 'action' => 'csv']), ['enctype' => 'multipart/form-data'])?>
-                    <div class="form-group">
+                    <div class="mb-4">
                         <label for=""> <?=__('Import Users')?></label>
-                        <input type="file" name="csv_file_users" id="csv_file_users" class="form-control"/>
+                        <input type="file" name="csv_file_users" id="csv_file_users" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-800 border border-gray-500 rounded"/>
                     </div>
 
                     <?= FORM::button('submit', __('Upload'), ['type'=>'submit', 'id'=>'csv_upload', 'class'=>'btn btn-primary'])?>
@@ -43,7 +43,7 @@
         </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="md:w-1/2 pr-4 pl-4">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="panel-title"><?=__('Process Queue')?></div>
@@ -55,11 +55,11 @@
                             <?=sprintf(__('You got %d users to get processed'), $users_import)?>
                         </div>
                         <p>
-                            <a class="btn btn-success" id="import_process" href="<?=Route::url('oc-panel', ['controller' => 'importusers', 'action'=>'process'])?>">
+                            <a class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  text-green-100 bg-green-500 hover:bg-green-400" id="import_process" href="<?=Route::url('oc-panel', ['controller' => 'importusers', 'action'=>'process'])?>">
                                 <?=__('Process')?>
                             </a>
 
-                            <a class="btn btn-danger btn-xs" id="delete_queue" href="<?=Route::url('oc-panel', ['controller' => 'importusers', 'action' => 'deletequeue'])?>">
+                            <a class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  text-red-100 bg-red-500 hover:bg-red-400 btn-xs" id="delete_queue" href="<?=Route::url('oc-panel', ['controller' => 'importusers', 'action' => 'deletequeue'])?>">
                                 <?=__('Delete')?>
                             </a>
                         <p>

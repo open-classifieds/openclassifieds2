@@ -1,80 +1,36 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<ul class="list-inline pull-right">
-    <li>
-        <a class="btn btn-primary ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'userfields','action'=>'new'))?>" title="<?=__('New field')?>">
-            <i class="fa fa-plus-circle"></i>&nbsp; <?=__('New field')?>
-        </a>
-    </li>
-</ul>
-
-<h1 class="page-header page-title">
-    <?=__('User custom fields')?>
-    <a target="_blank" href="https://docs.yclas.com/users-custom-fields/">
-        <i class="fa fa-question-circle"></i>
-    </a>
-</h1>
-
-<hr>
-
-<?if (Core::extra_features() == FALSE):?>
-    <div class="alert alert-info fade in">
-        <p>
-            <strong><?=__('Heads Up!')?></strong> 
-            <?=__('Custom fields are only available in the PRO version!').' '.__('Upgrade your Yclas site to activate this feature.')?>
-        </p>
-        <p>
-            <a class="btn btn-info" href="https://yclas.com/self-hosted.html">
-                <?=__('Upgrade to PRO now')?>
-            </a>
-        </p>
+<div class="md:flex md:items-center md:justify-between">
+    <div class="flex-1 min-w-0">
+        <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
+            <?= __('User custom fields') ?>
+        </h2>
     </div>
-<?endif?>
+    <div class="mt-4 flex md:mt-0 md:ml-4">
+        <span class="ml-3 shadow-sm rounded-md">
+            <a
+                href="<?=Route::url('oc-panel',array('controller'=>'userfields','action'=>'new'))?>"
+                class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-700 active:bg-blue-700 transition duration-150 ease-in-out"
+            >
+                <?= __('New field') ?>
+            </a>
+        </span>
+    </div>
+</div>
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <ol class='plholder' id="ol_1" data-id="1">
-                <?if (is_array($fields)):?>
-                    <?foreach($fields as $name=>$field):?>
-                        <li data-id="<?=$name?>" id="li_<?=$name?>">
-                            <div class="drag-item">
-                                <span class="drag-icon"><i class="fa fa-ellipsis-v"></i><i class="fa fa-ellipsis-v"></i></span>
-                                <div class="drag-name">
-                                    <?=$name?>
-                                    <span class="label label-info label-sm"><?=$field['type']?></span>
-                                    <span class="label label-info label-sm"><?=($field['required'])?__('required'):NULL?></span>
-                                    <span class="label label-info label-sm"><?=(isset($field['searchable']) AND $field['searchable'])?__('Searchable'):NULL?></span>
-                                    <span class="label label-info label-sm"><?=(isset($field['show_profile']) AND $field['show_profile'])?__('Show profile'):NULL?></span>
-                                    <span class="label label-info label-sm"><?=(isset($field['show_register']) AND $field['show_register'])?__('Show register'):NULL?></span>
-                                    <span class="label label-info label-sm"><?=(isset($field['admin_privilege']) AND $field['admin_privilege'])?__('Only Admin'):NULL?></span>
-                                </div>
-                                <a class="drag-action ajax-load" title="<?=__('Edit')?>"
-                                    href="<?=Route::url('oc-panel',array('controller'=>'userfields','action'=>'update','id'=>$name))?>">
-                                    <i class="fa fa-pencil-square-o"></i>
-                                </a>
-                                <a 
-                                    href="<?=Route::url('oc-panel', array('controller'=> 'userfields', 'action'=>'delete','id'=>$name))?>" 
-                                    class="drag-action index-delete" 
-                                    title="<?=__('Are you sure you want to delete? All data contained in this field will be deleted.')?>" 
-                                    data-id="li_<?=$name?>" 
-                                    data-placement="left" 
-                                    data-href="<?=Route::url('oc-panel', array('controller'=> 'fields', 'action'=>'delete','id'=>$name))?>" 
-                                    data-btnOkLabel="<?=__('Yes, definitely!')?>" 
-                                    data-btnCancelLabel="<?=__('No way!')?>">
-                                    <i class="glyphicon glyphicon-trash"></i>
-                                </a>
-                            </div>
-                        </li>
-                    <?endforeach?>
-                <?endif?>
-                </ol><!--ol_1-->
-                <span id='ajax_result' data-url='<?=Route::url('oc-panel',array('controller'=>'userfields','action'=>'saveorder'))?>'></span>
-                <div class="clearfix"></div>
-            </div>
+<? if (is_array($fields)): ?>
+    <div class="bg-white overflow-hidden shadow rounded-lg mt-8">
+        <div class="bg-white shadow overflow-hidden sm:rounded-md">
+            <ul class='sortable' id="ol_1" data-id="1">
+                <? foreach($fields as $name=> $field): ?>
+                    <? $last_item = $name === count($fields) - 1 ?>
+                    <?= View::factory('oc-panel/pages/userfields/_field', ['name' => $name, 'field' => $field, 'last_item' => $last_item]) ?>
+                <? endforeach ?>
+            </ul>
         </div>
     </div>
-    
 
-</div>
+    <div class="flex justify-end mt-4">
+        <span id="ajax_result" data-url="<?=Route::url('oc-panel',['controller'=>'userfields','action'=>'saveorder'])?>"></span>
+    </div>
+<? endif ?>

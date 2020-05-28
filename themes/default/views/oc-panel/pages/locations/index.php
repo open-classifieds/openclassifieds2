@@ -1,197 +1,130 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<ul class="list-inline pull-right">
-    <li>
-        <a class="btn btn-info" href="<?=Route::url('oc-panel',['controller'=>'location','action'=>'geonames'])?><?=Core::get('id_location') ? '?id_location='.HTML::chars(Core::get('id_location')) : NULL?>" title="<?=__('Import Locations')?>">
-            <?=__('Import Geonames Locations')?>
-        </a>
-    </li>
-    <li>
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#quick-creator">
-            <?=__('Quick creator')?>
-        </button>
-    </li>
-    <li>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#import-tool">
-            <i class="fa fa-upload"></i>&nbsp;  <?=__('Import')?>
-        </button>
-    </li>
-    <li>
-        <a class="btn btn-primary" href="<?=Route::url('oc-panel',['controller'=>'location','action'=>'create'])?><?=Core::get('id_location') ? '?id_location_parent='.HTML::chars(Core::get('id_location')) : NULL?>" title="<?=__('New Location')?>">
-            <i class="fa fa-plus-circle"></i>&nbsp;  <?=__('New Location')?>
-        </a>
-    </li>
-</ul>
+<div class="md:flex md:items-center md:justify-between">
+    <div class="flex-1 min-w-0">
+        <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
+            <? if ($location->id_location == 1) : ?>
+                <?= __('Locations') ?>
+            <? else: ?>
+                <?= $location->name ?>
+            <? endif ?>
+        </h2>
+    </div>
+    <div class="mt-4 flex md:mt-0 md:ml-4">
+        <span class="ml-3 shadow-sm rounded-md">
+            <a href="<?=Route::url('oc-panel',['controller'=>'location','action'=>'geonames'])?><?=Core::get('id_location') ? '?id_location='.HTML::chars(Core::get('id_location')) : NULL?>" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-gray-800 active:bg-gray-50 transition duration-150 ease-in-out">
+                <?= __('Import Geonames Locations') ?>
+            </a>
+        </span>
+        <? if ($location->id_location != 1) : ?>
+            <span class="ml-3 shadow-sm rounded-md">
+                <a href="<?=Route::url('oc-panel',['controller'=>'location','action'=>'update','id'=>$location->id_location])?>" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-gray-800 active:bg-gray-50 transition duration-150 ease-in-out">
+                    <?= __('Edit') ?>
+                </a>
+            </span>
+        <? endif ?>
+        <span class="ml-3 shadow-sm rounded-md">
+            <a href="<?=Route::url('oc-panel',['controller'=>'location','action'=>'create'])?><?=Core::get('id_location') ? '?id_location_parent='.HTML::chars(Core::get('id_location')) : NULL?>" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-700 active:bg-blue-700 transition duration-150 ease-in-out">
+                <?= __('New location') ?>
+            </a>
+        </span>
+    </div>
+</div>
 
-<h1 class="page-header page-title">
-    <?=__('Locations')?>
-    <a target="_blank" href="https://docs.yclas.com/how-to-add-locations/">
-        <i class="fa fa-question-circle"></i>
-    </a>
-</h1>
+<div class="bg-white overflow-hidden shadow rounded-lg mt-8">
+    <div class="bg-white shadow overflow-hidden sm:rounded-md">
+        <ul class='sortable' id="ol_<?=$location->id_location?>" data-id="<?=$location->id_location?>">
+            <? foreach ($locs as $key => $loc): ?>
+                <? $last_item = $key === count($locs) - 1 ?>
+                <?= View::factory('oc-panel/pages/locations/_location', ['location' => $loc, 'last_item' => $last_item]) ?>
+            <? endforeach ?>
+        </ul>
+    </div>
+</div>
 
-<hr>
+<div class="flex justify-end mt-4">
+    <span id="ajax_result" data-url="<?=Route::url('oc-panel', ['controller'=>'location','action'=>'saveorder'])?>"></span>
+</div>
 
-<p>
-    <?=__('Change the order of your locations. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended).')?>
-</p>
-
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <div class="panel-title">
-                    <?=($location->id_location == 1) ? __('Home location') : $location->name?>
-                </div>
+<?=FORM::open(Route::url('oc-panel',array('controller'=>'location','action'=>'multy_locations')), array('role'=>'form','enctype'=>'multipart/form-data'))?>
+    <div class="bg-white shadow sm:rounded-lg mt-8">
+        <div class="px-4 py-5 sm:p-6">
+            <h3 class="text-lg leading-6 font-medium text-gray-900">
+                <?= __('Quick location creator') ?>
+            </h3>
+            <div class="mt-2 max-w-xl text-sm leading-5 text-gray-500">
+                <p>
+                    <?= __('Separate each location with a comma.') ?>
+                </p>
             </div>
-            <?=FORM::open(Route::url('oc-panel',['controller'=>'location','action'=>'delete']), ['enctype'=>'multipart/form-data'])?>
-                <div class="panel-body">
-                    <ol class='plholder' id="ol_<?=$location->id_location?>" data-id="<?=$location->id_location?>">
-                        <?foreach ($locs as $loc) :?>
-                            <li data-id="<?=$loc->id_location?>" id="li_<?=$loc->id_location?>">
-                                <div class="drag-item">
-                                    <span class="drag-icon"><i class="fa fa-ellipsis-v"></i><i class="fa fa-ellipsis-v"></i></span>
-                                    <div class="drag-name">
-                                        <?=$loc->name?>
-                                    </div>
-                                    <a class="drag-action ajax-load" title="<?=__('Browse childs')?>"
-                                        href="<?=Route::url('oc-panel',['controller'=>'location','action'=>'index'])?>?id_location=<?=$loc->id_location?>">
-                                        <?=__('Browse')?>
-                                    </a>
-                                    <a class="drag-action" title="<?=__('Edit')?>"
-                                        href="<?=Route::url('oc-panel',['controller'=>'location','action'=>'update','id'=>$loc->id_location])?>">
-                                        <i class="fa fa-pencil-square-o"></i>
-                                    </a>
-                                    <a
-                                        href="<?=Route::url('oc-panel', ['controller'=> 'location', 'action'=>'delete','id'=>$loc->id_location])?>"
-                                        class="drag-action index-delete"
-                                        title="<?=__('Are you sure you want to delete? We will move the siblings locations and ads to the parent of this location.')?>"
-                                        data-id="li_<?=$loc->id_location?>"
-                                        data-placement="left"
-                                        data-href="<?=Route::url('oc-panel', ['controller'=> 'location', 'action'=>'delete','id'=>$loc->id_location])?>"
-                                        data-btnOkLabel="<?=__('Yes, definitely!')?>"
-                                        data-btnCancelLabel="<?=__('No way!')?>">
-                                        <i class="glyphicon glyphicon-trash"></i>
-                                    </a>
-                                    <span class="drag-action">
-                                        <div class="checkbox check-success">
-                                            <input name="locations[]" value="<?=$loc->id_location?>" type="checkbox" id="checkbox_<?=$loc->id_location?>">
-                                            <label for="checkbox_<?=$loc->id_location?>"></label>
-                                        </div>
-                                    </span>
-                                </div>
-
-                            </li><!--li_<?=$loc->id_location?>-->
-                        <?endforeach?>
-                    </ol><!--ol_1-->
-
-                    <span id='ajax_result' data-url='<?=Route::url('oc-panel',['controller'=>'location','action'=>'saveorder'])?>'></span>
-                </div>
-                <?if(core::count($locs) > 1) :?>
-                    <div class="panel-footer">
-                        <div class="text-right">
-                            <button type="button" data-toggle="modal" data-target="#delete-all" class="btn btn-danger">
-                                <?=__('Delete all locations')?>
-                            </button>
-
-                            <button name="delete" type="submit" class="btn btn-danger">
-                                <i class="glyphicon glyphicon-trash"></i>&nbsp; <?=__('Delete selected locations')?>
-                            </button>
-                        </div>
-                    </div>
-                <?endif?>
-            <?=FORM::close()?>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="delete-all" tabindex="-1" role="dialog" aria-labelledby="deleteLocations" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <?= FORM::open(Route::url('oc-panel',['controller'=>'location','action'=>'delete_all'], ['class'=>'form-horizontal', 'role'=>'form']))?>
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times-circle"></i></button>
-                    <h4 id="deleteLocations" class="modal-title"><?=__('Are you sure you want to delete all the locations?')?></h4>
-                </div>
-                <div class="modal-body">
-                    <div class="alert alert-danger">
-                        <p><?=__('We will move all the ads to home location.')?> <?=__('This is permanent! No backups, no restores, no magic undo button. We warned you, ok?')?></p>
+            <div class="mt-5 sm:flex sm:items-center">
+                <div class="max-w-xs w-full">
+                    <?=FORM::label('multy_locations', __('Location'), array('class'=>'sr-only'))?>
+                    <div class="relative rounded-md shadow-sm">
+                        <?=FORM::input('multy_locations', '', array('placeholder' => 'e.g. Location A, Location B, Location C', 'class' => 'form-input block w-full sm:text-sm sm:leading-5'))?>
                     </div>
                 </div>
-                <div class="modal-body text-right">
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=__('Cancel')?></button>
-                    <button type="submit" class="btn btn-danger" name="confirmation" value="1"><?=__('Delete')?></button>
-                </div>
-            <input type="hidden" name="id_location" value="<?=HTML::chars(Core::get('id_location'))?>"></div>
-            <?= FORM::close()?>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="quick-creator" tabindex="-1" role="dialog" aria-labelledby="quickLocations" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <?=FORM::open(Route::url('oc-panel',['controller'=>'location','action'=>'multy_locations'.'?id_location='.HTML::chars(Core::get('id_location', 1))]), ['role'=>'form','enctype'=>'multipart/form-data'])?>
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times-circle"></i></button>
-                    <h4 id="quickLocations" class="modal-title"><?=__('Quick location creator.')?></h4>
-                </div>
-                <div class="modal-body">
-                    <p><?=__('Add names for multiple locations, for each one push enter.')?></p>
-                    <div class="form-group">
-                        <?=FORM::label('multy_locations', __('Name'), ['class'=>'control-label', 'for'=>'multy_locations'])?>
-                        <div>
-                            <?=FORM::input('multy_locations', '', ['placeholder' => __('Hit enter to confirm'), 'class' => 'form-control', 'id' => 'multy_locations', 'type' => 'text','data-role'=>'tagsinput'])?>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer text-right">
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=__('Cancel')?></button>
-                    <?=FORM::button('submit', __('Send'), ['type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',['controller'=>'location','action'=>'multy_locations'.'?id_location='.HTML::chars(Core::get('id_location', 1))])])?>
-                </div>
-            <?=FORM::close()?>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="import-tool" tabindex="-1" role="dialog" aria-labelledby="importLocations" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times-circle"></i></button>
-                <h4 id="importLocations" class="modal-title"><?=__('Upload CSV file')?></h4>
+                <span class="mt-3 w-ful inline-flex rounded-md shadow-sm sm:mt-0 sm:ml-3 sm:w-auto">
+                    <?=FORM::button('submit', __('Send'), array('type'=>'submit', 'class'=>'w-full inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150 sm:w-auto sm:text-sm sm:leading-5'))?>
+                </span>
             </div>
+        </div>
+    </div>
+<?=FORM::close()?>
 
-            <div class="modal-body">
-                <?= FORM::open(Route::url('oc-panel',['controller'=>'tools','action'=>'import_tool'.'?id_parent='.HTML::chars(Core::get('id_location', 1))]), ['enctype'=>'multipart/form-data'])?>
-                    <h5><?=__('Country')?></h5>
-
-                    <div class="form-group">
+<?= FORM::open(Route::url('oc-panel',['controller'=>'tools','action'=>'import_tool'.'?id_parent='.HTML::chars(Core::get('id_location', 1))]), ['enctype'=>'multipart/form-data'])?>
+    <div class="bg-white shadow sm:rounded-lg mt-8">
+        <div class="px-4 py-5 sm:p-6">
+            <h3 class="text-lg leading-6 font-medium text-gray-900">
+                <?=__('Import locations')?>
+            </h3>
+            <div class="mt-2 max-w-xl text-sm leading-5 text-gray-500">
+                <p>
+                    <?=__('Please use the correct CSV format')?> <a class="hover:underline" href="https://docs.google.com/uc?id=0B60e9iwQucDwa2VjRXAtV0FXVlk&export=download"><?=__('download example')?></a>.
+                </p>
+            </div>
+            <div class="mt-5 sm:flex sm:items-center">
+                <div class="max-w-xs w-full">
+                    <?=Form::label('csv_file_locations', __('csv_file_locations'), ['class' => 'sr-only', 'for' => 'csv_file_locations'])?>
+                    <div class="relative rounded-md shadow-sm">
                         <?= FORM::select('country', Model_Location::valid_import_countries(), NULL, [
-                            'class' => 'tips form-control',
-                            'id' => 'country',
+                            'class' => 'form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
                         ]) ?>
                     </div>
-
-                    <?=FORM::button('submit', __('Import'), ['type'=>'submit', 'class'=>'btn btn-primary'])?>
-                <?=FORM::close()?>
-
-                <hr>
-
-                <?= FORM::open(Route::url('oc-panel',['controller'=>'tools','action'=>'import_tool'.'?id_parent='.HTML::chars(Core::get('id_location', 1))]), ['enctype'=>'multipart/form-data'])?>
-                    <h5><?=__('Upload CSV file')?></h5>
-
-                    <p>
-                        <?=__('Please use the correct CSV format')?> <a href="https://docs.google.com/uc?id=0B60e9iwQucDwa2VjRXAtV0FXVlk&export=download"><?=__('download example')?>.</a>
-                    </p>
-
-                    <div class="form-group">
-                        <label class="control-label" for="csv_file_locations"><?=__('Select file')?></label>
-                        <input type="file" name="csv_file_locations" id="csv_file_locations" class="form-control">
-                    </div>
-
-                    <?=FORM::button('submit', __('Upload'), ['type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',['controller'=>'tools','action'=>'import_tool'.'?id_parent='.HTML::chars(Core::get('id_location', 1))])])?>
-                <?=FORM::close()?>
+                </div>
+                <span class="mt-3 w-ful inline-flex rounded-md shadow-sm sm:mt-0 sm:ml-3 sm:w-auto">
+                    <?=Form::button('submit', __('Import'), ['type'=>'submit', 'class'=>'w-full inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150 sm:w-auto sm:text-sm sm:leading-5'])?>
+                </span>
             </div>
+            <div class="mt-7 sm:flex sm:items-center">
+                <div class="max-w-xs w-full">
+                    <?=Form::label('csv_file_locations', __('csv_file_locations'), ['class' => 'sr-only', 'for' => 'csv_file_locations'])?>
+                    <div class="relative rounded-md shadow-sm">
+                        <input type="file" name="csv_file_locations" id="csv_file_locations" />
+                    </div>
+                </div>
+                <span class="mt-3 w-ful inline-flex rounded-md shadow-sm sm:mt-0 sm:ml-3 sm:w-auto">
+                    <?=Form::button('submit', __('Upload'), ['type'=>'submit', 'class'=>'w-full inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150 sm:w-auto sm:text-sm sm:leading-5'])?>
+                </span>
+            </div>
+        </div>
+    </div>
+<?=Form::close()?>
+
+<div class="bg-white shadow sm:rounded-lg mt-8">
+    <div class="px-4 py-5 sm:p-6">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">
+            <?= __('Delete all locations') ?>
+        </h3>
+        <div class="mt-2 max-w-xl text-sm leading-5 text-gray-500">
+            <p>
+                <?= __('This is permanent! No backups, no restores, no magic undo button. We warned you, ok?') ?>
+            </p>
+        </div>
+        <div class="mt-5">
+            <a href="<?=Route::url('oc-panel', ['controller' => 'location', 'action'=>'delete_all'])?>" role="button" class="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-50 focus:outline-none focus:border-red-300 focus:shadow-outline-red active:bg-red-200 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                <?= __('Delete') ?>
+            </a>
         </div>
     </div>
 </div>

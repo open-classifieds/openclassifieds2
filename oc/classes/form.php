@@ -13,7 +13,7 @@
 class Form extends Kohana_Form {
 
     /**
-     * @var  array  Internal list of errors 
+     * @var  array  Internal list of errors
      */
     private static $_errors = array();
 
@@ -67,7 +67,7 @@ class Form extends Kohana_Form {
 
     /**
      * Returns a formatted error block for all errors
-     * @param   array  $errors  
+     * @param   array  $errors
      * @return  string  HTML formatted error
      */
     public static function errors($errors = NULL)
@@ -123,7 +123,7 @@ class Form extends Kohana_Form {
     }
 
     /**
-     * 
+     *
      * Creates a hidden input for the CSRF prevention
      * @param string $namespace
      * @return string
@@ -132,8 +132,8 @@ class Form extends Kohana_Form {
     {
         if ($namespace===NULL)
             $namespace = URL::title(Request::current()->uri());
-        
-        return CSRF::form($namespace);      
+
+        return CSRF::form($namespace);
     }
 
     /**
@@ -143,10 +143,10 @@ class Form extends Kohana_Form {
      * @return  string  generated HTML
      */
     public static function redirect($url = NULL)
-    {        
+    {
         if ($url == NULL)
             $url = Core::request('auth_redirect',URL::current());
-        
+
         if (Request::current()->controller()=='auth')
             $url = Request::current()->referrer();
 
@@ -187,7 +187,7 @@ class Form extends Kohana_Form {
     public static function form_tag($name, $options, $value = NULL)
     {
         if ($options['display'] != 'hidden')
-            $label = FORM::label($name, (isset($options['label']))?$options['label']:$name, array('class'=>'control-label', 'for'=>$name));
+            $label = FORM::label($name, (isset($options['label']))?$options['label']:$name, array('class'=>'block text-sm font-medium leading-5 text-gray-700', 'for'=>$name));
         else
             $label = '';
 
@@ -196,20 +196,19 @@ class Form extends Kohana_Form {
             $value = (isset($options['default'])) ? $options['default']:NULL;
 
 
-        $attributes = array('placeholder' => (isset($options['label'])) ? $options['label']:$name, 
-                            'data-placeholder'       => (isset($options['label'])) ? $options['label']:$name,
-                            'class'       => 'form-control', 
-                            'id'          => $name, 
+        $attributes = array('placeholder' => (isset($options['label'])) ? $options['label']:$name,
+                            'class'       => 'mt-1 rounded-md shadow-sm form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                            'id'          => $name,
                             (isset($options['required']))?'required':''
                     );
 
-        switch ($options['display']) 
+        switch ($options['display'])
         {
             case 'select':
-                $input = FORM::select($name, $options['options'], $value);
+                $input = FORM::select($name, $options['options'], $value,  ['class' => 'mt-1 rounded-md shadow-sm form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5'] + $attributes);
                 break;
             case 'textarea':
-                $input = FORM::textarea($name, $value, $attributes);
+                $input = FORM::textarea($name, $value, ['class' => 'mt-1 rounded-md shadow-sm form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5'] + $attributes);
                 break;
             case 'hidden':
                 $input = FORM::hidden($name, $value, $attributes);
@@ -223,7 +222,7 @@ class Form extends Kohana_Form {
                 }
                 break;
             case 'color':
-                $attributes['class'] = 'color {hash:true, required:false}';
+                $attributes['class'] = 'mt-1 rounded-md shadow-sm form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 color {hash:true, required:false}';
                 $input = FORM::input($name, $value, $attributes);
                 break;
             case 'text':
@@ -256,7 +255,7 @@ class Form extends Kohana_Form {
 
         if ($value === NULL)
             $value = (isset($options['default'])) ? $options['default']:NULL;
-        
+
         // dependent classes on type
         $class = 'form-control '.'cf_'.$options['display'].'_fields data-custom ';
         switch ($options['display']) {
@@ -278,14 +277,14 @@ class Form extends Kohana_Form {
         }
         $attributes = array('placeholder'       => (isset($options['placeholder'])) ? $options['placeholder'] : ((isset($options['label'])) ? $options['label'] : $name),
                             'data-placeholder'       => (isset($options['data-placeholder'])) ? $options['data-placeholder'] : ((isset($options['label'])) ? $options['label'] : $name),
-                            'title'             => (isset($options['tooltip'])) ? $options['tooltip']:NULL, 
+                            'title'             => (isset($options['tooltip'])) ? $options['tooltip']:NULL,
                             'data-categories'   => (isset($options['categories'])) ? json_encode($options['categories']):NULL,
-                            'class'             => $class, 
+                            'class'             => $class,
                             'id'                => $name,
                             (isset($options['required']) AND $options['required']== TRUE)?'required':NULL
                     );
 
-        switch ($options['display']) 
+        switch ($options['display'])
         {
             case 'select':
                 $input = FORM::select($name, $options['options'], (!is_array($value))?$value:NULL, $attributes);
@@ -307,21 +306,21 @@ class Form extends Kohana_Form {
                 break;
             case 'checkbox':
                 $checked = in_array($value, ['1', 'on']); // value can be 1 or 'on'
-                
+
                 $input = Form::hidden($name, 0).'<div class="checkbox"><label>'.FORM::checkbox($name, 1, $checked, $attributes).'</label></div>';
-                
+
                 break;
             case 'radio':
                 $input = '';
                 $label = '<b>'.$options['label'].'</b>';
                 $index = 0;
-                
+
                 foreach($options['options'] as $id => $radio_name)
                 {
                     $checked = ($value == $index) ? TRUE : FALSE ;
                     if($id !== "")
                         $input .= '<div class="radio"><label>'.Form::radio($name, $index, $checked, $attributes).$radio_name.'</label></div>';
-                    
+
                     $index++;
                 }
                 break;
@@ -345,7 +344,7 @@ class Form extends Kohana_Form {
 
         return $out;
     }
-    
+
     /**
      * get field html code for a custom field
      * @param  string $name input name
@@ -357,10 +356,10 @@ class Form extends Kohana_Form {
     {
         if ($value === NULL)
             $value = (isset($options['default'])) ? $options['default']:NULL;
-        
+
         // dependent classes on type
         $class = 'form-control '.'cf_'.$options['display'].'_fields data-custom ';
-        
+
         switch ($options['display']) {
             case 'checkbox':
                 $class = 'cf_'.$options['display'].'_fields data-custom';
@@ -377,14 +376,14 @@ class Form extends Kohana_Form {
         }
         $attributes = array('placeholder'       => (isset($options['placeholder'])) ? $options['placeholder'] : ((isset($options['label'])) ? $options['label'] : $name),
                             'data-placeholder'  => (isset($options['data-placeholder'])) ? $options['data-placeholder'] : ((isset($options['label'])) ? $options['label'] : $name),
-                            'title'             => (isset($options['tooltip'])) ? $options['tooltip']:NULL, 
+                            'title'             => (isset($options['tooltip'])) ? $options['tooltip']:NULL,
                             'data-categories'   => (isset($options['categories'])) ? json_encode($options['categories']):NULL,
-                            'class'             => $class, 
+                            'class'             => $class,
                             'id'                => $name,
                             (isset($options['required']) AND $options['required']== TRUE)?'required':NULL
                     );
-    
-        switch ($options['display']) 
+
+        switch ($options['display'])
         {
             case 'select':
                 $input = FORM::select($name, $options['options'], (!is_array($value))?$value:NULL, $attributes);
@@ -401,25 +400,25 @@ class Form extends Kohana_Form {
             case 'date':
                 $attributes['data-date'] = "data-date";
                 $attributes['data-date-format'] = "yyyy-mm-dd";
-    
+
                 $input = FORM::input($name, $value, $attributes);
                 break;
             case 'checkbox':
                 $checked = isset($value); // value can be 1 or 'on'
-    
+
                 $input = '<div class="checkbox"><label>'.FORM::checkbox($name, NULL, $checked, $attributes).'</label></div>';
-                
+
                 break;
             case 'radio':
                 $input = '';
                 $index = 0;
-                
+
                 foreach($options['options'] as $id => $radio_name)
                 {
                     $checked = ($value == $index) ? TRUE : FALSE ;
                     if($id !== "")
                         $input .= '<div class="radio"><label>'.Form::radio($name, $index, $checked, $attributes).' '.$radio_name.'</label></div>';
-                    
+
                     $index++;
                 }
                 break;
@@ -438,7 +437,7 @@ class Form extends Kohana_Form {
                 $input = FORM::input($name, $value, $attributes);
                 break;
         }
-    
+
         return $input;
     }
 

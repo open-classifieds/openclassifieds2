@@ -1,128 +1,115 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<h1 class="page-header page-title" id="crud-<?=$name?>">
-    <?=__('Update')?> <?=Text::ucfirst(__($name))?>
-</h1>
+<div class="md:flex md:items-center md:justify-between">
+    <div class="flex-1 min-w-0">
+        <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
+            <?= $location->name ?>
+        </h2>
+    </div>
+</div>
 
-<hr>
+<div class="mt-8">
+    <?=$form->render()?>
+</div>
 
-<div class="row">
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?=__('Location details')?></h3>
-            </div>
-            <div class="panel-body">
-                <?=$form->render()?>
+<? if (Core::config('general.multilingual')) : ?>
+    <div class="bg-white overflow-hidden shadow rounded-lg mt-8">
+        <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
+            <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-no-wrap">
+                <div class="ml-4 mt-2">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">
+                        <?= __('Translations') ?>
+                    </h3>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-6">
-        <? if (Core::config('general.multilingual')) : ?>
-            <form class="form-horizontal" enctype="multipart/form-data" method="post" action="<?= Route::url('oc-panel', array('controller' => 'location', 'action' => 'update_translations', 'id' => $form->object->id_location)) ?>">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><?= __('Translations') ?></h3>
-                    </div>
-                    <? foreach (i18n::get_selectable_languages() as $locale => $language) : ?>
-                        <? if (Core::config('i18n.locale') != $locale) : ?>
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a role="button" data-toggle="collapse" href="#<?= $locale ?>" aria-expanded="false" aria-controls="<?= $locale ?>">
-                                        <small class="fa fa-chevron-down pull-right"></small>
-                                        <?= $locale ?>
-                                    </a>
-                                </h4>
+        <div class="px-4 py-5 sm:p-6">
+            <?= Form::open(Route::url('oc-panel', array('controller' => 'location', 'action' => 'update_translations', 'id' => $form->object->id_location)), ['class'=>'config ajax-load', 'enctype'=>'multipart/form-data'])?>
+                <div>
+                    <? foreach ($languages = i18n::get_selectable_languages() as $locale => $language) : ?>
+                        <? $last_item = $locale === count($languages) - 1 ?>
+                        <div class="<?= $last_item ? '' : 'mb-8 border-b border-gray-200 pb-8' ?>">
+                            <div>
+                                <h3 class="text-base leading-5 font-medium text-gray-900">
+                                    <?= $locale ?>
+                                </h3>
                             </div>
-                            <div class="panel-body collapse" id="<?= $locale ?>">
-                                <div class="form-group">
-                                    <?= FORM::label('translations_name_' . $locale, _e('Name'), array('class' => 'col-xs-12 control-label', 'for' => 'translations_name_' . $locale)) ?>
-                                    <div class="col-sm-12">
+                            <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
+                                <div class="sm:col-span-4">
+                                    <?= FORM::label('translations_name_' . $locale, _e('Name'), array('class' => 'block text-sm font-medium leading-5 text-gray-700', 'for' => 'translations_name_' . $locale)) ?>
+                                    <div class="mt-1 rounded-md shadow-sm">
                                         <?= FORM::input('translations[name][' . $locale . ']', $location->translate_name($locale), array(
-                                            'placeholder' => '',
-                                            'rows' => 3, 'cols' => 50,
-                                            'class' => 'form-control',
-                                            'id' => 'translations_name_' . $locale,
+                                            'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
                                         )) ?>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <?= FORM::label('translations_description_' . $locale, _e('Description'), array('class' => 'col-xs-12 control-label', 'for' => 'translations_description_' . $locale)) ?>
-                                    <div class="col-sm-12">
+                                <div class="sm:col-span-4">
+                                    <?= Form::label('translations_description_' . $locale, _e('Description'), array('class' => 'block text-sm font-medium leading-5 text-gray-700', 'for' => 'translations_description_' . $locale)) ?>
+                                    <div class="mt-1 rounded-md shadow-sm">
                                         <?= FORM::textarea('translations[description][' . $locale . ']', $location->translate_description($locale), array(
-                                            'placeholder' => '',
-                                            'rows' => 3, 'cols' => 50,
-                                            'class' => 'form-control',
+                                            'rows' => 3,
+                                            'cols' => 50,
+                                            'class' => 'form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
                                             'id' => 'translations_description_' . $locale,
                                         )) ?>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary"><?= __('Submit translations') ?></button>
                             </div>
-                        <? endif ?>
+                        </div>
                     <? endforeach ?>
                 </div>
-            </form>
-        <? endif ?>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?=__('Upload location icon')?></h3>
-            </div>
-            <div class="panel-body">
-                <?if (( $icon_src = $location->get_icon() )!==FALSE ):?>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <a class="thumbnail">
-                                <img src="<?=$icon_src?>" class="img-rounded" alt="<?=__('Location icon')?>" height='200px'>
-                            </a>
-                        </div>
-                    </div>
-                <?endif?>
-                <form class="form-horizontal" enctype="multipart/form-data" method="post" action="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'icon','id'=>$form->object->id_location))?>">
-                    <?=Form::errors()?>
-
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <?= FORM::label('location_icon', __('Select from files'), array('for'=>'location_icon'))?>
-                            <input type="file" name="location_icon" class="form-control" id="location_icon" />
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary"><?=__('Submit')?></button>
-                    <?if (( $icon_src = $location->get_icon() )!==FALSE ):?>
-                        <button type="submit"
-                            class="btn btn-danger index-delete index-delete-inline"
-                             onclick="return confirm('<?=__('Delete icon?')?>');"
-                             type="submit"
-                             name="icon_delete"
-                             value="1"
-                             title="<?=__('Delete icon')?>">
-                            <?=__('Delete icon')?>
-                        </button>
-                    <?endif?>
-                </form>
-            </div>
+                <div>
+                    <span class="inline-flex rounded-md shadow-sm">
+                        <?=FORM::button('submit', __('Save'), ['type'=>'submit', 'class'=>'inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition duration-150 ease-in-out'])?>
+                    </span>
+                </div>
+            <?= Form::close() ?>
         </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?=sprintf(__('Find %s‘s latitude & longitude'), $location->name)?></h3>
+    </div>
+<? endif ?>
+
+<?=FORM::open(Route::url('oc-panel',array('controller'=>'location','action'=>'icon','id'=>$form->object->id_location)), array('enctype'=>'multipart/form-data'))?>
+    <div class="bg-white shadow sm:rounded-lg mt-8">
+        <?=Form::errors()?>
+
+        <div class="px-4 py-5 sm:p-6">
+            <h3 class="text-lg leading-6 font-medium text-gray-900">
+                <?=__('Upload location icon')?>
+            </h3>
+            <div class="mt-2 max-w-xl text-sm leading-5 text-gray-500">
+                <p>
+                    <?=__('Select a file')?>
+                </p>
             </div>
-            <div class="panel-body">
-                <?= FORM::input('address', Request::current()->post('address'), array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Type address')))?>
-                <div class="popin-map-container">
-                    <div class="map-inner" id="map"
-                        data-lat="<?=($location->latitude)?$location->latitude:core::config('advertisement.center_lat')?>"
-                        data-lon="<?=($location->latitude)?$location->longitude:core::config('advertisement.center_lon')?>"
-                        data-zoom="<?=core::config('advertisement.map_zoom')?>"
-                        style="height:200px;width:100%">
+            <?if (( $icon_src = $location->get_icon() )!==FALSE ):?>
+                <div class="flex flex-wrap">
+                    <div class="md:w-1/3 pr-4 pl-4">
+                        <a class="thumbnail">
+                            <img src="<?=$icon_src?>" class="img-rounded" alt="<?=__('Category icon')?>" height='200px'>
+                        </a>
                     </div>
                 </div>
-                <ul class="list-inline">
-                    <li><?=__('Latitude')?>: <span id="preview_lat"><?=$location->latitude?></span></li>
-                    <li><?=__('Longitude')?>: <span id="preview_lon"><?=$location->longitude?></span></li>
-                </ul>
-                <button type="submit" class="btn btn-primary gmap-submit"><?=__('Submit')?></button>
+                <?if (( $icon_src = $location->get_icon() )!==FALSE ):?>
+                    <button type="submit"
+                        class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  text-red-100 bg-red-500 hover:bg-red-400 index-delete index-delete-inline"
+                        type="submit"
+                        name="icon_delete"
+                        value="1">
+                        <?=__('Delete icon')?>
+                    </button>
+                <?endif?>
+            <?endif?>
+            <div class="mt-5 sm:flex sm:items-center">
+                <div class="max-w-xs w-full">
+                    <?=Form::label('location_icon', 'Location icon', ['class' => 'sr-only', 'for' => 'location_icon'])?>
+                    <div class="relative rounded-md shadow-sm">
+                        <input type="file" name="location_icon" id="location_icon" />
+                    </div>
+                </div>
+                <span class="mt-3 w-ful inline-flex rounded-md shadow-sm sm:mt-0 sm:ml-3 sm:w-auto">
+                    <?=Form::button('submit', __('Upload'), ['type'=>'submit', 'class'=>'w-full inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150 sm:w-auto sm:text-sm sm:leading-5'])?>
+                </span>
             </div>
         </div>
     </div>
-</div>
+<?=Form::close()?>

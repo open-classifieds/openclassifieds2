@@ -1,46 +1,70 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<?if ($controller->allowed_crud_action('create')):?>
-    <ul class="list-inline pull-right">
-        <li>
-            <a class="btn btn-primary ajax-load btn-icon-left" href="<?=Route::url($route, array('controller'=> Request::current()->controller(), 'action'=>'create')) ?>" title="<?=__('New')?>">
-                <i class="fa fa-plus-circle"></i><?=__('New')?>
-            </a>
-        </li>
-    </ul>
-<?endif?>
 
-<h1 class="page-header page-title">
-    <?=Text::ucfirst(__($name))?>
-    <?if($name == 'product'):?>
-        <small><a href="https://docs.open-eshop.com/add-product/" target="_blank"><i class="fa fa-question-circle"></i></a></small>
-    <?elseif($name == 'license'):?>
-        <small><a href="https://docs.open-eshop.com/manage-licenses/" target="_blank"><i class="fa fa-question-circle"></i></a></small>
-    <?elseif($name == 'user'):?>
-        <small><a href="https://docs.yclas.com/manage-users/" target="_blank"><i class="fa fa-question-circle"></i></a></small>
-    <?elseif($name == 'role'):?>
-        <small><a href="https://docs.yclas.com/roles-work-classified-ads-script/" target="_blank"><i class="fa fa-question-circle"></i></a></small>
-    <?elseif($name == 'order'):?>
-        <small><a href="https://docs.yclas.com/how-to-manage-orders/" target="_blank"><i class="fa fa-question-circle"></i></a></small>
-    <?elseif($name == 'crontab'):?>
-        <small><a href="https://docs.yclas.com/how-to-set-crons/" target="_blank"><i class="fa fa-question-circle"></i></a></small>
-    <?elseif($name == 'plan'):?>
-        <small><a href="https://docs.yclas.com/membership-plans/" target="_blank"><i class="fa fa-question-circle"></i></a></small>
+<style>
+    .dropdown-menu {
+        position: absolute;
+        z-index: 1000;
+        display: none;
+        float: left;
+        min-width: 160px;
+        margin: 1px 0 0 2px;
+        list-style: none;
+        font-size: 14px;
+        text-align: left;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border: 1px solid rgba(0,0,0,.15);
+        border-radius: 4px;
+        box-shadow: 0 6px 12px rgba(0,0,0,.175);
+        background-clip: padding-box;
+    }
+</style>
+
+<div class="md:flex md:items-center md:justify-between">
+    <div class="flex-1 min-w-0">
+        <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
+            <?= Text::ucfirst(__($name)) ?>
+        </h2>
+
+        <?if($name == 'product'):?>
+            <small><a href="https://docs.open-eshop.com/add-product/" target="_blank"><i class="fa fa-question-circle"></i></a></small>
+        <?elseif($name == 'license'):?>
+            <small><a href="https://docs.open-eshop.com/manage-licenses/" target="_blank"><i class="fa fa-question-circle"></i></a></small>
+        <?elseif($name == 'user'):?>
+            <small><a href="https://docs.yclas.com/manage-users/" target="_blank"><i class="fa fa-question-circle"></i></a></small>
+        <?elseif($name == 'role'):?>
+            <small><a href="https://docs.yclas.com/roles-work-classified-ads-script/" target="_blank"><i class="fa fa-question-circle"></i></a></small>
+        <?elseif($name == 'order'):?>
+            <small><a href="https://docs.yclas.com/how-to-manage-orders/" target="_blank"><i class="fa fa-question-circle"></i></a></small>
+        <?elseif($name == 'crontab'):?>
+            <small><a href="https://docs.yclas.com/how-to-set-crons/" target="_blank"><i class="fa fa-question-circle"></i></a></small>
+        <?elseif($name == 'plan'):?>
+            <small><a href="https://docs.yclas.com/membership-plans/" target="_blank"><i class="fa fa-question-circle"></i></a></small>
+        <?endif?>
+    </div>
+
+    <?if ($controller->allowed_crud_action('create')):?>
+        <div class="mt-4 flex md:mt-0 md:ml-4">
+            <span class="ml-3 shadow-sm rounded-md">
+                <a href="<?= Route::url($route, ['controller' => Request::current()->controller(), 'action' => 'create']) ?>" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-700 active:bg-blue-700 transition duration-150 ease-in-out">
+                    <?=__('New')?>
+                </a>
+            </span>
+        </div>
     <?endif?>
-</h1>
-
-<hr>
+</div>
 
 <?if($extra_info_view):?>
     <p><?=$extra_info_view?></p>
 <?endif?>
 
-<div id="filter_buttons" data-url="<?=Route::url($route, array('controller'=> Request::current()->controller(), 'action'=>'ajax')).'?'.str_replace('rel=ajax','',$_SERVER['QUERY_STRING']) ?>">
+<div id="filter_buttons" data-url="<?=Route::url($route, ['controller'=> Request::current()->controller(), 'action'=>'ajax']).'?'.str_replace('rel=ajax','',$_SERVER['QUERY_STRING']) ?>">
     <?if (core::count($filters)>0):?>
-        <form class="form-inline form-hidden-elements" id="form-ajax-load" method="get" action="<?=Route::url($route, array('controller'=> Request::current()->controller(), 'action'=>'index')) ?>">
+        <form class="flex items-center mt-8 bg-white rounded-md shadow-sm" id="form-ajax-load" method="get" action="<?=Route::url($route, ['controller'=> Request::current()->controller(), 'action'=>'index']) ?>">
             <?foreach($filters as $field_name=>$values):?>
                 <?if (is_array($values)):?>
-                    <select name="filter__<?=$field_name?>" id="filter__<?=$field_name?>" class="form-control disable-chosen disable-select2" >
-                        <option value=""><?=__('Select')?> <?=$field_name?></option>
+                    <select name="filter__<?=$field_name?>" id="filter__<?=$field_name?>" class="-ml-px form-select relative block w-full rounded-none bg-transparent focus:z-10 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                        <option value=""><?= $field_name ?> = <?=__('All')?></option>
                         <?foreach ($values as $key=>$value):?>
                             <option value="<?=$key?>" <?=(core::request('filter__'.$field_name)==$key AND core::request('filter__'.$field_name)!==NULL)?'SELECTED':''?> >
                                 <?=$field_name?> = <?=$value?>
@@ -48,84 +72,48 @@
                         <?endforeach?>
                     </select>
                 <?elseif($values=='DATE'):?>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-addon"><?=__('From')?> <?=$field_name?></div>
-                            <input type="text" class="form-control datepicker_boot" id="filter__from__<?=$field_name?>" name="filter__from__<?=$field_name?>" value="<?=core::request('filter__from__'.$field_name)?>" data-date="<?=core::request('filter__from__'.$field_name)?>" data-date-format="yyyy-mm-dd">
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-                    </div>
-                    <span>-</span>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-addon"><?=__('To')?> <?=$field_name?></div>
-                            <input type="text" class="form-control datepicker_boot" id="filter__to__<?=$field_name?>" name="filter__to__<?=$field_name?>" value="<?=core::request('filter__to__'.$field_name)?>" data-date="<?=core::request('filter__to__'.$field_name)?>" data-date-format="yyyy-mm-dd">
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-                    </div>
-
+                    <input type="text" class="datepicker_boot form-input relative block w-full rounded-none -ml-px bg-transparent focus:z-10 transition ease-in-out duration-150 sm:text-sm sm:leading-5" id="filter__from__<?=$field_name?>" name="filter__from__<?=$field_name?>" placeholder="<?=__('From')?> <?=$field_name?>" value="<?=core::request('filter__from__'.$field_name)?>" data-date="<?=core::request('filter__from__'.$field_name)?>" data-date-format="yyyy-mm-dd">
+                    <input type="text" class="datepicker_boot form-input relative block w-full rounded-none -ml-px bg-transparent focus:z-10 transition ease-in-out duration-150 sm:text-sm sm:leading-5" id="filter__to__<?=$field_name?>" name="filter__to__<?=$field_name?>" placeholder="<?=__('To')?> <?=$field_name?>" value="<?=core::request('filter__to__'.$field_name)?>" data-date="<?=core::request('filter__to__'.$field_name)?>" data-date-format="yyyy-mm-dd">
                 <?elseif($values=='RANGE'):?>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="filter__from__<?=$field_name?>" name="filter__from__<?=$field_name?>" placeholder="<?=__('From')?> <?=$field_name?>" value="<?=core::request('filter__from__'.$field_name)?>" >
-                        </div>
-                    </div>
-                    <span>-</span>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="filter__to__<?=$field_name?>" name="filter__to__<?=$field_name?>" placeholder="<?=__('To')?> <?=$field_name?>" value="<?=core::request('filter__to__'.$field_name)?>" >
-                        </div>
-                    </div>
-                       
+                    <input type="text" class="form-input relative block w-full rounded-none -ml-px bg-transparent focus:z-10 transition ease-in-out duration-150 sm:text-sm sm:leading-5" id="filter__from__<?=$field_name?>" name="filter__from__<?=$field_name?>" placeholder="<?=__('From')?> <?=$field_name?>" value="<?=core::request('filter__from__'.$field_name)?>" >
+                    <input type="text" class="form-input relative block w-full rounded-none -ml-px bg-transparent focus:z-10 transition ease-in-out duration-150 sm:text-sm sm:leading-5" id="filter__to__<?=$field_name?>" name="filter__to__<?=$field_name?>" placeholder="<?=__('To')?> <?=$field_name?>" value="<?=core::request('filter__to__'.$field_name)?>" >
                 <?elseif($values=='INPUT'):?>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="filter__<?=$field_name?>" name="filter__<?=$field_name?>" placeholder="<?=(isset($captions[$field_name])?$captions[$field_name]['model'].' '.$captions[$field_name]['caption']:$field_name)?>" value="<?=core::request('filter__'.$field_name)?>" >
-                        </div>
-                    </div>
+                    <input type="text" class="form-input relative block w-full rounded-none -ml-px bg-transparent focus:z-10 transition ease-in-out duration-150 sm:text-sm sm:leading-5" id="filter__<?=$field_name?>" name="filter__<?=$field_name?>" placeholder="<?=(isset($captions[$field_name])?$captions[$field_name]['model'].' '.$captions[$field_name]['caption']:$field_name)?>" value="<?=core::request('filter__'.$field_name)?>" >
                 <?endif?>
             <?endforeach?>
-            <button type="submit" class="btn btn-primary btn-icon-left"><?=__('Filter')?></button>
+            <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-none rounded-r-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition duration-150 ease-in-out"><?=__('Filter')?></button>
         </form>
     <?endif?>
 </div>
 
-<div class="clearfix"></div>
+<div class="flex flex-col mt-8">
+    <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+        <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+            <table id="grid-data-api" class="min-w-full">
+                <thead>
+                    <tr>
+                        <?foreach($fields as $field):?>
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider" data-column-id="<?= $field ?>" <?= $elements->primary_key() == $field ? 'data-identifier="true"' : ''?> >
+                                <?if(isset($captions[$field]) AND !Exec::is_callable($captions[$field])):?>
+                                    <?=Text::ucfirst($captions[$field]['model'].' '.$captions[$field]['caption'])?>
+                                <?else:?>
+                                    <?=Text::ucfirst($field)?>
+                                <?endif?>
+                            </th>
+                        <?endforeach?>
 
-<div class="panel panel-default">
-    <div class="table-responsive">
-        <table id="grid-data-api" class="table table-striped table-responsive">
-            <thead>
-                <tr>
-                    <?foreach($fields as $field):?>
-                        <th data-column-id="<?=$field?>" <?=($elements->primary_key() == $field)?'data-identifier="true"':''?> >
-                            <?if(isset($captions[$field]) AND !exec::is_callable($captions[$field])):?>
-                                <?=Text::ucfirst($captions[$field]['model'].' '.$captions[$field]['caption'])?>
-                            <?else:?>
-                                <?=Text::ucfirst($field)?>
-                            <?endif?>
-                        </th>
-                    <?endforeach?>
-                    <th data-column-id="commands" data-formatter="commands" data-sortable="false">
-                        <?=__('Actions')?>
-                    </th>
-                </tr>
-            </thead>
-        </table>
+                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50" data-column-id="commands" data-formatter="commands" data-sortable="false"></th>
+                    </tr>
+                </thead>
+            </table>
+
+            <?if ($controller->allowed_crud_action('export')):?>
+                <div class="border-t border-gray-200 px-4 py-4 sm:px-6 flex justify-end">
+                    <a class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:shadow-outline-green focus:border-green-700 active:bg-green-700 transition duration-150 ease-in-out" href="<?=Route::url($route, ['controller'=> Request::current()->controller(), 'action'=>'export']) ?>" title="<?=__('Export')?>">
+                        <?=__('Export all')?>
+                    </a>
+                </div>
+            <?endif?>
+        </div>
     </div>
-
-    <?if ($controller->allowed_crud_action('export')):?>
-        <div class="panel-footer">
-            <p class="text-right">
-                <a class="btn btn-success" href="<?=Route::url($route, array('controller'=> Request::current()->controller(), 'action'=>'export')) ?>" title="<?=__('Export')?>">
-                    <i class="glyphicon glyphicon-download"></i>
-                    <?=__('Export all')?>
-                </a>
-            </p>
-        </div>            
-    <?endif?>
 </div>

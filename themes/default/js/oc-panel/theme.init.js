@@ -101,27 +101,6 @@ function init_panel()
 
     $('.radio > input:checked').parentsUntil('div .accordion').addClass('in');
 
-    //custom fields select. To determain if some fields are shown or not
-    $('select#cf_type_fileds').change(function(){ // on change add hidden
-        if ($(this).val() == 'select' || $(this).val() == 'radio' || $(this).val() == 'file' || $(this).val() == 'file_dropbox' || $(this).val() == 'file_gpicker' || $(this).val() == 'checkbox_group') {
-            $('#cf_values_input').attr('type','text');
-            $('#cf_values_input').parent().css('display','block'); // parent of a parent. display whole block
-        }
-        else{
-            $('#cf_values_input').attr('type','hidden');
-            $('#cf_values_input').parent().css('display','none'); // parent of a parent. dont show whole block
-        }
-    }).change();
-
-    // custom field edit, show/hide values field
-    $('#cf_values_input').parent().css('display','none');
-    if( $('#cf_type_field_input').attr('value') == 'select'
-        || $('#cf_type_field_input').attr('value') == 'radio'
-        || $('#cf_type_field_input').attr('value') == 'file_dropbox'
-        || $('#cf_type_field_input').attr('value') == 'file_gpicker'
-        || $('#cf_type_field_input').attr('value') == 'checkbox_group')
-            $('#cf_values_input').parent().css('display','block');
-
     // check all checkboxes in a table
     $('#select-all').click(function(e){
         var table= $(e.target).closest('table');

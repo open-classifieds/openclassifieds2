@@ -1,6 +1,6 @@
 $(function  () {
-    var group = $("ol.plholder").sortable({
-        group: 'plholder',
+    var group = $("ul.sortable").sortable({
+        group: 'sortable',
         delay: 350,
         onDrop: function (item, container, _super) {
             //first we execute the normal plugins behaviour
@@ -30,51 +30,20 @@ $(function  () {
                 type: "POST",
                 url: $('#ajax_result').data('url'),
                 beforeSend: function(text) {
-                    $('#ajax_result').text('Saving').removeClass().addClass("label label-warning");
-                    $("ol.plholder").sortable('disable');
-                    $('ol.plholder').animate({opacity: '0.5'});
+                    $('#ajax_result').text('Saving').removeClass().addClass("px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800");
+                    $("ul.sortable").sortable('disable');
+                    $('ul.sortable').animate({opacity: '0.5'});
                 },
                 data: data,
                 success: function(text) {
-                    $('#ajax_result').text(text).removeClass().addClass("label label-success");
-                    $("ol.plholder").sortable('enable');
-                    $('ol.plholder').animate({opacity: '1'});
+                    $('#ajax_result').text(text).removeClass().addClass("px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800");
+                    $("ul.sortable").sortable('enable');
+                    $('ul.sortable').animate({opacity: '1'});
                 }
             });
-
-
         },
         serialize: function (parent, children, isContainer) {
-             return isContainer ? children.join() : parent.attr("id");
+            return isContainer ? children.join() : parent.attr("id");
         },
-
     })
 })
-
-$(function(){
-    $(".index-delete").click(function(event) {
-        var href = $(this).attr('href');
-        var title = $(this).attr('title');
-        var text = $(this).data('text');
-        var id = $(this).data('id');
-        var confirmButtonText = $(this).data('btnoklabel');
-        var cancelButtonText = $(this).data('btncancellabel');
-        event.preventDefault();
-        swal({
-            title: title,
-            text: text,
-            type: "info",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: confirmButtonText,
-            cancelButtonText: cancelButtonText,
-            allowOutsideClick: true,
-        },
-        function(){
-            $.ajax({ url: href,
-                }).done(function ( data ) {
-                    $('#'+id).hide("slow");
-            });
-        });
-    });
-});

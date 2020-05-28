@@ -1,184 +1,115 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<div class="page-header" id="crud-<?=$name?>">
-    <h1><?=__('Update')?> <?=Text::ucfirst(__($name))?></h1>
+
+<div class="md:flex md:items-center md:justify-between">
+    <div class="flex-1 min-w-0">
+        <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
+            <?= $category->name ?>
+        </h2>
+    </div>
 </div>
-<div class="row">
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?=__('Category details')?></h3>
-            </div>
-            <div class="panel-body">
-                  <?=$form->render()?>
+
+<div class="mt-8">
+    <?=$form->render()?>
+</div>
+
+<? if (Core::config('general.multilingual')) : ?>
+    <div class="bg-white overflow-hidden shadow rounded-lg mt-8">
+        <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
+            <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-no-wrap">
+                <div class="ml-4 mt-2">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">
+                        <?= __('Translations') ?>
+                    </h3>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-6">
-        <? if (Core::config('general.multilingual')) : ?>
-            <form class="form-horizontal" enctype="multipart/form-data" method="post" action="<?= Route::url('oc-panel', array('controller' => 'category', 'action' => 'update_translations', 'id' => $form->object->id_category)) ?>">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><?= __('Translations') ?></h3>
-                    </div>
-                    <? foreach (i18n::get_selectable_languages() as $locale => $language) : ?>
-                        <? if (Core::config('i18n.locale') != $locale) : ?>
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a role="button" data-toggle="collapse" href="#<?= $locale ?>" aria-expanded="false" aria-controls="<?= $locale ?>">
-                                        <small class="fa fa-chevron-down pull-right"></small>
-                                        <?= $locale ?>
-                                    </a>
-                                </h4>
+        <div class="px-4 py-5 sm:p-6">
+            <?= Form::open(Route::url('oc-panel', array('controller' => 'category', 'action' => 'update_translations', 'id' => $form->object->id_category)), ['class'=>'config ajax-load', 'enctype'=>'multipart/form-data'])?>
+                <div>
+                    <? foreach ($languages = i18n::get_selectable_languages() as $locale => $language) : ?>
+                        <? $last_item = $locale === count($languages) - 1 ?>
+                        <div class="<?= $last_item ? '' : 'mb-8 border-b border-gray-200 pb-8' ?>">
+                            <div>
+                                <h3 class="text-base leading-5 font-medium text-gray-900">
+                                    <?= $locale ?>
+                                </h3>
                             </div>
-                            <div class="panel-body collapse" id="<?= $locale ?>">
-                                <div class="form-group">
-                                    <?= FORM::label('translations_name_' . $locale, _e('Name'), array('class' => 'col-xs-12 control-label', 'for' => 'translations_name_' . $locale)) ?>
-                                    <div class="col-sm-12">
+                            <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
+                                <div class="sm:col-span-4">
+                                    <?= FORM::label('translations_name_' . $locale, _e('Name'), array('class' => 'block text-sm font-medium leading-5 text-gray-700', 'for' => 'translations_name_' . $locale)) ?>
+                                    <div class="mt-1 rounded-md shadow-sm">
                                         <?= FORM::input('translations[name][' . $locale . ']', $category->translate_name($locale), array(
-                                            'placeholder' => '',
-                                            'rows' => 3, 'cols' => 50,
-                                            'class' => 'form-control',
-                                            'id' => 'translations_name_' . $locale,
+                                            'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
                                         )) ?>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <?= FORM::label('translations_description_' . $locale, _e('Description'), array('class' => 'col-xs-12 control-label', 'for' => 'translations_description_' . $locale)) ?>
-                                    <div class="col-sm-12">
+                                <div class="sm:col-span-4">
+                                    <?= Form::label('translations_description_' . $locale, _e('Description'), array('class' => 'block text-sm font-medium leading-5 text-gray-700', 'for' => 'translations_description_' . $locale)) ?>
+                                    <div class="mt-1 rounded-md shadow-sm">
                                         <?= FORM::textarea('translations[description][' . $locale . ']', $category->translate_description($locale), array(
-                                            'placeholder' => '',
-                                            'rows' => 3, 'cols' => 50,
-                                            'class' => 'form-control',
+                                            'rows' => 3,
+                                            'cols' => 50,
+                                            'class' => 'form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
                                             'id' => 'translations_description_' . $locale,
                                         )) ?>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary"><?= __('Submit translations') ?></button>
                             </div>
-                        <? endif ?>
+                        </div>
                     <? endforeach ?>
                 </div>
-            </form>
-        <? endif ?>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?=__('Upload category icon')?></h3>
-            </div>
-            <div class="panel-body">
-                <?if (( $icon_src = $category->get_icon() )!==FALSE ):?>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <a class="thumbnail">
-                                <img src="<?=$icon_src?>" class="img-rounded" alt="<?=__('Category icon')?>" height='200px'>
-                            </a>
-                        </div>
-                    </div>
-                <?endif?>
-                <form class="form-horizontal" enctype="multipart/form-data" method="post" action="<?=Route::url('oc-panel',array('controller'=>'category','action'=>'icon','id'=>$form->object->id_category))?>">
-                    <?=Form::errors()?>
-
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <?= FORM::label('category_icon', __('Select from files'), array('for'=>'category_icon'))?>
-                            <input type="file" name="category_icon" class="form-control" id="category_icon" />
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary"><?=__('Submit')?></button>
-                    <?if (( $icon_src = $category->get_icon() )!==FALSE ):?>
-                        <button type="submit"
-                            class="btn btn-danger index-delete index-delete-inline"
-                             onclick="return confirm('<?=__('Delete icon?')?>');"
-                             type="submit"
-                             name="icon_delete"
-                             value="1"
-                             title="<?=__('Delete icon')?>">
-                            <?=__('Delete icon')?>
-                        </button>
-                    <?endif?>
-                </form>
-            </div>
+                <div>
+                    <span class="inline-flex rounded-md shadow-sm">
+                        <?=FORM::button('submit', __('Save'), ['type'=>'submit', 'class'=>'inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition duration-150 ease-in-out'])?>
+                    </span>
+                </div>
+            <?= Form::close() ?>
         </div>
-        <?if (Core::extra_features() == TRUE):?>
-                <div class="panel panel-default">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><?=__('Custom Fields')?></h3>
-                        </div>
-                        <div class="panel-body">
-                            <p class="<?=(core::count($category_fields) > 0) ? NULL : 'hidden'?>" data-added-label><strong><?=__('Added Custom Fields')?></strong></p>
-                            <ol class='plholder' id="ol_1" data-id="1">
-                                <?foreach($category_fields as $name=>$field):?>
-                                    <li class="inactive" data-id="<?=$name?>" id="li_<?=$name?>">
-                                        <div class="drag-item">
-                                            <div class="drag-name">
-                                                <i class="text-success fa fa-check"></i>
-                                                <?=$name?>
-                                                <span class="label label-info "><?=$field['type']?></span>
-                                                <span class="label label-info "><?=($field['searchable'])?__('searchable'):NULL?></span>
-                                                <span class="label label-info "><?=($field['required'])?__('required'):NULL?></span>
-                                                <span class="label label-info "><?=(isset($field['admin_privilege']) AND $field['admin_privilege'])?__('Only Admin'):NULL?></span>
-                                                <span class="label label-info "><?=(isset($field['show_listing']) AND $field['show_listing'])?__('Show listing'):NULL?></span>
-                                            </div>
-                                            <a
-                                                href="<?=Route::url('oc-panel', array('controller'=>'fields', 'action'=>'remove_category','id'=>$name))?>?id_category=<?=$category->id_category?>"
-                                                class="drag-action index-delete"
-                                                title="<?=__('Are you sure you want to remove it?')?>"
-                                                data-id="li_<?=$name?>"
-                                                data-placement="left"
-                                                data-add-url="<?=Route::url('oc-panel', array('controller'=>'fields', 'action'=>'add_category','id'=>$name))?>?id_category=<?=$category->id_category?>"
-                                                data-remove-url="<?=Route::url('oc-panel', array('controller'=>'fields', 'action'=>'remove_category','id'=>$name))?>?id_category=<?=$category->id_category?>"
-                                                data-add-title="<?=__('Add custom field')?>"
-                                                data-remove-title="<?=__('Are you sure you want to remove it?')?>"
-                                                data-btnOkLabel="<?=__('Yes, definitely!')?>"
-                                                data-btnCancelLabel="<?=__('No way!')?>">
-                                                <i class="fa fa-minus"></i>
-                                            </a>
-                                        </div>
-                                    </li>
-                                <?endforeach?>
-                            </ol><!--ol_1-->
-                            <hr>
-                            <p class="<?=(core::count($selectable_fields) > 0) ? NULL : 'hidden'?>" data-add-label><strong><?=__('Add Custom Fields')?></strong></p>
-                            <ol class='plholder' id="ol_2" data-id="2">
-                                <?foreach($selectable_fields as $name=>$field):?>
-                                    <li class="inactive" data-id="<?=$name?>" id="li_<?=$name?>">
-                                        <div class="drag-item">
-                                            <div class="drag-name">
-                                                <?=$name?>
-                                                <span class="label label-info "><?=$field['type']?></span>
-                                                <span class="label label-info "><?=($field['searchable'])?__('searchable'):NULL?></span>
-                                                <span class="label label-info "><?=($field['required'])?__('required'):NULL?></span>
-                                                <span class="label label-info "><?=(isset($field['admin_privilege']) AND $field['admin_privilege'])?__('Only Admin'):NULL?></span>
-                                                <span class="label label-info "><?=(isset($field['show_listing']) AND $field['show_listing'])?__('Show listing'):NULL?></span>
-                                            </div>
-                                            <a
-                                                href="<?=Route::url('oc-panel', array('controller'=>'fields', 'action'=>'add_category','id'=>$name))?>?id_category=<?=$category->id_category?>"
-                                                class="drag-action index-add"
-                                                title="<?=__('Add custom field')?>"
-                                                data-id="li_<?=$name?>"
-                                                data-placement="left"
-                                                data-add-url="<?=Route::url('oc-panel', array('controller'=>'fields', 'action'=>'add_category','id'=>$name))?>?id_category=<?=$category->id_category?>"
-                                                data-remove-url="<?=Route::url('oc-panel', array('controller'=>'fields', 'action'=>'remove_category','id'=>$name))?>?id_category=<?=$category->id_category?>"
-                                                data-add-title="<?=__('Add custom field')?>"
-                                                data-remove-title="<?=__('Are you sure you want to remove it?')?>"
-                                                data-btnOkLabel="<?=__('Yes, definitely!')?>"
-                                                data-btnCancelLabel="<?=__('No way!')?>">
-                                                <i class="fa fa-plus"></i>
-                                            </a>
-                                        </div>
-                                    </li>
-                                <?endforeach?>
-                            </ol><!--ol_2-->
-                            <br>
-                            <p class="text-right">
-                                <a class="btn btn-primary ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'new'))?>?id_category=<?=$category->id_category?>" title="<?=__('New field')?>">
-                                    <?=__('New field')?>
-                                </a>
-                            </p>
-                        </div>
+    </div>
+<? endif ?>
+
+<?=FORM::open(Route::url('oc-panel',array('controller'=>'category','action'=>'icon','id'=>$form->object->id_category)), array('enctype'=>'multipart/form-data'))?>
+    <div class="bg-white shadow sm:rounded-lg mt-8">
+        <?=Form::errors()?>
+
+        <div class="px-4 py-5 sm:p-6">
+            <h3 class="text-lg leading-6 font-medium text-gray-900">
+                <?=__('Upload category icon')?>
+            </h3>
+            <div class="mt-2 max-w-xl text-sm leading-5 text-gray-500">
+                <p>
+                    <?=__('Select a file')?>
+                </p>
+            </div>
+            <?if (( $icon_src = $category->get_icon() )!==FALSE ):?>
+                <div class="flex flex-wrap">
+                    <div class="md:w-1/3 pr-4 pl-4">
+                        <a class="thumbnail">
+                            <img src="<?=$icon_src?>" class="img-rounded" alt="<?=__('Category icon')?>" height='200px'>
+                        </a>
                     </div>
                 </div>
-        <?endif?>
-    </div><!--end col-md-6-->
-</div>
+                <?if (( $icon_src = $category->get_icon() )!==FALSE ):?>
+                    <button type="submit"
+                        class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  text-red-100 bg-red-500 hover:bg-red-400 index-delete index-delete-inline"
+                        type="submit"
+                        name="icon_delete"
+                        value="1">
+                        <?=__('Delete icon')?>
+                    </button>
+                <?endif?>
+            <?endif?>
+            <div class="mt-5 sm:flex sm:items-center">
+                <div class="max-w-xs w-full">
+                    <?=Form::label('category_icon', 'Category icon', ['class' => 'sr-only', 'for' => 'category_icon'])?>
+                    <div class="relative rounded-md shadow-sm">
+                        <input type="file" name="category_icon" id="category_icon" />
+                    </div>
+                </div>
+                <span class="mt-3 w-ful inline-flex rounded-md shadow-sm sm:mt-0 sm:ml-3 sm:w-auto">
+                    <?=Form::button('submit', __('Upload'), ['type'=>'submit', 'class'=>'w-full inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150 sm:w-auto sm:text-sm sm:leading-5'])?>
+                </span>
+            </div>
+        </div>
+    </div>
+<?=Form::close()?>

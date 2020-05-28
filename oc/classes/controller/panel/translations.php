@@ -11,14 +11,14 @@ class Controller_Panel_Translations extends Auth_Controller {
     {
         parent::__construct($request, $response);
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Translations'))->set_url(Route::url('oc-panel',array('controller'  => 'translations'))));
-        
+
     }
 
     public function action_index()
     {
 
-        // validation active 
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('List')));  
+        // validation active
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('List')));
         $this->template->title = __('Translations');
 
         //scan project files and generate .po
@@ -33,7 +33,7 @@ class Controller_Panel_Translations extends Auth_Controller {
             $obj->set_regular('/_[_|e]\([\"|\']([^\"|\']+)[\"|\']\)/i');
             $obj->set_base_path('..');
             $obj->set_read_subdir(true);
-            
+
             $obj->write_pot(i18n::get_language_path());
             Alert::set(Alert::SUCCESS, 'File regenerated');
         }
@@ -51,25 +51,25 @@ class Controller_Panel_Translations extends Auth_Controller {
             Alert::set(Alert::SUCCESS,__('Language').' '. $locale);
             HTTP::redirect(Route::url('oc-panel',array('controller'  => 'translations')));
         }
-        
+
         //create language
         if(Core::post('locale'))
         {
             $language   = $this->request->post('locale');
             $folder     = DOCROOT.'languages/'.$language.'/LC_MESSAGES/';
-            
+
             // if folder does not exist, try to make it
-            if ( !file_exists($folder) AND ! @mkdir($folder, 0775, true)) 
+            if ( !file_exists($folder) AND ! @mkdir($folder, 0775, true))
             { // mkdir not successful ?
                 Alert::set(Alert::ERROR, __('Language folder cannot be created with mkdir. Please correct to be able to create new translation.'));
-                HTTP::redirect(Route::url('oc-panel',array('controller'  => 'translations')));  
+                HTTP::redirect(Route::url('oc-panel',array('controller'  => 'translations')));
             };
-            
+
             // write an empty .po file for $language
             $out = 'msgid ""'.PHP_EOL.'msgstr ""'.PHP_EOL;
             File::write($folder.'messages.po', $out);
             File::write($folder.'apps.po', $out);
-            
+
             Alert::set(Alert::SUCCESS, $this->request->param('id').' '.__('Language saved'));
         }
 
@@ -84,16 +84,15 @@ class Controller_Panel_Translations extends Auth_Controller {
         $language   = $this->language_fix($this->request->param('id'));
         $translation_file = core::request('translation_file','messages');
 
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Edit Translation').' "'.$language.'" "'.$translation_file.'"'));  
-        $this->template->title = __('Edit Translation').' "'.$language.'" "'.$translation_file.'"';     
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Edit Translation').' "'.$language.'" "'.$translation_file.'"'));
+        $this->template->title = __('Edit Translation').' "'.$language.'" "'.$translation_file.'"';
         $this->template->bind('content', $content);
         $content = View::factory('oc-panel/pages/translations/edit');
-        $this->template->scripts['footer'][] = 'js/oc-panel/translations.js';
 
 
         //get the translated ad not translated.
         list($translation_array,$untranslated_array) = $this->get_translation($language,$translation_file);
-        
+
         //watch out at any standard php installation there's a limit of 1000 posts....edit php.ini max_input_vars = 10000 to amend it.
         if($this->request->post() AND is_array(Core::post('translations')) )
         {
@@ -103,7 +102,7 @@ class Controller_Panel_Translations extends Auth_Controller {
             {
                 Model_Config::set_value('translations','lastupdate-'.($translation_file=='apps'?'apps-':'').$language, time());
                 Alert::set(Alert::SUCCESS, $language.' '.__('Language saved'));
-            }    
+            }
             else
                 Alert::set(Alert::ALERT, $language);
 
@@ -117,7 +116,7 @@ class Controller_Panel_Translations extends Auth_Controller {
         if (core::get('translated')==1)
         {
             $translation_array_filtered_aux = array();
-            foreach ($untranslated_array as $key=>$value ) 
+            foreach ($untranslated_array as $key=>$value )
             {
                 $translation_array_filtered_aux[] =  $translation_array_filtered[$value];
             }
@@ -127,9 +126,9 @@ class Controller_Panel_Translations extends Auth_Controller {
         elseif (core::get('search')!==NULL)
         {
             $translation_array_filtered_aux = array();
-            foreach ($translation_array as $key=>$value ) 
+            foreach ($translation_array as $key=>$value )
             {
-                if (strpos($value['original'],core::get('search'))!==FALSE OR 
+                if (strpos($value['original'],core::get('search'))!==FALSE OR
                     strpos($value['translated'],core::get('search'))!==FALSE )
                         $translation_array_filtered_aux[] =  $value;
             }
@@ -155,8 +154,8 @@ class Controller_Panel_Translations extends Auth_Controller {
         $from = $pagination->offset;
         $to   = $from + $pagination->items_per_page;
 
-        for ($key=$from; $key <$to ; $key++) 
-        { 
+        for ($key=$from; $key <$to ; $key++)
+        {
             if (isset($translation_array_filtered[$key]))
                 $trans_array_paginated[$key] = $translation_array_filtered[$key];
         }
@@ -172,7 +171,7 @@ class Controller_Panel_Translations extends Auth_Controller {
 
 
     public function action_replace()
-    {   
+    {
         $search     = Core::request('search', Core::request('name'));
         $replace    = Core::request('replace', Core::request('value'));
         $where      = Core::request('where','original');
@@ -193,7 +192,7 @@ class Controller_Panel_Translations extends Auth_Controller {
         $data_translated = array();
 
         //for each item search
-        foreach ($translation_array as $key => $values) 
+        foreach ($translation_array as $key => $values)
         {
             //replace if theres a match
             list($id,$original,$translated) = array_values($values);
@@ -212,7 +211,7 @@ class Controller_Panel_Translations extends Auth_Controller {
                         $data_translated[$id] = str_replace($search,$replace,$translated);
                     }
                     break;
-                
+
                 case 'original':
                     //found exact in the original
                     if ($exact AND $original == $search)
@@ -226,7 +225,7 @@ class Controller_Panel_Translations extends Auth_Controller {
                         $data_translated[$id] = str_replace($search,$replace,$original);
                     }
                     break;
-            }            
+            }
         }
 
         if ($this->save_translation($language,$translation_array,$data_translated,$translation_file))
@@ -238,13 +237,13 @@ class Controller_Panel_Translations extends Auth_Controller {
             Alert::set(Alert::ALERT, $language);
 
         $this->redirect(Route::url('oc-panel',array('controller'  => 'translations','action'=>'edit','id'=>$language)).'?translation_file='.$translation_file);
-              
+
     }
 
     /**
      * gets the translation as array form a language
-     * @param  string $language 
-     * @return array           
+     * @param  string $language
+     * @return array
      */
     public function get_translation($language,$translation_file = 'messages')
     {
@@ -279,16 +278,16 @@ class Controller_Panel_Translations extends Auth_Controller {
 
         //sort alphabetical using locale
         ksort($en_array_order,SORT_LOCALE_STRING);
-        
+
         //array with translated language may contain missing from EN
         $origin_translation = $pocreator_translated->strings;
 
         //lets get the array with translated values and sorted, will include everything even if was not previously saved
         $translation_array  = array();
         $untranslated_array = array();//keep track of words not translated stores ID
-        
+
         $i = 0;
-        foreach ($en_array_order as $origin => $value) 
+        foreach ($en_array_order as $origin => $value)
         {
             //do we have the translation?
             if (isset($origin_translation[$origin]) AND !empty($origin_translation[$origin]))
@@ -314,10 +313,10 @@ class Controller_Panel_Translations extends Auth_Controller {
 
     /**
      * saves a translation
-     * @param  string $language          
-     * @param  array $translation_array 
-     * @param  array $data_translated   
-     * @return bool                    
+     * @param  string $language
+     * @param  array $translation_array
+     * @param  array $data_translated
+     * @return bool
      */
     public function save_translation($language,$translation_array, $data_translated,$translation_file = 'messages')
     {
@@ -392,8 +391,8 @@ msgstr ""
 
     /**
      * be sure is correct capital letters
-     * @param  string $language 
-     * @return string           
+     * @param  string $language
+     * @return string
      */
     public function language_fix($language)
     {

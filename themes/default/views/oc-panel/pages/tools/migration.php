@@ -1,98 +1,93 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<ul class="nav nav-tabs nav-tabs-simple">
-    <li <?=(Request::current()->action()=='optimize') ? 'class="active"' : NULL?>>
-        <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'optimize'))?>"
-            title="<?=HTML::chars(__('Optimize'))?>"
-            class="ajax-load">
-            <?=__('Optimize')?>
-        </a>
-    </li>
-    <li <?=(Request::current()->action()=='sitemap') ? 'class="active"' : NULL?>>
-        <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'sitemap'))?>"
-            title="<?=HTML::chars(__('Sitemap'))?>"
-            class="ajax-load">
-            <?=__('Sitemap')?>
-        </a>
-    </li>
-    <li <?=(Request::current()->action()=='migration') ? 'class="active"' : NULL?>>
-        <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'migration'))?>"
-            title="<?=HTML::chars(__('Migration'))?>"
-            class="ajax-load">
-            <?=__('Migration')?>
-        </a>
-    </li>
-    <li <?=(Request::current()->action()=='cache') ? 'class="active"' : NULL?>>
-        <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'cache'))?>"
-            title="<?=HTML::chars(__('Cache'))?>"
-            class="ajax-load">
-            <?=__('Cache')?>
-        </a>
-    </li>
-    <li <?=(Request::current()->action()=='logs') ? 'class="active"' : NULL?>>
-        <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'logs'))?>"
-            title="<?=HTML::chars(__('Logs'))?>"
-            class="ajax-load">
-            <?=__('Logs')?>
-        </a>
-    </li>
-    <li <?=(Request::current()->action()=='phpinfo') ? 'class="active"' : NULL?>>
-        <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'phpinfo'))?>"
-            title="<?=HTML::chars(__('PHP Info'))?>"
-            class="ajax-load">
-            <?=__('PHP Info')?>
-        </a>
-    </li>
-    <?if(Core::config('general.algolia_search') == 1):?>
-        <li <?=(Request::current()->action()=='index') ? 'class="active"' : NULL?>>
-            <a href="<?=Route::url('oc-panel',array('controller'=>'algolia','action'=>'index'))?>"
-                title="Algolia"
-                class="ajax-load">
-                Algolia Search
-            </a>
-        </li>
-    <?endif?>
-</ul>
+<div class="lg:flex lg:items-center lg:justify-between">
+    <div class="flex-1 min-w-0">
+        <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
+            <?= __('Migration') ?>
+        </h2>
+    </div>
+</div>
 
-<div class="panel panel-default">
-    <div class="panel-body">
-        <h1 class="page-header page-title">
+<div class="bg-white overflow-hidden shadow rounded-lg mt-8">
+    <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">
             <?=__('Migration')?> from OC 1.7.x/1.8.x to 2.x
-            <a target="_blank" href="https://docs.yclas.com/how-to-upgrade-1-7-x1-8-x-to-2-x/">
-                <i class="fa fa-question-circle"></i>
-            </a>
-        </h1>
-        <hr>
-        <p><?=__("Your PHP time limit is")?> <?=ini_get('max_execution_time')?> <?=__("seconds")?>
-                <form method="post" action="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'migration'))?>">
-                    <?=Form::errors()?>
-                    <div class="form-group">
-                        <label class="control-label"><?=__("Host name")?>:</label>
-                        <input type="text" name="hostname" value="<?=$db_config['connection']['hostname']?>" class="form-control">
+        </h3>
+    </div>
+    <div class="px-4 py-5 sm:p-6">
+        <?=Form::open(Route::url('oc-panel',array('controller'=>'tools','action'=>'migration')))?>
+            <div>
+                <div>
+                    <div>
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                            <?= __('General') ?>
+                        </h3>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label"><?=__("User name")?>:</label>
-                        <input type="text" name="username"  value="<?=$db_config['connection']['username']?>" class="form-control">
+                    <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
+                        <div class="sm:col-span-4">
+                            <?= FORM::label('hostname', __('Host name'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <?= FORM::input('hostname', $db_config['connection']['hostname'], [
+                                    'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                                ])?>
+                            </div>
+                        </div>
+                        <div class="sm:col-span-4">
+                            <?= FORM::label('username', __('User name'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <?= FORM::input('username', $db_config['connection']['username'], [
+                                    'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                                ])?>
+                            </div>
+                        </div>
+                        <div class="sm:col-span-4">
+                            <?= FORM::label('password', __('Password'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <?= FORM::input('password', NULL, [
+                                    'type' => 'password',
+                                    'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                                ])?>
+                            </div>
+                        </div>
+                        <div class="sm:col-span-4">
+                            <?= FORM::label('database', __('Database name'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <?= FORM::input('database', $db_config['connection']['database'], [
+                                    'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                                ])?>
+                            </div>
+                        </div>
+                        <div class="sm:col-span-4">
+                            <?= FORM::label('charset', __('Database charset'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <?= FORM::input('charset', $db_config['charset'], [
+                                    'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                                ])?>
+                            </div>
+                        </div>
+                        <div class="sm:col-span-4">
+                            <?= FORM::label('table_prefix', __('Table prefix'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <?= FORM::input('table_prefix', 'yclas_', [
+                                    'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                                ])?>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label"><?=__("Password")?>:</label>
-                        <input type="text" name="password" value="" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label"><?=__("Database name")?>:</label>
-                        <input type="text" name="database" value="<?=$db_config['connection']['database']?>"  class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label"><?=__("Database charset")?>:</label>
-                                <input type="text" name="charset" value="<?=$db_config['charset']?>"  class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label"><?=__("Table prefix")?>:</label>
-                                <input type="text" name="table_prefix" value="oc_" class="form-control" />
-                    </div>
-                    <hr>
-                    <a href="<?=Route::url('oc-panel')?>" class="btn btn-default"><?=__('Cancel')?></a>
-                     <button type="submit" class="btn btn-primary"><?=__('Migrate')?></button>
-                </form>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-200 pt-5">
+                <div class="flex justify-end">
+                    <span class="inline-flex rounded-md shadow-sm">
+                        <a href="<?= Route::url('oc-panel') ?>" role="button" class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out">
+                            <?= __('Cancel') ?>
+                        </a>
+                    </span>
+                    <span class="ml-3 inline-flex rounded-md shadow-sm">
+                        <?=FORM::button('submit', __('Migrate'), ['type'=>'submit', 'class'=>'inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition duration-150 ease-in-out'])?>
+                    </span>
+                </div>
+            </div>
+        <?= Form::close() ?>
     </div>
 </div>

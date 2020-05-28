@@ -1,16 +1,13 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<h1 class="page-header page-title" id="crud-<?=$name?>">
-    <?=__('New')?> <?=Text::ucfirst(__($name))?>
-</h1>
-<hr>
-
-<div class="row">
-    <div class="col-md-12 col-lg-12">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <?=$form->render()?>
-            </div>
-        </div>
+<div class="md:flex md:items-center md:justify-between">
+    <div class="flex-1 min-w-0">
+        <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
+            <?= __('New category') ?>
+        </h2>
     </div>
+</div>
+
+<div class="mt-8">
+    <?=$form->render()?>
 </div>

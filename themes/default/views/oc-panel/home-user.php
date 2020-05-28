@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <div id="page-welcome" class="hero-unit">
-    <h1>
+    <h1 class="text-xl font-semibold">
     <?=__('Welcome')?>
     <?=Auth::instance()->get_user()->name?>
         &nbsp; <small><?=Auth::instance()->get_user()->email?> </small>

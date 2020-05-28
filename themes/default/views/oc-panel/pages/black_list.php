@@ -14,7 +14,7 @@
 </p>
 
 <div class="panel panel-default">
-    <table class="table table-striped">
+    <table class="w-full max-w-full mb-4 bg-transparent table-striped">
         <thead>
             <tr>
                 <th><?=__('Name')?></th>
@@ -29,7 +29,7 @@
                   	<td><?=$user->email?></td>
                   	<td class="nowrap">
                         <a href="<?=Route::url('oc-panel', array('controller'=>'pool','action'=>'remove','id'=>$user->id_user))?>" 
-                  		    class="btn btn-danger"
+                  		    class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  text-red-100 bg-red-500 hover:bg-red-400"
                             title="<?=__('Are you sure you want to remove?')?>" 
                             data-toggle="confirmation" 
                             data-btnOkLabel="<?=__('Yes, definitely!')?>" 

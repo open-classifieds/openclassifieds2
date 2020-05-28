@@ -1,82 +1,45 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<ul class="nav nav-tabs nav-tabs-simple">
-    <li <?=(Request::current()->action()=='optimize') ? 'class="active"' : NULL?>>
-        <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'optimize'))?>"
-            title="<?=HTML::chars(__('Optimize'))?>"
-            class="ajax-load">
-            <?=__('Optimize')?>
-        </a>
-    </li>
-    <li <?=(Request::current()->action()=='sitemap') ? 'class="active"' : NULL?>>
-        <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'sitemap'))?>"
-            title="<?=HTML::chars(__('Sitemap'))?>"
-            class="ajax-load">
-            <?=__('Sitemap')?>
-        </a>
-    </li>
-    <li <?=(Request::current()->action()=='migration') ? 'class="active"' : NULL?>>
-        <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'migration'))?>"
-            title="<?=HTML::chars(__('Migration'))?>"
-            class="ajax-load">
-            <?=__('Migration')?>
-        </a>
-    </li>
-    <li <?=(Request::current()->action()=='cache') ? 'class="active"' : NULL?>>
-        <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'cache'))?>"
-            title="<?=HTML::chars(__('Cache'))?>"
-            class="ajax-load">
-            <?=__('Cache')?>
-        </a>
-    </li>
-    <li <?=(Request::current()->action()=='logs') ? 'class="active"' : NULL?>>
-        <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'logs'))?>"
-            title="<?=HTML::chars(__('Logs'))?>"
-            class="ajax-load">
-            <?=__('Logs')?>
-        </a>
-    </li>
-    <li <?=(Request::current()->action()=='phpinfo') ? 'class="active"' : NULL?>>
-        <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'phpinfo'))?>"
-            title="<?=HTML::chars(__('PHP Info'))?>"
-            class="ajax-load">
-            <?=__('PHP Info')?>
-        </a>
-    </li>
-    <?if(Core::config('general.algolia_search') == 1):?>
-        <li <?=(Request::current()->action()=='index') ? 'class="active"' : NULL?>>
-            <a href="<?=Route::url('oc-panel',array('controller'=>'algolia','action'=>'index'))?>"
-                title="Algolia"
-                class="ajax-load">
-                Algolia Search
-            </a>
-        </li>
-    <?endif?>
-</ul>
-
-<div class="panel panel-default">
-    <div class="panel-body">
-        <h1 class="page-header page-title">
+<div class="lg:flex lg:items-center lg:justify-between">
+    <div class="flex-1 min-w-0">
+        <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
             <?=__('System Logs')?>
-        </h1>
-        <hr>
-        <p><?=__('Reading log file')?><code> <?=$file?></code></p>
-                <form id="" class="form-inline" method="get" action="">
-                    <fieldset>
-                        <div class="form-group">
-                            <div class="input-group">
-                                <input  type="text" class="form-control" size="16" id="date" name="date"  value="<?=$date?>" data-date-format="yyyy-mm-dd">
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
+        </h2>
+    </div>
+</div>
+
+<div class="bg-white overflow-hidden shadow rounded-lg mt-8">
+    <div class="px-4 py-5 sm:p-6">
+        <?=FORM::open('')?>
+            <div>
+                <div>
+                    <div>
+                        <p class="mt-1 text-sm leading-5 text-gray-500">
+                            <?=__('Reading log file')?> <span class="bg-red-50 text-red-600"><?= $file ?></span>
+                        </p>
+                    </div>
+                    <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
+                        <div class="sm:col-span-2">
+                            <?= FORM::label('site_name', __('Date'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <?= FORM::input('date', $date, [
+                                    'data-date-format' => 'yyyy-mm-dd',
+                                    'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                                    'id' => 'date',
+                                ])?>
                             </div>
                         </div>
-                        <button class="btn btn-primary"><?=__('Log')?></button>
-                    </fieldset>
-                </form>
-                <br>
-                <textarea class="col-md-9 form-control" rows="20">
-                    <?=$log?>
-                </textarea>
+                        <div class="sm:col-span-6">
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <?= FORM::textarea('log', $log, array(
+                                    'rows' => 20,
+                                    'class' => 'form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                                ))?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?= Form::close() ?>
     </div>
 </div>

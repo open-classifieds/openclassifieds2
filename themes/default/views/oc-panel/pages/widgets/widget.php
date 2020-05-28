@@ -1,42 +1,38 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<h1 class="page-header page-title">
-    <?=__('Available widgets')?>
-    <a target="_blank" href="https://docs.yclas.com/overview-of-widgets/">
-        <i class="fa fa-question-circle"></i>
-    </a>
-</h1>
+<div class="md:flex md:items-center md:justify-between">
+    <div class="flex-1 min-w-0">
+        <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
+            <?=__('Widgets')?>
+        </h2>
+    </div>
+</div>
 
-<hr>
-
-<div class="row">
-    <div class="col-md-8">
-        <div class="row">
-            <?$i=1?>
-            <?foreach ($widgets as $widget):?>
-                <?=$widget->form()?>
-                <?if($i%3 == 0):?><div class="clearfix"></div><?endif?>
-            <?$i++;endforeach?>
+<div class="mt-8">
+    <div class="grid grid-cols-3 gap-6">
+        <div class="col-span-2">
+            <div class="grid grid-cols-2 gap-6">
+                <?foreach ($widgets as $widget):?>
+                    <?=$widget->form()?>
+                <?endforeach?>
+            </div>
         </div>
-    </div><!--/span--> 
-    
-    <!--placeholders-->
-    <div class="col-md-4">
-        <?foreach ($placeholders as $placeholder=>$widgets):?>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div class="panel-title"><?=$placeholder?></div>
-                </div>
-                <div class="panel-body">
-                    <ul class="nav nav-list plholder" id="<?=$placeholder?>" >
+        <div class="space-y-6">
+            <?foreach ($placeholders as $placeholder=>$widgets):?>
+                <div class="bg-white overflow-hidden shadow rounded-lg">
+                    <div class="border-b border-gray-200 px-4 py-5 sm:px-6">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                            <?=$placeholder?>
+                        </h3>
+                    </div>
+                    <ul class='sortable' id="<?=$placeholder?>">
                         <?foreach ($widgets as $widget):?>
-                          <?=$widget->form()?>
-                        <?endforeach?>
+                            <?=$widget->form()?>
+                        <? endforeach ?>
                     </ul>
                 </div>
-            </div>
-        <?endforeach?>
-        <span id='ajax_result' data-url='<?=Route::url('oc-panel',array('controller'=>'widget','action'=>'saveplaceholders'))?>'></span>
+            <?endforeach?>
+            <span id='ajax_result' data-url='<?=Route::url('oc-panel',array('controller'=>'widget','action'=>'saveplaceholders'))?>'></span>
+        </div>
     </div>
-    <!--placeholders-->
 </div>
