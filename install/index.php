@@ -176,7 +176,7 @@ else
                                             </div>
                                             <div class="form-group hidden animated db-adv">
                                                 <label form="TABLE_PREFIX" class="control-label"><?=__("Table prefix")?>:</label>
-                                                <input type="text" id="TABLE_PREFIX" name="TABLE_PREFIX" class="form-control" value="<?=core::request('TABLE_PREFIX','yc3_')?>" required>
+                                                <input type="text" id="TABLE_PREFIX" name="TABLE_PREFIX" class="form-control" value="<?=core::request('TABLE_PREFIX','yc4_')?>" required>
                                             </div>
                                             <p><button type="button" class="btn btn-default btn-block validate-db"><?=__('Continue')?></button></p>
                                             <div class="row">
