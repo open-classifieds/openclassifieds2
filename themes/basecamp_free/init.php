@@ -3,7 +3,7 @@
   * Theme Name: Basecamp free
   * Description: The Basecamp free theme offers basic views and options. For more options consider buying the Basecamp premium theme which offers extended customization.
   * Tags: HTML5, Responsive, Mobile
-  * Version: 3.8.0
+  * Version: 4.0.0
   * Author: Christopher
   * License: Free
   * Parent Theme: default
