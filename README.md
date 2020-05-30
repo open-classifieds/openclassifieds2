@@ -17,7 +17,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md)
 
 # Yclas works thanks to other GPL software
 
-* Koseven http://koseven.dev
+* Koseven https://koseven.dev
 * KO Formmanager https://github.com/colinbm/kohana-formmanager
 * PHP-Gettext https://github.com/neo22s/php-gettext
 * Pear File_Gettext http://pear.php.net/package/File_Gettext
