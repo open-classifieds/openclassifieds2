@@ -2,7 +2,7 @@
 return array (
   '4.0.0' => 
   array (
-    'codename' => 'findacoolrebornname',
+    'codename' => 'coolrebornname',
     'released' => '2020-06-30',
     'blog' => '',
     'changelog' => 'https://github.com/yclas/yclas/compare/3.8.0...4.0.0',
