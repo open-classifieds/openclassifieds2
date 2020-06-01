@@ -19,7 +19,13 @@
                             <path d="M101.406,18.054 L172.8,151.059 L242.023,17.708 C220.704,8.035 197.029,2.65 172.093,2.65 L172.093,2.65 C146.863,2.65 122.92,8.166 101.406,18.054 L101.406,18.054 Z M152.493,340.417 C158.926,341.159 165.465,341.538 172.093,341.538 L172.093,341.538 C265.675,341.538 341.537,265.676 341.537,172.095 L341.537,172.095 C341.537,130.851 326.803,93.05 302.311,63.668 L302.311,63.668 L152.493,340.417 Z M2.65,172.095 C2.65,232.536 34.294,285.585 81.922,315.578 L81.922,315.578 L129.612,229.921 L39.707,66.326 C16.517,95.314 2.65,132.084 2.65,172.095 L2.65,172.095 Z" fill="#76a9fa"></path>
                         </g>
                     </svg>
-                    <span class="font-semibold ml-2 text-white">Yclas</span>
+                    <span class="font-semibold ml-2 text-white flex items-center">
+                        <?= Core::config('general.site_name') ?>
+
+                        <a href="<?=Route::url('default')?>" target="_blank">
+                            <svg class="ml-1 h-4 w-auto" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        </a>
+                    </span>
                 </div>
                 <?= View::factory('oc-panel/layouts/_nav') ?>
             </div>
@@ -56,7 +62,13 @@
                         <path d="M101.406,18.054 L172.8,151.059 L242.023,17.708 C220.704,8.035 197.029,2.65 172.093,2.65 L172.093,2.65 C146.863,2.65 122.92,8.166 101.406,18.054 L101.406,18.054 Z M152.493,340.417 C158.926,341.159 165.465,341.538 172.093,341.538 L172.093,341.538 C265.675,341.538 341.537,265.676 341.537,172.095 L341.537,172.095 C341.537,130.851 326.803,93.05 302.311,63.668 L302.311,63.668 L152.493,340.417 Z M2.65,172.095 C2.65,232.536 34.294,285.585 81.922,315.578 L81.922,315.578 L129.612,229.921 L39.707,66.326 C16.517,95.314 2.65,132.084 2.65,172.095 L2.65,172.095 Z" fill="#76a9fa"></path>
                     </g>
                 </svg>
-                <span class="font-semibold ml-2 text-white">Yclas</span>
+                <span class="font-semibold ml-2 text-white flex items-center">
+                    <?= Core::config('general.site_name') ?>
+
+                    <a href="<?=Route::url('default')?>" target="_blank">
+                        <svg class="ml-1 h-4 w-auto" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </a>
+                </span>
             </div>
             <div class="flex-1">
                 <?= View::factory('oc-panel/layouts/_nav') ?>

@@ -61,7 +61,7 @@
                                 </h4>
                                 <p class="text-sm leading-5 font-medium text-blue-600">
                                     <span class="inline-flex rounded-md shadow-sm">
-                                        <a href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'options'))?>" class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs leading-4 font-medium rounded text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150">
+                                        <a href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'index','id'=>$theme))?>" class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs leading-4 font-medium rounded text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150">
                                             <?= __('Activate') ?>
                                         </a>
                                     </span>

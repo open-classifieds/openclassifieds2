@@ -86,34 +86,35 @@
     <?endif?>
 </div>
 
-<div class="flex flex-col mt-8">
-    <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-        <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
-            <table id="grid-data-api" class="min-w-full">
-                <thead>
-                    <tr>
-                        <?foreach($fields as $field):?>
-                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider" data-column-id="<?= $field ?>" <?= $elements->primary_key() == $field ? 'data-identifier="true"' : ''?> >
-                                <?if(isset($captions[$field]) AND !Exec::is_callable($captions[$field])):?>
-                                    <?=Text::ucfirst($captions[$field]['model'].' '.$captions[$field]['caption'])?>
-                                <?else:?>
-                                    <?=Text::ucfirst($field)?>
-                                <?endif?>
-                            </th>
-                        <?endforeach?>
+<div class="bg-white overflow-hidden shadow rounded-lg mt-8">
+    <div class="flex flex-col">
+        <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+            <div class="align-middle inline-block min-w-full overflow-hidden">
+                <table id="grid-data-api" class="min-w-full">
+                    <thead>
+                        <tr>
+                            <?foreach($fields as $field):?>
+                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider" data-column-id="<?= $field ?>" <?= $elements->primary_key() == $field ? 'data-identifier="true"' : ''?> >
+                                    <?if(isset($captions[$field]) AND !Exec::is_callable($captions[$field])):?>
+                                        <?=Text::ucfirst($captions[$field]['model'].' '.$captions[$field]['caption'])?>
+                                    <?else:?>
+                                        <?=Text::ucfirst($field)?>
+                                    <?endif?>
+                                </th>
+                            <?endforeach?>
 
-                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50" data-column-id="commands" data-formatter="commands" data-sortable="false"></th>
-                    </tr>
-                </thead>
-            </table>
-
-            <?if ($controller->allowed_crud_action('export')):?>
-                <div class="border-t border-gray-200 px-4 py-4 sm:px-6 flex justify-end">
-                    <a class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:shadow-outline-green focus:border-green-700 active:bg-green-700 transition duration-150 ease-in-out" href="<?=Route::url($route, ['controller'=> Request::current()->controller(), 'action'=>'export']) ?>" title="<?=__('Export')?>">
-                        <?=__('Export all')?>
-                    </a>
-                </div>
-            <?endif?>
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50" data-column-id="commands" data-formatter="commands" data-sortable="false"></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
     </div>
+    <?if ($controller->allowed_crud_action('export')):?>
+        <div class="border-t border-gray-200 px-4 py-4 sm:px-6 text-right">
+            <a class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:shadow-outline-green focus:border-green-700 active:bg-green-700 transition duration-150 ease-in-out" href="<?=Route::url($route, ['controller'=> Request::current()->controller(), 'action'=>'export']) ?>" title="<?=__('Export')?>">
+                <?=__('Export all')?>
+            </a>
+        </div>
+    <?endif?>
 </div>
