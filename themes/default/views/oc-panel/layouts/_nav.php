@@ -1,14 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <nav class="mt-5 px-2">
-    <a href="<?=Route::url('default')?>" class="group flex items-center px-2 py-2 text-sm leading-5 font-medium text-blue-300 rounded-md hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-blue-700 transition ease-in-out duration-150">
-        <span class="mr-4 h-6 w-6 text-blue-400 group-hover:text-blue-300 group-focus:text-blue-300 transition ease-in-out duration-150">
-            <svg stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V10M9 21h6"/>
-            </svg>
-        </span>
-        <?= __('View site') ?>
-    </a>
+    <?= Theme::admin_sidebar_link(__('Dashboard'), 'home', 'index', '<svg stroke="currentColor" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V10M9 21h6"/></svg>') ?>
 </nav>
 <nav class="mt-5 flex-1 px-2">
     <h3 class="px-2 text-xs leading-4 font-semibold text-blue-500 uppercase tracking-wider">
