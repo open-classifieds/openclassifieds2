@@ -65,7 +65,11 @@
                 <div>
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
                         <?=__('Stripe Connect')?>
+                        <?= View::factory('oc-panel/components/pro-badge') ?>
                     </h3>
+                    <? if (Core::extra_features() == FALSE) : ?>
+                        <?= View::factory('oc-panel/components/pro-alert') ?>
+                    <? endif ?>
                 </div>
                 <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
                     <div class="sm:col-span-6">

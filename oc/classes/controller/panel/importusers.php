@@ -28,6 +28,12 @@ class Controller_Panel_ImportUsers extends Controller_Panel_Tools {
      */
     public function action_csv()
     {
+        if (Core::extra_features() == FALSE)
+        {
+            Alert::set(Alert::WARNING, __('This feature is only available in the PRO version!') . ' ' . __('Upgrade your Yclas site to activate this feature.'));
+            $this->redirect(Route::url('oc-panel', ['controller' => 'import']));
+        }
+
         if(!$_POST OR !isset($_FILES['csv_file_users']))
         {
             $this->redirect(Route::url('oc-panel', [

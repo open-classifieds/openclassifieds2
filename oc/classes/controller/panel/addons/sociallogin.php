@@ -6,6 +6,12 @@ class Controller_Panel_Addons_SocialLogin extends Auth_Controller {
     {
         $this->template->title = __('Social login');
 
+        if ($this->request->post() AND Core::extra_features() == FALSE)
+        {
+            Alert::set(Alert::WARNING, __('This feature is only available in the PRO version!') . ' ' . __('Upgrade your Yclas site to activate this feature.'));
+            $this->redirect(Route::url('oc-panel/addons', ['controller' => 'sociallogin']));
+        }
+
         if($this->request->post())
         {
             Model_Config::set_value('general', 'social_auth', Core::post('is_active') ?? 0);

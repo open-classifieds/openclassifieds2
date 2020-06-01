@@ -13,7 +13,6 @@ class Controller_Panel_Fields extends Auth_Controller {
 
 	public function action_index()
 	{
-
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Custom Fields for Advertisements')));
 		$this->template->title = __('Custom Fields');
 
@@ -33,9 +32,13 @@ class Controller_Panel_Fields extends Auth_Controller {
 		$this->template->content = View::factory('oc-panel/pages/fields/index',array('fields' => $fields, 'categories' => $categories,'order_categories' => $order_categories));
 	}
 
-
     public function action_new()
     {
+        if (Core::extra_features() == FALSE)
+        {
+            Alert::set(Alert::WARNING, __('This feature is only available in the PRO version!') . ' ' . __('Upgrade your Yclas site to activate this feature.'));
+            $this->redirect(Route::url('oc-panel', ['controller' => 'fields']));
+        }
 
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('New field')));
         $this->template->title = __('New Custom Field for Advertisement');
@@ -110,6 +113,12 @@ class Controller_Panel_Fields extends Auth_Controller {
 
     public function action_update()
     {
+        if (Core::extra_features() == FALSE)
+        {
+            Alert::set(Alert::WARNING, __('This feature is only available in the PRO version!') . ' ' . __('Upgrade your Yclas site to activate this feature.'));
+            $this->redirect(Route::url('oc-panel', ['controller' => 'fields']));
+        }
+
         $name   = $this->request->param('id');
         $field  = new Model_Field();
         $field_data  = $field->get($name, FALSE);
@@ -163,8 +172,8 @@ class Controller_Panel_Fields extends Auth_Controller {
 
         if (Core::extra_features() == FALSE)
         {
-            Alert::set(Alert::INFO, __('Translations is only available in the PRO version!') . ' ' . __('Upgrade your Yclas site to activate this feature.'));
-            $this->redirect(Route::url('oc-panel', ['controller' => 'fields', 'action' => 'update', 'id' => $name]));
+            Alert::set(Alert::WARNING, __('This feature is only available in the PRO version!') . ' ' . __('Upgrade your Yclas site to activate this feature.'));
+            $this->redirect(Route::url('oc-panel', ['controller' => 'fields']));
         }
 
         if ($_POST)
@@ -238,6 +247,11 @@ class Controller_Panel_Fields extends Auth_Controller {
     // load custom fields from definied templates
     public function action_template()
     {
+        if (Core::extra_features() == FALSE)
+        {
+            Alert::set(Alert::WARNING, __('This feature is only available in the PRO version!') . ' ' . __('Upgrade your Yclas site to activate this feature.'));
+            $this->redirect(Route::url('oc-panel', ['controller' => 'fields']));
+        }
 
         if ($_POST)
         {

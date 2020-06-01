@@ -30,6 +30,12 @@ class Controller_Panel_Addons_Subscriptions extends Auth_CrudAjax {
     {
         $this->template->title = __('Subscription');
 
+        if ($this->request->post() AND Core::extra_features() == FALSE)
+        {
+            Alert::set(Alert::WARNING, __('This feature is only available in the PRO version!') . ' ' . __('Upgrade your Yclas site to activate this feature.'));
+            $this->redirect(Route::url('oc-panel/addons', ['controller' => 'subscriptions']));
+        }
+
         if($this->request->post())
         {
             if (Core::post('subscriptions_expire') == 1 AND (Core::post('is_active') ?? 0))

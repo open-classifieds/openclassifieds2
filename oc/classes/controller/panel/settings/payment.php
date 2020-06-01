@@ -51,7 +51,11 @@ class Controller_Panel_Settings_Payment extends Auth_Controller {
             Model_Config::set_value('payment', 'vat_country', Core::post('vat_country'));
             Model_Config::set_value('payment', 'vat_number', Core::post('vat_number'));
             Model_Config::set_value('payment', 'vat_non_eu', Core::post('vat_non_eu'));
-            Model_Config::set_value('payment', 'stock', Core::post('stock') ?? 0);
+
+            if (Core::extra_features() == TRUE)
+            {
+                Model_Config::set_value('payment', 'stock', Core::post('stock') ?? 0);
+            }
 
             Alert::set(Alert::SUCCESS, __('Configuration updated'));
 

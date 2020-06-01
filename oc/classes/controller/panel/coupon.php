@@ -16,7 +16,7 @@ class Controller_Panel_Coupon extends Auth_Crud {
     /**
      *
      * Loads a basic list info
-     * @param string $view template to render 
+     * @param string $view template to render
      */
     public function action_index($view = NULL)
     {
@@ -24,9 +24,9 @@ class Controller_Panel_Coupon extends Auth_Crud {
         $this->template->scripts['footer'][] = 'js/oc-panel/coupon.js';
         $this->template->scripts['footer'][] = 'js/jquery.toolbar.js';
         $this->template->scripts['footer'][] = 'js/oc-panel/moderation.js';
-        
+
         $elements = new Model_Coupon();
-        
+
         if (core::get('name')!==NULL)
             $elements = $elements->where('name', '=', core::get('name'));
 
@@ -48,7 +48,7 @@ class Controller_Panel_Coupon extends Auth_Crud {
 
         $pagination = $pagination->render();
 
-        
+
         $this->render('oc-panel/pages/coupon/index', array('elements' => $elements,'pagination'=>$pagination));
     }
 
@@ -57,9 +57,14 @@ class Controller_Panel_Coupon extends Auth_Crud {
      */
     public function action_create()
     {
+        if (Core::extra_features() == FALSE)
+        {
+            Alert::set(Alert::WARNING, __('This feature is only available in the PRO version!') . ' ' . __('Upgrade your Yclas site to activate this feature.'));
+            $this->redirect(Route::url('oc-panel', ['controller' => 'fields']));
+        }
 
         $this->template->title = __('New').' '.__($this->_orm_model);
-        
+
         $this->template->styles             = array('//cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen');
         $this->template->scripts['footer']  = array(
                                                     '//cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
@@ -68,10 +73,10 @@ class Controller_Panel_Coupon extends Auth_Crud {
 
 
         if ($this->request->post())
-        {   
+        {
 
             $c = new Model_Coupon();
-            
+
             $c->name                = Core::post('name');
             $c->id_product          = Core::post('id_product');
             $c->discount_amount     = Core::post('discount_amount');
@@ -83,13 +88,13 @@ class Controller_Panel_Coupon extends Auth_Crud {
             try {
                 $c->save();
                 Alert::set(Alert::SUCCESS, sprintf(__('Coupon %s created'),$c->name));
-            } 
+            }
             catch (ORM_Validation_Exception $e)
             {
                 $errors = '';
                 $e = $e->errors('coupon');
 
-                foreach ($e as $f => $err) 
+                foreach ($e as $f => $err)
                     $errors.=$err.' - ';
 
                 Alert::set(Alert::ERROR, sprintf(__('Coupon %s not created, errors: %s'),$c->name,$errors));
@@ -110,9 +115,14 @@ class Controller_Panel_Coupon extends Auth_Crud {
      */
     public function action_bulk()
     {
+        if (Core::extra_features() == FALSE)
+        {
+            Alert::set(Alert::WARNING, __('This feature is only available in the PRO version!') . ' ' . __('Upgrade your Yclas site to activate this feature.'));
+            $this->redirect(Route::url('oc-panel', ['controller' => 'fields']));
+        }
 
         $this->template->title = __('Bulk').' '.__($this->_orm_model);
-        
+
         $this->template->styles             = array('//cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen');
         $this->template->scripts['footer']  = array(
                                                     '//cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
@@ -126,17 +136,17 @@ class Controller_Panel_Coupon extends Auth_Crud {
             $discount_percentage    = Core::post('discount_percentage');
             $valid_date             = Core::post('valid_date');
             $number_coupons         = Core::post('number_coupons');
-            
+
             if ($number_coupons > 10000)
             {
                 Alert::set(Alert::ERROR, __('limited to 10.000 at a time'));
                 $this->redirect(Route::url('oc-panel',array('controller'=>'coupon','action'=>'bulk')));
             }
 
-            for ($i=0; $i < $number_coupons; $i++) 
-            { 
+            for ($i=0; $i < $number_coupons; $i++)
+            {
                 $c = new Model_Coupon();
-                
+
                 //get unique coupon name
                 do
                 {
@@ -162,13 +172,19 @@ class Controller_Panel_Coupon extends Auth_Crud {
 
     public function action_import()
     {
+        if (Core::extra_features() == FALSE)
+        {
+            Alert::set(Alert::WARNING, __('This feature is only available in the PRO version!') . ' ' . __('Upgrade your Yclas site to activate this feature.'));
+            $this->redirect(Route::url('oc-panel', ['controller' => 'fields']));
+        }
+
         //sending a CSV
         if($_POST)
         {
-            foreach($_FILES as $file => $path) 
+            foreach($_FILES as $file => $path)
             {
                 $csv = $path["tmp_name"];
-              
+
                 if($file=='csv_file_coupons' AND $csv != FALSE)
                 {
                     if ($path['size'] > 1048576)
@@ -178,7 +194,7 @@ class Controller_Panel_Coupon extends Auth_Crud {
                     }
 
                     $expected_header = array('name','id_product','discount_amount','discount_percentage','number_coupons','valid_date','status');
-                    
+
                     $coupon_array = Core::csv_to_array($csv,$expected_header);
 
                     if (core::count($coupon_array) > 10000)
@@ -206,13 +222,13 @@ class Controller_Panel_Coupon extends Auth_Crud {
 
                             try {
                                 $c->save();
-                            } 
+                            }
                             catch (ORM_Validation_Exception $e)
                             {
                                 $errors = '';
                                 $e = $e->errors('coupon');
 
-                                foreach ($e as $f => $err) 
+                                foreach ($e as $f => $err)
                                     $errors.=$err.' - ';
 
                                 Alert::set(Alert::ERROR, sprintf(__('Coupon %s not imported, errors: %s'),$c->name,$errors));
@@ -221,22 +237,28 @@ class Controller_Panel_Coupon extends Auth_Crud {
                                 Alert::set(Alert::ERROR, sprintf(__('Coupon %s not imported'),$c->name));
                             }
                         }
-                        
+
                         Alert::set(Alert::SUCCESS, __('Coupons successfully imported.'));
                     }
                 }
             }
-        } 
+        }
 
         $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
 
     }
-    
+
     /**
      * CRUD controller: UPDATE
      */
     public function action_update()
     {
+        if (Core::extra_features() == FALSE)
+        {
+            Alert::set(Alert::WARNING, __('This feature is only available in the PRO version!') . ' ' . __('Upgrade your Yclas site to activate this feature.'));
+            $this->redirect(Route::url('oc-panel', ['controller' => 'fields']));
+        }
+
         $this->template->title = __('Update').' '.__($this->_orm_model).' '.$this->request->param('id');
 
         $this->template->styles             = array('//cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen');
@@ -259,13 +281,13 @@ class Controller_Panel_Coupon extends Auth_Crud {
             try {
                 $coupon->save();
                 Alert::set(Alert::SUCCESS, sprintf(__('Coupon %s updated'),$coupon->name));
-            } 
+            }
             catch (ORM_Validation_Exception $e)
             {
                 $errors = '';
                 $e = $e->errors('coupon');
 
-                foreach ($e as $f => $err) 
+                foreach ($e as $f => $err)
                     $errors.=$err.' - ';
 
                 Alert::set(Alert::ERROR, sprintf(__('Coupon %s not updated, errors: %s'),$coupon->name,$errors));
@@ -282,7 +304,7 @@ class Controller_Panel_Coupon extends Auth_Crud {
 
     /**
      * returns products to use in views in selects
-     * @return array 
+     * @return array
      */
     public function get_products()
     {
@@ -295,11 +317,11 @@ class Controller_Panel_Coupon extends Auth_Crud {
         }
         //for oe
         elseif(class_exists('Model_Product'))
-        {   
+        {
             $products = array();
             $ps = new Model_Product();
             $ps = $ps->find_all();
-            foreach ($ps as $p) 
+            foreach ($ps as $p)
                 $products[$p->id_product] = $p->title;
         }
 
