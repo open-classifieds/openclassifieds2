@@ -54,6 +54,12 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
      */
     public function action_csv()
     {
+        if (Core::extra_features() == FALSE)
+        {
+            Alert::set(Alert::WARNING, __('This feature is only available in the PRO version!') . ' ' . __('Upgrade your Yclas site to activate this feature.'));
+            $this->redirect(Route::url('oc-panel', ['controller' => 'import']));
+        }
+
         //sending a CSV
         if($_POST AND isset($_FILES['csv_file_ads']))
         {

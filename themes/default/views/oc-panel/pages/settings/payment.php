@@ -111,7 +111,7 @@
                                 <?=FORM::checkbox('stock', 1, (bool) Core::post('stock', Core::config('payment.stock')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
                             </div>
                             <div class="pl-7 text-sm leading-5">
-                                <?=FORM::label('stock', __('Stock control'), ['class'=>'font-medium text-gray-700'])?>
+                                <?=FORM::label('stock', __('Stock control'), ['class'=>'font-medium text-gray-700'])?> <?= View::factory('oc-panel/components/pro-badge') ?>
                             </div>
                         </div>
                     </div>

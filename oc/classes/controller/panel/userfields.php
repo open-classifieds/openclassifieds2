@@ -2,26 +2,26 @@
 
 class Controller_Panel_UserFields extends Auth_Controller {
 
-    
+
     public function __construct($request, $response)
     {
         parent::__construct($request, $response);
-        
+
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Custom Fields for users'))->set_url(Route::url('oc-panel',array('controller'  => 'userfields'))));
 
     }
 
 	public function action_index()
 	{
-     
+
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Custom Fields for Users')));
 		$this->template->title = __('Custom Fields for Users');
-		
+
 
         $this->template->styles              = array('css/sortable.css' => 'screen');
         $this->template->scripts['footer'][] = 'js/jquery-sortable-min.js';
         $this->template->scripts['footer'][] = 'js/oc-panel/fields.js';
-        
+
         //retrieve fields
         $fields = Model_UserField::get_all(FALSE);
         if ( core::count($fields) > 65 ) //upper bound for custom fields
@@ -29,11 +29,16 @@ class Controller_Panel_UserFields extends Auth_Controller {
 
 		$this->template->content = View::factory('oc-panel/pages/userfields/index',array('fields' => $fields));
 	}
-    
+
 
     public function action_new()
     {
-     
+        if (Core::extra_features() == FALSE)
+        {
+            Alert::set(Alert::WARNING, __('This feature is only available in the PRO version!') . ' ' . __('Upgrade your Yclas site to activate this feature.'));
+            $this->redirect(Route::url('oc-panel', ['controller' => 'fields']));
+        }
+
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('New field')));
         $this->template->title = __('New Custom Field for Users');
         $errors             = '';
@@ -43,16 +48,16 @@ class Controller_Panel_UserFields extends Auth_Controller {
             if ( core::count(Model_UserField::get_all(FALSE)) > 65 ) //upper bound for custom fields
             {
                 Alert::set(Alert::ERROR,__('You have reached the maximum number of custom fields allowed.'));
-                HTTP::redirect(Route::url('oc-panel',array('controller'  => 'userfields','action'=>'index')));  
+                HTTP::redirect(Route::url('oc-panel',array('controller'  => 'userfields','action'=>'index')));
             }
-            
+
 
             $validation =   Validation::factory($this->request->post())
                                                     ->rule('name', 'alpha_dash')
                                                     ->rule('name', 'not_empty')
                                                     ->rule('name', 'min_length', array(':value', 3))
                                                     ->rule('name', 'max_length', array(':value', 60));
-            if ($validation->check()) 
+            if ($validation->check())
             {
 
                 $name   = URL::title(Core::post('name'));
@@ -81,13 +86,13 @@ class Controller_Panel_UserFields extends Auth_Controller {
                     }
                     else
                         Alert::set(Alert::ERROR,sprintf(__('Field %s already exists'),$name));
-     
+
 
                 } catch (Exception $e) {
-                    throw HTTP_Exception::factory(500,$e->getMessage());     
+                    throw HTTP_Exception::factory(500,$e->getMessage());
                 }
 
-                HTTP::redirect(Route::url('oc-panel',array('controller'  => 'userfields','action'=>'index')));  
+                HTTP::redirect(Route::url('oc-panel',array('controller'  => 'userfields','action'=>'index')));
             }
             else
                 $errors = $validation->errors('field');
@@ -98,6 +103,12 @@ class Controller_Panel_UserFields extends Auth_Controller {
 
     public function action_update()
     {
+        if (Core::extra_features() == FALSE)
+        {
+            Alert::set(Alert::WARNING, __('This feature is only available in the PRO version!') . ' ' . __('Upgrade your Yclas site to activate this feature.'));
+            $this->redirect(Route::url('oc-panel', ['controller' => 'fields']));
+        }
+
         $name   = $this->request->param('id');
         $field  = new Model_UserField();
         $field_data  = $field->get($name);
@@ -129,10 +140,10 @@ class Controller_Panel_UserFields extends Auth_Controller {
                     Alert::set(Alert::ERROR,sprintf(__('Field %s cannot be edited'),$name));
 
             } catch (Exception $e) {
-                throw HTTP_Exception::factory(500,$e->getMessage());     
+                throw HTTP_Exception::factory(500,$e->getMessage());
             }
 
-            HTTP::redirect(Route::url('oc-panel',array('controller'  => 'userfields','action'=>'index')));  
+            HTTP::redirect(Route::url('oc-panel',array('controller'  => 'userfields','action'=>'index')));
         }
 
         $this->template->content = View::factory('oc-panel/pages/userfields/update',array('field_data'=>$field_data,'name'=>$name));
@@ -150,14 +161,14 @@ class Controller_Panel_UserFields extends Auth_Controller {
             $this->template->content = ($field->delete($name))?sprintf(__('Field %s deleted'),$name):sprintf(__('Field %s does not exists'),$name);
         } catch (Exception $e) {
             //throw 500
-            throw HTTP_Exception::factory(500,$e->getMessage());     
+            throw HTTP_Exception::factory(500,$e->getMessage());
         }
-        
+
     }
 
     /**
      * used for the ajax request to reorder the fields
-     * @return string 
+     * @return string
      */
     public function action_saveorder()
     {
@@ -179,7 +190,7 @@ class Controller_Panel_UserFields extends Auth_Controller {
         else
             $this->template->content = __('Error');
     }
-    
-	
+
+
 
 }

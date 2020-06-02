@@ -15,6 +15,10 @@
     </div>
 </div>
 
+<? if (Core::extra_features() == FALSE) : ?>
+    <?= View::factory('oc-panel/components/pro-alert') ?>
+<? endif ?>
+
 <? if (is_array($fields)): ?>
     <div class="bg-white overflow-hidden shadow rounded-lg mt-8">
         <div class="bg-white shadow overflow-hidden sm:rounded-md">
