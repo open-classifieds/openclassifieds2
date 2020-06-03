@@ -27,7 +27,7 @@ class Controller_Api_Favorites extends Api_User {
                 {
                     $fav['ad'] = $ad->title;
                     $fav['price'] = $ad->price;
-                    $fav['thumb'] = $ad->get_first_image();
+                    $fav['image'] = $ad->get_first_image();
                 }
                 $output[] = $fav;
             }

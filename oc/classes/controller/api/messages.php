@@ -191,6 +191,7 @@ class Controller_Api_Messages extends Api_User {
             $res['ad']['title']  = $message->ad->title;
             $res['ad']['price']  = $message->ad->price;
             $res['ad']['status'] = $message->ad->status;
+            $res['ad']['image']  = $message->ad->get_first_image();
         }
 
         return $res;
