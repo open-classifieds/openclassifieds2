@@ -1,14 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');
-return array (
-  '4.0.0' => 
-  array (
-    'codename' => 'coolrebornname',
-    'released' => '2020-06-30',
-    'blog' => '',
-    'changelog' => 'https://github.com/yclas/yclas/compare/3.8.0...4.0.0',
-    'issues' => 'https://github.com/yclas/yclas/milestone/42?closed=1',
-    'download' => 'https://j.mp/yc_400',
-  ),
+                return array (
   '3.8.0' => 
   array (
     'codename' => 'Carnival',
