@@ -35,8 +35,8 @@ class Controller_Panel_Newsletter extends Auth_Controller {
         $count_featured_expired = $query->as_array();
         $count_featured_expired = (isset($count_featured_expired[0]['count']))?$count_featured_expired[0]['count']:0;
 
-        
-        //count all featured 
+
+        //count all featured
         $query = DB::select(DB::expr('COUNT(id_user) count'))
                         ->from('ads')
                         ->where('status','=',Model_Ad::STATUS_PUBLISHED)
@@ -60,7 +60,7 @@ class Controller_Panel_Newsletter extends Auth_Controller {
         $count_unpub = $query->as_array();
         $count_unpub = (isset($count_unpub[0]['count']))?$count_unpub[0]['count']:0;
 
-        //count all users not login 3 months 
+        //count all users not login 3 months
         $query = DB::select(DB::expr('COUNT(id_user) count'))
                         ->from('users')
                         ->where('status','=',Model_User::STATUS_ACTIVE)
@@ -81,7 +81,7 @@ class Controller_Panel_Newsletter extends Auth_Controller {
 
         $count_spam = $query->as_array();
         $count_spam = (isset($count_spam[0]['count']))?$count_spam[0]['count']:0;
-        
+
 
         //post done sending newsletter
         if($this->request->post() AND Core::post('subject')!=NULL)
@@ -98,7 +98,7 @@ class Controller_Panel_Newsletter extends Auth_Controller {
 
                 $users = array_merge($users,$query->as_array());
             }
-            
+
             if (Core::extra_features() == TRUE)
             {
                 if (core::post('send_featured_expired')=='on')
@@ -172,13 +172,13 @@ class Controller_Panel_Newsletter extends Auth_Controller {
             }
 
             //NOTE $users may have duplicated emails, but phpmailer takes care of not sending the email 2 times to same recipient
-            
+
             //sending!
             if (core::count($users)>0)
             {
                 if ( !Email::send($users,'',Core::post('subject'),Kohana::$_POST_ORIG['description'],Core::post('from_email'), Core::post('from') ) )
                     Alert::set(Alert::ERROR,__('Error on mail delivery, not sent'));
-                else 
+                else
                     Alert::set(Alert::SUCCESS,__('Email sent'));
             }
             else
