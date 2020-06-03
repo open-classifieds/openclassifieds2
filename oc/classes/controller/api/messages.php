@@ -41,7 +41,7 @@ class Controller_Api_Messages extends Api_User {
             $m = array();     
             //convert it to array                   
             foreach ($messages as $message)
-                $m[] = $message->as_array();
+                $m[] = self::get_message_array($message);
 
             $this->rest_output(array('messages' => $m),200,$count,($pagination!==FALSE)?$pagination:NULL);
         }
@@ -69,14 +69,14 @@ class Controller_Api_Messages extends Api_User {
         $messages->api_sort($this->_sort);
 
         //pagination with headers
-            $pagination = $messages->api_pagination($count,$this->_params['items_per_page']);
+        $pagination = $messages->api_pagination($count,$this->_params['items_per_page']);
 
         $messages = $messages->cached()->find_all();
 
         $m = array();     
         //convert it to array                   
         foreach ($messages as $message)
-            $m[] = $message->as_array();
+            $m[] = self::get_message_array($message);
 
         $this->rest_output(array('messages' => $m),200,$count,($pagination!==FALSE)?$pagination:NULL);
     }
@@ -95,10 +95,18 @@ class Controller_Api_Messages extends Api_User {
 
                 if ($messages!==FALSE)
                 {
+            
                     $m = array();     
                     //convert it to array                   
                     foreach ($messages as $message)
                         $m[] = $message->as_array();
+
+                    /*$mes_temp = self::get_message_array($message);
+                    $m['user_from'] = $mes_temp['user_from'];
+                    $m['user_to'] = $mes_temp['user_to'];
+                    if (isset($mes_temp['ad']))
+                        $m['ad'] = $mes_temp['ad'];*/
+
 
                     $this->rest_output(array('messages' => $m));
                 }
@@ -160,5 +168,32 @@ class Controller_Api_Messages extends Api_User {
     }
 
 
+    public static function get_message_array($message)
+    {
+        $res = $message->as_array();
+
+        if ($message->from->loaded())
+        {
+            $res['user_from']['name']  = $message->from->name;
+            $res['user_from']['last_login']  = $message->from->last_login;
+            $res['user_from']['image']  = $message->from->get_profile_image();
+        }
+
+        if ($message->to->loaded())
+        {
+            $res['user_to']['name']  = $message->to->name;
+            $res['user_to']['last_login']  = $message->to->last_login;
+            $res['user_to']['image']  = $message->to->get_profile_image();
+        }
+
+        if ($message->ad->loaded())
+        {
+            $res['ad']['title']  = $message->ad->title;
+            $res['ad']['price']  = $message->ad->price;
+            $res['ad']['status'] = $message->ad->status;
+        }
+
+        return $res;
+    }
 
 } // END
