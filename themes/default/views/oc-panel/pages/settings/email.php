@@ -8,6 +8,13 @@
             <?= __('Email settings') ?>
         </h2>
     </div>
+    <div class="mt-4 flex md:mt-0 md:ml-4">
+        <span class="ml-3 shadow-sm rounded-md">
+            <a href="<?= Route::url('oc-panel/settings', array('controller' => 'email', 'action' => 'test')) ?>" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-700 active:bg-blue-700 transition duration-150 ease-in-out">
+                <?= __('Send Email Test') . ' - ' . core::config('email.service') ?>
+            </a>
+        </span>
+    </div>
 </div>
 
 <div class="bg-white overflow-hidden shadow rounded-lg mt-8">

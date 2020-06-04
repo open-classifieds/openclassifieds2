@@ -45,4 +45,16 @@ class Controller_Panel_Settings_Email extends Auth_Controller {
         return $this->template->content = View::factory('oc-panel/pages/settings/email', [
         ]);
     }
+
+    public function action_test()
+    {
+        if (Email::send(core::config('email.notify_email'),core::config('email.notify_name'),
+                        'Test Email Sent','Test Email Sent from email service '.core::config('email.service'),
+                        core::config('email.notify_email'),core::config('email.notify_name')))
+            Alert::set(Alert::SUCCESS, __('Email succesfully sent.'));
+        else
+            Alert::set(Alert::ALERT, __('Email was not sent, please review your email configuration.'));
+
+        $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'email')));
+    }
 }
