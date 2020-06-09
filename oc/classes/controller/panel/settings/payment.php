@@ -29,9 +29,9 @@ class Controller_Panel_Settings_Payment extends Auth_Controller {
             $validation = Validation::factory($this->request->post())
                 ->rule('pay_to_go_on_top', 'not_empty')
                 ->rule('pay_to_go_on_top', 'price')
-                ->rule('to_featured', 'range', array(':value', 0, 1))
-                ->rule('to_top', 'range', array(':value', 0, 1))
-                ->rule('stock', 'range', array(':value', 0, 1));
+                ->rule('to_featured', 'range', [':value', 0, 1])
+                ->rule('to_top', 'range', [':value', 0, 1])
+                ->rule('stock', 'range', [':value', 0, 1]);
 
             if (!$validation->check())
             {
@@ -71,6 +71,38 @@ class Controller_Panel_Settings_Payment extends Auth_Controller {
 
         return $this->template->content = View::factory('oc-panel/pages/settings/payment', [
             'page_options' => $page_options,
+            'featured_plans' => Model_Order::get_featured_plans(),
         ]);
+    }
+
+    public function action_delete_featured_plan()
+    {
+        if (! is_numeric(Core::get('delete_plan')))
+        {
+            return;
+        }
+
+        Model_Order::delete_featured_plan(Core::get('delete_plan'));
+
+        $this->redirect(Route::url('oc-panel/settings',['controller'=>'payment']));
+    }
+
+    public function action_update_featured_plan()
+    {
+        if (! is_numeric(Core::post('featured_days')))
+        {
+            return;
+        }
+
+        if (! is_numeric(Core::post('featured_price')))
+        {
+            return;
+        }
+
+        Model_Order::set_featured_plan(Core::request('featured_days'),Core::request('featured_price'),Core::request('featured_days_key'));
+
+        Alert::set(Alert::SUCCESS, __('Featured plan updated'));
+
+        $this->redirect(Route::url('oc-panel/settings',['controller'=>'payment']));
     }
 }
