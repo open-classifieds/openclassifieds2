@@ -19,7 +19,7 @@
             <div class="mt-2 sm:flex sm:items-start sm:justify-between">
                 <div class="max-w-xl text-sm leading-5 text-gray-500">
                     <p>
-                        <?=__('Enables reviews for ads and the users.')?>
+                        <?= __('A review system to obtain useful feedback from your users about the published ads and users who posted them.') ?>
                     </p>
                 </div>
                 <div class="mt-5 sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:flex sm:items-center">
