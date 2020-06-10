@@ -9,49 +9,49 @@
                         <a href="<?=Route::url('oc-panel/settings',array('controller'=>'general'))?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
                             <h5 class="text-base leading-6 font-medium text-blue-600"><?= __('General') ?></h5>
                             <p class="mt-2 text-sm leading-6 text-gray-500">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis.
+                                <?= __("Every general website's setting that you can configurate in the panel.") ?>
                             </p>
                         </a>
                         <a href="<?=Route::url('oc-panel/settings',array('controller'=>'advertisement'))?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
                             <h5 class="text-base leading-6 font-medium text-blue-600"><?= __('Advertisements') ?></h5>
                             <p class="mt-2 text-sm leading-6 text-gray-500">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis.
+                                <?= __('Change advertisement settings and configure additional advertisement features.') ?>
                             </p>
                         </a>
                         <a href="<?=Route::url('oc-panel/settings',array('controller'=>'payment'))?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
                             <h5 class="text-base leading-6 font-medium text-blue-600"><?= __('Payments') ?></h5>
                             <p class="mt-2 text-sm leading-6 text-gray-500">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis.
+                                <?= __('Manage your marketplace currency, feature plans and payment options.') ?>
                             </p>
                         </a>
                         <a href="<?=Route::url('oc-panel/settings',array('controller'=>'media'))?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
                             <h5 class="text-base leading-6 font-medium text-blue-600"><?= __('Media settings') ?></h5>
                             <p class="mt-2 text-sm leading-6 text-gray-500">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis.
+                                <?= __('Manage image upload options and add watermarks.') ?>
                             </p>
                         </a>
                         <a href="<?=Route::url('oc-panel/settings',array('controller'=>'email'))?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
                             <h5 class="text-base leading-6 font-medium text-blue-600"><?= __('Email') ?></h5>
                             <p class="mt-2 text-sm leading-6 text-gray-500">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis.
+                                <?= __('Configure a notify email and manage your email delivery service.') ?>
                             </p>
                         </a>
                         <a href="<?=Route::url('oc-panel',array('controller'=>'translations'))?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
                             <h5 class="text-base leading-6 font-medium text-blue-600"><?= __('Translations') ?></h5>
                             <p class="mt-2 text-sm leading-6 text-gray-500">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis.
+                                <?= __("Manage your website's language and translations.") ?>
                             </p>
                         </a>
                         <a href="<?=Route::url('oc-panel',['controller'=>'category'])?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
                             <h5 class="text-base leading-6 font-medium text-blue-600"><?= __('Categories') ?></h5>
                             <p class="mt-2 text-sm leading-6 text-gray-500">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis.
+                                <?= __('Add new advertisement categories or manage already existing ones.') ?>
                             </p>
                         </a>
                         <a href="<?=Route::url('oc-panel',['controller'=>'location'])?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
                             <h5 class="text-base leading-6 font-medium text-blue-600"><?= __('Locations') ?></h5>
                             <p class="mt-2 text-sm leading-6 text-gray-500">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis.
+                                <?= __('Add new advertisement locations or manage already existing ones.') ?>
                             </p>
                         </a>
                         <a href="<?=Route::url('oc-panel',['controller'=>'fields'])?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
@@ -59,7 +59,7 @@
                                 <?= __('Custom fields') ?> <?= View::factory('oc-panel/components/pro-badge') ?>
                             </h5>
                             <p class="mt-2 text-sm leading-6 text-gray-500">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis.
+                                <?= __('Manage your advertisement custom fields.') ?>
                             </p>
                         </a>
                         <a href="<?=Route::url('oc-panel',['controller'=>'userfields'])?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
@@ -67,7 +67,7 @@
                                 <?= __('User custom fields') ?> <?= View::factory('oc-panel/components/pro-badge') ?>
                             </h5>
                             <p class="mt-2 text-sm leading-6 text-gray-500">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis.
+                                <?= __('Manage your custom fields for your users.') ?>
                             </p>
                         </a>
                         <a href="<?=Route::url('oc-panel',array('controller'=>'role'))?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
@@ -75,7 +75,7 @@
                                 <?= __('User roles') ?>
                             </h5>
                             <p class="mt-2 text-sm leading-6 text-gray-500">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis.
+                                <?= __('Manage different roles to your users, from translation and content creation to moderation and website administration.') ?>
                             </p>
                         </a>
                         <a href="<?=Route::url('oc-panel',['controller'=>'update'])?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
@@ -83,7 +83,7 @@
                                 <?= __('Updates') ?>
                             </h5>
                             <p class="mt-2 text-sm leading-6 text-gray-500">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis.
+                                <?= __('Any new system updates in real time.') ?>
                             </p>
                         </a>
                         <a href="<?=Route::url('oc-panel',array('controller'=>'coupon'))?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
@@ -91,7 +91,7 @@
                                 <?= __('Coupons') ?> <?= View::factory('oc-panel/components/pro-badge') ?>
                             </h5>
                             <p class="mt-2 text-sm leading-6 text-gray-500">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis.
+                                <?= __('Allows you to give special discounts to your customers.') ?>
                             </p>
                         </a>
                         <a href="<?=Route::url('oc-panel',array('controller'=>'emails'))?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
@@ -99,7 +99,7 @@
                                 <?= __('Transactional emails') ?>
                             </h5>
                             <p class="mt-2 text-sm leading-6 text-gray-500">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis.
+                                <?= __('Manage email notifications like welcome emails.') ?>
                             </p>
                         </a>
                         <a href="<?=Route::url('oc-panel',array('controller'=>'newsletter'))?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
@@ -107,7 +107,7 @@
                                 <?= __('Newsletters') ?> <?= View::factory('oc-panel/components/pro-badge') ?>
                             </h5>
                             <p class="mt-2 text-sm leading-6 text-gray-500">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis.
+                                <?= __('Send newsletters to your users.') ?>
                             </p>
                         </a>
                         <a href="<?=Route::url('oc-panel',array('controller'=>'cmsimages'))?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
@@ -115,7 +115,7 @@
                                 <?= __('Media') ?>
                             </h5>
                             <p class="mt-2 text-sm leading-6 text-gray-500">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis.
+                                <?= __('Manage your media uploaded from pages and blog posts.') ?>
                             </p>
                         </a>
                         <a href="<?=Route::url('oc-panel',array('controller'=>'map'))?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
@@ -123,7 +123,7 @@
                                 <?= __('Interactive Map') ?> <?= View::factory('oc-panel/components/pro-badge') ?>
                             </h5>
                             <p class="mt-2 text-sm leading-6 text-gray-500">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis.
+                                <?= __('Add and configure an interactive map on your website.') ?>
                             </p>
                         </a>
                         <a href="<?=Route::url('oc-panel',array('controller'=>'social'))?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
@@ -131,7 +131,7 @@
                                 <?= __('Social Auth') ?> <?= View::factory('oc-panel/components/pro-badge') ?>
                             </h5>
                             <p class="mt-2 text-sm leading-6 text-gray-500">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis.
+                                <?= __('Login with Facebook, Google, Twitter, and other platforms.') ?>
                             </p>
                         </a>
                     </div>
