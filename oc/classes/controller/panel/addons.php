@@ -56,6 +56,13 @@ class Controller_Panel_Addons extends Auth_Controller {
                 'description' => __('Login with Facebook, Google, Twitter, and other platforms.'),
                 'is_pro' => TRUE,
             ],
+            [
+                'name' => 'blacklist',
+                'config_name' => 'general.black_list',
+                'label' => __('Black list'),
+                'description' => __('If advertisement is marked as spam, user is also marked. Can not publish new ads or register until removed from Black List! Also will not allow users from disposable email addresses to register.'),
+                'is_pro' => TRUE,
+            ],
         ];
 
         return $this->template->content = View::factory('oc-panel/pages/addons/index', [
