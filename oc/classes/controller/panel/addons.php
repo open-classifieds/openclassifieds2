@@ -63,6 +63,13 @@ class Controller_Panel_Addons extends Auth_Controller {
                 'description' => __('If advertisement is marked as spam, user is also marked. Can not publish new ads or register until removed from Black List! Also will not allow users from disposable email addresses to register.'),
                 'is_pro' => TRUE,
             ],
+            [
+                'name' => 'autolocate',
+                'config_name' => 'general.auto_locate',
+                'label' => __('Auto locate'),
+                'description' => __('Get the geographical position of a user. Requires setting up SSL on your website.'),
+                'is_pro' => TRUE,
+            ],
         ];
 
         return $this->template->content = View::factory('oc-panel/pages/addons/index', [
