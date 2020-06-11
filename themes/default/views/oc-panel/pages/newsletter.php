@@ -146,6 +146,9 @@
                         <?=FORM::label('description', __('Message'), ['class'=>'block text-sm leading-5 font-medium text-gray-700'])?>
                         <div class="rounded-md shadow-sm">
                             <?=FORM::textarea('description', NULL, [
+                                'x-data' => '',
+                                'x-init' => '$($refs.textarea).summernote(summernoteSettings())',
+                                'x-ref' => 'textarea',
                                 'class'=>'form-textarea mt-1 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
                                 'rows' => 15,
                             ])?>

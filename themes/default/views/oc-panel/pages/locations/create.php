@@ -42,9 +42,12 @@
                             <div class="sm:col-span-6">
                                 <?= FORM::label('description', __('Description'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
                                 <div class="mt-1 rounded-md shadow-sm">
-                                    <?= FORM::textarea('description', Core::request('description'), array(
+                                    <?= FORM::textarea('description', Core::request('description'), [
+                                        'x-data' => '',
+                                        'x-init' => '$($refs.textarea).summernote(summernoteSettings())',
+                                        'x-ref' => 'textarea',
                                         'class' => 'form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
-                                    ))?>
+                                    ])?>
                                 </div>
                             </div>
                             <div class="sm:col-span-6">

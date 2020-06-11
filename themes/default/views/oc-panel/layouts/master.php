@@ -32,15 +32,15 @@
 
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-    <script src="/themes/default/js/jquery.bootgrid.min.js"></script>
+    <script src="https://unpkg.com/jquery-bootgrid@1.3.1/dist/jquery.bootgrid.min.js"></script>
     <script src="/themes/default/js/bootstrap-datepicker.js"></script>
 
     <!-- include summernote css/js -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-lite.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-lite.min.js"></script>
-<!--
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
     <script src="/themes/default/js/oc-panel/theme.init.js"></script>
- -->
+
     <?= Theme::styles($styles,'default') ?>
     <?= Theme::scripts($scripts,'header','default') ?>
 

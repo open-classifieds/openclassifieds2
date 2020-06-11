@@ -14,7 +14,13 @@
             <div class="col-span-3">
                 <?=FORM::label('description', __('Description'), ['class'=>'block text-sm leading-5 font-medium text-gray-700', 'for'=>'description'])?>
                 <div class="rounded-md shadow-sm">
-                    <?=FORM::textarea('description', $faq->description, ['class'=>'form-textarea mt-1 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5','data-editor'=>'html', 'placeholder'=>__('Description')])?>
+                    <?=FORM::textarea('description', $faq->description, [
+                        'x-data' => '',
+                        'x-init' => '$($refs.textarea).summernote(summernoteSettings())',
+                        'x-ref' => 'textarea',
+                        'class' => 'form-textarea mt-1 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                        'placeholder'=>__('Description'),
+                    ])?>
                 </div>
             </div>
             <div class="col-span-3 sm:col-span-2">
