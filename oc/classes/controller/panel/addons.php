@@ -77,6 +77,13 @@ class Controller_Panel_Addons extends Auth_Controller {
                 'description' => __("Shows a notice to disable AdBlock if it's detected."),
                 'is_pro' => TRUE,
             ],
+            [
+                'name' => 'addtohomescreen',
+                'config_name' => 'general.add_to_home_screen',
+                'label' => __('Add to home screen'),
+                'description' => __('Show the Add to Home Screen dialog on Android devices with Chrome browser.'),
+                'is_pro' => TRUE,
+            ],
         ];
 
         return $this->template->content = View::factory('oc-panel/pages/addons/index', [
