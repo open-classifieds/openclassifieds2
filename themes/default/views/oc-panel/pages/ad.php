@@ -34,18 +34,37 @@
             ];
 
             $status_array = [
-                '' => __('All ads'), Model_Ad::STATUS_SPAM => __('Spam'),
+                '' => __('Any status'),
+                Model_Ad::STATUS_SPAM => __('Spam'),
                 Model_Ad::STATUS_UNAVAILABLE => __('Unavailable'),
                 Model_Ad::STATUS_UNCONFIRMED => __('Unconfirmed'),
                 Model_Ad::STATUS_SOLD => __('Sold')
             ];
 
+            $filters_array = [
+                '' => __('Without filters'),
+            ];
+
+            if(core::config('advertisement.expire_date') > 0 OR (New Model_Field())->get('expiresat'))
+            {
+                $filters_array['active'] = __('Active ads');
+                $filters_array['expired'] = __('Expired ads');
+            }
+
+            if(core::config('payment.to_featured') != FALSE)
+            {
+                $filters_array['featured'] = __('Featured ads');
+            }
+
             foreach ($fields as $field) {
-                $field_orders[] = $field;
+                $field_orders[$field] = $field;
             }
         ?>
         <span class="shadow-sm rounded-md">
-            <?= FORM::select('status', $status_array, Core::get('status'), ['x-on:change' => '$el.submit()', 'class' => 'block form-select w-24 py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5'])?>
+            <?= FORM::select('status', $status_array, Core::get('status'), ['x-on:change' => '$el.submit()', 'class' => 'block form-select w-32 py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5'])?>
+        </span>
+        <span class="ml-3 shadow-sm rounded-md">
+            <?= FORM::select('filter', $filters_array, Core::get('filter'), ['x-on:change' => '$el.submit()', 'class' => 'block form-select w-36 py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5'])?>
         </span>
         <span class="ml-3 shadow-sm rounded-md">
             <?= FORM::select('order', $field_orders, Core::get('order'), ['x-on:change' => '$el.submit()', 'class' => 'block form-select w-24 py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5'])?>
@@ -54,7 +73,7 @@
             <?= FORM::select('sort', $sort_array, Core::get('sort'), ['x-on:change' => '$el.submit()', 'class' => 'block form-select w-24 py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5'])?>
         </span>
         <span class="ml-3 shadow-sm rounded-md">
-            <input type="text" name="search" id="search" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-800 border border-gray-500 rounded" placeholder="<?=__('Search')?>">
+            <input type="text" name="search" id="search" class="block form-text w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" placeholder="<?=__('Search')?>">
         </span>
     <?= FORM::close()?>
 </div>

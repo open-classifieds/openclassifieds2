@@ -88,6 +88,7 @@ class Controller_Panel_Ad extends Auth_Controller {
                     'action'      		=> $this->request->action(),
 
     	    ));
+
     	    $ads = $ads->order_by(core::get('order','published'),core::get('sort','desc'))
                 	            ->limit($pagination->items_per_page)
                 	            ->offset($pagination->offset)
