@@ -11,10 +11,19 @@
                 <?=FORM::label('locale', __('Locale'), ['class' => 'block text-sm font-medium leading-5 text-gray-700', 'for' => 'locale'])?>
                 <?=FORM::select('locale', $locales, $page->locale ?? $locale, ['class' => 'mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5', 'required'])?>
             </div>
-            <div class="col-span-3">
-                <?=FORM::label('description', __('Description'), ['class'=>'block text-sm leading-5 font-medium text-gray-700', 'for'=>'description'])?>
+            <div class="col-span-3" >
+                <?=FORM::label('description', __('Description'), [
+                    'class'=>'block text-sm leading-5 font-medium text-gray-700',
+                    'for'=>'description',
+                ])?>
                 <div class="rounded-md shadow-sm">
-                    <?=FORM::textarea('description', $page->description, ['class'=>'form-textarea mt-1 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5','data-editor'=>'html', 'placeholder'=>__('Description')])?>
+                    <?= Form::textarea('description', $page->description, [
+                        'class'=>'form-textarea mt-1 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                        'x-data' => '',
+                        'x-init' => '$($refs.textarea).summernote(summernoteSettings())',
+                        'x-ref' => 'textarea',
+                        'placeholder'=>__('Description'),
+                    ]) ?>
                 </div>
             </div>
             <div class="col-span-3 sm:col-span-2">

@@ -36,11 +36,11 @@
     <script src="/themes/default/js/bootstrap-datepicker.js"></script>
 
     <!-- include summernote css/js -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-lite.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-lite.min.js"></script>
-<!--
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
     <script src="/themes/default/js/oc-panel/theme.init.js"></script>
- -->
+
     <?= Theme::styles($styles,'default') ?>
     <?= Theme::scripts($scripts,'header','default') ?>
 
