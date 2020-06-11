@@ -70,6 +70,13 @@ class Controller_Panel_Addons extends Auth_Controller {
                 'description' => __('Get the geographical position of a user. Requires setting up SSL on your website.'),
                 'is_pro' => TRUE,
             ],
+            [
+                'name' => 'adblockdetector',
+                'config_name' => 'general.adblock',
+                'label' => __('Adblock detector'),
+                'description' => __("Shows a notice to disable AdBlock if it's detected."),
+                'is_pro' => TRUE,
+            ],
         ];
 
         return $this->template->content = View::factory('oc-panel/pages/addons/index', [
