@@ -51,7 +51,10 @@
                                 <div>
                                     <?= Form::label('icon', __('Icon'), ['class' => 'block text-sm font-medium leading-5 text-gray-700']) ?>
                                     <?= FORM::input('icon', Core::post('icon'), [
-                                        'class' => 'icon-picker mt-1 rounded-md shadow-sm form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                                        'x-data' => '',
+                                        'x-init' => 'console.log($refs.input); $($refs.input).iconpicker();',
+                                        'x-ref' => 'input',
+                                        'class' => 'mt-1 rounded-md shadow-sm form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
                                     ])?>
                                 </div>
                             </div>

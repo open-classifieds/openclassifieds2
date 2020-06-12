@@ -126,14 +126,6 @@
                                 <?= __('Add and configure an interactive map on your website.') ?>
                             </p>
                         </a>
-                        <a href="<?=Route::url('oc-panel',array('controller'=>'social'))?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
-                            <h5 class="text-base leading-6 font-medium text-blue-600">
-                                <?= __('Social Auth') ?> <?= View::factory('oc-panel/components/pro-badge') ?>
-                            </h5>
-                            <p class="mt-2 text-sm leading-6 text-gray-500">
-                                <?= __('Login with Facebook, Google, Twitter, and other platforms.') ?>
-                            </p>
-                        </a>
                     </div>
                 </div>
             </div>

@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="px-4 py-5 sm:p-6">
-            <?= Form::open(Route::url('oc-panel', array('controller' => 'category', 'action' => 'update_translations', 'id' => $form->object->id_category)), ['class'=>'config ajax-load', 'enctype'=>'multipart/form-data'])?>
+            <?= Form::open(Route::url('oc-panel', ['controller' => 'category', 'action' => 'update_translations', 'id' => $form->object->id_category]), ['class'=>'config ajax-load', 'enctype'=>'multipart/form-data'])?>
                 <div>
                     <? foreach ($languages = i18n::get_selectable_languages() as $locale => $language) : ?>
                         <? $last_item = $locale === count($languages) - 1 ?>
@@ -36,22 +36,22 @@
                             </div>
                             <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
                                 <div class="sm:col-span-4">
-                                    <?= FORM::label('translations_name_' . $locale, _e('Name'), array('class' => 'block text-sm font-medium leading-5 text-gray-700', 'for' => 'translations_name_' . $locale)) ?>
+                                    <?= FORM::label('translations_name_' . $locale, _e('Name'), ['class' => 'block text-sm font-medium leading-5 text-gray-700', 'for' => 'translations_name_' . $locale]) ?>
                                     <div class="mt-1 rounded-md shadow-sm">
-                                        <?= FORM::input('translations[name][' . $locale . ']', $category->translate_name($locale), array(
+                                        <?= FORM::input('translations[name][' . $locale . ']', $category->translate_name($locale), [
                                             'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
-                                        )) ?>
+                                        ]) ?>
                                     </div>
                                 </div>
                                 <div class="sm:col-span-4">
-                                    <?= Form::label('translations_description_' . $locale, _e('Description'), array('class' => 'block text-sm font-medium leading-5 text-gray-700', 'for' => 'translations_description_' . $locale)) ?>
+                                    <?= Form::label('translations_description_' . $locale, _e('Description'), ['class' => 'block text-sm font-medium leading-5 text-gray-700', 'for' => 'translations_description_' . $locale]) ?>
                                     <div class="mt-1 rounded-md shadow-sm">
-                                        <?= FORM::textarea('translations[description][' . $locale . ']', $category->translate_description($locale), array(
+                                        <?= FORM::textarea('translations[description][' . $locale . ']', $category->translate_description($locale), [
                                             'rows' => 3,
                                             'cols' => 50,
                                             'class' => 'form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
                                             'id' => 'translations_description_' . $locale,
-                                        )) ?>
+                                        ]) ?>
                                     </div>
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
     </div>
 <? endif ?>
 
-<?=FORM::open(Route::url('oc-panel',array('controller'=>'category','action'=>'icon','id'=>$form->object->id_category)), array('enctype'=>'multipart/form-data'))?>
+<?=FORM::open(Route::url('oc-panel',['controller'=>'category','action'=>'icon','id'=>$form->object->id_category]), ['enctype'=>'multipart/form-data'])?>
     <div class="bg-white shadow sm:rounded-lg mt-8">
         <?=Form::errors()?>
 
