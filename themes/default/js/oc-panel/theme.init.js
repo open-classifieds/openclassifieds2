@@ -31,13 +31,6 @@ window.summernoteSettings = function () {
     }
 }
 
-function init_panel()
-{
-
-	// Menu icon picker
-	$(".icon-picker").iconPicker();
-}
-
 function sendFile(file, editor, welEditable) {
     data = new FormData();
     data.append("image", file);

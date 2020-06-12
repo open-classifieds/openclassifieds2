@@ -104,8 +104,6 @@ class Controller_Panel_Category extends Auth_Crud {
     {
         $this->template->title = __('Update').' '.__($this->_orm_model).' '.$this->request->param('id');
         $this->template->styles = array('css/sortable.css' => 'screen');
-        $this->template->styles = array('css/fontawesome-iconpicker.min.css' => 'screen');
-        $this->template->scripts['footer'][] = 'js/oc-panel/fontawesome-iconpicker.min.js';
         $this->template->scripts['footer'][] = 'js/oc-panel/category_edit.js';
 
         $form = new FormOrm($this->_orm_model,$this->request->param('id'));
