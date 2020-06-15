@@ -53,7 +53,7 @@ class Controller_Panel_Addons extends Auth_Controller {
                 'name' => 'sociallogin',
                 'config_name' => 'general.social_auth',
                 'label' => __('Social login'),
-                'description' => __('Login with Facebook, Google, Twitter, and other platforms.'),
+                'description' => __('Login with Facebook, Google and OAuth2'),
                 'is_pro' => TRUE,
             ],
             [

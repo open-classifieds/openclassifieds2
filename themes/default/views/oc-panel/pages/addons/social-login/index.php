@@ -3,6 +3,15 @@
         <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
             <?= __('Social login') ?>
         </h2>
+        <div class="mt-2 text-sm leading-5 text-gray-500">
+            <p>
+                <?= __('Learn more about') ?>
+                <a href="https://guides.yclas.com/#/Plugins-login-using-social-auth" target="_blank" class="text-blue-700 hover:text-blue-800 hover:underline">
+                    social login
+                    <svg class="inline-block h-3 w-3 text-blue-700" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+            </p>
+        </div>
     </div>
 </div>
 
@@ -19,7 +28,7 @@
             <div class="mt-2 sm:flex sm:items-start sm:justify-between">
                 <div class="max-w-xl text-sm leading-5 text-gray-500">
                     <p>
-                        <?= __('Login with Facebook, Google, Twitter, and other platforms.') ?>
+                        <?= __('Login with Facebook, Google and OAuth2') ?>
                     </p>
                 </div>
                 <div class="mt-5 sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:flex sm:items-center">
