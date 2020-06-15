@@ -15,7 +15,7 @@
             <div class="mt-2 sm:flex sm:items-start sm:justify-between">
                 <div class="max-w-xl text-sm leading-5 text-gray-500">
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        <?= __('Auto post ads on Twitter automatically.') ?>
                     </p>
                 </div>
                 <div class="mt-5 sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:flex sm:items-center">
