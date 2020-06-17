@@ -20,8 +20,10 @@ class Controller_Panel_User extends Auth_CrudAjax {
 
     protected $_search_fields = array('name','email');
 
-    protected $_fields_caption = array( 'id_role'       => array('model'=>'role','caption'=>'name'),
-                                         );
+    protected $_fields_caption = [
+        'id_role' => ['model' => 'role', 'caption' => 'name'],
+        'status' => 'Model_User::get_status_label',
+    ];
 
     function __construct(Request $request, Response $response)
     {
