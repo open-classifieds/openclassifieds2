@@ -228,4 +228,72 @@ msgstr "Go back"
 
 #: String 54
 msgid "login_to_my_account"
-msgstr "Login to my account
+msgstr "Login to my account"
+
+#: String 55
+msgid "retype_password"
+msgstr "Retype password"
+
+#: String 56
+msgid "no_products_available"           
+msgstr "No products available"
+
+#: String 57
+msgid "upload_an_image"
+msgstr "Upload an image"
+
+#: String 58
+msgid "select_an_option"
+msgstr "Select an option"
+
+#: String 59
+msgid "gallery"    
+msgstr "Gallery"
+
+#: String 60
+msgid "camera"
+msgstr "Camera"
+
+#: String 61
+msgid "login_to_my_account"
+msgstr "Login to my account"
+
+#: String 62
+msgid "product_info"
+msgstr "Product info"
+
+#: String 63
+msgid "save_changes"
+msgstr "Save changes"
+
+#: String 64
+msgid "edit_this_product"
+msgstr "Edit this product"
+
+#: String 65
+msgid "all_products"
+msgstr "All products"
+
+#: String 66
+msgid "share"
+msgstr "Share"
+
+#: String 67
+msgid "about"
+msgstr "About"
+
+#: String 68
+msgid "visit_page"                      
+msgstr "Visit Page"
+
+#: String 69
+msgid "deactivate"                  
+msgstr "Deactivate"
+
+#: String 70
+msgid "activate"   
+msgstr "Activate"
+
+#: String 71
+msgid "are_you_sure_you_want_to_leave"
+msgstr "Are you sure you want to leave"
