@@ -58,6 +58,19 @@ class Model_User extends ORM {
             ),
     );
 
+    public static function status()
+    {
+        return [
+            self::STATUS_INACTIVE => __('Inactive'),
+            self::STATUS_ACTIVE => __('Active'),
+            self::STATUS_SPAM => __('Spam'),
+        ];
+    }
+
+    public static function get_status_label($status_key)
+    {
+        return self::status()[$status_key] ?? NULL;
+    }
 
     /**
      * Rule definitions for validation
@@ -461,7 +474,8 @@ class Model_User extends ORM {
         }
         $form->fields['email']['caption'] = 'email';
         $form->fields['status']['display_as'] = 'select';
-        $form->fields['status']['options'] = array('0','1','5');
+        $form->fields['status']['dont_reindex_options'] = TRUE;
+        $form->fields['status']['options'] = self::status();
         $form->fields['id_role']['caption'] = 'name';
     }
 
@@ -1203,15 +1217,15 @@ class Model_User extends ORM {
             if ($allows_new_user ==TRUE AND !$subscription->loaded())
                 return FALSE;
             //verify expired since no ads or cron was not executed...
-            elseif ( Core::config('general.subscriptions_expire') == TRUE AND 
-                ($subscription->status = 0 OR 
-                Date::mysql2unix($subscription->expire_date) < time() OR 
+            elseif ( Core::config('general.subscriptions_expire') == TRUE AND
+                ($subscription->status = 0 OR
+                Date::mysql2unix($subscription->expire_date) < time() OR
                 ($allows_new_user == FALSE AND $subscription->amount_ads_left == 0))
                 )
                 return TRUE;
             //he needs a subscription
             elseif(!$subscription->loaded())
-                return TRUE;           
+                return TRUE;
         }
 
         //by default nothing it's expired
