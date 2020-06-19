@@ -132,6 +132,16 @@ class Controller_New extends Controller
             }
         }
 
+        if (
+            Core::config('general.multilingual') AND
+            empty(i18n::get_selectable_languages()) AND
+            Auth::instance()->logged_in() AND
+            Auth::instance()->get_user()->is_admin()
+        ) {
+            Alert::set(Alert::INFO, __('Please, first add some languages.'));
+            $this->redirect(Route::url('oc-panel/settings',array('controller'=>'general')));
+        }
+
         //get locations
         $locations = new Model_Location;
         $locations = $locations->where('id_location', '!=', '1');
