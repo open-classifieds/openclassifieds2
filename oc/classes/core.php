@@ -688,7 +688,7 @@ class Core {
         }
 
         if (Core::config('license.number')!=NULL AND Core::config('license.date') < time() )
-        {   
+        {
             if (self::license()!=TRUE)
             {
                 Model_Config::set_value('license','date',NULL);
@@ -697,7 +697,7 @@ class Core {
                 HTTP::redirect(Route::url('oc-panel',array('controller'=>'home', 'action'=>'license')));
             }
         }
-        
+
     }
 
 
@@ -709,21 +709,21 @@ class Core {
         if ($l === NULL)
             $l = Core::config('license.number');
 
-        $api_url = Core::yclas_url_().'/api/v1//license/'.$l.'/?domain='.parse_url(URL::base(), PHP_URL_HOST);
+        $api_url = Core::yclas_url_().'/api/v1/license/check/'.$l.'/?domain='.parse_url(URL::base(), PHP_URL_HOST);
         $result  = json_decode(Core::curl_get_contents($api_url));
-        
+
         if ($result == TRUE)
         {
             Model_Config::set_value('license','number',core::request('license'));
             Model_Config::set_value('license','date',time()+7*24*60*60);
         }
-        
+
         return $result;
     }
 
     public static function download($l)
     {
-        $download_url = Core::yclas_url_().'/api/v1/download/'.$l.'/?domain='.parse_url(URL::base(), PHP_URL_HOST);
+        $download_url = Core::yclas_url_().'/api/v1/license/download/'.$l.'/?domain='.parse_url(URL::base(), PHP_URL_HOST);
         $fname = DOCROOT.'themes/'.$l.'.zip'; //root folder
         $file_content = core::curl_get_contents($download_url);
 
@@ -755,7 +755,7 @@ class Core {
     {
         if (Kohana::$environment === Kohana::DEVELOPMENT)
             return TRUE;
-        
+
         return (Core::config('license.number')!=NULL AND Core::config('license.date') >= time())?TRUE:FALSE;
     }
 
