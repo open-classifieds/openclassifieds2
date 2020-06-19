@@ -11,8 +11,9 @@ class Controller_Feed extends Controller {
                         'pubDate'     => date("r"),
                         'description' => HTML::chars(UTF8::clean(__('Latest published'))),
                         'generator'   => 'Yclas',
-        ); 
-        
+                        'self-link'   => Request::current()->url(),
+        );
+
         $items = array();
 
         //last ads, you can modify this value at: advertisement.feed_elements
@@ -24,12 +25,12 @@ class Controller_Feed extends Controller {
         //filter by category aor location
         if (Model_Category::current()->loaded())
             $ads->where('id_category','=',Model_Category::current()->id_category);
- 
+
         if (Model_Location::current()->loaded())
             $ads->where('id_location','=',Model_Location::current()->id_location);
 
         //order depending on the sort parameter
-        switch (core::request('sort',core::config('advertisement.sort_by'))) 
+        switch (core::request('sort',core::config('advertisement.sort_by')))
         {
             //title z->a
             case 'title-asc':
@@ -89,12 +90,12 @@ class Controller_Feed extends Controller {
 
             $items[] = $item;
         }
-  
+
         $xml = Feed::create($info, $items);
 
         $this->response->headers('Content-type','text/xml');
         $this->response->body($xml);
-    
+
     }
 
 
@@ -108,8 +109,9 @@ class Controller_Feed extends Controller {
                         'description'   => HTML::chars(UTF8::clean(__('Latest post published'))),
                         'generator'     => 'Yclas',
                         'link'          =>  Route::url('blog'),
-        ); 
-        
+                        'self-link'     => Request::current()->url(),
+        );
+
         $items = array();
 
         $posts = new Model_Post();
@@ -119,7 +121,7 @@ class Controller_Feed extends Controller {
                 ->limit(Core::config('advertisement.feed_elements'))
                 ->cached()
                 ->find_all();
-           
+
 
         foreach($posts as $post)
         {
@@ -133,12 +135,12 @@ class Controller_Feed extends Controller {
                                 'guid'          => $url,
                           );
         }
-  
+
         $xml = Feed::create($info, $items);
 
         $this->response->headers('Content-type','text/xml');
         $this->response->body($xml);
-    
+
     }
 
     public function action_forum()
@@ -151,8 +153,9 @@ class Controller_Feed extends Controller {
                         'description'   => HTML::chars(UTF8::clean(__('Latest post published'))),
                         'generator'     => 'Yclas',
                         'link'          =>  Route::url('forum-home'),
-        ); 
-        
+                        'self-link'     => Request::current()->url(),
+        );
+
         $items = array();
 
         $topics = new Model_Topic();
@@ -161,14 +164,14 @@ class Controller_Feed extends Controller {
             $topics->where('id_forum','=',Model_Forum::current()->id_forum);
         else
             $topics->where('id_forum','!=',NULL);//any forum
-        
+
         $topics = $topics->where('status','=', Model_Topic::STATUS_ACTIVE)
                 ->where('id_post_parent','IS',NULL)
                 ->order_by('created','desc')
                 ->limit(Core::config('advertisement.feed_elements'))
                 ->cached()
                 ->find_all();
-           
+
         foreach($topics as $topic)
         {
             $url= Route::url('forum-topic',  array('seotitle'=>$topic->seotitle,'forum'=>$topic->forum->seoname));
@@ -181,12 +184,12 @@ class Controller_Feed extends Controller {
                                 'guid'          => $url,
                           );
         }
-  
+
         $xml = Feed::create($info, $items);
 
         $this->response->headers('Content-type','text/xml');
         $this->response->body($xml);
-    
+
     }
 
     public function action_profile()
@@ -201,7 +204,7 @@ class Controller_Feed extends Controller {
             $user->where('seoname','=', $seoname)
                  ->where('status','=', Model_User::STATUS_ACTIVE)
                  ->limit(1)->cached()->find();
-            
+
             if ($user->loaded())
             {
 
@@ -211,8 +214,9 @@ class Controller_Feed extends Controller {
                                 'description' => HTML::chars(UTF8::clean($user->name.' - '.$user->description)),
                                 'generator'   => 'Yclas',
                                 'link'        =>  Route::url('profile', array('seoname'=>$seoname)),
-                ); 
-                
+                                'self-link'   => Request::current()->url(),
+                );
+
                 $items = array();
 
                 //last ads, you can modify this value at: advertisement.feed_elements
@@ -244,10 +248,10 @@ class Controller_Feed extends Controller {
                 $xml = Feed::create($info, $items);
             }
         }
-  
+
         $this->response->headers('Content-type','text/xml');
         $this->response->body($xml);
-    
+
     }
 
     public function action_info()
@@ -276,8 +280,8 @@ class Controller_Feed extends Controller {
                             'site_url'      => Core::config('general.base_url'),
                             'site_name'     => Core::config('general.site_name'),
                             'site_description' => Core::config('general.site_description'),
-                            'created'       => $first_ad,   
-                            'updated'       => $last_ad,   
+                            'created'       => $first_ad,
+                            'updated'       => $last_ad,
                             'email'         => Core::config('email.notify_email'),
                             'version'       => Core::VERSION,
                             'theme'         => Core::config('appearance.theme'),
@@ -292,7 +296,7 @@ class Controller_Feed extends Controller {
 
             Core::cache('action_info',$info);
         }
-       
+
 
         $this->response->headers('Content-type','application/javascript');
         $this->response->body(json_encode($info));
