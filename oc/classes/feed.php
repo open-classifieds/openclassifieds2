@@ -23,7 +23,7 @@ class Feed extends Kohana_Feed {
         //in case theres no expire time set to 24h
         if ($cache_expire_time === NULL)
             $cache_expire_time = 24*60*60;
-        
+
         // Check if SimpleXML is installed
         if ( ! function_exists('simplexml_load_file'))
             throw new Kohana_Exception('SimpleXML must be installed!');
@@ -39,7 +39,7 @@ class Feed extends Kohana_Feed {
         {
             //mod! force usage of curl with timeout and cached!
             $feed_result = Core::cache($feed,NULL,$cache_expire_time);
-            
+
             //not cached :(
             if ($feed_result === NULL)
             {
@@ -90,6 +90,116 @@ class Feed extends Kohana_Feed {
         return $items;
     }
 
+    /**
+     * Creates a feed from the given parameters.
+     *
+     * @param   array   $info       feed information
+     * @param   array   $items      items to add to the feed
+     * @param   string  $encoding   define which encoding to use
+     * @return  string
+     */
+    public static function create($info, $items, $encoding = 'UTF-8')
+    {
+        $info += ['title' => 'Generated Feed', 'link' => '', 'generator' => 'KohanaPHP'];
 
+        $feed = '<?xml version="1.0" encoding="'.$encoding.'"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel></channel></rss>';
+        $feed = simplexml_load_string($feed);
 
+        foreach ($info as $name => $value)
+        {
+            if ($name === 'image')
+            {
+                // Create an image element
+                $image = $feed->channel->addChild('image');
+
+                if ( ! isset($value['link'], $value['url'], $value['title']))
+                {
+                    throw new Kohana_Exception('Feed images require a link, url, and title');
+                }
+
+                if (strpos($value['link'], '://') === FALSE)
+                {
+                    // Convert URIs to URLs
+                    $value['link'] = URL::site($value['link'], 'http');
+                }
+
+                if (strpos($value['url'], '://') === FALSE)
+                {
+                    // Convert URIs to URLs
+                    $value['url'] = URL::site($value['url'], 'http');
+                }
+
+                // Create the image elements
+                $image->addChild('link', $value['link']);
+                $image->addChild('url', $value['url']);
+                $image->addChild('title', $value['title']);
+            }
+            else
+            {
+                if (($name === 'pubDate' OR $name === 'lastBuildDate') AND (is_int($value) OR ctype_digit($value)))
+                {
+                    // Convert timestamps to RFC 822 formatted dates
+                    $value = date('r', $value);
+                }
+                elseif (($name === 'link' OR $name === 'docs') AND strpos($value, '://') === FALSE)
+                {
+                    // Convert URIs to URLs
+                    $value = URL::site($value, 'http');
+                }
+
+                // Add the info to the channel
+                if ($name === 'self-link')
+                {
+                    $name = 'atom:link href="' . $value . '" rel="self" type="application/rss+xml"';
+                    $feed->channel->addChild($name, NULL, 'http://www.w3.org/2005/Atom');
+                }
+                else
+                {
+                    $feed->channel->addChild($name, $value);
+                }
+            }
+        }
+
+        foreach ($items as $item)
+        {
+            // Add the item to the channel
+            $row = $feed->channel->addChild('item');
+
+            foreach ($item as $name => $value)
+            {
+                if ($name === 'pubDate' AND (is_int($value) OR ctype_digit($value)))
+                {
+                    // Convert timestamps to RFC 822 formatted dates
+                    $value = date('r', $value);
+                }
+                elseif (($name === 'link' OR $name === 'guid') AND strpos($value, '://') === FALSE)
+                {
+                    // Convert URIs to URLs
+                    $value = URL::site($value, 'http');
+                }
+
+                // Add the info to the row
+                $row->addChild($name, $value);
+            }
+        }
+
+        if (function_exists('dom_import_simplexml'))
+        {
+            // Convert the feed object to a DOM object
+            $feed = dom_import_simplexml($feed)->ownerDocument;
+
+            // DOM generates more readable XML
+            $feed->formatOutput = TRUE;
+
+            // Export the document as XML
+            $feed = $feed->saveXML();
+        }
+        else
+        {
+            // Export the document as XML
+            $feed = $feed->asXML();
+        }
+
+        return $feed;
+    }
 }
