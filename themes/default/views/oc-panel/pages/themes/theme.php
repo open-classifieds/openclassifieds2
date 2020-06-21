@@ -161,7 +161,7 @@
         </div>
     <?=Form::close()?>
 
-    <?=Form::open(Route::url('oc-panel',array('controller'=>'theme','action'=>'download')))?>
+    <?=Form::open(Route::url('oc-panel',array('controller'=>'home','action'=>'download')))?>
         <div class="bg-white shadow sm:rounded-lg mt-8">
             <div class="px-4 py-5 sm:p-6">
                 <h3 class="text-lg leading-6 font-medium text-gray-900">
