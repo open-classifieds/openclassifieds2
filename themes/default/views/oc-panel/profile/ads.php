@@ -63,7 +63,13 @@
                         <?endif?>
                     </td>
 
-                    <td><?= Date::format($ad->published, core::config('general.date_format'))?></td>
+                    <td>
+                        <? if($ad->published): ?>
+                            <?= Date::format($ad->published, core::config('general.date_format'))?>
+                        <? else : ?>
+                            -
+                        <? endif ?>
+                    </td>
 
                     <?if( core::config('payment.to_featured')):?>
                     <td>

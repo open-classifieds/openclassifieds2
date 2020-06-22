@@ -78,7 +78,14 @@
 										<a class="at" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?= $ad->title; ?></a>
 								</div>
 
-								<p><b><?=_e('Date')?> : </b><?= Date::format($ad->published, core::config('general.date_format'))?></p>
+								<p>
+									<b><?=_e('Date')?> : </b>
+				                    <? if($ad->published): ?>
+				                        <?= Date::format($ad->published, core::config('general.date_format'))?>
+				                    <? else : ?>
+				                        -
+				                    <? endif ?>
+								</p>
 								<p><b><?=_e('Category')?> : </b><?= $ad->category->name ?></p>
 
 								<? if($ad->id_location): ?>
