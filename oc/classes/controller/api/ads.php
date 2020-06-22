@@ -25,7 +25,7 @@ class Controller_Api_Ads extends Api_User {
                 //by default sort by published date
                 if(empty($this->_sort))
                     $this->_sort['published'] = 'desc';
-                
+
                 //filter results by param, verify field exists and has a value and sort the results
                 $ads->api_filter($this->_filter_params)->api_sort($this->_sort);
 
@@ -44,9 +44,27 @@ class Controller_Api_Ads extends Api_User {
                     $a['price'] = i18n::money_format($ad->price);
                     $a['thumb'] = $ad->get_first_image();
                     $a['customfields'] = Model_Field::get_by_category($ad->id_category);
-                    foreach ($a['customfields'] as $key => $values) 
-                        $a['customfields'][$key]['value'] = $a[$key];
                     $a['url'] = Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
+
+                    foreach ($a['customfields'] as $key => $values)
+                    {
+                        if($values['type'] == 'checkbox_group')
+                        {
+                            foreach ($values['grouped_values'] as $grouped_key => $grouped_value) {
+                                $a['customfields']['cf_' . $grouped_key] = $values;
+                                $a['customfields']['cf_' . $grouped_key]['label'] = $grouped_value;
+                                $a['customfields']['cf_' . $grouped_key]['parent'][$key] = $values;
+                                $a['customfields']['cf_' . $grouped_key]['value'] = $a['cf_'. $grouped_key];
+                            }
+
+                            unset($a['customfields'][$key]);
+
+                            continue;
+                        }
+
+                        $a['customfields'][$key]['value'] = $a[$key];
+                    }
+
                     $output[] = $a;
                 }
 
@@ -76,9 +94,27 @@ class Controller_Api_Ads extends Api_User {
                         $a['category'] = $ad->category->as_array();
                         $a['location'] = $ad->location->as_array();
                         $a['customfields'] = Model_Field::get_by_category($ad->id_category);
-                        foreach ($a['customfields'] as $key => $values) 
-                            $a['customfields'][$key]['value'] = $a[$key];
                         $a['url'] = Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
+
+                        foreach ($a['customfields'] as $key => $values)
+                        {
+                            if($values['type'] == 'checkbox_group')
+                            {
+                                foreach ($values['grouped_values'] as $grouped_key => $grouped_value) {
+                                    $a['customfields']['cf_' . $grouped_key] = $values;
+                                    $a['customfields']['cf_' . $grouped_key]['label'] = $grouped_value;
+                                    $a['customfields']['cf_' . $grouped_key]['parent'][$key] = $values;
+                                    $a['customfields']['cf_' . $grouped_key]['value'] = $a['cf_'. $grouped_key];
+                                }
+
+                                unset($a['customfields'][$key]);
+
+                                continue;
+                            }
+
+                            $a['customfields'][$key]['value'] = $a[$key];
+                        }
+
                         $this->rest_output(array('ad' => $a));
                     }
                     else
@@ -89,13 +125,13 @@ class Controller_Api_Ads extends Api_User {
             }
             else
                 $this->_error(__('Advertisement not found'),404);
-            
+
         }
         catch (Kohana_HTTP_Exception $khe)
         {
             $this->_error($khe);
         }
-       
+
     }
 
     /**
@@ -106,13 +142,13 @@ class Controller_Api_Ads extends Api_User {
         try
         {
             $return = Model_Ad::new_ad($this->_post_params,$this->user);
-            
+
             //there was an error on the validation
             if (isset($return['validation_errors']) AND is_array($return['validation_errors']))
             {
                 $errors = '';
 
-                foreach ($return['validation_errors'] as $f => $err) 
+                foreach ($return['validation_errors'] as $f => $err)
                     $errors.=$err.' - ';
 
                 $this->_error($errors);
@@ -127,13 +163,13 @@ class Controller_Api_Ads extends Api_User {
                 $ad = $return['ad']->as_array();
                 $this->rest_output(array('message'=>$return['message'],'checkout_url'=>$return['checkout_url'],'ad'=>$ad));
             }
-                    
+
         }
         catch (Kohana_HTTP_Exception $khe)
         {
             $this->_error($khe);
         }
-       
+
     }
 
 
@@ -152,13 +188,13 @@ class Controller_Api_Ads extends Api_User {
                 if ($ad->loaded())
                 {
                     $return = $ad->save_ad($this->_post_params);
-            
+
                     //there was an error on the validation
                     if (isset($return['validation_errors']) AND is_array($return['validation_errors']))
                     {
                         $errors = '';
 
-                        foreach ($return['validation_errors'] as $f => $err) 
+                        foreach ($return['validation_errors'] as $f => $err)
                             $errors.=$err.' - ';
 
                         $this->_error($errors);
@@ -171,7 +207,7 @@ class Controller_Api_Ads extends Api_User {
                     {
                         $this->rest_output($return);
                     }
-         
+
                 }
                 else
                     $this->_error(__('Advertisement not found'),404);
@@ -184,7 +220,7 @@ class Controller_Api_Ads extends Api_User {
         {
             $this->_error($khe);
         }
-       
+
     }
 
     /**
@@ -205,7 +241,7 @@ class Controller_Api_Ads extends Api_User {
                     if ($ret = $ad->deactivate())
                         $this->rest_output($ret);
                     else
-                        $this->_error($ret);         
+                        $this->_error($ret);
                 }
                 else
                     $this->_error(__('Advertisement not found'),404);
@@ -218,7 +254,7 @@ class Controller_Api_Ads extends Api_User {
         {
             $this->_error($khe);
         }
-       
+
     }
 
     public function action_image()
@@ -238,7 +274,7 @@ class Controller_Api_Ads extends Api_User {
                     if ($ret = $ad->save_image($image))
                         $this->rest_output($ret);
                     else
-                        $this->_error($ret);         
+                        $this->_error($ret);
                 }
                 else
                     $this->_error(__('Advertisement not found'),404);
@@ -268,7 +304,7 @@ class Controller_Api_Ads extends Api_User {
                     if ($ret = $ad->delete_image($num_image))
                         $this->rest_output($ret);
                     else
-                        $this->_error($ret);         
+                        $this->_error($ret);
                 }
                 else
                     $this->_error(__('Advertisement not found'),404);
@@ -298,7 +334,7 @@ class Controller_Api_Ads extends Api_User {
                     if ($ret = $ad->set_primary_image($num_image))
                         $this->rest_output($ret);
                     else
-                        $this->_error($ret);         
+                        $this->_error($ret);
                 }
                 else
                     $this->_error(__('Advertisement not found'),404);
