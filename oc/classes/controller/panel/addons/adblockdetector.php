@@ -15,7 +15,7 @@ class Controller_Panel_Addons_AdBlockDetector extends Auth_Controller {
             $this->redirect(Route::url('oc-panel/addons', ['controller' => 'adblockdetector']));
         }
 
-        return $this->template->content = View::factory('oc-panel/pages/addons/auto-locate/index', [
+        return $this->template->content = View::factory('oc-panel/pages/addons/adblock-detector/index', [
             'is_active' => (bool) Core::config('general.adblock'),
         ]);
     }
