@@ -74,7 +74,7 @@
                 </h3>
                 <div class="mt-2 max-w-xl text-sm leading-5 text-gray-500">
                     <?if($users_import>0):?>
-                        <p id="count_import"><?=sprintf(__('You got %d ads to get processed'),$users_import)?></p>
+                        <p id="count_import"><?=sprintf(__('You got %d users to get processed'),$users_import)?></p>
                         <p>
                             <a class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  text-green-100 bg-green-500 hover:bg-green-400" id="import_process" href="<?=Route::url('oc-panel', ['controller' => 'importusers', 'action'=>'process'])?>">
                                 <?=__('Process')?>
