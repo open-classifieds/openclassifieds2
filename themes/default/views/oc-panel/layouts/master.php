@@ -44,6 +44,10 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
+    <!-- include sweetalert css/js -->
+    <link href="/themes/default/css/sweet-alert.min.css" rel="stylesheet">
+    <script src="/themes/default/js/sweet-alert.min.js"></script>
+
     <script src="/themes/default/js/oc-panel/theme.init.js"></script>
 
     <?= Theme::styles($styles,'default') ?>
