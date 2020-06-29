@@ -3,7 +3,7 @@
 <div class="md:flex md:items-center md:justify-between">
     <div class="flex-1 min-w-0">
         <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
-            <?=($location AND $location->id_location > 1) ? $location->name.' – ':NULL?> <?=__('Import Locations')?>
+            <?=($location AND $location->id_location > 1) ? $location->translate_name().' – ':NULL?> <?=__('Import Locations')?>
         </h2>
     </div>
 </div>

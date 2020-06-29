@@ -49,12 +49,12 @@ class Auth_Crud extends Auth_Controller
     function __construct(Request $request, Response $response)
     {
         parent::__construct($request, $response);
-        
+
         //we check if that action can be done, if not redirected to the index
         if (!$this->allowed_crud_action())
         {
             $url = Route::get('oc-panel')->uri(array(
-                                                        'controller'  => $this->request->controller(), 
+                                                        'controller'  => $this->request->controller(),
                                                         'action'      => 'index'));
             $this->redirect($url);
         }
@@ -68,7 +68,7 @@ class Auth_Crud extends Auth_Controller
         //we need the PK always to work on the grid...
         if (!in_array($element->primary_key(),$this->_index_fields))
             array_unshift($this->_index_fields, $element->primary_key());
-                
+
         //url used in the breadcrumb
         $url_bread = Route::url('oc-panel',array('controller'  => $this->request->controller()));
         Breadcrumbs::add(Breadcrumb::factory()->set_title(Text::ucfirst(__($this->_orm_model)))->set_url($url_bread));
@@ -80,13 +80,13 @@ class Auth_Crud extends Auth_Controller
     /**
      *
      * Loads a basic list info
-     * @param string $view template to render 
+     * @param string $view template to render
      */
     public function action_index($view = NULL)
     {
         $this->template->title = __($this->_orm_model);
         $this->template->scripts['footer'][] = 'js/oc-panel/crud/index.js';
-        
+
         $elements = ORM::Factory($this->_orm_model);//->find_all();
 
         $pagination = Pagination::factory(array(
@@ -108,7 +108,7 @@ class Auth_Crud extends Auth_Controller
 
         if ($view === NULL)
             $view = 'oc-panel/crud/index';
-        
+
         $this->render($view, array('elements' => $elements,'pagination'=>$pagination));
     }
 
@@ -137,7 +137,7 @@ class Auth_Crud extends Auth_Controller
         }
         else
             $this->template->content = 'KO';
-        
+
 
     }
 
@@ -148,47 +148,18 @@ class Auth_Crud extends Auth_Controller
     {
 
         $this->template->title = __('New').' '.__($this->_orm_model);
-        
+
         $form = new FormOrm($this->_orm_model);
-            
+
         if ($this->request->post())
         {
             if ( $success = $form->submit() )
             {
                 $form->save_object();
                 Alert::set(Alert::SUCCESS, __('Item created').'. '.__('Please to see the changes delete the cache')
-                    .'<br><a class="btn btn-primary btn-mini ajax-load" href="'.Route::url('oc-panel',array('controller'=>'tools','action'=>'cache')).'?force=1" title="'.__('Delete cache').'">'
-                    .__('Delete cache').'</a>');
-            
-                $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
-            }
-            else 
-            {
-                Alert::set(Alert::ERROR, __('Check form for errors'));
-            }
-        }
-    
-        return $this->render('oc-panel/crud/create', array('form' => $form));
-    }
-    
-    
-    /**
-     * CRUD controller: UPDATE
-     */
-    public function action_update()
-    {
-        $this->template->title = __('Update').' '.__($this->_orm_model).' '.$this->request->param('id');
-    
-        $form = new FormOrm($this->_orm_model,$this->request->param('id'));
-        
-        if ($this->request->post())
-        {
-            if ( $success = $form->submit() )
-            {
-                $form->save_object();
-                Alert::set(Alert::SUCCESS, __('Item updated').'. '.__('Please to see the changes delete the cache')
-                    .'<br><a class="btn btn-primary btn-mini ajax-load" href="'.Route::url('oc-panel',array('controller'=>'tools','action'=>'cache')).'?force=1" title="'.__('Delete cache').'">'
-                    .__('Delete cache').'</a>');
+                    .'<br><a class="btn btn-primary btn-mini ajax-load" href="'.Route::url('oc-panel',array('controller'=>'tools','action'=>'cache')).'?force=1" title="'.__('Delete All').'">'
+                    .__('Delete All').'</a>');
+
                 $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
             }
             else
@@ -196,7 +167,36 @@ class Auth_Crud extends Auth_Controller
                 Alert::set(Alert::ERROR, __('Check form for errors'));
             }
         }
-    
+
+        return $this->render('oc-panel/crud/create', array('form' => $form));
+    }
+
+
+    /**
+     * CRUD controller: UPDATE
+     */
+    public function action_update()
+    {
+        $this->template->title = __('Update').' '.__($this->_orm_model).' '.$this->request->param('id');
+
+        $form = new FormOrm($this->_orm_model,$this->request->param('id'));
+
+        if ($this->request->post())
+        {
+            if ( $success = $form->submit() )
+            {
+                $form->save_object();
+                Alert::set(Alert::SUCCESS, __('Item updated').'. '.__('Please to see the changes delete the cache')
+                    .'<br><a class="btn btn-primary btn-mini ajax-load" href="'.Route::url('oc-panel',array('controller'=>'tools','action'=>'cache')).'?force=1" title="'.__('Delete All').'">'
+                    .__('Delete All').'</a>');
+                $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
+            }
+            else
+            {
+                Alert::set(Alert::ERROR, __('Check form for errors'));
+            }
+        }
+
         return $this->render('oc-panel/crud/update', array('form' => $form));
     }
 
@@ -218,13 +218,13 @@ class Auth_Crud extends Auth_Controller
             $element = ORM::Factory($this->_orm_model);
             $this->_index_fields = array_keys($element->list_columns());
         }
-            
+
         $data = array('fields' => $this->_index_fields, 'name' => $this->_orm_model, 'route' => $this->_route_name,'controller'=>$this) + $data;
 
         $this->template->content = View::factory($view,$data);
     }
-    
-    
+
+
     /**
      *
      * tells you if the crud action it's allowed in the controller
@@ -240,8 +240,8 @@ class Auth_Crud extends Auth_Controller
             $action = $this->request->action();
             $notify = TRUE;
         }
-            
-    
+
+
         //its a crud request? check whitelist
         if (in_array($action, $this->_crud_actions) )
         {
@@ -255,22 +255,27 @@ class Auth_Crud extends Auth_Controller
                 return FALSE;
             }
         }
-    
+
         return TRUE;
-    
+
     }
 
     /**
      *
      * Loads a basic list info
-     * @param string $view template to render 
+     * @param string $view template to render
      */
     public function action_export($view = NULL)
-    {   
+    {
         //the name of the file that user will download
         $file_name = $this->_orm_model.'_export.csv';
+
         //name of the TMP file
         $output_file = tempnam(sys_get_temp_dir(), $file_name);
+        if (Core::is_cloud())
+        {
+            $output_file = tempnam('/tmp', $file_name);
+        }
 
         //instance of the crud
         $elements = ORM::Factory($this->_orm_model);
@@ -284,9 +289,9 @@ class Auth_Crud extends Auth_Controller
         $elements = $elements->find_all();
 
         //each element
-        foreach($elements as $element) 
+        foreach($elements as $element)
             fputcsv($output, $element->as_array());
-        
+
         fclose($output);
 
         //returns the file to the browser as attachement and deletes the TMP file

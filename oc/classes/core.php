@@ -759,6 +759,16 @@ class Core {
         return (Core::config('license.number')!=NULL AND Core::config('license.date') >= time())?TRUE:FALSE;
     }
 
+    public static function is_cloud()
+    {
+        return method_exists('Core','yclas_url');
+    }
+
+    public static function is_selfhosted()
+    {
+        return ! self::is_cloud();
+    }
+
 } //end core
 
 /**

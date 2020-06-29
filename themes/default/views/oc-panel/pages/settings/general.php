@@ -8,13 +8,15 @@
             <?= __('General settings') ?>
         </h2>
     </div>
-    <div class="mt-4 flex md:mt-0 md:ml-4">
-        <span class="ml-3 shadow-sm rounded-md">
-            <a href="<?=Route::url('oc-panel',['controller'=>'config'])?>" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-700 active:bg-blue-700 transition duration-150 ease-in-out">
-                <?=__('All configurations')?>
-            </a>
-        </span>
-    </div>
+    <? if (Core::is_selfhosted()) : ?>
+        <div class="mt-4 flex md:mt-0 md:ml-4">
+            <span class="ml-3 shadow-sm rounded-md">
+                <a href="<?=Route::url('oc-panel',['controller'=>'config'])?>" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-700 active:bg-blue-700 transition duration-150 ease-in-out">
+                    <?=__('All configurations')?>
+                </a>
+            </span>
+        </div>
+    <? endif ?>
 </div>
 
 <div class="bg-white overflow-hidden shadow rounded-lg mt-8">
@@ -207,6 +209,34 @@
                                 <?=__("To include your custom HTML code (reference to JS or CSS files, etc.) in the footer of the rendered page.")?>
                             </p>
                         </div>
+                        <? if (Core::is_cloud()) : ?>
+                            <div class="sm:col-span-6">
+                                <?= FORM::label('adstxt', 'Ads.txt', array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <?= FORM::textarea('adstxt', Core::post('adstxt', Core::config('general.adstxt')), array(
+                                        'rows' => 3,
+                                        'cols' => 50,
+                                        'class' => 'form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                                    ))?>
+                                </div>
+                                <p class="mt-2 text-sm text-gray-500">
+                                    <a target="_blank" href="<?=Route::url('adstxt')?>"><?=__("Paste here the content of your ads.txt")?></a>
+                                </p>
+                            </div>
+                            <div class="sm:col-span-6">
+                                <?= FORM::label('robotstxt', 'Robots.txt', array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <?= FORM::textarea('robotstxt', Core::post('robotstxt', Core::config('general.robotstxt')), array(
+                                        'rows' => 3,
+                                        'cols' => 50,
+                                        'class' => 'form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                                    ))?>
+                                </div>
+                                <p class="mt-2 text-sm text-gray-500">
+                                    <a target="_blank" href="<?=Route::url('robots')?>"><?=__("Paste here the content of your robots.txt")?></a>
+                                </p>
+                            </div>
+                        <? endif ?>
                     </div>
                 </div>
                 <div class="mt-8 border-t border-gray-200 pt-8">

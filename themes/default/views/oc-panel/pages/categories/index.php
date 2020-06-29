@@ -98,7 +98,7 @@
                     <?$categories = []?>
                     <?
                         foreach ((new Model_Category)->where('id_category','!=','1')->order_by('order','asc')->find_all()->cached() as $category) {
-                            $categories[$category->id_category] = $category->name;
+                            $categories[$category->id_category] = $category->translate_name();
                         }
                     ?>
                     <?=FORM::label('hide_homepage_categories', __('Categories'), array('class'=>'sr-only'))?>

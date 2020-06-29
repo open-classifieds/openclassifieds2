@@ -22,12 +22,14 @@
                                 <?= __('Import users instead of inserting them one by one.') ?>
                             </p>
                         </a>
-                        <a href="<?=Route::url('oc-panel',array('controller'=>'tools', 'action'=>'optimize'))?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
-                            <h5 class="text-base leading-6 font-medium text-blue-600"><?= __('Optimize database') ?></h5>
-                            <p class="mt-2 text-sm leading-6 text-gray-500">
-                                <?= __('Reduce database disk space.') ?>
-                            </p>
-                        </a>
+                        <? if (Core::is_selfhosted()) : ?>
+                            <a href="<?=Route::url('oc-panel',array('controller'=>'tools', 'action'=>'optimize'))?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
+                                <h5 class="text-base leading-6 font-medium text-blue-600"><?= __('Optimize database') ?></h5>
+                                <p class="mt-2 text-sm leading-6 text-gray-500">
+                                    <?= __('Reduce database disk space.') ?>
+                                </p>
+                            </a>
+                        <? endif ?>
                         <a href="<?=Route::url('oc-panel',array('controller'=>'crontab'))?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
                             <h5 class="text-base leading-6 font-medium text-blue-600">Crontab</h5>
                             <p class="mt-2 text-sm leading-6 text-gray-500">
@@ -40,30 +42,36 @@
                                 <?= __('Generate a Sitemap and get the route.') ?>
                             </p>
                         </a>
-                        <a href="<?=Route::url('oc-panel',array('controller'=>'tools', 'action'=>'migration'))?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
-                            <h5 class="text-base leading-6 font-medium text-blue-600"><?= __('Migration') ?></h5>
-                            <p class="mt-2 text-sm leading-6 text-gray-500">
-                                <?= __('Migrate from previous Yclas versions.') ?>
-                            </p>
-                        </a>
+                        <? if (Core::is_selfhosted()) : ?>
+                            <a href="<?=Route::url('oc-panel',array('controller'=>'tools', 'action'=>'migration'))?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
+                                <h5 class="text-base leading-6 font-medium text-blue-600"><?= __('Migration') ?></h5>
+                                <p class="mt-2 text-sm leading-6 text-gray-500">
+                                    <?= __('Migrate from previous Yclas versions.') ?>
+                                </p>
+                            </a>
+                        <? endif ?>
                         <a href="<?=Route::url('oc-panel',array('controller'=>'tools', 'action'=>'cache'))?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
                             <h5 class="text-base leading-6 font-medium text-blue-600"><?= __('Cache') ?></h5>
                             <p class="mt-2 text-sm leading-6 text-gray-500">
                                 <?= __("Manually clear your website's cache.") ?>
                             </p>
                         </a>
-                        <a href="<?=Route::url('oc-panel',array('controller'=>'tools', 'action'=>'logs'))?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
-                            <h5 class="text-base leading-6 font-medium text-blue-600"><?= __('Logs') ?></h5>
-                            <p class="mt-2 text-sm leading-6 text-gray-500">
-                                <?= __("Access to your website's error log.") ?>
-                            </p>
-                        </a>
-                        <a href="<?=Route::url('oc-panel',array('controller'=>'tools', 'action'=>'phpinfo'))?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
-                            <h5 class="text-base leading-6 font-medium text-blue-600"><?= __('PHP info') ?></h5>
-                            <p class="mt-2 text-sm leading-6 text-gray-500">
-                                <?= __("Access to your server's PHP configuration.") ?>
-                            </p>
-                        </a>
+                        <? if (Core::is_selfhosted()) : ?>
+                            <a href="<?=Route::url('oc-panel',array('controller'=>'tools', 'action'=>'logs'))?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
+                                <h5 class="text-base leading-6 font-medium text-blue-600"><?= __('Logs') ?></h5>
+                                <p class="mt-2 text-sm leading-6 text-gray-500">
+                                    <?= __("Access to your website's error log.") ?>
+                                </p>
+                            </a>
+                        <? endif ?>
+                        <? if (Core::is_selfhosted()) : ?>
+                            <a href="<?=Route::url('oc-panel',array('controller'=>'tools', 'action'=>'phpinfo'))?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
+                                <h5 class="text-base leading-6 font-medium text-blue-600"><?= __('PHP info') ?></h5>
+                                <p class="mt-2 text-sm leading-6 text-gray-500">
+                                    <?= __("Access to your server's PHP configuration.") ?>
+                                </p>
+                            </a>
+                        <? endif ?>
                     </div>
                 </div>
             </div>

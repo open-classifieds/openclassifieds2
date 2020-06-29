@@ -58,8 +58,10 @@ class Auth_Controller extends Controller
 	 */
 	public function before($template = NULL)
 	{
-        if ($this->user->is_admin())
+        if (Core::is_selfhosted() AND $this->user->is_admin())
+        {
             Core::status();
+        }
 
         $this->maintenance();
 
@@ -79,7 +81,6 @@ class Auth_Controller extends Controller
         $this->template->title            = __('Panel').' - '.core::config('general.site_name');
         $this->template->meta_keywords    = '';
         $this->template->meta_description = '';
-        $this->template->meta_copyright   = 'Yclas '.Core::VERSION;
         $this->template->header           = '';
         $this->template->content          = '';
         $this->template->footer           = '';
@@ -87,6 +88,15 @@ class Auth_Controller extends Controller
         $this->template->scripts          = [];
         $this->template->user             = Auth::instance()->get_user();
         $this->template->panel_title      = NULL;
+
+        if (Core::is_selfhosted())
+        {
+            $this->template->meta_copyright   = 'Yclas.com - '.date('Y');
+        }
+        else
+        {
+            $this->template->meta_copyright   = 'Yclas '.Core::VERSION;
+        }
 
 		//custom options for the theme
 		Theme::$options = Theme::get_options();

@@ -129,18 +129,72 @@
                                 <?=__('Thumb is a small image resized to fit certain elements. This is width of this image.')?>
                             </p>
                         </div>
-                        <div class="sm:col-span-4">
-                            <?= FORM::label('watermark_path', __('Watermark path'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
-                            <div class="mt-1 rounded-md shadow-sm">
-                                <?= FORM::input('watermark_path', Core::post('watermark_path', Core::config('image.watermark_path')), [
-                                    'placeholder' => 'images/watermark.png',
-                                    'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
-                                ])?>
+                        <? if (Core::is_cloud()) : ?>
+                            <div class="sm:col-span-4">
+                                <?= FORM::label('watermark_text', __('Watermark text'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <?= FORM::input('watermark_text', Core::post('watermark_text', Core::config('image.watermark_text')), [
+                                        'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                                    ])?>
+                                </div>
+                                <p class="mt-2 text-sm text-gray-500">
+                                    <?=__('Text to use as watermark')?>
+                                </p>
                             </div>
-                            <p class="mt-2 text-sm text-gray-500">
-                                <?=__('Relative path to the image to use as watermark')?>
-                            </p>
-                        </div>
+                            <div class="sm:col-span-4">
+                                <?= FORM::label('watermark_text_size', __('Watermark text size'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <?= FORM::input('watermark_text_size', Core::post('watermark_text_size', Core::config('image.watermark_text_size')), [
+                                        'placeholder' => Core::config('image.watermark_text_size'),
+                                        'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                                    ])?>
+                                </div>
+                            </div>
+                            <div class="sm:col-span-4">
+                                <?= FORM::label('watermark_text_color', __('Watermark text color'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <?= FORM::input('watermark_text_color', Core::post('watermark_text_color', Core::config('image.watermark_text_color')), [
+                                        'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                                    ])?>
+                                </div>
+                                <p class="mt-2 text-sm text-gray-500">
+                                    <?=__('Text color to use as watermark')?>
+                                </p>
+                            </div>
+                            <div class="sm:col-span-4">
+                                <?= FORM::label('watermark_bg_color', __('Watermark background color'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <?= FORM::input('watermark_bg_color', Core::post('watermark_bg_color', Core::config('image.watermark_bg_color')), [
+                                        'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                                    ])?>
+                                </div>
+                                <p class="mt-2 text-sm text-gray-500">
+                                    <?=__('Background color to use as watermark')?>
+                                </p>
+                            </div>
+                            <div class="sm:col-span-6">
+                                <div class="absolute flex items-center h-5">
+                                    <?=FORM::checkbox('watermark_bg_transparent', 1, (bool) Core::post('watermark_bg_transparent', Core::config('image.watermark_bg_transparent')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
+                                </div>
+                                <div class="pl-7 text-sm leading-5">
+                                    <?=FORM::label('watermark_bg_transparent', __('watermark_bg_transparent Mode'), ['class'=>'font-medium text-gray-700'])?>
+                                    <p class="text-gray-500"><?= __('Background color to use as watermark') ?>.</p>
+                                </div>
+                            </div>
+                        <? else : ?>
+                            <div class="sm:col-span-4">
+                                <?= FORM::label('watermark_path', __('Watermark path'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <?= FORM::input('watermark_path', Core::post('watermark_path', Core::config('image.watermark_path')), [
+                                        'placeholder' => 'images/watermark.png',
+                                        'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                                    ])?>
+                                </div>
+                                <p class="mt-2 text-sm text-gray-500">
+                                    <?=__('Relative path to the image to use as watermark')?>
+                                </p>
+                            </div>
+                        <? endif ?>
                         <div class="sm:col-span-6">
                             <div class="absolute flex items-center h-5">
                                 <?=FORM::checkbox('watermark', 1, (bool) Core::post('watermark', Core::config('image.watermark')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>

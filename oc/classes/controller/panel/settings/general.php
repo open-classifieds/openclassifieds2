@@ -73,7 +73,28 @@ class Controller_Panel_Settings_General extends Auth_Controller {
             Model_Config::set_value('general', 'search_by_description', Core::post('search_by_description') ?? 0);
             Model_Config::set_value('general', 'search_multi_catloc', Core::post('search_multi_catloc') ?? 0);
 
+            if (Core::is_cloud())
+            {
+                Model_Config::set_value('general', 'adstxt', Core::post('adstxt'));
+                Model_Config::set_value('general', 'robotstxt', Core::post('robotstxt'));
+            }
+
             Alert::set(Alert::SUCCESS, __('Configuration updated'));
+
+            //set model domain maintenance to current
+            if (Core::is_cloud() AND Model_Domain::current()->maintenance != Core::post('maintenance') ?? 0)
+            {
+                Model_Domain::current()->maintenance = Core::post('maintenance') ?? 0;
+
+                try
+                {
+                    Model_Domain::current()->save();
+                }
+                catch(Exception $e)
+                {
+                    throw HTTP_Exception::factory(500,$e->getMessage());
+                }
+            }
 
             $this->redirect(Route::url('oc-panel/settings', ['controller' => 'general']));
         }

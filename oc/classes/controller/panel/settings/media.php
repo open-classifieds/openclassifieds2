@@ -38,14 +38,37 @@ class Controller_Panel_Settings_Media extends Auth_Controller {
             }
 
             Model_Config::set_value('image', 'allowed_formats', implode(Core::post('allowed_formats'), ','));
-            Model_Config::set_value('image', 'max_image_size', Core::post('max_image_size'));
+
+            $max_image_size = Core::post('max_image_size');
+
+            if (Core::is_cloud())
+            {
+                //max_image_size no bigger than 12MB
+                $max_image_size = $max_image_size > 12 ? 12 : $max_image_size;
+            }
+
+            Model_Config::set_value('image', 'max_image_size', $max_image_size);
+
             Model_Config::set_value('image', 'height', Core::post('height'));
             Model_Config::set_value('image', 'width', Core::post('width'));
             Model_Config::set_value('image', 'height_thumb', Core::post('height_thumb'));
             Model_Config::set_value('image', 'width_thumb', Core::post('width_thumb'));
             Model_Config::set_value('image', 'quality', Core::post('quality'));
             Model_Config::set_value('image', 'watermark', Core::post('watermark') ?? 0);
-            Model_Config::set_value('image', 'watermark_path', Core::post('watermark_path'));
+
+            if (Core::is_cloud())
+            {
+                Model_Config::set_value('image', 'watermark_text', Core::post('watermark_text'));
+                Model_Config::set_value('image', 'watermark_text_size', Core::post('watermark_text_size'));
+                Model_Config::set_value('image', 'watermark_text_color', Core::post('watermark_text_color'));
+                Model_Config::set_value('image', 'watermark_bg_transparent', Core::post('watermark_bg_transparent') ?? 0);
+                Model_Config::set_value('image', 'watermark_bg_color', Core::post('watermark_bg_color'));
+            }
+            else
+            {
+                Model_Config::set_value('image', 'watermark_path', Core::post('watermark_path'));
+            }
+
             Model_Config::set_value('image', 'watermark_position', Core::post('watermark_position'));
             Model_Config::set_value('image', 'disallow_nudes', Core::post('disallow_nudes') ?? 0);
 

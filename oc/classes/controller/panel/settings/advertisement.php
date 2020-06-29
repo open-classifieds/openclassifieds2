@@ -75,7 +75,16 @@ class Controller_Panel_Settings_Advertisement extends Auth_Controller {
             Model_Config::set_value('advertisement', 'description', Core::post('description') ?? 0);
             Model_Config::set_value('advertisement', 'phone', Core::post('phone') ?? 0);
             Model_Config::set_value('advertisement', 'location', Core::post('location') ?? 0);
-            Model_Config::set_value('advertisement', 'num_images', Core::post('num_images'));
+
+            $num_images = Core::post('num_images');
+
+            if (Core::is_cloud())
+            {
+                $num_images = $num_images > Model_Domain::current()->num_images_ad ? Model_Domain::current()->num_images_ad : $num_images;
+            }
+
+            Model_Config::set_value('advertisement', 'num_images', $num_images);
+
             Model_Config::set_value('advertisement', 'address', Core::post('address') ?? 0);
             Model_Config::set_value('advertisement', 'website', Core::post('website') ?? 0);
             Model_Config::set_value('advertisement', 'price', Core::post('price') ?? 0);

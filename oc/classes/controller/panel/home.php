@@ -6,58 +6,58 @@ class Controller_Panel_Home extends Auth_Controller {
 	public function action_index()
 	{
         //if not god redirect him to the normal profile page
-        if ( ! Auth::instance()->get_user()->is_admin() AND 
-             ! Auth::instance()->get_user()->is_moderator() AND 
+        if ( ! Auth::instance()->get_user()->is_admin() AND
+             ! Auth::instance()->get_user()->is_moderator() AND
              ! Auth::instance()->get_user()->is_translator())
-            HTTP::redirect(Route::url('oc-panel',array('controller'  => 'myads','action'=>'index')));  
-        
+            HTTP::redirect(Route::url('oc-panel',array('controller'  => 'myads','action'=>'index')));
+
         $this->template->scripts['footer'] = array('js/chart.min.js', 'js/chart.js-php.js', 'js/oc-panel/license.js');
 
         $this->template->title = __('Welcome');
         Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title));
-        
-        $this->template->bind('content', $content);        
+
+        $this->template->bind('content', $content);
         $content = View::factory('oc-panel/home');
-        
+
         /////////////////////RSS////////////////////////////////
-        
+
         //try to get the RSS from the cache
         $rss_url = 'http://feeds.feedburner.com/OpenClassifieds';
         $content->rss = Feed::parse($rss_url,10);
-        
+
 
         /////////////////////ADS////////////////////////////////
-        
+
         $content->res = new Model_Ad();
-        
+
         //filter ads by status
         $content->res = $content->res->where('status', '=', Core::get('status',Model_Ad::STATUS_PUBLISHED));
         $content->res = $content->res->order_by('created','desc')->limit(10)->find_all();
-        
+
         /////////////////////STATS////////////////////////////////
-        
+
         //Getting the dates and range
         $from_date = Core::post('from_date',strtotime('-1 month'));
         $to_date   = Core::post('to_date',time());
-        
+
         //we assure is a proper time stamp if not we transform it
-        if (is_string($from_date) === TRUE) 
+        if (is_string($from_date) === TRUE)
             $from_date = strtotime($from_date);
-        if (is_string($to_date) === TRUE) 
+        if (is_string($to_date) === TRUE)
             $to_date   = strtotime($to_date);
-        
+
         //mysql formated dates
         $my_from_date = Date::unix2mysql($from_date);
         $my_to_date   = Date::unix2mysql($to_date);
-        
+
         //dates range we are filtering
         $dates     = Date::range($from_date, $to_date,'+1 day','Y-m-d',array('date'=>0,'count'=> 0),'date');
-        
+
         //dates displayed in the form
         $content->from_date = date('Y-m-d',$from_date);
         $content->to_date   = date('Y-m-d',$to_date) ;
-        
-        
+
+
         //ads published last XX days
         $query = DB::select(DB::expr('DATE(published) date'))
                         ->select(DB::expr('COUNT(id_ad) count'))
@@ -68,11 +68,11 @@ class Controller_Panel_Home extends Auth_Controller {
                         ->group_by(DB::expr('DATE( published )'))
                         ->order_by('date','asc')
                         ->execute();
-        
+
         $ads_dates = $query->as_array('date');
-        
-        
-        //Today 
+
+
+        //Today
         $query = DB::select(DB::expr('COUNT(id_ad) count'))
                         ->from('ads')
                         ->where('status','=',Model_Ad::STATUS_PUBLISHED)
@@ -80,10 +80,10 @@ class Controller_Panel_Home extends Auth_Controller {
                         ->group_by(DB::expr('DATE( published )'))
                         ->order_by('published','asc')
                         ->execute();
-        
+
         $ads = $query->as_array();
         $content->ads_today     = (isset($ads[0]['count']))?$ads[0]['count']:0;
-        
+
         //Yesterday
         $query = DB::select(DB::expr('COUNT(id_ad) count'))
                         ->from('ads')
@@ -92,32 +92,32 @@ class Controller_Panel_Home extends Auth_Controller {
                         ->group_by(DB::expr('DATE( published )'))
                         ->order_by('published','asc')
                         ->execute();
-        
+
         $ads = $query->as_array();
         $content->ads_yesterday = (isset($ads[0]['count']))?$ads[0]['count']:0;
-        
-        
+
+
         //Last 30 days ads
         $query = DB::select(DB::expr('COUNT(id_ad) count'))
                         ->from('ads')
                         ->where('status','=',Model_Ad::STATUS_PUBLISHED)
                         ->where('published','between',array(date('Y-m-d',strtotime('-30 day')),date::unix2mysql()))
                         ->execute();
-        
+
         $ads = $query->as_array();
         $content->ads_month = (isset($ads[0]['count']))?$ads[0]['count']:0;
-        
+
         //total ads
         $query = DB::select(DB::expr('COUNT(id_ad) count'))
                         ->from('ads')
                         ->where('status','=',Model_Ad::STATUS_PUBLISHED)
                         ->execute();
-        
+
         $ads = $query->as_array();
         $content->ads_total = (isset($ads[0]['count']))?$ads[0]['count']:0;
-        
+
         /////////////////////VISITS STATS////////////////////////////////
-        
+
         //visits created last XX days
         $query = DB::select(DB::expr('DATE(created) date'))
                         ->select(DB::expr('COUNT(id_visit) count'))
@@ -126,33 +126,33 @@ class Controller_Panel_Home extends Auth_Controller {
                         ->group_by(DB::expr('DATE( created )'))
                         ->order_by('date','asc')
                         ->execute();
-        
+
         $visits = $query->as_array('date');
-        
-        
+
+
         $stats_daily = array();
-        foreach ($dates as $date) 
+        foreach ($dates as $date)
         {
             $count_views = (isset($visits[$date['date']]['count']))?$visits[$date['date']]['count']:0;
             $count_ads = (isset($ads_dates[$date['date']]['count']))?$ads_dates[$date['date']]['count']:0;
-            
+
             $stats_daily[] = array('date'=>$date['date'],'views'=> $count_views,'ads'=>$count_ads);
-        } 
-        
+        }
+
         $content->stats_daily =  $stats_daily;
-        
-        
-         //Today 
+
+
+         //Today
         $query = DB::select(DB::expr('COUNT(id_visit) count'))
                         ->from('visits')
                         ->where(DB::expr('DATE( created )'),'=',DB::expr('CURDATE()'))
                         ->group_by(DB::expr('DATE( created )'))
                         ->order_by('created','asc')
                         ->execute();
-        
+
         $ads = $query->as_array();
         $content->visits_today     = (isset($ads[0]['count']))?$ads[0]['count']:0;
-        
+
         //Yesterday
         $query = DB::select(DB::expr('COUNT(id_visit) count'))
                         ->from('visits')
@@ -160,31 +160,31 @@ class Controller_Panel_Home extends Auth_Controller {
                         ->group_by(DB::expr('DATE( created )'))
                         ->order_by('created','asc')
                         ->execute();
-        
+
         $ads = $query->as_array();
         $content->visits_yesterday= (isset($ads[0]['count']))?$ads[0]['count']:0;
-        
-        
+
+
         //Last 30 days visits
         $query = DB::select(DB::expr('COUNT(id_visit) count'))
                         ->from('visits')
                         ->where('created','between',array(date('Y-m-d',strtotime('-30 day')),date::unix2mysql()))
                         ->execute();
-        
+
         $visits = $query->as_array();
         $content->visits_month = (isset($visits[0]['count']))?$visits[0]['count']:0;
-        
+
         //total visits
         $query = DB::select(DB::expr('COUNT(id_visit) count'))
                         ->from('visits')
                         ->execute();
-        
+
         $visits = $query->as_array();
         $content->visits_total = (isset($visits[0]['count']))?$visits[0]['count']:0;
-        
-        
+
+
         /////////////////////ORDERS STATS////////////////////////////////
-        
+
         //orders created last XX days
         $query = DB::select(DB::expr('DATE(created) date'))
                         ->select(DB::expr('COUNT(id_order) count'))
@@ -196,24 +196,24 @@ class Controller_Panel_Home extends Auth_Controller {
                         ->group_by(DB::expr('DATE( created )'))
                         ->order_by('date','asc')
                         ->execute();
-        
+
         $orders = $query->as_array('date');
-        
-        
+
+
         $stats_orders = array();
-        foreach ($dates as $date) 
+        foreach ($dates as $date)
         {
             $count_orders = (isset($orders[$date['date']]['count']))?$orders[$date['date']]['count']:0;
             $count_sum = (isset($orders[$date['date']]['total']))?$orders[$date['date']]['total']:0;
-            
+
             $stats_orders[] = array('date'=>$date['date'],'#orders'=> $count_orders,'$'=>$count_sum);
-        } 
-        
+        }
+
         $content->stats_orders =  $stats_orders;
-        
-        
-        //Today 
-        $query = DB::select(DB::expr('count(id_order) count'))
+
+
+        //Today
+        $query = DB::select(DB::expr('COUNT(id_order) count'))
                         ->from('orders')
                         ->where(DB::expr('DATE( created )'),'=',DB::expr('CURDATE()'))
                         ->where('status','=',Model_Order::STATUS_PAID)
@@ -221,10 +221,10 @@ class Controller_Panel_Home extends Auth_Controller {
                         ->group_by(DB::expr('DATE( created )'))
                         ->order_by('created','asc')
                         ->execute();
-        
+
         $ads = $query->as_array();
         $content->orders_yesterday     = (isset($ads[0]['count']))?$ads[0]['count']:0;
-        
+
         //Yesterday
         $query = DB::select(DB::expr('COUNT(id_order) count'))
                         ->from('orders')
@@ -234,29 +234,29 @@ class Controller_Panel_Home extends Auth_Controller {
                         ->group_by(DB::expr('DATE( created )'))
                         ->order_by('created','asc')
                         ->execute();
-        
+
         $ads = $query->as_array();
         $content->orders_today = (isset($ads[0]['count']))?$ads[0]['count']:0;
-        
-        
+
+
         //Last 30 days orders
-        $query = DB::select(DB::expr('count(id_order) count'))
+        $query = DB::select(DB::expr('COUNT(id_order) count'))
                         ->from('orders')
                         ->where('created','between',array(date('Y-m-d',strtotime('-30 day')),date::unix2mysql()))
                         ->where('status','=',Model_Order::STATUS_PAID)
                         ->where('id_product','!=',Model_Order::PRODUCT_AD_SELL)
                         ->execute();
-        
+
         $orders = $query->as_array();
         $content->orders_month = (isset($orders[0]['count']))?$orders[0]['count']:0;
-        
+
         //total orders
         $query = DB::select(DB::expr('COUNT(id_order) count'))
                         ->from('orders')
                         ->where('status','=',Model_Order::STATUS_PAID)
                         ->where('id_product','!=',Model_Order::PRODUCT_AD_SELL)
                         ->execute();
-        
+
         $orders = $query->as_array();
         $content->orders_total = (isset($orders[0]['count']))?$orders[0]['count']:0;
 
@@ -269,22 +269,22 @@ class Controller_Panel_Home extends Auth_Controller {
                         ->group_by(DB::expr('DATE( created )'))
                         ->order_by('date','asc')
                         ->execute();
-        
+
         $users_dates = $query->as_array('date');
-        
-        
-        //Today 
-        $query = DB::select(DB::expr('count(id_user) count'))
+
+
+        //Today
+        $query = DB::select(DB::expr('COUNT(id_user) count'))
                         ->from('users')
                         ->where('status','=',Model_User::STATUS_ACTIVE)
                         ->where(DB::expr('DATE( created )'),'=',DB::expr('CURDATE()'))
                         ->group_by(DB::expr('DATE( created )'))
                         ->order_by('created','asc')
                         ->execute();
-        
+
         $users = $query->as_array();
         $content->users_today     = (isset($users[0]['count']))?$users[0]['count']:0;
-        
+
         //Yesterday
         $query = DB::select(DB::expr('COUNT(id_user) count'))
                         ->from('users')
@@ -293,27 +293,27 @@ class Controller_Panel_Home extends Auth_Controller {
                         ->group_by(DB::expr('DATE( created )'))
                         ->order_by('created','asc')
                         ->execute();
-        
+
         $users = $query->as_array();
         $content->users_yesterday = (isset($users[0]['count']))?$users[0]['count']:0;
-        
-        
+
+
         //Last 30 days users
         $query = DB::select(DB::expr('COUNT(id_user) count'))
                         ->from('users')
                         ->where('status','=',Model_User::STATUS_ACTIVE)
                         ->where('created','between',array(date('Y-m-d',strtotime('-30 day')),date::unix2mysql()))
                         ->execute();
-        
+
         $users = $query->as_array();
         $content->users_month = (isset($users[0]['count']))?$users[0]['count']:0;
-        
+
         //total users
         $query = DB::select(DB::expr('COUNT(id_user) count'))
                         ->from('users')
                         ->where('status','=',Model_User::STATUS_ACTIVE)
                         ->execute();
-        
+
         $users = $query->as_array();
         $content->users_total = (isset($users[0]['count']))?$users[0]['count']:0;
 
@@ -329,13 +329,13 @@ class Controller_Panel_Home extends Auth_Controller {
             $content->moderate_ads = $moderate_ads;
         }
 	}
-    
+
     //marked email as subscribed
     public function action_subscribe()
     {
         $this->auto_render = FALSE;
         // Update subscribe config action
-        Model_Config::set_value('general', 'subscribe', 1); 
+        Model_Config::set_value('general', 'subscribe', 1);
         Core::delete_cache();
 
         die('OK');
@@ -343,10 +343,15 @@ class Controller_Panel_Home extends Auth_Controller {
 
     /**
      * theme selector
-     * @return [view] 
+     * @return [view]
      */
     public function action_license()
     {
+        if (Core::is_cloud())
+        {
+            return;
+        }
+
         // save only changed values
         if(core::request('license'))
         {
@@ -358,23 +363,28 @@ class Controller_Panel_Home extends Auth_Controller {
             else
             {
                 Alert::set(Alert::INFO, __('There was an error activating your license.'));
-            }            
+            }
         }
 
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Pro License')));  
-        $this->template->title = __('Pro License');     
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Pro License')));
+        $this->template->title = __('Pro License');
         $this->template->scripts['footer'][] = 'js/oc-panel/license.js';
 
         $this->template->content = View::factory('oc-panel/pages/themes/license');
     }
-    
+
 
     /**
      * download theme from license key
-     * @return [view] 
+     * @return [view]
      */
     public function action_download()
     {
+        if (Core::is_cloud())
+        {
+            return;
+        }
+
         // save only changed values
         if($license = core::request('license'))
         {

@@ -9,6 +9,15 @@
                         <h3 class="text-lg leading-6 font-medium text-gray-900">
                             <?=$widget->title?>
                         </h3>
+                        <?if(Core::is_cloud() AND get_class($widget) == 'Widget_Text' AND Model_Domain::current()->old_domain === NULL):?>
+                            <div class="alert alert-warning" role="alert">
+                                <?=__('If you want to use Google Adsense banners, they will not be displayed if you use our free domain Yclas.com')?>
+                                &nbsp;
+                                <a href="https://yclas.com/faq/custom-banners.html" target="_blank">
+                                    <?=__('Read more')?> <i class="fa fa-external-link"></i>
+                                </a>
+                            </div>
+                        <?endif?>
                         <div class="mt-2 max-w-xl text-sm leading-5 text-gray-500">
                             <p>
                                 <?=$widget->description?>
@@ -62,6 +71,15 @@
                         <h3 class="text-lg leading-6 font-medium text-gray-900">
                             <?=$widget->title?>
                         </h3>
+                        <?if(Core::is_cloud() AND get_class($widget) == 'Widget_Text' AND Model_Domain::current()->old_domain === NULL):?>
+                            <div class="alert alert-warning" role="alert">
+                                <?=__('If you want to use Google Adsense banners, they will not be displayed if you use our free domain Yclas.com')?>
+                                &nbsp;
+                                <a href="https://yclas.com/faq/custom-banners.html" target="_blank">
+                                    <?=__('Read more')?> <i class="fa fa-external-link"></i>
+                                </a>
+                            </div>
+                        <?endif?>
                         <div class="mt-2">
                             <p class="text-sm leading-5 text-gray-500">
                                 <?=$widget->description?>
