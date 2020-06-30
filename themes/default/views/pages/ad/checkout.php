@@ -220,7 +220,7 @@
         <?=StripeKO::button_connect($order)?>
         <?=StripeCheckout::button_connect($order)?>
 
-        <?if (Core::config('payment.paypal_account')!=''):?>
+        <?if (Core::config('payment.paypal_account')!='' AND Core::config('payment.paypal_seller') == 1 AND $order->id_product == Model_Order::PRODUCT_AD_SELL):?>
             <p class="text-right">
                 <a class="btn btn-success btn-lg" href="<?=Route::url('default', array('controller'=> 'paypal','action'=>'pay' , 'id' => $order->id_order))?>">
                     <?=_e('Pay with Paypal')?> <span class="glyphicon glyphicon-chevron-right"></span>
@@ -237,6 +237,14 @@
         <?endif?>
 
         <?if ($order->id_product!=Model_Order::PRODUCT_AD_SELL):?>
+            <?if (Core::config('payment.paypal_account')!=''):?>
+                <p class="text-right">
+                    <a class="btn btn-success btn-lg" href="<?=Route::url('default', array('controller'=> 'paypal','action'=>'pay' , 'id' => $order->id_order))?>">
+                        <?=_e('Pay with Paypal')?> <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </p>
+            <?endif?>
+
             <?if ( ($user = Auth::instance()->get_user())!=FALSE AND ($user->is_admin() OR $user->is_moderator())):?>
                 <ul class="list-inline text-right">
                     <li>
