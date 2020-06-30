@@ -171,7 +171,7 @@
                 <div class="form-group adv">                
                     <div class="col-md-12">
                     <label class="control-label"><?=__("Table prefix")?>:</label>
-                    <input type="text" name="TABLE_PREFIX" value="<?=core::request('TABLE_PREFIX','oc2_')?>" class="form-control" data-toggle="tooltip" title="<?=__("Allows multiple installations in one database if you give each one a unique prefix")?>. <?=__("Only numbers, letters, and underscores")?>." required />
+                    <input type="text" name="TABLE_PREFIX" value="<?=core::request('TABLE_PREFIX','yc4_')?>" class="form-control" data-toggle="tooltip" title="<?=__("Allows multiple installations in one database if you give each one a unique prefix")?>. <?=__("Only numbers, letters, and underscores")?>." required />
                     </div>
                 </div>
             </div>
