@@ -1,4 +1,4 @@
-<li class="<?= $last_item ? '' : 'border-b' ?> border-gray-200" data-id="<?=$name?>" id="li_<?=$name?>">
+<li data-id="<?=$name?>" id="li_<?=$name?>">
     <a href="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'update','id'=>$name))?>" class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
         <div class="flex items-center px-4 py-4 sm:px-6">
             <div class="min-w-0 flex-1 flex items-center">

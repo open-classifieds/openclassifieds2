@@ -17,11 +17,11 @@
 
 <div class="bg-white overflow-hidden shadow rounded-lg mt-8">
     <div class="bg-white shadow overflow-hidden sm:rounded-md">
-        <ul class='sortable' id="ul_1" data-id="1">
+        <ul class="sortable divide-y divide-gray-200" id="ul_1" data-id="1">
             <?function lili2($item, $key, $cats){?>
                 <? $last_item = $key === count($cats) - 1 ?>
-                <li class="<?= $last_item ? '' : 'border-b' ?> border-gray-200" data-id="<?=$key?>" id="li_<?=$key?>">
-                    <a href="<?=Route::url('oc-panel',['controller'=>'category','action'=>'update','id'=>$key])?>" class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
+                <li data-id="<?=$key?>" id="li_<?=$key?>">
+                    <a href="<?=Route::url('oc-panel',['controller'=>'category','action'=>'update','id'=>$key])?>" class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out <?= is_array($item) ? 'border-gray-200 border-b' : '' ?>">
                         <div class="flex items-center px-4 py-4 sm:px-6">
                             <div class="min-w-0 flex-1 flex items-center">
                                 <div class="flex-shrink-0">
@@ -43,7 +43,7 @@
                         </div>
                     </a>
 
-                    <ul data-id="<?=$key?>" id="ul_<?=$key?>">
+                    <ul class="divide-y divide-gray-200" data-id="<?=$key?>" id="ul_<?=$key?>">
                         <? if (is_array($item)) array_walk($item, 'lili2', $cats);?>
                     </ul>
                 </li>

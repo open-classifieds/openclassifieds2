@@ -22,7 +22,7 @@
 <? if (is_array($fields)): ?>
     <div class="bg-white overflow-hidden shadow rounded-lg mt-8">
         <div class="bg-white shadow overflow-hidden sm:rounded-md">
-            <ul class='sortable' id="ol_1" data-id="1">
+            <ul class="sortable divide-y divide-gray-200" id="ol_1" data-id="1">
                 <? foreach($fields as $name=> $field): ?>
                     <? $last_item = $name === count($fields) - 1 ?>
                     <?= View::factory('oc-panel/pages/fields/_field', ['name' => $name, 'field' => $field, 'last_item' => $last_item]) ?>
