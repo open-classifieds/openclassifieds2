@@ -1,4 +1,4 @@
-<li x-data="{ open: false }" class="<?= $last_item ? '' : 'border-b' ?> border-gray-200" data-id="<?=$key?>" id="<?=$key?>">
+<li x-data="{ open: false }" data-id="<?=$key?>" id="<?=$key?>">
     <a @click.prevent="open = true" href="#" class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
         <div class="flex items-center px-4 py-4 sm:px-6">
             <div class="min-w-0 flex-1 flex items-center">

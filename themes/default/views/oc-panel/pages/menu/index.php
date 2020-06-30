@@ -85,7 +85,7 @@
 <?if (is_array($menu)):?>
     <div class="bg-white overflow-hidden shadow rounded-lg mt-8">
         <div class="bg-white shadow overflow-hidden sm:rounded-md">
-            <ul class='sortable' id="ol_1" data-id="1">
+            <ul class="sortable divide-y divide-gray-200" id="ol_1" data-id="1">
                 <?foreach($menu as $key=>$data):?>
                     <? $last_item = $key === count($menu) - 1 ?>
                     <?= View::factory('oc-panel/pages/menu/_item', ['key' => $key, 'data' => $data, 'last_item' => $last_item]) ?>

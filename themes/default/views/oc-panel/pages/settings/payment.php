@@ -7,6 +7,12 @@
         <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
             <?= __('Payment settings') ?>
         </h2>
+        <div class="mt-1 sm:mt-0">
+            <p class="mt-2 items-center text-sm leading-5 text-gray-500">
+                <?= __('Manage your marketplace currency, feature plans and payment options.') ?>
+                <a href="https://guides.yclas.com/#/Payment" target="_blank" class="text-blue-600 hover:text-blue-900"><?= __('Learn more about payments') ?></a>
+            </p>
+        </div>
     </div>
 </div>
 
@@ -21,7 +27,7 @@
                         </h3>
                     </div>
                     <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
-                        <div class="sm:col-span-3">
+                        <div class="sm:col-span-4">
                             <?= FORM::label('paypal_currency', __('Payment currency'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
                             <div class="mt-1 rounded-md shadow-sm">
                                 <?=FORM::select('paypal_currency', i18n::currencies(), Core::post('paypal_currency', Core::config('payment.paypal_currency')), array(
@@ -32,6 +38,34 @@
                                 <?=__('Please be sure you are using a currency that your payment gateway supports.')?>
                             </p>
                         </div>
+                        <div class="sm:col-span-4">
+                            <?= FORM::label('alternative', __('Alternative Payment'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <?=FORM::select('alternative', $page_options, Core::post('alternative', Core::config('payment.alternative')), array(
+                                    'class' => 'form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                                ))?>
+                            </div>
+                            <p class="mt-2 text-sm text-gray-500">
+                                <?=__('A button with the page title appears next to other pay button, onclick model opens with description.')?>
+                            </p>
+                        </div>
+                        <div class="sm:col-span-6">
+                            <div class="absolute flex items-center h-5">
+                                <?=FORM::checkbox('stock', 1, (bool) Core::post('stock', Core::config('payment.stock')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
+                            </div>
+                            <div class="pl-7 text-sm leading-5">
+                                <?=FORM::label('stock', __('Stock control'), ['class'=>'font-medium text-gray-700'])?> <?= View::factory('oc-panel/components/pro-badge') ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 border-t border-gray-200 pt-8">
+                    <div>
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                            <?=__('Featured ads')?>
+                        </h3>
+                    </div>
+                    <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
                         <div class="sm:col-span-6">
                             <div class="absolute flex items-center h-5">
                                 <?=FORM::checkbox('to_featured', 1, (bool) Core::post('to_featured', Core::config('payment.to_featured')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
@@ -104,12 +138,21 @@
                                 </span>
                             </p>
                         </div>
+                    </div>
+                </div>
+                <div class="mt-8 border-t border-gray-200 pt-8">
+                    <div>
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                            <?=__('Bring to top ad')?>
+                        </h3>
+                    </div>
+                    <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
                         <div class="sm:col-span-6">
                             <div class="absolute flex items-center h-5">
                                 <?=FORM::checkbox('to_top', 1, (bool) Core::post('to_top', Core::config('payment.to_top')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
                             </div>
                             <div class="pl-7 text-sm leading-5">
-                                <?=FORM::label('to_top', __('Bring to top Ad'), ['class'=>'font-medium text-gray-700'])?>
+                                <?=FORM::label('to_top', __('Bring to top ad'), ['class'=>'font-medium text-gray-700'])?>
                             </div>
                         </div>
                         <div class="sm:col-span-3">
@@ -126,17 +169,40 @@
                                 <?=__('How much the user needs to pay to top up an Ad')?>
                             </p>
                         </div>
+                    </div>
+                </div>
+                <div class="mt-8 border-t border-gray-200 pt-8">
+                    <div>
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                            <?=__('Pay to post')?>
+                        </h3>
+                        <p class="mt-2 text-sm text-gray-500">
+                            <?=__('"Payment on" and your users will be asked to pay. You can also choose Payment with moderation, and users will pay to publish an ad, but you will still have the possibility to moderate the ad before it becomes visible on your site.')?>
+                        </p>
+                    </div>
+                    <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
                         <div class="sm:col-span-4">
-                            <?= FORM::label('alternative', __('Alternative Payment'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
                             <div class="mt-1 rounded-md shadow-sm">
-                                <?=FORM::select('alternative', $page_options, Core::post('alternative', Core::config('payment.alternative')), array(
+                                <?= FORM::select('moderation', array(0=>__("Disabled"), 2=>__("Payment on"),5=>__("Payment with moderation")), Core::post('moderation', Core::config('general.moderation')), array(
                                     'class' => 'form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
                                 ))?>
                             </div>
                             <p class="mt-2 text-sm text-gray-500">
-                                <?=__('A button with the page title appears next to other pay button, onclick model opens with description.')?>
+                                <?= __('You can set categoy prices on the categories page.')?>
+                                <a class="underline" href="<?= Route::url('oc-panel', ['controller' => 'category']) ?>">
+                                    <?= __('Go to categories') ?> →
+                                </a>
                             </p>
                         </div>
+                    </div>
+                </div>
+                <div class="mt-8 border-t border-gray-200 pt-8">
+                    <div>
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                            <?=__('VAT')?>
+                        </h3>
+                    </div>
+                    <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
                         <div class="sm:col-span-4">
                             <?= FORM::label('vat_country', __('VAT Country'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
                             <div class="mt-1 rounded-md shadow-sm">
@@ -166,14 +232,6 @@
                             <p class="mt-2 text-sm text-gray-500">
                                 <?=__('Enter the VAT rate, only if VAT Country is not an EU country. VAT rate needs to be a decimal number, with or without a decimal point.')?>
                             </p>
-                        </div>
-                        <div class="sm:col-span-6">
-                            <div class="absolute flex items-center h-5">
-                                <?=FORM::checkbox('stock', 1, (bool) Core::post('stock', Core::config('payment.stock')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
-                            </div>
-                            <div class="pl-7 text-sm leading-5">
-                                <?=FORM::label('stock', __('Stock control'), ['class'=>'font-medium text-gray-700'])?> <?= View::factory('oc-panel/components/pro-badge') ?>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -248,3 +306,21 @@
         </div>
     </div>
 <?= Form::close() ?>
+
+<div class="bg-white shadow sm:rounded-lg mt-8">
+    <div class="px-4 py-5 sm:p-6">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">
+            <?= __('Payment gateways') ?>
+        </h3>
+        <div class="mt-2 max-w-xl text-sm leading-5 text-gray-500">
+            <p>
+                <?= __('Configure your payment gateways on the integrations page.') ?>
+            </p>
+        </div>
+        <div class="mt-3 text-sm leading-5">
+            <a href="<?= Route::url('oc-panel', ['controller' => 'integrations']) ?>" class="font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+                <?= __('Go to integrations') ?> &rarr;
+            </a>
+        </div>
+    </div>
+</div>

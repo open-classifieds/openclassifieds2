@@ -33,7 +33,7 @@
 
 <div class="bg-white overflow-hidden shadow rounded-lg mt-8">
     <div class="bg-white shadow overflow-hidden sm:rounded-md">
-        <ul class='sortable' id="ol_<?=$location->id_location?>" data-id="<?=$location->id_location?>">
+        <ul class="sortable divide-y divide-gray-200" id="ol_<?=$location->id_location?>" data-id="<?=$location->id_location?>">
             <? foreach ($locs as $key => $loc): ?>
                 <? $last_item = $key === count($locs) - 1 ?>
                 <?= View::factory('oc-panel/pages/locations/_location', ['location' => $loc, 'last_item' => $last_item]) ?>
