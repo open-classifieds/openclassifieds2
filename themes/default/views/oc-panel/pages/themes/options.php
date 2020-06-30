@@ -12,6 +12,16 @@
     </div>
 </div>
 
+<? if (Core::is_cloud() AND Model_Domain::current()->old_domain === NULL) : ?>
+    <div class="alert alert-warning" role="alert">
+        <?=__('If you want to use Google Adsense banners, they will not be displayed if you use our free domain Yclas.com')?>
+        &nbsp;
+        <a href="https://yclas.com/faq/custom-banners.html" target="_blank">
+            <?=__('Read more')?> <i class="fa fa-external-link"></i>
+        </a>
+    </div>
+<? endif ?>
+
 <div class="bg-white overflow-hidden shadow rounded-lg mt-8">
     <div class="px-4 py-5 sm:p-6">
         <?=FORM::open(URL::base() . Request::current()->uri(), ['enctype' => 'multipart/form-data'])?>

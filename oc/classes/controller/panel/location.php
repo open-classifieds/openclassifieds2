@@ -461,7 +461,7 @@ class Controller_Panel_Location extends Auth_Crud {
     public function action_deep()
     {
         //clean the cache so we get updated results
-        Model_Category::cache_delete();
+        Cache::instance()->delete_all();
 
         //getting all the cats as array
         $locs_arr  = Model_Location::get_as_array();

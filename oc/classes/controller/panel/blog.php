@@ -63,8 +63,8 @@ class Controller_Panel_Blog extends Auth_Crud {
                 $post->save_object();
 
                 Alert::set(Alert::SUCCESS, __('Blog post created').'. '.__('Please to see the changes delete the cache')
-                    .'<br><a class="btn btn-primary btn-mini ajax-load" href="'.Route::url('oc-panel',array('controller'=>'tools','action'=>'cache')).'?force=1" title="'.__('Delete cache').'">'
-                    .__('Delete cache').'</a>');
+                    .'<br><a class="btn btn-primary btn-mini ajax-load" href="'.Route::url('oc-panel',array('controller'=>'tools','action'=>'cache')).'?force=1" title="'.__('Delete All').'">'
+                    .__('Delete All').'</a>');
 
                 $this->redirect(Route::get('oc-panel')->uri(['controller' => 'Blog']));
             }
@@ -97,8 +97,8 @@ class Controller_Panel_Blog extends Auth_Crud {
                 $post->save_object();
 
                 Alert::set(Alert::SUCCESS, __('Blog post updated').'. '.__('Please to see the changes delete the cache')
-                    .'<br><a class="btn btn-primary btn-mini ajax-load" href="'.Route::url('oc-panel',array('controller'=>'tools','action'=>'cache')).'?force=1" title="'.__('Delete cache').'">'
-                    .__('Delete cache').'</a>');
+                    .'<br><a class="btn btn-primary btn-mini ajax-load" href="'.Route::url('oc-panel',array('controller'=>'tools','action'=>'cache')).'?force=1" title="'.__('Delete All').'">'
+                    .__('Delete All').'</a>');
 
                 $this->redirect(Route::get('oc-panel')->uri(['controller' => 'Blog']));
             }

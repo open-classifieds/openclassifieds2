@@ -180,6 +180,12 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
      */
     private function create_ad($adi)
     {
+        if (Core::is_cloud() AND Model_Domain::current()->num_max_ads > 0 AND Model_Domain::current()->num_ads >= Model_Domain::current()->num_max_ads)
+        {
+            Alert::set(Alert::INFO, sprintf(__('You have reached the limit of %d ads that your Yclas Plan allows.'),Model_Domain::current()->num_max_ads));
+            $this->redirect(Route::url('oc-panel',array('controller'=>'import','action'=>'index')));
+        }
+
         //new advertisement
         $ad = new Model_Ad();
 
@@ -370,7 +376,14 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
             //store if retrieved
             if ($image_content!==FALSE)
             {
-                $file = DOCROOT.'images/import_'.$ad->id_ad.'_'.$num.'.jpg';
+                if (Core::is_cloud())
+                {
+                    $file = DOCROOT.'images/import/import_'.Model_Domain::current()->id_domain.'_'.$ad->id_ad.'_'.$num.'.jpg';
+                }
+                else
+                {
+                    $file = DOCROOT.'images/import_'.$ad->id_ad.'_'.$num.'.jpg';
+                }
 
                 if (!File::write($file, $image_content))
                     return FALSE;
@@ -379,9 +392,13 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
                 return FALSE;
         }
         //already in server
-        elseif(file_exists(DOCROOT.$image))
+        elseif(Core::is_selfhosted() AND file_exists(DOCROOT.$image))
         {
             $file = DOCROOT.$image;
+        }
+        else
+        {
+            return FALSE;
         }
 
         try {

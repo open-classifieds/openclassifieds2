@@ -13,91 +13,49 @@
             </a>
         </span>
 
-        <span class="ml-3 shadow-sm rounded-md">
-            <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'cache'))?>?force=2" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-700 active:bg-blue-700 transition duration-150 ease-in-out">
-                <?= __('Delete expired') ?>
-            </a>
-        </span>
+        <? if (Core::is_selfhosted()) : ?>
+            <span class="ml-3 shadow-sm rounded-md">
+                <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'cache'))?>?force=2" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-700 active:bg-blue-700 transition duration-150 ease-in-out">
+                    <?= __('Delete expired') ?>
+                </a>
+            </span>
+        <? endif ?>
     </div>
 </div>
 
-<div class="bg-white overflow-hidden shadow rounded-lg mt-8">
-    <div class="flex flex-col">
-        <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-            <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
-                <table class="min-w-full">
-                    <tbody class="bg-white">
-                        <tr>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-900">
-                                    <?=__('Config file')?>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-900">
-                                    <?=APPPATH?>config/cache.php
-                                </div>
-                            </td>
-                        </tr>
-                        <?foreach ($cache_config as $key => $value):?>
-                            <? $last_item = $key === count($cache_config) - 1 ?>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-no-wrap <?= $last_item ? '' : 'border-b' ?> border-gray-200">
-                                    <div class="text-sm leading-5 text-gray-900">
-                                        <?= $key ?>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap <?= $last_item ? '' : 'border-b' ?> border-gray-200">
-                                    <div class="text-sm leading-5 text-gray-900">
-                                        <?=print_r($value,1)?>
-                                    </div>
-                                </td>
-                            </tr>
-                        <? endforeach ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-
-<? if (Core::config('cache.default') == 'apcu'): ?>
+<? if (Core::is_selfhosted()) : ?>
     <div class="bg-white overflow-hidden shadow rounded-lg mt-8">
         <div class="flex flex-col">
             <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
                 <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
                     <table class="min-w-full">
                         <tbody class="bg-white">
-                            <?foreach ($cache_config = array_merge(apcu_cache_info(),apcu_sma_info()) as $key => $value):?>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <div class="text-sm leading-5 text-gray-900">
+                                        <?=__('Config file')?>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <div class="text-sm leading-5 text-gray-900">
+                                        <?=APPPATH?>config/cache.php
+                                    </div>
+                                </td>
+                            </tr>
+                            <?foreach ($cache_config as $key => $value):?>
                                 <? $last_item = $key === count($cache_config) - 1 ?>
-                                <?if ( (!empty($value) OR is_numeric($value)) AND $key!='block_lists' ):?>
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-no-wrap <?= $last_item ? '' : 'border-b' ?> border-gray-200">
-                                            <div class="text-sm leading-5 text-gray-900">
-                                                <?= $key ?>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-no-wrap <?= $last_item ? '' : 'border-b' ?> border-gray-200">
-                                            <div class="text-sm leading-5 text-gray-900">
-                                                <?
-                                                    switch ($key) {
-                                                        case 'start_time':
-                                                            echo Date::unix2mysql($value);
-                                                            break;
-                                                        case 'seg_size':
-                                                        case 'avail_mem':
-                                                        case 'mem_size':
-                                                            echo Text::bytes($value);
-                                                            break;
-                                                        default:
-                                                            print_r($value);
-                                                            break;
-                                                    }
-                                                ?>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                <? endif ?>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-no-wrap <?= $last_item ? '' : 'border-b' ?> border-gray-200">
+                                        <div class="text-sm leading-5 text-gray-900">
+                                            <?= $key ?>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-no-wrap <?= $last_item ? '' : 'border-b' ?> border-gray-200">
+                                        <div class="text-sm leading-5 text-gray-900">
+                                            <?=print_r($value,1)?>
+                                        </div>
+                                    </td>
+                                </tr>
                             <? endforeach ?>
                         </tbody>
                     </table>
@@ -105,4 +63,50 @@
             </div>
         </div>
     </div>
+
+    <? if (Core::config('cache.default') == 'apcu'): ?>
+        <div class="bg-white overflow-hidden shadow rounded-lg mt-8">
+            <div class="flex flex-col">
+                <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+                    <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+                        <table class="min-w-full">
+                            <tbody class="bg-white">
+                                <?foreach ($cache_config = array_merge(apcu_cache_info(),apcu_sma_info()) as $key => $value):?>
+                                    <? $last_item = $key === count($cache_config) - 1 ?>
+                                    <?if ( (!empty($value) OR is_numeric($value)) AND $key!='block_lists' ):?>
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-no-wrap <?= $last_item ? '' : 'border-b' ?> border-gray-200">
+                                                <div class="text-sm leading-5 text-gray-900">
+                                                    <?= $key ?>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-no-wrap <?= $last_item ? '' : 'border-b' ?> border-gray-200">
+                                                <div class="text-sm leading-5 text-gray-900">
+                                                    <?
+                                                        switch ($key) {
+                                                            case 'start_time':
+                                                                echo Date::unix2mysql($value);
+                                                                break;
+                                                            case 'seg_size':
+                                                            case 'avail_mem':
+                                                            case 'mem_size':
+                                                                echo Text::bytes($value);
+                                                                break;
+                                                            default:
+                                                                print_r($value);
+                                                                break;
+                                                        }
+                                                    ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <? endif ?>
+                                <? endforeach ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <? endif ?>
 <? endif ?>

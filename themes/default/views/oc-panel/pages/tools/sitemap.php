@@ -16,13 +16,22 @@
         <div class="mt-2 max-w-xl text-sm leading-5 text-gray-900">
             <div class="relative rounded-md shadow-sm">
                 <div class="block form-input w-full sm:text-sm sm:leading-5">
-                    <?=core::config('general.base_url')?><?=(file_exists(DOCROOT.'sitemap-index.xml'))? 'sitemap-index.xml':'sitemap.xml.gz'?>
+                    <? if (Core::is_cloud()) : ?>
+                        <?=Route::url('sitemap')?>
+                    <? else : ?>
+                        <?=core::config('general.base_url')?><?=(file_exists(DOCROOT.'sitemap-index.xml'))? 'sitemap-index.xml':'sitemap.xml.gz'?>
+                    <? endif ?>
                 </p>
             </div>
         </div>
         <div class="mt-2 max-w-xl text-sm leading-5 text-gray-500">
             <p>
-                <?=__('Last time generated')?> <?=Date::unix2mysql(Sitemap::last_generated_time())?>
+                <?=__('Last time generated')?>
+                <? if (Core::is_cloud()) : ?>
+                    <?=Date::unix2mysql((Core::config('sitemap.last_generated')!='')?Core::config('sitemap.last_generated'):time())?>
+                <? else : ?>
+                    <?=Date::unix2mysql(Sitemap::last_generated_time())?>
+                <? endif ?>
             </p>
         </div>
         <div class="mt-5">

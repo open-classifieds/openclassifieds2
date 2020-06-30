@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="icon" type="image/png" sizes="32x32" href="<?= Core::config('general.base_url').'images/favicon-32x32.png' ?>">
-    <link rel="icon" type="image/png" sizes="32x32" href="<?= Core::config('general.base_url').'images/favicon-16x16.png' ?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= Core::config('general.base_url').'images/favicon-16x16.png' ?>">
 
     <title><?=$title?></title>
     <meta name="keywords" content="<?= $meta_keywords ?>" >
@@ -53,7 +53,9 @@
     <?= Theme::styles($styles,'default') ?>
     <?= Theme::scripts($scripts,'header','default') ?>
 
-    <?if (Auth::instance()->logged_in()):?>
+    <?if (Core::is_cloud() AND Auth::instance()->logged_in()):?>
+        <script src="//<?=Model_Domain::get_sub_domain()?>/jslocalization/cloud_notifications"></script>
+    <?elseif (Core::is_selfhosted() AND Auth::instance()->logged_in()):?>
         <script src="//yclas.com/jslocalization/selfhosted_notifications"></script>
     <?endif?>
 </head>
@@ -71,11 +73,11 @@
             </div>
             <main class="flex-1 relative z-0 overflow-y-auto pt-2 pb-6 focus:outline-none md:py-6" tabindex="0" x-data x-init="$el.focus()">
                 <? if($panel_title) : ?>
-                    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+                    <div class="mx-auto px-4 sm:px-6 md:px-8">
                         <h1 class="text-2xl font-semibold text-gray-900"><?= $panel_title ?></h1>
                     </div>
                 <? endif ?>
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+                <div class="mx-auto px-4 sm:px-6 md:px-8">
                     <?= Alert::show() ?>
                     <?= $content ?>
                     <? Kohana::$environment === Kohana::DEVELOPMENT ? View::factory('profiler') : '' ?>

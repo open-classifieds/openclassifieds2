@@ -37,6 +37,11 @@ class Controller_Panel_Settings_Email extends Auth_Controller {
             Model_Config::set_value('email', 'smtp_secure', Core::post('smtp_secure'));
             Model_Config::set_value('email', 'smtp_auth', Core::post('smtp_auth'));
 
+            if ($this->request->post('service') != 'elastic')
+            {
+                $this->redirect(Route::url('oc-panel/settings',['controller'=>'email','action'=>'test']));
+            }
+
             Alert::set(Alert::SUCCESS, __('Configuration updated'));
 
             $this->redirect(Route::url('oc-panel/settings', ['controller' => 'email']));
