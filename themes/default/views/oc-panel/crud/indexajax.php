@@ -26,21 +26,21 @@
             <?= Text::ucfirst(__($name)) ?>
         </h2>
 
-        <?if($name == 'product'):?>
-            <small><a href="https://docs.open-eshop.com/add-product/" target="_blank"><i class="fa fa-question-circle"></i></a></small>
-        <?elseif($name == 'license'):?>
-            <small><a href="https://docs.open-eshop.com/manage-licenses/" target="_blank"><i class="fa fa-question-circle"></i></a></small>
-        <?elseif($name == 'user'):?>
-            <small><a href="https://docs.yclas.com/manage-users/" target="_blank"><i class="fa fa-question-circle"></i></a></small>
-        <?elseif($name == 'role'):?>
-            <small><a href="https://docs.yclas.com/roles-work-classified-ads-script/" target="_blank"><i class="fa fa-question-circle"></i></a></small>
-        <?elseif($name == 'order'):?>
-            <small><a href="https://docs.yclas.com/how-to-manage-orders/" target="_blank"><i class="fa fa-question-circle"></i></a></small>
-        <?elseif($name == 'crontab'):?>
-            <small><a href="https://docs.yclas.com/how-to-set-crons/" target="_blank"><i class="fa fa-question-circle"></i></a></small>
-        <?elseif($name == 'plan'):?>
-            <small><a href="https://docs.yclas.com/membership-plans/" target="_blank"><i class="fa fa-question-circle"></i></a></small>
-        <?endif?>
+        <div class="mt-1 sm:mt-0">
+            <p class="mt-2 items-center text-sm leading-5 text-gray-500">
+                <?if($name == 'user'):?>
+                    <a href="https://guides.yclas.com/#/Users-manage-users" target="_blank" class="text-blue-600 hover:text-blue-900"><?= __('Learn more about users') ?></a>
+                <?elseif($name == 'role'):?>
+                    <a href="https://guides.yclas.com/#/Users-how-do-roles-work" target="_blank"></a>
+                <?elseif($name == 'order'):?>
+                    <a href="https://guides.yclas.com/#/Orders" target="_blank"></a>
+                <?elseif($name == 'crontab'):?>
+                    <a href="https://guides.yclas.com/#/Extras-how-to-set-crons" target="_blank"></a>
+                <?elseif($name == 'plan'):?>
+                    <a href="https://guides.yclas.com/#/Plugins-membership-plans-to-post?id=create-plans" target="_blank"></a>
+                <?endif?>
+            </p>
+        </div>
     </div>
 
     <?if ($controller->allowed_crud_action('create')):?>
