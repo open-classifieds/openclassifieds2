@@ -58,6 +58,12 @@
     <?elseif (Core::is_selfhosted() AND Auth::instance()->logged_in()):?>
         <script src="//yclas.com/jslocalization/selfhosted_notifications"></script>
     <?endif?>
+
+    <style>
+        .note-modal-backdrop {
+            position: initial;
+        }
+    </style>
 </head>
 <body class="antialiased">
     <div class="h-screen flex overflow-hidden bg-gray-100" x-data="{ sidebarOpen: false }" @keydown.window.escape="sidebarOpen = false">
