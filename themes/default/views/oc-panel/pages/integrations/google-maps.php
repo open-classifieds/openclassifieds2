@@ -3,6 +3,12 @@
         <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
             <?= __('Google Maps') ?>
         </h2>
+
+        <div class="mt-1 sm:mt-0">
+            <p class="mt-2 items-center text-sm leading-5 text-gray-500">
+                <a href="https://guides.yclas.com/#/Publish-options-configure-google-maps-settings" target="_blank" class="text-blue-600 hover:text-blue-900"><?= __('Learn more about Google Maps integration') ?></a>
+            </p>
+        </div>
     </div>
 </div>
 

@@ -8,6 +8,7 @@
         <div class="mt-1 sm:mt-0">
             <p class="mt-2 items-center text-sm leading-5 text-gray-500">
                 <?=__('Translations files available in the system.')?>
+                <a href="https://guides.yclas.com/#/Translations" target="_blank" class="text-blue-600 hover:text-blue-900"><?= __('Learn more about translations') ?></a>
             </p>
         </div>
     </div>

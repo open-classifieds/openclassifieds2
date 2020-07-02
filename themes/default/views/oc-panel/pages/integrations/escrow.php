@@ -3,6 +3,12 @@
         <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
             <?= __('Escrow') ?>
         </h2>
+
+        <div class="mt-1 sm:mt-0">
+            <p class="mt-2 items-center text-sm leading-5 text-gray-500">
+                <a href="https://guides.yclas.com/#/Payment-marketplace-with-escrow" target="_blank" class="text-blue-600 hover:text-blue-900"><?= sprintf(__('Learn more about %s integration'), 'Escrow') ?></a>
+            </p>
+        </div>
     </div>
 </div>
 
