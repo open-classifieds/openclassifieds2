@@ -65,6 +65,10 @@ class Controller_Panel_User extends Auth_CrudAjax {
         }
     }
 
+    public function action_index($view = NULL)
+    {
+        parent::action_index('oc-panel/pages/user/index');
+    }
 
 	/**
 	 * CRUD controller: CREATE

@@ -335,3 +335,77 @@
         <div class="text-center"><?=$pagination?></div>
     </div>
 <?endif?>
+
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8">
+    <div class="bg-white shadow sm:rounded-lg">
+        <div class="px-4 py-5 sm:p-6">
+            <h3 class="text-lg leading-6 font-medium text-gray-900">
+                <?= __('Advertisement settings') ?>
+            </h3>
+            <div class="mt-2 max-w-xl text-sm leading-5 text-gray-500">
+                <p>
+                    <?= __('Change advertisement settings and configure additional advertisement features.') ?>
+                </p>
+            </div>
+            <div class="mt-3 text-sm leading-5">
+                <a href="<?= Route::url('oc-panel', ['controller' => 'userfields']) ?>" class="font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+                    <?= __('Go to advertisement settings') ?> &rarr;
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white shadow sm:rounded-lg">
+        <div class="px-4 py-5 sm:p-6">
+            <h3 class="text-lg leading-6 font-medium text-gray-900">
+                <?= __('Custom fields') ?> <?= View::factory('oc-panel/components/pro-badge') ?>
+            </h3>
+            <div class="mt-2 max-w-xl text-sm leading-5 text-gray-500">
+                <p>
+                    <?= __('Manage your advertisement custom fields.') ?>
+                </p>
+            </div>
+            <div class="mt-3 text-sm leading-5">
+                <a href="<?= Route::url('oc-panel', ['controller' => 'fields']) ?>" class="font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+                    <?= __('Go to custom fields settings') ?> &rarr;
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white shadow sm:rounded-lg">
+        <div class="px-4 py-5 sm:p-6">
+            <h3 class="text-lg leading-6 font-medium text-gray-900">
+                <?= __('Categories') ?>
+            </h3>
+            <div class="mt-2 max-w-xl text-sm leading-5 text-gray-500">
+                <p>
+                    <?= __('Add new advertisement categories or manage already existing ones.') ?>
+                </p>
+            </div>
+            <div class="mt-3 text-sm leading-5">
+                <a href="<?= Route::url('oc-panel', ['controller' => 'category']) ?>" class="font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+                    <?= __('Go to category settings') ?> &rarr;
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white shadow sm:rounded-lg">
+        <div class="px-4 py-5 sm:p-6">
+            <h3 class="text-lg leading-6 font-medium text-gray-900">
+                <?= __('Locations') ?>
+            </h3>
+            <div class="mt-2 max-w-xl text-sm leading-5 text-gray-500">
+                <p>
+                    <?= __('Add new advertisement locations or manage already existing ones.') ?>
+                </p>
+            </div>
+            <div class="mt-3 text-sm leading-5">
+                <a href="<?= Route::url('oc-panel', ['controller' => 'location']) ?>" class="font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+                    <?= __('Go to locations settings') ?> &rarr;
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
