@@ -5,6 +5,12 @@
         <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
             <?= __('Categories') ?>
         </h2>
+
+        <div class="mt-1 sm:mt-0">
+            <p class="mt-2 items-center text-sm leading-5 text-gray-500">
+                <a href="https://guides.yclas.com/#/Settings-categories" target="_blank" class="text-blue-600 hover:text-blue-900"><?= __('Learn more about categories') ?></a>
+            </p>
+        </div>
     </div>
     <div class="mt-4 flex md:mt-0 md:ml-4">
         <span class="ml-3 shadow-sm rounded-md">

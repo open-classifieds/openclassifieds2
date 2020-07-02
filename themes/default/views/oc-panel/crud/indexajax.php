@@ -29,15 +29,17 @@
         <div class="mt-1 sm:mt-0">
             <p class="mt-2 items-center text-sm leading-5 text-gray-500">
                 <?if($name == 'user'):?>
-                    <a href="https://guides.yclas.com/#/Users-manage-users" target="_blank" class="text-blue-600 hover:text-blue-900"><?= __('Learn more about users') ?></a>
+                    <a href="https://guides.yclas.com/#/Users-manage-users" target="_blank" class="text-blue-600 hover:text-blue-900"><?= __('Learn more about manage users') ?></a>
                 <?elseif($name == 'role'):?>
-                    <a href="https://guides.yclas.com/#/Users-how-do-roles-work" target="_blank"></a>
+                    <a href="https://guides.yclas.com/#/Users-how-do-roles-work" target="_blank" class="text-blue-600 hover:text-blue-900"><?= __('Learn more about user roles') ?></a>
                 <?elseif($name == 'order'):?>
-                    <a href="https://guides.yclas.com/#/Orders" target="_blank"></a>
+                    <a href="https://guides.yclas.com/#/Orders" target="_blank" class="text-blue-600 hover:text-blue-900"><?= __('Learn more about orders') ?></a>
                 <?elseif($name == 'crontab'):?>
-                    <a href="https://guides.yclas.com/#/Extras-how-to-set-crons" target="_blank"></a>
+                    <a href="https://guides.yclas.com/#/Extras-how-to-set-crons" target="_blank" class="text-blue-600 hover:text-blue-900"><?= __('Learn more about crons') ?></a>
                 <?elseif($name == 'plan'):?>
-                    <a href="https://guides.yclas.com/#/Plugins-membership-plans-to-post?id=create-plans" target="_blank"></a>
+                    <a href="https://guides.yclas.com/#/Plugins-membership-plans-to-post?id=create-plans" target="_blank" class="text-blue-600 hover:text-blue-900"><?= __('Learn more about plans') ?></a>
+                <?elseif($name == 'topic'):?>
+                    <a href="https://guides.yclas.com/#/Plugins-forum-section" target="_blank" class="text-blue-600 hover:text-blue-900"><?= __('Learn more about forum') ?></a>
                 <?endif?>
             </p>
         </div>
