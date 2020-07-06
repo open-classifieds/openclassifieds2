@@ -747,7 +747,7 @@ $(function(){
 if ($('input#cf_whatsapp').length) {
     if ($("input#cf_whatsapp").attr('data-country-code') && !$('input#cf_whatsapp').val()) {
         var country_code = $('input#cf_whatsapp').data('country-code');
-        $('input#cf_whatsapp').val('00'+country_code);
+        $('input#cf_whatsapp').val('+'+country_code);
     }
 }
 
