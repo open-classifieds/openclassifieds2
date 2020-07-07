@@ -7,9 +7,7 @@
         </h2>
 
         <div class="mt-1 sm:mt-0">
-            <p class="mt-2 items-center text-sm leading-5 text-gray-500">
-                <a href="https://guides.yclas.com/#/Users-create-custom-field-for-users" target="_blank" class="text-blue-600 hover:text-blue-900"><?= __('Learn more about manage advertisements') ?></a>
-            </p>
+            <?= View::factory('oc-panel/components/learn-more', ['url' => 'https://guides.yclas.com/#/Users-create-custom-field-for-users']) ?>
         </div>
     </div>
     <div class="mt-4 flex md:mt-0 md:ml-4">

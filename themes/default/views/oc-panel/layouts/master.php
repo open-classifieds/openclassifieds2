@@ -70,14 +70,20 @@
         <?= View::factory('oc-panel/layouts/_sidebar', ['user' => $user]) ?>
 
         <div class="flex flex-col w-0 flex-1 overflow-hidden">
-            <div class="md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3">
+            <div class="md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3 flex items-center justify-between">
                 <button @click.stop="sidebarOpen = true" class="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:bg-gray-200 transition ease-in-out duration-150">
-                <svg class="mb-2 font-medium leading-tight text-base w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                </svg>
+                    <svg class="mb-2 font-medium leading-tight text-base w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
                 </button>
+                <span class="p-4 -mt-4">
+                    <?= View::factory('oc-panel/components/need-help') ?>
+                </span>
             </div>
             <main class="flex-1 relative z-0 overflow-y-auto pt-2 pb-6 focus:outline-none md:py-6" tabindex="0" x-data x-init="$el.focus()">
+                <div class="hidden md:block absolute right-0 top-0 mx-4 sm:mx-6 md:mx-8">
+                    <?= View::factory('oc-panel/components/need-help') ?>
+                </div>
                 <? if($panel_title) : ?>
                     <div class="mx-auto px-4 sm:px-6 md:px-8">
                         <h1 class="text-2xl font-semibold text-gray-900"><?= $panel_title ?></h1>
