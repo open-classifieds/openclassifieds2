@@ -1,9 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <div class="mt-1 sm:mt-0">
-    <p class="mt-2 items-center text-sm leading-5 text-gray-500">
-        <a href="https://guides.yclas.com/#/settings" target="_blank" class="text-blue-600 hover:text-blue-900"><?= __('Learn more about settings') ?></a>
-    </p>
+    <?= View::factory('oc-panel/components/learn-more', ['url' => 'https://guides.yclas.com/#/settings']) ?>
 </div>
 
 <div class="py-4">
