@@ -5,6 +5,9 @@
         <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
             <?= __('Optimize database') ?>
         </h2>
+        <div class="mt-1 sm:mt-0">
+            <?= View::factory('oc-panel/components/learn-more', ['url' => 'https://guides.yclas.com/#/Optimizde-database']) ?>
+        </div>
         <div class="mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap">
             <div class="mt-2 flex items-center text-sm leading-5 text-gray-500 sm:mr-6">
                 <?=__('Database space')?>: <?=round($total_space, 2)?> KB

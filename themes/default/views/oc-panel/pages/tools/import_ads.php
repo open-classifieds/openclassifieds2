@@ -5,6 +5,9 @@
         <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
             <?= __('Import ads') ?>
         </h2>
+        <div class="mt-1 sm:mt-0">
+            <?= View::factory('oc-panel/components/learn-more', ['url' => 'https://guides.yclas.com/#/Extras-how-to-import-advertisements']) ?>
+        </div>
     </div>
     <? if (Core::is_selfhosted()) : ?>
         <div class="mt-4 flex md:mt-0 md:ml-4">

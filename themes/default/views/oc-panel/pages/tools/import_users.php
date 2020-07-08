@@ -7,6 +7,9 @@
         <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
             <?= __('Import users') ?>
         </h2>
+        <div class="mt-1 sm:mt-0">
+            <?= View::factory('oc-panel/components/learn-more', ['url' => 'https://guides.yclas.com/#/Import-users']) ?>
+        </div>
     </div>
 </div>
 
