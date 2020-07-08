@@ -38,9 +38,6 @@ class Controller_Panel_User extends Auth_CrudAjax {
                                                 'title' => __('Spam'),
                                                 'class' => '',
                                                 'icon'  => 'fa fa-fw fa-fire',
-                                                'attrs'  => array(  'data-toggle' => 'confirmation',
-                                                                    'data-btnOkLabel' => __('Yes, definitely!'),
-                                                                    'data-btnCancelLabel' => __('No way!'))
                                                 ),
                                         );
 
