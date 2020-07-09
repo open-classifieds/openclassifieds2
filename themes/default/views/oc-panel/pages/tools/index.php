@@ -1,5 +1,9 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
+<div class="mt-1 sm:mt-0">
+    <?= View::factory('oc-panel/components/learn-more', ['url' => 'https://guides.yclas.com/#/Tools']) ?>
+</div>
+
 <div class="py-4">
     <div class="bg-white overflow-hidden shadow rounded-lg">
         <div class="px-4 py-5 sm:p-6">
