@@ -13,7 +13,8 @@ require("laravel-mix-tailwind");
  |
  */
 
-mix.setResourceRoot('../')
+mix.setPublicPath('./')
+    .setResourceRoot('../')
     .js("assets/js/panel.js", "js/oc-panel/panel.js")
     .sass("assets/sass/panel.scss", "css/oc-panel/panel.css")
     .tailwind("./tailwind.config.js")
