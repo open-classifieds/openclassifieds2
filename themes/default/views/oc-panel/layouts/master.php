@@ -27,8 +27,8 @@
     <meta name="bingbot" content="noindex, nofollow, noodp, noydir">
     <meta name="msnbot" content="noindex, nofollow, noodp, noydir">
 
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tailwindcss/ui@latest/dist/tailwind-ui.min.css">
+    <? Theme::$styles = ['css/oc-panel/panel.css?v=' . Core::VERSION => 'screen']; ?>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
 
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script>
@@ -50,8 +50,8 @@
 
     <script src="/themes/default/js/oc-panel/theme.init.js"></script>
 
-    <?= Theme::styles($styles,'default') ?>
-    <?= Theme::scripts($scripts,'header','default') ?>
+    <?= Theme::styles(Theme::$styles, 'default') ?>
+    <?= Theme::scripts($scripts, 'header','default') ?>
 
     <?if (Core::is_cloud() AND Auth::instance()->logged_in()):?>
         <script src="//<?=Model_Domain::get_sub_domain()?>/jslocalization/cloud_notifications"></script>

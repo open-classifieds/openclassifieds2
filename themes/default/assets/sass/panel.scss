@@ -1,0 +1,147 @@
+/**
+ * This injects Tailwind's base styles, which is a combination of
+ * Normalize.css and some additional base styles.
+ *
+ * You can see the styles here:
+ * https://unpkg.com/tailwindcss/dist/base.css
+ */
+@tailwind base;
+
+/**
+ * Remove the default box-shadow for invalid elements to prevent
+ * inputs in Livewire components showing with a
+ * red border by default in Firefox.
+ *
+ * See: https://github.com/laravel-frontend-presets/tall/issues/7
+ */
+ input:invalid, textarea:invalid, select:invalid {
+    box-shadow: none;
+}
+
+/**
+ * This injects any component classes registered by plugins.
+ */
+@tailwind components;
+
+/**
+ * Here you would add any of your custom component classes; stuff that you'd
+ * want loaded *before* the utilities so that the utilities could still
+ * override them.
+ *
+ * Example:
+ *
+ * .btn { ... }
+ * .form-input { ... }
+ */
+
+.alert-success {
+    @apply bg-green-50;
+}
+
+.alert-success h3 {
+    @apply text-green-800;
+}
+
+.alert-success p {
+    @apply text-green-700;
+}
+
+.alert-success button {
+    @apply text-green-500;
+}
+
+.alert-success button:hover {
+    @apply bg-green-100;
+}
+
+.alert-success button:focus {
+    @apply bg-green-100;
+}
+
+.alert-danger {
+    @apply bg-red-50;
+}
+
+.alert-danger h3 {
+    @apply text-red-800;
+}
+
+.alert-danger p, .alert-danger ul {
+    @apply text-red-700;
+}
+
+.alert-danger button {
+    @apply text-red-500;
+}
+
+.alert-danger button:hover {
+    @apply bg-red-100;
+}
+
+.alert-danger button:focus {
+    @apply bg-red-100;
+}
+
+.alert-warning {
+    @apply bg-yellow-50;
+}
+
+.alert-warning h3 {
+    @apply text-yellow-800;
+}
+
+.alert-warning p {
+    @apply text-yellow-700;
+}
+
+.alert-warning button {
+    @apply text-yellow-500;
+}
+
+.alert-warning button:hover {
+    @apply bg-yellow-100;
+}
+
+.alert-warning button:focus {
+    @apply bg-yellow-100;
+}
+
+.alert-info {
+    @apply bg-yellow-50;
+}
+
+.alert-info h3 {
+    @apply text-blue-800;
+}
+
+.alert-info p {
+    @apply text-blue-700;
+}
+
+.alert-info button {
+    @apply text-blue-500;
+}
+
+.alert-info button:hover {
+    @apply bg-blue-100;
+}
+
+.alert-info button:focus {
+    @apply bg-blue-100;
+}
+
+/**
+ * This injects all of Tailwind's utility classes, generated based on your
+ * config file.
+ */
+@tailwind utilities;
+
+/**
+ * Here you would add any custom utilities you need that don't come out of the
+ * box with Tailwind.
+ *
+ * Example :
+ *
+ * .bg-pattern-graph-paper { ... }
+ * .skew-45 { ... }
+ */
