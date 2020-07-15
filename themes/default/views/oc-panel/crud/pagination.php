@@ -57,40 +57,58 @@ for ($i = $n7; $i <= $n8; $i++)
 ?>
 
 <?if(!Theme::get('rtl')):?>
-
-  <ul class="flex list-none p-0 pl-0 rounded">
-		<li <?=(!$first_page)?'class="opacity-75"':''?>>
-			<a class="ajax-load" title="<?=__('First')?> <?=$page->title()?>" href="<?=HTML::chars($page->url($first_page))?>" rel="first"><i class="glyphicon glyphicon-step-backward"></i></a>
-		</li>
-	
-		<li <?=(!$previous_page)?'class="opacity-75"':''?>>
-			<a class="ajax-load" title="<?=__('Previous')?> <?=$page->title()?>" href="<?=HTML::chars($page->url($previous_page))?>" rel="prev" id="prev"><i class="glyphicon glyphicon-backward"></i></a>
-		</li>
-
-        <?php foreach ($links as $number => $content): ?>
-            <li <?=($number == $current_page)?'class="active"':''?>>
-                <a class="ajax-load" title="<?=__('Page')?> <?=$number?> <?=$page->title()?>" href="<?=HTML::chars($page->url($number)) ?>"><?=$content?></a>
-            </li>
-        <?php endforeach ?>
-
-		<li <?=(!$next_page)?'class="opacity-75"':''?>>
-			<a class="ajax-load" title="<?=__('Next')?> <?=$page->title()?>" href="<?=HTML::chars($page->url($next_page)) ?>" rel="next" id="next"><i class="glyphicon glyphicon-forward"></i></a>
-		</li>
-
-		<li <?=(!$last_page)?'class="opacity-75"':''?>>
-			<a class="ajax-load" title="<?=__('Last')?> <?=$page->title()?>" href="<?=HTML::chars($page->url($last_page)) ?>" rel="last" id="last" data-last="<?=$last_page?>"><i class="glyphicon glyphicon-step-forward"></i></a>
-		</li>
-
-  </ul><!-- .pagination -->
+    <div class="my-6">
+        <span class="relative z-0 inline-flex shadow-sm">
+            <a
+                href="<?= HTML::chars($page->url($previous_page)) ?>"
+                rel="prev"
+                id="prev"
+                class="
+                    relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150
+                    <?= ! $previous_page ? 'opacity-75' : '' ?>
+                "
+            >
+                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+            </a>
+            <? foreach ($links as $number => $content): ?>
+                <a
+                    href="<?= HTML::chars($page->url($number)) ?>"
+                    class="
+                        -ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150
+                        <?= $number == $current_page ? 'bg-blue-100 text-blue-700 hover:text-blue-500' : 'text-gray-700 hover:text-gray-500'?>
+                    "
+                    title="<?=__('Page')?> <?=$number?> <?=$page->title()?>"
+                >
+                    <?= $content ?>
+                </a>
+            <? endforeach ?>
+            <a
+                href="<?= HTML::chars($page->url($next_page)) ?>"
+                rel="next"
+                id="next"
+                class="
+                    -ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150
+                    <?= ! $last_page ? 'opacity-75' : '' ?>
+                "
+                title="<?= __('Next') ?> <?= $page->title() ?>"
+            >
+                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                </svg>
+            </a>
+        </span>
+    </div>
 <?else:?>
-  <ul class="flex list-none p-0 pl-0 rounded">
-		<li <?=(!$first_page)?'class="opacity-75"':''?>>
-			<a class="ajax-load" title="<?=__('First')?> <?=$page->title()?>" href="<?=HTML::chars($page->url($first_page))?>" rel="first"><i class="glyphicon glyphicon-step-forward"></i></a>
-		</li>
-	
-		<li <?=(!$previous_page)?'class="opacity-75"':''?>>
-			<a class="ajax-load" title="<?=__('Previous')?> <?=$page->title()?>" href="<?=HTML::chars($page->url($previous_page))?>" rel="prev" id="prev"><i class="glyphicon glyphicon-forward"></i></a>
-		</li>
+    <ul class="flex list-none p-0 pl-0 rounded">
+        <li <?=(!$first_page)?'class="opacity-75"':''?>>
+            <a class="ajax-load" title="<?=__('First')?> <?=$page->title()?>" href="<?=HTML::chars($page->url($first_page))?>" rel="first"><i class="glyphicon glyphicon-step-forward"></i></a>
+        </li>
+
+        <li <?=(!$previous_page)?'class="opacity-75"':''?>>
+            <a class="ajax-load" title="<?=__('Previous')?> <?=$page->title()?>" href="<?=HTML::chars($page->url($previous_page))?>" rel="prev" id="prev"><i class="glyphicon glyphicon-forward"></i></a>
+        </li>
 
         <?php foreach ($links as $number => $content): ?>
             <li <?=($number == $current_page)?'class="active"':''?>>
@@ -98,19 +116,12 @@ for ($i = $n7; $i <= $n8; $i++)
             </li>
         <?php endforeach ?>
 
-		<li <?=(!$next_page)?'class="opacity-75"':''?>>
-			<a class="ajax-load" title="<?=__('Next')?> <?=$page->title()?>" href="<?=HTML::chars($page->url($next_page)) ?>" rel="next" id="next"><i class="glyphicon glyphicon-backward"></i></a>
-		</li>
+        <li <?=(!$next_page)?'class="opacity-75"':''?>>
+            <a class="ajax-load" title="<?=__('Next')?> <?=$page->title()?>" href="<?=HTML::chars($page->url($next_page)) ?>" rel="next" id="next"><i class="glyphicon glyphicon-backward"></i></a>
+        </li>
 
-		<li <?=(!$last_page)?'class="opacity-75"':''?>>
-			<a class="ajax-load" title="<?=__('Last')?> <?=$page->title()?>" href="<?=HTML::chars($page->url($last_page)) ?>" rel="last" id="last" data-last="<?=$last_page?>"><i class="glyphicon glyphicon-step-backward"></i></a>
-		</li>
-
-  </ul><!-- .pagination -->
-
-
-
-
-
-
+        <li <?=(!$last_page)?'class="opacity-75"':''?>>
+            <a class="ajax-load" title="<?=__('Last')?> <?=$page->title()?>" href="<?=HTML::chars($page->url($last_page)) ?>" rel="last" id="last" data-last="<?=$last_page?>"><i class="glyphicon glyphicon-step-backward"></i></a>
+        </li>
+    </ul>
 <?endif?>
