@@ -591,7 +591,7 @@ VALUES (1, 'admin', 'admin', '".core::request('ADMIN_EMAIL')."', '$password', 1,
  *
  */
 mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`group_name`, `config_key`, `config_value`) VALUES
-('appearance', 'theme', 'default'),
+('appearance', 'theme', 'atlantic-lite'),
 ('appearance', 'allow_query_theme', 0),
 ('appearance', 'custom_css', 0),
 ('appearance', 'custom_css_version', 0),
