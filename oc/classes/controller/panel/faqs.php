@@ -141,7 +141,7 @@ class Controller_Panel_Faqs extends Auth_Controller {
             Alert::set(Alert::INFO, sprintf(
                 __('We can not copy the faqs since the locale %s already has existing %s'),
                 $to_locale,
-                $type
+                'faqs'
             ));
         }
 
