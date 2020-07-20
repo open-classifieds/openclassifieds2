@@ -135,7 +135,7 @@ class Controller_Panel_Pages extends Auth_Controller {
             Alert::set(Alert::INFO, sprintf(
                 __('We can not copy the pages since the locale %s already has existing %s'),
                 $to_locale,
-                $type
+                'page'
             ));
         }
 
