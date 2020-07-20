@@ -15,8 +15,8 @@
 /*!
 
 Holder - client side image placeholders
-Version 2.9.6+fblyy
-© 2018 Ivan Malopinsky - http://imsky.co
+Version 2.9.7+5g5ho
+© 2020 Ivan Malopinsky - https://imsky.co
 
 Site:     http://holderjs.com
 Issues:   https://github.com/imsky/holder/issues
@@ -31,18 +31,18 @@ License:  MIT
   */
 
 /*!
- * Sizzle CSS Selector Engine v2.3.4
+ * Sizzle CSS Selector Engine v2.3.5
  * https://sizzlejs.com/
  *
  * Copyright JS Foundation and other contributors
  * Released under the MIT license
  * https://js.foundation/
  *
- * Date: 2019-04-08
+ * Date: 2020-03-14
  */
 
 /*!
- * jQuery JavaScript Library v3.4.1
+ * jQuery JavaScript Library v3.5.1
  * https://jquery.com/
  *
  * Includes Sizzle.js
@@ -52,15 +52,15 @@ License:  MIT
  * Released under the MIT license
  * https://jquery.org/license
  *
- * Date: 2019-05-01T21:04Z
+ * Date: 2020-05-04T22:49Z
  */
 
 /*!
- * jQuery Validation Plugin v1.19.1
+ * jQuery Validation Plugin v1.19.2
  *
  * https://jqueryvalidation.org/
  *
- * Copyright (c) 2019 Jörn Zaefferer
+ * Copyright (c) 2020 Jörn Zaefferer
  * Released under the MIT license
  */
 
@@ -102,3 +102,5 @@ License:  MIT
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+// @license http://opensource.org/licenses/MIT
