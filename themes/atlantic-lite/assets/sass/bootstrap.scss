@@ -1,0 +1,25 @@
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Font Awesome
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+
+@import "~blueimp-gallery/css/blueimp-gallery.min.css";
+
+// Select2
+@import '~select2/src/scss/core';
+@import '~@ttskch/select2-bootstrap4-theme/src/layout';
+
+// Jasny Bootstrap
+@import '../vendor/jasny-bootstrap/css/jasny-bootstrap.css';
+
+.dropzone {
+    border-width: 1px !important;
+    border-style: dashed !important;
+}

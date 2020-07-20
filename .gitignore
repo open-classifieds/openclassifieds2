@@ -11,6 +11,7 @@ images/*
 themes/*
 !themes/default/
 !themes/basecamp_free/
+!themes/atlantic-lite/
 oc/vendor/hybridauth/logs.txt
 oc/codecept.phar
 oc/tests/_output/*
