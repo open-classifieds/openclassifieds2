@@ -1,4 +1,5 @@
 require('./bootstrap');
+require('./components');
 
 require('blueimp-gallery/js/jquery.blueimp-gallery');
 require('select2');
