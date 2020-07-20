@@ -17,7 +17,7 @@
         "css-loader": "^3.4.2",
         "holderjs": "^2.9.6",
         "jasny-bootstrap": "^4.0.0",
-        "jquery": "^3.2",
+        "jquery": "^3.5",
         "jquery-validation": "^1.19.1",
         "laravel-mix": "^5.0.1",
         "laravel-mix-purgecss": "^5.0.0",
