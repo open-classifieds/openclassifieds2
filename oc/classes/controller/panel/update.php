@@ -17,6 +17,11 @@ class Controller_Panel_Update extends Auth_Controller {
         {
             DB::query(Database::UPDATE,"UPDATE `".self::$db_prefix."config` SET `config_value`= REPLACE(`config_value`,',\"Yahoo\":{\"enabled\":\"0\",\"keys\":{\"key\":',',\"Yahoo\":{\"enabled\":\"0\",\"keys\":{\"id\":') WHERE `group_name` = 'social' AND `config_key`='config' AND `config_value` LIKE '%,\"Yahoo\":{\"enabled\":\"0\",\"keys\":{\"key\":%'")->execute();
         }catch (exception $e) {}
+
+        if(Core::config('appearance.theme') == 'default')
+        {
+            Model_Config::set_value('appearance','theme','atlantic-lite');
+        }
     }
 
     public function action_380()
