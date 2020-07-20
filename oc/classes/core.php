@@ -731,21 +731,28 @@ class Core {
         {
             // saving zip file to dir.
             file_put_contents($fname, $file_content);
-            $zip = new ZipArchive;
-            if ($zip_open = $zip->open($fname))
-            {
-                //if theres nothing in that ZIP file...zip corrupted :(
-                if ($zip->getNameIndex(0)===FALSE)
-                    return FALSE;
 
-                $theme_name = (substr($zip->getNameIndex(0), 0,-1));
-                File::delete(DOCROOT.'themes/'.$theme_name);
-                $zip->extractTo(DOCROOT.'themes/');
-                $zip->close();
-                File::delete($fname);
-                Alert::set(Alert::SUCCESS, $theme_name.' Updated');
-                return $theme_name;
+            try {
+                $zip = new ZipArchive;
+                if ($zip_open = $zip->open($fname))
+                {
+                    //if theres nothing in that ZIP file...zip corrupted :(
+                    if ($zip->getNameIndex(0)===FALSE)
+                        return FALSE;
+
+                    $theme_name = (substr($zip->getNameIndex(0), 0,-1));
+                    File::delete(DOCROOT.'themes/'.$theme_name);
+                    $zip->extractTo(DOCROOT.'themes/');
+                    $zip->close();
+                    File::delete($fname);
+                    Alert::set(Alert::SUCCESS, $theme_name.' Updated');
+                    return $theme_name;
+                }
+            } catch (Exception $e) {
+                return FALSE;
             }
+
+            
         }
 
         return FALSE;
