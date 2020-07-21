@@ -5,8 +5,10 @@
     <meta charset="<?= Kohana::$charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="icon" type="image/png" sizes="32x32" href="<?= Core::config('general.base_url').'images/favicon-32x32.png' ?>">
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= Core::config('general.base_url').'images/favicon-16x16.png' ?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= Theme::get('favicon_url') != '' ? Theme::get('favicon_url') : Core::config('general.base_url') . 'images/favicon.ico' ?>">
+    <? if (Theme::get('apple-touch-icon') != NULL): ?>
+        <link rel="icon" type="image/png" sizes="32x32" href="<?= Theme::get('apple-touch-icon') ?>">
+    <? endif ?>
 
     <title><?=$title?></title>
     <meta name="keywords" content="<?= $meta_keywords ?>" >
@@ -27,7 +29,7 @@
     <meta name="bingbot" content="noindex, nofollow, noodp, noydir">
     <meta name="msnbot" content="noindex, nofollow, noodp, noydir">
 
-    <? Theme::$styles = ['css/oc-panel/panel.css?v=' . Core::VERSION => 'screen']; ?>
+    <? $styles = array_merge(['css/oc-panel/panel.css?v=' . Core::VERSION => 'screen'], $styles) ?>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
 
@@ -50,7 +52,7 @@
 
     <script src="/themes/default/js/oc-panel/theme.init.js"></script>
 
-    <?= Theme::styles(Theme::$styles, 'default') ?>
+    <?= Theme::styles($styles, 'default') ?>
     <?= Theme::scripts($scripts, 'header','default') ?>
 
     <?if (Core::is_cloud() AND Auth::instance()->logged_in()):?>
