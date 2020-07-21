@@ -5,8 +5,10 @@
     <meta charset="<?= Kohana::$charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="icon" type="image/png" sizes="32x32" href="<?= Core::config('general.base_url').'images/favicon-32x32.png' ?>">
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= Core::config('general.base_url').'images/favicon-16x16.png' ?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= Theme::get('favicon_url') != '' ? Theme::get('favicon_url') : Core::config('general.base_url') . 'images/favicon.ico' ?>">
+    <? if (Theme::get('apple-touch-icon') != NULL): ?>
+        <link rel="icon" type="image/png" sizes="32x32" href="<?= Theme::get('apple-touch-icon') ?>">
+    <? endif ?>
 
     <title><?=$title?></title>
     <meta name="keywords" content="<?= $meta_keywords ?>" >
