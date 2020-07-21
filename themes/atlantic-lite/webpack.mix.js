@@ -1,10 +1,10 @@
-let mix = require('laravel-mix');
+const mix = require("laravel-mix");
 const rootPath = Mix.paths.root.bind(Mix.paths);
 
 require('./laravel-mix-tailwind.js');
-require('laravel-mix-purgecss');
 
-mix.setResourceRoot('../')
+mix.setPublicPath('./')
+    .setResourceRoot('../')
     .js('assets/js/theme.js', 'js')
     .postCss('assets/css/tailwind.css', 'css')
     .tailwind('./tailwind.config.js')
@@ -12,12 +12,4 @@ mix.setResourceRoot('../')
     .styles([
         'css/tailwind.css',
         'css/bootstrap.css',
-    ], 'css/theme.css')
-    .purgeCss({
-        extend: {
-            content: [
-                rootPath('views/**/*.php')
-            ],
-            whitelistPatterns: [/select2/],
-        },
-    });
+    ], 'css/theme.css');
