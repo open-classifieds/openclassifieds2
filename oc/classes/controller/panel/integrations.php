@@ -12,7 +12,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'general.algolia_search',
                 'label' => 'Algolia',
                 'description' => __('Bring instant and relevant search to your classfieds website and make content browsing more intuitive for your visitors.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/algolia.png',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/algolia.png',
                 'category' => '',
             ],
             [
@@ -20,7 +20,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'general.akismet_key',
                 'label' => 'Akismet',
                 'description' => __('Deals with spam posts and emails.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/akismet.svg',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/akismet.svg',
                 'category' => '',
             ],
             [
@@ -28,7 +28,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'general.carquery',
                 'label' => 'CarQuery',
                 'description' => __('Get vehicle data for your website.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/carquery.png',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/carquery.png',
                 'category' => '',
             ],
             [
@@ -36,7 +36,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'general.sms_auth',
                 'label' => 'Clickatell',
                 'description' => __('2 step SMS authentication.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/clickatell.png',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/clickatell.png',
                 'category' => '',
             ],
             [
@@ -44,7 +44,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'general.cloudinary',
                 'label' => 'Cloudinary',
                 'description' => __('Video custom fields.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/cloudinary.png',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/cloudinary.png',
                 'category' => '',
             ],
             [
@@ -52,7 +52,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'general.blog_disqus',
                 'label' => 'Disqus',
                 'description' => __('Disqus allows you to embed comments within advertisements, blog posts and faqs'),
-                'logo' => '/themes/default/img/oc-panel/integrations/disqus.svg',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/disqus.svg',
                 'category' => '',
             ],
             [
@@ -60,7 +60,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'advertisement.dropbox_app_key',
                 'label' => 'Dropbox',
                 'description' => __('File upload custom fields.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/dropbox.svg',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/dropbox.svg',
                 'category' => '',
             ],
             [
@@ -68,7 +68,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'general.analytics',
                 'label' => 'Google Analytics',
                 'description' => __('Get data of who and when visits your site.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/google-analytics.png',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/google-analytics.png',
                 'category' => '',
             ],
             [
@@ -76,7 +76,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'general.google_authenticator',
                 'label' => 'Google Authenticator',
                 'description' => __('2 step authentication.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/google-authenticator.svg',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/google-authenticator.svg',
                 'category' => '',
             ],
             [
@@ -84,7 +84,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'general.gcm_apikey',
                 'label' => 'Google Cloud Messaging',
                 'description' => __('Push notifications for your native app.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/google-gcm.png',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/google-gcm.png',
                 'category' => '',
             ],
             [
@@ -92,7 +92,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'advertisement.google_picker',
                 'label' => 'Google Picker',
                 'description' => __('File upload custom fields.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/google-picker.png',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/google-picker.png',
                 'category' => '',
             ],
             [
@@ -100,7 +100,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'advertisement.gm_api_key',
                 'label' => 'Google Maps',
                 'description' => __('Show Google Maps on your website.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/google-maps.png',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/google-maps.png',
                 'category' => '',
             ],
             [
@@ -108,7 +108,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'general.pusher_notifications',
                 'label' => 'Pusher',
                 'description' => __('Notification system, you can notify your website users that an email was sent to them from your website.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/pusher.png',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/pusher.png',
                 'category' => '',
             ],
             [
@@ -116,7 +116,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'general.recaptcha_active',
                 'label' => 'reCaptcha',
                 'description' => __('Configure reCaptcha as your captcha service provider.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/recaptcha.png',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/recaptcha.png',
                 'category' => '',
             ],
         ];
@@ -127,7 +127,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'general.facebook',
                 'label' => 'Facebook',
                 'description' => __('Facebook comments on your website.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/facebook.svg',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/facebook.svg',
                 'category' => '',
             ],
             [
@@ -135,7 +135,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'advertisement.logbee',
                 'label' => 'Logbee',
                 'description' => __('Integrates your site with Logbee'),
-                'logo' => '/themes/default/img/oc-panel/integrations/logbee.png',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/logbee.png',
                 'category' => '',
             ],
             [
@@ -143,7 +143,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'advertisement.pinterest',
                 'label' => 'Pinterest',
                 'description' => __('Auto post ads on Pinterest automatically.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/pinterest.svg',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/pinterest.svg',
                 'category' => '',
             ],
             [
@@ -151,7 +151,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'advertisement.twitter',
                 'label' => 'Twitter',
                 'description' => __('Auto post ads on Twitter automatically.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/twitter.svg',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/twitter.svg',
                 'category' => '',
             ],
         ];
@@ -162,7 +162,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'email.elastic_username',
                 'label' => 'ElasticEmail',
                 'description' => __('Configure ElasticEmail as your email service provider.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/elasticemail.jpg',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/elasticemail.jpg',
                 'category' => '',
             ],
             [
@@ -170,7 +170,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'email.mailgun_api_key',
                 'label' => 'Mailgun',
                 'description' => __('Configure Mailgun as your email service provider.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/mailgun.png',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/mailgun.png',
                 'category' => '',
             ],
         ];
@@ -181,7 +181,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'payment.twocheckout_sid',
                 'label' => '2Checkout',
                 'description' => __('Accept payments with 2Checkout.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/2checkout.jpg',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/2checkout.jpg',
                 'category' => '',
             ],
             [
@@ -189,7 +189,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'payment.authorize_login',
                 'label' => 'Authorize',
                 'description' => __('Accept payments with Authorize.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/authorize.jpg',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/authorize.jpg',
                 'category' => '',
             ],
             [
@@ -197,7 +197,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'payment.bitpay_pairing_code',
                 'label' => 'Bitpay',
                 'description' => __('Accept Bitcoing payments.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/bitpay.jpg',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/bitpay.jpg',
                 'category' => '',
             ],
             [
@@ -205,7 +205,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'payment.escrow_pay',
                 'label' => 'Escrow',
                 'description' => __('Accept Escrow payments.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/escrow.jpg',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/escrow.jpg',
                 'category' => '',
             ],
             [
@@ -213,7 +213,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'payment.fraudlabspro',
                 'label' => 'FraudLabsPro',
                 'description' => __('Prevent fraud payments with FraudLabsPro.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/fraudlabspro.png',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/fraudlabspro.png',
                 'category' => '',
             ],
             [
@@ -221,7 +221,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'payment.mercadopago_client_id',
                 'label' => 'Mercadopago',
                 'description' => __('Accept payments with Mercadopago.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/mercadopago.jpg',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/mercadopago.jpg',
                 'category' => '',
             ],
             [
@@ -229,7 +229,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'payment.paguelofacil_cclw',
                 'label' => 'Paguelofacil',
                 'description' => __('Accept payments with Paguelofacil.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/paguelofacil.png',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/paguelofacil.png',
                 'category' => '',
             ],
             [
@@ -237,7 +237,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'payment.payfast_merchant_id',
                 'label' => 'Payfast',
                 'description' => __('Accept payments with Payfast.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/payfast.jpg',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/payfast.jpg',
                 'category' => '',
             ],
             [
@@ -245,7 +245,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'payment.payline_merchant_id',
                 'label' => 'Payline',
                 'description' => __('Accept payments with Payline.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/payline.jpg',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/payline.jpg',
                 'category' => '',
             ],
             [
@@ -253,7 +253,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'payment.paymill_private',
                 'label' => 'Paymill',
                 'description' => __('Accept payments with Paymill.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/paymill.png',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/paymill.png',
                 'category' => '',
             ],
             [
@@ -261,7 +261,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'payment.paypal_account',
                 'label' => 'Paypal',
                 'description' => __('Accept Paypal payments.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/paypal.png',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/paypal.png',
                 'category' => '',
             ],
             [
@@ -269,7 +269,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'payment.paytabs_merchant_email',
                 'label' => 'Paytabs',
                 'description' => __('Accept payments with Paytabs.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/paytabs.jpg',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/paytabs.jpg',
                 'category' => '',
             ],
             [
@@ -277,7 +277,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'payment.robokassa_login',
                 'label' => 'Robokassa',
                 'description' => __('Accept payments with Robokassa.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/robokassa.png',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/robokassa.png',
                 'category' => '',
             ],
             [
@@ -285,7 +285,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'payment.securepay_merchant',
                 'label' => 'SecurePay',
                 'description' => __('Accept payments with SecurePay.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/securepay.png',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/securepay.png',
                 'category' => '',
             ],
             [
@@ -293,7 +293,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'payment.serfinsa_token',
                 'label' => 'Serfinsa',
                 'description' => __('Accept payments with Serfinsa.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/serfinsa.png',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/serfinsa.png',
                 'category' => '',
             ],
             [
@@ -301,7 +301,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'payment.stripe_private',
                 'label' => 'Stripe',
                 'description' => __('Accept Stripe payments and, with Stripe Connect, earn commissions from products sold on your site.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/stripe.png',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/stripe.png',
                 'category' => '',
             ],
             [
@@ -309,7 +309,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'payment.zenith_merchantid',
                 'label' => 'Zenith',
                 'description' => __('Accept payments with Zenith.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/zenith.jpeg',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/zenith.jpeg',
                 'category' => '',
             ],
         ];
@@ -320,7 +320,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'email.elastic_username',
                 'label' => 'ElasticEmail',
                 'description' => __('Configure ElasticEmail as your email service provider.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/elasticemail.jpg',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/elasticemail.jpg',
                 'category' => '',
             ],
             [
@@ -328,7 +328,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'payment.paypal_account',
                 'label' => 'Paypal',
                 'description' => __('Accept Paypal payments.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/paypal.png',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/paypal.png',
                 'category' => '',
             ],
             [
@@ -336,7 +336,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'general.analytics',
                 'label' => 'Google Analytics',
                 'description' => __('Get data of who and when visits your site.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/google-analytics.png',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/google-analytics.png',
                 'category' => '',
             ],
             [
@@ -344,7 +344,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'advertisement.gm_api_key',
                 'label' => 'Google Maps',
                 'description' => __('Get data of who and when visits your site.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/google-maps.png',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/google-maps.png',
                 'category' => '',
             ],
             [
@@ -352,7 +352,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'general.recaptcha_active',
                 'label' => 'reCaptcha',
                 'description' => __('Configure reCaptcha as your captcha service provider.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/recaptcha.png',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/recaptcha.png',
                 'category' => '',
             ],
             [
@@ -360,7 +360,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'config_name' => 'payment.stripe_private',
                 'label' => 'Stripe',
                 'description' => __('Accept Stripe payments and, with Stripe Connect, earn commissions from products sold on your site.'),
-                'logo' => '/themes/default/img/oc-panel/integrations/stripe.png',
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/stripe.png',
                 'category' => '',
             ],
         ];
