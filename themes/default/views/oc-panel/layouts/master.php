@@ -29,7 +29,7 @@
     <meta name="bingbot" content="noindex, nofollow, noodp, noydir">
     <meta name="msnbot" content="noindex, nofollow, noodp, noydir">
 
-    <? Theme::$styles = ['css/oc-panel/panel.css?v=' . Core::VERSION => 'screen']; ?>
+    <? $styles = array_merge(['css/oc-panel/panel.css?v=' . Core::VERSION => 'screen'], $styles) ?>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
 
@@ -52,7 +52,7 @@
 
     <script src="/themes/default/js/oc-panel/theme.init.js"></script>
 
-    <?= Theme::styles(Theme::$styles, 'default') ?>
+    <?= Theme::styles($styles, 'default') ?>
     <?= Theme::scripts($scripts, 'header','default') ?>
 
     <?if (Core::is_cloud() AND Auth::instance()->logged_in()):?>
