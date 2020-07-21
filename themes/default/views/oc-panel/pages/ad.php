@@ -91,7 +91,7 @@
                         <table class="min-w-full">
                             <thead>
                                 <tr>
-                                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider hidden">
                                         <?=Form::checkbox('select_all', 1, 0, ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out', 'id' => 'select-all'])?>
                                     </th>
                                     <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
@@ -116,7 +116,7 @@
                                     </th>
                                     <?if(isset($res)):?>
                                         <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-right">
-                                            <div x-data="{ open: false }" @keydown.escape="open = false" @click.away="open = false" class="relative inline-block text-left ml-3">
+                                            <div x-data="{ open: false }" @keydown.escape="open = false" @click.away="open = false" class="relative inline-block text-left ml-3 hidden">
                                                 <div>
                                                     <button @click.prevent="open = !open" class="flex items-center text-gray-400 hover:text-gray-600 focus:outline-none focus:text-gray-600">
                                                     <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
@@ -171,7 +171,7 @@
                             <tbody class="bg-white">
                                 <?$i = 0; foreach($res as $ad):?>
                                     <tr>
-                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium text-gray-900">
+                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium text-gray-900 hidden">
                                             <?=Form::checkbox('id_ads[]', $ad->id_ad, 0, ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out', 'id' => 'select-all'])?>
                                         </td>
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">

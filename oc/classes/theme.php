@@ -574,11 +574,23 @@ class Theme {
     {
         if (Auth::instance()->get_user()->has_access($controller, $action))
         {
+            $is_active = strtolower(Request::current()->controller()) == $controller ? TRUE : FALSE;
+
+            if ($is_active AND $controller == 'ad' AND $action == 'moderate' AND Request::current()->action() != 'moderate')
+            {
+                $is_active = false;
+            }
+
+            if ($is_active AND $controller == 'ad' AND $action == 'index' AND Request::current()->action() != 'index')
+            {
+                $is_active = false;
+            }
+
             return View::factory('oc-panel/layouts/_nav-link', [
                 'label' => $label,
                 'svg' => $svg,
                 'url'=> Route::url('oc-panel', ['controller' => $controller, 'action' => $action]),
-                'is_active' => strtolower(Request::current()->controller()) == $controller ? TRUE : FALSE
+                'is_active' => $is_active
             ]);
         }
     }
