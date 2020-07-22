@@ -50,7 +50,7 @@
     <link href="/themes/default/css/sweet-alert.min.css" rel="stylesheet">
     <script src="/themes/default/js/sweet-alert.min.js"></script>
 
-    <script src="/themes/default/js/oc-panel/theme.init.js"></script>
+    <script src="/themes/default/js/oc-panel/theme.init.js?v=<?= Core::VERSION ?>"></script>
 
     <?= Theme::styles($styles, 'default') ?>
     <?= Theme::scripts($scripts, 'header','default') ?>

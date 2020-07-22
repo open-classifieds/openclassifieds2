@@ -46,12 +46,7 @@ function sendFile(file, editor, welEditable) {
         success: function(response) {
             response = jQuery.parseJSON(response);
             if (response.link) {
-                if ($("textarea[name=description], textarea[name='formorm[description]']").data('editor')=='html') {
-                    $("#formorm_description, textarea[name=description], textarea[name=email_purchase_notes], .cf_textarea_fields").summernote('insertImage', response.link);
-                }
-                else if ($( "#crud-post" ).length || $( "#crud-category" ).length || $( "#crud-location" ).length) {
-                    $("#formorm_description").summernote('insertImage', response.link);
-                }
+                $("#formorm_description, textarea[name=description], textarea[name=email_purchase_notes], .cf_textarea_fields").summernote('insertImage', response.link);
             }
             else {
                 alert(response.msg);
