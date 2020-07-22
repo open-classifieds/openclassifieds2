@@ -19,6 +19,8 @@ class Controller_Panel_Widget extends Auth_Controller {
 
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Widgets')));
 
+        $this->template->styles = ['css/sortable.css' => 'screen'];
+
         $this->template->scripts['footer'][] = 'js/jquery-sortable-min.js';
         $this->template->scripts['footer'][] = 'js/oc-panel/widgets.js';
 
@@ -28,7 +30,7 @@ class Controller_Panel_Widget extends Auth_Controller {
         $this->template->content = View::factory('oc-panel/pages/widgets/widget',array('widgets' => $widgets,'placeholders'=>$placeholders));
 
     }
-    
+
 
    	/**
    	 * action_save
@@ -53,7 +55,7 @@ class Controller_Panel_Widget extends Auth_Controller {
 
             //$data = array();
             //extract all the data and prepare array
-            foreach ($this->request->post() as $name=>$value) 
+            foreach ($this->request->post() as $name=>$value)
             {
                 if ($name!='placeholder' AND $name!='widget_class' AND $name!='widget_name')
                     $data[$name] = $value;
@@ -62,7 +64,7 @@ class Controller_Panel_Widget extends Auth_Controller {
             $old_placeholder = NULL;
 
             $widget = new $widget();
-            
+
             //the widget exists, we load it since we need the previous placeholder
             if ($widget_name!=NULL)
             {
@@ -79,7 +81,7 @@ class Controller_Panel_Widget extends Auth_Controller {
                 $widget->save($old_placeholder);
 
                 //clean cache config
-                $c = new ConfigDB(); 
+                $c = new ConfigDB();
                 $c->reload_config();
 
                 if ($widget_name!=NULL)
@@ -89,13 +91,13 @@ class Controller_Panel_Widget extends Auth_Controller {
 
             } catch (Exception $e) {
                 //throw 500
-                throw HTTP_Exception::factory(500,$e->getMessage());     
+                throw HTTP_Exception::factory(500,$e->getMessage());
             }
 
             $this->redirect(Route::url('oc-panel', array('controller'=>'widget', 'action'=>'index')));
         }
-  
-        
+
+
    	}
 
    	/**
@@ -134,7 +136,7 @@ class Controller_Panel_Widget extends Auth_Controller {
         DB::delete('config')->where('group_name','=','placeholder')->execute();
 
         //for each placeholder
-        foreach ($_GET as $placeholder => $widgets) 
+        foreach ($_GET as $placeholder => $widgets)
         {
             if (!is_array($widgets))
             {
@@ -151,12 +153,12 @@ class Controller_Panel_Widget extends Auth_Controller {
                 $confp->group_name = 'placeholder';
                 $confp->config_key = $placeholder;
             }
-            
+
             $confp->config_value = json_encode($widgets);
             $confp->save();
 
             //edit each widget change placeholder
-            foreach ($widgets as $wname) 
+            foreach ($widgets as $wname)
             {
                 $w = Widget::factory($wname);
                 if ($w!==NULL)
@@ -167,9 +169,9 @@ class Controller_Panel_Widget extends Auth_Controller {
                         $w->save();
                     }
                 }
-               
+
             }
-            
+
         }
 
         $this->template->content = __('Saved');

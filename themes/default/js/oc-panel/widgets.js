@@ -1,6 +1,6 @@
 $(function  () {
-   var group = $("ul.plholder").sortable({
-          group: 'plholder',
+   var group = $("ul.sortable").sortable({
+          group: 'sortable',
           delay: 350,
           onDrop: function (item, container, _super) {
             //first we execute the normal plugins behaviour
@@ -12,7 +12,7 @@ $(function  () {
                 var item_id = item.attr("id");
                 var placeholder = '';
                 var data = {};
-                $('.plholder').each(function() {
+                $('.sortable').each(function() {
                     val = $(this).sortable().sortable('serialize').get();
 
                     //empty UL
@@ -43,14 +43,14 @@ $(function  () {
                     url: $('#ajax_result').data('url'),
                     beforeSend: function(text) {
                         $('#ajax_result').text('Saving').removeClass().addClass("label label-warning");
-                        $("ul.plholder").sortable('disable');
-                        $('ul.plholder').animate({opacity: '0.5'});
+                        $("ul.sortable").sortable('disable');
+                        $('ul.sortable').animate({opacity: '0.5'});
                     },
                     data: data,
                     success: function(text) {
                         $('#ajax_result').text(text).removeClass().addClass("label label-success");
-                        $("ul.plholder").sortable('enable');
-                        $('ul.plholder').animate({opacity: '1'});
+                        $("ul.sortable").sortable('enable');
+                        $('ul.sortable').animate({opacity: '1'});
                     }
                 });
 

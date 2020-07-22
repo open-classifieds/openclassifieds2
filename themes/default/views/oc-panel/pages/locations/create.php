@@ -11,7 +11,7 @@
 <div class="bg-white overflow-hidden shadow rounded-lg mt-8">
     <div class="px-4 py-5 sm:p-6">
         <div class="grid sm:grid-cols-2 sm:gap-8">
-            <?=FORM::open(Route::url('oc-panel/settings',['controller'=>'general']))?>
+            <?= FORM::open(Route::url('oc-panel',['controller'=>'location','action'=>'create']), ['class'=>'form-horizontal', 'enctype'=>'multipart/form-data'])?>
                 <div>
                     <div>
                         <div class="grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
