@@ -85,7 +85,7 @@
                 <div class="flex flex-wrap">
                     <div class="md:w-1/3 pr-4 pl-4">
                         <a class="thumbnail">
-                            <img src="<?=$icon_src?>" class="img-rounded" alt="<?=__('Category icon')?>" height='200px'>
+                            <img src="<?=$icon_src?>" class="img-rounded" alt="<?=__('Location icon')?>" height='200px'>
                         </a>
                     </div>
                 </div>
@@ -113,3 +113,24 @@
         </div>
     </div>
 <?=Form::close()?>
+
+<div class="bg-white shadow sm:rounded-lg mt-8">
+    <div class="px-4 py-5 sm:p-6">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">
+            <?= __('Delete this :object', [':object' => __('location')]) ?>
+        </h3>
+        <div class="mt-2 max-w-xl text-sm leading-5 text-gray-500">
+            <p>
+                <?= __('You\'re about to delete ":object". This is permanent!', [':object' => $location->name]) ?>
+            </p>
+            <p class="mt-2">
+                <?=__('We will move the siblings locations and ads to the parent of this location.')?>
+            </p>
+        </div>
+        <div class="mt-5">
+            <a href="<?=Route::url('oc-panel', ['controller'=> 'location', 'action'=>'delete','id'=>$location->id_location])?>" role="button" class="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-50 focus:outline-none focus:border-red-300 focus:shadow-outline-red active:bg-red-200 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                <?= __('Delete :object', [':object' => __('location')]) ?>
+            </a>
+        </div>
+    </div>
+</div>
