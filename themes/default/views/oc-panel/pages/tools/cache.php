@@ -109,4 +109,17 @@
             </div>
         </div>
     <? endif ?>
+<? else: ?>
+    <div class="bg-white shadow sm:rounded-lg mt-8">
+        <div class="px-4 py-5 sm:p-6">
+            <h3 class="text-lg leading-6 font-medium text-gray-900">
+                <?= __('Delete your website cache') ?>
+            </h3>
+            <div class="mt-5">
+                <button type="button" class="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-50 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-blue-200 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                    <?= __('Delete cache') ?>
+                </button>
+            </div>
+        </div>
+    </div>
 <? endif ?>
