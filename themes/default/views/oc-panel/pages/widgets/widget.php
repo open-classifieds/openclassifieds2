@@ -25,7 +25,7 @@
                             <?=$placeholder?>
                         </h3>
                     </div>
-                    <ul class='sortable' id="<?=$placeholder?>">
+                    <ul class='sortable' id="<?=$placeholder?>" style="min-height: 53px;">
                         <?foreach ($widgets as $widget):?>
                             <?=$widget->form()?>
                         <? endforeach ?>
