@@ -1,6 +1,5 @@
-#  Yclas 4.0.0.
+#  Yclas 4.0.1.
 
-[![Build Status](https://travis-ci.org/yclas/yclas.svg?branch=master)](https://travis-ci.org/yclas/yclas)
 
 # Description
 Yclas self-hosted is a powerful script that can transform any domain into a fully customizable classifieds site within a few seconds. Thousands of web developers trust Yclas to run their big classifieds website. Yclas can be used to create car/auto sales, job search board, buying & selling real estate and almost anything you can think of. And when you’re ready for more, there are themes and premium support available to transform your site into anything you can imagine.
