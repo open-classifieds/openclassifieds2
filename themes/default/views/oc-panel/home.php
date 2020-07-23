@@ -77,13 +77,13 @@
                 </p>
             </div>
             <div class="mt-3 text-sm leading-5 flex inline-flex">
-                <a href="<?=Route::url('oc-panel',array('controller'=>'content','action'=>'page'))?>" class="font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+                <a href="<?=Route::url('oc-panel',array('controller'=>'pages','action'=>'index'))?>" class="font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150">
                     <?=__('Create or edit content')?> &rarr;
                 </a>
                 <a href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'options'))?>" class="ml-6 font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150">
                     <?= __('Change the theme options') ?> &rarr;
                 </a>
-                <a href="<?=Route::url('oc-panel',array('controller'=>'settings','action'=>'general'))?>" class="ml-6 font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+                <a href="<?=Route::url('oc-panel/settings',array('controller'=>'general'))?>" class="ml-6 font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150">
                     <?= __('Edit the settings of this website') ?> &rarr;
                 </a>
             </div>
