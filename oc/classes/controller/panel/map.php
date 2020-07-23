@@ -16,15 +16,15 @@ class Controller_Panel_Map extends Auth_Controller {
         $this->template->scripts['footer'][] = 'js/jscolor/jscolor.js';
         $this->template->scripts['footer'][] = 'js/oc-panel/map/map-generator.js';
 
-        $map_active   = Core::post('map_active',Core::Config('appearance.map_active'));
-        $map_settings = Core::post('current_settings',Core::Config('appearance.map_settings'));
+        $map_active   = Core::post('map_active', Core::config('appearance.map_active') ?? 0);
+        $map_settings = Core::post('current_settings', Core::config('appearance.map_settings'));
 
         // change map
         if( Core::extra_features() == TRUE AND Core::post('jscode') )
         {
-            Model_Config::set_value('appearance','map_active',Core::post('map_active'));
-            Model_Config::set_value('appearance','map_settings',Core::post('current_settings'));
-            Model_Config::set_value('appearance','map_jscode',Kohana::$_POST_ORIG['jscode']);
+            Model_Config::set_value('appearance', 'map_active', Core::post('map_active') ?? 0);
+            Model_Config::set_value('appearance','map_settings', Core::post('current_settings'));
+            Model_Config::set_value('appearance','map_jscode', Kohana::$_POST_ORIG['jscode']);
 
             Core::delete_cache();
             Alert::set(Alert::SUCCESS, __('Map saved.'));
