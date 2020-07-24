@@ -123,6 +123,11 @@ class Controller_Panel_Fields extends Auth_Controller {
         $field  = new Model_Field();
         $field_data  = $field->get($name, FALSE);
 
+        if (! $field_data)
+        {
+            throw HTTP_Exception::factory(404, __('Page not found'));
+        }
+
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Edit').' '.$name));
         $this->template->title = __('Edit Custom Field for Advertisement');
 
