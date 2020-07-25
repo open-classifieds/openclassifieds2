@@ -3,7 +3,7 @@
   '4.0.1' => 
   array (
     'codename' => 'ReErebus',
-    'released' => '2020-07-23',
+    'released' => '2020-07-25',
     'blog' => '',
     'changelog' => 'https://github.com/yclas/yclas/compare/4.0.0...4.0.1',
     'issues' => 'https://github.com/yclas/yclas/milestone/42?closed=1',
