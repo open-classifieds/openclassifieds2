@@ -20,7 +20,7 @@
             $refs.form.submit()
         "
     >
-        <form method="GET" enctype="multipart/form-data">
+        <form method="GET" enctype="multipart/form-data" x-ref="form">
             <div class="bg-white overflow-hidden shadow rounded-lg mt-8">
                 <div class="flex flex-col">
                     <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">

@@ -1,1 +1,1 @@
-<?= View::factory('errors/default') ?>
+<?= View::factory('errors/default', compact('message')) ?>
