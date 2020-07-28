@@ -4,7 +4,7 @@
         <div class="absolute inset-0 bg-gray-600 opacity-75"></div>
     </div>
     <div class="fixed inset-0 flex z-40">
-        <div x-show="sidebarOpen" x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full" class="flex-1 flex flex-col max-w-xs w-full bg-gray-800 transform ease-in-out duration-300 ">
+        <div x-show="sidebarOpen" x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full" class="flex-1 flex flex-col max-w-xs w-full bg-blue-800 transform ease-in-out duration-300 ">
             <div class="absolute top-0 right-0 -mr-14 p-1">
                 <button x-show="sidebarOpen" @click="sidebarOpen = false" class="flex items-center justify-center h-12 w-12 rounded-full focus:outline-none focus:bg-gray-600">
                 <svg class="mb-2 font-medium leading-tight text-base w-6 text-white" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -29,22 +29,37 @@
                 </div>
                 <?= View::factory('oc-panel/layouts/_nav') ?>
             </div>
-            <div class="flex-shrink-0 flex border-t border-blue-200 p-4">
-                <a href="#" class="flex-shrink-0 group block focus:outline-none">
-                    <div class="flex items-center">
-                        <div>
-                            <img class="inline-block h-10 w-10 rounded-full" src="<?= $user->get_profile_image() ?>" />
-                        </div>
-                        <div class="ml-3">
-                            <p class="text-base leading-6 font-medium text-gray-700 group-hover:text-gray-900">
-                                <?= $user->name ?>
-                            </p>
-                            <p class="text-sm leading-5 font-medium text-gray-500 group-hover:text-gray-700 group-focus:underline transition ease-in-out duration-150">
-                                <?= $user->email ?>
-                            </p>
+            <div class="flex-shrink-0 flex border-t border-blue-700 p-4">
+                <div x-data="{ open: false }" @keydown.window.escape="open = false" @click.away="open = false" class="flex-shrink-0 group block focus:outline-none relative">
+                    <div>
+                        <button @click="open = !open" type="button"  class="text-left flex items-center">
+                            <div>
+                                <img class="inline-block h-10 w-10 rounded-full" src="<?= $user->get_profile_image() ?>" />
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm leading-5 font-medium text-white">
+                                    <?= $user->name ?>
+                                </p>
+                                <p class="text-xs leading-4 font-medium text-indigo-300 group-hover:text-indigo-100 group-focus:underline transition ease-in-out duration-150">
+                                    <?= $user->email ?>
+                                </p>
+                            </div>
+                        </button>
+                    </div>
+                    <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="origin-top-right absolute right-0 mb-2 w-56 rounded-md shadow-lg" style="bottom: 100%;">
+                        <div class="rounded-md bg-white shadow-xs">
+                            <div class="py-1">
+                                <a href="<?= Route::url('oc-panel', ['controller' => 'profile', 'action' => 'edit']) ?>" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"><?= __('Edit profile') ?></a>
+                                <? if (Core::extra_features() OR Core::is_cloud()) : ?>
+                                    <a href="https://yclas.com/panel/support/index" target="_blank" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"><?= __('Support') ?></a>
+                                <? endif ?>
+                                <a href="https://guides.yclas.com" target="_blank" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"><?= __('Documentation') ?></a>
+                                <div class="border-t border-gray-100"></div>
+                                <a href="<?= Route::url('oc-panel', ['directory' => 'user', 'controller' => 'auth', 'action' => 'logout']) ?>" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">Logout</a>
+                            </div>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
         </div>
         <div class="flex-shrink-0 w-14">
@@ -75,21 +90,36 @@
             </div>
         </div>
         <div class="flex-shrink-0 flex border-t border-blue-700 p-4">
-            <a href="#" class="flex-shrink-0 group block focus:outline-none">
-                <div class="flex items-center">
-                    <div>
-                        <img class="inline-block h-9 w-9 rounded-full" src="<?= $user->get_profile_image() ?>" />
-                    </div>
-                    <div class="ml-3">
-                        <p class="text-sm leading-5 font-medium text-white">
-                            <?= $user->name ?>
-                        </p>
-                        <p class="text-xs leading-4 font-medium text-blue-400 group-hover:text-blue-300 group-focus:underline transition ease-in-out duration-150">
-                            <?= $user->email ?>
-                        </p>
+            <div x-data="{ open: false }" @keydown.window.escape="open = false" @click.away="open = false" class="flex-shrink-0 group block focus:outline-none relative">
+                <div>
+                    <button @click="open = !open" type="button"  class="text-left flex items-center">
+                        <div>
+                            <img class="inline-block h-9 w-9 rounded-full" src="<?= $user->get_profile_image() ?>" />
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm leading-5 font-medium text-white">
+                                <?= $user->name ?>
+                            </p>
+                            <p class="text-xs leading-4 font-medium text-blue-400 group-hover:text-blue-300 group-focus:underline transition ease-in-out duration-150">
+                                <?= $user->email ?>
+                            </p>
+                        </div>
+                    </button>
+                </div>
+                <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="origin-top-right absolute right-0 mb-2 w-56 rounded-md shadow-lg" style="bottom: 100%;">
+                    <div class="rounded-md bg-white shadow-xs">
+                        <div class="py-1">
+                            <a href="<?= Route::url('oc-panel', ['controller' => 'profile', 'action' => 'edit']) ?>" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"><?= __('Edit profile') ?></a>
+                            <? if (Core::extra_features() OR Core::is_cloud()) : ?>
+                                <a href="https://yclas.com/panel/support/index" target="_blank" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"><?= __('Support') ?></a>
+                            <? endif ?>
+                            <a href="https://guides.yclas.com" target="_blank" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"><?= __('Documentation') ?></a>
+                            <div class="border-t border-gray-100"></div>
+                            <a href="<?= Route::url('oc-panel', ['directory' => 'user', 'controller' => 'auth', 'action' => 'logout']) ?>" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">Logout</a>
+                        </div>
                     </div>
                 </div>
-            </a>
+            </div>
         </div>
     </div>
 </div>

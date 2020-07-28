@@ -99,7 +99,11 @@
                                     <?$i = 0; foreach($ads as $ad):?>
                                         <tr>
                                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium text-gray-900">
-                                                <?=Form::checkbox('id_ads[]', $ad->id_ad, 0, ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out', 'id' => 'select-all'])?>
+                                                <?=Form::checkbox('id_ads[]', $ad->id_ad, 0, [
+                                                    'class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out',
+                                                    'id' => 'select-all',
+                                                    'x-bind:checked' => 'selectAll'
+                                                ])?>
                                             </td>
                                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
                                                 <?= $ad->id_ad ?>
