@@ -4,7 +4,7 @@
         <div class="absolute inset-0 bg-gray-600 opacity-75"></div>
     </div>
     <div class="fixed inset-0 flex z-40">
-        <div x-show="sidebarOpen" x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full" class="flex-1 flex flex-col max-w-xs w-full bg-gray-800 transform ease-in-out duration-300 ">
+        <div x-show="sidebarOpen" x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full" class="flex-1 flex flex-col max-w-xs w-full bg-blue-800 transform ease-in-out duration-300 ">
             <div class="absolute top-0 right-0 -mr-14 p-1">
                 <button x-show="sidebarOpen" @click="sidebarOpen = false" class="flex items-center justify-center h-12 w-12 rounded-full focus:outline-none focus:bg-gray-600">
                 <svg class="mb-2 font-medium leading-tight text-base w-6 text-white" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -29,7 +29,7 @@
                 </div>
                 <?= View::factory('oc-panel/layouts/_nav') ?>
             </div>
-            <div class="flex-shrink-0 flex border-t border-blue-200 p-4">
+            <div class="flex-shrink-0 flex border-t border-blue-700 p-4">
                 <div x-data="{ open: false }" @keydown.window.escape="open = false" @click.away="open = false" class="flex-shrink-0 group block focus:outline-none relative">
                     <div>
                         <button @click="open = !open" type="button"  class="text-left flex items-center">
@@ -37,10 +37,10 @@
                                 <img class="inline-block h-10 w-10 rounded-full" src="<?= $user->get_profile_image() ?>" />
                             </div>
                             <div class="ml-3">
-                                <p class="text-base leading-6 font-medium text-gray-700 group-hover:text-gray-900">
+                                <p class="text-sm leading-5 font-medium text-white">
                                     <?= $user->name ?>
                                 </p>
-                                <p class="text-sm leading-5 font-medium text-gray-500 group-hover:text-gray-700 group-focus:underline transition ease-in-out duration-150">
+                                <p class="text-xs leading-4 font-medium text-indigo-300 group-hover:text-indigo-100 group-focus:underline transition ease-in-out duration-150">
                                     <?= $user->email ?>
                                 </p>
                             </div>
