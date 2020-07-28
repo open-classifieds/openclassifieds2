@@ -2,6 +2,7 @@
 
 <nav class="mt-5 px-2">
     <?= Theme::admin_sidebar_link(__('Dashboard'), 'home', 'index', '<svg stroke="currentColor" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V10M9 21h6"/></svg>') ?>
+    <?= Theme::admin_sidebar_link(__('Stats'), 'stats', 'index', '<svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>') ?>
 </nav>
 <nav class="mt-5 flex-1 px-2">
     <h3 class="px-2 text-xs leading-4 font-semibold text-blue-500 uppercase tracking-wider">

@@ -11,23 +11,29 @@
 class Controller_Panel_Stats extends Auth_Controller {
 
     public function before($template = NULL)
-    {   
+    {
         parent::before();
 
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Stats'))->set_url(Route::url('oc-panel',array('controller'  => 'stats')).'?'.http_build_query(['rel' => ''] + Request::current()->query())));
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Stats'))->set_url(Route::url('oc-panel',['controller' => 'stats']).'?'.http_build_query(['rel' => ''] + Request::current()->query())));
 
-        $this->template->styles = array('css/datepicker.css' => 'screen');
-        $this->template->scripts['footer'] = array('js/bootstrap-datepicker.js',
-                                                   'js/chart.min.js',
-                                                   'js/chart.js-php.js',
-                                                   'js/oc-panel/stats/dashboard.js');
+        $this->template->styles = [
+            'css/datepicker.css' => 'screen',
+            '//cdn.jsdelivr.net/npm/pikaday/css/pikaday.css' => 'screen'
+        ];
+
+        $this->template->scripts['footer'] = [
+            '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js',
+            '//cdn.jsdelivr.net/npm/pikaday/pikaday.js',
+            'js/chart.min.js',
+            'js/chart.js-php.js',
+        ];
     }
 
     public function action_index()
     {
         $this->template->title = __('Stats');
 
-        $this->template->bind('content', $content);        
+        $this->template->bind('content', $content);
         $content = View::factory('oc-panel/pages/stats/dashboard');
         $content->title = $this->template->title;
 
@@ -36,9 +42,9 @@ class Controller_Panel_Stats extends Auth_Controller {
         $to_date   = Core::request('to_date', date('Y-m-d', strtotime('+1 day')));
 
         // We assure is a proper time stamp if not we transform it
-        if (is_string($from_date) === TRUE) 
+        if (is_string($from_date) === TRUE)
             $from_date = strtotime($from_date);
-        if (is_string($to_date) === TRUE) 
+        if (is_string($to_date) === TRUE)
             $to_date   = strtotime($to_date);
 
         $from_datetime = new DateTime();
@@ -95,14 +101,14 @@ class Controller_Panel_Stats extends Auth_Controller {
 
     /**
      * Ads Stats
-     * 
+     *
      */
     public function action_ads()
     {
         $this->template->title = __('Ads');
         Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title)->set_url(Route::url('oc-panel',array('controller'  => 'stats', 'action' => 'ads')).'?'.http_build_query(['rel' => ''] + Request::current()->query())));
 
-        $this->template->bind('content', $content);        
+        $this->template->bind('content', $content);
         $content = View::factory('oc-panel/pages/stats/details');
         $content->title = $this->template->title;
 
@@ -111,9 +117,9 @@ class Controller_Panel_Stats extends Auth_Controller {
         $to_date   = Core::post('to_date', Core::get('to_date', time()));
 
         //we assure is a proper time stamp if not we transform it
-        if (is_string($from_date) === TRUE) 
+        if (is_string($from_date) === TRUE)
             $from_date = strtotime($from_date);
-        if (is_string($to_date) === TRUE) 
+        if (is_string($to_date) === TRUE)
             $to_date   = strtotime($to_date);
 
         $from_datetime = new DateTime();
@@ -145,14 +151,14 @@ class Controller_Panel_Stats extends Auth_Controller {
 
     /**
      * Users Stats
-     * 
+     *
      */
     public function action_users()
     {
         $this->template->title = __('Users');
         Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title)->set_url(Route::url('oc-panel',array('controller'  => 'stats', 'action' => 'users')).'?'.http_build_query(['rel' => ''] + Request::current()->query())));
 
-        $this->template->bind('content', $content);        
+        $this->template->bind('content', $content);
         $content = View::factory('oc-panel/pages/stats/details');
         $content->title = $this->template->title;
 
@@ -161,9 +167,9 @@ class Controller_Panel_Stats extends Auth_Controller {
         $to_date   = Core::post('to_date', Core::get('to_date', time()));
 
         //we assure is a proper time stamp if not we transform it
-        if (is_string($from_date) === TRUE) 
+        if (is_string($from_date) === TRUE)
             $from_date = strtotime($from_date);
-        if (is_string($to_date) === TRUE) 
+        if (is_string($to_date) === TRUE)
             $to_date   = strtotime($to_date);
 
         $from_datetime = new DateTime();
@@ -195,14 +201,14 @@ class Controller_Panel_Stats extends Auth_Controller {
 
     /**
      * Visits Stats
-     * 
+     *
      */
     public function action_visits()
     {
         $this->template->title = __('Visits');
         Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title)->set_url(Route::url('oc-panel',array('controller'  => 'stats', 'action' => 'visits')).'?'.http_build_query(['rel' => ''] + Request::current()->query())));
 
-        $this->template->bind('content', $content);        
+        $this->template->bind('content', $content);
         $content = View::factory('oc-panel/pages/stats/details');
         $content->title = $this->template->title;
 
@@ -211,9 +217,9 @@ class Controller_Panel_Stats extends Auth_Controller {
         $to_date   = Core::post('to_date', Core::get('to_date', time()));
 
         //we assure is a proper time stamp if not we transform it
-        if (is_string($from_date) === TRUE) 
+        if (is_string($from_date) === TRUE)
             $from_date = strtotime($from_date);
-        if (is_string($to_date) === TRUE) 
+        if (is_string($to_date) === TRUE)
             $to_date   = strtotime($to_date);
 
         $from_datetime = new DateTime();
@@ -245,14 +251,14 @@ class Controller_Panel_Stats extends Auth_Controller {
 
     /**
      * Contacts Stats
-     * 
+     *
      */
     public function action_contacts()
     {
         $this->template->title = __('Contacts');
         Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title)->set_url(Route::url('oc-panel',array('controller'  => 'stats', 'action' => 'contacts')).'?'.http_build_query(['rel' => ''] + Request::current()->query())));
 
-        $this->template->bind('content', $content);        
+        $this->template->bind('content', $content);
         $content = View::factory('oc-panel/pages/stats/details');
         $content->title = $this->template->title;
 
@@ -261,9 +267,9 @@ class Controller_Panel_Stats extends Auth_Controller {
         $to_date   = Core::post('to_date', Core::get('to_date', time()));
 
         //we assure is a proper time stamp if not we transform it
-        if (is_string($from_date) === TRUE) 
+        if (is_string($from_date) === TRUE)
             $from_date = strtotime($from_date);
-        if (is_string($to_date) === TRUE) 
+        if (is_string($to_date) === TRUE)
             $to_date   = strtotime($to_date);
 
         $from_datetime = new DateTime();
@@ -295,14 +301,14 @@ class Controller_Panel_Stats extends Auth_Controller {
 
     /**
      * Paid Orders Stats
-     * 
+     *
      */
     public function action_paid_orders()
     {
         $this->template->title = __('Paid Orders');
         Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title)->set_url(Route::url('oc-panel',array('controller'  => 'stats', 'action' => 'paid_orders')).'?'.http_build_query(['rel' => ''] + Request::current()->query())));
 
-        $this->template->bind('content', $content);        
+        $this->template->bind('content', $content);
         $content = View::factory('oc-panel/pages/stats/details');
         $content->title = $this->template->title;
 
@@ -311,9 +317,9 @@ class Controller_Panel_Stats extends Auth_Controller {
         $to_date   = Core::post('to_date', Core::get('to_date', time()));
 
         //we assure is a proper time stamp if not we transform it
-        if (is_string($from_date) === TRUE) 
+        if (is_string($from_date) === TRUE)
             $from_date = strtotime($from_date);
-        if (is_string($to_date) === TRUE) 
+        if (is_string($to_date) === TRUE)
             $to_date   = strtotime($to_date);
 
         $from_datetime = new DateTime();
@@ -345,14 +351,14 @@ class Controller_Panel_Stats extends Auth_Controller {
 
     /**
      * Sales Stats
-     * 
+     *
      */
     public function action_sales()
     {
         $this->template->title = __('Sales');
         Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title)->set_url(Route::url('oc-panel',array('controller'  => 'stats', 'action' => 'sales')).'?'.http_build_query(['rel' => ''] + Request::current()->query())));
 
-        $this->template->bind('content', $content);        
+        $this->template->bind('content', $content);
         $content = View::factory('oc-panel/pages/stats/details');
         $content->title = $this->template->title;
 
@@ -361,9 +367,9 @@ class Controller_Panel_Stats extends Auth_Controller {
         $to_date   = Core::post('to_date', Core::get('to_date', time()));
 
         //we assure is a proper time stamp if not we transform it
-        if (is_string($from_date) === TRUE) 
+        if (is_string($from_date) === TRUE)
             $from_date = strtotime($from_date);
-        if (is_string($to_date) === TRUE) 
+        if (is_string($to_date) === TRUE)
             $to_date   = strtotime($to_date);
 
         $from_datetime = new DateTime();
@@ -452,10 +458,10 @@ class Controller_Panel_Stats extends Auth_Controller {
 
         $ret = array();
 
-        foreach ($dates as $k => $date) 
+        foreach ($dates as $k => $date)
         {
             $count_sum = (isset($result[$date['date']]['total'])) ? $result[$date['date']]['total'] : 0;
-            
+
             $ret[] = array('date' => ($label_counter % $label_breaker == 0) ? $date['date'] : '', '#' => $count_sum);
 
             $label_counter++;
@@ -523,10 +529,10 @@ class Controller_Panel_Stats extends Auth_Controller {
         $label_counter = 0;
         $label_breaker = core::count($dates) > 30 ? Num::round(core::count($dates)/30) : 1;
 
-        foreach ($dates as $k => $date) 
+        foreach ($dates as $k => $date)
         {
             $count_sum = (isset($result[$date['date']]['total'])) ? $result[$date['date']]['total'] : 0;
-            
+
             $ret[] = array('date' => ($label_counter % $label_breaker == 0) ? $date['date'] : '', '#' => $count_sum);
 
             $label_counter++;
@@ -592,10 +598,10 @@ class Controller_Panel_Stats extends Auth_Controller {
         $label_counter = 0;
         $label_breaker = core::count($dates) > 30 ? Num::round(core::count($dates)/30) : 1;
 
-        foreach ($dates as $k => $date) 
+        foreach ($dates as $k => $date)
         {
             $count_sum = (isset($result[$date['date']]['total'])) ? $result[$date['date']]['total'] : 0;
-            
+
             $ret[] = array('date' => ($label_counter % $label_breaker == 0) ? $date['date'] : '', '#' => $count_sum);
 
             $label_counter++;
@@ -661,10 +667,10 @@ class Controller_Panel_Stats extends Auth_Controller {
         $label_counter = 0;
         $label_breaker = core::count($dates) > 30 ? Num::round(core::count($dates)/30) : 1;
 
-        foreach ($dates as $k => $date) 
+        foreach ($dates as $k => $date)
         {
             $count_sum = (isset($result[$date['date']]['total'])) ? $result[$date['date']]['total'] : 0;
-            
+
             $ret[] = array('date' => ($label_counter % $label_breaker == 0) ? $date['date'] : '', '#' => $count_sum);
 
             $label_counter++;
@@ -734,10 +740,10 @@ class Controller_Panel_Stats extends Auth_Controller {
         $label_counter = 0;
         $label_breaker = core::count($dates) > 30 ? Num::round(core::count($dates)/30) : 1;
 
-        foreach ($dates as $k => $date) 
+        foreach ($dates as $k => $date)
         {
             $count_sum = (isset($result[$date['date']]['total'])) ? $result[$date['date']]['total'] : 0;
-            
+
             $ret[] = array('date' => ($label_counter % $label_breaker == 0) ? $date['date'] : '', '#' => $count_sum);
 
             $label_counter++;
@@ -805,10 +811,10 @@ class Controller_Panel_Stats extends Auth_Controller {
         $label_counter = 0;
         $label_breaker = core::count($dates) > 30 ? Num::round(core::count($dates)/30) : 1;
 
-        foreach ($dates as $k => $date) 
+        foreach ($dates as $k => $date)
         {
             $count_sum = (isset($result[$date['date']]['total'])) ? $result[$date['date']]['total'] : 0;
-            
+
             $ret[] = array('date' => ($label_counter % $label_breaker == 0) ? $date['date'] : '', '$' => $count_sum);
 
             $label_counter++;
