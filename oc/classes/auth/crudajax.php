@@ -147,8 +147,16 @@ class Auth_CrudAjax extends Auth_Crud
     {
         $this->template->title = __($this->_orm_model);
 
-        $this->template->scripts['footer'][] = Route::url($this->_route_name, array('controller'=> Request::current()->controller(), 'action'=>'bootgrid'));
-        $this->template->styles = array('css/jquery.bootgrid.min.css' => 'screen','//cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen');
+        $this->template->styles = [
+            'css/jquery.bootgrid.min.css' => 'screen',
+            '//cdn.jsdelivr.net/npm/pikaday/css/pikaday.css' => 'screen'
+        ];
+
+        $this->template->scripts['footer'] = [
+            Route::url($this->_route_name, ['controller' => Request::current()->controller(), 'action' => 'bootgrid']),
+            '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js',
+            '//cdn.jsdelivr.net/npm/pikaday/pikaday.js',
+        ];
 
         $elements = ORM::Factory($this->_orm_model);//->find_all();
 
