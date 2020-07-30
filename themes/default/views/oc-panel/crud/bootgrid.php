@@ -144,5 +144,3 @@ var grid = $("#grid-data-api").bootgrid({
     });*/
 
 });
-
-$('.datepicker_boot').datepicker();

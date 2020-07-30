@@ -74,8 +74,44 @@
                         <?endforeach?>
                     </select>
                 <?elseif($values=='DATE'):?>
-                    <input type="text" class="datepicker_boot form-input relative block w-full rounded-none -ml-px bg-transparent focus:z-10 transition ease-in-out duration-150 sm:text-sm sm:leading-5" id="filter__from__<?=$field_name?>" name="filter__from__<?=$field_name?>" placeholder="<?=__('From')?> <?=$field_name?>" value="<?=core::request('filter__from__'.$field_name)?>" data-date="<?=core::request('filter__from__'.$field_name)?>" data-date-format="yyyy-mm-dd">
-                    <input type="text" class="datepicker_boot form-input relative block w-full rounded-none -ml-px bg-transparent focus:z-10 transition ease-in-out duration-150 sm:text-sm sm:leading-5" id="filter__to__<?=$field_name?>" name="filter__to__<?=$field_name?>" placeholder="<?=__('To')?> <?=$field_name?>" value="<?=core::request('filter__to__'.$field_name)?>" data-date="<?=core::request('filter__to__'.$field_name)?>" data-date-format="yyyy-mm-dd">
+                    <input
+                        type="text"
+                        class="form-input relative block w-full rounded-none -ml-px bg-transparent focus:z-10 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                        id="filter__from__<?=$field_name?>"
+                        name="filter__from__<?=$field_name?>"
+                        placeholder="<?=__('From')?> <?=$field_name?>"
+                        value="<?=core::request('filter__from__'.$field_name)?>" data-date="<?=core::request('filter__from__'.$field_name)?>"
+                        x-data=""
+                        x-ref="input"
+                        x-init="
+                            new Pikaday({
+                                field: $refs.input,
+                                toString(date, format) {
+                                    return moment(date).format('YYYY-MM-DD');
+                                },
+                            });
+                        "
+                    >
+                    <input
+                        type="text"
+                        class="form-input relative block w-full rounded-none -ml-px bg-transparent focus:z-10 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                        id="filter__to__<?=$field_name?>"
+                        name="filter__to__<?=$field_name?>"
+                        placeholder="<?=__('To')?> <?=$field_name?>"
+                        value="<?=core::request('filter__to__'.$field_name)?>"
+                        data-date="<?=core::request('filter__to__'.$field_name)?>"
+                        data-date-format="yyyy-mm-dd"
+                        x-data=""
+                        x-ref="input"
+                        x-init="
+                            new Pikaday({
+                                field: $refs.input,
+                                toString(date, format) {
+                                    return moment(date).format('YYYY-MM-DD');
+                                },
+                            });
+                        "
+                    >
                 <?elseif($values=='RANGE'):?>
                     <input type="text" class="form-input relative block w-full rounded-none -ml-px bg-transparent focus:z-10 transition ease-in-out duration-150 sm:text-sm sm:leading-5" id="filter__from__<?=$field_name?>" name="filter__from__<?=$field_name?>" placeholder="<?=__('From')?> <?=$field_name?>" value="<?=core::request('filter__from__'.$field_name)?>" >
                     <input type="text" class="form-input relative block w-full rounded-none -ml-px bg-transparent focus:z-10 transition ease-in-out duration-150 sm:text-sm sm:leading-5" id="filter__to__<?=$field_name?>" name="filter__to__<?=$field_name?>" placeholder="<?=__('To')?> <?=$field_name?>" value="<?=core::request('filter__to__'.$field_name)?>" >
