@@ -80,13 +80,8 @@
     <div class="bg-white shadow sm:rounded-lg mt-8">
         <div class="px-4 py-5 sm:p-6">
             <h3 class="text-lg leading-6 font-medium text-gray-900">
-                <?=__('Import locations')?>
+                <?=__('Import countries')?>
             </h3>
-            <div class="mt-2 max-w-xl text-sm leading-5 text-gray-500">
-                <p>
-                    <?=__('Please use the correct CSV format')?> <a class="hover:underline" href="https://docs.google.com/uc?id=0B60e9iwQucDwa2VjRXAtV0FXVlk&export=download"><?=__('download example')?></a>.
-                </p>
-            </div>
             <div class="mt-5 sm:flex sm:items-center">
                 <div class="max-w-xs w-full">
                     <?=Form::label('csv_file_locations', __('csv_file_locations'), ['class' => 'sr-only', 'for' => 'csv_file_locations'])?>
@@ -99,6 +94,21 @@
                 <span class="mt-3 w-ful inline-flex rounded-md shadow-sm sm:mt-0 sm:ml-3 sm:w-auto">
                     <?=Form::button('submit', __('Import'), ['type'=>'submit', 'class'=>'w-full inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150 sm:w-auto sm:text-sm sm:leading-5'])?>
                 </span>
+            </div>
+        </div>
+    </div>
+<?=Form::close()?>
+
+<?= FORM::open(Route::url('oc-panel',['controller'=>'tools','action'=>'import_tool'.'?id_parent='.HTML::chars(Core::get('id_location', 1))]), ['enctype'=>'multipart/form-data'])?>
+    <div class="bg-white shadow sm:rounded-lg mt-8">
+        <div class="px-4 py-5 sm:p-6">
+            <h3 class="text-lg leading-6 font-medium text-gray-900">
+                <?=__('Import locations')?>
+            </h3>
+            <div class="mt-2 max-w-xl text-sm leading-5 text-gray-500">
+                <p>
+                    <?=__('Please use the correct CSV format')?> <a class="hover:underline" href="https://raw.githubusercontent.com/yclas/yclas/master/install/samples/import/locations.csv"><?=__('download example')?></a>.
+                </p>
             </div>
             <div class="mt-7 sm:flex sm:items-center">
                 <div class="max-w-xs w-full">

@@ -339,6 +339,8 @@ class Controller_Panel_Tools extends Auth_Controller {
 
                         Core::delete_cache();
                         Alert::set(Alert::SUCCESS, __('Categories successfully imported.'));
+
+                        $this->redirect(Route::url('oc-panel', ['controller' => 'category', 'action' => 'index']));
                     }
                 }
                 elseif($file=='csv_file_locations' AND $csv != FALSE)
@@ -380,6 +382,8 @@ class Controller_Panel_Tools extends Auth_Controller {
 
                         Core::delete_cache();
                         Alert::set(Alert::SUCCESS, __('Locations successfully imported.'));
+
+                        $this->redirect(Route::url('oc-panel', ['controller' => 'location', 'action' => 'index']));
                     }
                 }
 
