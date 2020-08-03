@@ -130,7 +130,7 @@
             </h3>
             <div class="mt-2 max-w-xl text-sm leading-5 text-gray-500">
                 <p>
-                    <?=__('Please use the correct CSV format')?> <a class="hover:underline" href="https://docs.google.com/uc?id=0B60e9iwQucDwTm1NRGlqcEZwdGM&export=download"><?=__('download example')?></a>.
+                    <?=__('Please use the correct CSV format')?> <a class="hover:underline" href="https://raw.githubusercontent.com/yclas/yclas/master/install/samples/import/categories.csv"><?=__('download example')?></a>.
                 </p>
             </div>
             <div class="mt-5 sm:flex sm:items-center">
