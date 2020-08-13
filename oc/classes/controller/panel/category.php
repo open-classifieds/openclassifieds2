@@ -409,7 +409,7 @@ class Controller_Panel_Category extends Auth_Crud {
 
 		$category = new Model_Category($this->request->param('id'));
 
-		if (Core::selfhosted() AND Core::config('image.aws_s3_active'))
+		if (Core::is_selfhosted() AND Core::config('image.aws_s3_active'))
         {
             require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
             $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
