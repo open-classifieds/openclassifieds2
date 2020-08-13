@@ -1,7 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<?=Form::errors()?>
-
 <div class="md:flex md:items-center md:justify-between">
     <div class="flex-1 min-w-0">
         <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
@@ -22,6 +20,12 @@
         </div>
     <? endif ?>
 </div>
+
+<? if (! empty($errors)) : ?>
+    <div class="mt-8">
+        <?= View::factory('oc-panel/components/form-errors', ['errors' => $errors]) ?>
+    </div>
+<? endif ?>
 
 <div class="bg-white overflow-hidden shadow rounded-lg mt-8">
     <div class="px-4 py-5 sm:p-6">

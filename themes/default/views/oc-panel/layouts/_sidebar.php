@@ -30,7 +30,7 @@
                 <?= View::factory('oc-panel/layouts/_nav') ?>
             </div>
             <div class="flex-shrink-0 flex border-t border-blue-700 p-4">
-                <div x-data="{ open: false }" @keydown.window.escape="open = false" @click.away="open = false" class="flex-shrink-0 group block focus:outline-none relative">
+                <div x-data="{ open: false }" @keydown.window.escape="open = false" @click.away="open = false" class="flex-shrink-0 group block focus:outline-none relative w-full">
                     <div>
                         <button @click="open = !open" type="button"  class="text-left flex items-center">
                             <div>
@@ -90,7 +90,7 @@
             </div>
         </div>
         <div class="flex-shrink-0 flex border-t border-blue-700 p-4">
-            <div x-data="{ open: false }" @keydown.window.escape="open = false" @click.away="open = false" class="flex-shrink-0 group block focus:outline-none relative">
+            <div x-data="{ open: false }" @keydown.window.escape="open = false" @click.away="open = false" class="flex-shrink-0 group block focus:outline-none relative w-full">
                 <div>
                     <button @click="open = !open" type="button"  class="text-left flex items-center">
                         <div>

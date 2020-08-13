@@ -14,6 +14,12 @@
     </div>
 </div>
 
+<? if (! empty($errors)) : ?>
+    <div class="mt-8">
+        <?= View::factory('oc-panel/components/form-errors', ['errors' => $errors]) ?>
+    </div>
+<? endif ?>
+
 <div class="bg-white overflow-hidden shadow rounded-lg mt-8">
     <div class="px-4 py-5 sm:p-6">
         <?=FORM::open(Route::url('oc-panel/settings',['controller'=>'advertisement']))?>
@@ -67,17 +73,7 @@
                         <div class="sm:col-span-4">
                             <?= FORM::label('sort_by', __('Sort by in listing'), ['class'=>'block text-sm font-medium leading-5 text-gray-700'])?>
                             <div class="mt-1 rounded-md shadow-sm">
-                                <?= FORM::select('sort_by', ['title-asc'=>"Name (A-Z)",
-                                                                                 'title-desc'=>"Name (Z-A)",
-                                                                                 'price-asc'=>"Price (Low)",
-                                                                                 'price-desc'=>"Price (High)",
-                                                                                 'featured'=>"Featured",
-                                                                                 'rating'=>"Rating",
-                                                                                 'favorited'=>"Favorited",
-                                                                                 'published-desc'=>"Newest",
-                                                                                 'published-asc'=>"Oldest",
-                                                                                 'distance'=>"Distance",
-                                                                                 'event-date'=>"Event date"], Core::post('sort_by', Core::config('advertisement.sort_by')), [
+                                <?= FORM::select('sort_by', $sort_by_options, Core::post('sort_by', Core::config('advertisement.sort_by')), [
                                     'class' => 'form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
                                 ])?>
                             </div>
@@ -86,21 +82,9 @@
                             </p>
                         </div>
                         <div class="sm:col-span-4">
-                            <?
-                                $ads_in_home = [0=>__('Latest Ads'),
-                                                        1=>__('Featured Ads'),
-                                                        4=>__('Featured Ads Random'),
-                                                        2=>__('Popular Ads last month'),
-                                                        3=>__('None')];
-
-                                if(core::config('advertisement.count_visits')==0)
-                                {
-                                    unset($ads_in_home[2]);
-                                }
-                            ?>
                             <?= FORM::label('ads_in_home', __('Advertisements in home'), ['class'=>'block text-sm font-medium leading-5 text-gray-700'])?>
                             <div class="mt-1 rounded-md shadow-sm">
-                                <?= FORM::select('ads_in_home', $ads_in_home, Core::post('ads_in_home', Core::config('advertisement.ads_in_home')), [
+                                <?= FORM::select('ads_in_home', $ads_in_home_options, Core::post('ads_in_home', Core::config('advertisement.ads_in_home')), [
                                     'class' => 'form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
                                 ])?>
                             </div>
@@ -218,13 +202,9 @@
                             </div>
                         </div>
                         <div class="sm:col-span-4">
-                            <?$pages = [''=>__('Deactivated')]?>
-                            <?foreach (Model_Content::get_pages() as $key => $value) {
-                                $pages[$value->seotitle] = $value->title;
-                            }?>
                             <?= FORM::label('tos', __('Terms of Service'), ['class'=>'block text-sm font-medium leading-5 text-gray-700'])?>
                             <div class="mt-1 rounded-md shadow-sm">
-                                <?= FORM::select('tos', $pages, Core::post('tos', Core::config('advertisement.tos')), [
+                                <?= FORM::select('tos', $page_options, Core::post('tos', Core::config('advertisement.tos')), [
                                     'class' => 'form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
                                 ])?>
                             </div>
@@ -236,7 +216,7 @@
                         <div class="sm:col-span-4">
                             <?= FORM::label('thanks_page', __('Thanks page'), ['class'=>'block text-sm font-medium leading-5 text-gray-700'])?>
                             <div class="mt-1 rounded-md shadow-sm">
-                                <?= FORM::select('thanks_page', $pages, Core::post('thanks_page', Core::config('advertisement.thanks_page')), [
+                                <?= FORM::select('thanks_page', $page_options, Core::post('thanks_page', Core::config('advertisement.thanks_page')), [
                                     'class' => 'form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
                                 ])?>
                             </div>
