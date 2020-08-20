@@ -698,6 +698,15 @@ class Model_Location extends ORM {
     }
 
     /**
+     * rule to verify that we selected a root location
+     * @return bool
+     */
+    public function is_root()
+    {
+        return $this->id_location == 1;
+    }
+
+    /**
      * returns the url of the location icon
      * @return string url
      */

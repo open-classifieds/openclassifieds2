@@ -396,9 +396,9 @@ class Model_Category extends ORM {
                         ->where('a.status','=',Model_Ad::STATUS_PUBLISHED);
 
             //filter the count by location
-            if ($location_filter === TRUE AND $location AND $location->loaded())
+            if ($location_filter === TRUE AND $location AND $location->loaded() AND !Model_Location::current()->is_root())
                 $count_ads = $count_ads->where('a.id_location', 'in', $location->get_siblings_ids());
-            elseif ($location_filter === TRUE AND Model_Location::current()->loaded())
+            elseif ($location_filter === TRUE AND Model_Location::current()->loaded() AND !Model_Location::current()->is_root())
                 $count_ads = $count_ads->where('a.id_location', 'in', Model_Location::current()->get_siblings_ids());
 
             // filter the count by language
