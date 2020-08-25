@@ -759,6 +759,7 @@ class Controller_Ad extends Controller {
                 $ad->featured = Date::unix2mysql(time() + ($days * 24 * 60 * 60));
                 try {
                     $ad->save();
+                    Social::social_post_featured_ad($ad);
                 } catch (Exception $e) {
                     throw HTTP_Exception::factory(500,$e->getMessage());
                 }
@@ -1236,7 +1237,7 @@ class Controller_Ad extends Controller {
 	        $category = NULL;
 	        $location = NULL;
 
-            if (core::config('general.search_multi_catloc') ) 
+            if (core::config('general.search_multi_catloc') )
             {
                 //filter by category
                 if (is_array(core::get('category')))
