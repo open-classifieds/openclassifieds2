@@ -714,7 +714,7 @@ class Core {
 
         if ($result == TRUE)
         {
-            Model_Config::set_value('license','number',core::request('license'));
+            Model_Config::set_value('license','number',$l);
             Model_Config::set_value('license','date',time()+7*24*60*60);
         }
 
@@ -752,7 +752,7 @@ class Core {
                 return FALSE;
             }
 
-            
+
         }
 
         return FALSE;
