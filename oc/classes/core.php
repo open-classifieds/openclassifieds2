@@ -16,7 +16,7 @@ class Core {
      * OC version
      * @var string
      */
-    const VERSION = '4.0.1';
+    const VERSION = '4.0.2';
 
     /**
      * @var string used to populate data from valid domain

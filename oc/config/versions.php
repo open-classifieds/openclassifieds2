@@ -1,5 +1,14 @@
 <?php defined('SYSPATH') or die('No direct script access.');
                 return array (
+  '4.0.2' => 
+  array (
+    'codename' => 'ReReErebus',
+    'released' => '2020-09-03',
+    'blog' => '',
+    'changelog' => 'https://github.com/yclas/yclas/compare/4.0.1...4.0.2',
+    'issues' => 'https://github.com/yclas/yclas/milestone/42?closed=1',
+    'download' => 'https://j.mp/yc_402',
+  ),
   '4.0.1' => 
   array (
     'codename' => 'ReErebus',

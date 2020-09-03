@@ -116,7 +116,7 @@ class Model_Subscription extends ORM {
      * @param  Model_User $user user to decrease ad
      * @return void
      */
-    public static function new_ad(Model_User $user)
+    public static function new_ad(wModel_User $user)
     {
         if (Core::config('general.subscriptions')==TRUE)
         {

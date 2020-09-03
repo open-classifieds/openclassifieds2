@@ -4,8 +4,8 @@
  *
  * @package    Install
  * @category   Helper
- * @author     Chema <chema@open-classifieds.com>
- * @copyright  (c) 2009-2014 Open Classifieds Team
+ * @author     Chema <chema@yclas.com>
+ * @copyright  (c) 2009-2020 Yclas Inc Team
  * @license    GPL v3
  */
 
@@ -52,7 +52,7 @@ class install{
      * Software install settings
      * @var string
      */
-    const VERSION   = '4.0.1';
+    const VERSION   = '4.0.2';
 
     /**
      * default locale/language of the install
