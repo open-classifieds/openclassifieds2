@@ -371,7 +371,7 @@
                 </p>
             </div>
             <div class="mt-3 text-sm leading-5">
-                <a href="<?= Route::url('oc-panel', ['controller' => 'userfields']) ?>" class="font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+                <a href="<?= Route::url('oc-panel/settings', ['controller' => 'advertisement']) ?>" class="font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150">
                     <?= __('Go to advertisement settings') ?> &rarr;
                 </a>
             </div>
