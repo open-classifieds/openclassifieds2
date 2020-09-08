@@ -2,20 +2,20 @@
 
 <?=Alert::show()?>
 <div class="page-header">
-    <h1 class="text-xl font-semibold"><?=_e('Inbox')?></h1>
+    <h1><?=_e('Inbox')?></h1>
 </div>
-<div class="flex flex-wrap justify-start">
-    <div class="relative inline-flex align-middle">
-        <a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>" class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  <?=(!is_numeric(Core::get('status')))?'text-blue-100 bg-blue-500 hover:bg-blue-400':'btn-default'?>">
+<div class="btn-toolbar">
+    <div class="btn-group">
+        <a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>" class="btn <?=(!is_numeric(core::get('status')))?'btn-primary':'btn-default'?>">
             <?=_e('All')?>
         </a>
-        <a href="?status=<?=Model_Message::STATUS_NOTREAD?>" class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  <?=(Core::get('status',-1)==Model_Message::STATUS_NOTREAD)?'text-blue-100 bg-blue-500 hover:bg-blue-400':'btn-default'?>">
+        <a href="?status=<?=Model_Message::STATUS_NOTREAD?>" class="btn <?=(core::get('status',-1)==Model_Message::STATUS_NOTREAD)?'btn-primary':'btn-default'?>">
             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> <?=_e('Unread')?>
         </a>
-        <a href="?status=<?=Model_Message::STATUS_ARCHIVED?>" class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  <?=(Core::get('status',-1)==Model_Message::STATUS_ARCHIVED)?'text-blue-100 bg-blue-500 hover:bg-blue-400':'btn-default'?>">
+        <a href="?status=<?=Model_Message::STATUS_ARCHIVED?>" class="btn <?=(core::get('status',-1)==Model_Message::STATUS_ARCHIVED)?'btn-primary':'btn-default'?>">
             <span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span> <?=_e('Archieved')?>
         </a>
-        <a href="?status=<?=Model_Message::STATUS_SPAM?>" class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  <?=(Core::get('status',-1)==Model_Message::STATUS_SPAM)?'text-blue-100 bg-blue-500 hover:bg-blue-400':'btn-default'?>">
+        <a href="?status=<?=Model_Message::STATUS_SPAM?>" class="btn <?=(core::get('status',-1)==Model_Message::STATUS_SPAM)?'btn-primary':'btn-default'?>">
             <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> <?=_e('Spam')?>
         </a>
     </div>
@@ -24,7 +24,7 @@
 <div class="panel">
     <?if (core::count($messages) > 0):?>
         <br>
-        <table class="w-full max-w-full mb-4 bg-transparent table-striped">
+        <table class="table table-striped">
             <thead>
                  <tr>
                     <th><?=_e('Title')?> / <?=_e('From')?></th>
@@ -35,7 +35,7 @@
             </thead>
             <tbody>
                 <?foreach ($messages as $message):?>
-                    <tr class="message" 
+                    <tr class="message"
                         data-url="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'message','id'=>($message->id_message_parent != NULL) ? $message->id_message_parent : $message->id_message))?>"
                         style="<?=($message->status_to == Model_Message::STATUS_NOTREAD AND $message->id_user_from != $user->id_user) ? 'font-weight: bold;' : NULL?>"
                     >
@@ -56,8 +56,8 @@
                         <td><?=$message->parent->created?></td>
                         <td><?=(empty($message->parent->read_date))?_e('None'):$message->created?></td>
                         <td class="text-right">
-                            <a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'message','id'=>($message->id_message_parent != NULL) ? $message->id_message_parent : $message->id_message))?>" 
-                                class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal  btn-xs <?=($message->status_to == Model_Message::STATUS_NOTREAD AND $message->id_user_from != $user->id_user) ? 'text-yellow-100 bg-yellow-500 hover:bg-yellow-400' : 'btn-default'?>"
+                            <a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'message','id'=>($message->id_message_parent != NULL) ? $message->id_message_parent : $message->id_message))?>"
+                                class="btn btn-xs <?=($message->status_to == Model_Message::STATUS_NOTREAD AND $message->id_user_from != $user->id_user) ? 'btn-warning' : 'btn-default'?>"
                             >
                                 <i class="fa fa-envelope"></i>
                             </a>
