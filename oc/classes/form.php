@@ -199,7 +199,7 @@ class Form extends Kohana_Form {
         $attributes = array('placeholder' => (isset($options['label'])) ? $options['label']:$name,
                             'class'       => 'mt-1 rounded-md shadow-sm form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
                             'id'          => $name,
-                            (isset($options['required']))?'required':''
+                            (isset($options['required']) AND $options['required'])?'required':''
                     );
 
         switch ($options['display'])
