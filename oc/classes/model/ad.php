@@ -1057,7 +1057,10 @@ class Model_Ad extends ORM {
                                 $cf_value = Text::bb2html($cf_value, TRUE);
                                 break;
                             case 'money':
-                                $cf_value = i18n::money_format($cf_value, $this->currency());
+                                if ($edit_ad == FALSE)
+                                {
+                                    $cf_value = i18n::money_format($cf_value, $this->currency());
+                                }
                                 break;
                             case 'video':
                                 $video_attributes = json_decode($cf_value);
