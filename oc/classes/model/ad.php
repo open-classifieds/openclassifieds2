@@ -1054,7 +1054,10 @@ class Model_Ad extends ORM {
                                     $cf_value = '<a'.HTML::attributes(['href' => $cf_value, 'title' => $cf_config->$cf_name->tooltip, 'data-toggle' => 'tooltip', 'target' => '_blank']).'>'.$cf_config->$cf_name->label.'</a>';
                                 break;
                             case 'textarea_bbcode':
-                                $cf_value = Text::bb2html($cf_value, TRUE);
+                                if ($edit_ad == FALSE)
+                                {
+                                    $cf_value = Text::bb2html($cf_value, TRUE);
+                                }
                                 break;
                             case 'money':
                                 if ($edit_ad == FALSE)
