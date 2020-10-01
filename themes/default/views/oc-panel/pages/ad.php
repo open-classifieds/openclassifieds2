@@ -91,14 +91,14 @@
         "
     >
         <form method="GET" enctype="multipart/form-data" x-ref="form">
-            <div class="bg-white overflow-hidden shadow rounded-lg mt-8">
+            <div class="bg-white shadow rounded-lg mt-8">
                 <div class="flex flex-col">
-                    <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-                        <div class="align-middle inline-block min-w-full overflow-hidden sm:rounded-lg border-b border-gray-200">
+                    <div class="-my-2 py-2 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+                        <div class="align-middle inline-block min-w-full sm:rounded-lg border-b border-gray-200">
                             <table class="min-w-full">
                                 <thead>
                                     <tr>
-                                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        <th class="rounded-tl-lg px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                             <?= Form::checkbox('select_all', 1, 0, [
                                                 'class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out',
                                                 '@click' => 'selectAll = ! selectAll'
@@ -121,11 +121,11 @@
                                         <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                             <?= __('Published') ?>
                                         </th>
-                                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                        <th class="<?= ! isset($res) ? 'rounded-tr-lg' : '' ?> px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                             <?= __('Created') ?>
                                         </th>
                                         <?if(isset($res)):?>
-                                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-right">
+                                            <th class="rounded-tr-lg px-6 py-3 border-b border-gray-200 bg-gray-50 text-right">
                                                 <div x-data="{ open: false }" @keydown.escape="open = false" @click.away="open = false" class="relative inline-block text-left ml-3">
                                                     <div>
                                                         <button @click.prevent="open = !open" class="flex items-center text-gray-400 hover:text-gray-600 focus:outline-none focus:text-gray-600">
@@ -183,9 +183,9 @@
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white">
-                                    <?$i = 0; foreach($res as $ad):?>
+                                    <?$i = 1; foreach($res as $ad):?>
                                         <tr>
-                                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium text-gray-900">
+                                            <td class="<?= count($res) === $i ? 'rounded-bl-lg' : '' ?> px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium text-gray-900">
                                                 <?= Form::checkbox('id_ads[]', $ad->id_ad, 0, [
                                                     'class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out',
                                                     'id' => 'select-all',
@@ -244,7 +244,7 @@
                                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
                                                 <?=Date::format($ad->created, core::config('general.date_format'))?>
                                             </td>
-                                            <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5">
+                                            <td class="<?= count($res) === $i ? 'rounded-br-lg' : '' ?> px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5">
                                                 <div class="flex justify-end items-center">
                                                     <div class="font-medium">
                                                         <a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>" class="text-blue-600 hover:text-blue-900 focus:outline-none focus:underline"><?= __('Edit') ?></a>
@@ -342,7 +342,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                    <? endforeach ?>
+                                    <? $i++; endforeach ?>
                                 </tbody>
                             </table>
                         </div>
