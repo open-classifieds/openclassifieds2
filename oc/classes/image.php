@@ -54,7 +54,6 @@ abstract class Image extends Kohana_Image {
                 break;
 
                 case 6:
-                    Alert::set(Alert::INFO, $exif_orientation);
                     $rotate = 180;
                     $flip = FALSE;
                 break;
