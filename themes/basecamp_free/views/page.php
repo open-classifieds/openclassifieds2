@@ -7,7 +7,7 @@
 					<h3><?=$page->title?></h3>
 				</div>
 				<div class="text-description pad_10">
-					<?=Text::bb2html($page->description,TRUE,FALSE)?>
+                    <?= $page->description ?>
 				</div>
 			</div>
 		</div>

@@ -5,5 +5,5 @@
 </div>
 
 <div class="text-description">
-	<?=Text::bb2html($page->description,TRUE,FALSE)?>
+    <?= $page->description ?>
 </div><!-- /well -->
