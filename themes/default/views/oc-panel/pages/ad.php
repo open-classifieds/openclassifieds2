@@ -351,6 +351,14 @@
             </div>
         </form>
     </div>
+<? else : ?>
+    <div class="bg-white shadow rounded-lg mt-8">
+        <div class="px-4 py-5 sm:p-6 flex h-40 justify-center items-center">
+            <div class="text-lg leading-6 font-medium text-gray-500">
+                <?= __('No ads were found.') ?>
+            </div>
+        </div>
+    </div>
 <? endif ?>
 
 <?if(isset($pagination)):?>
