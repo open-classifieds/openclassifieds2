@@ -5,7 +5,7 @@
         </h1>
 
         <div class="mb-3">
-            <?= Text::bb2html($page->description, TRUE, FALSE) ?>
+            <?= $page->description ?>
         </div>
     </div>
 </div>

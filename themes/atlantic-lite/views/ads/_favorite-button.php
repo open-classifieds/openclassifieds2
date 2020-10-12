@@ -13,7 +13,7 @@
     </div>
 <?else:?>
     <div>
-        <a data-toggle="modal" data-dismiss="modal" class="btn btn-sm btn-outline-secondary" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
+        <a data-toggle="modal" data-dismiss="modal" class="btn btn-sm btn-outline-secondary" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal" data-target="#login-modal">
             <i class="far fa-star"></i>
         </a>
     </div>
