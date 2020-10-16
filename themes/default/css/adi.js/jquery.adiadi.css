@@ -1,6 +1,6 @@
 /* Adi.js CSS ====== */
 
-.jquery-adi {
+.jquery-adiadi {
     display: none;
     position: fixed;
     top: 0;
@@ -13,7 +13,7 @@
     z-index: 999999;
 }
 
-.jquery-adi_content {
+.jquery-adiadi_content {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -26,14 +26,14 @@
     box-sizing: border-box;
 }
 
-.jquery-adi_content h2,
-.jquery-adi_content p,
-.jquery-adi_content button {
+.jquery-adiadi_content h2,
+.jquery-adiadi_content p,
+.jquery-adiadi_content button {
     padding: 0;
     margin: 0;
 }
 
-.jquery-adi_content button {
+.jquery-adiadi_content button {
     position: absolute;
     right: -15px;
     top: -15px;
@@ -49,13 +49,13 @@
     box-shadow: -2px 2px 8px rgba(148, 146, 145, 0.3);
 }
 
-.jquery-adi_content h2 {
+.jquery-adiadi_content h2 {
     color: #e76e65;
     font-size: 22px;
     font-weight: bold;
 }
 
-.jquery-adi_content h2:before {
+.jquery-adiadi_content h2:before {
     content: "";
     width: 80px;
     height: 80px;
@@ -68,7 +68,7 @@
     border-radius: 50%;
 }
 
-.jquery-adi_content p {
+.jquery-adiadi_content p {
     font-size: 14px;
     color: #989898;
     line-height: 1.4;
@@ -78,24 +78,24 @@
 
 /* Dark Theme ====== */
 
-.jquery-adi.dark .jquery-adi_content {
+.jquery-adiadi.dark .jquery-adiadi_content {
     background: #1F1F1F;
 }
 
-.jquery-adi.dark .jquery-adi_content h2 {
+.jquery-adiadi.dark .jquery-adiadi_content h2 {
     color: #FF4335;
 }
 
-.jquery-adi.dark .jquery-adi_content h2:before {
+.jquery-adiadi.dark .jquery-adiadi_content h2:before {
 	background-color: #FF4335;
 	background-position: bottom center;
 }
 
-.jquery-adi.dark .jquery-adi_content p {
+.jquery-adiadi.dark .jquery-adiadi_content p {
     color: #ffffff;
 }
 
-.jquery-adi.dark .jquery-adi_content button {
+.jquery-adiadi.dark .jquery-adiadi_content button {
 	background-color: #ffffff;
 	background-position: bottom left;
 }
