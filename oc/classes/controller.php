@@ -88,7 +88,7 @@ class Controller extends Kohana_Controller
             strtolower($this->request->controller())!='stripecheckout' AND
             strtolower($this->request->action())!='checkoutfree' AND
             strtolower($this->request->action())!='pay' AND
-            Core::extra_features() == TRUE AND 
+            Core::extra_features() == TRUE AND
             Auth::instance()->logged_in() AND
             $this->user->expired_subscription(TRUE))
         {
@@ -180,10 +180,10 @@ class Controller extends Kohana_Controller
             //adblock detection
             if (Core::config('general.adblock')==1)
             {
-                Theme::$styles = array_merge(Theme::$styles, array('css/adi.js/jquery.adi.css' => 'screen',));
+                Theme::$styles = array_merge(Theme::$styles, array('css/adi.js/jquery.adiadi.css' => 'screen',));
 
-                Theme::$scripts['footer'] [] = 'js/advertisement.js';
                 Theme::$scripts['footer'] [] = 'js/jquery.adi.js';
+                Theme::$scripts['footer'] [] = 'js/jquery.adiadi.js';
                 $this->template->scripts['footer'][] = Route::url('default',array('controller'=>'jslocalization','action'=>'adi'));
             }
 
