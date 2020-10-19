@@ -113,8 +113,8 @@ class Controller_Panel_Settings_Advertisement extends Auth_Controller {
         Model_Config::set_value('advertisement', 'upload_file', $data['upload_file'] ?? 0);
 
         Model_Config::set_value('advertisement', 'contact', $data['contact'] ?? 0);
-        Model_Config::set_value('advertisement', 'login_to_view_ad', $data['login_to_view_ad'] ?? 0);
         Model_Config::set_value('advertisement', 'login_to_contact', $data['login_to_contact'] ?? 0);
+        Model_Config::set_value('advertisement', 'contact_price', $data['contact_price'] ?? 0);
         Model_Config::set_value('advertisement', 'qr_code', $data['qr_code'] ?? 0);
         Model_Config::set_value('advertisement', 'count_visits', $data['count_visits'] ?? 0);
         Model_Config::set_value('advertisement', 'sharing', $data['sharing'] ?? 0);
