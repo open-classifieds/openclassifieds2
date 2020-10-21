@@ -24,6 +24,7 @@ class Controller_Panel_Settings_Email extends Auth_Controller {
 
         return $this->template->content = View::factory('oc-panel/pages/settings/email', [
             'errors' => $validation->errors('validation'),
+            'service' => $this->get_email_service(),
         ]);
     }
 
@@ -69,4 +70,29 @@ class Controller_Panel_Settings_Email extends Auth_Controller {
         Model_Config::set_value('email', 'smtp_secure', $data['smtp_secure']);
         Model_Config::set_value('email', 'smtp_auth', $data['smtp_auth']);
     }
+
+    private function get_email_service()
+     {
+         if(in_array(Core::config('email.service'), ['elasticemail', 'elastic']))
+         {
+             return 'elasticemail';
+         }
+
+         if(in_array(Core::config('email.service'), ['mailgun']))
+         {
+             return 'elasticemail';
+         }
+
+         if(in_array(Core::config('email.service'), ['smtp', 'gmail', 'outlook', 'yahoo', 'zoho']))
+         {
+             return 'smtp';
+         }
+
+         if(in_array(Core::config('email.service'), ['mail', null, '']))
+         {
+             return 'mail';
+         }
+
+         return '';
+     }
 }
