@@ -380,6 +380,17 @@
                     <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
                         <div class="sm:col-span-6">
                             <div class="absolute flex items-center h-5">
+                                <?=FORM::checkbox('login_to_view_ad', 1, (bool) Core::post('login_to_view_ad', Core::config('advertisement.login_to_view_ad')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
+                            </div>
+                            <div class="pl-7 text-sm leading-5">
+                                <?=FORM::label('login_to_view_ad', __('Require login to view ad'), ['class'=>'font-medium text-gray-700'])?>
+                                <p class="text-gray-500">
+                                    <?=__('Require only logged in users to see the ad details.')?>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="sm:col-span-6">
+                            <div class="absolute flex items-center h-5">
                                 <?=FORM::checkbox('contact', 1, (bool) Core::post('contact', Core::config('advertisement.contact')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
                             </div>
                             <div class="pl-7 text-sm leading-5">
@@ -391,12 +402,12 @@
                         </div>
                         <div class="sm:col-span-6">
                             <div class="absolute flex items-center h-5">
-                                <?=FORM::checkbox('login_to_view_ad', 1, (bool) Core::post('login_to_view_ad', Core::config('advertisement.login_to_view_ad')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
+                                <?=FORM::checkbox('login_to_contact', 1, (bool) Core::post('login_to_contact', Core::config('advertisement.login_to_contact')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
                             </div>
                             <div class="pl-7 text-sm leading-5">
-                                <?=FORM::label('login_to_view_ad', __('Require login to view ad'), ['class'=>'font-medium text-gray-700'])?>
+                                <?=FORM::label('login_to_contact', __('Require login to contact'), ['class'=>'font-medium text-gray-700'])?>
                                 <p class="text-gray-500">
-                                    <?=__('Require only logged in users to see the ad details.')?>
+                                    <?=__('Require only the logged in users to contact.')?>
                                 </p>
                             </div>
                         </div>
