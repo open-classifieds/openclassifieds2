@@ -30,7 +30,7 @@
 <div class="bg-white overflow-hidden shadow rounded-lg mt-8">
     <div class="px-4 py-5 sm:p-6">
         <?=FORM::open(Route::url('oc-panel/settings',['controller'=>'email']))?>
-            <div>
+            <div x-data="{ service: '<?= $service ?>' }">
                 <div>
                     <div>
                         <h3 class="text-lg leading-6 font-medium text-gray-900">
@@ -74,28 +74,46 @@
                     <fieldset class="mt-6">
                         <legend class="text-base leading-6 font-medium text-gray-900"><?= __('Email service') ?></legend>
                         <div class="mt-4">
-                            <div class="flex items-center">
-                                <?= Form::radio('service', 'elasticemail', in_array(Core::config('email.service'), ['elasticemail', 'elastic']), ['class' => 'form-radio h-4 w-4 text-blue-600 transition duration-150 ease-in-out']) ?>
-                                <label for="<?= 'elasticemail' ?>" class="ml-3">
-                                    <span class="block text-sm leading-5 font-medium text-gray-700">
-                                        <?= 'Elastic Email' ?>
-                                    </span>
-                                </label>
+                            <div class="flex">
+                                <div class="absolute flex items-center h-5">
+                                    <?= Form::radio('service', 'elasticemail', $service == 'elasticemail', ['class' => 'form-radio h-4 w-4 text-blue-600 transition duration-150 ease-in-out', 'x-model' => 'service']) ?>
+                                </div>
+                                <div class="pl-7 text-sm leading-5">
+                                    <label for="<?= 'elasticemail' ?>">
+                                        <span class="block text-sm leading-5 font-medium text-gray-700">
+                                            <?= 'Elastic Email' ?>
+                                        </span>
+                                    </label>
+                                    <p class="text-gray-500 mt-2">
+                                        <a href="<?= Route::url('oc-panel/integrations', ['controller' => 'elasticemail']) ?>" class="text-blue-600 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+                                            <?= __('Go to Elastic Email configuration') ?> →
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <div class="flex">
+                                <div class="absolute flex items-center h-5">
+                                    <?= Form::radio('service', 'mailgun', $service == 'mailgun', ['class' => 'form-radio h-4 w-4 text-blue-600 transition duration-150 ease-in-out', 'x-model' => 'service']) ?>
+                                </div>
+                                <div class="pl-7 text-sm leading-5">
+                                    <label>
+                                        <span class="block text-sm leading-5 font-medium text-gray-700">
+                                            <?= 'Mailgun' ?>
+                                        </span>
+                                    </label>
+                                    <p class="text-gray-500 mt-2">
+                                        <a href="<?= Route::url('oc-panel/integrations', ['controller' => 'mailgun']) ?>" class="text-blue-600 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+                                            <?= __('Go to Maulgun configuration') ?> →
+                                        </a>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                         <div class="mt-4">
                             <div class="flex items-center">
-                                <?= Form::radio('service', 'mailgun', in_array(Core::config('email.service'), ['mailgun']), ['class' => 'form-radio h-4 w-4 text-blue-600 transition duration-150 ease-in-out']) ?>
-                                <label class="ml-3">
-                                    <span class="block text-sm leading-5 font-medium text-gray-700">
-                                        <?= 'Mailgun' ?>
-                                    </span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="mt-4">
-                            <div class="flex items-center">
-                                <?= Form::radio('service', 'smtp', in_array(Core::config('email.service'), ['smtp', 'gmail', 'outlook', 'yahoo', 'zoho']), ['class' => 'form-radio h-4 w-4 text-blue-600 transition duration-150 ease-in-out']) ?>
+                                <?= Form::radio('service', 'smtp', $service == 'smtp', ['class' => 'form-radio h-4 w-4 text-blue-600 transition duration-150 ease-in-out', 'x-model' => 'service']) ?>
                                 <label class="ml-3">
                                     <span class="block text-sm leading-5 font-medium text-gray-700">
                                         <?= 'SMTP' ?>
@@ -105,7 +123,7 @@
                         </div>
                         <div class="mt-4">
                             <div class="flex items-center">
-                                <?= Form::radio('service', 'mail', in_array(Core::config('email.service'), ['mail', null, '']), ['class' => 'form-radio h-4 w-4 text-blue-600 transition duration-150 ease-in-out']) ?>
+                                <?= Form::radio('service', 'mail', $service == 'mail', ['class' => 'form-radio h-4 w-4 text-blue-600 transition duration-150 ease-in-out', 'x-model' => 'service']) ?>
                                 <label class="ml-3">
                                     <span class="block text-sm leading-5 font-medium text-gray-700">
                                         <?= __('None') ?>
@@ -115,7 +133,7 @@
                         </div>
                     </fieldset>
                 </div>
-                <div class="mt-8 border-t border-gray-200 pt-8">
+                <div class="mt-8 border-t border-gray-200 pt-8" x-show="service === 'smtp'">
                     <div>
                         <h3 class="text-lg leading-6 font-medium text-gray-900">
                             <?=__('SMTP')?>
