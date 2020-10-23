@@ -43,7 +43,7 @@
                 <div class="form-group">
                     <div class="col-xs-10">
                         <?= FORM::label('location_subscribe', _e('Location'), array('class'=>'', 'for'=>'location_subscribe' ))?>
-                        <select data-placeholder="<?=__('Location')?>" name="location_subscribe[]" id="location_subscribe" class="form-control" required>
+                        <select data-placeholder="<?=__('Location')?>" name="location_subscribe" id="location_subscribe" class="form-control" required>
                         <option></option>
                         <?if (! function_exists('lolo_subscribe')):?>
                             <?function lolo_subscribe($item, $key,$locs){?>

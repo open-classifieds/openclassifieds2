@@ -27,23 +27,23 @@
                             <?}?>
                         <?endif?>
                         <?
-                        $cat_order = $widget->cat_order_items; 
+                        $cat_order = $widget->cat_order_items;
                         if (is_array($cat_order))
                                 array_walk($cat_order , 'lili_subscribe', $widget->cat_items)
                         ?>
-                    </select> 
+                    </select>
                 </div>
             </div>
         <?endif?>
         <!-- end categories/ -->
-        
+
         <!-- locations -->
         <?if($widget->loc_items !== NULL):?>
             <?if(core::count($widget->loc_items) > 1 AND core::config('advertisement.location') != FALSE):?>
                 <div class="form-group">
                     <div class="col-xs-12">
                         <?= FORM::label('location_subscribe', _e('Location'), array('class'=>'', 'for'=>'location_subscribe' ))?>
-                        <select data-placeholder="<?=__('Location')?>" name="location_subscribe[]" id="location_subscribe" class="form-control" required>
+                        <select data-placeholder="<?=__('Location')?>" name="location_subscribe" id="location_subscribe" class="form-control" required>
                         <option></option>
                         <?if (! function_exists('lolo_subscribe')):?>
                         <?function lolo_subscribe($item, $key,$locs){?>
@@ -56,7 +56,7 @@
                             <?}?>
                         <?endif?>
                         <?
-                        $loc_order_subscribe = $widget->loc_order_items; 
+                        $loc_order_subscribe = $widget->loc_order_items;
                         if (is_array($loc_order_subscribe))
                                 array_walk($loc_order_subscribe , 'lolo_subscribe',$widget->loc_items)
                         ?>
@@ -66,7 +66,7 @@
             <?endif?>
         <?endif?>
         <!-- end locations -->
-        
+
         <?if($widget->user_email == NULL):?>
             <div class="form-group">
                 <div class="col-xs-12">
@@ -81,15 +81,15 @@
                 </div>
             </div>
         <?endif?>
-        
+
         <?if($widget->price != FALSE):?>
             <!-- slider -->
             <div class="form-group">
                 <div class="col-xs-12">
                     <?= FORM::label('price_subscribe', _e('Price'), array('class'=>'', 'for'=>'price_subscribe'))?>
-                    <input type="text" class="slider_subscribe" value="<?=$widget->min_price?>,<?=$widget->max_price?>" 
-                            data-slider-min='<?=$widget->min_price?>' data-slider-max="<?=$widget->max_price?>" 
-                            data-slider-step="50" data-slider-value='[<?=$widget->min_price?>,<?=$widget->max_price?>]' 
+                    <input type="text" class="slider_subscribe" value="<?=$widget->min_price?>,<?=$widget->max_price?>"
+                            data-slider-min='<?=$widget->min_price?>' data-slider-max="<?=$widget->max_price?>"
+                            data-slider-step="50" data-slider-value='[<?=$widget->min_price?>,<?=$widget->max_price?>]'
                             data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show" name='price_subscribe' >
                 </div>
             </div>
@@ -110,16 +110,16 @@
                 </div>
             </div>
         <?endif?>
-        
+
         <div class="text-center">
             <?= FORM::button(NULL, _e('Subscribe'), array('type'=>'submit', 'class'=>'btn btn-base-dark', 'action'=>Route::url('default', array('controller'=>'subscribe', 'action'=>'index','id'=>$widget->user_id))))?>
         </div>
-        
+
         <?if($widget->subscriber):?>
 			<p class="text-right">
             <a href="<?=Route::url('default', array('controller'=>'subscribe', 'action'=>'unsubscribe', 'id'=>$widget->user_id))?>"><?=_e('Unsubscribe')?></a>
 			</p>
 		<?endif?>
-        
+
     <?= FORM::close()?>
 </div>

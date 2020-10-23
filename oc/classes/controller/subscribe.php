@@ -67,9 +67,9 @@ class Controller_Subscribe extends Controller {
 				$obj_subscribe = new Model_Subscribe();
 
 				$obj_subscribe->id_user = $user->id_user;
-                $obj_subscribe->id_category = is_int($id_value) ? $id_value : 0;
-                $obj_subscribe->id_location = is_int(Core::post('location_subscribe')) ? Core::post('location_subscribe') : 0;
-				$obj_subscribe->min_price = $min_price;
+                $obj_subscribe->id_category = is_numeric($id_value) ? (int) $id_value : 0;
+                $obj_subscribe->id_location = is_numeric(Core::post('location_subscribe')) ? (int) Core::post('location_subscribe') : 0;
+                $obj_subscribe->min_price = $min_price;
 				$obj_subscribe->max_price = $max_price;
 
 				try {
