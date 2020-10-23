@@ -38,7 +38,7 @@
                 <?if(core::count($widget->loc_items) > 1 AND core::config('advertisement.location') != FALSE):?>
                     <div class="form-group">
                         <?= FORM::label('location_subscribe', _e('Location'), array('class'=>'', 'for'=>'location_subscribe' ))?>
-                        <select data-placeholder="<?=__('Location')?>" name="location_subscribe[]" id="location_subscribe" class="form-control" required>
+                        <select data-placeholder="<?=__('Location')?>" name="location_subscribe" id="location_subscribe" class="form-control" required>
                         <option></option>
                         <?if (! function_exists('lolo_subscribe')):?>
                             <?function lolo_subscribe($item, $key,$locs){?>
