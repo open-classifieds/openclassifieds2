@@ -93,6 +93,13 @@ if (core::config('general.carquery'))
     Theme::$scripts['footer'][] = '//www.carqueryapi.com/js/carquery.0.3.4.js';
 }
 
+if (core::config('general.autodata'))
+{
+    Theme::$styles['//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.bootstrap3.min.css'] = 'screen';
+    Theme::$scripts['footer'][] = '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js';
+    Theme::$scripts['footer'][] = 'js/autodata.js?v='.Core::VERSION;
+}
+
 /**
  * custom error alerts
  */
