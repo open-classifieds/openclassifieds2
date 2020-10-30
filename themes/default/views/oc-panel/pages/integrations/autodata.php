@@ -5,7 +5,7 @@
         </h2>
 
         <div class="mt-1 sm:mt-0">
-            <?= View::factory('oc-panel/components/learn-more', ['url' => 'https://guides.yclas.com/#/Custom-fields-vehicle-data']) ?>
+            <?= View::factory('oc-panel/components/learn-more', ['url' => 'https://guides.yclas.com/#/auto-data-api']) ?>
         </div>
     </div>
 </div>
