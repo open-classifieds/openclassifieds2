@@ -10,6 +10,17 @@
  */
 class Controller_Panel_Update extends Auth_Controller {
 
+    public function action_410()
+    {
+        $configs = array(
+            array( 'config_key'     => 'autodata',
+                   'group_name'     => 'general',
+                   'config_value'   => '0'),
+        );
+
+        Model_Config::config_array($configs);
+    }
+
     public function action_400()
     {
         //fixes yahoo login
