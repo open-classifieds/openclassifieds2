@@ -25,15 +25,6 @@
                         </div>
                     </div>
                     <div class="sm:col-span-4">
-                        <?= FORM::label('elastic_password', __('Public Account ID'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
-                        <div class="mt-1 rounded-md shadow-sm">
-                            <?= FORM::input('elastic_password', Core::post('elastic_password', Core::config('email.elastic_password')), [
-                                'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
-                                'id' => 'elastic_password',
-                            ])?>
-                        </div>
-                    </div>
-                    <div class="sm:col-span-4">
                         <?= FORM::label('elastic_listname', __('List name to subscribe users after register'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
                         <div class="mt-1 rounded-md shadow-sm">
                             <?= FORM::input('elastic_listname', Core::post('elastic_listname', Core::config('email.elastic_listname')), [

@@ -9,7 +9,6 @@ class Controller_Panel_Integrations_ElasticEmail extends Auth_Controller {
         if($this->request->post())
         {
             Model_Config::set_value('email', 'elastic_username', Core::post('elastic_username'));
-            Model_Config::set_value('email', 'elastic_password', Core::post('elastic_password'));
             Model_Config::set_value('email', 'elastic_listname', Core::post('elastic_listname'));
 
             Alert::set(Alert::SUCCESS, __('Configuration updated'));
