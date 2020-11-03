@@ -6,7 +6,9 @@ class Controller_Panel_Integrations_Clickatell extends Auth_Controller {
     {
         $this->template->title = __('Clickatell');
 
-        if($this->request->post())
+        $validation = $this->validation();
+
+        if($this->request->post() AND $validation->check())
         {
             if (Core::post('is_active') == 1)
             {
@@ -41,7 +43,21 @@ class Controller_Panel_Integrations_Clickatell extends Auth_Controller {
         }
 
         return $this->template->content = View::factory('oc-panel/pages/integrations/clickatell', [
+            'errors' => $validation->errors('validation'),
             'is_active' => (bool) Core::config('general.sms_auth')
         ]);
+    }
+
+    private function validation()
+    {
+        $validation = Validation::factory($this->request->post());
+
+        if ((bool) Core::post('is_active') ?? 0)
+        {
+            $validation->rule('sms_clickatell_api', 'not_empty')
+                ->rule('sms_clickatell_two_way_phone', 'not_empty');
+        }
+
+        return $validation;
     }
 }

@@ -10,6 +10,12 @@
     </div>
 </div>
 
+<? if (! empty($errors)) : ?>
+    <div class="mt-8">
+        <?= View::factory('oc-panel/components/form-errors', ['errors' => $errors]) ?>
+    </div>
+<? endif ?>
+
 <?= Form::open(Route::url('oc-panel/integrations', ['controller' => 'recaptcha'])) ?>
     <div class="bg-white shadow sm:rounded-lg mt-8">
         <div class="px-4 py-5 sm:p-6">

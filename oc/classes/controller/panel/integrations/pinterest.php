@@ -6,7 +6,9 @@ class Controller_Panel_Integrations_Pinterest extends Auth_Controller {
     {
         $this->template->title = __('Pinterest');
 
-        if($this->request->post())
+        $validation = $this->validation();
+
+        if($this->request->post() AND $validation->check())
         {
             Model_Config::set_value('advertisement', 'pinterest', Core::post('is_active') ?? 0);
             Model_Config::set_value('advertisement', 'social_post_only_featured', Core::post('social_post_only_featured') ?? 0);
@@ -20,7 +22,22 @@ class Controller_Panel_Integrations_Pinterest extends Auth_Controller {
         }
 
         return $this->template->content = View::factory('oc-panel/pages/integrations/pinterest', [
+            'errors' => $validation->errors('validation'),
             'is_active' => (bool) Core::config('advertisement.pinterest')
         ]);
+    }
+
+    private function validation()
+    {
+        $validation = Validation::factory($this->request->post());
+
+        if ((bool) Core::post('is_active') ?? 0)
+        {
+            $validation->rule('pinterest_app_id', 'not_empty')
+                ->rule('pinterest_app_secret', 'not_empty')
+                ->rule('pinterest_board', 'not_empty');
+        }
+
+        return $validation;
     }
 }
