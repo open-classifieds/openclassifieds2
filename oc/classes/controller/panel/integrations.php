@@ -24,6 +24,14 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'category' => '',
             ],
             [
+                'name' => 'autodata',
+                'config_name' => 'general.autodata',
+                'label' => 'Auto-Data',
+                'description' => __('Get vehicle data for your website.'),
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/auto-data.jpg',
+                'category' => '',
+            ],
+            [
                 'name' => 'carquery',
                 'config_name' => 'general.carquery',
                 'label' => 'CarQuery',

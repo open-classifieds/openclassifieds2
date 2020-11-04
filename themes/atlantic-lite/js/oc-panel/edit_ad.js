@@ -944,6 +944,10 @@ function createCustomFieldsByCategory (customfields) {
         );
         carquery.initYearMakeModelTrim('cf_year', 'cf_make', 'cf_model');
     }
+
+    if (customfields['cf_brand'] != undefined && customfields['cf_model'] != undefined && customfields['cf_generation'] != undefined) {
+        autoDataAPI(customfields, 'select#cf_brand', 'select#cf_model', 'select#cf_generation')
+    }
 }
 
 $(function(){

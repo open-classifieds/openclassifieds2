@@ -118,7 +118,7 @@ class Theme {
             {
                 $file = self::public_path($file, $theme);
                 if ($file !== FALSE)
-                    $ret .= HTML::style($file, array('media' => $type));
+                    $ret .= HTML::style($file, array('media' => is_array($type) ? $type[0] : $type));
             }
         }
         //only minify in production or stagging
