@@ -6,7 +6,9 @@ class Controller_Panel_Integrations_Pusher extends Auth_Controller {
     {
         $this->template->title = __('Pusher');
 
-        if($this->request->post())
+        $validation = $this->validation();
+
+        if($this->request->post() AND $validation->check())
         {
             Model_Config::set_value('general', 'pusher_notifications', Core::post('is_active') ?? 0);
             Model_Config::set_value('general', 'pusher_notifications_app_id', Core::post('pusher_notifications_app_id'));
@@ -20,7 +22,23 @@ class Controller_Panel_Integrations_Pusher extends Auth_Controller {
         }
 
         return $this->template->content = View::factory('oc-panel/pages/integrations/pusher', [
+            'errors' => $validation->errors('validation'),
             'is_active' => (bool) Core::config('general.pusher_notifications')
         ]);
+    }
+
+    private function validation()
+    {
+        $validation = Validation::factory($this->request->post());
+
+        if ((bool) Core::post('is_active') ?? 0)
+        {
+            $validation->rule('pusher_notifications_app_id', 'not_empty')
+                ->rule('pusher_notifications_key', 'not_empty')
+                ->rule('pusher_notifications_secret', 'not_empty')
+                ->rule('pusher_notifications_cluster', 'not_empty');
+        }
+
+        return $validation;
     }
 }

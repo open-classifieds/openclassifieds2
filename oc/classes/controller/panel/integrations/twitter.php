@@ -6,7 +6,9 @@ class Controller_Panel_Integrations_Twitter extends Auth_Controller {
     {
         $this->template->title = __('Twitter');
 
-        if($this->request->post())
+        $validation = $this->validation();
+
+        if($this->request->post() AND $validation->check())
         {
             Model_Config::set_value('advertisement', 'twitter', Core::post('is_active') ?? 0);
             Model_Config::set_value('advertisement', 'social_post_only_featured', Core::post('social_post_only_featured') ?? 0);
@@ -21,7 +23,23 @@ class Controller_Panel_Integrations_Twitter extends Auth_Controller {
         }
 
         return $this->template->content = View::factory('oc-panel/pages/integrations/twitter', [
+            'errors' => $validation->errors('validation'),
             'is_active' => (bool) Core::config('advertisement.twitter')
         ]);
+    }
+
+    private function validation()
+    {
+        $validation = Validation::factory($this->request->post());
+
+        if ((bool) Core::post('is_active') ?? 0)
+        {
+            $validation->rule('twitter_consumer_key', 'not_empty')
+                ->rule('twitter_consumer_secret', 'not_empty')
+                ->rule('access_token', 'not_empty')
+                ->rule('access_token_secret', 'not_empty');
+        }
+
+        return $validation;
     }
 }
