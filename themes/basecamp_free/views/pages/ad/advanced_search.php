@@ -58,7 +58,7 @@
 							</select>
 						</div>
 				</div>
-				<?if(core::config('advertisement.location') != FALSE AND core::count($locations) > 1):?>
+				<?if(core::config('advertisement.location') != FALSE AND core::count($locations) > 1 AND core::count($locations) < 100 ):?>
 					<div class="form-group col-xs-12 col-sm-4">
 						<?= FORM::label('location', _e('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>
 						<div class="control mr-30">
@@ -79,6 +79,24 @@
 								<?endif?>
 							<?}array_walk($order_locations, 'lolo',$locations);?>
 							</select>
+						</div>
+					</div>
+                <?elseif(core::config('advertisement.location') != FALSE AND core::count($locations) > 1):?>
+                    <div class="form-group col-xs-12 col-sm-4">
+						<?= FORM::label('location', _e('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>
+						<div class="control mr-30">
+                            <select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="location<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="location-search" class="form-control ajax-location-search" data-placeholder="<?=__('Location')?>" data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'locations'))?>">
+                                <? if ( ! core::config('general.search_multi_catloc')) : ?>
+                                    <option value=""><?=__('Location')?></option>
+                                <? endif ?>
+                                <? if (is_array($location_filter)) : ?>
+                                    <? foreach ($location_filter as $location) : ?>
+                                        <option value="<?= $location->seoname ?>" selected><?= $location->name ?></option>
+                                    <? endforeach ?>
+                                <? elseif ($location_filter) : ?>
+                                    <option value="<?= $location_filter->seoname ?>" selected><?= $location_filter->name ?></option>
+                                <? endif ?>
+                            </select>
 						</div>
 					</div>
 				<?endif?>
@@ -161,7 +179,7 @@
 							</select>
 						</div>
 					</div>
-					<?if(core::config('advertisement.location') != FALSE AND core::count($locations) > 1):?>
+					<?if(core::config('advertisement.location') != FALSE AND core::count($locations) > 1 AND core::count($locations) < 100 ):?>
 						<div class="form-group col-xs-12 col-sm-4">
 							<?= FORM::label('location', _e('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>
 							<div class="control mr-30">
@@ -182,6 +200,24 @@
 									<?endif?>
 								<?}array_walk($order_locations, 'lolo',$locations);?>
 								</select>
+							</div>
+						</div>
+                    <?elseif(core::config('advertisement.location') != FALSE AND core::count($locations) > 1):?>
+                        <div class="form-group col-xs-12 col-sm-4">
+							<?= FORM::label('location', _e('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>
+							<div class="control mr-30">
+                                <select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="location<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="location-search" class="form-control ajax-location-search" data-placeholder="<?=__('Location')?>" data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'locations'))?>">
+                                    <? if ( ! core::config('general.search_multi_catloc')) : ?>
+                                        <option value=""><?=__('Location')?></option>
+                                    <? endif ?>
+                                    <? if (is_array($location_filter)) : ?>
+                                        <? foreach ($location_filter as $location) : ?>
+                                            <option value="<?= $location->seoname ?>" selected><?= $location->name ?></option>
+                                        <? endforeach ?>
+                                    <? elseif ($location_filter) : ?>
+                                        <option value="<?= $location_filter->seoname ?>" selected><?= $location_filter->name ?></option>
+                                    <? endif ?>
+                                </select>
 							</div>
 						</div>
 					<?endif?>
@@ -269,7 +305,7 @@
 							</select>
 						</div>
 					</div>
-					<?if(core::config('advertisement.location') != FALSE AND core::count($locations) > 1):?>
+					<?if(core::config('advertisement.location') != FALSE AND core::count($locations) > 1 AND core::count($locations) < 100 ):?>
 						<div class="form-group col-xs-12">
 							<?= FORM::label('location', _e('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>
 							<div class="control mr-30">
@@ -290,6 +326,24 @@
 									<?endif?>
 								<?}array_walk($order_locations, 'lolo',$locations);?>
 								</select>
+							</div>
+						</div>
+                    <?elseif(core::config('advertisement.location') != FALSE AND core::count($locations) > 1):?>
+                        <div class="form-group col-xs-12">
+							<?= FORM::label('location', _e('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>
+							<div class="control mr-30">
+                                <select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="location<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="location-search" class="form-control ajax-location-search" data-placeholder="<?=__('Location')?>" data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'locations'))?>">
+                                    <? if ( ! core::config('general.search_multi_catloc')) : ?>
+                                        <option value=""><?=__('Location')?></option>
+                                    <? endif ?>
+                                    <? if (is_array($location_filter)) : ?>
+                                        <? foreach ($location_filter as $location) : ?>
+                                            <option value="<?= $location->seoname ?>" selected><?= $location->name ?></option>
+                                        <? endforeach ?>
+                                    <? elseif ($location_filter) : ?>
+                                        <option value="<?= $location_filter->seoname ?>" selected><?= $location_filter->name ?></option>
+                                    <? endif ?>
+                                </select>
 							</div>
 						</div>
 					<?endif?>
