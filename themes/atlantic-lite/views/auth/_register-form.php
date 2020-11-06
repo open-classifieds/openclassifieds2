@@ -3,6 +3,8 @@
 <?= View::factory('auth/_social') ?>
 
 <?= FORM::open(Route::url('oc-panel', ['directory' => 'user', 'controller' => 'auth', 'action' => 'register']), ['method' => 'post', 'class' => 'auth']) ?>
+    <?= Form::errors() ?>
+
     <div class="form-group">
         <?= Form::label('register-name', _e('Name')) ?>
         <?= Form::input('name', Request::current()->post('name'), [

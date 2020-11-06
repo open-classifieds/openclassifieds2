@@ -1,4 +1,5 @@
 <?= FORM::open(Route::url('oc-panel', ['directory' => 'user', 'controller' => 'auth', 'action' => 'forgot']), ['method' => 'post', 'class' => 'auth']) ?>
+    <?= Form::errors() ?>
 
     <div class="form-group">
         <?= Form::label('forgot-email', _e('Email')) ?>

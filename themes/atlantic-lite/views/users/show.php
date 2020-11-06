@@ -11,8 +11,8 @@
                 <?$images = $user->get_profile_images(); if ($images):?>
                     <div id="gallery">
                         <?$i = 0; foreach ($images as $key => $image):?>
-                            <a href="<?=$image?>" class="thumbnail gallery-item <?=$i > 0 ? 'hidden' : NULL?>" data-gallery>
-                                <img class="img-rounded img-responsive" src="<?=Core::imagefly($image,200,200)?>" alt="<?=$user->name?>">
+                            <a href="<?=$image?>" class="gallery-item <?=$i > 0 ? 'hidden' : NULL?>" data-gallery>
+                                <img class="rounded img-thumbnail img-fluid" src="<?=Core::imagefly($image,200,200)?>" alt="<?=$user->name?>">
                             </a>
                         <?$i++; endforeach?>
                     </div>

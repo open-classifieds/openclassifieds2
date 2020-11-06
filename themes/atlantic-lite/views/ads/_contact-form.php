@@ -98,6 +98,6 @@
     <? endif ?>
 
     <div class="mt-3">
-        <?= Form::button('contact-submit', _e('Contact Us'), ['type' => 'submit', 'class' => 'btn btn-primary']) ?>
+        <?= Form::button('contact-submit', _e('Contact'), ['type' => 'submit', 'class' => 'btn btn-primary']) ?>
     </div>
 <?= FORM::close() ?>

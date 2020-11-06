@@ -3,6 +3,7 @@
 <?= View::factory('auth/_social') ?>
 
 <?= FORM::open(Route::url('oc-panel', ['directory' => 'user', 'controller' => 'auth', 'action' => 'login']), ['method' => 'post', 'class' => 'auth']) ?>
+    <?= Form::errors() ?>
 
     <div class="form-group">
         <?= Form::label('login-email', _e('Email')) ?>
