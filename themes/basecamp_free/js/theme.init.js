@@ -21,6 +21,32 @@ $(function(){
             $(this).select2('destroy');
         }
     });
+    // Location fuzzy search
+    $('.ajax-location-search').each(function(){
+        $(this).select2('destroy').select2({
+            ajax: {
+                url: $(this).data('apiurl'),
+                dataType: 'json',
+                type: "GET",
+                delay: 250,
+                data: function (params) {
+                    return {
+                        q: params.term
+                    };
+                },
+                processResults: function (data) {
+                    var res = data.locations.map(function (item) {
+                        return { id: item.seoname, text: item.name };
+                    });
+                    return {
+                        results: res
+                    };
+                },
+                cache: true
+            },
+            minimumInputLength: 2,
+        });
+    });
     //select2 responsive width
     $(window).on('resize', function() {
         $('select').each(function(){
