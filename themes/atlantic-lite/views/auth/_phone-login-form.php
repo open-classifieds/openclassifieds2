@@ -1,4 +1,6 @@
 <?= FORM::open(Route::url('oc-panel', ['directory' => 'user', 'controller' => 'auth', 'action' => 'phonelogin']), ['method' => 'post', 'class' => 'auth']) ?>
+    <?= Form::errors() ?>
+
     <div class="form-group">
         <?= Form::label('phone', _e('Phone')) ?>
         <?= Form::input('phone', '', [
