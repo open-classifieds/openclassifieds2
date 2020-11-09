@@ -34,7 +34,7 @@
             <ul class="list-unstyled">
                 <?foreach ($widget->user->custom_columns(TRUE) as $name => $value):?>
                     <?if($value!=''):?>
-                        <?if($name!='Whatsapp' AND $name!='Skype' AND $name!='Telegram'):?>
+                        <?if(!in_array(mb_strtolower($name), ['whatsapp', 'skype', 'telegram'])):?>
                             <li>
                                 <strong><?=$name?>:</strong>
                                 <?if($value=='checkbox_1'):?>

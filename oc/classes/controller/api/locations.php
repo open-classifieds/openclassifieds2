@@ -45,6 +45,9 @@ class Controller_Api_Locations extends Api_Controller {
                     //$loc['siblings'] = $location->get_siblings_ids();
                     $loc['icon']     = $location->get_icon();
                     $loc['translate_name'] = $location->translate_name();
+                    $loc['location_parent_name'] = $location->parent->loaded()
+                        ? $location->parent->name
+                        : NULL;
 
                     $output[] = $loc;
                 }

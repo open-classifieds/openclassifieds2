@@ -62,7 +62,7 @@
                 <?if (Core::extra_features() == TRUE):?>
                     <?foreach ($user->custom_columns(TRUE) as $name => $value):?>
                         <?if($value!=''):?>
-                            <?if($name!='whatsapp' AND $name!='skype' AND $name!='telegram'):?>
+                            <?if(!in_array(mb_strtolower($name), ['whatsapp', 'skype', 'telegram'])):?>
                                 <li>
                                     <strong><?=$name?>:</strong>
                                     <?if($value=='checkbox_1'):?>

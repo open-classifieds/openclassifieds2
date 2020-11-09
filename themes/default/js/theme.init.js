@@ -36,7 +36,11 @@ $(function(){
                 },
                 processResults: function (data) {
                     var res = data.locations.map(function (item) {
-                        return { id: item.seoname, text: item.name };
+                        if (item.id_location_parent === '1') {
+                            return { id: item.seoname, text: item.name };
+                        }
+
+                        return { id: item.seoname, text: item.name + ', ' + item.location_parent_name };
                     });
                     return {
                         results: res

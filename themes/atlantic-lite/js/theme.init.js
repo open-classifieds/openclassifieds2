@@ -16,6 +16,40 @@ $(function(){
             $(this).select2('destroy');
         }
     });
+
+    // Location fuzzy search
+    $('.ajax-location-search').each(function(){
+        $(this).select2('destroy').select2({
+            theme: 'bootstrap4',
+            width: 'style',
+            language: 'es',
+            ajax: {
+                url: $(this).data('apiurl'),
+                dataType: 'json',
+                type: "GET",
+                delay: 250,
+                data: function (params) {
+                    return {
+                        q: params.term
+                    };
+                },
+                processResults: function (data) {
+                    var res = data.locations.map(function (item) {
+                        if (item.id_location_parent === '1') {
+                            return { id: item.seoname, text: item.name };
+                        }
+
+                        return { id: item.seoname, text: item.name + ', ' + item.location_parent_name };
+                    });
+                    return {
+                        results: res
+                    };
+                },
+                cache: true
+            },
+            minimumInputLength: 2,
+        });
+    });
     // Fixes select2 on bootstrap modals and iOS devices
     $('#register-modal select').each(function(){
         if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream)
