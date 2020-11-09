@@ -1271,7 +1271,10 @@ class Controller_Ad extends Controller {
                             $location = new Model_location();
                             $location->where('seoname','=',$loc)->cached()->limit(1)->find();
                             if ($location->loaded())
+                            {
                                 $loc_siblings_ids = array_merge($loc_siblings_ids,$location->get_siblings_ids());
+                                $location_filter[] = $location;
+                            }
                         }
                     }
 
@@ -1296,7 +1299,10 @@ class Controller_Ad extends Controller {
                     $location = new Model_location();
                     $location->where('seoname',(is_array(core::get('location'))?'in':'='),core::get('location'))->cached()->limit(1)->find();
                     if ($location->loaded())
+                    {
+                        $location_filter = $location;
                         $ads->where('id_location', 'IN', $location->get_siblings_ids());
+                    }
                 }
             }
 
@@ -1488,15 +1494,16 @@ class Controller_Ad extends Controller {
 
 		$this->template->bind('content', $content);
 
-		$this->template->content = View::factory('pages/ad/advanced_search', array('ads'		      => $ads,
+        $this->template->content = View::factory('pages/ad/advanced_search', array('ads'		      => $ads,
         																		   'categories'	      => Model_Category::get_as_array(),
         																		   'order_categories' => Model_Category::get_multidimensional(),
-        																		   'locations'	      => Model_Location::get_as_array(),
-        																		   'order_locations'  => Model_Location::get_multidimensional(),
+        																		   'locations'	      => Model_Location::get_as_array(100),
+        																		   'order_locations'  => Model_Location::get_multidimensional(100),
         																		   'pagination'	      => $pagination,
         																		   'user'		      => $user,
         																		   'fields' 		  => Model_Field::get_all(),
-																				   'total_ads' 		  => $res_count
+                                                                                   'total_ads' 		  => $res_count,
+                                                                                   'location_filter'  => $location_filter ?? NULL,
         																		   ));
 
 

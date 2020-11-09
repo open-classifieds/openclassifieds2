@@ -50,7 +50,7 @@
                 <?endif?>
 
                 <?if($widget->loc_items !== NULL):?>
-                    <?if(Core::count($widget->loc_items) > 1 AND Core::config('advertisement.location') != FALSE):?>
+                    <?if(core::count($widget->loc_items) > 1 AND core::count($widget->loc_items) < 100 AND core::config('advertisement.location') != FALSE):?>
                         <div class="form-group">
                             <?= Form::label('location_widget_search', _e('Locations'), ['for' => 'location_widget_search'])?>
                             <select <?=Core::config('general.search_multi_catloc')? 'multiple':NULL?> name="location<?=Core::config('general.search_multi_catloc')? '[]':NULL?>" id="location_widget_search" class="form-control" data-placeholder="<?=__('Locations')?>">
@@ -70,6 +70,13 @@
                                 $loc_order_search = $widget->loc_order_items;
                                 if (is_array($loc_order_search))
                                     array_walk($loc_order_search , 'lolo_search', ['locs' => $widget->loc_items, 'selected_location' => $widget->selected_location]);?>
+                            </select>
+                        </div>
+                    <?elseif(core::count($widget->loc_items) > 1 AND core::config('advertisement.location') != FALSE):?>
+                        <div class="form-group">
+                            <?= Form::label('location_widget_search', _e('Locations'), ['for' => 'location_widget_search'])?>
+                            <select <?=Core::config('general.search_multi_catloc')? 'multiple':NULL?> name="location<?=Core::config('general.search_multi_catloc')? '[]':NULL?>" id="location_widget_search" class="form-control ajax-location-search" data-placeholder="<?=__('Locations')?>" data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'locations'))?>">
+                                <option></option>
                             </select>
                         </div>
                     <?endif?>

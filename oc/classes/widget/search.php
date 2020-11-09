@@ -13,7 +13,7 @@ class Widget_Search extends Widget
 {
 
 	public function __construct()
-	{	
+	{
 
 		$this->title 		= __('Search');
 		$this->description 	= __('Advanced Search');
@@ -29,7 +29,7 @@ class Widget_Search extends Widget
                                                         'label'     => __('Advanced option'),
                                                         'options'   => array('0'   => __('FALSE'),
                                                                              '1'   => __('TRUE'),
-                                                                            ), 
+                                                                            ),
                                                         'default'   => 0,
                                                         'required'  => TRUE),
 
@@ -38,7 +38,7 @@ class Widget_Search extends Widget
                                                         'label'     => __('Custom fields in search'),
                                                         'options'   => array('0'   => __('FALSE'),
                                                                              '1'   => __('TRUE'),
-                                                                            ), 
+                                                                            ),
                                                         'default'   => 0,
                                                         'required'  => TRUE),
 						 		);
@@ -47,7 +47,7 @@ class Widget_Search extends Widget
 	/**
      * get the title for the widget
      * @param string $title we will use it for the loaded widgets
-     * @return string 
+     * @return string
      */
     public function title($title = NULL)
     {
@@ -65,7 +65,7 @@ class Widget_Search extends Widget
         // get all categories
         if ($this->advanced != FALSE)
         {
-            
+
             $this->cat_items         = Model_Category::get_as_array(200);
             $this->cat_order_items   = Model_Category::get_multidimensional(200);
             $this->selected_category = NULL;
@@ -80,8 +80,8 @@ class Widget_Search extends Widget
             }
 
             // get all locations
-            $this->loc_items         = Model_Location::get_as_array(200);
-            $this->loc_order_items   = Model_Location::get_multidimensional(200);
+            $this->loc_items         = Model_Location::get_as_array(100);
+            $this->loc_order_items   = Model_Location::get_multidimensional(100);
             $this->selected_location = NULL;
 
             if (core::request('location'))

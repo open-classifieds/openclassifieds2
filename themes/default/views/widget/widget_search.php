@@ -46,7 +46,7 @@
 
             <!-- locations -->
             <?if($widget->loc_items !== NULL):?>
-                <?if(core::count($widget->loc_items) > 1 AND core::config('advertisement.location') != FALSE):?>
+                <?if(core::count($widget->loc_items) > 1 AND core::count($widget->loc_items) < 100 AND core::config('advertisement.location') != FALSE):?>
                     <div class="form-group">
                         <div class="col-xs-12">
                             <?= FORM::label('location_widget_search', _e('Locations'), array('class'=>'', 'for'=>'location_widget_search' ))?>
@@ -67,6 +67,15 @@
                                 $loc_order_search = $widget->loc_order_items;
                                 if (is_array($loc_order_search))
                                     array_walk($loc_order_search , $lolo_search_function_name, array('locs' => $widget->loc_items, 'selected_location' => $widget->selected_location));?>
+                            </select>
+                        </div>
+                    </div>
+                <?elseif(core::count($widget->loc_items) > 1 AND core::config('advertisement.location') != FALSE):?>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <?= FORM::label('location_widget_search', _e('Locations'), array('class'=>'', 'for'=>'location_widget_search' ))?>
+                            <select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="location<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="location_widget_search" class="form-control ajax-location-search" data-placeholder="<?=__('Locations')?>" data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'locations'))?>">
+                                <option></option>
                             </select>
                         </div>
                     </div>
