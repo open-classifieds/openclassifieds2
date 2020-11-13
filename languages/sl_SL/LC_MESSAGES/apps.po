@@ -1,0 +1,289 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: app v.2\n"
+"POT-Creation-Date: 2020-05-06 12:16:51\n"
+"PO-Revision-Date: 2020-11-12 13:37+0100\n"
+"Language-Team: sl\n"
+"Language: sl_SI\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.2\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100>=3 && n%100<=4 ? 2 : 3);\n"
+
+#: String 0
+msgid "marketplace"
+msgstr "Spletni oglasnik"
+
+#: String 1 23
+msgid "search_for_products"
+msgstr "Iskanje po izdelkih"
+
+#: String 2
+msgid "are_you_sure_you_want_to_logout"
+msgstr "Ste prepričani, da se želite odjavit?"
+
+#: String 3
+msgid "logout"
+msgstr "Odjava"
+
+#: String 4
+msgid "cancel"
+msgstr "Prekliči"
+
+#: String 5
+msgid "save"
+msgstr "Shrani"
+
+#: String 6
+msgid "my_products"
+msgstr "Moji izdelki"
+
+#: String 7
+msgid "market"
+msgstr "Trgovina"
+
+#: String 8
+msgid "favs"
+msgstr "Oriljubljeni"
+
+#: String 9 12
+msgid "inbox"
+msgstr "Prejeto"
+
+#: String 10
+msgid "me"
+msgstr "Jaz"
+
+#: String 11
+msgid "search"
+msgstr "Išči"
+
+#: String 13
+msgid "write_message"
+msgstr "Napiši sporočilo…"
+
+#: String 14
+msgid "log_in"
+msgstr "Prijavi se"
+
+#: String 15
+msgid "username"
+msgstr "Uporabniško ime"
+
+#: String 16
+msgid "email"
+msgstr "E-pošta"
+
+#: String 17
+msgid "password"
+msgstr "Geslo"
+
+#: String 18
+msgid "name"
+msgstr "Ime"
+
+#: String 19
+msgid "last_name"
+msgstr "Priimek"
+
+#: String 20
+msgid "next"
+msgstr "Naslednji"
+
+#: String 21
+msgid "i_accept_the_terms_and_conditions"
+msgstr "Sprejmem priporočila in pogoje"
+
+#: String 22
+msgid "create_account"
+msgstr "Ustvari račun"
+
+#: String 24
+msgid "my_favorites"
+msgstr "Moje priljubljene"
+
+#: String 25
+msgid "my_marketplace"
+msgstr "Moja trgovna"
+
+#: String 26
+msgid "category"
+msgstr "Kategorije"
+
+#: String 27
+msgid "product_description"
+msgstr "Opis izdelka"
+
+#: String 28
+msgid "call_about_this_product"
+msgstr "Pokliči glede tega izdelka"
+
+#: String 29
+msgid "message_about_this_product"
+msgstr "Sporočilo glede tega izdelka"
+
+#: String 30
+msgid "back"
+msgstr "Nazaj"
+
+#: String 31
+msgid "categories"
+msgstr "Kategorije"
+
+#: String 32
+msgid "search_for_categories"
+msgstr "Išči kategorije"
+
+#: String 33
+msgid "new_product_info"
+msgstr "Informacije o novih artiklih"
+
+#: String 34
+msgid "product_title"
+msgstr "Ime izdelka"
+
+#: String 35
+msgid "enter_the_new_product_title"
+msgstr "Vpiši novo ime izdelka"
+
+#: String 36
+msgid "select_category"
+msgstr "Izberi kategorijo"
+
+#: String 37
+msgid "description"
+msgstr "Opis"
+
+#: String 38
+msgid "350_characters_max"
+msgstr "350 znakov max."
+
+#: String 39
+msgid "price"
+msgstr "Cena"
+
+#: String 40
+msgid "phone_number"
+msgstr "Telefonska številka"
+
+#: String 41
+msgid "your_phone_number"
+msgstr "Vaša telefonska številka"
+
+#: String 42
+msgid "website"
+msgstr "Spletna stran"
+
+#: String 43
+msgid "your_website"
+msgstr "Vaša spletna stran"
+
+#: String 44
+msgid "nex_step_product_photos"
+msgstr "Naslednji korak: Slika izdelka"
+
+#: String 45
+msgid "new_product_images"
+msgstr "Nova slika izdelka"
+
+#: String 46
+msgid "tap_to_add_a_new_image"
+msgstr "Pritisni za dodajanje nove slike izdelka"
+
+#: String 47
+msgid "loaded_images"
+msgstr "Naloži sliko"
+
+#: String 48
+msgid "delete"
+msgstr "Izbriši"
+
+#: String 49
+msgid "publish_product"
+msgstr "Objavi izdelek"
+
+#: String 50
+msgid "filter_by_category"
+msgstr "Filtriraj po kategorijah"
+
+#: String 51
+msgid "i_forgot_my_password_reset_it"
+msgstr "Pozabil sem geslo, ponastavi geslo"
+
+#: String 52
+msgid "i_dont_have_an_account_register"
+msgstr "Nimam še računa, registriraj se"
+
+#: String 53
+msgid "go_back"
+msgstr "Nazaj"
+
+#: String 54 61
+msgid "login_to_my_account"
+msgstr "Prijava v moj račun"
+
+#: String 55
+msgid "retype_password"
+msgstr "Ponovno vnesite geslo"
+
+#: String 56
+msgid "no_products_available"
+msgstr "Ni artiklov na razpolago"
+
+#: String 57
+msgid "upload_an_image"
+msgstr "Naloži slio"
+
+#: String 58
+msgid "select_an_option"
+msgstr "Izberite opcijo"
+
+#: String 59
+msgid "gallery"
+msgstr "Galerija"
+
+#: String 60
+msgid "camera"
+msgstr "Kamera"
+
+#: String 62
+msgid "product_info"
+msgstr "info o izdelku"
+
+#: String 63
+msgid "save_changes"
+msgstr "Shrani spremembe"
+
+#: String 64
+msgid "edit_this_product"
+msgstr "Uredi ta izdelek"
+
+#: String 65
+msgid "all_products"
+msgstr "Vsi izdelki"
+
+#: String 66
+msgid "share"
+msgstr "Deli"
+
+#: String 67
+msgid "about"
+msgstr "o"
+
+#: String 68
+msgid "visit_page"
+msgstr "Obišči stran"
+
+#: String 69
+msgid "deactivate"
+msgstr "Deaktiviraj"
+
+#: String 70
+msgid "activate"
+msgstr "Aktiviraj"
+
+#: String 71
+msgid "are_you_sure_you_want_to_leave"
+msgstr "Ste prepričani, da želite oditi"
