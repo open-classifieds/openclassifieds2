@@ -537,7 +537,7 @@ class Model_Field {
      * list with fields we dont show to users
      * @return array
      */
-    public function fields_to_hide()
+    public static function fields_to_hide()
     {
         return array (
             'cf_buyer_instructions',
