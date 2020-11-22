@@ -40,7 +40,7 @@
 
     <div class="form-group">
         <?= Form::label('message', _e('Message')) ?>
-        <?= Form::textarea('contact-message', Request::current()->post('message'), [
+        <?= Form::textarea('message', Request::current()->post('message'), [
             'id' => 'contact-message',
             'class' => 'form-control',
             'placeholder' => __('Message'),
