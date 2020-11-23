@@ -28,8 +28,10 @@ class Controller_Panel_Ad extends Auth_Controller {
         $fields = array('title','id_ad','published','created','id_category', 'id_location','status');
 
         //filter ads by status
-        $status = is_numeric(Core::get('status'))?Core::get('status'):Model_Ad::STATUS_PUBLISHED;
-        $ads = $ads->where('status', '=', $status);
+        if($status = Core::get('status') AND is_numeric($status))
+        {
+        	$ads->where('status', '=', $status);
+        }
 
 		//filter = active
         if((New Model_Field())->get('expiresat') AND Core::get('filter')=='active')

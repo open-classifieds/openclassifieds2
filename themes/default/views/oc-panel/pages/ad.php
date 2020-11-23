@@ -39,6 +39,7 @@
 
             $status_array = [
                 '' => __('Any status'),
+                Model_Ad::STATUS_PUBLISHED => __('Published'),
                 Model_Ad::STATUS_SPAM => __('Spam'),
                 Model_Ad::STATUS_UNAVAILABLE => __('Unavailable'),
                 Model_Ad::STATUS_UNCONFIRMED => __('Unconfirmed'),
@@ -67,9 +68,11 @@
         <span class="shadow-sm rounded-md">
             <?= FORM::select('status', $status_array, Core::get('status'), ['x-on:change' => '$el.submit()', 'class' => 'block form-select w-32 py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5'])?>
         </span>
-        <span class="ml-3 shadow-sm rounded-md">
-            <?= FORM::select('filter', $filters_array, Core::get('filter'), ['x-on:change' => '$el.submit()', 'class' => 'block form-select w-36 py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5'])?>
-        </span>
+        <? if (core::count($filters_array) > 1) : ?>
+            <span class="ml-3 shadow-sm rounded-md">
+                <?= FORM::select('filter', $filters_array, Core::get('filter'), ['x-on:change' => '$el.submit()', 'class' => 'block form-select w-36 py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5'])?>
+            </span>
+        <? endif ?>
         <span class="ml-3 shadow-sm rounded-md">
             <?= FORM::select('order', $field_orders, Core::get('order'), ['x-on:change' => '$el.submit()', 'class' => 'block form-select w-24 py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5'])?>
         </span>
