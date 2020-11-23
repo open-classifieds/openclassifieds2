@@ -88,6 +88,8 @@ class Controller extends Kohana_Controller
             strtolower($this->request->controller())!='stripecheckout' AND
             strtolower($this->request->action())!='checkoutfree' AND
             strtolower($this->request->action())!='pay' AND
+            !(strtolower($this->request->controller())=='profile' AND strtolower($this->request->action())=='edit') AND
+            !(strtolower($this->request->controller())=='profile' AND strtolower($this->request->action())=='orders') AND
             Core::extra_features() == TRUE AND
             Auth::instance()->logged_in() AND
             $this->user->expired_subscription(TRUE))
