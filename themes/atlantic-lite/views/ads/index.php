@@ -37,9 +37,11 @@
         <? if(core::count($ads)): ?>
             <?= View::factory('ads/_toolbar') ?>
 
-            <? foreach($ads as $ad): ?>
-                <?= View::factory('ads/_ad', compact('ad', 'user')) ?>
-            <? endforeach ?>
+            <div id="listings">
+                <? foreach($ads as $ad): ?>
+                    <?= View::factory('ads/_ad', compact('ad', 'user')) ?>
+                <? endforeach ?>
+            </div>
 
             <?= $pagination ?>
 
