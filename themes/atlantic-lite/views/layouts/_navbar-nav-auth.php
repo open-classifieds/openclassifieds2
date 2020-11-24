@@ -83,7 +83,7 @@
             AND (Auth::instance()->get_user()->is_admin()
                 OR Auth::instance()->get_user()->is_moderator()))) : ?>
         <li class="nav-item nav-item tw-mb-2 md:tw-mb-0">
-            <a class="btn btn-primary" href="<?= Route::url('post_new') ?>"><?= __('Publish new ') ?></a>
+            <a class="btn btn-primary" href="<?= Route::url('post_new') ?>"><?= _e('Publish new') ?></a>
         </li>
     <? endif ?>
 </ul>
