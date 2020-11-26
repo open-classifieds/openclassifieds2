@@ -16,8 +16,8 @@
                 <p>
                     <?=__('Please use the correct CSV format')?>,<br><?=__('limited to 10.000 at a time')?>,<br><?=__('1 MB file')?>.
                     <br>
-                    <?=__('Categories')?>: <a href="https://cdn.rawgit.com/yclas/yclas/master/install/samples/import/categories.csv"><?=__('download example')?>.</a><br>
-                    <?=__('Locations')?>: <a href="https://cdn.rawgit.com/yclas/yclas/master/install/samples/import/locations.csv"><?=__('download example')?>.</a>
+                    <?=__('Categories')?>: <a href="https://raw.githubusercontent.com/yclas/guides/master/samples/import_categories_example.csv"><?=__('download example')?>.</a><br>
+                    <?=__('Locations')?>: <a href="https://raw.githubusercontent.com/yclas/guides/master/samples/import_locations_example.csv"><?=__('download example')?>.</a>
                 </p>
                 <hr>
                 <?= FORM::open(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')), array('class'=>'', 'enctype'=>'multipart/form-data'))?>
