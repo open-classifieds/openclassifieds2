@@ -16,7 +16,7 @@
         </a>
         <?if (array_key_exists('ad', $controllers)) :?>
             -
-            <a class="font-medium text-blue-600 hover:text-blue-900" target="_blank" href="<?=Route::url('profile',array('seoname'=>$form->object->seoname))?>">
+            <a class="font-medium text-blue-600 hover:text-blue-900" target="_blank" href="<?= Route::url('oc-panel', array('controller'=>'ad')).'?filter__id_user='.$form->object->id_user?>">
                 <?=__('Ads')?>
             </a>
         <?endif?>
