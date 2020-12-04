@@ -10,6 +10,7 @@
     <?if (Core::extra_features() == FALSE):?>
         <meta name="author" content="yclas.com">
     <?endif?>
+    <link rel="shortcut icon" href="<?=(Theme::get('favicon_url')!='') ? Theme::get('favicon_url') : core::config('general.base_url').'images/favicon.ico'?>">
     <script type="text/javascript" src="//maps.google.com/maps/api/js?libraries=geometry&v=3&key=<?=core::config('advertisement.gm_api_key')?>&language=<?=i18n::get_display_language(i18n::$locale)?>"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-2.2.4.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/maplace-js/0.2.7/maplace.min.js"></script>
@@ -115,4 +116,3 @@
     <?=(Kohana::$environment === Kohana::DEVELOPMENT)? View::factory('profiler'):''?>
 </body>
 </html>
-
