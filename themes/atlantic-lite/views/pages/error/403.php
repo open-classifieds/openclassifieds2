@@ -1,1 +1,1 @@
-<?= View::factory('errors/403', compact('content')) ?>
+<?= View::factory('errors/403') ?>
