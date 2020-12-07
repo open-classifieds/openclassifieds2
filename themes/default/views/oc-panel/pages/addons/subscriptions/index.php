@@ -37,6 +37,15 @@
                             <p class="text-gray-500"><?=__("Once set to TRUE, if user subscription expires, the user and the ads get disabled, until renewal.")?></p>
                         </div>
                     </div>
+                    <div class="sm:col-span-6">
+                        <div class="absolute flex items-center h-5">
+                            <?=FORM::checkbox('subscriptions_mark_as_sold', 1, (bool) Core::post('subscriptions_mark_as_sold', Core::config('general.subscriptions_mark_as_sold')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
+                        </div>
+                        <div class="pl-7 text-sm leading-5">
+                            <?=FORM::label('subscriptions_mark_as_sold', __('Give extra ad on mark as sold'), ['class'=>'font-medium text-gray-700'])?>
+                            <p class="text-gray-500"><?=__("Once set to TRUE, marking an ad as sold will give one extra ad to the membership.")?></p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="mt-8 border-t border-gray-200 pt-5">

@@ -209,6 +209,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                     try
                     {
                         $active_ad->save();
+                        Model_Subscription::new_ad($user);
                     }
                     catch (Exception $e)
                     {
@@ -281,7 +282,10 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                     $order->confirm_payment('cash', sprintf('Done by user %d - %s', $user->id_user, $user->email));
 
                     if ($ad->sold())
+                    {
+                        Model_Subscription::ad_sold(Auth::instance()->get_user());
                         Alert::set(Alert::SUCCESS, __('Advertisement is marked as Sold'));
+                    }
                 }
                 else
                 {

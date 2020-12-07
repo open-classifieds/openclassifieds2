@@ -133,6 +133,42 @@ class Model_Subscription extends ORM {
         }
     }
 
+    /**
+     * when an ad is marked as sold we can increase the subscription ads left
+     * @param  Model_User $user user to decrease ad
+     * @return void
+     */
+    public static function ad_sold(Model_User $user)
+    {
+        if (! Core::config('general.subscriptions'))
+        {
+            return;
+        }
+
+        if (! Core::config('general.subscriptions_mark_as_sold'))
+        {
+            return;
+        }
+
+        $subscription = $user->subscription();
+
+        if (! $subscription->loaded())
+        {
+            return;
+        }
+
+        try {
+            $subscription->amount_ads_left = min(
+                $subscription->amount_ads,
+                $subscription->amount_ads_left + 1
+            );
+
+            $subscription->save();
+        } catch (Exception $e) {
+            throw HTTP_Exception::factory(500,$e->getMessage());
+        }
+    }
+
     protected $_table_columns =  array (
         'id_subscription' =>
             array (
