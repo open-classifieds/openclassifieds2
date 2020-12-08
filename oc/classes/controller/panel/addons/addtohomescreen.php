@@ -8,6 +8,13 @@ class Controller_Panel_Addons_AddToHomeScreen extends Auth_Controller {
 
         if($this->request->post())
         {
+            if (empty(Theme::get('apple-touch-icon')))
+            {
+                Alert::set(Alert::WARNING, __('Please, first upload your apple-touch-icon icon on theme options.'));
+
+                $this->redirect(Route::url('oc-panel/addons', ['controller' => 'addtohomescreen']));
+            }
+
             Model_Config::set_value('general', 'add_to_home_screen', Core::post('is_active') ?? 0);
 
             Alert::set(Alert::SUCCESS, __('Configuration updated'));
