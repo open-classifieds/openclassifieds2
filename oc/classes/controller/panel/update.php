@@ -19,6 +19,11 @@ class Controller_Panel_Update extends Auth_Controller {
                 'config_value'  => '0'
             ],
             [
+                'config_key'     => 'subscriptions_mark_as_sold',
+                'group_name'     => 'general',
+                'config_value'   => '0'
+            ],
+            [
                 'config_key'     => 'users_must_verify_email',
                 'group_name'     => 'general',
                 'config_value'   => '0'
