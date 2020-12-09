@@ -71,6 +71,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `longitude` float(10,6) DEFAULT NULL,
   `address` varchar(145) DEFAULT NULL,
   `locale` varchar(5) DEFAULT NULL,
+  `verification_code` int(6) DEFAULT NULL,
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_email` (`email`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_token` (`token`),
@@ -366,6 +367,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."content` (`ord
     VALUES
 (0, 'Change Password [SITE.NAME]', 'auth-remember', 'Hello [USER.NAME],\n\nFollow this link  [URL.QL]\n\nThanks!!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'Welcome to [SITE.NAME]!', 'auth-register', 'Welcome [USER.NAME],\n\nWe are really happy that you have joined us! [URL.QL]\n\nRemember your user details:\nEmail: [USER.EMAIL]\nPassword: [USER.PWD]\n\nWe do not have your original password anymore.\n\nRegards!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+(0, 'Welcome to [SITE.NAME]!', 'auth-verify-email', 'Welcome [USER.NAME],\n\nWe are really happy that you have joined us!\nPlease click on this link [URL.QL] to confirm your email\n\nRemember your user details:\nEmail: [USER.EMAIL]\nPassword: [USER.PWD]\n\nWe do not have your original password anymore.\n\nRegards!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'Hello [USER.NAME]!', 'user-contact', 'You have been contacted regarding your advertisement: \n\n`[AD.NAME]`. \n\n User [EMAIL.SENDER] [EMAIL.FROM], have a message for you: \n\n[EMAIL.BODY]. \n\nYou can check your advertisement by following this link [URL.AD]\n\n Regards!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'Hello [USER.NAME]!', 'user-profile-contact', 'User [EMAIL.SENDER] [EMAIL.FROM], have a message for you: \n\n[EMAIL.SUBJECT] \n\n[EMAIL.BODY]. \n\n Regards!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, '[EMAIL.SENDER] wants to contact you!', 'contact-admin', 'Hello Admin,\n\n [EMAIL.SENDER]: [EMAIL.FROM], have a message for you:\n\n [EMAIL.SUBJECT]\n\n [EMAIL.BODY] \n\n Regards!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
@@ -486,6 +488,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."content` (`id_
 mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."content` (`locale`, `title`, `seotitle`, `description`, `from_email`, `type`, `status`) VALUES
 ('es_ES', 'Cambiar Contraseña [SITE.NAME]', 'auth-remember', 'Hola [USER.NAME],\r\n\r\nSigue este enlace  [URL.QL]\r\n\r\n¡Gracias!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 ('es_ES', '¡Bienvenido a [SITE.NAME]!', 'auth-register', 'Bienvenido [USER.NAME],\r\n\r\n¡Estamos muy contentos de que te no hayas unido! [URL.QL]\r\n\r\nRecuerda tus detalles de usuario:\r\nEmail: [USER.EMAIL]\r\nContraseña: [USER.PWD]\r\n\r\nYa no tenemos más tu contraseña original.\r\n\r\n¡Saludos!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+('es_ES', '¡Bienvenido a [SITE.NAME]!', 'auth-verify-email', 'Bienvenido [USER.NAME],\r\n\r\n¡Estamos muy contentos de que te no hayas unido!\nPor favor, has clic en este enlace [URL.QL] para confirmar tu email\n\nRecuerda tus detalles de usuario:\r\nEmail: [USER.EMAIL]\r\nContraseña: [USER.PWD]\r\n\r\nYa no tenemos más tu contraseña original.\r\n\r\n¡Saludos!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 ('es_ES', '¡Hola [USER.NAME]!', 'user-contact', 'Has sido contactado en relación con tu anuncio: \r\n\r\n`[AD.NAME]`. \r\n\r\n Usuario [EMAIL.SENDER] [EMAIL.FROM], tiene un mensaje para ti: \r\n\r\n[EMAIL.BODY]. \r\n\r\n ¡Saludos!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 ('es_ES', '¡Hola [USER.NAME]!', 'user-profile-contact', 'Usuario [EMAIL.SENDER] [EMAIL.FROM], tiene un mensaje para ti: \r\n\r\n[EMAIL.SUBJECT] \r\n\r\n[EMAIL.BODY]. \r\n\r\n ¡Saludos!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 ('es_ES', '¡[EMAIL.SENDER] quiere contactarte!', 'contact-admin', 'Hello Admin,\r\n\r\n [EMAIL.SENDER]: [EMAIL.FROM], tiene un mensaje para ti:\r\n\r\n [EMAIL.BODY] \r\n\r\n ¡Saludos!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
@@ -721,6 +724,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('general', 'cron', 1),
 ('general', 'google_authenticator', 1),
 ('general', 'private_site', 0),
+('general', 'users_must_verify_email', 0),
 ('general', 'private_site_page', ''),
 ('general', 'pusher_notifications', '0'),
 ('general', 'pusher_notifications_app_id', ''),

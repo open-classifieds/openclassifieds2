@@ -348,6 +348,13 @@ class Controller_Panel_Auth extends Controller {
                         if($save_cf === TRUE)
                             $user->save();
 
+                        if (Core::config('users_must_verify_email'))
+                        {
+                            Alert::set(Alert::SUCCESS, __('Please confirm your email address, a confirmation email was sent to your registration email address.'));
+
+                            $this->redirect(Route::url('oc-panel', ['directory' => 'user', 'controller' => 'auth', 'action' => 'login']));
+                        }
+
                         //login the user
                         Auth::instance()->login(core::post('email'), core::post('password1'));
 

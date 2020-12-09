@@ -15,6 +15,7 @@ class Model_User extends ORM {
      */
     const STATUS_INACTIVE       = 0;    // Inactive
     const STATUS_ACTIVE         = 1;   // Active (normal status) (displayed in SERP and can post/login)
+    const STATUS_UNVERIFIED     = 3;   // hasn't verified email
     const STATUS_SPAM           = 5;   // tagged as spam
 
     /**
@@ -552,23 +553,34 @@ class Model_User extends ORM {
      */
     public static function create_email($email,$name=NULL,$password=NULL)
     {
+        $password = $password ?? Text::random('alnum', 8);
         $user = Model_User::find_by_email($email);
 
-        //only if didnt exists
-        if (!$user->loaded())
+        if ($user->loaded())
         {
-            if ($password === NULL)
-                $password  = Text::random('alnum', 8);
-
-            $user = self::create_user($email,$name,$password);
-
-            $url = $user->ql('oc-panel',array('controller' => 'profile',
-                                                      'action'     => 'edit'),TRUE);
-
-            $user->email('auth-register',array('[USER.PWD]'=>$password,
-                                                        '[URL.QL]'=>$url)
-                                                );
+            return $user;
         }
+
+        if (Core::config('users_must_verify_email'))
+        {
+            $user = self::create_user($email, $name, $password, self::STATUS_UNVERIFIED);
+
+            $url = $user->ql('oc-panel', [
+                'controller' => 'profile',
+                'action' => 'verify',
+                'id' => $user->verification_code,
+            ], TRUE);
+
+            $user->email('auth-verify-email', ['[USER.PWD]' => $password, '[URL.QL]' => $url]);
+
+            return $user;
+        }
+
+        $user = self::create_user($email, $name, $password);
+
+        $url = $user->ql('oc-panel', ['controller' => 'profile', 'action' => 'edit'], TRUE);
+
+        $user->email('auth-register', ['[USER.PWD]' => $password, '[URL.QL]' => $url]);
 
         return $user;
     }
@@ -578,9 +590,10 @@ class Model_User extends ORM {
      * @param  string $email
      * @param  string $name
      * @param  string $password
+     * @param  string $status
      * @return Model_User
      */
-    public static function create_user($email,$name=NULL,$password=NULL)
+    public static function create_user($email, $name = NULL, $password = NULL, $status = self::STATUS_ACTIVE)
     {
         $user = Model_User::find_by_email($email);
 
@@ -589,14 +602,16 @@ class Model_User extends ORM {
             if ($password === NULL)
                 $password       = Text::random('alnum', 8);
 
-            $user->email        = $email;
-            $user->name         = ($name===NULL OR !isset($name) OR empty($name))? substr($email, 0, strpos($email, '@')):$name;
-            $user->name         = UTF8::substr($user->name, 0, 145);
-            $user->status       = self::STATUS_ACTIVE;
-            $user->id_role      = Model_Role::ROLE_USER;;
-            $user->seoname      = $user->gen_seo_title($user->name);
-            $user->password     = $password;
-            $user->subscriber   = 1;
+            $user->email                = $email;
+            $user->name                 = ($name===NULL OR !isset($name) OR empty($name))? substr($email, 0, strpos($email, '@')):$name;
+            $user->name                 = UTF8::substr($user->name, 0, 145);
+            $user->status               = $status;
+            $user->id_role              = Model_Role::ROLE_USER;;
+            $user->seoname              = $user->gen_seo_title($user->name);
+            $user->password             = $password;
+            $user->subscriber           = 1;
+            $user->verification_code    = rand(100000, 999999);
+
             try
             {
                 $user->save();

@@ -576,6 +576,26 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
         }
     }
 
+    public function action_verify()
+    {
+        $verification_code = $this->request->param('id');
+
+        if ($this->user->verification_code == $verification_code )
+        {
+            $this->user->status = Model_User::STATUS_ACTIVE;
+
+            try {
+                $this->user->save();
+                Alert::set(Alert::SUCCESS, __('You have verified your email.'));
+            } catch (Exception $e) {
+                //throw 500
+                throw HTTP_Exception::factory(500,$e->getMessage());
+            }
+        }
+
+        $this->redirect(Route::url('oc-panel', ['controller' => 'profile', 'action' => 'edit']));
+    }
+
    /**
     * all this functions are only redirect, just in case we missed any link or if they got the link via email so keeps working.
     * now all in myads controller

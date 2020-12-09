@@ -12,16 +12,46 @@ class Controller_Panel_Update extends Auth_Controller {
 
     public function action_410()
     {
-        $configs = array(
-            array( 'config_key'     => 'autodata',
-                   'group_name'     => 'general',
-                   'config_value'   => '0'),
-            array( 'config_key'     => 'subscriptions_mark_as_sold',
-                    'group_name'     => 'general',
-                    'config_value'   => '0'),
-        );
+        $configs = [
+            [
+                'config_key'    => 'autodata',
+                'group_name'    => 'general',
+                'config_value'  => '0'
+            ],
+            [
+                'config_key'     => 'subscriptions_mark_as_sold',
+                'group_name'     => 'general',
+                'config_value'   => '0'
+            ],
+            [
+                'config_key'     => 'users_must_verify_email',
+                'group_name'     => 'general',
+                'config_value'   => '0'
+            ],
+        ];
+
+        //user email varification code
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `verification_code` int(6) DEFAULT NULL")->execute();
+        } catch (exception $e) {}
 
         Model_Config::config_array($configs);
+
+        // new email
+        $contents = [
+            [
+                'order'         => 0,
+                'title'         => 'Welcome to [SITE.NAME]!',
+                'seotitle'      => 'auth-verify-email',
+                'description'   => "Welcome [USER.NAME],\n\nWe are really happy that you have joined us!\nPlease click on this link [URL.QL] to confirm your email\n\nRemember your user details:\nEmail: [USER.EMAIL]\nPassword: [USER.PWD]\n\nWe do not have your original password anymore.\n\nRegards!",
+                'from_email'    => core::config('email.notify_email'),
+                'type'          => 'email',
+                'status'        => '1'
+            ],
+        ];
+
+        Model_Content::content_array($contents);
     }
 
     public function action_400()
