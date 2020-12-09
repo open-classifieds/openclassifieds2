@@ -80,6 +80,7 @@ class Controller_Panel_Settings_General extends Auth_Controller {
         Model_Config::set_value('general', 'disallowbots', $data['disallowbots'] ?? 0);
         Model_Config::set_value('general', 'private_site', $data['private_site'] ?? 0);
         Model_Config::set_value('general', 'cookie_consent', $data['cookie_consent'] ?? 0);
+        Model_Config::set_value('general', 'users_must_verify_email', $data['users_must_verify_email'] ?? 0);
         Model_Config::set_value('general', 'moderation', $data['moderation']);
         Model_Config::set_value('general', 'landing_page', $data['landing_page']);
         Model_Config::set_value('general', 'alert_terms', $data['alert_terms']);

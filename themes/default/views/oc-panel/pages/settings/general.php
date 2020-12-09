@@ -100,6 +100,15 @@
                                 <p class="text-gray-500"><?= __('Enables an alert to accept cookies') ?>.</p>
                             </div>
                         </div>
+                        <div class="sm:col-span-6">
+                            <div class="absolute flex items-center h-5">
+                                <?=FORM::checkbox('users_must_verify_email', 1, (bool) Core::post('users_must_verify_email', Core::config('general.users_must_verify_email')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
+                            </div>
+                            <div class="pl-7 text-sm leading-5">
+                                <?=FORM::label('users_must_verify_email', __('User must verify email'), ['class'=>'font-medium text-gray-700'])?>
+                                <p class="text-gray-500"><?= __('Require users to verify their email addresses after register') ?>.</p>
+                            </div>
+                        </div>
                         <div class="sm:col-span-4">
                             <?= FORM::label('moderation', __('Moderation'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
                             <div class="mt-1 rounded-md shadow-sm">
