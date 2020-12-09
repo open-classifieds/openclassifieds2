@@ -568,7 +568,7 @@ class Model_User extends ORM {
             $url = $user->ql('oc-panel', [
                 'controller' => 'profile',
                 'action' => 'verify',
-                'id' => $user->varification_code,
+                'id' => $user->verification_code,
             ], TRUE);
 
             $user->email('auth-verify-email', ['[USER.PWD]' => $password, '[URL.QL]' => $url]);
@@ -610,7 +610,7 @@ class Model_User extends ORM {
             $user->seoname              = $user->gen_seo_title($user->name);
             $user->password             = $password;
             $user->subscriber           = 1;
-            $user->varification_code    = rand(100000, 999999);
+            $user->verification_code    = rand(100000, 999999);
 
             try
             {

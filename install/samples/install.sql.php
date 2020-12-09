@@ -71,7 +71,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `longitude` float(10,6) DEFAULT NULL,
   `address` varchar(145) DEFAULT NULL,
   `locale` varchar(5) DEFAULT NULL,
-  `varification_code` int(6) DEFAULT NULL,
+  `verification_code` int(6) DEFAULT NULL,
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_email` (`email`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_token` (`token`),

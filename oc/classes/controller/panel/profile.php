@@ -578,9 +578,9 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 
     public function action_verify()
     {
-        $varification_code = $this->request->param('id');
+        $verification_code = $this->request->param('id');
 
-        if ($this->user->varification_code == $varification_code )
+        if ($this->user->verification_code == $verification_code )
         {
             $this->user->status = Model_User::STATUS_ACTIVE;
 

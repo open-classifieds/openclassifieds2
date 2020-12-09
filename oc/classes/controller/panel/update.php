@@ -28,7 +28,7 @@ class Controller_Panel_Update extends Auth_Controller {
         //user email varification code
         try
         {
-            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `varification_code` int(6) DEFAULT NULL")->execute();
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `verification_code` int(6) DEFAULT NULL")->execute();
         } catch (exception $e) {}
 
         Model_Config::config_array($configs);
