@@ -111,4 +111,8 @@
     <link rel="amphtml" href="<?=$amphtml?>">
 <?endif?>
 
+<?if (core::config('general.add_to_home_screen')):?>
+    <link rel="manifest" href="/manifest.json">
+<?endif?>
+
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v1.9.7/dist/alpine.js" defer></script>
