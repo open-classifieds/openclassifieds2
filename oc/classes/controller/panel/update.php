@@ -16,6 +16,9 @@ class Controller_Panel_Update extends Auth_Controller {
             array( 'config_key'     => 'autodata',
                    'group_name'     => 'general',
                    'config_value'   => '0'),
+            array( 'config_key'     => 'subscriptions_mark_as_sold',
+                    'group_name'     => 'general',
+                    'config_value'   => '0'),
         );
 
         Model_Config::config_array($configs);

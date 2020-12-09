@@ -53,6 +53,7 @@ class Controller_Panel_Addons_Subscriptions extends Auth_CrudAjax {
 
             Model_Config::set_value('general', 'subscriptions', Core::post('is_active') ?? 0);
             Model_Config::set_value('general', 'subscriptions_expire', Core::post('subscriptions_expire'));
+            Model_Config::set_value('general', 'subscriptions_mark_as_sold', Core::post('subscriptions_mark_as_sold'));
 
             Alert::set(Alert::SUCCESS, __('Configuration updated'));
 
