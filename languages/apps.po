@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: yclas-2020-05-06\n"
-"POT-Creation-Date: 2020-05-06 12:16:51\n"
-"PO-Revision-Date: 2020-05-06 12:16:51\n"
+"Project-Id-Version: yclas-2020-12-12\n"
+"POT-Creation-Date: 2020-12-12 12:16:51\n"
+"PO-Revision-Date: 2020-12-12 12:16:51\n"
 "Language-Team: en\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
@@ -297,3 +297,102 @@ msgstr "Activate"
 #: String 71
 msgid "are_you_sure_you_want_to_leave"
 msgstr "Are you sure you want to leave"
+
+#: String 72
+msgid "invalid_data"
+msgstr "Invalid data"
+
+#: String 73
+msgid "user_exists"
+msgstr "User already exists"
+
+#: String 74
+msgid "error_network"
+msgstr "Internet is down! Connect and try again."
+
+#: String 75
+msgid "field_empty" :  "Field can't be empty"
+
+#: String 76
+msgid "invalid_email"
+msgstr "Invalid email"
+
+#: String 77
+msgid "short_password"
+msgstr "Password is too short!"
+
+#: String 78
+msgid "short_text"
+msgstr "Too short!"
+
+#: String 79
+msgid "long_text"
+msgstr "Too long!"
+
+#: String 80
+msgid "ad_not_found"
+msgstr "Product not found"
+
+#: String 81
+msgid "password_not_match"
+msgstr "Password don't match"
+
+#: String 82
+msgid "location"
+msgstr "Location"
+
+#: String 83
+msgid "select_location"
+msgstr "Select a location"
+
+#: String 84
+msgid "error_title"
+msgstr "Error"
+
+#: String 85
+msgid "generic_error_message"
+msgstr "There was a problem, please try again"
+
+#: String 86
+msgid "no_camera"
+msgstr "No Camera"
+
+#: String 87
+msgid "filter_by_location"
+msgstr "Filter by location"
+
+#: String 88
+msgid "filter_by"
+msgstr "Filter by"
+
+#: String 89
+msgid "access_camera_message"
+msgstr "Please grant permission to use the Camera"
+
+#: String 90
+msgid "max_image_count"
+msgstr "Max image count is"
+
+#: String 91
+msgid "max_image_delete"
+msgstr "You need to delete an image and upload again"
+
+#: String 92
+msgid "home_filters_apply_filters"
+msgstr "Apply filters"
+
+#: String 93
+msgid "terms_and_conditions"
+msgstr "Terms and Conditions"
+
+#: String 94
+msgid "ok"
+msgstr "Ok"
+
+#: String 95
+msgid "success"
+msgstr "Success"
+
+#: String 96
+msgid "data_updated"
+msgstr "All your data has been successfully updated"

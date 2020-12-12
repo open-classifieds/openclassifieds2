@@ -1,0 +1,385 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 4.0.2\n"
+"POT-Creation-Date: 2020-12-12 12:25:08\n"
+"PO-Revision-Date: 2020-12-12 12:25:08\n"
+"Last-Translator: Jose Maria Garrido <neo22s@gmail.com>\n"
+"Language-Team: en\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Yclas 4.0.2\n"
+
+#: String 0
+msgid "350_characters_max"
+msgstr "Máximo 350 cáracteres"
+
+#: String 1
+msgid "about"
+msgstr "Acerca"
+
+#: String 2
+msgid "access_camera_message"
+msgstr "Acceso a la cámara"
+
+#: String 3
+msgid "activate"
+msgstr "Activar"
+
+#: String 4
+msgid "ad_not_found"
+msgstr "Anuncio no encontrado"
+
+#: String 5
+msgid "all_products"
+msgstr "Todos los productos"
+
+#: String 6
+msgid "are_you_sure_you_want_to_leave"
+msgstr "¿Seguro quieres salir?"
+
+#: String 7
+msgid "are_you_sure_you_want_to_logout"
+msgstr "¿Seguro quieres salir?"
+
+#: String 8
+msgid "back"
+msgstr "Atrás"
+
+#: String 9
+msgid "call_about_this_product"
+msgstr "Llamar"
+
+#: String 10
+msgid "camera"
+msgstr "Cámara"
+
+#: String 11
+msgid "cancel"
+msgstr "Cancelar"
+
+#: String 12
+msgid "categories"
+msgstr "Categorías"
+
+#: String 13
+msgid "category"
+msgstr "Categoría"
+
+#: String 14
+msgid "create_account"
+msgstr "Crear cuenta"
+
+#: String 15
+msgid "data_updated"
+msgstr "Datos actualizados"
+
+#: String 16
+msgid "deactivate"
+msgstr "Desactivar"
+
+#: String 17
+msgid "delete"
+msgstr "Eliminar"
+
+#: String 18
+msgid "description"
+msgstr "Descripción"
+
+#: String 19
+msgid "edit_this_product"
+msgstr "Editar este producto"
+
+#: String 20
+msgid "email"
+msgstr "email"
+
+#: String 21
+msgid "enter_the_new_product_title"
+msgstr "Nuevo título"
+
+#: String 22
+msgid "error_network"
+msgstr "Sin red"
+
+#: String 23
+msgid "error_title"
+msgstr "Título incorrecto"
+
+#: String 24
+msgid "favs"
+msgstr "Favoritos"
+
+#: String 25
+msgid "filter_by"
+msgstr "Filtrar"
+
+#: String 26
+msgid "filter_by_category"
+msgstr "Filtrar categoría"
+
+#: String 27
+msgid "filter_by_location"
+msgstr "Filtrar ubicación"
+
+#: String 28
+msgid "gallery"
+msgstr "Galería"
+
+#: String 29
+msgid "generic_error_message"
+msgstr "Error"
+
+#: String 30
+msgid "go_back"
+msgstr "Ir atrás"
+
+#: String 31
+msgid "home_filters_apply_filters"
+msgstr "Aplicar filtros"
+
+#: String 32
+msgid "i_accept_the_terms_and_conditions"
+msgstr "Acepto los términos y condiciones"
+
+#: String 33
+msgid "i_dont_have_an_account_register"
+msgstr "Registrar cuenta"
+
+#: String 34
+msgid "i_forgot_my_password_reset_it"
+msgstr "Me he olvidado mi contraseña"
+
+#: String 35
+msgid "inbox"
+msgstr "Inbox"
+
+#: String 36
+msgid "invalid_data"
+msgstr "Datos incorrectos"
+
+#: String 37
+msgid "invalid_email"
+msgstr "Email incorrecto"
+
+#: String 38
+msgid "last_name"
+msgstr "Apellido"
+
+#: String 39
+msgid "loaded_images"
+msgstr "Imágenes cargadas"
+
+#: String 40
+msgid "location"
+msgstr "Ubicación"
+
+#: String 41
+msgid "log_in"
+msgstr "Login"
+
+#: String 42
+msgid "login_to_my_account"
+msgstr "Login"
+
+#: String 43
+msgid "logout"
+msgstr "Logout"
+
+#: String 44
+msgid "long_text"
+msgstr "Demasiado largo!"
+
+#: String 45
+msgid "market"
+msgstr "Mercado"
+
+#: String 46
+msgid "marketplace"
+msgstr "Mercado"
+
+#: String 47
+msgid "max_image_count"
+msgstr "El número máximo de imagenes es"
+
+#: String 48
+msgid "max_image_delete"
+msgstr "Tienes que eliminar una imagen para subir una nueva"
+
+#: String 49
+msgid "me"
+msgstr "yo"
+
+#: String 50
+msgid "message_about_this_product"
+msgstr "Enviar mensaje"
+
+#: String 51
+msgid "my_favorites"
+msgstr "Favoritos"
+
+#: String 52
+msgid "my_marketplace"
+msgstr "Mi mercadillo"
+
+#: String 53
+msgid "my_products"
+msgstr "Mis productos"
+
+#: String 54
+msgid "name"
+msgstr "Nombre"
+
+#: String 55
+msgid "new_product_images"
+msgstr "Imagenes"
+
+#: String 56
+msgid "new_product_info"
+msgstr "Información"
+
+#: String 57
+msgid "nex_step_product_photos"
+msgstr "Fotos"
+
+#: String 58
+msgid "next"
+msgstr "Siguiente"
+
+#: String 59
+msgid "no_camera"
+msgstr "No hay cámara"
+
+#: String 60
+msgid "no_products_available"
+msgstr "Nada disponible"
+
+#: String 61
+msgid "ok"
+msgstr "ok"
+
+#: String 62
+msgid "password"
+msgstr "Password"
+
+#: String 63
+msgid "password_not_match"
+msgstr "Los Passwords no coinciden"
+
+#: String 64
+msgid "phone_number"
+msgstr "Número de teléfono"
+
+#: String 65
+msgid "price"
+msgstr "Precio"
+
+#: String 66
+msgid "product_description"
+msgstr "Descripción"
+
+#: String 67
+msgid "product_info"
+msgstr "Información"
+
+#: String 68
+msgid "product_title"
+msgstr "Título"
+
+#: String 69
+msgid "publish_product"
+msgstr "Publicar"
+
+#: String 70
+msgid "retype_password"
+msgstr "Repetir passwords"
+
+#: String 71
+msgid "save"
+msgstr "Guardar"
+
+#: String 72
+msgid "save_changes"
+msgstr "Guardar cambios"
+
+#: String 73
+msgid "search"
+msgstr "Buscar"
+
+#: String 74
+msgid "search_for_categories"
+msgstr "Buscar en categorías"
+
+#: String 75
+msgid "search_for_products"
+msgstr "Buscar"
+
+#: String 76
+msgid "select_an_option"
+msgstr "Selecciona una opción"
+
+#: String 77
+msgid "select_category"
+msgstr "Selecciona categoría"
+
+#: String 78
+msgid "select_location"
+msgstr "Selecciona ubicación"
+
+#: String 79
+msgid "share"
+msgstr "Compartir"
+
+#: String 80
+msgid "short_password"
+msgstr "Password es corto"
+
+#: String 81
+msgid "short_text"
+msgstr "El texto es corto"
+
+#: String 82
+msgid "success"
+msgstr "Éxito"
+
+#: String 83
+msgid "tap_to_add_a_new_image"
+msgstr "Presiona para añadir nueva imagen"
+
+#: String 84
+msgid "terms_and_conditions"
+msgstr "Términos y condiciones"
+
+#: String 85
+msgid "upload_an_image"
+msgstr "Sube una imagen"
+
+#: String 86
+msgid "user_exists"
+msgstr "El usuario ya existe"
+
+#: String 87
+msgid "username"
+msgstr "username"
+
+#: String 88
+msgid "visit_page"
+msgstr "Ver web"
+
+#: String 89
+msgid "website"
+msgstr "website"
+
+#: String 90
+msgid "write_message"
+msgstr "Escribe el mensaje"
+
+#: String 91
+msgid "your_phone_number"
+msgstr "Tú número de teléfono"
+
+#: String 92
+msgid "your_website"
+msgstr "Tú web"
+
