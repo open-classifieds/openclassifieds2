@@ -348,7 +348,7 @@ class Controller_Panel_Auth extends Controller {
                         if($save_cf === TRUE)
                             $user->save();
 
-                        if (Core::config('users_must_verify_email'))
+                        if (Core::config('general.users_must_verify_email'))
                         {
                             Alert::set(Alert::SUCCESS, __('Please confirm your email address, a confirmation email was sent to your registration email address.'));
 
