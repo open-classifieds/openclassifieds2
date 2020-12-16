@@ -23,8 +23,8 @@ class Model_Post extends ORM {
     /**
      * status constants
      */
-    const STATUS_NOACTIVE = 0; 
-    const STATUS_ACTIVE   = 1; 
+    const STATUS_NOACTIVE = 0;
+    const STATUS_ACTIVE   = 1;
 
     /**
      * @var  array  ORM Dependency/hirerachy
@@ -48,23 +48,23 @@ class Model_Post extends ORM {
                 'seotitle' => array(
                                 array(array($this, 'gen_seotitle'))
                               ),
-                
+
         );
     }
 
 
     /**
-     * 
+     *
      * formmanager definitions
-     * 
+     *
      */
     public function form_setup($form)
-    {   
+    {
         $form->fields['id_user']['value']       =  auth::instance()->get_user()->id_user;
         $form->fields['id_user']['display_as']  = 'hidden';
 
         $form->fields['seotitle']['display_as']  = 'hidden';
-        
+
     }
 
 
@@ -78,7 +78,7 @@ class Model_Post extends ORM {
      * return the title formatted for the URL
      *
      * @param  string $title
-     * 
+     *
      */
     public function gen_seotitle($seotitle)
     {
@@ -117,7 +117,7 @@ class Model_Post extends ORM {
                 }
             }
         }
-        
+
 
         return $seotitle;
     }
@@ -139,10 +139,10 @@ class Model_Post extends ORM {
                         ->render();
             }
         }
-    
+
         return FALSE;
     }
-    
+
     /**
      * return replies of the topic for notification purposes
      * @return array list of emails to send a notification of new response
@@ -150,7 +150,7 @@ class Model_Post extends ORM {
     public function get_repliers()
     {
         $user = Auth::instance()->get_user();
-        
+
         $repliers   = array();
         $id_users   = array();
 
@@ -160,7 +160,7 @@ class Model_Post extends ORM {
             $repliers[] = array('name' => $this->user->name, 'email' => $this->user->email);
             $id_users[] = $this->id_user;
         }
-        
+
         //get all repliers
         $replies = $this->replies->find_all();
         foreach($replies as $reply)
@@ -188,9 +188,52 @@ class Model_Post extends ORM {
         Email::content($this->get_repliers(), '', NULL, NULL, 'new-forum-answer', $data);
     }
 
-    protected $_table_columns =  
+    public function fbcomments()
+    {
+        if(! $this->loaded())
+        {
+            return FALSE;
+        }
+
+        if($this->status != 1)
+        {
+            return FALSE;
+        }
+
+        if(strlen(core::config('advertisement.fbcomments')) == 0)
+        {
+            return FALSE;
+        }
+
+        return View::factory('pages/ad/fbcomments', [
+            'fbcomments' => core::config('advertisement.fbcomments'),
+            'datahref' => Route::url('blog', ['seotitle' => $this->seotitle]),
+        ])->render();
+    }
+
+    public function get_first_image()
+    {
+        if (preg_match('/< *img[^>]*src *= *["\']?([^"\']*)/i', $this->description, $images))
+        {
+            return $images[1];
+        }
+
+        return FALSE;
+    }
+
+    public function comments()
+    {
+        if(! $this->loaded())
+        {
+            return FALSE;
+        }
+
+        return $this->fbcomments().$this->disqus();
+    }
+
+    protected $_table_columns =
 array (
-  'id_post' => 
+  'id_post' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -206,7 +249,7 @@ array (
     'key' => 'PRI',
     'privileges' => 'select,insert,update,references',
   ),
-  'id_user' => 
+  'id_user' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -222,7 +265,7 @@ array (
     'key' => 'MUL',
     'privileges' => 'select,insert,update,references',
   ),
-  'id_post_parent' => 
+  'id_post_parent' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -238,7 +281,7 @@ array (
     'key' => 'MUL',
     'privileges' => 'select,insert,update,references',
   ),
-  'id_forum' => 
+  'id_forum' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -254,7 +297,7 @@ array (
     'key' => 'MUL',
     'privileges' => 'select,insert,update,references',
   ),
-  'title' => 
+  'title' =>
   array (
     'type' => 'string',
     'column_name' => 'title',
@@ -269,7 +312,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'seotitle' => 
+  'seotitle' =>
   array (
     'type' => 'string',
     'column_name' => 'seotitle',
@@ -284,7 +327,7 @@ array (
     'key' => 'UNI',
     'privileges' => 'select,insert,update,references',
   ),
-  'description' => 
+  'description' =>
   array (
     'type' => 'string',
     'character_maximum_length' => '4294967295',
@@ -299,7 +342,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'created' => 
+  'created' =>
   array (
     'type' => 'string',
     'column_name' => 'created',
@@ -312,7 +355,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'ip_address' => 
+  'ip_address' =>
   array (
     'type' => 'int',
     'min' => '-9223372036854775808',
@@ -328,7 +371,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'status' => 
+  'status' =>
   array (
     'type' => 'int',
     'min' => '-128',

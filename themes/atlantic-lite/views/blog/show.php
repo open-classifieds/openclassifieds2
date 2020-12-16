@@ -10,7 +10,7 @@
 
         <?= $post->description ?>
 
-        <?= $post->disqus() ?>
+        <<?= $post->comments() ?>
 
         <nav class="mb-5">
             <?if($previous->loaded()):?>

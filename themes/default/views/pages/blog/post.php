@@ -40,4 +40,4 @@
     <?endif?>
 </div>
 
-<?=$post->disqus()?>
+<?= $post->comments() ?>
