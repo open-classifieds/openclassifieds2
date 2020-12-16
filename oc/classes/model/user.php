@@ -561,7 +561,7 @@ class Model_User extends ORM {
             return $user;
         }
 
-        if (Core::config('users_must_verify_email'))
+        if (Core::config('general.users_must_verify_email'))
         {
             $user = self::create_user($email, $name, $password, self::STATUS_UNVERIFIED);
 
