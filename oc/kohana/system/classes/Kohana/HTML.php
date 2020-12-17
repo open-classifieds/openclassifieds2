@@ -1,3 +1,4 @@
+
 <?php
 /**
  * HTML helper class. Provides generic methods for generating various HTML

@@ -99,16 +99,24 @@ class Controller_Api_Listings extends Api_Auth {
                 //how many? used in header X-Total-Count
                 $count = $ads->count_all();
 
+                //search with lat and long, duplicated, somehow count_all is reseting the query....
+                if (isset($this->_params['latitude']) AND isset($this->_params['longitude']))
+                {
+                    $ads->select(array(DB::expr('degrees(acos(sin(radians('.$this->_params['latitude'].')) * sin(radians(`latitude`)) + cos(radians('.$this->_params['latitude'].')) * cos(radians(`latitude`)) * cos(radians(abs('.$this->_params['longitude'].' - `longitude`))))) * 69.172'), 'distance'))
+                    ->where('latitude','IS NOT',NULL)
+                    ->where('longitude','IS NOT',NULL);
+
+                    //we add the order by in case was specified, this is not a column so we need to do it manually
+                    if (isset($this->_sort['distance']))
+                        $ads->order_by('distance',$this->_sort['distance']);
+                }
+
                 //by default sort by published date
                 if(empty($this->_sort))
                     $this->_sort['published'] = 'desc';
 
                 //after counting sort values
                 $ads->api_sort($this->_sort);
-
-                //we add the order by in case was specified, this is not a column so we need to do it manually
-                if (isset($this->_sort['distance']) AND isset($this->_params['latitude']) AND isset($this->_params['longitude']))
-                    $ads->order_by('distance',$this->_sort['distance']);
 
                 //pagination with headers
                 $pagination = $ads->api_pagination($count,$this->_params['items_per_page']);
