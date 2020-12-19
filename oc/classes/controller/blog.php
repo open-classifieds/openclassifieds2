@@ -101,6 +101,8 @@ class Controller_Blog extends Controller {
             $this->template->title            = $post->title;
             $this->template->meta_description = $post->description;
 
+            Controller::$image = $post->get_first_image();
+
             $previous = new Model_Post();
             $previous = $previous->where('status','=',Model_Post::STATUS_ACTIVE)
                         ->where('id_forum','IS',NULL)

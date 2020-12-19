@@ -8,12 +8,12 @@
 				</div>
 				<div class="blog-full">
 					<p class="post-info">
-						<span class="glyphicon glyphicon-user"></span> <?=$post->user->name?> &nbsp&nbsp <span class="glyphicon glyphicon-calendar"></span> <?=Date::format($post->created, core::config('general.date_format'))?>  
+						<span class="glyphicon glyphicon-user"></span> <?=$post->user->name?> &nbsp&nbsp <span class="glyphicon glyphicon-calendar"></span> <?=Date::format($post->created, core::config('general.date_format'))?>
 					</p>
 
 					<div class="blog-content pad_10">
 						<?=$post->description?>
-					</div> 
+					</div>
 
 					<div class="text-center pad_10">
 						<?if($previous->loaded()):?>
@@ -26,8 +26,8 @@
 						<?endif?>
 					</div>
 				</div>
-				
-				<?=$post->disqus()?>
+
+				<?= $post->comments() ?>
 			</div>
 		</div>
 	</div>
