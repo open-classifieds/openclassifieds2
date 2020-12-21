@@ -154,6 +154,13 @@ class Controller_Panel_Location extends Auth_Crud {
                     $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$form->object->id_location)));
                 }
 
+                // parent location is different than a child location
+                if ($form->object->id_location == $form->object->parent->id_location_parent)
+                {
+                    Alert::set(Alert::INFO, __('You can not set as parent a child location'));
+                    $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$form->object->id_location)));
+                }
+
                 //check if the parent is loaded/exists avoiding errors
                 $parent_loc = new Model_Location($form->object->id_location_parent);
                 if (!$parent_loc->loaded())

@@ -134,6 +134,13 @@ class Controller_Panel_Category extends Auth_Crud {
                     $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$form->object->id_category)));
                 }
 
+                // parent category is different than a child category
+                if ($form->object->id_category == $form->object->parent->id_category_parent)
+                {
+                    Alert::set(Alert::INFO, __('You can not set as parent a child category'));
+                    $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$form->object->id_category)));
+                }
+
                 //check if the parent is loaded/exists avoiding errors
                 $parent_cat = new Model_Category($form->object->id_category_parent);
                 if (!$parent_cat->loaded())
