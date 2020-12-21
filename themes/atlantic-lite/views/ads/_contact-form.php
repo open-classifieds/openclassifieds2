@@ -84,7 +84,7 @@
             <?= FORM::label('contact-captcha', _e('Captcha')) ?>
             <div class="form-row">
                 <div class="form-group col-6 col-md-3">
-                    <?= FORM::input('contact-captcha', NULL, [
+                    <?= FORM::input('captcha', NULL, [
                         'class' => 'form-control',
                         'id' => 'contact-captcha',
                         'required'
