@@ -126,6 +126,11 @@ class Model_Field {
                     ->string($this->_name_prefix.$name, 145);
                 break;
 
+           case 'json':
+                $table->add_column()
+                    ->json($this->_name_prefix.$name);
+                break;
+
             case 'string':
             default:
                 $table->add_column()

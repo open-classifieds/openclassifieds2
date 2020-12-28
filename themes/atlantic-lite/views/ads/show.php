@@ -97,7 +97,7 @@
                 </div>
             <? endif ?>
 
-            <?= View::factory('ads/_custom-fields', compact('cf_list')) ?>
+            <?= View::factory('ads/_custom-fields', compact('ad', 'cf_list')) ?>
 
             <div class="mb-3">
                 <? if(core::config('advertisement.description') != FALSE): ?>

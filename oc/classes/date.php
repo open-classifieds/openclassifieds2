@@ -11,6 +11,17 @@
 class Date extends Kohana_Date {
 
     /**
+      * Days constants
+      */
+      const DAY_MONDAY = 1;
+      const DAY_TUESDAY = 2;
+      const DAY_WEDNESDAY = 3;
+      const DAY_THURSDAY = 4;
+      const DAY_FRIDAY = 5;
+      const DAY_SATURDAY = 6;
+      const DAY_SUNDAY = 7;
+
+    /**
      * Formats the given date into another format
      *
      * @param string $date
@@ -337,5 +348,29 @@ class Date extends Kohana_Date {
         return $months[$date->format("n")];
     }
 
+    public static function half_hours_range($start = '07:30', $times = 41)
+     {
+         $start = new \DateTime($start);
 
+         for ($i = 0; $i < $times; $i++) {
+             $start->add(new \DateInterval('PT30M'));
+             $result[$start->format('Gi')] = $start->format('H:i');
+         }
+
+         return $result;
+     }
+
+     public static function day_labels()
+     {
+         return [
+             self::DAY_MONDAY => __('Monday'),
+             self::DAY_TUESDAY => __('Tuesday'),
+             self::DAY_WEDNESDAY => __('Wednesday'),
+             self::DAY_THURSDAY => __('Thursday'),
+             self::DAY_FRIDAY => __('Friday'),
+             self::DAY_FRIDAY => __('Friday'),
+             self::DAY_SATURDAY => __('Saturday'),
+             self::DAY_SUNDAY => __('Sunday'),
+         ];
+     }
 } // End Date

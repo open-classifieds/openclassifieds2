@@ -923,6 +923,39 @@ function createCustomFieldsByCategory (customfields) {
                     }
                 }
                 break;
+            case 'json':
+                if (idx === 'cf_openinghours') {
+                    $template.find('div:first').removeClass('col-sm-4').addClass('col-sm-8').find('div[data-input]').replaceWith($('#opening-hours-form-group').clone().attr({'id' : idx}).removeClass('d-none').append($('#custom-fields').data('customfield-values')[idx]));
+                    $template.find('select').select2({ width: '100%' });
+
+                    $('input[class*=dayopen]').on('change', function () {
+                        if ($(this).val() == '1') //open
+                        {
+                            $(this).closest('.form-group').find('.openninghours').removeClass('d-none');
+                            $(this).closest('.form-group').find('select').select2({
+                                width: '100%'
+                        });
+                        }
+                        else //closed
+                        {
+                            $(this).closest('.form-group').find('.openninghours').addClass('d-none');
+                        }
+                    });
+                } else {
+                    $template.find('div[data-input]').replaceWith($('<textarea/>').attr({   'id'          : idx,
+                                                                                        'name'        : idx,
+                                                                                        'class'       : 'form-control',
+                                                                                        'placeholder' : customfield.translated_label,
+                                                                                        'rows'        : 10,
+                                                                                        'cols'        : 50,
+                                                                                        'data-type'   : customfield.type,
+                                                                                        'data-toggle' : 'tooltip',
+                                                                                        'title'       : customfield.translated_tooltip,
+                                                                                        'required'    : customfield.required,
+                                                                                    }).append($('#custom-fields').data('customfield-values')[idx]));
+                }
+
+                break;
         }
     });
 

@@ -1375,6 +1375,13 @@ class Controller_Ad extends Controller {
                         elseif (is_numeric($cf_max)) // only max cf has been provided
                             $ads->where($key, '<=', $cf_max);
                     }
+                    elseif($key == 'cf_openinghours' AND array_key_exists(str_replace('cf_','',$key), Model_Field::get_all()))
+                    {
+                         $current_day = strtolower(Date::formatted_time('now', 'N'));
+                         $ads->where(DB::expr('JSON_EXTRACT(`cf_openinghours` , \'$."' . $current_day . '".o\')'), '=', 1);
+                         $ads->where(DB::expr('JSON_EXTRACT(`cf_openinghours` , \'$."' . $current_day . '".f\')'), '<=', (int) $value);
+                         $ads->where(DB::expr('JSON_EXTRACT(`cf_openinghours` , \'$."' . $current_day . '".t\')'), '>=', (int) $value);
+                    }
     	        	elseif(is_numeric($value))
     	        		$ads->where($key, '=', $value);
     	        	elseif(is_string($value))

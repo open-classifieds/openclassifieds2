@@ -432,3 +432,4 @@
 </div>
 
 <?=View::factory('pages/ad/new_scripts')?>
+<?= View::factory('pages/ad/_opening-hours-form-group', ['ad' => $ad]) ?>

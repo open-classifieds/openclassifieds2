@@ -1755,6 +1755,8 @@ class Model_Ad extends ORM {
                     $values[$name] = 1;
                 if($field == '0000-00-00' OR $field == "" OR $field == NULL OR empty($field))
                     $values[$name] = NULL;
+                if(is_array($field))
+                    $values[$name] = json_encode($field, JSON_NUMERIC_CHECK);
             }
         }
 
@@ -1901,5 +1903,92 @@ class Model_Ad extends ORM {
             return View::factory('pages/ad/btc',array('ad'=>$this))->render();
         }
     }
+
+    public function is_open_on($day)
+     {
+         if (!isset($this->cf_openinghours))
+         {
+             return FALSE;
+         }
+
+         if (empty($this->cf_openinghours))
+         {
+             return FALSE;
+         }
+
+         $opening_hours = json_decode($this->cf_openinghours);
+
+         return $opening_hours->{$day}->o ?? FALSE;
+     }
+
+     public function is_open_now()
+     {
+         if (!isset($this->cf_openinghours))
+         {
+             return FALSE;
+         }
+
+         if (empty($this->cf_openinghours))
+         {
+             return FALSE;
+         }
+
+         $opening_hours = json_decode($this->cf_openinghours);
+         $current_day = strtolower(Date::formatted_time('now', 'N'));
+         $current_timestamp = (int) Date::formatted_time('now', 'U');
+         $time_from = substr($opening_hours->{$current_day}->f, 0, -2).':'.substr($opening_hours->{$current_day}->f, -2);
+         $time_to = substr($opening_hours->{$current_day}->t, 0, -2).':'.substr($opening_hours->{$current_day}->t, -2);
+
+         if (
+             $current_timestamp >= strtotime($time_from)
+             AND $current_timestamp <= strtotime($time_to))
+         {
+             return TRUE;
+         }
+
+         return FALSE;
+     }
+
+     public function is_closed_on($day)
+     {
+         if (!isset($this->cf_openinghours))
+         {
+             return TRUE;
+         }
+
+         if (empty($this->cf_openinghours))
+         {
+             return TRUE;
+         }
+
+         $opening_hours = json_decode($this->cf_openinghours);
+
+         return ! $opening_hours->{$day}->o;
+     }
+
+     public function opening_hours_for_day($day)
+     {
+         if (!isset($this->cf_openinghours))
+         {
+             return;
+         }
+
+         if (empty($this->cf_openinghours))
+         {
+             return;
+         }
+
+         if ($this->is_closed_on($day))
+         {
+             return __('Closed');
+         }
+
+         $opening_hours = json_decode($this->cf_openinghours);
+
+         $time_from = substr($opening_hours->{$day}->f, 0, -2).':'.substr($opening_hours->{$day}->f, -2);
+         $time_to = substr($opening_hours->{$day}->t, 0, -2).':'.substr($opening_hours->{$day}->t, -2);
+
+         return Date::format($time_from, 'H:i ') . __('to') . Date::format($time_to, ' H:i');
+     }
 
 } // END Model_ad
