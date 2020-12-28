@@ -61,6 +61,7 @@
                             'file_gpicker' => __('File Google Drive'),
                             'url' => __('URL'),
                             'video' => __('Video'),
+                            'json' => 'JSON',
                         ];
                     ?>
                     <?= FORM::label('type', __('Type'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>

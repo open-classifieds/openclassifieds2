@@ -61,7 +61,55 @@ class Database_MySQLi extends Kohana_Database_MySQLi {
 
         // Return the number of rows affected
         return $this->_connection->affected_rows;
-        
+
     }
+
+    public function datatype($type)
+	{
+		static $types = [
+			'blob'                      => ['type' => 'string', 'binary' => TRUE, 'character_maximum_length' => '65535'],
+			'bool'                      => ['type' => 'bool'],
+			'bigint unsigned'           => ['type' => 'int', 'min' => '0', 'max' => '18446744073709551615'],
+			'datetime'                  => ['type' => 'string'],
+			'decimal unsigned'          => ['type' => 'float', 'exact' => TRUE, 'min' => '0'],
+			'double'                    => ['type' => 'float'],
+			'double precision unsigned' => ['type' => 'float', 'min' => '0'],
+			'double unsigned'           => ['type' => 'float', 'min' => '0'],
+			'enum'                      => ['type' => 'string'],
+			'fixed'                     => ['type' => 'float', 'exact' => TRUE],
+			'fixed unsigned'            => ['type' => 'float', 'exact' => TRUE, 'min' => '0'],
+			'float unsigned'            => ['type' => 'float', 'min' => '0'],
+			'geometry'                  => ['type' => 'string', 'binary' => TRUE],
+			'int unsigned'              => ['type' => 'int', 'min' => '0', 'max' => '4294967295'],
+			'integer unsigned'          => ['type' => 'int', 'min' => '0', 'max' => '4294967295'],
+			'longblob'                  => ['type' => 'string', 'binary' => TRUE, 'character_maximum_length' => '4294967295'],
+			'longtext'                  => ['type' => 'string', 'character_maximum_length' => '4294967295'],
+			'mediumblob'                => ['type' => 'string', 'binary' => TRUE, 'character_maximum_length' => '16777215'],
+			'mediumint'                 => ['type' => 'int', 'min' => '-8388608', 'max' => '8388607'],
+			'mediumint unsigned'        => ['type' => 'int', 'min' => '0', 'max' => '16777215'],
+			'mediumtext'                => ['type' => 'string', 'character_maximum_length' => '16777215'],
+			'national varchar'          => ['type' => 'string'],
+			'numeric unsigned'          => ['type' => 'float', 'exact' => TRUE, 'min' => '0'],
+			'nvarchar'                  => ['type' => 'string'],
+			'point'                     => ['type' => 'string', 'binary' => TRUE],
+			'real unsigned'             => ['type' => 'float', 'min' => '0'],
+			'set'                       => ['type' => 'string'],
+			'smallint unsigned'         => ['type' => 'int', 'min' => '0', 'max' => '65535'],
+			'text'                      => ['type' => 'string', 'character_maximum_length' => '65535'],
+			'tinyblob'                  => ['type' => 'string', 'binary' => TRUE, 'character_maximum_length' => '255'],
+			'tinyint'                   => ['type' => 'int', 'min' => '-128', 'max' => '127'],
+			'tinyint unsigned'          => ['type' => 'int', 'min' => '0', 'max' => '255'],
+			'tinytext'                  => ['type' => 'string', 'character_maximum_length' => '255'],
+            'year'                      => ['type' => 'string'],
+			'json'                      => ['type' => 'string'],
+		];
+
+		$type = str_replace(' zerofill', '', $type);
+
+		if (isset($types[$type]))
+			return $types[$type];
+
+		return parent::datatype($type);
+	}
 
 }

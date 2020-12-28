@@ -104,4 +104,5 @@
     </div>
 </div>
 
-<?=View::factory('pages/ad/new_scripts')?>
+<?=View::factory('ads/_new-scripts')?>
+<?= View::factory('ads/_opening-hours-form-group', ['ad' => $ad]) ?>
