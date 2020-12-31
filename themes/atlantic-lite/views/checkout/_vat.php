@@ -1,3 +1,10 @@
+<? if (Model_Coupon::current()->loaded()) : ?>
+    <? $discount = ($order->coupon->discount_amount == 0)
+        ? ($order->original_price() * $order->coupon->discount_percentage/100)
+        : $order->coupon->discount_amount
+    ?>
+<? endif ?>
+
 <li class="list-group-item d-flex justify-content-between bg-light">
     <div>
         <h6 class="my-0"><?=_e('VAT')?> <?=number_format($order->VAT,2)?>%</h6>

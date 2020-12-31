@@ -43,7 +43,7 @@
                 </li>
 
                 <?if(isset($order->VAT) AND $order->VAT > 0):?>
-                    <?= View::factory('checkout/_vat', compact('order', 'discount')) ?>
+                    <?= View::factory('checkout/_vat', compact('order')) ?>
                 <?endif?>
 
                 <li class="list-group-item d-flex justify-content-between bg-light">
