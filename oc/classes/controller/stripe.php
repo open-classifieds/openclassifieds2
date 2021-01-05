@@ -174,7 +174,7 @@ class Controller_Stripe extends Controller{
         $order = new Model_Order();
         $order = $order->where('id_order', '=', $id_order)
                        ->where('status', '=', Model_Order::STATUS_CREATED)
-                       ->where('id_product','=',Model_Order::PRODUCT_AD_SELL)
+                       ->where('id_product','in',[Model_Order::PRODUCT_AD_SELL, Model_Order::PRODUCT_AD_CUSTOM])
                        ->limit(1)->find();
 
         if ($order->loaded())

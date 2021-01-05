@@ -193,6 +193,7 @@ class Controller_Panel_Home extends Auth_Controller {
                         ->where('created','between',array($my_from_date,$my_to_date))
                         ->where('status','=',Model_Order::STATUS_PAID)
                         ->where('id_product','!=',Model_Order::PRODUCT_AD_SELL)
+                        ->where('id_product','!=',Model_Order::PRODUCT_AD_CUSTOM)
                         ->group_by(DB::expr('DATE( created )'))
                         ->order_by('date','asc')
                         ->execute();
@@ -218,6 +219,7 @@ class Controller_Panel_Home extends Auth_Controller {
                         ->where(DB::expr('DATE( created )'),'=',DB::expr('CURDATE()'))
                         ->where('status','=',Model_Order::STATUS_PAID)
                         ->where('id_product','!=',Model_Order::PRODUCT_AD_SELL)
+                        ->where('id_product','!=',Model_Order::PRODUCT_AD_CUSTOM)
                         ->group_by(DB::expr('DATE( created )'))
                         ->order_by('created','asc')
                         ->execute();
@@ -231,6 +233,7 @@ class Controller_Panel_Home extends Auth_Controller {
                         ->where(DB::expr('DATE( created )'),'=',date('Y-m-d',strtotime('-1 day')))
                         ->where('status','=',Model_Order::STATUS_PAID)
                         ->where('id_product','!=',Model_Order::PRODUCT_AD_SELL)
+                        ->where('id_product','!=',Model_Order::PRODUCT_AD_CUSTOM)
                         ->group_by(DB::expr('DATE( created )'))
                         ->order_by('created','asc')
                         ->execute();
@@ -245,6 +248,7 @@ class Controller_Panel_Home extends Auth_Controller {
                         ->where('created','between',array(date('Y-m-d',strtotime('-30 day')),date::unix2mysql()))
                         ->where('status','=',Model_Order::STATUS_PAID)
                         ->where('id_product','!=',Model_Order::PRODUCT_AD_SELL)
+                        ->where('id_product','!=',Model_Order::PRODUCT_AD_CUSTOM)
                         ->execute();
 
         $orders = $query->as_array();
@@ -255,6 +259,7 @@ class Controller_Panel_Home extends Auth_Controller {
                         ->from('orders')
                         ->where('status','=',Model_Order::STATUS_PAID)
                         ->where('id_product','!=',Model_Order::PRODUCT_AD_SELL)
+                        ->where('id_product','!=',Model_Order::PRODUCT_AD_CUSTOM)
                         ->execute();
 
         $orders = $query->as_array();

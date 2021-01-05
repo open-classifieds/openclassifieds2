@@ -15,6 +15,7 @@ class Controller_Panel_Addons_Messaging extends Auth_Controller {
         if($this->request->post())
         {
             Model_Config::set_value('general', 'messaging', Core::post('is_active') ?? 0);
+            Model_Config::set_value('general', 'custom_orders', Core::post('custom_orders') ?? 0);
 
             Alert::set(Alert::SUCCESS, __('Configuration updated'));
 

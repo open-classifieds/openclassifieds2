@@ -48,11 +48,12 @@ class Model_Order extends ORM {
     /**
      * Id of products
      */
-    const PRODUCT_CATEGORY      = 1; //paid to post in a paid category
-    const PRODUCT_TO_TOP        = 2; //paid to return the ad to the first page
-    const PRODUCT_TO_FEATURED   = 3; // paid to featured an ad in the site
-    const PRODUCT_AD_SELL       = 4; // a customer paid to buy the item/ad
-    const PRODUCT_APP_FEE       = 5; // application fee, thats what we cahrge to the seller
+    const PRODUCT_CATEGORY      = 1;  // paid to post in a paid category
+    const PRODUCT_TO_TOP        = 2;  // paid to return the ad to the first page
+    const PRODUCT_TO_FEATURED   = 3;  // paid to featured an ad in the site
+    const PRODUCT_AD_SELL       = 4;  // a customer paid to buy the item/ad
+    const PRODUCT_APP_FEE       = 5;  // application fee, that's what we charge to the seller
+    const PRODUCT_AD_CUSTOM     = 6;
 
     /**
      * returns the product array
@@ -66,7 +67,9 @@ class Model_Order extends ORM {
                             self::PRODUCT_TO_FEATURED   =>  __('Feature ad'),
                             self::PRODUCT_AD_SELL       =>  __('Buy product'),
                             self::PRODUCT_APP_FEE       =>  __('Application Fee'),
+                            self::PRODUCT_AD_CUSTOM     =>  __('Custom'),
                         );
+
         if (Core::config('general.subscriptions')==TRUE AND Core::extra_features() == TRUE )
         {
             $plans = new Model_Plan();
@@ -169,6 +172,9 @@ class Model_Order extends ORM {
                 //depending on the product different actions
                 switch ($this->id_product) {
                     case Model_Order::PRODUCT_AD_SELL:
+                            $ad->sale($this);
+                        break;
+                    case Model_Order::PRODUCT_AD_CUSTOM:
                             $ad->sale($this);
                         break;
                     case Model_Order::PRODUCT_TO_TOP:
@@ -521,6 +527,9 @@ class Model_Order extends ORM {
                         $amount = ($this->ad->price * $this->quantity) + $this->ad->shipping_price();
                     else
                         $amount = $this->ad->price * $this->quantity;
+                break;
+            case self::PRODUCT_AD_CUSTOM:
+                        $amount = $this->amount;
                 break;
             default:
                 $plan = new Model_Plan($this->id_product);

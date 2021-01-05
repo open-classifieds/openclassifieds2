@@ -325,7 +325,7 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
         $orders = $orders->join('ads')
                         ->using('id_ad')
                         ->where('order.status','=',Model_Order::STATUS_PAID)
-                        ->where('order.id_product','=',Model_Order::PRODUCT_AD_SELL)
+                        ->where('order.id_product','in',[Model_Order::PRODUCT_AD_SELL, Model_Order::PRODUCT_AD_CUSTOM])
                         ->where('ads.id_user', '=', $user->id_user);
 
 

@@ -236,7 +236,7 @@
             </p>
         <?endif?>
 
-        <?if ($order->id_product!=Model_Order::PRODUCT_AD_SELL):?>
+        <?if (!in_array($order->id_product, [Model_Order::PRODUCT_AD_SELL, Model_Order::PRODUCT_AD_CUSTOM])):?>
             <?if (Core::config('payment.paypal_account')!=''):?>
                 <p class="text-right">
                     <a class="btn btn-success btn-lg" href="<?=Route::url('default', array('controller'=> 'paypal','action'=>'pay' , 'id' => $order->id_order))?>">

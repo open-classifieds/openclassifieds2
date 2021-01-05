@@ -26,6 +26,19 @@
                     <?=FORM::checkbox('is_active', 1, (bool) Core::post('is_active', $is_active), ['class' => 'form-checkbox h-6 w-6 text-blue-600 bg-gray-100 transition duration-150 ease-in-out'])?>
                 </div>
             </div>
+            <div class="mt-8 border-t border-gray-200 pt-8">
+                <div class="grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
+                    <div class="sm:col-span-6">
+                        <div class="absolute flex items-center h-5">
+                            <?=FORM::checkbox('custom_orders', 1, (bool) Core::post('custom_orders', Core::config('general.custom_orders')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
+                        </div>
+                        <div class="pl-7 text-sm leading-5">
+                            <?=FORM::label('custom_orders', __('Custom orders'), ['class'=>'font-medium text-gray-700'])?>
+                            <p class="text-gray-500"><?=__('Allow sellers to create custom orders when negotiating a price in the messaging system.')?></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="mt-5 sm:flex sm:items-center">
                 <span class="mt-3 w-ful inline-flex rounded-md shadow-sm sm:mt-0 sm:w-auto">
                     <?= Form::button('submit', __('Save'), ['type'=>'submit', 'class'=>'w-full inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150 sm:w-auto sm:text-sm sm:leading-5'])?>

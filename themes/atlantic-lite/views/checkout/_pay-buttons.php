@@ -13,7 +13,7 @@
     </a>
 <?endif?>
 
-<?if ($order->id_product!=Model_Order::PRODUCT_AD_SELL):?>
+<?if (!in_array($order->id_product, [Model_Order::PRODUCT_AD_SELL, Model_Order::PRODUCT_AD_CUSTOM])):?>
     <?if ( ($user = Auth::instance()->get_user())!=FALSE AND ($user->is_admin() OR $user->is_moderator())):?>
         <a title="<?=__('Mark as paid')?>" class="btn btn-primary ml-2" href="<?=Route::url('oc-panel', array('controller'=> 'order', 'action'=>'pay','id'=>$order->id_order))?>">
             <?=_e('Mark as paid')?>

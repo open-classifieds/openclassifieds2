@@ -101,7 +101,7 @@ class StripeKO {
             Core::config('payment.stripe_private')!='' AND
             Core::config('payment.stripe_public')!='' AND
             Core::extra_features() == TRUE AND
-            $order->id_product == Model_Order::PRODUCT_AD_SELL )
+            in_array($order->id_product, [Model_Order::PRODUCT_AD_SELL, Model_Order::PRODUCT_AD_CUSTOM]))
         {
             if ($order->ad->price != NULL AND $order->ad->price > 0 AND
                 (core::config('payment.stock')==0 OR ($order->ad->stock > 0 AND core::config('payment.stock')==1)))

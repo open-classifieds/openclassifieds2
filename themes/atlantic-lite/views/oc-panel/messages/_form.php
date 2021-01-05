@@ -25,7 +25,15 @@
 
     <?=Form::token('reply_message')?>
 
-    <a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>" class="btn btn-light"><?=_e('Cancel')?></a>
+    <div class="tw-flex tw-justify-between">
+        <div>
+            <a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>" class="btn btn-light"><?=_e('Cancel')?></a>
 
-    <button type="submit" class="btn btn-primary"><?=_e('Reply')?></button>
+            <button type="submit" class="btn btn-primary"><?=_e('Reply')?></button>
+        </div>
+
+        <?if ($msg_thread->id_ad !== NULL AND $msg_thread->ad->id_user === $user->id_user):?>
+            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#customOrderFormModal"><?=_e('Create custom order')?></button>
+        <? endif ?>
+    </div>
 </form>

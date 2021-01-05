@@ -98,11 +98,59 @@
                             </div>
                         </div>
                         <?=Form::token('reply_message')?>
-                        <a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>" class="btn btn-default"><?=_e('Cancel')?></a>
-                        <button type="submit" class="btn btn-primary"><?=_e('Reply')?></button>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>" class="btn btn-default"><?=_e('Cancel')?></a>
+                                <button type="submit" class="btn btn-primary"><?=_e('Reply')?></button>
+                            </div>
+                            <?if ($msg_thread->id_ad !== NULL AND $msg_thread->ad->id_user === $user->id_user):?>
+                                <div class="col-md-6 text-right">
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#customOrderFormModal"><?=_e('Create custom order')?></button>
+                                </div>
+                            <? endif ?>
+                        </div>
                     </form>
                 </td>
             </tr>
         </tbody>
     </table>
 </div><!--//panel-->
+
+<div class="modal fade" id="customOrderFormModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <?= FORM::open(Route::url('oc-panel', ['controller' => 'messages', 'action' => 'custom_order', 'id' => Request::current()->param('id')])) ?>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"><?=__('Create custom order')?></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="description"><?=__('Description')?></label>
+                        <textarea
+                            name="description"
+                            rows="4"
+                            class="form-control"
+                            required
+                        ><?= Core::post('description') ?></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="amount"><?=__('Amount')?></label>
+                        <input
+                            name="amount"
+                            type="text"
+                            class="form-control"
+                            id="amount"
+                            placeholder="<?= i18n::format_currency(0, core::config('payment.paypal_currency')) ?>"
+                            required
+                        >
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary"><?=__('Submit')?></button>
+                </div>
+            <?= FORM::close() ?>
+        </div>
+    </div>
+</div>
