@@ -28,6 +28,11 @@ class Controller_Panel_Update extends Auth_Controller {
                 'group_name'     => 'general',
                 'config_value'   => '0'
             ],
+            [
+                'config_key'     => 'custom_orders',
+                'group_name'     => 'general',
+                'config_value'   => '0'
+            ],
         ];
 
         //user email varification code

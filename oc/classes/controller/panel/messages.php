@@ -125,6 +125,78 @@ class Controller_Panel_Messages extends Auth_Frontcontroller {
         }
     }
 
+    public function action_custom_order()
+    {
+        if (! $this->request->post())
+        {
+            Alert::set(Alert::ERROR, __('Message not found'));
+
+            $this->redirect(Route::url('oc-panel', array('controller' => 'messages', 'action' => 'index')));
+        }
+
+        if (core::config('general.black_list') == TRUE AND Model_User::is_spam() === TRUE)
+        {
+            Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content! If you think this is a mistake please contact us.'));
+
+            $this->redirect(Route::url('default'));
+        }
+
+        if ($this->request->param('id') === NULL OR ! is_numeric($id_msg_thread = $this->request->param('id')))
+        {
+            Alert::set(Alert::ERROR, __('Message not found'));
+
+            $this->redirect(Route::url('oc-panel', array('controller' => 'messages', 'action' => 'index')));
+        }
+
+        if (Model_Message::get_thread($id_msg_thread, $this->user) === FALSE)
+        {
+            Alert::set(Alert::ERROR, __('Message not found'));
+
+            $this->redirect(Route::url('oc-panel', array('controller' => 'messages', 'action' => 'index')));
+        }
+
+        $validation = Validation::factory($this->request->post())->rule('description', 'not_empty')->rule('amount', 'not_empty');
+
+        if (! $validation)
+        {
+            $errors = $validation->errors('message');
+
+            $this->redirect(Route::url('oc-panel', array('controller' => 'messages', 'action' => 'index')));
+        }
+
+
+        $msg_thread = (new Model_Message())
+                        ->where('id_message', '=', $id_msg_thread)
+                        ->where('id_message_parent', '=', $id_msg_thread)
+                        ->find();
+
+        if ($msg_thread->id_ad === NULL OR $msg_thread->ad->id_user !== $this->user->id_user)
+        {
+            $this->redirect(Route::url('oc-panel', array('controller' => 'messages', 'action' => 'index')));
+        }
+
+        $amount     = core::post('amount');
+        $currency   = (isset($msg_thread->ad->cf_currency) AND $msg_thread->ad->cf_currency != '') ? $msg_thread->ad->cf_currency:core::config('payment.paypal_currency');
+        $id_product = Model_Order::PRODUCT_AD_CUSTOM;
+
+        $order = Model_Order::new_order($msg_thread->ad, $msg_thread->from, $id_product, $amount, $currency, core::post('description'), NULL, 1);
+
+        $checkout_url = PHP_EOL.PHP_EOL.'[url=' . Route::url('default', ['controller' => 'ad', 'action' => 'checkout' , 'id' => $order->id_order]) . ']' . __('Pay order') . '[/url]';
+
+        $message = Model_Message::reply(core::post('description') . $checkout_url, $this->user, $id_msg_thread, core::post('amount'));
+
+        if ($message === FALSE)
+        {
+            Alert::set(Alert::ERROR, __('Message not sent'));
+
+            $this->redirect(Route::url('oc-panel', array('controller' => 'messages', 'action' => 'message', 'id' => $id_msg_thread)));
+        }
+
+        Alert::set(Alert::SUCCESS, __('Reply created.'));
+
+        $this->redirect(Route::url('oc-panel', array('controller' => 'messages', 'action' => 'message', 'id' => $id_msg_thread)));
+    }
+
 
     public function action_status()
     {

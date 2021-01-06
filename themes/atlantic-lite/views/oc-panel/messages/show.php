@@ -62,8 +62,10 @@
                 >
             </td>
             <td>
-                <?= View::factory('oc-panel/messages/_form', ['errors' => isset($errors) ? $errors : NULL]) ?>
+                <?= View::factory('oc-panel/messages/_form', ['errors' => isset($errors) ? $errors : NULL, 'user' => $user, 'msg_thread' => $msg_thread]) ?>
             </td>
         </tr>
     </tbody>
 </table>
+
+<?= View::factory('oc-panel/messages/_custom-order-form-modal') ?>

@@ -41,7 +41,7 @@ class Controller_Paypal extends Controller{
 		{
 
             //order is from a payment done to the owner of the ad
-            if ($order->id_product == Model_Order::PRODUCT_AD_SELL)
+            if (in_array($order->id_product, [Model_Order::PRODUCT_AD_SELL, Model_Order::PRODUCT_AD_CUSTOM]))
             {
                 $paypal_account = $order->ad->paypal_account();
 
@@ -103,7 +103,8 @@ class Controller_Paypal extends Controller{
         if ($order->loaded())
         {
         	// case when selling advert
-        	if($order->id_product == Model_Order::PRODUCT_AD_SELL){
+            if(in_array($order->id_product, [Model_Order::PRODUCT_AD_SELL, Model_Order::PRODUCT_AD_CUSTOM]))
+            {
         		$paypal_account = $order->ad->paypal_account();
         		$currency = $order->currency;
         	}

@@ -71,7 +71,7 @@ class Controller_StripeCheckout extends Controller{
 
         $order = (new Model_Order())->where('id_order', '=', $id_order)
                        ->where('status', '=', Model_Order::STATUS_CREATED)
-                       ->where('id_product','=',Model_Order::PRODUCT_AD_SELL)
+                       ->where('id_product','in',[Model_Order::PRODUCT_AD_SELL, Model_Order::PRODUCT_AD_CUSTOM])
                        ->limit(1)
                        ->find();
 

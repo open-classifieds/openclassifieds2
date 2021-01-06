@@ -57,7 +57,7 @@ class Model_Coupon extends ORM {
      * @var Model_Coupon
      */
     protected static $_current = NULL;
-    
+
 
     public function exclude_fields()
     {
@@ -66,26 +66,26 @@ class Model_Coupon extends ORM {
 
     /**
      * verifies if a coupon is valid for that product
-     * @param  int $id_product 
+     * @param  int $id_product
      * @return bolean
      */
     public static function valid($id_product)
     {
         //loaded, not for product ad sell
-        if (Model_Coupon::current()->loaded()  AND  $id_product!=Model_Order::PRODUCT_AD_SELL AND
+        if (Model_Coupon::current()->loaded() AND !in_array($id_product, [Model_Order::PRODUCT_AD_SELL, Model_Order::PRODUCT_AD_CUSTOM]) AND
             (Model_Coupon::current()->id_product == $id_product OR Model_Coupon::current()->id_product == NULL))
             return TRUE;
 
         return FALSE;
-            
+
     }
 
 
     /**
      * calculates the price adding a coupon
-     * @param  int $id_product 
-     * @param  float $amount     
-     * @return float             
+     * @param  int $id_product
+     * @param  float $amount
+     * @return float
      */
     public static function price($id_product,$amount)
     {
@@ -114,12 +114,12 @@ class Model_Coupon extends ORM {
     }
 
     /**
-     * 
+     *
      * formmanager definitions
-     * 
+     *
      */
     public function form_setup($form)
-    {   
+    {
 
         $form->fields['id_product']['display_as']   = 'select';
         $form->fields['id_product']['options']      = array_keys(Model_Order::products());
@@ -132,8 +132,8 @@ class Model_Coupon extends ORM {
 
     /**
      * decreases de number available of coupon and deletes de cookie ;)
-     * @param  model_coupon $coupon 
-     * @return void         
+     * @param  model_coupon $coupon
+     * @return void
      */
     public static function sale(Model_Coupon $coupon = NULL)
     {
@@ -145,7 +145,7 @@ class Model_Coupon extends ORM {
             $coupon->number_coupons--;
             try {
                 $coupon->save();
-            } 
+            }
             catch (ORM_Validation_Exception $e)
             {
                 throw HTTP_Exception::factory(500,$e->errors(''));
@@ -210,14 +210,14 @@ class Model_Coupon extends ORM {
                     Alert::set(Alert::SUCCESS, __('Coupon added!'));
                     Session::instance()->set('coupon',$coupon->name);
                 }
-                
+
             }
             else
             {
                 Alert::set(Alert::INFO, __('Coupon not valid, expired or already used.'));
                 Session::instance()->set('coupon','');
             }
-                
+
         }
 
         return $coupon;
@@ -225,7 +225,7 @@ class Model_Coupon extends ORM {
 
     /**
      * tells if theres coupons active in the platform, to show the coupon form, or not ;)
-     * @return bool 
+     * @return bool
      */
     public static function available()
     {
@@ -239,9 +239,9 @@ class Model_Coupon extends ORM {
         return $coupon->loaded();
     }
 
-    protected $_table_columns =  
+    protected $_table_columns =
 array (
-  'id_coupon' => 
+  'id_coupon' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -257,7 +257,7 @@ array (
     'key' => 'PRI',
     'privileges' => 'select,insert,update,references',
   ),
-  'id_product' => 
+  'id_product' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -273,7 +273,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'name' => 
+  'name' =>
   array (
     'type' => 'string',
     'column_name' => 'name',
@@ -288,7 +288,7 @@ array (
     'key' => 'UNI',
     'privileges' => 'select,insert,update,references',
   ),
-  'notes' => 
+  'notes' =>
   array (
     'type' => 'string',
     'column_name' => 'notes',
@@ -303,7 +303,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'discount_amount' => 
+  'discount_amount' =>
   array (
     'type' => 'float',
     'exact' => true,
@@ -319,7 +319,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'discount_percentage' => 
+  'discount_percentage' =>
   array (
     'type' => 'float',
     'exact' => true,
@@ -335,7 +335,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'number_coupons' => 
+  'number_coupons' =>
   array (
     'type' => 'int',
     'min' => '-2147483648',
@@ -351,7 +351,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'valid_date' => 
+  'valid_date' =>
   array (
     'type' => 'string',
     'column_name' => 'valid_date',
@@ -364,7 +364,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'created' => 
+  'created' =>
   array (
     'type' => 'string',
     'column_name' => 'created',
@@ -377,7 +377,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'status' => 
+  'status' =>
   array (
     'type' => 'int',
     'min' => '-128',

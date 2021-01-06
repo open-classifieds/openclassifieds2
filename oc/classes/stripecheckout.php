@@ -158,7 +158,7 @@ class StripeCheckout {
             return NULL;
         }
 
-        if ($order->id_product != Model_Order::PRODUCT_AD_SELL)
+        if (! in_array($order->id_product, [Model_Order::PRODUCT_AD_SELL, Model_Order::PRODUCT_AD_CUSTOM]))
         {
             return NULL;
         }
