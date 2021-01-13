@@ -396,3 +396,35 @@ msgstr "Success"
 #: String 96
 msgid "data_updated"
 msgstr "All your data has been successfully updated"
+
+#: String 97
+msgid "field_empty"
+msgstr "Field can't be empty"
+
+#: String 98
+msgid "sort_by"
+msgstr "Sort by"
+
+#: String 99
+msgid "distance"
+msgstr "Distance"
+
+#: String 100
+msgid "price_low_to_high"
+msgstr "Price low to high"
+
+#: String 101
+msgid "price_high_to_low"
+msgstr "Price high to low"
+
+#: String 102
+msgid "newest_first"
+msgstr "Newest first"
+
+#: String 103
+msgid "featured"
+msgstr "Featured"
+
+#: String 104
+msgid "location_failed"
+msgstr "Couldn't get your location"
