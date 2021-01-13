@@ -19,7 +19,7 @@
         "holderjs": "^2.9.7",
         "jasny-bootstrap": "^4.0.0",
         "jquery": "^3.5.1",
-        "jquery-validation": "^1.19.2",
+        "jquery-validation": "^1.19.3",
         "laravel-mix": "^5.0.9",
         "laravel-mix-purgecss": "^5.0.0",
         "laravel-mix-tailwind": "^0.1.1",
