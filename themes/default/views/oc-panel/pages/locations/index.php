@@ -50,7 +50,7 @@
     <span id="ajax_result" data-url="<?=Route::url('oc-panel', ['controller'=>'location','action'=>'saveorder'])?>"></span>
 </div>
 
-<?=FORM::open(Route::url('oc-panel',array('controller'=>'location','action'=>'multy_locations')), array('role'=>'form','enctype'=>'multipart/form-data'))?>
+<?=FORM::open(Route::url('oc-panel',array('controller'=>'location','action'=>'multy_locations')) . (Core::get('id_location') ? '?id_location='.Core::get('id_location') : NULL), array('role'=>'form','enctype'=>'multipart/form-data'))?>
     <div class="bg-white shadow sm:rounded-lg mt-8">
         <div class="px-4 py-5 sm:p-6">
             <h3 class="text-lg leading-6 font-medium text-gray-900">
