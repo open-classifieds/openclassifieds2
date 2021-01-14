@@ -32,6 +32,7 @@ class Controller_Panel_Integrations_GoogleMaps extends Auth_Controller {
             Model_Config::set_value('advertisement', 'homepage_map_height', Core::post('homepage_map_height'));
             Model_Config::set_value('advertisement', 'homepage_map_allowfullscreen', Core::post('homepage_map_allowfullscreen') ?? 0);
             Model_Config::set_value('general', 'auto_locate', Core::post('auto_locate') ?? 0);
+            Model_Config::set_value('advertisement', 'auto_locate_distance', Core::post('auto_locate_distance'));
             Model_Config::set_value('advertisement', 'map_pub_new', Core::post('map_pub_new') ?? 0);
             Model_Config::set_value('advertisement', 'map', Core::post('map') ?? 0);
 
