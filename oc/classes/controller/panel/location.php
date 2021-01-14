@@ -87,6 +87,14 @@ class Controller_Panel_Location extends Auth_Crud {
                 {
                     $location->description = Kohana::$_POST_ORIG['description'];
                 }
+                elseif ($name=='latitude')
+                {
+                    $location->latitude = empty($value) ? NULL : $value;
+                }
+                elseif ($name=='longitude')
+                {
+                    $location->longitude = empty($value) ? NULL : $value;
+                }
                 elseif($name != 'submit')
                 {
                     $location->$name = $value;
