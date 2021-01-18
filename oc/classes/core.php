@@ -16,7 +16,7 @@ class Core {
      * OC version
      * @var string
      */
-    const VERSION = '4.0.2';
+    const VERSION = '4.1.0';
 
     /**
      * @var string used to populate data from valid domain
@@ -724,37 +724,43 @@ class Core {
     public static function download($l)
     {
         $download_url = Core::yclas_url_().'/api/v1/license/download/'.$l.'/?domain='.parse_url(URL::base(), PHP_URL_HOST);
-        $fname = DOCROOT.'themes/'.$l.'.zip'; //root folder
-        $file_content = core::curl_get_contents($download_url);
 
-        if ($file_content!='false')
+        if ( ($url_location = get_headers($download_url,1)) != FALSE AND is_array($url_location) AND isset($url_location['Location']) )
         {
-            // saving zip file to dir.
-            file_put_contents($fname, $file_content);
+            //d($url_location);
+            $download_url = end($url_location['Location']);
+            //d($download_url);
+            
+            $fname = DOCROOT.'themes/'.$l.'.zip'; //root folder
+            $file_content = core::curl_get_contents($download_url);
 
-            try {
-                $zip = new ZipArchive;
-                if ($zip_open = $zip->open($fname))
-                {
-                    //if theres nothing in that ZIP file...zip corrupted :(
-                    if ($zip->getNameIndex(0)===FALSE)
-                        return FALSE;
+            if ($file_content!='false')
+            {
+                // saving zip file to dir.
+                file_put_contents($fname, $file_content);
 
-                    $theme_name = (substr($zip->getNameIndex(0), 0,-1));
-                    File::delete(DOCROOT.'themes/'.$theme_name);
-                    $zip->extractTo(DOCROOT.'themes/');
-                    $zip->close();
-                    File::delete($fname);
-                    Alert::set(Alert::SUCCESS, $theme_name.' Updated');
-                    return $theme_name;
+                try {
+                    $zip = new ZipArchive;
+                    if ($zip_open = $zip->open($fname))
+                    {
+                        //if theres nothing in that ZIP file...zip corrupted :(
+                        if ($zip->getNameIndex(0)===FALSE)
+                            return FALSE;
+
+                        $theme_name = (substr($zip->getNameIndex(0), 0,-1));
+                        File::delete(DOCROOT.'themes/'.$theme_name);
+                        $zip->extractTo(DOCROOT.'themes/');
+                        $zip->close();
+                        File::delete($fname);
+                        Alert::set(Alert::SUCCESS, $theme_name.' Updated');
+                        return $theme_name;
+                    }
+                } catch (Exception $e) {
+                    return FALSE;
                 }
-            } catch (Exception $e) {
-                return FALSE;
             }
 
-
         }
-
         return FALSE;
     }
 
