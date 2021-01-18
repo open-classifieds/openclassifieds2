@@ -18,6 +18,12 @@
             <?=Text::limit_chars($sale->ad->title, 30, NULL, TRUE)?>
         </a>
 
+        <?if (core::config('general.ewallet') AND $sale->received !== NULL AND in_array($sale->id_product, [Model_Order::PRODUCT_AD_SELL, Model_Order::PRODUCT_AD_CUSTOM])):?>
+            <span class="badge badge-success"><?=_e('Received')?></span> 
+        <?elseif (core::config('general.ewallet') AND $sale->received === NULL AND in_array($sale->id_product, [Model_Order::PRODUCT_AD_SELL, Model_Order::PRODUCT_AD_CUSTOM])):?>
+            <span class="badge badge-info"><?=_e('Not received yet')?></span> 
+        <?endif?>
+
         <?if (isset($sale->ad->cf_file_download)):?>
             <a class="btn btn-sm btn-success" href="<?=$sale->ad->cf_file_download?>">
                 <?=_e('Download')?>

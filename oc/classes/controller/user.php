@@ -1,17 +1,17 @@
 <?php defined('SYSPATH') or die('No direct access allowed.');
 
 /**
- * 
+ *
  * Display user profile
  * @throws HTTP_Exception_404
  */
 class Controller_User extends Controller {
-	
+
 /*    public function __construct($request, $response)
     {
         parent::__construct($request, $response);
-        
-        
+
+
     }*/
 
     public function action_index()
@@ -19,8 +19,8 @@ class Controller_User extends Controller {
         $db_prefix  = Database::instance('default')->table_prefix();
 
         //include num of ads so we can filter, sort and display next to each user
-        $query_count = '(SELECT count(id_ad) FROM '.$db_prefix.'ads 
-                        WHERE id_user='.$db_prefix.'user.id_user AND 
+        $query_count = '(SELECT count(id_ad) FROM '.$db_prefix.'ads
+                        WHERE id_user='.$db_prefix.'user.id_user AND
                                 status='.Model_Ad::STATUS_PUBLISHED.')';
 
         $users = new Model_User();
@@ -29,7 +29,7 @@ class Controller_User extends Controller {
 
         //search filter
         if(core::request('search')!==NULL AND strlen(core::request('search'))>=3)
-        {   
+        {
             $search = core::request('search');
 
             $users
@@ -40,17 +40,17 @@ class Controller_User extends Controller {
         }
 
         //cf filter
-        foreach (array_merge($_POST,$_GET) as $name => $value) 
+        foreach (array_merge($_POST,$_GET) as $name => $value)
         {
             //value set and is a CF
-            if (    isset($value) AND $value != NULL AND 
-                    strpos($name,'cf_') !== FALSE AND 
-                    array_key_exists(str_replace('cf_','',$name), Model_UserField::get_all()) 
-                ) 
+            if (    isset($value) AND $value != NULL AND
+                    strpos($name,'cf_') !== FALSE AND
+                    array_key_exists(str_replace('cf_','',$name), Model_UserField::get_all())
+                )
             {
                 //checkbox when selected return string 'on' as a value
                 $value = ($value == 'on')?1:$value;
-                
+
                 if(is_numeric($value))
                     $users->where($name, '=', $value);
                 elseif(is_string($value))
@@ -68,7 +68,7 @@ class Controller_User extends Controller {
         /**
          * order depending on the sort parameter
          */
-        switch (core::request('sort')) 
+        switch (core::request('sort'))
         {
             //num of ads desc
             case 'ads-asc':
@@ -104,7 +104,7 @@ class Controller_User extends Controller {
         $users = $users->limit($pagination->items_per_page)
                         ->offset($pagination->offset)
                         ->find_all();
-        
+
 
         //if home page is the users
         if ( ($landing = json_decode(core::config('general.landing_page'))) != NULL
@@ -134,8 +134,8 @@ class Controller_User extends Controller {
 
         $this->template->content = View::factory('pages/user/list',array('users'     => $users,
                                                                         'pagination' => $pagination,
-                                                                        )); 
-    }	
+                                                                        ));
+    }
 
 	public function action_profile()
 	{
@@ -149,27 +149,27 @@ class Controller_User extends Controller {
 			$user->where('seoname','=', $seoname)
                  ->where('status','=', Model_User::STATUS_ACTIVE)
 				 ->limit(1)->cached()->find();
-			
+
 			if ($user->loaded())
 			{
 				$this->template->title = __('User Profile').' - '.$user->name;
-				
+
 				//$this->template->meta_description = $user->name;//@todo phpseo
-				
+
 				$this->template->bind('content', $content);
 
 				$ads = new Model_Ad();
 				$ads->where('id_user', '=', $user->id_user)
                             ->where('status', '=', Model_Ad::STATUS_PUBLISHED)
                             ->order_by('created','desc');
-				
-				
+
+
 				// case when user dont have any ads
 				if( ($count_all = $ads->count_all()) == 0)
                 {
                     $profile_ads = NULL;
                     $pagination  = NULL;
-                } 
+                }
                 else
                 {
                     $pagination = Pagination::factory(array(
@@ -190,7 +190,7 @@ class Controller_User extends Controller {
 				//throw 404
 				throw HTTP_Exception::factory(404,__('Page not found'));
 			}
-			
+
 		}
 		else//this will never happen
 		{
@@ -265,5 +265,5 @@ class Controller_User extends Controller {
         ]);
     }
 
-	
+
 }// End Userprofile Controller

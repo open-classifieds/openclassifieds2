@@ -463,9 +463,16 @@ class I18n extends Kohana_I18n {
      */
     public static function money_format($number, $currency = NULL)
     {
-        if($currency == NULL){
+        if(core::config('general.ewallet'))
+        {
+            $format = 'YCL';
+        }
+        elseif($currency == NULL)
+        {
             $format = core::config('general.number_format');
-        } else {
+        }
+        else
+        {
             $format = $currency;
         }
 
@@ -611,6 +618,7 @@ class I18n extends Kohana_I18n {
         'XAF' => array(' CFA',0,',','.',1),         //  CFA franc BEAC
         'XOF' => array('CFA',2,'.',',',1),          //  West African CFA Franc
         'ZMW' => array('ZK',2,'.',',',1),          //  Zambian Kwacha
+        'YCL' => array('YCL',0,'.',',',0),          //  eWallet coin
     );
 
     /**
@@ -634,6 +642,12 @@ class I18n extends Kohana_I18n {
         //no symbol using default code
         if (self::$currencies[$currency][0] === NULL)
             self::$currencies[$currency][0] = $currency;
+
+        //ewallet format
+        if ($currency == 'YCL')
+        {
+            return Core::config('general.ewallet_money_symbol').$number;
+        }
 
         //adding the symbol in the back
         if (self::$currencies[$currency][4]===1)

@@ -113,27 +113,45 @@
                                 <em>(<?=Model_Order::product_desc($order->id_product)?>
                                     <?if ($order->id_product == Model_Order::PRODUCT_TO_FEATURED):?>
                                         <?=$order->featured_days?> <?=_e('Days')?>
+                                    <?elseif ($order->id_product == Model_Order::PRODUCT_ADD_MONEY):?>
+                                        <?= i18n::money_format($order->quantity, 'YCL') ?>
                                     <?endif?>
                                     )
                                 </em>
                                 <div class="dropdown" style="display:inline-block;">
-                                <?if ($order->id_product == Model_Order::PRODUCT_TO_FEATURED AND is_array($featured_plans=Model_Order::get_featured_plans()) AND core::count($featured_plans) > 1):?>
-                                    <button class="btn btn-xs btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                                        <?=_e('Change plan')?>
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <?foreach ($featured_plans as $days => $price):?>
-                                            <?if ($order->featured_days != $days):?>
-                                                <li>
-                                                    <a href="<?=Route::url('default',array('controller'=>'ad', 'action'=>'checkout','id'=>$order->id_order))?>?featured_days=<?=$days?>">
-                                                        <small><?=$days?> <?=_e('Days')?> - <?=core::config('payment.paypal_currency')?> <?=$price?></small>
-                                                    </a>
-                                                </li>
-                                            <?endif?>
-                                        <?endforeach?>
-                                    </ul>
-                                <?endif?>
+                                    <?if ($order->id_product == Model_Order::PRODUCT_TO_FEATURED AND is_array($featured_plans=Model_Order::get_featured_plans()) AND core::count($featured_plans) > 1):?>
+                                        <button class="btn btn-xs btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                                            <?=_e('Change plan')?>
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <?foreach ($featured_plans as $days => $price):?>
+                                                <?if ($order->featured_days != $days):?>
+                                                    <li>
+                                                        <a href="<?=Route::url('default',array('controller'=>'ad', 'action'=>'checkout','id'=>$order->id_order))?>?featured_days=<?=$days?>">
+                                                            <small><?=$days?> <?=_e('Days')?> - <?=core::config('payment.paypal_currency')?> <?=$price?></small>
+                                                        </a>
+                                                    </li>
+                                                <?endif?>
+                                            <?endforeach?>
+                                        </ul>
+                                    <?elseif ($order->id_product == Model_Order::PRODUCT_ADD_MONEY AND is_array($money_packages = Model_Transaction::get_money_packages()) AND core::count($money_packages) > 1):?>
+                                        <button class="btn btn-xs btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                                            <?=_e('Change package')?>
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <?foreach ($money_packages as $money => $price):?>
+                                                <?if ($order->quantity != $money):?>
+                                                    <li>
+                                                        <a href="<?=Route::url('default', ['controller' => 'ad', 'action' => 'checkout', 'id' => $order->id_order])?>?add_money=<?=$money?>">
+                                                            <small><?= i18n::money_format($money, 'YCL') ?> - <?=core::config('payment.paypal_currency')?> <?= $price ?></small>
+                                                        </a>
+                                                    </li>
+                                                <?endif?>
+                                            <?endforeach?>
+                                        </ul>
+                                    <?endif?>
                                 </div>
                             </td>
                         <?else :?>
@@ -215,113 +233,121 @@
             </tbody>
         </table>
 
-        <?if ($order->amount>0):?>
+        <? if ($order->amount > 0): ?>
+            <? if (! core::config('general.ewallet') OR $order->id_product == Model_Order::PRODUCT_ADD_MONEY): ?>
+                <?= StripeKO::button_connect($order) ?>
 
-        <?=StripeKO::button_connect($order)?>
-        <?=StripeCheckout::button_connect($order)?>
+                <?= StripeCheckout::button_connect($order) ?>
 
-        <?if (Core::config('payment.paypal_account')!='' AND Core::config('payment.paypal_seller') == 1 AND $order->id_product == Model_Order::PRODUCT_AD_SELL):?>
-            <p class="text-right">
-                <a class="btn btn-success btn-lg" href="<?=Route::url('default', array('controller'=> 'paypal','action'=>'pay' , 'id' => $order->id_order))?>">
-                    <?=_e('Pay with Paypal')?> <span class="glyphicon glyphicon-chevron-right"></span>
-                </a>
-            </p>
-        <?endif?>
-
-        <?if (Core::config('payment.escrow_pay')):?>
-            <p class="text-right">
-                <a class="btn btn-success btn-lg" href="<?=Route::url('default', array('controller'=> 'escrow','action'=>'pay' , 'id' => $order->id_order))?>">
-                    <?=_e('Pay with Escrow')?> <span class="glyphicon glyphicon-chevron-right"></span>
-                </a>
-            </p>
-        <?endif?>
-
-        <?if (!in_array($order->id_product, [Model_Order::PRODUCT_AD_SELL, Model_Order::PRODUCT_AD_CUSTOM])):?>
-            <?if (Core::config('payment.paypal_account')!=''):?>
-                <p class="text-right">
-                    <a class="btn btn-success btn-lg" href="<?=Route::url('default', array('controller'=> 'paypal','action'=>'pay' , 'id' => $order->id_order))?>">
-                        <?=_e('Pay with Paypal')?> <span class="glyphicon glyphicon-chevron-right"></span>
-                    </a>
-                </p>
-            <?endif?>
-
-            <?if ( ($user = Auth::instance()->get_user())!=FALSE AND ($user->is_admin() OR $user->is_moderator())):?>
-                <ul class="list-inline text-right">
-                    <li>
-                        <a title="<?=__('Mark as paid')?>" class="btn btn-warning" href="<?=Route::url('oc-panel', array('controller'=> 'order', 'action'=>'pay','id'=>$order->id_order))?>">
-                            <i class="glyphicon glyphicon-usd"></i> <?=_e('Mark as paid')?>
+                <?if (Core::config('payment.paypal_account')!='' AND Core::config('payment.paypal_seller') == 1 AND $order->id_product == Model_Order::PRODUCT_AD_SELL):?>
+                    <p class="text-right">
+                        <a class="btn btn-success btn-lg" href="<?=Route::url('default', array('controller'=> 'paypal','action'=>'pay' , 'id' => $order->id_order))?>">
+                            <?=_e('Pay with Paypal')?> <span class="glyphicon glyphicon-chevron-right"></span>
                         </a>
-                    </li>
-                </ul>
-            <?endif?>
-            <?if (Core::extra_features() == TRUE) :?>
-                <?=Controller_Authorize::form($order)?>
-                <div class="text-right">
-                    <ul class="list-inline">
-                        <?if(($pm = Paymill::button($order)) != ''):?>
-                            <li class="text-right"><?=$pm?></li>
-                        <?endif?>
-                    </ul>
-                </div>
-                <div class="text-right">
-                    <ul class="list-inline">
-                        <?if(($sk = StripeKO::button($order)) != ''):?>
-                            <li class="text-right"><?=$sk?></li>
-                        <?endif?>
-                        <?if(($sk = StripeCheckout::button($order)) != ''):?>
-                            <li class="text-right"><?=$sk?></li>
-                        <?endif?>
-                        <? if (($bp_v2 = Bitpay::button($order)) != '') : ?>
-                            <li class="text-right"><?= $bp_v2 ?></li>
-                        <? endif ?>
-                        <?if(($two = twocheckout::form($order)) != ''):?>
-                            <li class="text-right"><?=$two?></li>
-                        <?endif?>
-                        <?if(($paysbuy = paysbuy::form($order)) != ''):?>
-                            <li class="text-right"><?=$paysbuy?></li>
-                        <?endif?>
-                        <?if(($securepay = securepay::button($order)) != ''):?>
-                            <li class="text-right"><?=$securepay?></li>
-                        <?endif?>
-                        <?if(($robokassa = robokassa::button($order)) != ''):?>
-                            <li class="text-right"><?=$robokassa?></li>
-                        <?endif?>
-                        <?if(($paguelofacil = paguelofacil::button($order)) != ''):?>
-                            <li class="text-right"><?=$paguelofacil?></li>
-                        <?endif?>
-                        <?if(($paytabs = paytabs::button($order)) != ''):?>
-                            <li class="text-right"><?=$paytabs?></li>
-                        <?endif?>
-                        <?if(($payfast = payfast::form($order)) != ''):?>
-                            <li class="text-right"><?=$payfast?></li>
-                        <?endif?>
-                        <?if(($mp = MercadoPago::button($order)) != ''):?>
-                            <li class="text-right"><?=$mp?></li>
-                        <?endif?>
-                        <?if(($zenith = zenith::button($order)) != ''):?>
-                            <li class="text-right"><?=$zenith?></li>
-                        <?endif?>
-                        <?if(($payline = payline::button($order)) != ''):?>
-                            <li class="text-right"><?=$payline?></li>
-                        <?endif?>
-                        <?if(($serfinsa = serfinsa::button($order)) != ''):?>
-                            <li class="text-right"><?=$serfinsa?></li>
-                        <?endif?>
-                        <?if( ($alt = $order->alternative_pay_button()) != ''):?>
-                            <li class="text-right"><?=$alt?></li>
-                        <?endif?>
-                    </ul>
-                    <?=View::factory('coupon')?>
-                </div>
-            <?elseif ( ($alt = $order->alternative_pay_button()) != '') :?>
-                <div class="text-right">
-                    <ul class="list-inline">
-                        <li class="text-right"><?=$alt?></li>
-                    </ul>
-                </div>
-            <?endif?>
-        <?endif?>
+                    </p>
+                <?endif?>
 
+                <?if (Core::config('payment.escrow_pay')):?>
+                    <p class="text-right">
+                        <a class="btn btn-success btn-lg" href="<?=Route::url('default', array('controller'=> 'escrow','action'=>'pay' , 'id' => $order->id_order))?>">
+                            <?=_e('Pay with Escrow')?> <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    </p>
+                <?endif?>
+
+                <?if (!in_array($order->id_product, [Model_Order::PRODUCT_AD_SELL, Model_Order::PRODUCT_AD_CUSTOM])):?>
+                    <?if (Core::config('payment.paypal_account')!=''):?>
+                        <p class="text-right">
+                            <a class="btn btn-success btn-lg" href="<?=Route::url('default', array('controller'=> 'paypal','action'=>'pay' , 'id' => $order->id_order))?>">
+                                <?=_e('Pay with Paypal')?> <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </p>
+                    <?endif?>
+
+                    <?if ( ($user = Auth::instance()->get_user())!=FALSE AND ($user->is_admin() OR $user->is_moderator())):?>
+                        <ul class="list-inline text-right">
+                            <li>
+                                <a title="<?=__('Mark as paid')?>" class="btn btn-warning" href="<?=Route::url('oc-panel', array('controller'=> 'order', 'action'=>'pay','id'=>$order->id_order))?>">
+                                    <i class="glyphicon glyphicon-usd"></i> <?=_e('Mark as paid')?>
+                                </a>
+                            </li>
+                        </ul>
+                    <?endif?>
+                    <?if (Core::extra_features() == TRUE) :?>
+                        <?=Controller_Authorize::form($order)?>
+
+                        <div class="text-right">
+                            <ul class="list-inline">
+                                <?if(($pm = Paymill::button($order)) != ''):?>
+                                    <li class="text-right"><?=$pm?></li>
+                                <?endif?>
+                            </ul>
+                        </div>
+
+                        <div class="text-right">
+                            <ul class="list-inline">
+                                <?if(($sk = StripeKO::button($order)) != ''):?>
+                                    <li class="text-right"><?=$sk?></li>
+                                <?endif?>
+                                <?if(($sk = StripeCheckout::button($order)) != ''):?>
+                                    <li class="text-right"><?=$sk?></li>
+                                <?endif?>
+                                <? if (($bp_v2 = Bitpay::button($order)) != '') : ?>
+                                    <li class="text-right"><?= $bp_v2 ?></li>
+                                <? endif ?>
+                                <?if(($two = twocheckout::form($order)) != ''):?>
+                                    <li class="text-right"><?=$two?></li>
+                                <?endif?>
+                                <?if(($paysbuy = paysbuy::form($order)) != ''):?>
+                                    <li class="text-right"><?=$paysbuy?></li>
+                                <?endif?>
+                                <?if(($securepay = securepay::button($order)) != ''):?>
+                                    <li class="text-right"><?=$securepay?></li>
+                                <?endif?>
+                                <?if(($robokassa = robokassa::button($order)) != ''):?>
+                                    <li class="text-right"><?=$robokassa?></li>
+                                <?endif?>
+                                <?if(($paguelofacil = paguelofacil::button($order)) != ''):?>
+                                    <li class="text-right"><?=$paguelofacil?></li>
+                                <?endif?>
+                                <?if(($paytabs = paytabs::button($order)) != ''):?>
+                                    <li class="text-right"><?=$paytabs?></li>
+                                <?endif?>
+                                <?if(($payfast = payfast::form($order)) != ''):?>
+                                    <li class="text-right"><?=$payfast?></li>
+                                <?endif?>
+                                <?if(($mp = MercadoPago::button($order)) != ''):?>
+                                    <li class="text-right"><?=$mp?></li>
+                                <?endif?>
+                                <?if(($zenith = zenith::button($order)) != ''):?>
+                                    <li class="text-right"><?=$zenith?></li>
+                                <?endif?>
+                                <?if(($payline = payline::button($order)) != ''):?>
+                                    <li class="text-right"><?=$payline?></li>
+                                <?endif?>
+                                <?if(($serfinsa = serfinsa::button($order)) != ''):?>
+                                    <li class="text-right"><?=$serfinsa?></li>
+                                <?endif?>
+                                <?if( ($alt = $order->alternative_pay_button()) != ''):?>
+                                    <li class="text-right"><?=$alt?></li>
+                                <?endif?>
+                            </ul>
+
+                            <?=View::factory('coupon')?>
+                        </div>
+                    <?elseif ( ($alt = $order->alternative_pay_button()) != '') :?>
+                        <div class="text-right">
+                            <ul class="list-inline">
+                                <li class="text-right"><?=$alt?></li>
+                            </ul>
+                        </div>
+                    <?endif?>
+                <?endif?>
+            <?else:?>
+                <div class="col-xs-12">
+                    <?= Yclpay::button($order) ?>
+                </div>
+            <?endif?>
         <?else:?>
             <ul class="list-unstyled text-right">
                 <li>

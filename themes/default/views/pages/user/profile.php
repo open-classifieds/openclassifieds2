@@ -153,6 +153,43 @@
             </div>
         </div>
 
+        <?if (core::config('general.ewallet') AND Auth::instance()->logged_in()) :?>
+            <button class="btn btn-success" type="button" data-toggle="modal" data-target="#send-money"><i class="fa fa-money-bill"></i> <?=_e('Send Money')?></button>
+
+            <div id="send-money" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
+                            <h3><?=_e('Send money')?></h3>
+                        </div>
+
+                        <div class="modal-body">
+                            <?=Form::errors()?>
+
+                            <?= FORM::open(Route::url('oc-panel', array('controller'=>'profile', 'action'=>'transfer', 'id'=>$user->seoname)), array('class'=>'form-horizontal well'))?>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <?= FORM::label('amount', __('Amount'), ['class' => 'col-md-2 control-label', 'for' => 'amount'])?>
+                                        <div class="col-md-4 ">
+                                            <?= Form::input('amount', 0, [
+                                                'required',
+                                                'type' => 'number',
+                                                'class' => 'form-control',
+                                            ])?>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <?= FORM::button(NULL, _e('Send'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('default', array('controller'=>'contact', 'action'=>'userprofile_contact' , 'id'=>$user->id_user))))?>
+                                    </div>
+                                </fieldset>
+                            <?= FORM::close()?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?endif?>
+
         <?if (core::config('advertisement.gm_api_key')):?>
             <?if(Core::config('advertisement.map') AND $user->address !== NULL AND $user->latitude !== NULL AND $user->longitude !== NULL):?>
                 <h3><?=_e('Map')?></h3>

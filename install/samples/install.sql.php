@@ -72,6 +72,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `address` varchar(145) DEFAULT NULL,
   `locale` varchar(5) DEFAULT NULL,
   `verification_code` int(6) DEFAULT NULL,
+  `ewallet_balance` int(10) unsigned DEFAULT 0,
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_email` (`email`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_token` (`token`),
@@ -193,6 +194,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `VAT_number` varchar(20) DEFAULT NULL,
   `VAT` varchar(20) DEFAULT NULL,
   `quantity` int NOT NULL DEFAULT '0',
+  `received` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`id_order`),
   KEY `".core::request('TABLE_PREFIX')."orders_IK_id_user` (`id_user`),
   KEY `".core::request('TABLE_PREFIX')."orders_IK_status` (`status`)
@@ -359,6 +361,20 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
       PRIMARY KEY (`id_subscription`)
     ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
+mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."transactions` (
+    `id_transaction` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    `id_user` int(10) unsigned DEFAULT NULL,
+    `id_user_from` int(10) unsigned DEFAULT NULL,
+    `id_order` int(10) unsigned DEFAULT NULL,
+    `amount` int(10) NOT NULL,
+    `type` tinyint(1) NOT NULL DEFAULT 0,
+    `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id_transaction`),
+    KEY `".self::$db_prefix."transactions_IK_id_user` (`id_user`),
+    KEY `".self::$db_prefix."transactions_IK_id_user_from` (`id_user_from`),
+    KEY `".self::$db_prefix."transactions_IK_id_order` (`id_order`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+
 
 /**
  * add basic content like emails
@@ -380,6 +396,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."content` (`ord
 (0, 'Advertisement `[AD.TITLE]` is out of stock on [SITE.NAME]!', 'out-of-stock', 'Hello [USER.NAME],\n\nWhile your ad is out of stock, it is unavailable for others to see. If you wish to increase stock and activate, please follow this link [URL.EDIT].\n\nRegards!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'You bought `[AD.TITLE]`', 'ads-purchased', 'Order ID: [ORDER.ID]\n\nProduct ID: [PRODUCT.ID]\n\nClick here to visit [URL.AD]\n\n[BUYER.INSTRUCTIONS]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'Receipt for [ORDER.DESC] #[ORDER.ID]', 'new-order', 'Hello [USER.NAME],Thanks for buying [ORDER.DESC].\n\nPlease complete the payment here [URL.CHECKOUT]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+(0, 'Mark as received reminder for [ORDER.DESC] #[ORDER.ID]', 'mark-as-received', 'Hello [USER.NAME],Thanks for buying [ORDER.DESC].\n\nPlease mark it as received here [URL.CHECKOUT]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'Success! Your advertisement `[AD.NAME]` is created on [SITE.NAME]!', 'ads-confirm', 'Welcome [USER.NAME],\n\nThank you for creating an advertisement at [SITE.NAME]! \n\nPlease click on this link [URL.QL] to confirm it.\n\nRegards!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'Your ad [AD.NAME] has expired', 'ad-expired', 'Hello [USER.NAME],Your ad [AD.NAME] has expired \n\nPlease check your ad here [URL.EDITAD]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'Your ad [AD.NAME] is going to expire', 'ad-to-expire', 'Hello [USER.NAME],Your ad [AD.NAME] will expire soon \n\nPlease check your ad here [URL.EDITAD]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
@@ -744,6 +761,14 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('general', 'sms_clickatell_two_way_phone', ''),
 ('general', 'multilingual', '0'),
 ('general', 'languages', ''),
+('general', 'ewallet', '0'),
+('general', 'ewallet_money_symbol', '$'),
+('general', 'ewallet_add_money', '0'),
+('general', 'ewallet_money_packages', '{\"1000\":\"10\"}'),
+('general', 'ewallet_gamification', '0'),
+('general', 'ewallet_gamification_earn_on_sign_up', '0'),
+('general', 'ewallet_mark_as_received_reminder_after_n_days', '7'),
+('general', 'ewallet_mark_as_received_after_n_days', '14'),
 ('image', 'allowed_formats', 'jpeg,jpg,png,'),
 ('image', 'max_image_size', '5'),
 ('image', 'height', ''),
@@ -923,7 +948,9 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."crontab` (`nam
 ('Optimize DB', '0 4 1 * *', 'Core::optimize_db', NULL, 'once a month we optimize the DB', 1),
 ('Unpaid Orders', '0 7 * * *', 'Cron_Ad::unpaid', NULL, 'Notify unpaid orders 2 days after was created', 1),
 ('Expired Featured Ad', '0 8 * * *', 'Cron_Ad::expired_featured', NULL, 'Notify by email of expired featured ad', 1),
-('Expired Ad', '0 9 * * *', 'Cron_Ad::expired', NULL, 'Notify by email of expired ad', 1),
+('Expired Ad', '0 9 * * *', 'Cron_Ad::expired', NULL, 'Email reminder of unreceived orders n days after was paid', 1),
+('Unreceived orders reminder', '0 10 * * *', 'Cron_Ad::unreceived', NULL, 'Mark unreceived orders as received n days after was paid', 1),
+('Mark unreceived orders as received', '0 11 * * *', 'Cron_Ad::mark_as_received', NULL, 'Notify by email of expired ad', 1),
 ('About to Expire Ad', '05 9 * * *', 'Cron_Ad::to_expire', NULL, 'Notify by email your ad is about to expire', 1),
 ('Renew subscription', '*/5 * * * *', 'Cron_Subscription::renew', NULL, 'Notify by email user subscription will expire.', 1),
 ('Notify new updates', '0 9 * * 1', 'Cron_Update::notify', NULL, 'Notify by email of new site updates.', 1),

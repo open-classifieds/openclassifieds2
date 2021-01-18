@@ -6,6 +6,8 @@
                 <?= Model_Order::product_desc($order->id_product) ?>
                 <? if($order->id_product == Model_Order::PRODUCT_TO_FEATURED): ?>
                     <?= $order->featured_days?> <?=_e('Days') ?>
+                <?elseif ($order->id_product == Model_Order::PRODUCT_ADD_MONEY):?>
+                    <?= i18n::money_format($order->quantity, 'YCL') ?>
                 <? endif ?>
             </small>
             <small class="text-muted d-block">
@@ -20,6 +22,21 @@
                                     <li>
                                         <a href="<?=Route::url('default',array('controller'=>'ad', 'action'=>'checkout','id'=>$order->id_order))?>?featured_days=<?=$days?>">
                                             <small><?=$days?> <?=_e('Days')?> - <?=core::config('payment.paypal_currency')?> <?=$price?></small>
+                                        </a>
+                                    </li>
+                                <?endif?>
+                            <?endforeach?>
+                        </ul>
+                    <?elseif ($order->id_product == Model_Order::PRODUCT_ADD_MONEY AND is_array($money_packages = Model_Transaction::get_money_packages()) AND core::count($money_packages) > 1):?>
+                        <button class="btn btn-xs btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                            <?=_e('Change package')?>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <?foreach ($money_packages as $money => $price):?>
+                                <?if ($order->quantity != $money):?>
+                                    <li>
+                                        <a href="<?=Route::url('default', ['controller' => 'ad', 'action' => 'checkout', 'id' => $order->id_order])?>?add_money=<?=$money?>">
+                                            <small><?= i18n::money_format($money, 'YCL') ?> - <?=core::config('payment.paypal_currency')?> <?= $price ?></small>
                                         </a>
                                     </li>
                                 <?endif?>

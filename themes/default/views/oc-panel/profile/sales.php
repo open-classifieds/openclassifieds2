@@ -19,11 +19,11 @@
             <tbody>
                 <?foreach($orders as $order):?>
                     <tr id="tr<?=$order->pk()?>">
-    
+
                         <td><?=$order->pk()?></td>
-        
+
                         <td><?=i18n::format_currency($order->amount, $order->currency)?></td>
-                        
+
                         <td><a href="<?=Route::url('profile', array('seoname'=> $order->user->seoname)) ?>" ><?=$order->user->name?></a></td>
 
                         <td><?=$order->pay_date?></td>
@@ -32,6 +32,13 @@
                             <a href="<?=Route::url('ad', array('category'=> $order->ad->category->seoname,'seotitle'=>$order->ad->seotitle)) ?>" title="<?=HTML::chars($order->ad->title)?>">
                                 <?=Text::limit_chars($order->ad->title, 30, NULL, TRUE)?>
                             </a>
+
+                            <?if (core::config('general.ewallet') AND $order->received !== NULL AND in_array($order->id_product, [Model_Order::PRODUCT_AD_SELL, Model_Order::PRODUCT_AD_CUSTOM])):?>
+                                <span class="badge badge-success"><?=_e('Received')?></span> 
+                            <?elseif (core::config('general.ewallet') AND $order->received === NULL AND in_array($order->id_product, [Model_Order::PRODUCT_AD_SELL, Model_Order::PRODUCT_AD_CUSTOM])):?>
+                                <span class="badge badge-info"><?=_e('Not received yet')?></span> 
+                            <?endif?>
+
                             <?if (isset($order->ad->cf_file_download)):?>
                                 <a class="btn btn-sm btn-success" href="<?=$order->ad->cf_file_download?>">
                                     <?=_e('Download')?>

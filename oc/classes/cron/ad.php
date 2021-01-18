@@ -154,6 +154,56 @@ class Cron_Ad {
         }
     }
 
+    /**
+     * unreceived orders reminder
+     * @return void
+     */
+    public static function unreceived()
+    {
+        $days = Core::config('general.ewallet_mark_as_received_reminder_after_n_days');
+
+        $orders = (new Model_Order)
+            ->where('received', 'IS', NULL)
+            ->where(DB::expr('DATE(pay_date)'), '=', Date::format('-'.$days.' days','Y-m-d'))
+            ->where('id_product', 'IN', [Model_Order::PRODUCT_AD_SELL, Model_Order::PRODUCT_AD_CUSTOM])
+            ->find_all();
+
+        foreach ($orders as $order)
+        {
+            $url = $order->user->ql('oc-panel', [
+                'controller' => 'profile',
+                'action' => 'order_received',
+                'id' => $order->id_order],
+            );
+
+            $order->user->email('mark-as-received', [
+                '[ORDER.ID]' => $order->id_order,
+                '[ORDER.DESC]' => $order->description,
+                '[URL.CHECKOUT]'=> $url,
+            ]);
+        }
+    }
+
+    /**
+     * mark orders as received
+     * @return void
+     */
+    public static function mark_as_received()
+    {
+        $days = Core::config('general.ewallet_mark_as_received_after_n_days');
+
+        $orders = (new Model_Order)
+            ->where('received', 'IS', NULL)
+            ->where(DB::expr('DATE(pay_date)'), '=', Date::format('-'.$days.' days','Y-m-d'))
+            ->where('id_product', 'IN', [Model_Order::PRODUCT_AD_SELL, Model_Order::PRODUCT_AD_CUSTOM])
+            ->find_all();
+
+        foreach ($orders as $order)
+        {
+            $order->mark_as_received();
+        }
+    }
+
 
 
 }

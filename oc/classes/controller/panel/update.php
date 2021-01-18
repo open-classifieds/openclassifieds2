@@ -12,6 +12,35 @@ class Controller_Panel_Update extends Auth_Controller {
 
     public function action_410()
     {
+        // Transactions
+        try
+        {
+            DB::query(Database::UPDATE,"CREATE TABLE IF NOT EXISTS `".self::$db_prefix."transactions` (
+                                      `id_transaction` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                                      `id_user` int(10) unsigned DEFAULT NULL,
+                                      `id_user_from` int(10) unsigned DEFAULT NULL,
+                                      `id_order` int(10) unsigned DEFAULT NULL,
+                                      `amount` int(10) NOT NULL,
+                                      `type` tinyint(1) NOT NULL DEFAULT 0,
+                                      `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                      PRIMARY KEY (`id_transaction`),
+                                      KEY `".self::$db_prefix."transactions_IK_id_user` (`id_user`),
+                                      KEY `".self::$db_prefix."transactions_IK_id_user_from` (`id_user_from`),
+                                      KEY `".self::$db_prefix."transactions_IK_id_order` (`id_order`)
+                                    ) ENGINE=InnoDB;")->execute();
+        }catch (exception $e) {}
+
+        // Mark orders as received
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."orders` ADD `received` DATETIME NULL DEFAULT NULL;")->execute();
+        }catch (exception $e) {}
+
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `ewallet_balance` int(10) unsigned DEFAULT 0")->execute();
+        } catch (exception $e) {}
+
         $configs = [
             [
                 'config_key'    => 'autodata',
@@ -33,9 +62,57 @@ class Controller_Panel_Update extends Auth_Controller {
                 'group_name'     => 'general',
                 'config_value'   => '0'
             ],
+            [
+                'config_key'     => 'ewallet',
+                'group_name'     => 'general',
+                'config_value'   => '0'
+            ],
+            [
+                'config_key'     => 'ewallet_money_symbol',
+                'group_name'     => 'general',
+                'config_value'   => '$'
+            ],
+            [
+                'config_key'     => 'ewallet_add_money',
+                'group_name'     => 'general',
+                'config_value'   => '0'
+            ],
+            [
+                'config_key'     =>'ewallet_money_packages',
+                'group_name'     =>'general',
+                'config_value'   => '{"1000":"10"}'
+            ],
+            [
+                'config_key'     =>'ewallet_gamification',
+                'group_name'     =>'general',
+                'config_value'   => '0'
+            ],
+            [
+                'config_key'     =>'ewallet_gamification_earn_on_sign_up',
+                'group_name'     =>'general',
+                'config_value'   => ''
+            ],
+            [
+                'config_key'     =>'ewallet_mark_as_received_reminder_after_n_days',
+                'group_name'     =>'general',
+                'config_value'   => '7'
+            ],
+            [
+                'config_key'     =>'ewallet_mark_as_received_after_n_days',
+                'group_name'     =>'general',
+                'config_value'   => '14'
+            ],
         ];
 
-        //user email varification code
+        // Crontabs
+        try
+        {
+            DB::query(Database::UPDATE,"INSERT INTO `".self::$db_prefix."crontab` (`name`, `period`, `callback`, `params`, `description`, `active`) VALUES
+                                    ('Unreceived orders reminder', '0 10 * * *', 'Cron_Ad::unreceived', NULL, 'Email reminder of unreceived orders n days after was paid', 1),
+                                    ('Mark unreceived orders as received', '0 11 * * *', 'Cron_Ad::mark_as_received', NULL, 'Mark unreceived orders as received n days after was paid', 1);")->execute();
+        } catch (exception $e) {}
+
+        // User email varification code
         try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `verification_code` int(6) DEFAULT NULL")->execute();
@@ -43,7 +120,7 @@ class Controller_Panel_Update extends Auth_Controller {
 
         Model_Config::config_array($configs);
 
-        // new email
+        // new emails
         $contents = [
             [
                 'order'         => 0,
@@ -52,11 +129,27 @@ class Controller_Panel_Update extends Auth_Controller {
                 'description'   => "Welcome [USER.NAME],\n\nWe are really happy that you have joined us!\nPlease click on this link [URL.QL] to confirm your email\n\nRemember your user details:\nEmail: [USER.EMAIL]\nPassword: [USER.PWD]\n\nWe do not have your original password anymore.\n\nRegards!",
                 'from_email'    => core::config('email.notify_email'),
                 'type'          => 'email',
-                'status'        => '1'
+                'status'        => '1',
+            ],
+            [
+                'order'         => 0,
+                'title'         => 'Mark as received reminder for [ORDER.DESC] #[ORDER.ID]',
+                'seotitle'      => 'mark-as-received',
+                'description'   => "Hello [USER.NAME],Thanks for buying [ORDER.DESC].\n\nPlease mark it as received here [URL.CHECKOUT]",
+                'from_email'    => core::config('email.notify_email'),
+                'type'          => 'email',
+                'status'        => '1',
             ],
         ];
 
         Model_Content::content_array($contents);
+
+        // eWallet access
+        try
+        {
+            DB::query(Database::UPDATE,"INSERT INTO  `".self::$db_prefix."access` (`id_role`, `access`) VALUES
+                                                                         (1, 'ewallet.*'),(5, 'ewallet.*'),(7, 'ewallet.*')")->execute();
+        }catch (exception $e) {}
     }
 
     public function action_400()

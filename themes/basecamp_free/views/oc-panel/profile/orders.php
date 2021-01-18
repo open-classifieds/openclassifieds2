@@ -55,7 +55,7 @@
 												<span class="order-unpaid"><?=i18n::format_currency($order->amount, $order->currency)?> <i class="fa fa-clock-o"></i></span>
 											<?else:?>
 												<span class="order-paid"><?=i18n::format_currency($order->amount, $order->currency)?> <i class="fa fa-check"></i></span>
-											<?endif?>	
+											<?endif?>
 										</p>
 									</div>
 									<div class="modal-footer">
@@ -74,6 +74,12 @@
                                         </a>
                                     <?else:?>
                                         <a class="btn btn-success disabled" href="#" disabled><?=Model_Order::$statuses[$order->status]?></a>
+                                    <?endif?>
+
+                                    <?if (core::config('general.ewallet') AND $order->received === NULL AND in_array($order->id_product, [Model_Order::PRODUCT_AD_SELL, Model_Order::PRODUCT_AD_CUSTOM])):?>
+                                        <a class="btn btn-warning" href="<?=Route::url('oc-panel', array('controller'=> 'profile','action'=>'order_received' , 'id' => $order->id_order))?>">
+                                            <i class="fa fa-hands"></i> <?=_e('Mark as received')?>   
+                                        </a>
                                     <?endif?>
 
                                     <?if ($order->paymethod == 'escrow'):?>
@@ -95,7 +101,7 @@
 								</div>
 							</div>
 						</div>
-						</li>					
+						</li>
 					<?endforeach?>
 				</ul>
 			</div>
