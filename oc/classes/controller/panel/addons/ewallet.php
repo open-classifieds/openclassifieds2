@@ -15,6 +15,7 @@ class Controller_Panel_Addons_EWallet extends Auth_Controller {
             Model_Config::set_value('general', 'ewallet_money_symbol', Core::post('money_symbol', NULL));
             Model_Config::set_value('general', 'ewallet_mark_as_received_reminder_after_n_days', Core::post('mark_as_received_reminder_after_n_days', NULL));
             Model_Config::set_value('general', 'ewallet_mark_as_received_after_n_days', Core::post('mark_as_received_after_n_days', NULL));
+            Model_Config::set_value('general', 'payment.paypal_seller', Core::post('buy_now') ?? 0);
 
             Alert::set(Alert::SUCCESS, __('Configuration updated'));
 
