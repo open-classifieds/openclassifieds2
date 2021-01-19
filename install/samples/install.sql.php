@@ -370,9 +370,9 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
     `type` tinyint(1) NOT NULL DEFAULT 0,
     `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id_transaction`),
-    KEY `".self::$db_prefix."transactions_IK_id_user` (`id_user`),
-    KEY `".self::$db_prefix."transactions_IK_id_user_from` (`id_user_from`),
-    KEY `".self::$db_prefix."transactions_IK_id_order` (`id_order`)
+    KEY `".core::request('TABLE_PREFIX')."transactions_IK_id_user` (`id_user`),
+    KEY `".core::request('TABLE_PREFIX')."transactions_IK_id_user_from` (`id_user_from`),
+    KEY `".core::request('TABLE_PREFIX')."transactions_IK_id_order` (`id_order`)
   ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
