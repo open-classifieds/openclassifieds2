@@ -57,6 +57,14 @@
                         </div>
                         <p class="mt-2 text-sm text-gray-500"><?= __('The number of days to wait before automatically mark the order as received.') ?></p>
                     </div>
+                    <div class="sm:col-span-6">
+                        <div class="absolute flex items-center h-5">
+                            <?=FORM::checkbox('buy_now', 1, (bool) Core::post('buy_now', Core::config('payment.paypal_seller')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
+                        </div>
+                        <div class="pl-7 text-sm leading-5">
+                            <?=FORM::label('buy_now', __('Buy Now button'), ['class'=>'font-medium text-gray-700'])?>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="mt-8 border-t border-gray-200 pt-8">

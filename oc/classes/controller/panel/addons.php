@@ -88,7 +88,7 @@ class Controller_Panel_Addons extends Auth_Controller {
                 'name' => 'ewallet',
                 'config_name' => 'general.ewallet',
                 'label' => __('eWallet'),
-                'description' => __('A eWallet system.'),
+                'description' => __('An eWallet system for your marketplace.'),
                 'is_pro' => TRUE,
             ],
         ];
