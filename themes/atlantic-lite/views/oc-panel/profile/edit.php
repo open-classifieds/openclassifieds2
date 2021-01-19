@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="col-12 col-md-7">
-        <?= View::factory('oc-panel/profile/_profile-form', compact('user', 'id_location', 'custom_fields')) ?>
+        <?= View::factory('oc-panel/profile/_profile-form', compact('user', 'id_location', 'custom_fields', 'selected_location')) ?>
 
         <?= View::factory('oc-panel/profile/_update-password-form', compact('user')) ?>
 
