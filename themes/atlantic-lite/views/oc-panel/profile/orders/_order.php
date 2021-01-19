@@ -34,6 +34,18 @@
             <a class="btn btn-default" href="<?=Route::url('oc-panel', array('controller'=>'profile', 'action'=>'order', 'id' => $order->id_order))?>">
                 <i class="fas fa-search"></i> <?=_e('View')?>
             </a>
+
+            <?if (core::config('general.ewallet') AND $order->received === NULL AND $order->status == Model_Order::STATUS_PAID AND in_array($order->id_product, [Model_Order::PRODUCT_AD_SELL, Model_Order::PRODUCT_AD_CUSTOM])):?>
+                <a class="btn btn-warning" href="<?=Route::url('oc-panel', array('controller'=> 'profile','action'=>'order_received' , 'id' => $order->id_order))?>">
+                    <i class="fa fa-hands"></i> <?=_e('Mark as received')?>   
+                </a>
+            <?endif?>
+        <?endif?>
+
+        <?if (core::config('general.ewallet') AND $order->status == Model_Order::STATUS_PAID AND $order->received === NULL AND in_array($order->id_product, [Model_Order::PRODUCT_AD_SELL, Model_Order::PRODUCT_AD_CUSTOM])):?>
+            <a class="btn btn-warning" href="<?=Route::url('oc-panel', array('controller'=> 'profile','action'=>'order_received' , 'id' => $order->id_order))?>">
+                <i class="fa fa-hands"></i> <?=_e('Mark as received')?>   
+            </a>
         <?endif?>
 
         <?if ($order->paymethod == 'escrow'):?>

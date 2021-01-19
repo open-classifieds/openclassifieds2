@@ -22,20 +22,20 @@
             <tbody>
                 <?foreach($orders as $order):?>
                     <tr id="tr<?=$order->pk()?>">
-    
+
                         <td><?=$order->pk()?></td>
-    
+
                         <td><?=Model_Order::$statuses[$order->status]?></td>
-    
+
                         <td><?=Model_Order::product_desc($order->id_product)?></td>
-    
+
                         <td><?=i18n::format_currency($order->amount, $order->currency)?></td>
-    
+
                         <td><a href="<?=Route::url('ad', array('category'=> $order->ad->category->seoname,'seotitle'=>$order->ad->seotitle)) ?>" title="<?=HTML::chars($order->ad->title)?>">
                             <?=Text::limit_chars($order->ad->title, 30, NULL, TRUE)?></a></td>
-    
+
                         <td><?=$order->created?></td>
-    
+
                         <td><?=$order->pay_date?></td>
 
                         <td>
@@ -55,6 +55,12 @@
                                 <a class="btn btn-default" href="<?=Route::url('oc-panel', array('controller'=>'profile', 'action'=>'order', 'id' => $order->id_order))?>">
                                     <i class="fa fa-search"></i> <?=_e('View')?>   
                                 </a>
+
+                                <?if (core::config('general.ewallet') AND $order->received === NULL AND $order->status == Model_Order::STATUS_PAID AND in_array($order->id_product, [Model_Order::PRODUCT_AD_SELL, Model_Order::PRODUCT_AD_CUSTOM])):?>
+                                    <a class="btn btn-warning" href="<?=Route::url('oc-panel', array('controller'=> 'profile','action'=>'order_received' , 'id' => $order->id_order))?>">
+                                        <i class="fa fa-hands"></i> <?=_e('Mark as received')?>   
+                                    </a>
+                                <?endif?>
                             <?endif?>
 
                             <?if ($order->paymethod == 'escrow'):?>
@@ -73,7 +79,7 @@
                                 <?endif?>
                             <?endif?>
                         </td>
-    
+
                     </tr>
                 <?endforeach?>
             </tbody>

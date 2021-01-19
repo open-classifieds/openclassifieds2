@@ -36,11 +36,13 @@
                     <?= View::factory('checkout/_purchase-product', compact('order')) ?>
                 <? endif ?>
 
-                <li class="list-group-item d-flex justify-content-between">
-                    <div>
-                        <h6 class="my-0">#<?=$order->ad->id_ad?> <?=$order->ad->title?></h6>
-                    </div>
-                </li>
+                <? if ($order->ad->loaded()) : ?>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <div>
+                            <h6 class="my-0">#<?=$order->ad->id_ad?> <?=$order->ad->title?></h6>
+                        </div>
+                    </li>
+                <? endif ?>
 
                 <?if(isset($order->VAT) AND $order->VAT > 0):?>
                     <?= View::factory('checkout/_vat', compact('order')) ?>

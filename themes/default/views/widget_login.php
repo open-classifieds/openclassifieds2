@@ -9,6 +9,15 @@
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
+            <?if (core::config('general.ewallet')):?>
+                <li class="dropdown-header"><?= __('eWallet balance') ?></li>
+                <li class="disabled">
+                    <a href="#">
+                        <?= i18n::money_format(Auth::instance()->get_user()->ewallet_balance, 'YCL') ?>
+                    </a>
+                </li>
+                <li role="separator" class="divider"></li>
+            <?endif?>
             <li>
                 <a href="<?=Route::url('oc-panel',array('controller'=>'home','action'=>'index'))?>">
                     <i class="glyphicon glyphicon-cog"></i> <?=_e('Panel')?>

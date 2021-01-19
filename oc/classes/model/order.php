@@ -54,6 +54,7 @@ class Model_Order extends ORM {
     const PRODUCT_AD_SELL       = 4;  // a customer paid to buy the item/ad
     const PRODUCT_APP_FEE       = 5;  // application fee, that's what we charge to the seller
     const PRODUCT_AD_CUSTOM     = 6;
+    const PRODUCT_ADD_MONEY     = 7;
 
     /**
      * returns the product array
@@ -68,6 +69,7 @@ class Model_Order extends ORM {
                             self::PRODUCT_AD_SELL       =>  __('Buy product'),
                             self::PRODUCT_APP_FEE       =>  __('Application Fee'),
                             self::PRODUCT_AD_CUSTOM     =>  __('Custom'),
+                            self::PRODUCT_ADD_MONEY     =>  __('Add money'),
                         );
 
         if (Core::config('general.subscriptions')==TRUE AND Core::extra_features() == TRUE )
@@ -183,6 +185,9 @@ class Model_Order extends ORM {
                     case Model_Order::PRODUCT_TO_FEATURED:
                             $ad->to_feature($this->featured_days);
                         break;
+                    case Model_Order::PRODUCT_ADD_MONEY:
+                            Model_Transaction::deposit($this->user, NULL, $this, $this->quantity);
+                        break;
                     case Model_Order::PRODUCT_CATEGORY:
                             $ad->paid_category();
                         break;
@@ -227,7 +232,10 @@ class Model_Order extends ORM {
     public static function new_order(Model_Ad $ad = NULL, $user, $id_product, $amount, $currency = NULL, $description = NULL, $featured_days = NULL, $quantity = 1)
     {
         if ($currency === NULL)
-            $currency = core::config('payment.paypal_currency');
+            $currency = core::config('general.ewallet') ? 'YCL' : core::config('payment.paypal_currency');
+
+        if (core::config('general.ewallet') AND $id_product !== self::PRODUCT_ADD_MONEY)
+            $currency = 'YCL';
 
         if ($description === NULL)
             $description = Model_Order::product_desc($id_product);
@@ -458,6 +466,14 @@ class Model_Order extends ORM {
             $this->save();
         }
 
+        $money = core::get('add_money');
+        if (is_numeric($money) AND ($price = Model_Transaction::get_money_price($money)) !== FALSE )
+        {
+            $this->amount = $price; //get price from config
+            $this->quantity = $money;
+            $this->save();
+        }
+
         if ($this->ad->shipping_pickup() AND core::get('shipping_pickup'))
         {
             $this->amount = $this->ad->price * $this->quantity;
@@ -519,6 +535,9 @@ class Model_Order extends ORM {
                 break;
             case self::PRODUCT_TO_FEATURED:
                     $amount = Model_Order::get_featured_price($this->featured_days);
+                break;
+            case self::PRODUCT_ADD_MONEY:
+                     $amount = Model_Transaction::get_money_price($this->quantity);
                 break;
             case self::PRODUCT_AD_SELL:
                     if ($this->ad->shipping_pickup() AND core::get('shipping_pickup'))
@@ -615,6 +634,30 @@ class Model_Order extends ORM {
         //by default we say is not fraud
         return FALSE;
 
+    }
+
+    /**
+     * mark an order as received by the user
+     */
+    public function mark_as_received()
+    {
+        if (! in_array($this->id_product, [self::PRODUCT_AD_SELL, self::PRODUCT_AD_CUSTOM]))
+        {
+            return NULL;
+        }
+
+        $this->received = Date::unix2mysql();
+
+        try {
+            $this->save();
+        } catch (Exception $e) {
+            throw HTTP_Exception::factory(500, $e->getMessage());
+        }
+
+        if (core::config('general.ewallet'))
+        {
+            Model_Transaction::deposit($this->ad->user, $this->user, $this, (int) $this->amount);
+        }
     }
 
     public static function by_user(Model_User $user)
@@ -902,6 +945,19 @@ array (
     'is_nullable' => true,
     'ordinal_position' => 14,
     'display' => '11',
+    'comment' => '',
+    'extra' => '',
+    'key' => '',
+    'privileges' => 'select,insert,update,references',
+  ),
+  'received' =>
+  array (
+    'type' => 'string',
+    'column_name' => 'received',
+    'column_default' => NULL,
+    'data_type' => 'datetime',
+    'is_nullable' => true,
+    'ordinal_position' => 7,
     'comment' => '',
     'extra' => '',
     'key' => '',

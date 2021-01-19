@@ -84,6 +84,13 @@ class Controller_Panel_Addons extends Auth_Controller {
                 'description' => __('Show the Add to Home Screen dialog on Android devices with Chrome browser.'),
                 'is_pro' => TRUE,
             ],
+            [
+                'name' => 'ewallet',
+                'config_name' => 'general.ewallet',
+                'label' => __('eWallet'),
+                'description' => __('A eWallet system.'),
+                'is_pro' => TRUE,
+            ],
         ];
 
         return $this->template->content = View::factory('oc-panel/pages/addons/index', [

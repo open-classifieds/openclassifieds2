@@ -309,6 +309,48 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 
     }
 
+    public function action_order_received()
+    {
+        if (! core::config('general.ewallet'))
+        {
+            throw HTTP_Exception::factory(404,__('Page not found'));
+        }
+
+        $id_order = $this->request->param('id');
+
+        $order = (new Model_Order)
+            ->where('id_order', '=', $id_order)
+            ->where('received', 'IS', NULL);
+
+        //if admin we do not verify the user
+        if ($this->user->id_role != Model_Role::ROLE_ADMIN)
+        {
+            $order->where('id_user','=',$this->user->id_user);
+        }
+
+        $order->find();
+
+        if (! $order->loaded())
+        {
+            Alert::set(ALERT::WARNING, __('Order could not be loaded'));
+
+            $this->redirect(Route::url('oc-panel', ['controller'=>'profile','action'=>'orders']));
+        }
+
+        if (! in_array($order->id_product, [Model_Order::PRODUCT_AD_SELL, Model_Order::PRODUCT_AD_CUSTOM]))
+        {
+            Alert::set(ALERT::WARNING, __('Order could not be loaded'));
+
+            $this->redirect(Route::url('oc-panel', ['controller'=>'profile','action'=>'orders']));
+        }
+
+        $order->mark_as_received();
+
+        Alert::set(ALERT::SUCCESS, __('Order marked as received.'));
+
+        $this->redirect(Route::url('oc-panel', ['controller' => 'profile', 'action' => 'orders']));
+    }
+
     public function action_sales()
     {
         //check pay to featured top is enabled check stripe config too
@@ -586,6 +628,12 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 
             try {
                 $this->user->save();
+
+                if (Core::config('general.ewallet_gamification') AND Core::config('general.ewallet_gamification_earn_on_sign_up') > 0)
+                {
+                    Model_Transaction::deposit($this->user, NULL, NULL, Core::config('general.ewallet_gamification_earn_on_sign_up'));
+                }
+
                 Alert::set(Alert::SUCCESS, __('You have verified your email.'));
             } catch (Exception $e) {
                 //throw 500
@@ -594,6 +642,55 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
         }
 
         $this->redirect(Route::url('oc-panel', ['controller' => 'profile', 'action' => 'edit']));
+    }
+
+    public function action_transfer()
+    {
+        if (! $this->request->post())
+        {
+            throw HTTP_Exception::factory(404,__('Page not found'));
+        }
+
+        $seoname = $this->request->param('id', NULL);
+
+        if (is_null($seoname) OR ! Core::config('general.ewallet'))
+        {
+            throw HTTP_Exception::factory(404,__('Page not found'));
+        }
+
+        $user = (new Model_User())
+            ->where('seoname','=', $seoname)
+            ->where('status','=', Model_User::STATUS_ACTIVE)
+            ->limit(1)
+            ->cached()
+            ->find();
+
+        if (! $user->loaded())
+        {
+            throw HTTP_Exception::factory(404,__('Page not found'));
+        }
+
+        $validation = Validation::factory($this->request->post())
+            ->rule('amount', 'not_empty')
+            ->rule('amount', 'digit');
+
+        if (! $validation->check())
+        {
+            HTTP::redirect(Route::url('profile', array('seoname' => $user->seoname)));
+        }
+
+        $transaction = Model_Transaction::transfer($this->user, $user, NULL, $validation->data()['amount']);
+
+        if (! $transaction)
+        {
+            Alert::set(Alert::INFO, __('Transfer declined.'));
+
+            HTTP::redirect(Route::url('profile', array('seoname' => $user->seoname)));
+        }
+
+        Alert::set(Alert::INFO, __('Money sent.'));
+
+        HTTP::redirect(Route::url('profile', array('seoname' => $user->seoname)));
     }
 
    /**

@@ -9,6 +9,15 @@
                 <? endif ?>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-auth">
+                <?if (core::config('general.ewallet')):?>
+                    <h6 class="dropdown-header"><?= _e('eWallet balance') ?></h6>
+
+                    <a class="dropdown-item" href="<?= Route::url('oc-panel', ['controller' => 'ewallet', 'action' => 'index']) ?>">
+                        <?= i18n::money_format(Auth::instance()->get_user()->ewallet_balance, 'YCL') ?>
+                    </a>
+
+                    <div class="dropdown-divider"></div>
+                <?endif?>
                 <a class="dropdown-item" href="<?= Route::url('oc-panel', ['controller' => 'home', 'action' => 'index']) ?>">
                     <?= _e('Panel') ?>
                 </a>
