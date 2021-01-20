@@ -173,8 +173,8 @@ class Cron_Ad {
             $url = $order->user->ql('oc-panel', [
                 'controller' => 'profile',
                 'action' => 'order_received',
-                'id' => $order->id_order],
-            );
+                'id' => $order->id_order,
+            ]);
 
             $order->user->email('mark-as-received', [
                 '[ORDER.ID]' => $order->id_order,
