@@ -592,10 +592,10 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."roles` (`id_ro
 
 mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."access` (`id_role`, `access`) VALUES
             (10, '*.*'),
-            (1, 'profile.*'),(1, 'stats.user'),(1, 'myads.*'),(1, 'escrow.*'),(1, 'mylistings.*'),(1, 'messages.*'),
-            (5, 'translations.*'),(5, 'profile.*'),(5, 'stats.user'),(5, 'content.*'),(5, 'myads.*'),(5, 'escrow.*'),(5, 'mylistings.*'),(5, 'messages.*'),
+            (1, 'profile.*'),(1, 'stats.user'),(1, 'myads.*'),(1, 'escrow.*'),(1, 'mylistings.*'),(1, 'messages.*'),(1, 'ewallet.*'),
+            (5, 'translations.*'),(5, 'profile.*'),(5, 'stats.user'),(5, 'content.*'),(5, 'myads.*'),(5, 'escrow.*'),(5, 'mylistings.*'),(5, 'messages.*'),(5, 'ewallet.*'),
             (7, 'profile.*'),(7, 'content.*'),(7, 'stats.user'),(7, 'blog.*'),(7, 'translations.*'),(7, 'ad.*'),
-            (7, 'widgets.*'),(7, 'menu.*'),(7, 'category.*'),(7, 'location.*'),(7, 'myads.*'),(7, 'escrow.*'),(7, 'mylistings.*'),(7, 'messages.*');");
+            (7, 'widgets.*'),(7, 'menu.*'),(7, 'category.*'),(7, 'location.*'),(7, 'myads.*'),(7, 'escrow.*'),(7, 'mylistings.*'),(7, 'messages.*'),(7, 'ewallet.*');");
 
 /**
  * Create user God/Admin
