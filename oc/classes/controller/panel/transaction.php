@@ -21,7 +21,7 @@ class Controller_Panel_Transaction extends Auth_CrudAjax {
 
     protected $_fields_caption = [
         'id_user' => ['model' => 'user', 'caption' => 'email'],
-        'id_user_from' => ['model' => 'user', 'caption' => 'from email'],
+        'id_user_from' => ['model' => 'user', 'caption' => 'email'],
     ];
 
     function __construct(Request $request, Response $response)
@@ -32,5 +32,10 @@ class Controller_Panel_Transaction extends Auth_CrudAjax {
         ];
 
         parent::__construct($request, $response);
+    }
+
+    public function action_index($view = NULL)
+    {
+        parent::action_index('oc-panel/pages/transaction/index');
     }
 }
