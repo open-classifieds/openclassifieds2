@@ -21,7 +21,7 @@ class Controller_Panel_Transaction extends Auth_CrudAjax {
 
     protected $_fields_caption = [
         'id_user' => ['model' => 'user', 'caption' => 'email'],
-        'id_user_from' => ['model' => 'user', 'caption' => 'email'],
+        'id_user_from' => ['model' => 'user_from', 'caption' => 'email'],
     ];
 
     function __construct(Request $request, Response $response)

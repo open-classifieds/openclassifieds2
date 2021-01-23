@@ -79,28 +79,30 @@
                 <?endif?>
             </ul>
 
-            <?if (Core::extra_features() == TRUE):?>
-                <?if(isset($user->cf_whatsapp) AND strlen($user->cf_whatsapp) > 6):?>
-                    <a href="https://api.whatsapp.com/send?phone=<?=$user->cf_whatsapp?>" title="Chat with <?=$user->name?>" alt="Whatsapp"><i class="fa fa-2x fa-whatsapp" style="color:#43d854"></i></a>
+            <div class="tw-flex tw-items-center tw-space-x-2">
+                <?if (Core::extra_features() == TRUE):?>
+                    <?if(isset($user->cf_whatsapp) AND strlen($user->cf_whatsapp) > 6):?>
+                        <a href="https://api.whatsapp.com/send?phone=<?=$user->cf_whatsapp?>" title="Chat with <?=$user->name?>" alt="Whatsapp"><i class="fab fa-2x fa-whatsapp" style="color:#43d854"></i></a>
+                    <?endif?>
+
+                    <?if(isset($user->cf_skype) AND $user->cf_skype!=''):?>
+                        <a href="skype:<?=$user->cf_skype?>?chat" title="Chat with <?=$user->name?>" alt="Skype"><i class="fab fa-2x fa-skype" style="color:#00aff0"></i></a>
+                    <?endif?>
+
+                    <?if(isset($user->cf_telegram) AND $user->cf_telegram!=''):?>
+                        <a href="tg://resolve?domain=<?=$user->cf_telegram?>" id="telegram" title="Chat with <?=$user->name?>" alt="Telegram"><i class="fab fa-2x fa-telegram" style="color:#0088cc"></i></a>
+                    <?endif?>
                 <?endif?>
 
-                <?if(isset($user->cf_skype) AND $user->cf_skype!=''):?>
-                    <a href="skype:<?=$user->cf_skype?>?chat" title="Chat with <?=$user->name?>" alt="Skype"><i class="fa fa-2x fa-skype" style="color:#00aff0"></i></a>
+                <?if (core::config('general.messaging') == TRUE AND !Auth::instance()->logged_in()) :?>
+                    <a class="btn btn-primary" data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
+                        <i class="fas fa-envelope"></i>
+                        <?=_e('Send Message')?>
+                    </a>
+                <?else :?>
+                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#contact-modal"><i class="fas fa-envelope"></i> <?=_e('Send Message')?></button>
                 <?endif?>
-
-                <?if(isset($user->cf_telegram) AND $user->cf_telegram!=''):?>
-                    <a href="tg://resolve?domain=<?=$user->cf_telegram?>" id="telegram" title="Chat with <?=$user->name?>" alt="Telegram"><i class="fa fa-2x fa-telegram" style="color:#0088cc"></i></a>
-                <?endif?>
-            <?endif?>
-
-            <?if (core::config('general.messaging') == TRUE AND !Auth::instance()->logged_in()) :?>
-                <a class="btn btn-primary" data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
-                    <i class="fas fa-envelope"></i>
-                    <?=_e('Send Message')?>
-                </a>
-            <?else :?>
-                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#contact-modal"><i class="fas fa-envelope"></i> <?=_e('Send Message')?></button>
-            <?endif?>
+            </div>
 
             <div id="contact-modal" class="modal fade">
                 <div class="modal-dialog">

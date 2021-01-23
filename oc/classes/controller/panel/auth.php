@@ -348,6 +348,12 @@ class Controller_Panel_Auth extends Controller {
                         if($save_cf === TRUE)
                             $user->save();
 
+                        //add user image
+                        if (isset($_FILES['image']))
+                        {
+                            $user->save_image($_FILES['image']);
+                        }
+
                         if (Core::config('general.users_must_verify_email'))
                         {
                             Alert::set(Alert::SUCCESS, __('Please confirm your email address, a confirmation email was sent to your registration email address.'));
