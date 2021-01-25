@@ -10,6 +10,51 @@
  */
 class Controller_Panel_Update extends Auth_Controller {
 
+
+
+    /**
+     * This function will upgrade DB that didn't existed in versions prior to 2.1.8
+     */
+    public function action_411()
+    {
+
+
+        // new indexes
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE ".self::$db_prefix."users ADD INDEX IF NOT EXISTS ".self::$db_prefix."users_IK_status (status);")->execute();
+        }catch (exception $e) {}
+
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE ".self::$db_prefix."categories ADD INDEX IF NOT EXISTS ".self::$db_prefix."categories_IK_id_category_parent (id_category_parent);")->execute();
+        }catch (exception $e) {}
+
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE ".self::$db_prefix."categories ADD INDEX IF NOT EXISTS ".self::$db_prefix."categories_IK_id_category_parent_AND_parent_deep (id_category_parent, parent_deep);")->execute();
+        }catch (exception $e) {}
+
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE ".self::$db_prefix."locations ADD INDEX IF NOT EXISTS ".self::$db_prefix."locations_IK_id_location_parent (id_location_parent);")->execute();
+        }catch (exception $e) {}
+
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE ".self::$db_prefix."locations ADD INDEX IF NOT EXISTS ".self::$db_prefix."locations_IK_id_location_parent_AND_parent_deep (id_location_parent, parent_deep);")->execute();
+        }catch (exception $e) {}
+
+
+
+        $configs = [];
+
+        // returns TRUE if some config is saved
+        $return_conf = Model_Config::config_array($configs);
+
+
+    }
+
     public function action_410()
     {
         // Transactions

@@ -78,7 +78,8 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_token` (`token`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_api_token` (`api_token`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_seoname` (`seoname`),
-  UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_provider_AND_uid` (`hybridauth_provider_name`,`hybridauth_provider_uid`)
+  UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_provider_AND_uid` (`hybridauth_provider_name`,`hybridauth_provider_uid`),
+  KEY `".core::request('TABLE_PREFIX')."users_IK_status` (`status`)
 ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
@@ -97,7 +98,9 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `translations` text NULL DEFAULT NULL,
   `icon_font` varchar(145) NULL DEFAULT NULL,
   PRIMARY KEY (`id_category`) USING BTREE,
-  UNIQUE KEY `".core::request('TABLE_PREFIX')."categories_IK_seo_name` (`seoname`)
+  UNIQUE KEY `".core::request('TABLE_PREFIX')."categories_IK_seo_name` (`seoname`),
+  KEY `".core::request('TABLE_PREFIX')."categories_IK_id_category_parent (id_category_parent),
+  KEY `".core::request('TABLE_PREFIX')."categories_IK_id_category_parent_AND_parent_deep (id_category_parent, parent_deep)
 ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
@@ -117,7 +120,9 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `fcodename_geoname` varchar(145) NULL DEFAULT NULL,
   `translations` text NULL DEFAULT NULL,
   PRIMARY KEY (`id_location`),
-  UNIQUE KEY `".core::request('TABLE_PREFIX')."loations_UK_seoname` (`seoname`)
+  UNIQUE KEY `".core::request('TABLE_PREFIX')."loations_UK_seoname` (`seoname`),
+  KEY `".core::request('TABLE_PREFIX')."locations_IK_id_location_parent (id_location_parent),
+  KEY `".core::request('TABLE_PREFIX')."locations_IK_id_location_parent_AND_parent_deep (id_location_parent, parent_deep)
 ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
