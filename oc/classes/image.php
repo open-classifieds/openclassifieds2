@@ -54,7 +54,7 @@ abstract class Image extends Kohana_Image {
                 break;
 
                 case 6:
-                    $rotate = 180;
+                    $rotate = 0;
                     $flip = FALSE;
                 break;
 
