@@ -1,5 +1,14 @@
 <?php defined('SYSPATH') or die('No direct script access.');
                 return array (
+  '4.1.1' => 
+  array (
+    'codename' => 'reAether',
+    'released' => '2021-01-19',
+    'blog' => '',
+    'changelog' => 'https://github.com/yclas/yclas/compare/4.0.2...4.1.1',
+    'issues' => 'https://github.com/yclas/yclas/milestone/45?closed=1',
+    'download' => 'https://j.mp/yc_411',
+  ),     
   '4.1.0' => 
   array (
     'codename' => 'Aether',
@@ -8,7 +17,7 @@
     'changelog' => 'https://github.com/yclas/yclas/compare/4.0.2...4.1.0',
     'issues' => 'https://github.com/yclas/yclas/milestone/45?closed=1',
     'download' => 'https://j.mp/yc_410',
-  ),                  
+  ),
   '4.0.2' => 
   array (
     'codename' => 'ReReErebus',
