@@ -130,6 +130,96 @@
     @apply bg-blue-100;
 }
 
+.note-editable {
+    > h1 {
+        @apply text-4xl font-bold leading-none mb-16;
+    }
+
+    > h2 {
+        @apply text-2xl font-bold leading-none mt-12 py-6;
+    }
+
+    > h3 {
+        @apply text-xl font-semibold leading-none py-6;
+    }
+
+    > h4 {
+        @apply font-bold uppercase tracking-widest leading-none py-6;
+    }
+
+    > p {
+        @apply mb-6 text-lg;
+    }
+
+    > p:first-of-type {
+        @apply text-2xl;
+    }
+
+    > blockquote {
+        @apply text-center font-black italic px-4 mb-12 pt-6 text-3xl leading-tight;
+    }
+
+    > blockquote > p {
+        @apply text-3xl leading-tight;
+    }
+
+    img {
+        @apply my-12;
+    }
+
+    a {
+        @apply text-blue-800 font-medium underline;
+        &:hover {
+            @apply text-black;
+        }
+    }
+
+    ul:not(.list-none) {
+        @apply pl-0 list-disc ml-10 mb-6 text-lg;
+        li {
+            @apply mb-1;
+        }
+    }
+
+    ol {
+        @apply pl-0 list-decimal ml-10 mb-6 text-lg;
+        > li {
+            @apply mb-1;
+        }
+    }
+
+    > p code,
+    > ul li *:not(pre) code,
+    > ul li > code,
+    > ol li *:not(pre) code,
+    > ol li > code {
+        @apply inline-block bg-gray-800 text-white text-sm p-1 leading-none whitespace-no-wrap font-mono align-baseline;
+    }
+
+    > pre, > ul li pre, > ol li pre {
+        @apply flex p-0 bg-gray-800 text-gray-300 text-sm leading-loose mb-6;
+    }
+
+    > pre code, > ul li pre code, > ol li pre code {
+        @apply p-4;
+    }
+
+    > table {
+        @apply w-full text-left border border-gray-800 border-collapse mb-6 text-sm;
+        th {
+            @apply font-bold text-gray-800 bg-gray-200 p-2 uppercase tracking-widest border-t-4 border-b border-gray-800;
+        }
+
+        td {
+            @apply p-3 border-b border-gray-800 text-sm;
+        }
+
+        p {
+            @apply leading-normal;
+        }
+  }
+}
+
 /**
  * This injects all of Tailwind's utility classes, generated based on your
  * config file.
