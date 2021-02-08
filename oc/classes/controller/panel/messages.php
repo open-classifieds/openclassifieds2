@@ -127,6 +127,11 @@ class Controller_Panel_Messages extends Auth_Frontcontroller {
 
     public function action_custom_order()
     {
+        if (! core::config('general.custom_orders'))
+        {
+             $this->redirect(Route::url('default'));
+        }
+
         if (! $this->request->post())
         {
             Alert::set(Alert::ERROR, __('Message not found'));

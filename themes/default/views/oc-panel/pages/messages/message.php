@@ -103,7 +103,7 @@
                                 <a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>" class="btn btn-default"><?=_e('Cancel')?></a>
                                 <button type="submit" class="btn btn-primary"><?=_e('Reply')?></button>
                             </div>
-                            <?if ($msg_thread->id_ad !== NULL AND $msg_thread->ad->id_user === $user->id_user):?>
+                            <? if (core::config('general.custom_orders') AND $msg_thread->id_ad !== NULL AND $msg_thread->ad->id_user === $user->id_user):?>
                                 <div class="col-md-6 text-right">
                                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#customOrderFormModal"><?=_e('Create custom order')?></button>
                                 </div>
