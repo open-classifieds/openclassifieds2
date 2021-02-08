@@ -32,7 +32,7 @@
             <button type="submit" class="btn btn-primary"><?=_e('Reply')?></button>
         </div>
 
-        <?if ($msg_thread->id_ad !== NULL AND $msg_thread->ad->id_user === $user->id_user):?>
+        <? if (core::config('general.custom_orders') AND $msg_thread->id_ad !== NULL AND $msg_thread->ad->id_user === $user->id_user):?>
             <button type="button" class="btn btn-light" data-toggle="modal" data-target="#customOrderFormModal"><?=_e('Create custom order')?></button>
         <? endif ?>
     </div>
