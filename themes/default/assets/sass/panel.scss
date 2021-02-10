@@ -220,6 +220,10 @@
   }
 }
 
+.datepicker.dropdown-menu {
+    @apply border-gray-200 rounded-md border border-solid hidden float-left absolute bg-white;
+}
+
 /**
  * This injects all of Tailwind's utility classes, generated based on your
  * config file.
