@@ -101,6 +101,7 @@
 
 <?if(Theme::get('apple-touch-icon')!=NULL):?>
     <link rel="apple-touch-icon" href="<?=(Theme::get('apple-touch-icon')) ?>">
+    <link rel="icon" type="image/png" href="<?=(Theme::get('apple-touch-icon')) ?>" sizes="57x57">
 <?endif?>
 
 <?if(Theme::get('theme_color')!=NULL):?>
