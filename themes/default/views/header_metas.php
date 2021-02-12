@@ -93,6 +93,7 @@
 <link rel="shortcut icon" href="<?=(Theme::get('favicon_url')!='') ? Theme::get('favicon_url') : core::config('general.base_url').'images/favicon.ico'?>">
 <?if(Theme::get('apple-touch-icon')!=NULL):?>
 <link rel="apple-touch-icon" href="<?=(Theme::get('apple-touch-icon')) ?>">
+<link rel="icon" type="image/png" href="<?=(Theme::get('apple-touch-icon')) ?>" sizes="57x57">
 <?endif?>
 <?if(Theme::get('theme_color')!=NULL):?>
 <meta name="theme-color" content="<?=Theme::get('theme_color')?>">
