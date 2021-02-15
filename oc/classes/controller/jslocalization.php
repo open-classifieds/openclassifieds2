@@ -248,4 +248,14 @@ class Controller_Jslocalization extends Controller {
         ';
     }
 
+    public function action_infinitescroll()
+    {
+        $localization_rules= [
+            'finishedMsg' => '<em>' . addslashes(__('No more advertisements')) . '</em>',
+            'msgText'     => '<em>' . addslashes(__('Loading the next set of advertisements...')) . '</em>',
+        ];
+
+        $this->template->content = '(function ($) {$.extend($.infinitescroll.defaults.loading, '.json_encode($localization_rules). ');}(jQuery));';
+    }
+
 }// End Jslocalization Controller
