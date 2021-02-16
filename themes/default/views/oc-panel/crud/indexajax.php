@@ -2,12 +2,9 @@
 
 <style>
     .dropdown-menu {
-        position: absolute;
         z-index: 1000;
-        display: none;
-        float: left;
         min-width: 160px;
-        margin: 1px 0 0 2px;
+        width: 100%;
         list-style: none;
         font-size: 14px;
         text-align: left;
@@ -15,7 +12,6 @@
         border: 1px solid #ccc;
         border: 1px solid rgba(0,0,0,.15);
         border-radius: 4px;
-        box-shadow: 0 6px 12px rgba(0,0,0,.175);
         background-clip: padding-box;
     }
 </style>
