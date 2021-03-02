@@ -53,6 +53,14 @@ class Controller_New extends Controller
             Alert::set(Alert::INFO, __('Please, choose a plan first'));
             HTTP::redirect(Route::url('pricing'));
         }
+        //user subscribed but plan doesn't have ads
+        elseif (Core::config('general.subscriptions') == TRUE AND
+            $this->user->subscription()->loaded() AND
+            $this->user->subscription()->amount_ads == 0)
+        {
+            Alert::set(Alert::INFO, sprintf(__('Your subscription plan doesn’t have ads. Please, change your plan first.')));
+            HTTP::redirect(Route::url('pricing'));
+        }
 
         //validates captcha
         if (Core::post('ajaxValidateCaptcha'))
