@@ -37,8 +37,8 @@ class Auth_Frontcontroller extends Controller
             if (!Auth::instance()->logged_in( $request->controller(), $request->action(), $request->directory()))
             {
 				Alert::set(Alert::ERROR, sprintf(__('You do not have permissions to access %s'), $request->controller().' '.$request->action()));
-                $url = Route::url('oc-panel',array(   'controller' => 'auth',
-                                                    'action'     => 'login'));
+                $url = Route::url('oc-panel', ['controller' => 'auth', 'action' => 'login']).'?auth_redirect='.URL::current();
+
                 $this->redirect($url);
             }
         }

@@ -112,4 +112,25 @@ class Controller_Panel_Blog extends Auth_Crud {
 
         return $this->render('oc-panel/pages/blog/update', ['post' => $post->object, 'form_fields' => $post->fields]);
     }
+
+    public function action_delete()
+    {
+        $page = new Model_Post($this->request->param('id'));
+
+        if (! $page->loaded())
+        {
+            throw HTTP_Exception::factory(404, __('Page not found'));
+        }
+
+        try
+        {
+            $page->delete();
+        }
+        catch (Exception $e)
+        {
+            Alert::set(Alert::ERROR, $e->getMessage());
+        }
+
+        HTTP::redirect(Route::url('oc-panel', ['controller' => 'blog']));
+    }
 }
