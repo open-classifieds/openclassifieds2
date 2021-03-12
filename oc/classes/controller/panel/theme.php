@@ -231,7 +231,13 @@ class Controller_Panel_Theme extends Auth_Controller {
         Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title));
 
         $css_active  = Core::post('css_active',Core::Config('appearance.custom_css'));
-        $css_content = Core::curl_get_contents(Theme::get_custom_css());
+        $css_content = File::read(Theme::theme_folder('default').'/css/web-custom.css');
+
+        if (Core::is_cloud())
+        {
+            $css_content = Core::curl_get_contents(Theme::get_custom_css());
+        }
+
         if ($css_content===NULL)
             Alert::set(Alert::ERROR, sprintf(__('We can not read file %s'),Theme::get_custom_css() ));
 
