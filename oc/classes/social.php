@@ -28,6 +28,8 @@ class Social {
         // limit Google permission scope
         $config['providers']['Google']['scope'] = 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email';
 
+        $config['base_url'] = Route::url('default', ['controller'=>'social','action'=>'login','id'=> 1]);
+
         return $config;
     }
 
