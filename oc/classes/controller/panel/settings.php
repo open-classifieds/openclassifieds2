@@ -108,16 +108,7 @@ class Controller_Panel_Settings extends Auth_Controller {
 
         }
 
-        if(core::config('advertisement.pinterest'))
-        {
-            Social::include_vendor_pinterest();
-
-            $pinterest = new \DirkGroenen\Pinterest\Pinterest(core::config('advertisement.pinterest_app_id'), core::config('advertisement.pinterest_app_secret'));
-
-            $pinterest_login_url = $pinterest->auth->getLoginUrl(Route::url('oc-panel', ['controller' => 'pinterest', 'action' => 'token']), ['read_public', 'write_public']);
-        }
-
-        $this->template->content = View::factory('oc-panel/pages/settings/advertisement', ['config' => $config, 'pinterest_login_url' => $pinterest_login_url ?? NULL]);
+        $this->template->content = View::factory('oc-panel/pages/settings/advertisement', ['config' => $config]);
     }
 
     public function action_emailtest()

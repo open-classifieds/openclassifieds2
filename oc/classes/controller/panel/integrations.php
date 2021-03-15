@@ -147,14 +147,6 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'category' => '',
             ],
             [
-                'name' => 'pinterest',
-                'config_name' => 'advertisement.pinterest',
-                'label' => 'Pinterest',
-                'description' => __('Auto post ads on Pinterest automatically.'),
-                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/pinterest.svg',
-                'category' => '',
-            ],
-            [
                 'name' => 'twitter',
                 'config_name' => 'advertisement.twitter',
                 'label' => 'Twitter',
