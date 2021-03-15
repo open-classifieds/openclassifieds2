@@ -39,14 +39,14 @@ class Controller_Social extends Controller {
             $this->redirect($authorizationUrl);
 
         // Check given state against previously stored one to mitigate CSRF attack
-        } 
-        elseif ( empty($_GET['state']) OR (isset($_SESSION['oauth2state']) AND $_GET['state'] !== $_SESSION['oauth2state'])  ) 
+        }
+        elseif ( empty($_GET['state']) OR (isset($_SESSION['oauth2state']) AND $_GET['state'] !== $_SESSION['oauth2state'])  )
         {
             unset($_SESSION['oauth2state']);
             $this->redirect(Route::url('default'));
 
-        } 
-        else 
+        }
+        else
         {
 
             try {
@@ -103,7 +103,7 @@ class Controller_Social extends Controller {
                 //we couldnt login create account
                 if ($user == FALSE)
                 {
-                    //if not email provided 
+                    //if not email provided
                     if (!Valid::email($user_email,TRUE))
                     {
                         Alert::set(Alert::INFO, __('We need your email address to complete'));
@@ -120,7 +120,7 @@ class Controller_Social extends Controller {
                         Auth::instance()->social_login($provider_name, $user_profile->identifier);
                     }
                 }
-                else                    
+                else
                     Alert::set(Alert::SUCCESS, __('Welcome!'));
 
                 $this->redirect(Session::instance()->get_once('auth_redirect',Route::url('default')));
@@ -136,7 +136,7 @@ class Controller_Social extends Controller {
 
         }
     }
-	
+
 	public function action_login()
 	{
          //if user loged in redirect home
@@ -144,31 +144,31 @@ class Controller_Social extends Controller {
             Auth::instance()->login_redirect();
 
 		Social::include_vendor();
-		$user = FALSE;	
+		$user = FALSE;
 		$config = Social::get();
-		
+
 		if ($this->request->query('hauth_start') OR $this->request->query('hauth_done'))
 		{
-			try 
+			try
 			{
 				Hybrid_Endpoint::process($this->request->query());
-			} 
-			catch (Exception $e) 
+			}
+			catch (Exception $e)
 			{
 				Alert::set(Alert::ERROR, $e->getMessage());
 				$this->redirect(Route::url('default'));
 			}
-				
+
 		}
 		else
-		{ 
+		{
 			$provider_name = $this->request->param('id');
-	 
+
 			try
 			{
 				// initialize Hybrid_Auth with a given file
 				$hybridauth = new Hybrid_Auth( $config );
-	 
+
 				// try to authenticate with the selected provider
                 if ($provider_name == 'openid')
                     $params = array( 'openid_identifier' => 'https://openid.stackexchange.com/');
@@ -178,7 +178,7 @@ class Controller_Social extends Controller {
 				$adapter = $hybridauth->authenticate( $provider_name , $params);
 
 
-				if ($hybridauth->isConnectedWith($provider_name)) 
+				if ($hybridauth->isConnectedWith($provider_name))
 				{
 					//var_dump($adapter->getUserProfile());
                     $user_profile = $adapter->getUserProfile();
@@ -198,7 +198,7 @@ class Controller_Social extends Controller {
             {
                 $email = ($user_profile->emailVerified!=NULL)? $user_profile->emailVerified: $user_profile->email;
                 $name  = ($user_profile->firstName!=NULL)? $user_profile->firstName.' '.$user_profile->lastName: $user_profile->displayName;
-                //if not email provided 
+                //if not email provided
                 if (!Valid::email($email,TRUE))
                 {
                     Alert::set(Alert::INFO, __('We need your email address to complete'));
@@ -211,16 +211,24 @@ class Controller_Social extends Controller {
                 {
                     //register the user in DB
                     Model_User::create_social($email,$name,$provider_name,$user_profile->identifier);
+
+                    if (Core::config('general.users_must_verify_email'))
+                    {
+                        Alert::set(Alert::SUCCESS, __('Please confirm your email address, a confirmation email was sent to your registration email address.'));
+
+                        $this->redirect(Route::url('oc-panel', ['directory' => 'user', 'controller' => 'auth', 'action' => 'login']));
+                    }
+
                     //log him in
                     Auth::instance()->social_login($provider_name, $user_profile->identifier);
                 }
             }
-            else                    
+            else
                 Alert::set(Alert::SUCCESS, __('Welcome!'));
 
             $this->redirect(Session::instance()->get_once('auth_redirect',Route::url('default')));
 
-		} 
+		}
 	}
 
     /**
@@ -242,7 +250,7 @@ class Controller_Social extends Controller {
         if (core::post('email') AND CSRF::valid('register_social'))
         {
             $email = core::post('email');
-                
+
             if (Valid::email($email,TRUE))
             {
                 //register the user in DB
@@ -259,11 +267,11 @@ class Controller_Social extends Controller {
             {
                 Form::set_errors(array(__('Invalid Email')));
             }
-                
+
         }
-    
+
         //template header
         $this->template->title            = __('Register new user');
-            
+
     }
-}	
+}
