@@ -28,8 +28,8 @@
 
 <? if (Controller::$image!==NULL): ?>
     <meta property="og:image" content="<?=Controller::$image?>">
-<? elseif(Theme::get('logo_url') != NULL): ?>
-    <meta property="og:image" content="<?=Theme::get('logo_url')?>">
+<? elseif(Theme::get('og-image') != NULL): ?>
+    <meta property="og:image" content="<?=Theme::get('og-image')?>">
 <? endif ?>
 
 <meta property="og:title" content="<?= HTML::chars($title) ?>">
@@ -45,8 +45,8 @@
 
 <?if (Controller::$image !== NULL):?>
     <meta name="twitter:image" content="<?= Controller::$image ?>">
-<?elseif(Theme::get('logo_url') != NULL):?>
-    <meta name="twitter:image" content="<?= Theme::get('logo_url') ?>">
+<?elseif(Theme::get('og-image') != NULL):?>
+    <meta name="twitter:image" content="<?= Theme::get('og-image') ?>">
 <?endif?>
 
 <meta name="twitter:image:alt" content="<?= HTML::chars($title) ?>">
