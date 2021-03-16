@@ -1,6 +1,0 @@
-# Note: the API will perform live actions on the provided account
-
-export CLIENT_ID=4782712381411165558
-export CLIENT_SECRET=4489d440ae5d42f40170bf1f5073c5c9d1ddcf565ab4e120e1d1af180a663024
-export ACCESS_TOKEN=AbRHLxfhh1aBeK80gX98RSuvbCT2FBreHhmUMRpCW5Jw2MAJ6AAAAAA
-export CALLBACK_URL=https://bitlabs.dev
