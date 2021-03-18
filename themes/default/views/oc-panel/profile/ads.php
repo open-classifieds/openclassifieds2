@@ -101,7 +101,7 @@
                         </a>
                         <?if($ad->status != Model_Ad::STATUS_SOLD AND $ad->status != Model_Ad::STATUS_UNCONFIRMED):?>
                             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#soldModal<?=$ad->id_ad?>">
-                                <i class="glyphicon glyphicon-usd"></i>
+                                <i class="fas fa-money-bill"></i>
                             </button>
                             <div class="modal fade" id="soldModal<?=$ad->id_ad?>" tabindex="-1" role="dialog">
                                 <div class="modal-dialog modal-sm" role="document">

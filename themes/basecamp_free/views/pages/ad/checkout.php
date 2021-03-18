@@ -183,7 +183,7 @@
                                 <ul class="list-inline text-right">
                                     <li>
                                         <a title="<?=__('Mark as paid')?>" class="btn btn-warning" href="<?=Route::url('oc-panel', array('controller'=> 'order', 'action'=>'pay','id'=>$order->id_order))?>">
-                                            <i class="glyphicon glyphicon-usd"></i> <?=_e('Mark as paid')?>
+                                            <i class="fas fa-money-bill"></i> <?=_e('Mark as paid')?>
                                         </a>
                                     </li>
                                 </ul>
