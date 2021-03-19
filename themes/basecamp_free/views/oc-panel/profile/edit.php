@@ -20,7 +20,7 @@
 	                                <br>
 	                            <?endif?>
 	                            <a class="btn btn-primary" href="<?=Route::url('default', array('controller'=>'stripe','action'=>'connect','id'=>'now'))?>">
-	                                <span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Connect with Stripe
+	                                <span class="fas fa-money-bill" aria-hidden="true"></span> Connect with Stripe
 	                            </a>
 
 	                        </div>
