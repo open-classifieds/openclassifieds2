@@ -61,7 +61,7 @@ class Model_Subscribe extends ORM {
         }
 
         //location is set
-        if(is_numeric($ad->id_location))
+        if($ad->location->loaded())
             $subscribers->where('id_location', 'in', array($ad->id_location,0));
 
         //filter by category, 0 means all the cats, in case was not set
