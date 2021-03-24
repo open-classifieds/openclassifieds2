@@ -11,6 +11,25 @@
 class Controller_Panel_Update extends Auth_Controller {
 
 
+    public function action_420()
+    {
+        $configs = [
+            [
+                'config_key'    => 'razorpay_key_id',
+                'group_name'    => 'payment',
+                'config_value'  => ''
+            ],
+            [
+                'config_key'     => 'razorpay_key_secret',
+                'group_name'     => 'general',
+                'config_value'   => '0'
+            ],
+        ];
+
+        Model_Config::config_array($configs);
+
+
+    }
 
     /**
      * This function will upgrade DB that didn't existed in versions prior to 2.1.8
