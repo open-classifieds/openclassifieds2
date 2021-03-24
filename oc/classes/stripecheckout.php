@@ -93,7 +93,7 @@ class StripeCheckout {
         self::init();
 
         $parameters = [
-            'payment_method_types' => ['card'],
+            'payment_method_types' => Core::config('payment.stripe_ideal') ? ['card', 'ideal'] : ['card'],
             'line_items' => [[
                 'name' => Model_Order::product_desc($order->id_product),
                 'description' => Text::limit_chars(Text::removebbcode($order->description), 30, NULL, TRUE),
@@ -181,7 +181,7 @@ class StripeCheckout {
         self::init();
 
         $parameters = [
-            'payment_method_types' => ['card'],
+            'payment_method_types' => Core::config('payment.stripe_ideal') ? ['card', 'ideal'] : ['card'],
             'line_items' => [[
                 'name' => $order->ad->title,
                 'description' => Text::limit_chars(Text::removebbcode($order->description), 30, NULL, TRUE),
@@ -290,7 +290,7 @@ class StripeCheckout {
         self::init();
 
         $parameters = [
-            'payment_method_types' => ['card'],
+            'payment_method_types' => Core::config('payment.stripe_ideal') ? ['card', 'ideal'] : ['card'],
             'line_items' => [[
                 'name' => $ad->title,
                 'description' => Text::limit_chars(Text::removebbcode($ad->description), 30, NULL, TRUE),
