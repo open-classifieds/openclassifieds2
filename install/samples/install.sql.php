@@ -646,6 +646,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('payment', 'stripe_public', ''),
 ('payment', 'stripe_address', '0'),
 ('payment', 'stripe_alipay', '0'),
+('payment', 'stripe_ideal', '0'),
 ('payment', 'stripe_appfee', '0'),
 ('payment', 'stripe_connect', '0'),
 ('payment', 'stripe_clientid', ''),

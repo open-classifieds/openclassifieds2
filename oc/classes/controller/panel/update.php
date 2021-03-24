@@ -11,10 +11,19 @@
 class Controller_Panel_Update extends Auth_Controller {
 
 
+    public function action_420()
+    {
+        $configs = [
+            [
+                'config_key' => 'stripe_ideal',
+                'group_name' => 'payment',
+                'config_value' => '0'
+            ],
+        ];
 
-    /**
-     * This function will upgrade DB that didn't existed in versions prior to 2.1.8
-     */
+        Model_Config::config_array($configs);
+    }
+
     public function action_411()
     {
 
