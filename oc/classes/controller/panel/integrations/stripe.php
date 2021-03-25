@@ -12,6 +12,7 @@ class Controller_Panel_Integrations_Stripe extends Auth_Controller {
             Model_Config::set_value('payment', 'stripe_public', Core::post('stripe_public'));
             Model_Config::set_value('payment', 'stripe_address', Core::post('stripe_address') ?? 0);
             Model_Config::set_value('payment', 'stripe_alipay', Core::post('stripe_alipay') ?? 0);
+            Model_Config::set_value('payment', 'stripe_ideal', Core::post('stripe_ideal') ?? 0);
             Model_Config::set_value('payment', 'stripe_3d_secure', Core::post('stripe_3d_secure') ?? 0);
             Model_Config::set_value('payment', 'stripe_legacy', Core::post('stripe_legacy') ?? 0);
             Model_Config::set_value('payment', 'stripe_connect', Core::post('stripe_connect') ?? 0);

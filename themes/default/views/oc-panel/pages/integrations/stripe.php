@@ -37,6 +37,15 @@
                     </div>
                     <div class="sm:col-span-6">
                         <div class="absolute flex items-center h-5">
+                            <?=FORM::checkbox('stripe_ideal', 1, (bool) Core::post('stripe_ideal', Core::config('payment.stripe_ideal')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
+                        </div>
+                        <div class="pl-7 text-sm leading-5">
+                            <?=FORM::label('stripe_ideal', __('Accept iDEAL payments'), ['class'=>'font-medium text-gray-700'])?>
+                            <p class="text-gray-500"><?= __('Make sure your payment currency is set to EUR before enabling iDEAL payments.') ?></p>
+                        </div>
+                    </div>
+                    <div class="sm:col-span-6">
+                        <div class="absolute flex items-center h-5">
                             <?=FORM::checkbox('stripe_alipay', 1, (bool) Core::post('stripe_alipay', Core::config('payment.stripe_alipay')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
                         </div>
                         <div class="pl-7 text-sm leading-5">
