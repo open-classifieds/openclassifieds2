@@ -80,6 +80,10 @@
                 <?=$payline?>
             <?endif?>
 
+            <?if(($razorpay = razorpay::button($order)) != ''):?>
+                <?=$razorpay?>
+            <?endif?>
+
             <?if( ($alt = $order->alternative_pay_button()) != ''):?>
                 <?=$alt?>
             <?endif?>

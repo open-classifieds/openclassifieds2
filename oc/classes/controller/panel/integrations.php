@@ -273,6 +273,14 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'category' => '',
             ],
             [
+                'name' => 'razorpay',
+                'config_name' => 'payment.razorpay_key_id',
+                'label' => 'Razorpay',
+                'description' => __('Accept payments with Razorpay.'),
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/razorpay.jpg',
+                'category' => '',
+            ],
+            [
                 'name' => 'robokassa',
                 'config_name' => 'payment.robokassa_login',
                 'label' => 'Robokassa',

@@ -697,6 +697,8 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('payment', 'payline_contract_number', ''),
 ('payment', 'serfinsa_token', ''),
 ('payment', 'serfinsa_sandbox', '0'),
+('payment', 'razorpay_key_id', ''),
+('payment', 'razorpay_key_secret', ''),
 ('general', 'subscriptions', '0'),
 ('general', 'subscriptions_expire', '0'),
 ('general', 'subscriptions_mark_as_sold', '0'),
