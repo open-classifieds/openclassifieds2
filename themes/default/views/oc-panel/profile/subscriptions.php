@@ -4,6 +4,10 @@
 
 <?=Form::errors()?>
 
+<div class="page-header">
+    <h1><?=_e('Subscriptions')?></h1>
+</div>
+
 <div class="panel panel-default">
     <table class="table table-bordered">
         <tr>
