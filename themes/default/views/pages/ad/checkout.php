@@ -96,6 +96,7 @@
                                 </div>
                             <?endif?>
                         </td>
+                        <td class="col-md-1"></td>
                         <td class="col-md-2 text-center">
                             <?if ($order->ad->shipping_pickup() AND core::get('shipping_pickup')):?>
                                 <?=i18n::money_format(0, $order->currency)?>
@@ -220,7 +221,7 @@
                     <td class="text-right"><h4><strong><?=_e('Total')?>: </strong></h4></td>
                     <td class="text-center text-danger">
                         <h4>
-                            <strong>
+                            <strong style="white-space: nowrap;">
                                 <?if($order->id_product == Model_Order::PRODUCT_AD_SELL):?>
                                     <?=i18n::money_format($order->amount, $order->currency)?>
                                 <?else:?>
