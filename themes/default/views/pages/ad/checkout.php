@@ -329,6 +329,9 @@
                                 <?if(($serfinsa = serfinsa::button($order)) != ''):?>
                                     <li class="text-right"><?=$serfinsa?></li>
                                 <?endif?>
+                                <?if(($razorpay = razorpay::button($order)) != ''):?>
+                                    <li class="text-right"><?=$razorpay?></li>
+                                <?endif?>
                                 <?if( ($alt = $order->alternative_pay_button()) != ''):?>
                                     <li class="text-right"><?=$alt?></li>
                                 <?endif?>
