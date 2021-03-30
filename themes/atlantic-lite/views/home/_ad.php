@@ -1,9 +1,9 @@
 <div class="card">
     <a href="<?= Route::url('ad', ['category' => $ad->category->seoname, 'seotitle' => $ad->seotitle]) ?>">
         <? if ($ad->get_first_image() !== NULL) : ?>
-            <?= HTML::picture($ad->get_first_image('image'), ['w' => 132, 'h' => 132], ['992px' => ['w' => '132', 'h' => '132'], '320px' => ['w' => '648', 'h' => '648']], ['alt' => HTML::chars($ad->title), 'class' => 'card-img-top']) ?>
+            <?= HTML::picture($ad->get_first_image('image'), ['w' => 992, 'h' => 992], ['992px' => ['w' => '992', 'h' => '992'], '320px' => ['w' => '648', 'h' => '648']], ['alt' => HTML::chars($ad->title), 'class' => 'card-img-top']) ?>
         <? elseif (($icon_src = $ad->category->get_icon()) !== false) : ?>
-            <?= HTML::picture($icon_src, ['w' => 132, 'h' => 132], ['992px' => ['w' => '132', 'h' => '132'], '320px' => ['w' => '648', 'h' => '648']], ['alt' => HTML::chars($ad->title), 'class' => 'card-img-top']) ?>
+            <?= HTML::picture($icon_src, ['w' => 992, 'h' => 992], ['992px' => ['w' => '992', 'h' => '992'], '320px' => ['w' => '648', 'h' => '648']], ['alt' => HTML::chars($ad->title), 'class' => 'card-img-top']) ?>
         <? else : ?>
             <img data-src="holder.js/179x179?<?= str_replace('+', ' ', http_build_query(['text' => $ad->category->name, 'size' => 14, 'auto' => 'yes'])) ?>" alt="<?= HTML::chars($ad->title) ?>">
         <? endif ?>
