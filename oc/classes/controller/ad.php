@@ -693,6 +693,9 @@ class Controller_Ad extends Controller {
         if(core::config('payment.to_top') == FALSE)
             throw HTTP_Exception::factory(404,__('Page not found'));
 
+        if($this->status !== Model_Ad::STATUS_PUBLISHED)
+            throw HTTP_Exception::factory(404,__('Page not found'));
+
         $id_product = Model_Order::PRODUCT_TO_TOP;
 
         //check ad exists
