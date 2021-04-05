@@ -53,7 +53,7 @@ class Controller_Escrow extends Controller{
                 'items' => [
                     [
                         'title' => $order->ad->title,
-                        'description' => $order->ad->description,
+                        'description' => Text::truncate_html(Text::removebbcode($order->ad->description, TRUE), 400, ''),
                         'type' => 'general_merchandise',
                         'quantity' => '1',
                         'inspection_period' => '259200',
