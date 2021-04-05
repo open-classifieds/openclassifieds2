@@ -72,6 +72,16 @@ class Controller_Map extends Controller {
             ->where_close();
         }
 
+        // filter by distance
+        if (core::request('userpos') == 1 AND Model_User::get_userlatlng())
+        {
+            if (is_numeric(Core::cookie('mydistance')) AND Core::cookie('mydistance') <= 500)
+                $location_distance = Core::config('general.measurement') == 'imperial' ? (Num::round(Core::cookie('mydistance') * 1.60934)) : Core::cookie('mydistance');
+            else
+                $location_distance = Core::config('general.measurement') == 'imperial' ? (Num::round(Core::config('advertisement.auto_locate_distance') * 1.60934)) : Core::config('advertisement.auto_locate_distance');
+            $ads->where(DB::expr('degrees(acos(sin(radians('.$_COOKIE['mylat'].')) * sin(radians(`latitude`)) + cos(radians('.$_COOKIE['mylat'].')) * cos(radians(`latitude`)) * cos(radians(abs('.$_COOKIE['mylng'].' - `longitude`))))) * 111.321'),'<=',$location_distance);
+        }
+
         //if only 1 ad
         if (is_numeric(core::get('id_ad')))
             $ads = $ads->where('id_ad','=',core::get('id_ad'));

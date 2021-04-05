@@ -62,6 +62,9 @@ class Model_Transaction extends ORM {
      */
     public static function charge(Model_User $user, Model_Order $order = NULL, $amount)
     {
+        if (self::wallet_balance_for($user) < $amount)
+            return FALSE;
+
         $transaction = new self();
         $transaction->id_user = $user->id_user;
         $transaction->id_order = $order !== NULL ? $order->id_order : NULL;

@@ -87,11 +87,11 @@
 			</div>
 
 			<!-- Boost Ad -->
-			<?if((core::config('payment.pay_to_go_on_top') > 0 AND core::config('payment.to_top') != FALSE )
+			<?if((core::config('payment.pay_to_go_on_top') > 0 AND core::config('payment.to_top') != FALSE AND $ad->status === Model_Ad::STATUS_PUBLISHED )
 				OR (core::config('payment.to_featured') != FALSE AND $ad->featured < Date::unix2mysql() )):?>
 					<div class="alert alert-success text-center alert-dismissible" role="alert">
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<?if(core::config('payment.pay_to_go_on_top') > 0 AND core::config('payment.to_top') != FALSE):?>
+						<?if(core::config('payment.pay_to_go_on_top') > 0 AND core::config('payment.to_top') != FALSE AND $ad->status === Model_Ad::STATUS_PUBLISHED):?>
 							<p class="text-info"><?=_e('Your Advertisement can go on top again! For only ').i18n::format_currency(core::config('payment.pay_to_go_on_top'),core::config('payment.paypal_currency'));?></p>
 							<a class="btn btn-xs btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_top','controller'=>'ad','id'=>$ad->id_ad))?>"><?=_e('Go Top!')?></a>
 						<?endif?>

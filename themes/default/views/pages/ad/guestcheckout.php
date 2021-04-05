@@ -80,6 +80,7 @@
                                 </div>
                             <?endif?>
                         </td>
+                        <td class="col-md-1"></td>
                         <td class="col-md-2 text-center">
                             <?if ($ad->shipping_pickup() AND core::get('shipping_pickup')):?>
                                 <?=i18n::money_format(0, $ad->currency())?>
@@ -126,11 +127,11 @@
                         <td colspan="2"></td>
                         <td class="text-right"><h4><strong><?=_e('Total')?>: </strong></h4></td>
                         <?if($ad->shipping_price() AND $ad->shipping_pickup() AND core::get('shipping_pickup')):?>
-                            <td class="text-center text-danger"><h4><strong><?=i18n::money_format($ad->price + $ad->price*$vat/100, $ad->currency())?></strong></h4></td>
+                            <td class="text-center text-danger"><h4><strong style="white-space: nowrap;"><?=i18n::money_format($ad->price + $ad->price*$vat/100, $ad->currency())?></strong></h4></td>
                         <?elseif($ad->shipping_price()):?>
-                            <td class="text-center text-danger"><h4><strong><?=i18n::money_format($ad->price + $ad->shipping_price() + $ad->price*$vat/100, $ad->currency())?></strong></h4></td>
+                            <td class="text-center text-danger"><h4><strong style="white-space: nowrap;"><?=i18n::money_format($ad->price + $ad->shipping_price() + $ad->price*$vat/100, $ad->currency())?></strong></h4></td>
                         <?else:?>
-                            <td class="text-center text-danger"><h4><strong><?=i18n::money_format($ad->price + $ad->price*$vat/100, $ad->currency())?></strong></h4></td>
+                            <td class="text-center text-danger"><h4><strong style="white-space: nowrap;"><?=i18n::money_format($ad->price + $ad->price*$vat/100, $ad->currency())?></strong></h4></td>
                         <?endif?>
                     </tr>
                 <?else:?>
@@ -138,11 +139,11 @@
                         <td colspan="2"></td>
                         <td class="text-right"><h4><strong><?=_e('Total')?>: </strong></h4></td>
                         <?if($ad->shipping_price() AND $ad->shipping_pickup() AND core::get('shipping_pickup')):?>
-                            <td class="text-center text-danger"><h4><strong><?=i18n::money_format($ad->price, $ad->currency())?></strong></h4></td>
+                            <td class="text-center text-danger"><h4><strong style="white-space: nowrap;"><?=i18n::money_format($ad->price, $ad->currency())?></strong></h4></td>
                         <?elseif($ad->shipping_price()):?>
-                            <td class="text-center text-danger"><h4><strong><?=i18n::money_format($ad->price + $ad->shipping_price(), $ad->currency())?></strong></h4></td>
+                            <td class="text-center text-danger"><h4><strong style="white-space: nowrap;"><?=i18n::money_format($ad->price + $ad->shipping_price(), $ad->currency())?></strong></h4></td>
                         <?else:?>
-                            <td class="text-center text-danger"><h4><strong><?=i18n::money_format($ad->price, $ad->currency())?></strong></h4></td>
+                            <td class="text-center text-danger"><h4><strong style="white-space: nowrap;"><?=i18n::money_format($ad->price, $ad->currency())?></strong></h4></td>
                         <?endif?>
                     </tr>
                 <?endif?>
