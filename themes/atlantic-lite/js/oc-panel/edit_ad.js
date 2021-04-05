@@ -503,6 +503,27 @@ $(function(){
     var $params = {
         rules:{},
         messages:{},
+        errorClass: 'invalid-feedback',
+        errorElement: 'div',
+        errorPlacement: function(error, element) {
+            element.removeClass('invalid-feedback');
+
+            if(element.is(':radio') || element.is(':checkbox')){
+                error.insertBefore(element.closest('label'));
+            } else if (element.is('textarea')) {
+                error.insertAfter(element.closest('textarea'));
+            } else if (element.is('select')) {
+                error.insertAfter(element.closest('select'));
+            } else if (element.is(':hidden')) {
+                checkbox_group = element.parent('.form-check').parent('div[data-type="checkbox_group"]');
+
+                if (checkbox_group && checkbox_group.find('.invalid-feedback').length === 0) {
+                    checkbox_group.append(error);
+                }
+            } else {
+                error.insertAfter(element.closest('input'));
+            }
+        },
         submitHandler: function(form) {
             $('#processing-modal').on('shown.bs.modal', function() {
                 form.submit();
@@ -905,10 +926,11 @@ function createCustomFieldsByCategory (customfields) {
                         'data-type': customfield.type,
                         'data-toggle': 'tooltip',
                         'title': customfield.tooltip,
+                        'class': 'form-check-input',
                         'checked': $('#custom-fields').data('customfield-values')[label],
                     }));
 
-                    $('input[name="' + name + '"]').wrap('<div class="checkbox"></div>').wrap('<label class="checkbox_group"></label>').after(label);
+                    $('input[name="' + name + '"]').wrap('<div class="form-check"></div>').after($('<label class="form-check-label"></label>').text(label));
 
                     $('input[name="' + name + '"]').before($('<input/>').attr({
                         'type': 'hidden',
