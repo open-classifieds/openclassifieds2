@@ -700,7 +700,7 @@ class Controller_Ad extends Controller {
         $ad     = new Model_Ad($id_ad);
         if ($ad->loaded())
         {
-            if($ad->status !== Model_Ad::STATUS_PUBLISHED)
+            if($ad->status != Model_Ad::STATUS_PUBLISHED)
                 throw HTTP_Exception::factory(404,__('Page not found'));
 
             //case when payment is set to 0, it goes to top without payment, no generating order
