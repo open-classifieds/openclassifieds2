@@ -693,9 +693,6 @@ class Controller_Ad extends Controller {
         if(core::config('payment.to_top') == FALSE)
             throw HTTP_Exception::factory(404,__('Page not found'));
 
-        if($this->status !== Model_Ad::STATUS_PUBLISHED)
-            throw HTTP_Exception::factory(404,__('Page not found'));
-
         $id_product = Model_Order::PRODUCT_TO_TOP;
 
         //check ad exists
@@ -703,6 +700,9 @@ class Controller_Ad extends Controller {
         $ad     = new Model_Ad($id_ad);
         if ($ad->loaded())
         {
+            if($ad->status !== Model_Ad::STATUS_PUBLISHED)
+                throw HTTP_Exception::factory(404,__('Page not found'));
+
             //case when payment is set to 0, it goes to top without payment, no generating order
             if(core::config('payment.pay_to_go_on_top') <= 0)
             {
