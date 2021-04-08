@@ -8,6 +8,14 @@ class Controller_Panel_Integrations extends Auth_Controller {
 
         $integrations = [
             [
+                'name' => '2factorin',
+                'config_name' => 'general.sms_auth',
+                'label' => '2Factor',
+                'description' => __('2 step SMS authentication.'),
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/2factor.png',
+                'category' => '',
+            ],
+            [
                 'name' => 'algolia',
                 'config_name' => 'general.algolia_search',
                 'label' => 'Algolia',

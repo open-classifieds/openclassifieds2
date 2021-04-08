@@ -265,7 +265,7 @@ class Controller_Panel_Settings extends Auth_Controller {
                             if(!empty(Kohana::$_POST_ORIG['general']['sms_clickatell_api'][0])
                                 OR (!Kohana::$_POST_ORIG['general']['sms_clickatell_api'][0] == NULL)){
 
-                                $test_sms_auth = SMS::testAPIkey(Kohana::$_POST_ORIG['general']['sms_clickatell_api'][0], Kohana::$_POST_ORIG['general']['sms_clickatell_two_way_phone'][0]);
+                                $test_sms_auth = Clickatell::testAPIkey(Kohana::$_POST_ORIG['general']['sms_clickatell_api'][0], Kohana::$_POST_ORIG['general']['sms_clickatell_two_way_phone'][0]);
 
                                 if($test_sms_auth == FALSE){
                                     // disable sms_auth
