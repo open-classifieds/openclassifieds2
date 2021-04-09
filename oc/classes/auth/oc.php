@@ -254,7 +254,7 @@ class Auth_OC extends Kohana_Auth {
         ->limit(1)
         ->find();
 
-        if ($user->loaded() AND $code ===  Session::instance()->get('sms_auth_code'))
+        if ($user->loaded() AND SMS::verify_auth_code(Session::instance()->get('sms_auth_code'), $code))
         {
             // Complete the login with the found data, and new token
             $user->complete_login($this->_config['lifetime']);

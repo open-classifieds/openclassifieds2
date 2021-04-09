@@ -526,17 +526,15 @@ class Controller_Panel_Auth extends Controller {
         //avoid duplicated sms
         if (Session::instance()->get('sms_auth_code')==NULL)
         {
-            $code     = Text::random('numeric',6);
-            $response = SMS::send($this->user->phone,__('Your code:').' '.$code);
+            $code = SMS::send_auth_code($this->user->phone);
 
-            if ($response === TRUE)
+            if ($code)
             {
-               Session::instance()->set('sms_auth_code',$code);
+               Session::instance()->set('sms_auth_code', $code);
             }
             else
             {
-                Session::instance()->set('sms_auth_code',NULL);
-                Form::set_errors(array($response));
+                Session::instance()->set('sms_auth_code', NULL);
             }
         }
 
@@ -544,7 +542,7 @@ class Controller_Panel_Auth extends Controller {
         if (core::post('code') AND CSRF::valid('sms'))
         {
 
-            if (core::post('code') ===  Session::instance()->get('sms_auth_code') )
+            if (SMS::verify_auth_code(Session::instance()->get('sms_auth_code'), core::post('code')))
             {
                 //set cookie
                 Cookie::set('sms_auth' , $this->user->id_user, Core::config('auth.lifetime') );
@@ -600,31 +598,31 @@ class Controller_Panel_Auth extends Controller {
         elseif ($this->request->post() AND CSRF::valid('phonelogin') AND Valid::phone(core::post('phone')))
         {
             //check the phone exists
-            $user = new Model_User;
-            $user ->where('phone', '=', core::post('phone'))
-                    ->where('status','in',array(Model_User::STATUS_ACTIVE,Model_User::STATUS_SPAM))
-                    ->limit(1)
-                    ->find();
+            $user = (new Model_User)->where('phone', '=', core::post('phone'))
+                ->where('status', 'in', [Model_User::STATUS_ACTIVE, Model_User::STATUS_SPAM])
+                ->limit(1)
+                ->find();
 
             //avoid duplicated sms
             if ($user->loaded() AND Session::instance()->get('sms_auth_code')==NULL)
             {
-                $code     = Text::random('numeric',6);
-                $response = SMS::send(core::post('phone'),__('Your code:').' '.$code);
+                $code = SMS::send_auth_code(Core::post('phone'));
 
-                if ($response === TRUE)
+                if ($code)
                 {
-                   Session::instance()->set('sms_auth_code',$code);
-                   Session::instance()->set('phone_number',core::post('phone'));
-                   //show form to put the code
-                   $this->template->content = View::factory('pages/auth/sms',['phone'=>$user->phone,'form_action'=>Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'phonelogin'))]);
-                   return TRUE;
+                    Session::instance()->set('sms_auth_code', $code);
+                    Session::instance()->set('phone_number', Core::post('phone'));
+                    //show form to put the code
+                    $this->template->content = View::factory('pages/auth/sms', [
+                        'phone' => $user->phone,
+                        'form_action' => Route::url('oc-panel', ['directory' => 'user', 'controller' => 'auth', 'action' => 'phonelogin'])
+                    ]);
+                    return;
                 }
                 else
                 {
-                    Session::instance()->set('sms_auth_code',NULL);
-                    Session::instance()->set('phone_number',NULL);
-                    Form::set_errors(array($response));
+                    Session::instance()->set('sms_auth_code', NULL);
+                    Session::instance()->set('phone_number', NULL);
                 }
             }
             else
@@ -664,22 +662,25 @@ class Controller_Panel_Auth extends Controller {
             //avoid duplicated sms
             if (!$user->loaded() AND Session::instance()->get('sms_auth_code')==NULL)
             {
-                $code     = Text::random('numeric',6);
-                $response = SMS::send(core::post('phone'),__('Your code:').' '.$code);
+                $code = SMS::send_auth_code(Core::post('phone'));
 
-                if ($response === TRUE)
+                if ($code)
                 {
-                   Session::instance()->set('sms_auth_code',$code);
-                   Session::instance()->set('phone_number',core::post('phone'));
+                   Session::instance()->set('sms_auth_code', $code);
+                   Session::instance()->set('phone_number', Core::post('phone'));
+
                    //show form to put the code
-                   $this->template->content = View::factory('pages/auth/sms',['phone'=>core::post('phone'),'form_action'=>Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'phoneregister'))]);
-                   return TRUE;
+                   $this->template->content = View::factory('pages/auth/sms', [
+                       'phone' => Core::post('phone'),
+                       'form_action' => Route::url('oc-panel', ['directory' => 'user', 'controller' => 'auth', 'action' => 'phoneregister']),
+                    ]);
+
+                   return;
                 }
                 else
                 {
-                    Session::instance()->set('sms_auth_code',NULL);
-                    Session::instance()->set('phone_number',NULL);
-                    Form::set_errors(array($response));
+                    Session::instance()->set('sms_auth_code', NULL);
+                    Session::instance()->set('phone_number', NULL);
                 }
             }
             else
@@ -688,11 +689,14 @@ class Controller_Panel_Auth extends Controller {
         //get the SMS code
         elseif ($this->request->post() AND CSRF::valid('sms') AND Core::post('code'))
         {
-            if (Core::post('code') ===  Session::instance()->get('sms_auth_code'))
+            if (SMS::verify_auth_code(Session::instance()->get('sms_auth_code'), Core::post('code')))
             {
                 //ask for email if code is correct
-                $this->template->content = View::factory('pages/auth/register-social',['form_action'=>Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'phoneregister'))]);
-                return TRUE;
+                $this->template->content = View::factory('pages/auth/register-social', [
+                    'form_action' => Route::url('oc-panel', ['directory' => 'user', 'controller' => 'auth', 'action' => 'phoneregister']),
+                ]);
+
+                return;
             }
             else
                 Form::set_errors(array( __('Wrong phone number or code')));
