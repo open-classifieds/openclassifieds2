@@ -6,7 +6,7 @@
  * @package     Cron
  * @copyright   (c) 2009-2014 Open Classifieds Team
  * @license     GPL v3
- * 
+ *
  */
 class Cron_Subscription {
 
@@ -27,8 +27,8 @@ class Cron_Subscription {
                                         ->order_by('created','desc')
                                         ->find_all();
 
-            foreach ($subscriptions as $s) 
-            {   
+            foreach ($subscriptions as $s)
+            {
                 //disable the plan
                 $s->status = 0;
                 try
@@ -62,7 +62,7 @@ class Cron_Subscription {
                             StripeKO::init();
 
                             // Create the charge on Stripe's servers - this will charge the user's card
-                            try 
+                            try
                             {
                                 $charge = \Stripe\Charge::create(array(
                                                                     "amount"    => StripeKO::money_format($order->amount), // amount in cents, again
@@ -73,12 +73,12 @@ class Cron_Subscription {
                                                                 );
                                 $paid = TRUE;
                             }
-                            catch(Exception $e) 
+                            catch(Exception $e)
                             {
                                 // The card has been declined
                                 Kohana::$log->add(Log::ERROR, 'Stripe The card has been declined');
                                 $paid = FALSE;
-                            }                           
+                            }
                         }
 
                         if ($paid === TRUE)
@@ -106,9 +106,34 @@ class Cron_Subscription {
                 }//if plan loaded
 
             }//end foreach
-            
+
         }//if subscription active
 
     }//function
 
+    /**
+     * remember the user his subscription is about to expire
+     * @return void
+     */
+    public static function to_expire()
+    {
+        $days = 2;
+
+        if (! Core::config('general.subscriptions'))
+        {
+            return;
+        }
+
+        //get expiring subscription that are active
+        $subscriptions = (new Model_Subscription())
+            ->where('status', '=', 1)
+            ->where(DB::expr('DATE(expire_date)'), '=', Date::format('+'.$days.' days','Y-m-d'))
+            ->order_by('created', 'desc')
+            ->find_all();
+
+        foreach ($subscriptions as $subscription)
+        {
+            SMS::send_transactional($subscription->user, 'sms_2factorin_expiring_subscription_template');
+        }
+    }
 }

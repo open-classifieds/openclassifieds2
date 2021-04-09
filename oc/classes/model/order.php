@@ -157,6 +157,7 @@ class Model_Order extends ORM {
             {
                 Model_Subscription::new_order($this);
 
+                SMS::send_transactional($this->user, 'subscription_payment');
 
                 $replace_email = array('[AD.TITLE]'     => $this->description,
                                      '[URL.AD]'         => Route::url('pricing'),
@@ -184,6 +185,8 @@ class Model_Order extends ORM {
                         break;
                     case Model_Order::PRODUCT_TO_FEATURED:
                             $ad->to_feature($this->featured_days);
+
+                            SMS::send_transactional($ad->user, 'featured_ad_payment');
                         break;
                     case Model_Order::PRODUCT_ADD_MONEY:
                             Model_Transaction::deposit($this->user, NULL, $this, $this->quantity);

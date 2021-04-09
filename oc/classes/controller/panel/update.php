@@ -28,9 +28,46 @@ class Controller_Panel_Update extends Auth_Controller
                 'group_name' => 'payment',
                 'config_value' => '0',
             ],
+            [
+                'config_key' => 'sms_service',
+                'group_name' => 'general',
+                'config_value' => 'clickatell',
+            ],
+            [
+                'config_key' => 'sms_2factorin_api',
+                'group_name' => 'general',
+                'config_value' => '',
+            ],
+            [
+                'config_key' => 'sms_2factorin_sender_id',
+                'group_name' => 'general',
+                'config_value' => '',
+            ],
+            [
+                'config_key' => 'sms_2factorin_subscription_payment_template',
+                'group_name' => 'general',
+                'config_value' => '',
+            ],
+            [
+                'config_key' => 'sms_2factorin_expiring_subscription_template',
+                'group_name' => 'general',
+                'config_value' => '',
+            ],
+            [
+                'config_key' => 'sms_2factorin_featured_ad_payment_template',
+                'group_name' => 'general',
+                'config_value' => '',
+            ],
         ];
 
         Model_Config::config_array($configs);
+
+        //crontab subscription to expire
+        try {
+            DB::query(Database::UPDATE, "INSERT INTO `".self::$db_prefix."crontab` (`name`, `period`, `callback`, `params`, `description`, `active`) VALUES
+                                    ('About to Expire Subscription', '05 9 * * *', 'Cron_Subscription::to_expire', NULL, 'Notify by sms your subscription is about to expire', 1);")->execute();
+        } catch (exception $e) {
+        }
     }
 
     public function action_411()
