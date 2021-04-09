@@ -42,13 +42,14 @@ class Twofactorin {
         }
 
         $api_key = Core::config('general.sms_2factorin_api');
+        $template_name = Core::config("general.sms_2factorin_{$transaction_name}_template");
 
         $request = Request::factory("https://2factor.in/API/V1/{$api_key}/ADDON_SERVICES/SEND/TSMS")
             ->method(Request::POST)
             ->post([
                 'From' => Core::config('general.sms_2factorin_sender_id'),
                 'To' => $user->phone,
-                'TemplateName' => $transaction_name,
+                'TemplateName' => $template_name,
                 'VAR1' => $user->name,
             ]);
 
