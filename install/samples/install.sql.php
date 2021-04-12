@@ -701,6 +701,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('payment', 'razorpay_key_secret', ''),
 ('general', 'subscriptions', '0'),
 ('general', 'subscriptions_expire', '0'),
+('general', 'subscriptions_expire_dont_limit_access', '0'),
 ('general', 'subscriptions_mark_as_sold', '0'),
 ('general', 'api_key', '".core::generate_password(32)."'),
 ('general', 'country', ''),

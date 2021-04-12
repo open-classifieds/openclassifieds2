@@ -58,6 +58,11 @@ class Controller_Panel_Update extends Auth_Controller
                 'group_name' => 'general',
                 'config_value' => '',
             ],
+            [
+                'config_key' => 'subscriptions_expire_dont_limit_access',
+                'group_name' => 'general',
+                'config_value' => '0',
+            ],
         ];
 
         Model_Config::config_array($configs);
