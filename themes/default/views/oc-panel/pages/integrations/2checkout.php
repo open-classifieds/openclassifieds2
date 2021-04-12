@@ -16,7 +16,7 @@
             <div>
                 <div class="grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
                     <div class="sm:col-span-4">
-                        <?= FORM::label('twocheckout_sid', 'Account Number', array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
+                        <?= FORM::label('twocheckout_sid', 'Merchant Code', array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
                         <div class="mt-1 rounded-md shadow-sm">
                             <?= FORM::input('twocheckout_sid', Core::post('twocheckout_sid', Core::config('payment.twocheckout_sid')), [
                                 'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
