@@ -81,7 +81,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
             ],
             [
                 'name' => 'googleanalytics',
-                'config_name' => 'general.analytics',
+                'config_name' => 'general.analytics_global_site_tag',
                 'label' => 'Google Analytics',
                 'description' => __('Get data of who and when visits your site.'),
                 'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/google-analytics.png',
@@ -349,7 +349,7 @@ class Controller_Panel_Integrations extends Auth_Controller {
             ],
             [
                 'name' => 'googleanalytics',
-                'config_name' => 'general.analytics',
+                'config_name' => 'general.analytics_global_site_tag',
                 'label' => 'Google Analytics',
                 'description' => __('Get data of who and when visits your site.'),
                 'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/google-analytics.png',

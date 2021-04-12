@@ -712,6 +712,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('general', 'moderation', 0),
 ('general', 'maintenance', 0),
 ('general', 'analytics', ''),
+('general', 'analytics_global_site_tag', ''),
 ('general', 'translate', ''),
 ('general', 'site_name', '".core::request('SITE_NAME'). "'),
 ('general', 'site_description', ''),
