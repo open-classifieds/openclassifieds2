@@ -18,7 +18,7 @@ define('DOCROOT', realpath(dirname(__FILE__)).DIRECTORY_SEPARATOR);
 
 //we check first short tags if not we can not even load the installer
 if (! ((bool) ini_get('short_open_tag')) )
-    die('<strong><u>OC Installation requirement</u></strong>: Before you proceed with your OC installation: Keep in mind OC uses the short tag "short cut" syntax.<br><br> Thus the <a href="http://php.net/manual/ini.core.php#ini.short-open-tag" target="_blank">short_open_tag</a> directive must be enabled in your php.ini.<br><br><u>Easy Solution</u>:<ol><li>Open php.ini file and look for line short_open_tag = Off</li><li>Replace it with short_open_tag = On</li><li>Restart then your PHP server</li><li>Refresh this page to resume your OC installation</li><li>Enjoy OC ;)</li></ol>');
+    die('<strong><u>Yclas Installation requirement</u></strong>: Before you proceed with your Yclas installation: Keep in mind Yclas uses the short tag "short cut" syntax.<br><br> Thus the <a href="http://php.net/manual/ini.core.php#ini.short-open-tag" target="_blank">short_open_tag</a> directive must be enabled in your php.ini.<br><br><u>Easy Solution</u>:<ol><li>Open php.ini file and look for line short_open_tag = Off</li><li>Replace it with short_open_tag = On</li><li>Restart then your PHP server</li><li>Refresh this page to resume your Yclas installation</li><li>Enjoy Yclas ;)</li></ol>');
 
 //prevent from new install to be done over current existing one
 if (file_exists(DOCROOT.'oc/config/database.php'))
@@ -242,7 +242,7 @@ class install{
     }
 
     /**
-     * returns array of OC languages available
+     * returns array of Yclas languages available
      * @TODO better get them by an ajax request
      *
      * @return array

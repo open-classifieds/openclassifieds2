@@ -704,14 +704,19 @@ class Core {
     public static function license($l = NULL)
     {
         if (Kohana::$environment === Kohana::DEVELOPMENT)
-            return TRUE;
+        {
+            $result = TRUE;
+            $l = 'DEVEL';
+        }    
+        else
+        {
+            if ($l === NULL)
+                $l = Core::config('license.number');
 
-        if ($l === NULL)
-            $l = Core::config('license.number');
-
-        $api_url = Core::yclas_url_().'/api/v1/license/check/'.$l.'/?domain='.parse_url(URL::base(), PHP_URL_HOST);
-        $result  = json_decode(Core::curl_get_contents($api_url));
-
+            $api_url = Core::yclas_url_().'/api/v1/license/check/'.$l.'/?domain='.parse_url(URL::base(), PHP_URL_HOST);
+            $result  = json_decode(Core::curl_get_contents($api_url));
+        }
+            
         if ($result == TRUE)
         {
             Model_Config::set_value('license','number',$l);
@@ -720,6 +725,7 @@ class Core {
 
         return $result;
     }
+
 
     public static function download($l)
     {
