@@ -8,7 +8,7 @@ class Controller_Panel_Integrations_GoogleAnalytics extends Auth_Controller {
 
         if($this->request->post())
         {
-            Model_Config::set_value('general', 'analytics', Core::post('analytics'));
+            Model_Config::set_value('general', 'analytics_global_site_tag', Core::post('analytics_global_site_tag'));
 
             Alert::set(Alert::SUCCESS, __('Configuration updated'));
 
@@ -16,7 +16,7 @@ class Controller_Panel_Integrations_GoogleAnalytics extends Auth_Controller {
         }
 
         return $this->template->content = View::factory('oc-panel/pages/integrations/google-analytics', [
-            'is_active' => (bool) Core::config('general.analytics')
+            'is_active' => (bool) Core::config('general.analytics_global_site_tag')
         ]);
     }
 }
