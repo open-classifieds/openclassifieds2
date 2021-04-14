@@ -14,7 +14,7 @@ class Controller_Panel_Integrations_Clickatell extends Auth_Controller {
             {
                 if(!empty(Core::post('sms_clickatell_api')) OR (!Core::post('sms_clickatell_api') == NULL))
                 {
-                    $test_sms_auth = SMS::testAPIkey(Core::post('sms_clickatell_api'), Core::post('sms_clickatell_two_way_phone'));
+                    $test_sms_auth = Clickatell::testAPIkey(Core::post('sms_clickatell_api'), Core::post('sms_clickatell_two_way_phone'));
 
                     if($test_sms_auth == FALSE){
                         // disable sms_auth
