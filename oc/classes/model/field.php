@@ -178,6 +178,7 @@ class Model_Field {
                             'categories'=> $categories,
                             'required'  => $options['required'],
                             'searchable'=> $options['searchable'],
+                            'text_searchable'=> $options['text_searchable'],
                             'admin_privilege'   => $options['admin_privilege'],
                             'show_listing'      => $options['show_listing'],
                             'grouped_values'    => isset($grouped_values) ? $grouped_values : NULL
@@ -292,6 +293,7 @@ class Model_Field {
             'categories' => $categories,
             'required' => $options['required'],
             'searchable' => $options['searchable'],
+            'text_searchable'=> $options['text_searchable'],
             'admin_privilege' => $options['admin_privilege'],
             'show_listing' => $options['show_listing'],
             'grouped_values' => isset($fields[$name]['grouped_values']) ? $grouped_values : NULL
