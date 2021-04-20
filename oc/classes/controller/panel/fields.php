@@ -78,6 +78,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                                     'tooltip'           => Core::post('tooltip'),
                                     'required'          => (Core::post('required')=='on')?TRUE:FALSE,
                                     'searchable'        => (Core::post('searchable')=='on')?TRUE:FALSE,
+                                    'text_searchable'   => (Core::post('text_searchable')=='on')?TRUE:FALSE,
                                     'admin_privilege'   => (Core::post('admin_privilege')=='on')?TRUE:FALSE,
                                     'show_listing'      => (Core::post('show_listing')=='on')?TRUE:FALSE,
                                     );
@@ -144,6 +145,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                                 'tooltip'           => Core::post('tooltip'),
                                 'required'          => (Core::post('required')=='on')?TRUE:FALSE,
                                 'searchable'        => (Core::post('searchable')=='on')?TRUE:FALSE,
+                                'text_searchable'   => (Core::post('text_searchable')=='on')?TRUE:FALSE,
                                 'admin_privilege'   => (Core::post('admin_privilege')=='on')?TRUE:FALSE,
                                 'show_listing'      => (Core::post('show_listing')=='on')?TRUE:FALSE,
                                 );

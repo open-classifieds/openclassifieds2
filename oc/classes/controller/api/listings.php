@@ -62,13 +62,27 @@ class Controller_Api_Listings extends Api_Auth {
                 //make a search with q? param
                 if (isset($this->_params['q']) AND strlen($this->_params['q']))
                 {
+                    $ads->where_open();
+
+                    $ads->where('title', 'like', '%'.$this->_params['q'].'%');
+
+                    $ads = $this->search_with_synonyms($ads, 'title', $this->_params['q']);
+
                     if(core::config('general.search_by_description') == TRUE)
-                        $ads->where_open()
-                            ->where('title', 'like', '%'.$this->_params['q'].'%')
-                            ->or_where('description', 'like', '%'.$this->_params['q'].'%')
-                            ->where_close();
-                    else
-                        $ads->where('title', 'like', '%'.$this->_params['q'].'%');
+                    {
+                        $ads = $this->search_with_synonyms($ads, 'description', $this->_params['q']);
+                    }
+
+                    // text searchable custom fields
+                    foreach (Model_Field::get_all() as $field_name => $field_options)
+                    {
+                        if (isset($field_options['text_searchable']) AND $field_options['text_searchable'])
+                        {
+                            $ads = $this->search_with_synonyms($ads, "cf_{$field_name}", $this->_params['q']);
+                        }
+                    }
+
+                    $ads->where_close();
                 }
 
                 //getting all the ads of a category.
@@ -227,6 +241,42 @@ class Controller_Api_Listings extends Api_Auth {
             $this->_error($khe);
         }
 
+    }
+
+    protected function search_with_synonyms(Kohana_ORM $ads, $field, $text)
+    {
+        $car_synonyms = ['car', 'auto', 'automobile', 'coche', 'van'];
+        $bike_synonyms = ['bike', 'bycicle', 'scooter'];
+
+        $ads->or_where($field, 'like', "%{$text}%");
+
+        foreach ($car_synonyms as $synonym)
+        {
+            if (strpos($text, $synonym) !== FALSE)
+            {
+                foreach ($car_synonyms as $replace_synonym)
+                {
+                    $text_with_replaced_synonym = str_replace($synonym, $replace_synonym, $text);
+
+                    $ads->or_where($field, 'like', "%{$text_with_replaced_synonym}%");
+                }
+            }
+        }
+
+        foreach ($bike_synonyms as $synonym)
+        {
+            if (strpos($text, $synonym) !== FALSE)
+            {
+                foreach ($bike_synonyms as $replace_synonym)
+                {
+                    $text_with_replaced_synonym = str_replace($synonym, $replace_synonym, $text);
+
+                    $ads->or_where($field, 'like', "%{$text_with_replaced_synonym}%");
+                }
+            }
+        }
+
+        return $ads;
     }
 
 
