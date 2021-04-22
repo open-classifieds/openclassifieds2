@@ -803,6 +803,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                                     'tooltip'           => $custom_field['tooltip'],
                                     'required'          => $custom_field['required'],
                                     'searchable'        => $custom_field['searchable'],
+                                    'text_searchable'   => FALSE,
                                     'admin_privilege'   => $custom_field['admin_privilege'],
                                     'show_listing'      => $custom_field['show_listing'],
                                     );
