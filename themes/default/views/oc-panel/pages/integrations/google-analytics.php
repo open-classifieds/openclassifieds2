@@ -16,15 +16,16 @@
             <div>
                 <div class="grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
                     <div class="sm:col-span-4">
-                        <?= FORM::label('analytics', __('Analytics Tracking ID'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
+                        <?= FORM::label('analytics', __('Analytics Goblal Site Tag'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
                         <div class="mt-1 rounded-md shadow-sm">
-                            <?= FORM::input('analytics', Core::post('analytics', Core::config('general.analytics')), [
-                                'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
-                                'id' => 'analytics',
-                            ])?>
+                            <?= FORM::textarea('analytics_global_site_tag', Core::post('analytics_global_site_tag', Core::config('general.analytics_global_site_tag')), array(
+                                'rows' => 3,
+                                'cols' => 50,
+                                'class' => 'form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                            ))?>
                         </div>
                         <p class="mt-2 text-sm text-gray-500">
-                            <?=__('Once logged in your Google Analytics, you can find the Tracking ID in the Accounts List or in the Property Settings')?>
+                            <?=__('Once logged in your Google Analytics, you can find the Goblal Site Tag snippet in the Accounts List or in the Property Settings')?>
                         </p>
                     </div>
                 </div>

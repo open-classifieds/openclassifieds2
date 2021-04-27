@@ -63,6 +63,11 @@ class Controller_Panel_Update extends Auth_Controller
                 'group_name' => 'general',
                 'config_value' => '0',
             ],
+            [
+                'config_key' => 'analytics_global_site_tag',
+                'group_name' => 'general',
+                'config_value' => '',
+            ],
         ];
 
         Model_Config::config_array($configs);

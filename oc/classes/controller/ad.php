@@ -1172,15 +1172,31 @@ class Controller_Ad extends Controller {
 	        {
 	        	// if user is using search from header
 	        	if(core::get('search'))
+                {
 	        		$search_advert = core::get('search');
+                }
+
+                $ads->where_open();
+
+                $ads->where('title', 'like', '%'.$search_advert.'%');
+
+                $ads = $this->search_with_synonyms($ads, 'title', $search_advert);
 
 	        	if(core::config('general.search_by_description') == TRUE)
-                        $ads->where_open()
-                            ->where('title', 'like', '%'.$search_advert.'%')
-                            ->or_where('description', 'like', '%'.$search_advert.'%')
-                            ->where_close();
-                else
-                    $ads->where('title', 'like', '%'.$search_advert.'%');
+                {
+                    $ads = $this->search_with_synonyms($ads, 'description', $search_advert);
+                }
+
+                // text searchable custom fields
+                foreach (Model_Field::get_all() as $field_name => $field_options)
+                {
+                    if (isset($field_options['text_searchable']) AND $field_options['text_searchable'])
+                    {
+                        $ads = $this->search_with_synonyms($ads, "cf_{$field_name}", $search_advert);
+                    }
+                }
+
+                $ads->where_close();
 	        }
 
             //cf filter arrays
@@ -1306,7 +1322,22 @@ class Controller_Ad extends Controller {
                     if ($location->loaded())
                     {
                         $location_filter = $location;
+
+                        $ads->where_open();
+
                         $ads->where('id_location', 'IN', $location->get_siblings_ids());
+
+                        if (core::request('userpos') != 1 AND core::request('locationpos') == 1 AND $location->latitude AND $location->longitude)
+                        {
+                            if (is_numeric(Core::cookie('mydistance')) AND Core::cookie('mydistance') <= 500)
+                                $location_distance = Core::config('general.measurement') == 'imperial' ? (Num::round(Core::cookie('mydistance') * 1.60934)) : Core::cookie('mydistance');
+                            else
+                                $location_distance = Core::config('general.measurement') == 'imperial' ? (Num::round(Core::config('advertisement.auto_locate_distance') * 1.60934)) : Core::config('advertisement.auto_locate_distance');
+
+                            $ads->or_where(DB::expr('degrees(acos(sin(radians('.$location->latitude.')) * sin(radians(`latitude`)) + cos(radians('.$location->latitude.')) * cos(radians(`latitude`)) * cos(radians(abs('.$location->longitude.' - `longitude`))))) * 111.321'),'<=',$location_distance);
+                        }
+
+                        $ads->where_close();
                     }
                 }
             }
@@ -1520,6 +1551,62 @@ class Controller_Ad extends Controller {
 
 
 	}
+
+    protected function search_with_synonyms(Kohana_ORM $ads, $field, $text)
+    {
+        /**
+         * Expected word_synonyms theme option value:
+         *
+         * car,auto,automobile,coche,van
+         * bike,bycicle,scooter
+         */
+
+        $synonym_groups = str_replace("\r", '', Theme::get('word_synonyms')); // remove carriage returns
+
+        if (empty($synonym_groups))
+        {
+            return $ads;
+        }
+
+        $synonym_groups = explode(PHP_EOL, $synonym_groups);
+
+        if (! is_array($synonym_groups))
+        {
+            return $ads;
+        }
+
+        $ads->or_where($field, 'like', "%{$text}%");
+
+        foreach ($synonym_groups as $synonym_group)
+        {
+            $synonyms = explode(',', $synonym_group);
+
+            if (! is_array($synonyms))
+            {
+                continue;
+            }
+
+            foreach ($synonyms as $synonym)
+            {
+                if (empty($synonym))
+                {
+                    continue;
+                }
+
+                if (strpos($text, $synonym) !== FALSE)
+                {
+                    foreach ($synonyms as $replace_synonym)
+                    {
+                        $text_with_replaced_synonym = str_replace($synonym, $replace_synonym, $text);
+
+                        $ads->or_where($field, 'like', "%{$text_with_replaced_synonym}%");
+                    }
+                }
+            }
+        }
+
+        return $ads;
+    }
 
 
 }// End ad controller
