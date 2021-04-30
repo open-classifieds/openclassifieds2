@@ -7,9 +7,9 @@ class Controller_Feed extends Controller {
         $this->auto_render = FALSE;
 
         $info = array(
-                        'title'       => 'RSS '.HTML::chars(UTF8::clean(Core::config('general.site_name'))),
+                        'title'       => 'RSS '.$this->html_chars(UTF8::clean(Core::config('general.site_name'))),
                         'pubDate'     => date("r"),
-                        'description' => HTML::chars(UTF8::clean(__('Latest published'))),
+                        'description' => $this->html_chars(UTF8::clean(__('Latest published'))),
                         'generator'   => 'Yclas',
                         'self-link'   => Request::current()->url(),
         );
@@ -77,10 +77,10 @@ class Controller_Feed extends Controller {
         {
             $url= Route::url('ad',  array('category'=>$a->category->seoname,'seotitle'=>$a->seotitle));
             $item = array(
-                                'title'         => HTML::chars(UTF8::clean($a->title)),
+                                'title'         => $this->html_chars(UTF8::clean($a->title)),
                                 'link'          => $url,
                                 'pubDate'       => Date::mysql2unix($a->published),
-                                'description'   => HTML::chars(Text::removebbcode(UTF8::clean($a->description))),
+                                'description'   => $this->html_chars(Text::removebbcode(UTF8::clean($a->description))),
                                 'guid'          => $url,
                           );
             if($a->get_first_image() !== NULL)
@@ -104,9 +104,9 @@ class Controller_Feed extends Controller {
         $this->auto_render = FALSE;
 
         $info = array(
-                        'title'         => 'RSS Blog '.HTML::chars(UTF8::clean(Core::config('general.site_name'))),
+                        'title'         => 'RSS Blog '.$this->html_chars(UTF8::clean(Core::config('general.site_name'))),
                         'pubDate'       => date("r"),
-                        'description'   => HTML::chars(UTF8::clean(__('Latest post published'))),
+                        'description'   => $this->html_chars(UTF8::clean(__('Latest post published'))),
                         'generator'     => 'Yclas',
                         'link'          =>  Route::url('blog'),
                         'self-link'     => Request::current()->url(),
@@ -128,10 +128,10 @@ class Controller_Feed extends Controller {
             $url= Route::url('blog',  array('seotitle'=>$post->seotitle));
 
             $items[] = array(
-                                'title'         => HTML::chars(UTF8::clean($post->title)),
+                                'title'         => $this->html_chars(UTF8::clean($post->title)),
                                 'link'          => $url,
                                 'pubDate'       => Date::mysql2unix($post->created),
-                                'description'   => HTML::chars(Text::removebbcode(UTF8::clean($post->description))),
+                                'description'   => $this->html_chars(Text::removebbcode(UTF8::clean($post->description))),
                                 'guid'          => $url,
                           );
         }
@@ -148,9 +148,9 @@ class Controller_Feed extends Controller {
         $this->auto_render = FALSE;
 
         $info = array(
-                        'title'         => 'RSS Forum '.HTML::chars(UTF8::clean(Core::config('general.site_name'))),
+                        'title'         => 'RSS Forum '.$this->html_chars(UTF8::clean(Core::config('general.site_name'))),
                         'pubDate'       => date("r"),
-                        'description'   => HTML::chars(UTF8::clean(__('Latest post published'))),
+                        'description'   => $this->html_chars(UTF8::clean(__('Latest post published'))),
                         'generator'     => 'Yclas',
                         'link'          =>  Route::url('forum-home'),
                         'self-link'     => Request::current()->url(),
@@ -177,10 +177,10 @@ class Controller_Feed extends Controller {
             $url= Route::url('forum-topic',  array('seotitle'=>$topic->seotitle,'forum'=>$topic->forum->seoname));
 
             $items[] = array(
-                                'title'         => HTML::chars(UTF8::clean($topic->title)),
+                                'title'         => $this->html_chars(UTF8::clean($topic->title)),
                                 'link'          => $url,
                                 'pubDate'       => Date::mysql2unix($topic->created),
-                                'description'   => HTML::chars(Text::removebbcode(UTF8::clean($topic->description))),
+                                'description'   => $this->html_chars(Text::removebbcode(UTF8::clean($topic->description))),
                                 'guid'          => $url,
                           );
         }
@@ -209,9 +209,9 @@ class Controller_Feed extends Controller {
             {
 
                 $info = array(
-                                'title'       => 'RSS '.HTML::chars(UTF8::clean($user->name)),
+                                'title'       => 'RSS '.$this->html_chars(UTF8::clean($user->name)),
                                 'pubDate'     => date("r"),
-                                'description' => HTML::chars(UTF8::clean($user->name.' - '.$user->description)),
+                                'description' => $this->html_chars(UTF8::clean($user->name.' - '.$user->description)),
                                 'generator'   => 'Yclas',
                                 'link'        =>  Route::url('profile', array('seoname'=>$seoname)),
                                 'self-link'   => Request::current()->url(),
@@ -232,10 +232,10 @@ class Controller_Feed extends Controller {
                 {
                     $url= Route::url('ad',  array('category'=>$a->category->seoname,'seotitle'=>$a->seotitle));
                     $item = array(
-                                        'title'         => HTML::chars(UTF8::clean($a->title)),
+                                        'title'         => $this->html_chars(UTF8::clean($a->title)),
                                         'link'          => $url,
                                         'pubDate'       => Date::mysql2unix($a->published),
-                                        'description'   => HTML::chars(Text::removebbcode(UTF8::clean($a->description))),
+                                        'description'   => $this->html_chars(Text::removebbcode(UTF8::clean($a->description))),
                                         'guid'          => $url,
                                   );
                     if($a->get_first_image() !== NULL)
@@ -308,6 +308,11 @@ class Controller_Feed extends Controller {
      * after does nothing since we send an XML
      */
     public function after(){}
+
+    protected function html_chars($value)
+    {
+		return htmlspecialchars( (string) $value, ENT_QUOTES, Kohana::$charset);
+    }
 
 
 } // End feed
