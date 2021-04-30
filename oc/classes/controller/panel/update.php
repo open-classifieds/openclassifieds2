@@ -78,13 +78,8 @@ class Controller_Panel_Update extends Auth_Controller
                                     ('About to Expire Subscription', '05 9 * * *', 'Cron_Subscription::to_expire', NULL, 'Notify by sms your subscription is about to expire', 1);")->execute();
         } catch (exception $e) {
         }
-    }
 
-    public function action_411()
-    {
-
-
-        // new indexes
+         // new indexes
         try {
             DB::query(Database::UPDATE, "ALTER TABLE ".self::$db_prefix."users ADD INDEX IF NOT EXISTS ".self::$db_prefix."users_IK_status (status);")->execute();
         } catch (exception $e) {
@@ -109,13 +104,7 @@ class Controller_Panel_Update extends Auth_Controller
             DB::query(Database::UPDATE, "ALTER TABLE ".self::$db_prefix."locations ADD INDEX IF NOT EXISTS ".self::$db_prefix."locations_IK_id_location_parent_AND_parent_deep (id_location_parent, parent_deep);")->execute();
         } catch (exception $e) {
         }
-
-
-
-        $configs = [];
-
-        // returns TRUE if some config is saved
-        $return_conf = Model_Config::config_array($configs);
+        
     }
 
     public function action_410()
