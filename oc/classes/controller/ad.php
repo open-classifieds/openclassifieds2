@@ -1601,33 +1601,53 @@ class Controller_Ad extends Controller {
 
     protected function search_with_synonyms(Kohana_ORM $ads, $field, $text)
     {
-        $car_synonyms = ['car', 'auto', 'automobile', 'coche', 'van'];
-        $bike_synonyms = ['bike', 'bycicle', 'scooter'];
+        /**
+         * Expected word_synonyms theme option value:
+         *
+         * car,auto,automobile,coche,van
+         * bike,bycicle,scooter
+         */
+
+        $synonym_groups = str_replace("\r", '', Theme::get('word_synonyms')); // remove carriage returns
+
+        if (empty($synonym_groups))
+        {
+            return $ads;
+        }
+
+        $synonym_groups = explode(PHP_EOL, $synonym_groups);
+
+        if (! is_array($synonym_groups))
+        {
+            return $ads;
+        }
 
         $ads->or_where($field, 'like', "%{$text}%");
 
-        foreach ($car_synonyms as $synonym)
+        foreach ($synonym_groups as $synonym_group)
         {
-            if (strpos($text, $synonym) !== FALSE)
-            {
-                foreach ($car_synonyms as $replace_synonym)
-                {
-                    $text_with_replaced_synonym = str_replace($synonym, $replace_synonym, $text);
+            $synonyms = explode(',', $synonym_group);
 
-                    $ads->or_where($field, 'like', "%{$text_with_replaced_synonym}%");
-                }
+            if (! is_array($synonyms))
+            {
+                continue;
             }
-        }
 
-        foreach ($bike_synonyms as $synonym)
-        {
-            if (strpos($text, $synonym) !== FALSE)
+            foreach ($synonyms as $synonym)
             {
-                foreach ($bike_synonyms as $replace_synonym)
+                if (empty($synonym))
                 {
-                    $text_with_replaced_synonym = str_replace($synonym, $replace_synonym, $text);
+                    continue;
+                }
 
-                    $ads->or_where($field, 'like', "%{$text_with_replaced_synonym}%");
+                if (strpos($text, $synonym) !== FALSE)
+                {
+                    foreach ($synonyms as $replace_synonym)
+                    {
+                        $text_with_replaced_synonym = str_replace($synonym, $replace_synonym, $text);
+
+                        $ads->or_where($field, 'like', "%{$text_with_replaced_synonym}%");
+                    }
                 }
             }
         }

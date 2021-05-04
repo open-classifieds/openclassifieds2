@@ -3,11 +3,11 @@
         <div class="col-md-4">
             <a title="<?=HTML::chars($ad->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
                 <?if($ad->get_first_image() !== NULL):?>
-                    <img class="card-img rounded-0" src="<?=Core::imagefly($ad->get_first_image(),150,150)?>" alt="<?=HTML::chars($ad->title)?>" />
+                    <img class="card-img rounded-0" src="<?=Core::imagefly($ad->get_first_image(),3000,3000)?>" alt="<?=HTML::chars($ad->title)?>" />
                 <?elseif(( $icon_src = $ad->category->get_icon() )!==FALSE ):?>
-                    <img class="card-img rounded-0" src="<?=Core::imagefly($icon_src,150,150)?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>" />
+                    <img class="card-img rounded-0" src="<?=Core::imagefly($icon_src,3000,3000)?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>" />
                 <?else:?>
-                    <img class="card-img rounded-0" data-src="holder.js/150x150?<?=str_replace('+', ' ', http_build_query(array('text' => $ad->category->translate_name(), 'size' => 14, 'auto' => 'yes')))?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>">
+                    <img class="card-img rounded-0" data-src="holder.js/3000x3000?<?=str_replace('+', ' ', http_build_query(array('text' => $ad->category->translate_name(), 'size' => 14, 'auto' => 'yes')))?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>">
                 <?endif?>
             </a>
         </div>

@@ -24,7 +24,7 @@ class razorpay {
             return;
         }
 
-        if (Core::config('payment.razorpay_key_id') === '' OR Core::config('payment.razorpay_key_secret') === '')
+        if (empty(Core::config('payment.razorpay_key_id')) OR empty(Core::config('payment.razorpay_key_secret')))
         {
             return;
         }

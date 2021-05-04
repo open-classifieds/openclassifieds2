@@ -1,3 +1,19 @@
+<?if (core::count(Widgets::render('footer')) > 0 AND Theme::landing_single_ad() == FALSE) :?>
+    <div class="pt-4">
+        <div class="container">
+            <div class="row">
+                <?foreach ( Widgets::render('footer') as $widget):?>
+                    <div class="col-12 col-md-3">
+                        <div class="panel panel-footer mb-4 <?=get_class($widget->widget)?>">
+                            <?=$widget?>
+                        </div>
+                    </div>
+                <?endforeach?>
+            </div>
+        </div>
+    </div>
+<?endif?>
+
 <div class="pb-4">
     <div class="container">
         <hr>

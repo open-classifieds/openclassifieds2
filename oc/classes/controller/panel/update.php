@@ -174,8 +174,7 @@ class Controller_Panel_Update extends Auth_Controller
     public function action_411()
     {
 
-
-        // new indexes
+         // new indexes
         try {
             DB::query(Database::UPDATE, "ALTER TABLE ".self::$db_prefix."users ADD INDEX IF NOT EXISTS ".self::$db_prefix."users_IK_status (status);")->execute();
         } catch (exception $e) {
@@ -201,12 +200,6 @@ class Controller_Panel_Update extends Auth_Controller
         } catch (exception $e) {
         }
 
-
-
-        $configs = [];
-
-        // returns TRUE if some config is saved
-        $return_conf = Model_Config::config_array($configs);
     }
 
     public function action_410()
