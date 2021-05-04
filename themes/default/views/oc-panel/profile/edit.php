@@ -10,16 +10,28 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-8">
-                            <?if ($user->stripe_user_id!=''):?>
-                                Stripe connected <?=$user->stripe_user_id?>
-                                <br>
-                                Reconnect:
-                                <br>
-                            <?endif?>
-                            <a class="btn btn-primary" href="<?=Route::url('default', array('controller'=>'stripe','action'=>'connect','id'=>'now'))?>">
-                                <span class="fas fa-money-bill" aria-hidden="true"></span> Connect with Stripe
-                            </a>
+                            <? if (Core::config('payment.stripe_connect_legacy')) : ?>
+                                <? if ($user->stripe_user_id != ''): ?>
+                                    Stripe connected <?=$user->stripe_user_id?>
+                                    <br>
+                                    Reconnect:
+                                    <br>
+                                <? endif ?>
 
+                                <a class="btn btn-primary" href="<?=Route::url('default', array('controller'=>'stripe','action'=>'connect','id'=>'now'))?>">
+                                    <span class="fas fa-money-bill" aria-hidden="true"></span> Connect with Stripe
+                                </a>
+                            <? else : ?>
+                                <? if (StripeKO::connected_account_with_charges_enabled($user)) : ?>
+                                    <a class="btn btn-primary" href="<?= Route::url('default', ['controller' => 'stripe', 'action' => 'log_into_connected_account', 'id' => 'now']) ?>">
+                                        <?= _e('View Stripe account') ?>
+                                    </a>
+                                <? else : ?>
+                                    <a class="btn btn-primary" href="<?= Route::url('default', ['controller' => 'stripe', 'action' => 'connect_express', 'id' => 'now']) ?>">
+                                        <?= _e('Connect with Stripe') ?>
+                                    </a>
+                                <? endif ?>
+                            <? endif ?>
                         </div>
                     </div>
                 </div>

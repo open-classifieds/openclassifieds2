@@ -68,9 +68,37 @@ class Controller_Panel_Update extends Auth_Controller
                 'group_name' => 'general',
                 'config_value' => '',
             ],
+            [
+                'config_key' => 'stripe_connect_legacy',
+                'group_name' => 'payment',
+                'config_value' => '1',
+            ],
+            [
+                'config_key' => 'stripe_escrow',
+                'group_name' => 'payment',
+                'config_value' => '0',
+            ],
+            [
+                'config_key' => 'stripe_cancel_orders_after_n_days',
+                'group_name' => 'payment',
+                'config_value' => '0',
+            ],
+            [
+                'config_key' => 'stripe_appfee_fixed',
+                'group_name' => 'payment',
+                'config_value' => '0',
+            ],
         ];
 
         Model_Config::config_array($configs);
+
+        // Crontabs
+        try {
+            DB::query(Database::UPDATE, "INSERT INTO `".self::$db_prefix."crontab` (`name`, `period`, `callback`, `params`, `description`, `active`) VALUES
+                                    ('About to Expire Subscription', '05 9 * * *', 'Cron_Subscription::to_expire', NULL, 'Notify by sms your subscription is about to expire', 1),
+                                    ('Mark unshipped orders as cancelled', '0 11 * * *', 'Cron_Ad::mark_as_cancelled', NULL, 'Mark unshipped orders as cancelled n days after was paid', 1);")->execute();
+        } catch (exception $e) {
+        }
 
         //crontab subscription to expire
         try {
@@ -78,6 +106,69 @@ class Controller_Panel_Update extends Auth_Controller
                                     ('About to Expire Subscription', '05 9 * * *', 'Cron_Subscription::to_expire', NULL, 'Notify by sms your subscription is about to expire', 1);")->execute();
         } catch (exception $e) {
         }
+
+        // Shipping tracking code
+        try {
+            DB::query(Database::UPDATE, "ALTER TABLE  `".self::$db_prefix."orders` ADD `shipping_tracking_code` VARCHAR(140) DEFAULT NULL;")->execute();
+        } catch (exception $e) {
+        }
+
+        // Shipping provider name
+        try {
+            DB::query(Database::UPDATE, "ALTER TABLE  `".self::$db_prefix."orders` ADD `shipping_provider_name` VARCHAR(140) DEFAULT NULL;")->execute();
+        } catch (exception $e) {
+        }
+
+        // Mark orders as shipped
+        try {
+            DB::query(Database::UPDATE, "ALTER TABLE  `".self::$db_prefix."orders` ADD `shipped` DATETIME NULL DEFAULT NULL;")->execute();
+        } catch (exception $e) {
+        }
+
+        // Mark orders as cancelled
+        try {
+            DB::query(Database::UPDATE, "ALTER TABLE  `".self::$db_prefix."orders` ADD `cancelled` DATETIME NULL DEFAULT NULL;")->execute();
+        } catch (exception $e) {
+        }
+
+        // Mark orders as paid out
+        try {
+            DB::query(Database::UPDATE, "ALTER TABLE  `".self::$db_prefix."orders` ADD `paid_out` DATETIME NULL DEFAULT NULL;")->execute();
+        } catch (exception $e) {
+        }
+
+        // new emails
+        $contents = [
+            [
+                'order'         => 0,
+                'title'         => 'Order shipped for [ORDER.DESC] #[ORDER.ID]',
+                'seotitle'      => 'order-shipped',
+                'description'   => "Hello [USER.NAME],\n\nThanks for buying [ORDER.DESC].\n\nYour order has been shipped.",
+                'from_email'    => core::config('email.notify_email'),
+                'type'          => 'email',
+                'status'        => '1',
+            ],
+            [
+                'order'         => 0,
+                'title'         => 'Order cancelled for [ORDER.DESC] #[ORDER.ID]',
+                'seotitle'      => 'order-cancelled',
+                'description'   => "Hello [USER.NAME],\n\nYour order has been cancelled.",
+                'from_email'    => core::config('email.notify_email'),
+                'type'          => 'email',
+                'status'        => '1',
+            ],
+            [
+                'order'         => 0,
+                'title'         => 'Safe payment request for [AD.NAME]',
+                'seotitle'      => 'safe-payment-requested',
+                'description'   => "Hello [USER.NAME],\n\nYour ad [AD.NAME] received a safe payment request. Please register with Stripe Connect to receive payments [URL.QL].",
+                'from_email'    => core::config('email.notify_email'),
+                'type'          => 'email',
+                'status'        => '1',
+            ],
+        ];
+
+        Model_Content::content_array($contents);
     }
 
     public function action_411()

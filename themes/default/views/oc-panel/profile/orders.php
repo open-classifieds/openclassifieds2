@@ -78,6 +78,20 @@
                                     </a>
                                 <?endif?>
                             <?endif?>
+
+                            <?if (core::config('payment.stripe_escrow')):?>
+                                <?if ($order->shipped !== NULL AND $order->received === NULL):?>
+                                    <a class="ml-2 btn btn-default" href="<?= Route::url('oc-panel', ['controller'=>'profile', 'action'=>'order_received', 'id' => $order->id_order]) ?>">
+                                        <i class="fas fa-check"></i> <?=_e('Mark as received')?>
+                                    </a>
+                                <?endif?>
+
+                                <?if ($order->cancelled === NULL AND $order->shipped === NULL):?>
+                                    <a class="ml-2 btn btn-default" href="<?= Route::url('oc-panel', ['controller'=>'profile', 'action'=>'cancel_order', 'id' => $order->id_order]) ?>">
+                                        <i class="fas fa-times"></i> <?=_e('Cancel order')?>
+                                    </a>
+                                <?endif?>
+                            <?endif?>
                         </td>
 
                     </tr>

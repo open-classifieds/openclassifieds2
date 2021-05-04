@@ -1059,6 +1059,53 @@ class Controller_Ad extends Controller {
         $this->redirect(Route::url('default'));
     }
 
+    /**
+     * [action_buy] Pay for ad, and set new order
+     *
+     */
+    public function action_request_safe_payment()
+    {
+        //check pay to featured top is enabled check stripe config too
+        if(core::config('payment.paypal_seller') == FALSE AND Core::config('payment.stripe_connect')==FALSE  AND Core::config('payment.escrow_pay')==FALSE)
+            throw HTTP_Exception::factory(404,__('Page not found'));
+
+        //check ad exists
+        $ad = new Model_Ad($this->request->param('id'));
+
+        if(! $ad->loaded())
+        {
+            throw HTTP_Exception::factory(404,__('Page not found'));
+        }
+
+        if($ad->status != Model_Ad::STATUS_PUBLISHED)
+        {
+            throw HTTP_Exception::factory(404,__('Page not found'));
+        }
+
+        if($ad->status != Model_Ad::STATUS_PUBLISHED)
+        {
+            throw HTTP_Exception::factory(404,__('Page not found'));
+        }
+
+        if(core::config('payment.stock') == 1 AND $ad->stock <= 0)
+        {
+            throw HTTP_Exception::factory(404,__('Page not found'));
+        }
+
+        $url = $ad->user->ql('oc-panel', [
+            'controller' => 'profile',
+            'action' => 'edit',
+        ], TRUE);
+
+        $ad->user->email('safe-payment-requested', [
+            '[AD.NAME]' => $ad->title,
+            '[URL.QL]' => $url,
+        ]);
+
+        Alert::set(Alert::INFO, __('Safe payment requested.'));
+
+        $this->redirect(Route::url('ad', ['controller' => 'ad', 'category' => $ad->category->seoname, 'seotitle' => $ad->seotitle]));
+    }
 
     /**
      * thanks for publish

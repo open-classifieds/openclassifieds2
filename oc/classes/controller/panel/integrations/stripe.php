@@ -16,8 +16,12 @@ class Controller_Panel_Integrations_Stripe extends Auth_Controller {
             Model_Config::set_value('payment', 'stripe_3d_secure', Core::post('stripe_3d_secure') ?? 0);
             Model_Config::set_value('payment', 'stripe_legacy', Core::post('stripe_legacy') ?? 0);
             Model_Config::set_value('payment', 'stripe_connect', Core::post('stripe_connect') ?? 0);
+            Model_Config::set_value('payment', 'stripe_connect_legacy', Core::post('stripe_connect_legacy') ?? 0);
+            Model_Config::set_value('payment', 'stripe_escrow', Core::post('stripe_escrow') ?? 0);
             Model_Config::set_value('payment', 'stripe_clientid', Core::post('stripe_clientid'));
             Model_Config::set_value('payment', 'stripe_appfee', Core::post('stripe_appfee'));
+            Model_Config::set_value('payment', 'stripe_appfee_fixed', Core::post('stripe_appfee_fixed'));
+            Model_Config::set_value('payment', 'stripe_cancel_orders_after_n_days', Core::post('stripe_cancel_orders_after_n_days'));
 
             Alert::set(Alert::SUCCESS, __('Configuration updated'));
 
