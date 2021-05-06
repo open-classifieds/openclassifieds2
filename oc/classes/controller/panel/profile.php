@@ -395,9 +395,18 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 
         $order->mark_as_shipped(Core::post('tracking_code'), Core::post('provider_name'));
 
+        $url = $order->user->ql('oc-panel', [
+            'controller' => 'profile',
+            'action' => 'order',
+            'id' => $order->id_order,
+        ], TRUE);
+
         $order->user->email('order-shipped', [
             '[ORDER.ID]' => $order->id_order,
             '[ORDER.DESC]' => $order->description,
+            '[ORDER.SHIPPING_TRACKING_CODE]' => Core::post('tracking_code'),
+            '[ORDER.SHIPPING_PROVIDER_NAME]' => Core::post('provider_name'),
+            '[URL.QL]' => $url,
         ]);
 
         Alert::set(ALERT::SUCCESS, __('Order marked as shipped.'));

@@ -104,6 +104,14 @@
                     </div>
                     <div class="sm:col-span-6" x-show="! legacyEnabled">
                         <div class="absolute flex items-center h-5">
+                            <?=FORM::checkbox('stripe_connected_account_mandatory', 1, (bool) Core::post('stripe_connected_account_mandatory', Core::config('payment.stripe_connected_account_mandatory')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
+                        </div>
+                        <div class="pl-7 text-sm leading-5">
+                            <?=FORM::label('stripe_connected_account_mandatory', __('Make a connected Stripe account mandatory otherwise, users cannot post an ad'), ['class'=>'font-medium text-gray-700'])?>
+                        </div>
+                    </div>
+                    <div class="sm:col-span-6" x-show="! legacyEnabled">
+                        <div class="absolute flex items-center h-5">
                             <?=FORM::checkbox('stripe_escrow', 1, '', ['x-model' => 'escrowEnabled', 'class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
                         </div>
                         <div class="pl-7 text-sm leading-5">

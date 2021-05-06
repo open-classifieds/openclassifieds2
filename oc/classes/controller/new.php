@@ -35,8 +35,14 @@ class Controller_New extends Controller
             Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content! If you think this is a mistake please contact us.'));
             $this->redirect(Route::url('default'));
         }
-        // redirect to connect stripe
-        elseif( Core::config('payment.stripe_connect') == TRUE  AND empty($this->user->stripe_user_id))
+        // redirect to connect stripe with legacy enabled
+        elseif( Core::config('payment.stripe_connect') == TRUE AND Core::config('payment.stripe_connect_legacy') == TRUE AND empty($this->user->stripe_user_id))
+        {
+            Alert::set(Alert::INFO, __('Please, connect with Stripe'));
+            $this->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')));
+        }
+        // redirect to connect stripe when connected account is mandatory
+        elseif( Core::config('payment.stripe_connect') == TRUE AND empty($this->user->stripe_user_id) AND Core::config('payment.stripe_connect_legacy') == FALSE AND Core::config('payment.stripe_connected_account_mandatory') == TRUE)
         {
             Alert::set(Alert::INFO, __('Please, connect with Stripe'));
             $this->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')));

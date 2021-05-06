@@ -2,6 +2,13 @@
     <div>
         <h6 class="my-0">#<?= $order->id_product ?> <?=$order->description?></h6>
         <small class="text-muted"><?= Model_Order::product_desc($order->id_product) ?></small>
+        <? if (! is_null($order->shipping_tracking_code)) : ?>
+            <p>
+                <small class="text-muted">
+                    <?= $order->shipping_provider_name ?> <?= Encrypt::instance()->decode($order->shipping_tracking_code) ?>
+                </small>
+            </p>
+        <? endif ?>
     </div>
     <span class="text-muted">
         <?= i18n::money_format($order->amount, $order->currency) ?>
