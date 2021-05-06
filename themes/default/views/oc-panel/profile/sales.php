@@ -54,6 +54,49 @@
                                     </a>
                                 <?endif?>
                             <?endif?>
+
+                            <?if (core::config('payment.stripe_escrow')):?>
+                                <?if ($order->shipped === NULL AND $order->cancelled === NULL):?>
+                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#shippedModal<?=$order->id_order?>">
+                                        <i class="fas fa-check"></i> <?=_e('Mark as shipped')?>
+                                    </button>
+
+                                    <div class="modal fade" id="shippedModal<?=$order->id_order?>" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog modal-sm" role="document">
+                                            <div class="modal-content">
+                                                <?=FORM::open(Route::url('oc-panel', ['controller'=>'profile', 'action'=>'order_shipped', 'id'=> $order->id_order]))?>
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title"><?=__('Shipment details')?></h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label for="provider_name"><?=__('Shipment provider name')?></label>
+                                                            <input name="provider_name" type="text" class="form-control" id="provider_name">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="tracking_code"><?=__('Shipment tracking code')?></label>
+                                                            <input name="tracking_code" type="text" class="form-control" id="tracking_code">
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary"><?=__('Submit')?></button>
+                                                    </div>
+                                                <?=FORM::close()?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?endif?>
+
+                                <?if ($order->cancelled === NULL AND $order->shipped === NULL):?>
+                                    <a class="ml-2 btn btn-default" href="<?= Route::url('oc-panel', ['controller'=>'profile', 'action'=>'cancel_order', 'id' => $order->id_order]) ?>">
+                                        <i class="fas fa-times"></i> <?=_e('Cancel order')?>
+                                    </a>
+                                <?endif?>
+                            <?endif?>
                         </td>
 
                     </tr>

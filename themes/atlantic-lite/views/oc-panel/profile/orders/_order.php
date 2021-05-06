@@ -31,7 +31,7 @@
                 <i class="fas fa-check"></i> <?=_e('Mark as paid')?>
             </a>
         <?else:?>
-            <a class="btn btn-default" href="<?=Route::url('oc-panel', array('controller'=>'profile', 'action'=>'order', 'id' => $order->id_order))?>">
+            <a class="btn btn-sm btn-link" href="<?=Route::url('oc-panel', array('controller'=>'profile', 'action'=>'order', 'id' => $order->id_order))?>">
                 <i class="fas fa-search"></i> <?=_e('View')?>
             </a>
 
@@ -52,8 +52,20 @@
             <?endif?>
 
             <?if (isset($transaction->status) AND $transaction->status->received AND ! $transaction->status->accepted):?>
-                <a class="btn btn-default" href="<?= Route::url('oc-panel', ['controller'=>'escrow', 'action'=>'accept', 'id' => $order->id_order]) ?>">
-                    <i class="fas fa-check"></i> <?=_e('Mark as accepted')?>
+
+            <?endif?>
+        <?endif?>
+
+        <?if (core::config('payment.stripe_escrow')):?>
+            <?if ($order->shipped !== NULL AND $order->received === NULL):?>
+                <a class="ml-2 btn btn-sm btn-link" href="<?= Route::url('oc-panel', ['controller'=>'profile', 'action'=>'order_received', 'id' => $order->id_order]) ?>">
+                    <i class="fas fa-check"></i> <?=_e('Mark as received')?>
+                </a>
+            <?endif?>
+
+            <?if ($order->cancelled === NULL AND $order->shipped === NULL):?>
+                <a class="ml-2 btn btn-sm btn-link" href="<?= Route::url('oc-panel', ['controller'=>'profile', 'action'=>'cancel_order', 'id' => $order->id_order]) ?>">
+                    <i class="fas fa-times"></i> <?=_e('Cancel order')?>
                 </a>
             <?endif?>
         <?endif?>

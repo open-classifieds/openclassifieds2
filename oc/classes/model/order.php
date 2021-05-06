@@ -663,6 +663,65 @@ class Model_Order extends ORM {
         }
     }
 
+    /**
+     * mark an order as shipped
+     */
+    public function mark_as_shipped($tracking_code = NULL, $provider_name = NULL)
+    {
+        if (! in_array($this->id_product, [self::PRODUCT_AD_SELL]))
+        {
+            return NULL;
+        }
+
+        $this->shipped = Date::unix2mysql();
+        $this->shipping_tracking_code = Encrypt::instance()->encode($tracking_code);
+        $this->shipping_provider_name = $provider_name;
+
+        try {
+            $this->save();
+        } catch (Exception $e) {
+            throw HTTP_Exception::factory(500, $e->getMessage());
+        }
+    }
+
+    /**
+     * mark an order as cancelled
+     */
+    public function mark_as_cancelled()
+    {
+        if (! in_array($this->id_product, [self::PRODUCT_AD_SELL]))
+        {
+            return NULL;
+        }
+
+        $this->cancelled = Date::unix2mysql();
+
+        try {
+            $this->save();
+        } catch (Exception $e) {
+            throw HTTP_Exception::factory(500, $e->getMessage());
+        }
+    }
+
+    /**
+     * mark an order as paid out
+     */
+    public function mark_as_paid_out()
+    {
+        if (! in_array($this->id_product, [self::PRODUCT_AD_SELL]))
+        {
+            return NULL;
+        }
+
+        $this->paid_out = Date::unix2mysql();
+
+        try {
+            $this->save();
+        } catch (Exception $e) {
+            throw HTTP_Exception::factory(500, $e->getMessage());
+        }
+    }
+
     public static function by_user(Model_User $user)
     {
         if (! $user->loaded())
@@ -961,6 +1020,77 @@ array (
     'data_type' => 'datetime',
     'is_nullable' => true,
     'ordinal_position' => 7,
+    'comment' => '',
+    'extra' => '',
+    'key' => '',
+    'privileges' => 'select,insert,update,references',
+  ),
+  'shipped' =>
+  array (
+    'type' => 'string',
+    'column_name' => 'shipped',
+    'column_default' => NULL,
+    'data_type' => 'datetime',
+    'is_nullable' => true,
+    'ordinal_position' => 7,
+    'comment' => '',
+    'extra' => '',
+    'key' => '',
+    'privileges' => 'select,insert,update,references',
+  ),
+  'cancelled' =>
+  array (
+    'type' => 'string',
+    'column_name' => 'cancelled',
+    'column_default' => NULL,
+    'data_type' => 'datetime',
+    'is_nullable' => true,
+    'ordinal_position' => 7,
+    'comment' => '',
+    'extra' => '',
+    'key' => '',
+    'privileges' => 'select,insert,update,references',
+  ),
+  'paid_out' =>
+  array (
+    'type' => 'string',
+    'column_name' => 'paid_out',
+    'column_default' => NULL,
+    'data_type' => 'datetime',
+    'is_nullable' => true,
+    'ordinal_position' => 7,
+    'comment' => '',
+    'extra' => '',
+    'key' => '',
+    'privileges' => 'select,insert,update,references',
+  ),
+  'shipping_tracking_code' =>
+  array (
+    'type' => 'string',
+    'exact' => true,
+    'column_name' => 'shipping_tracking_code',
+    'column_default' => NULL,
+    'data_type' => 'varchar',
+    'is_nullable' => true,
+    'ordinal_position' => 11,
+    'character_maximum_length' => '145',
+    'collation_name' => 'utf8_general_ci',
+    'comment' => '',
+    'extra' => '',
+    'key' => '',
+    'privileges' => 'select,insert,update,references',
+  ),
+  'shipping_provider_name' =>
+  array (
+    'type' => 'string',
+    'exact' => true,
+    'column_name' => 'shipping_provider_name',
+    'column_default' => NULL,
+    'data_type' => 'varchar',
+    'is_nullable' => true,
+    'ordinal_position' => 11,
+    'character_maximum_length' => '145',
+    'collation_name' => 'utf8_general_ci',
     'comment' => '',
     'extra' => '',
     'key' => '',

@@ -1,10 +1,28 @@
 <div class="btn-group" role="group">
-    <?if((core::config('payment.paypal_seller')==1 OR Core::config('payment.stripe_connect')==1 OR Core::config('payment.escrow_pay')==1) AND $ad->price != NULL AND $ad->price > 0):?>
+    <?if((core::config('payment.paypal_seller')==1 OR (Core::config('payment.stripe_connect')==1 AND Core::config('payment.stripe_escrow')==0) OR Core::config('payment.escrow_pay')==1) AND $ad->price != NULL AND $ad->price > 0):?>
         <?if(core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1)):?>
             <?if($ad->status != Model_Ad::STATUS_SOLD):?>
                 <a class="btn btn-primary" href="<?=Route::url('default', array('action'=>'buy','controller'=>'ad','id'=>$ad->id_ad))?>">
                     <i class="fas fa-money-bill" aria-hidden="true"></i> <?=_e('Buy Now')?>
                 </a>
+            <?else:?>
+                <a class="btn btn-primary disabled">
+                    <i class="fas fa-money-bill" aria-hidden="true"></i> <?=_e('Sold')?>
+                </a>
+            <?endif?>
+        <?endif?>
+    <?elseif(Core::config('payment.stripe_connect')==1 AND Core::config('payment.stripe_escrow')==1 AND $ad->price != NULL AND $ad->price > 0):?>
+        <?if(core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1)):?>
+            <?if($ad->status != Model_Ad::STATUS_SOLD):?>
+                <? if(empty($ad->user->stripe_user_id)) : ?>
+                    <a class="btn btn-primary" href="#">
+                        <?=_e('Request safe payment')?>
+                    </a>
+                <? else : ?>
+                    <a class="btn btn-primary" href="<?=Route::url('default', array('action'=>'buy','controller'=>'ad','id'=>$ad->id_ad))?>">
+                        <?=_e('Buy Now')?>
+                    </a>
+                <? endif ?>
             <?else:?>
                 <a class="btn btn-primary disabled">
                     <i class="fas fa-money-bill" aria-hidden="true"></i> <?=_e('Sold')?>

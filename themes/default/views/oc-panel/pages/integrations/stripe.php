@@ -80,13 +80,34 @@
                         <?= View::factory('oc-panel/components/pro-alert') ?>
                     <? endif ?>
                 </div>
-                <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
+                <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6" x-data="
+                    {
+                        legacyEnabled: <?= Core::post('stripe_connect_legacy', Core::config('payment.stripe_connect_legacy')) ? 'true' : 'false' ?>,
+                        escrowEnabled: <?= Core::post('stripe_escrow', Core::config('payment.stripe_escrow')) ? 'true' : 'false' ?>
+                    }
+                ">
                     <div class="sm:col-span-6">
                         <div class="absolute flex items-center h-5">
                             <?=FORM::checkbox('stripe_connect', 1, (bool) Core::post('stripe_connect', Core::config('payment.stripe_connect')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
                         </div>
                         <div class="pl-7 text-sm leading-5">
                             <?=FORM::label('stripe_connect', __('Activate Stripe Connect'), ['class'=>'font-medium text-gray-700'])?>
+                        </div>
+                    </div>
+                    <div class="sm:col-span-6">
+                        <div class="absolute flex items-center h-5">
+                            <?=FORM::checkbox('stripe_connect_legacy', 1, '', ['x-model' => 'legacyEnabled', 'class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
+                        </div>
+                        <div class="pl-7 text-sm leading-5">
+                            <?=FORM::label('stripe_connect_legacy', __('Enable Stripe Connect Legacy'), ['class'=>'font-medium text-gray-700'])?>
+                        </div>
+                    </div>
+                    <div class="sm:col-span-6" x-show="! legacyEnabled">
+                        <div class="absolute flex items-center h-5">
+                            <?=FORM::checkbox('stripe_escrow', 1, '', ['x-model' => 'escrowEnabled', 'class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
+                        </div>
+                        <div class="pl-7 text-sm leading-5">
+                            <?=FORM::label('stripe_escrow', __('Activate Stripe Escrow Flow'), ['class'=>'font-medium text-gray-700'])?>
                         </div>
                     </div>
                     <div class="sm:col-span-4">
@@ -109,6 +130,28 @@
                         </div>
                         <p class="mt-2 text-sm text-gray-500">
                             <?= __('How much you charge the seller in percentage.') ?>
+                        </p>
+                    </div>
+                    <div class="sm:col-span-4" x-show="escrowEnabled && ! legacyEnabled">
+                        <?= FORM::label('stripe_appfee_fixed', 'A fixed application fee amount', array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
+                        <div class="mt-1 rounded-md shadow-sm">
+                            <?= FORM::input('stripe_appfee_fixed', Core::post('stripe_appfee_fixed', Core::config('payment.stripe_appfee_fixed')), [
+                                'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                            ])?>
+                        </div>
+                        <p class="mt-2 text-sm text-gray-500">
+                            <?= __('How much you charge the seller in a fixed amount.') ?>
+                        </p>
+                    </div>
+                    <div class="sm:col-span-4" x-show="escrowEnabled && ! legacyEnabled">
+                        <?= FORM::label('stripe_cancel_orders_after_n_days', 'Cancel orders not marketed as shipped after a certain number of days', array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
+                        <div class="mt-1 rounded-md shadow-sm">
+                            <?= FORM::input('stripe_cancel_orders_after_n_days', Core::post('stripe_cancel_orders_after_n_days', Core::config('payment.stripe_cancel_orders_after_n_days')), [
+                                'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                            ])?>
+                        </div>
+                        <p class="mt-2 text-sm text-gray-500">
+                            <?= __('Automatically cancel orders not marketed as shipped after a certain number of days.') ?>
                         </p>
                     </div>
                 </div>

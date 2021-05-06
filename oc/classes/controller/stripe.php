@@ -558,4 +558,73 @@ class Controller_Stripe extends Controller{
         }
     }
 
+    public function action_connect_express()
+    {
+        // only if stripe connect enabled
+        if (Core::config('payment.stripe_connect') == FALSE )
+        {
+            throw HTTP_Exception::factory(404,__('Page not found'));
+        }
+
+        //user needs to be loged in
+        if (!Auth::instance()->logged_in())
+        {
+            $this->redirect(Route::url('oc-panel', ['controller'=>'auth','action'=>'login']).'?auth_redirect='.URL::current());
+        }
+
+        StripeCheckout::init();
+
+        if (empty($this->user->stripe_user_id))
+        {
+            $account_parameters = [
+                'type' => 'express',
+                'email' => $this->user->email,
+            ];
+
+            if (Core::config('payment.stripe_escrow'))
+            {
+                $account_parameters['settings'] = [
+                    'payouts' => [
+                        'schedule' => [
+                            'interval' => 'manual',
+                        ],
+                    ],
+                ];
+            }
+
+            $account = \Stripe\Account::create($account_parameters);
+
+            $this->user->stripe_user_id = $account->id;
+            $this->user->save();
+        }
+
+        $account_link = \Stripe\AccountLink::create([
+            'account' => $this->user->stripe_user_id,
+            'refresh_url' => Route::url('default', ['controller' => 'stripe', 'action' => 'connect_express', 'id' => 'now']),
+            'return_url' => Route::url('oc-panel', ['controller' => 'profile', 'action' => 'edit']),
+            'type' => 'account_onboarding',
+        ]);
+
+        $this->redirect($account_link->url);
+    }
+
+    public function action_log_into_connected_account()
+    {
+        // only if stripe connect enabled
+        if (Core::config('payment.stripe_connect') == FALSE )
+        {
+            throw HTTP_Exception::factory(404,__('Page not found'));
+        }
+
+        //user needs to be loged in
+        if (!Auth::instance()->logged_in())
+        {
+            $this->redirect(Route::url('oc-panel', ['controller'=>'auth','action'=>'login']).'?auth_redirect='.URL::current());
+        }
+
+        $this->redirect(StripeKO::create_connected_account_login_link(
+            $this->user,
+            Route::url('oc-panel', ['controller' => 'profile', 'action' => 'edit'])
+        ));
+    }
 }

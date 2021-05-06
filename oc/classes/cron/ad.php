@@ -204,6 +204,45 @@ class Cron_Ad {
         }
     }
 
+    /**
+     * mark orders as cancelled
+     * @return void
+     */
+    public static function mark_as_cancelled()
+    {
+        if (! core::config('payment.stripe_escrow'))
+        {
+            return;
+        }
+
+        $days = Core::config('payment.stripe_cancel_orders_after_n_days');
+
+        $orders = (new Model_Order)
+            ->where('status', '=', Model_Order::STATUS_PAID)
+            ->where('shipped', 'IS', NULL)
+            ->where('cancelled', 'IS', NULL)
+            ->where(DB::expr('DATE(pay_date)'), '=', Date::format('-'.$days.' days','Y-m-d'))
+            ->where('id_product', 'IN', [Model_Order::PRODUCT_AD_SELL])
+            ->find_all();
+
+        foreach ($orders as $order)
+        {
+            $order->mark_as_cancelled();
+
+            $order->user->email('order-cancelled', [
+                '[ORDER.ID]' => $order->id_order,
+                '[ORDER.DESC]' => $order->description,
+            ]);
+
+            $order->ad->user->email('order-cancelled', [
+                '[ORDER.ID]' => $order->id_order,
+                '[ORDER.DESC]' => $order->description,
+            ]);
+
+            StripeKO::reverse_transfer($order);
+        }
+    }
+
 
 
 }

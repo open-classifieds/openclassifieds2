@@ -43,10 +43,14 @@ class StripeCheckout {
     {
         //percentage we take, in case not passed take default
         if ($fee === NULL)
+        {
             $fee  = Core::config('payment.stripe_appfee');
+        }
+
+        $fixed_fee = Core::config('payment.stripe_appfee_fixed', 0);
 
         //initial exchange fee + stripe fee
-        return ($fee * $amount / 100);
+        return (($fee * $amount / 100) + $fixed_fee);
     }
 
 
@@ -189,6 +193,7 @@ class StripeCheckout {
                 'currency' => $order->currency,
                 'quantity' => 1,
             ]],
+            'mode' => 'payment',
             'success_url' => Route::url('default', ['controller' => 'stripecheckout', 'action' => 'success_connect', 'id' => $order->id_order]),
             'cancel_url' => Route::url('default', ['controller' => 'ad', 'action' => 'checkout', 'id' => $order->id_order]),
             'locale' => 'auto',
