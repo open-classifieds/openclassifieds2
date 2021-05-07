@@ -1,4 +1,4 @@
-<section id="print"> 
+<section id="print">
 	<div class="well col-xs-12 col-sm-12 col-md-12">
 	    <div class="row">
 	        <div class="col-xs-6 col-sm-6 col-md-6">
@@ -13,7 +13,14 @@
 		            <?endif?>
 		            <em><?=_e('Date')?>: <?= Date::format($order->created, core::config('general.date_format'))?></em>
 		            <br>
-		            <em><?=_e('Checkout')?> #: <?=$order->id_order?></em>
+		            <em>
+                        <? if ($order->status == Model_Order::STATUS_PAID) : ?>
+                            <?=_e('Invoice')?>
+                        <? else : ?>
+                            <?=_e('Checkout')?>
+                        <? endif ?>
+                        #: <?=$order->id_order?>
+                    </em>
 	            </address>
 	        </div>
 	        <div class="col-xs-6 col-sm-6 col-md-6 text-right">
@@ -31,7 +38,13 @@
 	    </div>
 	    <div class="row">
 	        <div class="text-center">
-	            <h1><?=_e('Checkout')?></h1>
+	            <h1>
+                    <? if ($order->status == Model_Order::STATUS_PAID) : ?>
+                        <?=_e('Invoice')?>
+                    <? else : ?>
+                        <?=_e('Checkout')?>
+                    <? endif ?>
+                </h1>
 	        </div>
 	        <table class="table table-hover">
 	            <thead>
@@ -45,7 +58,17 @@
 	                <?if($order->id_product == Model_Order::PRODUCT_AD_SELL AND $order->ad->shipping_price()):?>
 	                    <tr>
 	                        <td class="col-md-1" style="text-align: center"><?=$order->id_product?></td>
-	                        <td class="col-md-9"><?=$order->description?> <em>(<?=Model_Order::product_desc($order->id_product)?>)</em></td>
+	                        <td class="col-md-9">
+                                <?=$order->description?> <em>(<?=Model_Order::product_desc($order->id_product)?>)</em>
+
+                                <? if (! is_null($order->shipping_tracking_code)) : ?>
+                                    <p>
+                                        <small class="text-muted">
+                                            <?= $order->shipping_provider_name ?> <?= Encrypt::instance()->decode($order->shipping_tracking_code) ?>
+                                        </small>
+                                    </p>
+                                <? endif ?>
+                            </td>
 	                        <td class="col-md-2 text-center"><?=i18n::money_format($order->amount, $order->currency)?></td>
 	                    </tr>
 	                    <tr>
@@ -58,8 +81,8 @@
 	                        <td class="col-md-1" style="text-align: center"><?=$order->id_product?></td>
 	                        <?if (Core::extra_features() == TRUE):?>
 	                            <td class="col-md-9">
-	                                <?=$order->description?> 
-	                                <em>(<?=Model_Order::product_desc($order->id_product)?> 
+	                                <?=$order->description?>
+	                                <em>(<?=Model_Order::product_desc($order->id_product)?>
 	                                    <?if ($order->id_product == Model_Order::PRODUCT_TO_FEATURED):?>
 	                                        <?=$order->featured_days?> <?=_e('Days')?>
 	                                    <?endif?>
@@ -67,7 +90,16 @@
 	                                </em>
 	                            </td>
 	                        <?else :?>
-	                            <td class="col-md-9"><?=$order->description?> <em>(<?=Model_Order::product_desc($order->id_product)?>)</em></td>
+	                            <td class="col-md-9">
+                                    <?=$order->description?> <em>(<?=Model_Order::product_desc($order->id_product)?>)</em>
+                                    <? if (! is_null($order->shipping_tracking_code)) : ?>
+                                        <p>
+                                            <small class="text-muted">
+                                                <?= $order->shipping_provider_name ?> <?= Encrypt::instance()->decode($order->shipping_tracking_code) ?>
+                                            </small>
+                                        </p>
+                                    <? endif ?>
+                                </td>
 	                        <?endif?>
 	                        <td class="col-md-2 text-center"><?=($order->id_product == Model_Order::PRODUCT_AD_SELL)?i18n::money_format(($order->coupon->loaded())?$order->original_price():$order->original_price(), $order->currency):i18n::format_currency(($order->coupon->loaded())?$order->original_price():$order->original_price(), $order->currency)?></td>
 	                    </tr>
@@ -84,7 +116,7 @@
 	                            <td class="col-md-2 text-center text-danger">
 	                                -<?=i18n::format_currency($discount, $order->currency)?>
 	                            </td>
-	                        </tr>  
+	                        </tr>
 	                    <?endif?>
 	                <?endif?>
 	                <tr>

@@ -81,10 +81,15 @@ class Controller_Panel_Update extends Auth_Controller
             [
                 'config_key' => 'stripe_cancel_orders_after_n_days',
                 'group_name' => 'payment',
-                'config_value' => '0',
+                'config_value' => '30',
             ],
             [
                 'config_key' => 'stripe_appfee_fixed',
+                'group_name' => 'payment',
+                'config_value' => '0',
+            ],
+            [
+                'config_key' => 'stripe_connected_account_mandatory',
                 'group_name' => 'payment',
                 'config_value' => '0',
             ],
@@ -136,7 +141,7 @@ class Controller_Panel_Update extends Auth_Controller
                 'order'         => 0,
                 'title'         => 'Order shipped for [ORDER.DESC] #[ORDER.ID]',
                 'seotitle'      => 'order-shipped',
-                'description'   => "Hello [USER.NAME],\n\nThanks for buying [ORDER.DESC].\n\nYour order has been shipped.",
+                'description'   => "Hello [USER.NAME],\n\nThanks for buying [ORDER.DESC].\n\nYour order has been shipped.\n\nTracking code [ORDER.SHIPPING_PROVIDER_NAME] [ORDER.SHIPPING_TRACKING_CODE] [URL.QL]",
                 'from_email'    => core::config('email.notify_email'),
                 'type'          => 'email',
                 'status'        => '1',
