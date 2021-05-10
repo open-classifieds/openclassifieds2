@@ -4,7 +4,7 @@
     </div>
     <div class="card-body">
         <h1 class="card-title pricing-card-title tw-text-4xl">
-            $0
+            <?= i18n::format_currency($plan->price, Core::config('payment.paypal_currency')) ?>
             <small class="text-muted">
                 <? if ($plan->days == 0 AND $plan->price>0): ?>
                     <?= _e('Pay once') ?>
