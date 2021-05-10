@@ -201,7 +201,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `quantity` int NOT NULL DEFAULT '0',
   `received` DATETIME NULL DEFAULT NULL,
   `shipped` DATETIME NULL DEFAULT NULL,
-  `shipping_tracking_code` varchar(140) DEFAULT NULL,
+  `shipping_tracking_code` varchar(255) DEFAULT NULL,
   `shipping_provider_name` varchar(140) DEFAULT NULL,
   `cancelled` DATETIME NULL DEFAULT NULL,
   `paid_out` DATETIME NULL DEFAULT NULL,
