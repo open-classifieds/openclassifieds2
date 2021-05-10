@@ -107,7 +107,7 @@ class Controller_Panel_Update extends Auth_Controller
 
         // Shipping tracking code
         try {
-            DB::query(Database::UPDATE, "ALTER TABLE  `".self::$db_prefix."orders` ADD `shipping_tracking_code` VARCHAR(140) DEFAULT NULL;")->execute();
+            DB::query(Database::UPDATE, "ALTER TABLE  `".self::$db_prefix."orders` ADD `shipping_tracking_code` VARCHAR(255) DEFAULT NULL;")->execute();
         } catch (exception $e) {
         }
 
