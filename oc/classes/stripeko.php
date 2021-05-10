@@ -160,8 +160,6 @@ class StripeKO {
 
         $account = \Stripe\Account::retrieve($user->stripe_user_id);
 
-        ray($account);
-
         return $account->charges_enabled;
     }
 
