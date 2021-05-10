@@ -660,7 +660,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('payment', 'stripe_clientid', ''),
 ('payment', 'stripe_3d_secure', '0'),
 ('payment', 'stripe_legacy', '1'),
-('payment', 'stripe_legacy_connect', '0'),
+('payment', 'stripe_connect_legacy', '0'),
 ('payment', 'stripe_escrow', '1'),
 ('payment', 'stripe_cancel_orders_after_n_days', '30'),
 ('payment', 'stripe_appfee_fixed', '0'),
