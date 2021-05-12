@@ -581,7 +581,7 @@ class Core {
     public static function imagefly($image,$width=NULL,$height=NULL,$mode='crop')
     {
         //usage of WP CDN, if they use AWS also!
-        if ( (Theme::get('cdn_files') == TRUE OR Core::config('image.aws_s3_active') == TRUE)
+        if ( Core::config('image.aws_s3_active') == TRUE
             AND Valid::url($image) == TRUE
             AND Kohana::$environment!== Kohana::DEVELOPMENT)
         {
@@ -707,7 +707,7 @@ class Core {
         {
             $result = TRUE;
             $l = 'DEVEL';
-        }    
+        }
         else
         {
             if ($l === NULL)
@@ -716,7 +716,7 @@ class Core {
             $api_url = Core::yclas_url_().'/api/v1/license/check/'.$l.'/?domain='.parse_url(URL::base(), PHP_URL_HOST);
             $result  = json_decode(Core::curl_get_contents($api_url));
         }
-            
+
         if ($result == TRUE)
         {
             Model_Config::set_value('license','number',$l);
@@ -736,7 +736,7 @@ class Core {
             //d($url_location);
             $download_url = end($url_location['Location']);
             //d($download_url);
-            
+
             $fname = DOCROOT.'themes/'.$l.'.zip'; //root folder
             $file_content = core::curl_get_contents($download_url);
 

@@ -58,7 +58,7 @@
                             <?= FORM::label('border_stroke', __('Map Border Width (px)'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
                             <div class="mt-1 rounded-md shadow-sm">
                                 <?= FORM::input('border_stroke', '0', [
-                                    'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 color {hash:true, adjust:false}',
+                                    'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
                                     'onchange' => 'drawVisualization();',
                                 ])?>
                             </div>
@@ -85,7 +85,7 @@
                             <?= FORM::label('marker_size', __('Markers Size'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
                             <div class="mt-1 rounded-md shadow-sm">
                                 <?= FORM::input('marker_size', '10', [
-                                    'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 color {hash:true, adjust:false}',
+                                    'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
                                     'onchange' => 'drawVisualization();',
                                 ])?>
                             </div>
@@ -94,7 +94,7 @@
                             <?= FORM::label('width', __('Width (px)'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
                             <div class="mt-1 rounded-md shadow-sm">
                                 <?= FORM::input('width', '0', [
-                                    'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 color {hash:true, adjust:false}',
+                                    'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
                                     'onchange' => 'drawVisualization();',
                                 ])?>
                             </div>
@@ -103,7 +103,7 @@
                             <?= FORM::label('height', __('Height (px)'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
                             <div class="mt-1 rounded-md shadow-sm">
                                 <?= FORM::input('height', '400', [
-                                    'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 color {hash:true, adjust:false}',
+                                    'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
                                     'onchange' => 'drawVisualization();',
                                 ])?>
                             </div>
