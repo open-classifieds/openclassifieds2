@@ -133,6 +133,8 @@
 
             <?= $ad->map() ?>
 
+            <?=$ad->instagram()?>
+
             <? if($ad->comments()) : ?>
                 <hr>
                 <?= $ad->comments() ?>

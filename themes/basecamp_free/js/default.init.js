@@ -844,3 +844,24 @@ function recaptcha_submit(token) {
         $form.submit();
     }
 }
+
+$(function(){
+    if ($('div#instagram-feed').length) {
+        $.instagramFeed({
+            'username': $('div#instagram-feed').data('username'),
+            'container': "#instagram-feed",
+            'display_profile': true,
+            'display_biography': false,
+            'display_gallery': true,
+            'display_captions': true,
+            'max_tries': 8,
+            'callback': null,
+            'styling': true,
+            'items': 18,
+            'items_per_row': 4,
+            'margin': 1,
+            'lazy_load': true,
+            'on_error': console.error
+        });
+    }
+});

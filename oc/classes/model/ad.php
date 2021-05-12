@@ -1991,4 +1991,25 @@ class Model_Ad extends ORM {
          return Date::format($time_from, 'H:i ') . __('to') . Date::format($time_to, ' H:i');
      }
 
+     /**
+     * prints the instagram script from the view
+     * @return string HTML or false in case not loaded
+     */
+    public function instagram()
+    {
+        if(! $this->loaded())
+        {
+            return FALSE;
+        }
+
+        if(! isset($this->cf_instagramusername) AND ! isset($this->user->cf_instagramusername))
+        {
+            return FALSE;
+        }
+
+        $username = $this->cf_instagramusername ?? $this->user->cf_instagramusername;
+
+        return View::factory('pages/ad/instagram', ['username' => $username])->render();
+    }
+
 } // END Model_ad

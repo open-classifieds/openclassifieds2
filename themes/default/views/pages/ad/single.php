@@ -233,6 +233,7 @@
     <?endif?>
     <?=$ad->qr()?>
     <?=$ad->map()?>
+    <?=$ad->instagram()?>
     <?=$ad->related()?>
     <?=$ad->comments()?>
     <?if(core::config('advertisement.report')==1):?>
