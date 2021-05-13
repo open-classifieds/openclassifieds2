@@ -3,7 +3,7 @@
   '4.2.0' => 
   array (
     'codename' => 'Ananke',
-    'released' => '2021-04-26',
+    'released' => '2021-05-13',
     'blog' => '',
     'changelog' => 'https://github.com/yclas/yclas/compare/4.1.0...4.2.0',
     'issues' => 'https://github.com/yclas/yclas/milestone/46?closed=1',
