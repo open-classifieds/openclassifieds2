@@ -99,8 +99,8 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `icon_font` varchar(145) NULL DEFAULT NULL,
   PRIMARY KEY (`id_category`) USING BTREE,
   UNIQUE KEY `".core::request('TABLE_PREFIX')."categories_IK_seo_name` (`seoname`),
-  KEY `".core::request('TABLE_PREFIX')."categories_IK_id_category_parent (id_category_parent),
-  KEY `".core::request('TABLE_PREFIX')."categories_IK_id_category_parent_AND_parent_deep (id_category_parent, parent_deep)
+  KEY `".core::request('TABLE_PREFIX')."categories_IK_id_category_parent` (id_category_parent),
+  KEY `".core::request('TABLE_PREFIX')."categories_IK_id_category_parent_AND_parent_deep` (id_category_parent, parent_deep)
 ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
@@ -121,8 +121,8 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `translations` text NULL DEFAULT NULL,
   PRIMARY KEY (`id_location`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."loations_UK_seoname` (`seoname`),
-  KEY `".core::request('TABLE_PREFIX')."locations_IK_id_location_parent (id_location_parent),
-  KEY `".core::request('TABLE_PREFIX')."locations_IK_id_location_parent_AND_parent_deep (id_location_parent, parent_deep)
+  KEY `".core::request('TABLE_PREFIX')."locations_IK_id_location_parent` (id_location_parent),
+  KEY `".core::request('TABLE_PREFIX')."locations_IK_id_location_parent_AND_parent_deep` (id_location_parent, parent_deep)
 ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
