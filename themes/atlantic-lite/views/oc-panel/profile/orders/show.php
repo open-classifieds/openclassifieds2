@@ -62,7 +62,7 @@
                     <span><?=_e('Total')?></span>
                     <strong class="text-danger">
                         <?if($order->id_product == Model_Order::PRODUCT_AD_SELL AND $order->ad->shipping_price()):?>
-                            ><?= i18n::money_format($order->amount + $order->ad->shipping_price(), $order->currency) ?>
+                            <?= i18n::money_format($order->amount, $order->currency) ?>
                         <?else:?>
                             <?= $order->id_product == Model_Order::PRODUCT_AD_SELL ? i18n::money_format($order->amount, $order->currency) : i18n::format_currency($order->amount, $order->currency) ?>
                         <?endif?>
