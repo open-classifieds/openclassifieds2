@@ -14,8 +14,12 @@
     <?elseif(Core::config('payment.stripe_connect')==1 AND Core::config('payment.stripe_escrow')==1 AND $ad->price != NULL AND $ad->price > 0):?>
         <?if(core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1)):?>
             <?if($ad->status != Model_Ad::STATUS_SOLD):?>
-                <? if(empty($ad->user->stripe_user_id)) : ?>
-                    <a class="btn btn-primary" href="#">
+                <? if (!Auth::instance()->logged_in()) : ?>
+                    <a class="btn btn-primary" data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
+                        <?=_e('Buy Now')?>
+                    </a>
+                <? elseif(empty($ad->user->stripe_user_id)) : ?>
+                    <a class="btn btn-primary" href="<?= Route::url('default', ['controller' => 'ad', 'action' => 'request_safe_payment', 'id' => $ad->id_ad]) ?>">
                         <?=_e('Request safe payment')?>
                     </a>
                 <? else : ?>
