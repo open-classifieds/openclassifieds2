@@ -2761,7 +2761,7 @@ class Controller_Panel_Update extends Auth_Controller
         //save in a session the current version so we can selective update the DB later
         Session::instance()->set('update_from_version', Core::VERSION);
 
-        $versions       = core::config('versions'); //loads OC software version array
+        $versions       = (array) core::config('versions'); //loads OC software version array
         $last_version   = key($versions); //get latest version
         $download_link  = $versions[$last_version]['download']; //get latest download link
         $update_src_dir = DOCROOT.'update'; // update dir

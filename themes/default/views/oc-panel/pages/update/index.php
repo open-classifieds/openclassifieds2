@@ -16,7 +16,7 @@
 </div>
 
 <? if ($latest_version != core::VERSION): ?>
-    <div class="rounded-md bg-yellow-50 p-4 mb-8">
+    <div class="rounded-md bg-yellow-50 p-4 mt-8">
         <div class="flex">
             <div class="flex-shrink-0">
                 <svg class="h-5 w-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
