@@ -22,6 +22,7 @@ class Controller_Panel_Order extends Auth_CrudAjax {
     protected $_fields_caption = array( 'id_user'       => array('model'=>'user','caption'=>'email'),
                                         'id_ad'         => array('model'=>'ad','caption'=>'title','format'=>'title'),
                                         'id_product'    => 'Model_Order::product_desc',
+                                        'amount'        => 'i18n::format_currency_without_symbol',
                                          );
 
     function __construct(Request $request, Response $response)
