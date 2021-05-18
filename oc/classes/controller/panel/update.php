@@ -2763,24 +2763,36 @@ class Controller_Panel_Update extends Auth_Controller
 
         $versions       = (array) core::config('versions'); //loads OC software version array
         $last_version   = key($versions); //get latest version
-        $download_link  = $versions[$last_version]['download']; //get latest download link
+        $download_url   = $versions[$last_version]['download']; //get latest download link
         $update_src_dir = DOCROOT.'update'; // update dir
         $file_name      = $update_src_dir.'/'.$last_version.'.zip'; //full file name
 
-
         //check if exists already the download, if does delete
-        if (file_exists($file_name)) {
+        if (file_exists($file_name))
+        {
             unlink($file_name);
         }
 
         //create update dir if doesnt exists
-        if (!is_dir($update_src_dir)) {
+        if (!is_dir($update_src_dir))
+        {
             mkdir($update_src_dir, 0775);
         }
 
+        //get redirected url from download if any
+        if ($download_headers = get_headers($download_url, 1) AND
+            isset($download_headers['Location']))
+        {
+            $download_url = is_array($download_headers['Location'])
+                                ? end($download_headers['Location'])
+                                : $download_headers['Location'];
+        }
+
         //verify we could get the zip file
-        $file_content = core::curl_get_contents($download_link);
-        if ($file_content == false) {
+        $file_content = core::curl_get_contents($download_url);
+
+        if ($file_content == FALSE)
+        {
             Alert::set(Alert::ALERT, __('We had a problem downloading latest version, try later please.'));
             $this->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index')));
         }
@@ -2790,11 +2802,15 @@ class Controller_Panel_Update extends Auth_Controller
 
         //unpack zip
         $zip = new ZipArchive;
+
         // open zip file, and extract to dir
-        if ($zip_open = $zip->open($file_name)) {
+        if ($zip->open($file_name))
+        {
             $zip->extractTo($update_src_dir);
             $zip->close();
-        } else {
+        }
+        else
+        {
             Alert::set(Alert::ALERT, $file_name.' '.__('Zip file failed to extract, please try again.'));
             $this->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index')));
         }
