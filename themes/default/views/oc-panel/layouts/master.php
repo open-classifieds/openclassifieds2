@@ -45,6 +45,8 @@
     <!-- include summernote css/js -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <script src="https://unpkg.com/summernote-image-attributes-editor@1.2.1/summernote-image-attributes.js"></script>
+    <script src="https://unpkg.com/summernote-image-attributes-editor@1.2.1/lang/en-us.js"></script>
 
     <!-- include sweetalert css/js -->
     <link href="/themes/default/css/sweet-alert.min.css" rel="stylesheet">

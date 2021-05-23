@@ -15,9 +15,27 @@ window.summernoteSettings = function () {
             ['view', ['fullscreen', 'codeview']],
             ['help', ['help']],
         ],
+        imageAttributes: {
+            icon: '<i class="note-icon-pencil"/>',
+            figureClass: 'figureClass',
+            figcaptionClass: 'captionClass',
+            captionText: 'Image Attributes.',
+            manageAspectRatio: false // true = Lock the Image Width/Height, Default to true
+        },
+        popover: {
+            image: [
+                ['custom', ['imageAttributes']],
+                ['imagesize', ['imageSize100', 'imageSize50', 'imageSize25']],
+                ['float', ['floatLeft', 'floatRight', 'floatNone']],
+                ['remove', ['removeMedia']]
+            ],
+        },
         callbacks: {
             onInit: function() {
                 $(".note-placeholder").text($(this).attr('placeholder'));
+                $(".note-modal[aria-label='Change Image Attributes'] .form-group").addClass('note-form-group');
+                $(".note-modal[aria-label='Change Image Attributes'] .note-image-title-btn").addClass('note-btn-primary');
+                $(".note-modal[aria-label='Change Image Attributes'] .form-group").filter(':eq(2), :eq(3), :eq(4), :eq(5)').addClass('hidden');
             },
             onPaste: function (e) {
                 var text = (e.originalEvent || e).clipboardData.getData('text/plain');
