@@ -35,7 +35,7 @@ window.summernoteSettings = function () {
                 $(".note-placeholder").text($(this).attr('placeholder'));
                 $(".note-modal[aria-label='Change Image Attributes'] .form-group").addClass('note-form-group');
                 $(".note-modal[aria-label='Change Image Attributes'] .note-image-title-btn").addClass('note-btn-primary');
-                $(".note-modal[aria-label='Change Image Attributes'] .form-group").filter(':eq(2), :eq(3), :eq(4), :eq(5)').addClass('hidden');
+                $(".note-modal[aria-label='Change Image Attributes'] .form-group").filter(':eq(2), :eq(3), :eq(4), :eq(5)').remove();
             },
             onPaste: function (e) {
                 var text = (e.originalEvent || e).clipboardData.getData('text/plain');
