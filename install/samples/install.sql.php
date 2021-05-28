@@ -665,6 +665,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('payment', 'stripe_cancel_orders_after_n_days', '30'),
 ('payment', 'stripe_appfee_fixed', '0'),
 ('payment', 'stripe_connected_account_mandatory', '0'),
+('payment', 'mollie_api_key', ''),
 ('payment', 'escrow_pay', '0'),
 ('payment', 'escrow_sandbox', '0'),
 ('payment', 'alternative', ''),

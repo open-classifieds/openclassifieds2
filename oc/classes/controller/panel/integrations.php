@@ -233,6 +233,14 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'category' => '',
             ],
             [
+                'name' => 'mollie',
+                'config_name' => 'payment.mollie_api_key',
+                'label' => 'Mollie',
+                'description' => __('Accept payments with Mollie.'),
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/mollie.jpg',
+                'category' => '',
+            ],
+            [
                 'name' => 'paguelofacil',
                 'config_name' => 'payment.paguelofacil_cclw',
                 'label' => 'Paguelofacil',

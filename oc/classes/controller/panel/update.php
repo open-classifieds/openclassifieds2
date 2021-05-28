@@ -10,6 +10,19 @@
  */
 class Controller_Panel_Update extends Auth_Controller
 {
+    public function action_430()
+    {
+        $configs = [
+            [
+                'config_key' => 'mollie_api_key',
+                'group_name' => 'payment',
+                'config_value' => '',
+            ],
+        ];
+
+        Model_Config::config_array($configs);
+    }
+
     public function action_420()
     {
         $configs = [
