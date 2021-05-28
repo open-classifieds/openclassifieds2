@@ -170,8 +170,8 @@ class euvat {
         //if older than a month or ?reload=1 force reload
         if (!file_exists($vat_rates_file) OR time() > strtotime('+1 month',filemtime($vat_rates_file)) OR $reload === TRUE )
         {
-            //read from external source http://wceuvatcompliance.s3.amazonaws.com/rates.json OR http://euvatrates.com/rates.json
-            $file = Core::curl_get_contents('https://wceuvatcompliance.s3.amazonaws.com/rates.json?r='.time());
+            //read from external source outdated http://wceuvatcompliance.s3.amazonaws.com/rates.json  , new prooject https://github.com/benbucksch/eu-vat-rates
+            $file = Core::curl_get_contents('https://cdn.jsdelivr.net/gh/benbucksch/eu-vat-rates/rates.json?r='.time());
             
             if ($file!==NULL)
                 File::write($vat_rates_file, $file);
