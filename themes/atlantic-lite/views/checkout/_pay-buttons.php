@@ -72,6 +72,10 @@
                 <?=$mp?>
             <?endif?>
 
+            <?if(($mollie = Mollie::button($order)) != ''):?>
+                <?=$mollie?>
+            <?endif?>
+
             <?if(($zenith = zenith::button($order)) != ''):?>
                 <?=$zenith?>
             <?endif?>

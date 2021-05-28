@@ -317,6 +317,9 @@
                                 <?if(($payfast = payfast::form($order)) != ''):?>
                                     <li class="text-right"><?=$payfast?></li>
                                 <?endif?>
+                                <?if(($mollie = mollie::button($order)) != ''):?>
+                                    <li class="text-right"><?=$mollie?></li>
+                                <?endif?>
                                 <?if(($mp = MercadoPago::button($order)) != ''):?>
                                     <li class="text-right"><?=$mp?></li>
                                 <?endif?>
