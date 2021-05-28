@@ -8,7 +8,7 @@ class Controller_Panel_Integrations_GoogleAnalytics extends Auth_Controller {
 
         if($this->request->post())
         {
-            Model_Config::set_value('general', 'analytics_global_site_tag', Core::post('analytics_global_site_tag'));
+            Model_Config::set_value('general', 'analytics_global_site_tag', Kohana::$_POST_ORIG['analytics_global_site_tag']);
 
             Alert::set(Alert::SUCCESS, __('Configuration updated'));
 
