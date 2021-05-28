@@ -56,7 +56,7 @@
             <?endif?>
         <?endif?>
 
-        <?if (core::config('payment.stripe_escrow')):?>
+        <?if (Core::config('payment.stripe_connect') AND core::config('payment.stripe_escrow')):?>
             <?if ($order->shipped !== NULL AND $order->received === NULL):?>
                 <a class="ml-2 btn btn-sm btn-link" href="<?= Route::url('oc-panel', ['controller'=>'profile', 'action'=>'order_received', 'id' => $order->id_order]) ?>">
                     <i class="fas fa-check"></i> <?=_e('Mark as received')?>
