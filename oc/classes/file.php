@@ -149,9 +149,15 @@ class File extends Kohana_File{
             $file = fopen($filename, 'r');
             if ($file)
             {//able to read the file
-                $data = fread($file, filesize($filename));
-                fclose($file);
-                return $data;
+                try {
+                    $data = fread($file, filesize($filename));
+                    fclose($file);
+                    return $data;
+                }
+                catch (Exception $e) {
+                    Kohana::$log->add(Log::ERROR,$e->getMessage());
+                    return FALSE;
+                }
             }
         }
         return FALSE;   
