@@ -81,7 +81,7 @@
         </a>
 
         <?if($ad->status != Model_Ad::STATUS_SOLD AND $ad->status != Model_Ad::STATUS_UNCONFIRMED):?>
-            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#soldModal<?=$ad->id_ad?>">
+            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#soldModal<?=$ad->id_ad?>" rel="tooltip" title="<?=__('Mark as sold')?>">
                 <i class="fas fa-dollar-sign"></i>
             </button>
 

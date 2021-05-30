@@ -44,7 +44,7 @@
 												<li><a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><?=_e('Update')?></a></li>
 												<?if($ad->status != Model_Ad::STATUS_SOLD AND $ad->status != Model_Ad::STATUS_UNCONFIRMED):?>
 							                        <li>
-							                            <a href="#" data-toggle="modal" data-target="#soldModal<?=$ad->id_ad?>">
+							                            <a href="#" data-toggle="modal" data-target="#soldModal<?=$ad->id_ad?>" rel="tooltip" title="<?=__('Mark as sold')?>">
 							                                <?=__('Mark as Sold')?>
 							                            </a>
 							                        </li>
