@@ -37,16 +37,8 @@ class Controller_Panel_Topic extends Auth_CrudAjax {
     {
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Edit Topic')));
 
-        $topic = new Model_Topic($this->request->param('id'));
-
-        $get_all = Model_Forum::get_all();
-
-        //get all forums to build forum parents in select
-        $forum_parents = array();
-        foreach ($get_all[0] as $parent )
-            $forum_parents[$parent['id']] = $parent['name'];
-
-        $this->template->content = View::factory('oc-panel/pages/forum/topic', array('topic'=>$topic, 'forum_parents'=>$forum_parents));
+        $form = new FormOrm($this->_orm_model,$this->request->param('id'));
+        $topic = $form->object;
         
         if ($_POST)
         {
@@ -72,5 +64,7 @@ class Controller_Panel_Topic extends Auth_CrudAjax {
 
             HTTP::redirect(Route::url('oc-panel',array('controller'  => 'topic','action'=>'index')));
         }
+
+        $this->render('oc-panel/crud/update', array('form'=>$form));
     }
 }

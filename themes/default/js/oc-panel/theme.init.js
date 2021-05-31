@@ -44,6 +44,10 @@ window.summernoteSettings = function () {
             },
             onImageUpload: function(files, editor, welEditable) {
                 sendFile(files[0], editor, welEditable);
+            },
+            onBlurCodeview: function () {
+                let codeviewHtml = $(this).summernote('code');
+                $(this).val(codeviewHtml);
             }
         }
     }

@@ -137,7 +137,7 @@
                                 </th>
                             <?endforeach?>
 
-                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50" data-column-id="commands" data-formatter="commands" data-sortable="false"></th>
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50" data-column-id="commands" data-formatter="commands" data-sortable="false"><?=__('Actions')?></th>
                         </tr>
                     </thead>
                 </table>

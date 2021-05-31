@@ -23,9 +23,9 @@ var grid = $("#grid-data-api").bootgrid({
         center: "text-center",
         columnHeaderAnchor: "column-header-anchor", // must be a unique class name or constellation of class names within the column header cell
         columnHeaderText: "text",
-        dropDownItem: "dropdown-item", // must be a unique class name or constellation of class names within the actionDropDown,
+        dropDownItem: "dropdown-item block px-4 py-2 text-sm text-gray-700 flex items-center", // must be a unique class name or constellation of class names within the actionDropDown,
         dropDownItemButton: "dropdown-item-button", // must be a unique class name or constellation of class names within the actionDropDown
-        dropDownItemCheckbox: "dropdown-item-checkbox", // must be a unique class name or constellation of class names within the actionDropDown
+        dropDownItemCheckbox: "dropdown-item-checkbox mr-3", // must be a unique class name or constellation of class names within the actionDropDown
         dropDownMenu: "dropdown btn-group", // must be a unique class name or constellation of class names within the actionDropDown
         dropDownMenuItems: "dropdown-menu pull-right", // must be a unique class name or constellation of class names within the actionDropDown
         dropDownMenuText: "dropdown-text", // must be a unique class name or constellation of class names within the actionDropDown
@@ -81,8 +81,8 @@ var grid = $("#grid-data-api").bootgrid({
         actions: "<div class=\"{{css.actions}}\"></div>",
         body: "<tbody class=\"bg-white\"></tbody>",
         cell: "<td class=\"{{ctx.css}} px-6 py-4 whitespace-no-wrap border-b border-gray-200\" style=\"{{ctx.style}}\"><div class=\"text-sm leading-5 text-gray-900\">{{ctx.content}}</div></td>",
-        footer: "<div id=\"{{ctx.id}}\" class=\"{{css.footer}} bg-white px-4 py-3 flex items-center justify-between sm:px-6\"><div class=\"flex-1 flex justify-between items-center\"><div><span class=\"{{css.pagination}} relative z-0 inline-flex shadow-sm\"></span></div><div class=\"infoBar text-sm leading-5 text-gray-700\"><p class=\"{{css.infos}}\"></p></div></div></div>",
-        header: "<div id=\"{{ctx.id}}\" class=\"{{css.header}} bg-white px-4 py-5 border-b border-gray-200 sm:px-6\"><div class=\"-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-no-wrap\"><div class=\"ml-4 mt-2\"><div class=\"{{css.search}}\"></div></div><div class=\"ml-4 mt-2 flex-shrink-0\"><div class=\"{{css.actions}}\"></div></div></div></div>",
+        footer: "<div id=\"{{ctx.id}}\" class=\"{{css.footer}} bg-white px-4 py-3 flex items-center justify-between sm:px-6\" style=\"margin-top: 300px;\"><div class=\"flex-1 flex justify-between items-center\"><div><span class=\"{{css.pagination}} relative z-0 inline-flex shadow-sm\"></span></div><div class=\"infoBar text-sm leading-5 text-gray-700\"><p class=\"{{css.infos}}\"></p></div></div></div>",
+        header: "<div id=\"{{ctx.id}}\" class=\"{{css.header}} bg-white px-4 py-5 border-b border-gray-200 sm:px-6 relative z-10\"><div class=\"-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-no-wrap\"><div class=\"ml-4 mt-2\"><div class=\"{{css.search}}\"></div></div><div class=\"ml-4 mt-2 flex-shrink-0\"><div class=\"{{css.actions}}\"></div></div></div></div>",
         headerCell: "<th data-column-id=\"{{ctx.column.id}}\" class=\"{{ctx.css}} px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider\" style=\"{{ctx.style}}\"><a href=\"javascript:void(0);\" class=\"{{css.columnHeaderAnchor}} {{ctx.sortable}}\"><span class=\"{{css.columnHeaderText}}\">{{ctx.column.text}}</span>{{ctx.icon}}</a></th>",
         icon: "<span class=\"{{css.icon}}\">{{ctx.iconCss}}</span>",
         infos: "<div class=\"{{css.infos}}\">{{lbl.infos}}</div>",
