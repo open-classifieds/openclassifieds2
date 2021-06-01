@@ -267,11 +267,11 @@ class Controller_Panel_Tools extends Auth_Controller {
             {
                 $location_chunks = array_chunk(json_decode(Core::curl_get_contents('https://raw.githubusercontent.com/yclas/geo/master/countries/' . $country . '.json'), TRUE), 250);
 
-                foreach ($location_chunks as $location_chunk) {
-                    $query = DB::insert('locations', ['id_location', 'id_location_parent', 'name', 'seoname']);
+                foreach ($location_chunks as $key => $location_chunk) {
+                    $query = DB::insert('locations', ['id_location', 'id_location_parent', 'name', 'seoname', 'order']);
 
                     foreach ($location_chunk as $location_data) {
-                        $query->values($location_data);
+                        $query->values($location_data + [$key]);
                     }
 
                     try {
