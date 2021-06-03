@@ -169,24 +169,24 @@
                             <?= FORM::label('email_domains', __('Allowed email domains'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
                             <div class="mt-1 rounded-md shadow-sm">
                                 <?= FORM::input('email_domains', Core::post('email_domains', Core::config('general.email_domains')), [
-                                    'placeholder' => __('For email domain push enter.'),
+                                    'placeholder' => __('e.g. gmail.com,yahoo.com,yourcompany.com'),
                                     'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
                                 ])?>
                             </div>
                             <p class="mt-2 text-sm text-gray-500">
-                                <?=__("You need to write your email domains to enable the service.")?>
+                                <?=__("You need to write your email domains to enable the service. Separate each domain with a comma.")?>
                             </p>
                         </div>
                         <div class="sm:col-span-4">
                             <?= FORM::label('disallowed_email_domains', __('Disallowed email domains'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
                             <div class="mt-1 rounded-md shadow-sm">
                                 <?= FORM::input('disallowed_email_domains', Core::post('disallowed_email_domains', Core::config('general.disallowed_email_domains')), [
-                                    'placeholder' => __('For email domain push enter.'),
+                                    'placeholder' => __('e.g. gmail.com,yahoo.com'),
                                     'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
                                 ])?>
                             </div>
                             <p class="mt-2 text-sm text-gray-500">
-                                <?=__("You need to write your email domains to enable the service.")?>
+                                <?=__("You need to write your email domains to enable the service. Separate each domain with a comma.")?>
                             </p>
                         </div>
                         <div class="sm:col-span-4">
