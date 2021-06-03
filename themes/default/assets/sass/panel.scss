@@ -132,35 +132,31 @@
 
 .note-editable {
     > h1 {
-        @apply text-4xl font-bold leading-none mb-16;
+        @apply text-4xl font-bold leading-none mb-6;
     }
 
     > h2 {
-        @apply text-2xl font-bold leading-none mt-12 py-6;
+        @apply text-2xl font-bold leading-none mb-6;
     }
 
     > h3 {
-        @apply text-xl font-semibold leading-none py-6;
+        @apply text-xl font-semibold leading-none mb-6;
     }
 
     > h4 {
-        @apply font-bold uppercase tracking-widest leading-none py-6;
+        @apply font-semibold leading-none mb-6;
     }
 
     > p {
-        @apply mb-6 text-lg;
-    }
-
-    > p:first-of-type {
-        @apply text-2xl;
+        @apply mb-6;
     }
 
     > blockquote {
-        @apply text-center font-black italic px-4 mb-12 pt-6 text-3xl leading-tight;
+        @apply px-5 py-2 mb-6 border-gray-300 border-l-4;
     }
 
-    > blockquote > p {
-        @apply text-3xl leading-tight;
+    > hr {
+        @apply my-6;
     }
 
     img {
@@ -175,14 +171,14 @@
     }
 
     ul:not(.list-none) {
-        @apply pl-0 list-disc ml-10 mb-6 text-lg;
+        @apply pl-0 list-disc ml-10 mb-6;
         li {
             @apply mb-1;
         }
     }
 
     ol {
-        @apply pl-0 list-decimal ml-10 mb-6 text-lg;
+        @apply pl-0 list-decimal ml-10 mb-6;
         > li {
             @apply mb-1;
         }
