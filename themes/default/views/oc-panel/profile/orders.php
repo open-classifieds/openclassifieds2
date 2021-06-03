@@ -25,7 +25,18 @@
 
                         <td><?=$order->pk()?></td>
 
-                        <td><?=Model_Order::$statuses[$order->status]?></td>
+                        <td>
+                            <?
+                                $status = [
+                                    Model_Order::STATUS_CREATED =>  __('Created'),
+                                    Model_Order::STATUS_PAID =>  __('Paid'),
+                                    Model_Order::STATUS_REFUSED =>  __('Refused'),
+                                    Model_Order::STATUS_REFUND =>  __('Refund'),
+                                ]
+                            ?>
+
+                            <?= $status[$order->status] ?>
+                        </td>
 
                         <td><?=Model_Order::product_desc($order->id_product)?></td>
 
