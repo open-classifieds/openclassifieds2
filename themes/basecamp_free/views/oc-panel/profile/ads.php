@@ -41,7 +41,11 @@
                     							<?if(core::config('advertisement.count_visits')):?>
 												<li><a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'stats','id'=>$ad->id_ad))?>"><?=_e('Stats')?></a></li>
 												<?endif?>
-												<li><a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><?=_e('Update')?></a></li>
+												<li>
+                                                    <?if ($ad->status != Model_Ad::STATUS_SOLD) : ?>
+                                                        <a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><?=_e('Update')?></a>
+                                                    <?endif?>
+                                                </li>
 												<?if($ad->status != Model_Ad::STATUS_SOLD AND $ad->status != Model_Ad::STATUS_UNCONFIRMED):?>
 							                        <li>
 							                            <a href="#" data-toggle="modal" data-target="#soldModal<?=$ad->id_ad?>" rel="tooltip" title="<?=__('Mark as sold')?>">
@@ -63,14 +67,16 @@
 												<?endif?>
 												<?if( core::config('payment.to_featured')):?>
 													<li>
-													<?if($ad->featured == NULL):?>
-														<a href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_featured','id'=>$ad->id_ad))?>"
-														onclick="return confirm('<?=__('Make featured?')?>');" rel="tooltip" title="<?=__('Featured')?>"
-														data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>"><?=_e('Make featured?')?>
-														</a>
-													<?else:?>
-														<a href="#"><?=_e('Featured')?> til <?= Date::format($ad->featured, core::config('general.date_format'))?></a>
-													<?endif?>
+                                                        <?if ($ad->status != Model_Ad::STATUS_SOLD) : ?>
+        													<?if($ad->featured == NULL):?>
+        														<a href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_featured','id'=>$ad->id_ad))?>"
+        														onclick="return confirm('<?=__('Make featured?')?>');" rel="tooltip" title="<?=__('Featured')?>"
+        														data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>"><?=_e('Make featured?')?>
+        														</a>
+        													<?else:?>
+        														<a href="#"><?=_e('Featured')?> til <?= Date::format($ad->featured, core::config('general.date_format'))?></a>
+        													<?endif?>
+                                                        <?endif?>
 													</li>
 												<?endif?>
 											</ul>

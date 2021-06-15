@@ -73,15 +73,17 @@
 
                     <?if( core::config('payment.to_featured')):?>
                     <td>
-                        <?if($ad->featured == NULL):?>
-                            <a class="btn btn-default"
-                                href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_featured','id'=>$ad->id_ad))?>"
-                                onclick="return confirm('<?=__('Make featured?')?>');"
-                                rel="tooltip" title="<?=__('Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>">
-                                <i class="glyphicon glyphicon-bookmark "></i> <?=_e('Featured')?>
-                            </a>
-                        <?else:?>
-                            <?= Date::format($ad->featured, core::config('general.date_format'))?>
+                        <?if ($ad->status != Model_Ad::STATUS_SOLD) : ?>
+                            <?if($ad->featured == NULL):?>
+                                <a class="btn btn-default"
+                                    href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_featured','id'=>$ad->id_ad))?>"
+                                    onclick="return confirm('<?=__('Make featured?')?>');"
+                                    rel="tooltip" title="<?=__('Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>">
+                                    <i class="glyphicon glyphicon-bookmark "></i> <?=_e('Featured')?>
+                                </a>
+                            <?else:?>
+                                <?= Date::format($ad->featured, core::config('general.date_format'))?>
+                            <?endif?>
                         <?endif?>
                     </td>
                     <?endif?>
@@ -94,11 +96,13 @@
                                 <i class="glyphicon glyphicon-align-left"></i>
                             </a>
                         <?endif?>
-                        <a class="btn btn-primary"
-                            href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"
-                            rel="tooltip" title="<?=__('Update')?>">
-                            <i class="glyphicon glyphicon-edit"></i>
-                        </a>
+                        <? if($ad->status != Model_Ad::STATUS_SOLD): ?>
+                            <a class="btn btn-primary"
+                                href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"
+                                rel="tooltip" title="<?=__('Update')?>">
+                                <i class="glyphicon glyphicon-edit"></i>
+                            </a>
+                        <? endif ?>
                         <?if($ad->status != Model_Ad::STATUS_SOLD AND $ad->status != Model_Ad::STATUS_UNCONFIRMED):?>
                             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#soldModal<?=$ad->id_ad?>" rel="tooltip" title="<?=__('Mark as sold')?>">
                                 <i class="fas fa-money-bill"></i>
