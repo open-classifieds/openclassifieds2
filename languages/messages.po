@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OfficeGate Language Pack\n"
-"POT-Creation-Date: 2021-06-03 21:42+0100\n"
+"POT-Creation-Date: 2021-06-15 14:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2758,15 +2758,15 @@ msgstr ""
 
 #: oc/classes/controller/forum.php:203
 #: oc/classes/controller/forum.php:367
-#: oc/classes/controller/contact.php:51
-#: oc/classes/controller/contact.php:155
-#: oc/classes/controller/contact.php:229
+#: oc/classes/controller/contact.php:56
+#: oc/classes/controller/contact.php:160
+#: oc/classes/controller/contact.php:234
 msgid "This email has been considered as spam! We are sorry but we can not send this email."
 msgstr ""
 
 #: oc/classes/controller/forum.php:207
 #: oc/classes/controller/forum.php:371
-#: oc/classes/controller/contact.php:55
+#: oc/classes/controller/contact.php:60
 msgid "Check the form for errors"
 msgstr ""
 
@@ -4302,8 +4302,8 @@ msgstr ""
 
 #: oc/classes/controller/panel/auth.php:383
 #: oc/classes/controller/subscribe.php:11
-#: oc/classes/controller/contact.php:160
-#: oc/classes/controller/contact.php:234
+#: oc/classes/controller/contact.php:165
+#: oc/classes/controller/contact.php:239
 #: oc/classes/controller/new.php:392
 #: themes/atlantic/views/ads/_form.php:270
 #: themes/responsive/views/pages/ad/new.php:269
@@ -7755,8 +7755,8 @@ msgstr ""
 
 #: oc/classes/controller/panel/messages.php:60
 #: oc/classes/controller/panel/messages.php:144
-#: oc/classes/controller/contact.php:86
-#: oc/classes/controller/contact.php:180
+#: oc/classes/controller/contact.php:91
+#: oc/classes/controller/contact.php:185
 #: oc/classes/controller/new.php:35
 msgid "Your profile has been disable for posting, due to recent spam content! If you think this is a mistake please contact us."
 msgstr ""
@@ -7768,9 +7768,9 @@ msgstr ""
 
 #: oc/classes/controller/panel/messages.php:89
 #: oc/classes/controller/panel/messages.php:195
-#: oc/classes/controller/contact.php:47
-#: oc/classes/controller/contact.php:148
-#: oc/classes/controller/contact.php:225
+#: oc/classes/controller/contact.php:51
+#: oc/classes/controller/contact.php:153
+#: oc/classes/controller/contact.php:230
 #: oc/classes/controller/api/messages.php:138
 #: oc/classes/controller/api/messages.php:159
 msgid "Message not sent"
@@ -7944,14 +7944,14 @@ msgstr ""
 msgid "Contact Us"
 msgstr ""
 
-#: oc/classes/controller/contact.php:45
-#: oc/classes/controller/contact.php:142
-#: oc/classes/controller/contact.php:223
+#: oc/classes/controller/contact.php:46
+#: oc/classes/controller/contact.php:147
+#: oc/classes/controller/contact.php:228
 msgid "Your message has been sent"
 msgstr ""
 
-#: oc/classes/controller/contact.php:79
-#: oc/classes/controller/contact.php:201
+#: oc/classes/controller/contact.php:84
+#: oc/classes/controller/contact.php:206
 msgid "Please, login before contacting"
 msgstr ""
 
@@ -13727,30 +13727,18 @@ msgstr ""
 
 #: themes/responsive/views/widget_login.php:41
 #: themes/jobdrop/views/widget_login.php:75
-#: themes/splash/views/oc-panel/profile/subscriptions.php:7
-#: themes/splash/views/widget_login.php:48
 #: themes/auction/views/widget_login.php:54
 #: themes/kamaleon/views/widget_login.php:63
 #: themes/olson/views/widget_login.php:53
 #: themes/reclassifieds/views/widget_login.php:53
-#: themes/czsale/views/widget_login.php:47
 #: themes/yummo/views/widget_login.php:61
-#: themes/default/views/oc-panel/profile/subscriptions.php:8
-#: themes/default/views/oc-panel/layouts/_nav.php:17
-#: themes/default/views/oc-panel/pages/addons/subscriptions/index.php:4
-#: themes/default/views/oc-panel/sidebar.php:52
-#: themes/default/views/oc-panel/sidebar.php:228
 #: themes/default/views/widget_login.php:56
 #: themes/newspaper/views/widget_login.php:42
 #: themes/moderndeluxe/views/widget_login.php:56
-#: themes/basecamp/views/oc-panel/profile/subscriptions.php:7
 #: themes/basecamp/views/widget_login.php:59
-#: themes/basecamp_free/views/oc-panel/profile/subscriptions.php:7
 #: themes/basecamp_free/views/widget_login.php:59
-#: themes/titi/views/widget_login.php:54
 #: themes/pinclass/views/widget_login.php:59
-#: themes/atlantic-lite/views/layouts/_navbar-nav-auth.php:46
-msgid "Subscriptions"
+msgid "Notifications"
 msgstr ""
 
 #: themes/responsive/views/widget_login.php:47
@@ -18261,6 +18249,21 @@ msgstr ""
 #: themes/splash/views/oc-panel/profile/ads.php:107
 #: themes/111477-meinbike24/views/oc-panel/profile/ads.php:113
 msgid "Are you sure you want to deactivate featured advertisement?"
+msgstr ""
+
+#: themes/splash/views/oc-panel/profile/subscriptions.php:7
+#: themes/splash/views/widget_login.php:48
+#: themes/czsale/views/widget_login.php:47
+#: themes/default/views/oc-panel/profile/subscriptions.php:8
+#: themes/default/views/oc-panel/layouts/_nav.php:17
+#: themes/default/views/oc-panel/pages/addons/subscriptions/index.php:4
+#: themes/default/views/oc-panel/sidebar.php:52
+#: themes/default/views/oc-panel/sidebar.php:228
+#: themes/basecamp/views/oc-panel/profile/subscriptions.php:7
+#: themes/basecamp_free/views/oc-panel/profile/subscriptions.php:7
+#: themes/titi/views/widget_login.php:54
+#: themes/atlantic-lite/views/layouts/_navbar-nav-auth.php:46
+msgid "Subscriptions"
 msgstr ""
 
 #: themes/splash/views/oc-panel/pages/messages/index.php:32
