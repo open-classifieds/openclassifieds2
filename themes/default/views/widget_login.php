@@ -53,7 +53,7 @@
             <?endif?>
             <li>
                 <a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'subscriptions'))?>">
-                    <i class="glyphicon glyphicon-envelope"></i> <?=_e('Subscriptions')?>
+                    <i class="glyphicon glyphicon-envelope"></i> <?=_e('Notifications')?>
                 </a>
             </li>
             <li>
