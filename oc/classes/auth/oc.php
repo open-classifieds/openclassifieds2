@@ -157,22 +157,17 @@ class Auth_OC extends Kohana_Auth {
 
 			if ($user->loaded())
 			{
-				//only allowed autologin form exactly same browser!
-				if ($user->user_agent === sha1(Request::$user_agent))
-				{
-					// Complete the login with the found data, and new token
-					$user->complete_login($this->_config['lifetime']);
+				// Complete the login with the found data, and new token
+				$user->complete_login($this->_config['lifetime']);
 
-					// Set the new token
-					Cookie::set('authautologin', $user->token, $this->_config['lifetime']);
+				// Set the new token
+				Cookie::set('authautologin', $user->token, $this->_config['lifetime']);
 
-					//writes the session
-					$this->complete_login($user);
+				//writes the session
+				$this->complete_login($user);
 
-					// Automatic login was successful
-					return $user;
-				}
-
+				// Automatic login was successful
+				return $user;
 			}
 		}
 

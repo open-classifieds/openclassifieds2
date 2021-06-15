@@ -42,9 +42,14 @@ class Controller_Contact extends Controller {
                                         $email_from,
                                         $name_from,'contact-admin',
                                         $replace))
+                    {
                         Alert::set(Alert::SUCCESS, __('Your message has been sent'));
+                        $this->redirect(Route::url('contact'));
+                    }
                     else
+                    {
                         Alert::set(Alert::ERROR, __('Message not sent'));
+                    }
                 }
                 else
                 {
