@@ -156,7 +156,7 @@
                                 <i class="glyphicon glyphicon-remove"></i>
                             </a>
                         <?endif?>
-                        <?if( core::config('payment.to_top') ):?>
+                        <?if( core::config('payment.to_top') AND $ad->status == Model_Ad::STATUS_PUBLISHED ):?>
                             <a
                                 href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_top','id'=>$ad->id_ad))?>"
                                 class="btn btn-info"
