@@ -100,6 +100,8 @@ class Controller_Panel_Settings_Advertisement extends Auth_Controller {
         Model_Config::set_value('advertisement', 'phone', $data['phone'] ?? 0);
         Model_Config::set_value('advertisement', 'location', $data['location'] ?? 0);
 
+        Model_Config::set_value('advertisement', 'ads_per_day_limit', isset($data['ads_per_day_enabled']) ? $data['ads_per_day_limit'] : '0');
+
         if (Core::is_cloud())
         {
             $data['num_images'] = $data['num_images'] > Model_Domain::current()->num_images_ad ? Model_Domain::current()->num_images_ad : $data['num_images'];
@@ -141,6 +143,8 @@ class Controller_Panel_Settings_Advertisement extends Auth_Controller {
             ->rule('only_admin_post', 'range', [':value', 0, 1])
             ->rule('expire_date', 'not_empty')
             ->rule('expire_date', 'digit')
+            ->rule('ads_per_day_enabled', 'range', [':value', 0, 1])
+            ->rule('ads_per_day_limit', 'digit')
             ->rule('parent_category', 'range', [':value', 0, 1])
             ->rule('captcha', 'range', [':value', 0, 1])
             ->rule('address', 'range', [':value', 0, 1])

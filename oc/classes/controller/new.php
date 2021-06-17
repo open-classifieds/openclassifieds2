@@ -68,6 +68,12 @@ class Controller_New extends Controller
             HTTP::redirect(Route::url('pricing'));
         }
 
+        if (Auth::instance()->logged_in() AND $this->user->has_reached_ad_limit_per_day())
+        {
+            Alert::set(Alert::INFO, sprintf(__('You have reached the ad limit of post %s ads per day.'), Core::config('advertisement.ads_per_day_limit')));
+            $this->redirect(Route::url('default'));
+        }
+
         //validates captcha
         if (Core::post('ajaxValidateCaptcha'))
         {

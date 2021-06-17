@@ -818,6 +818,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('image', 'upload_from_url', 0),
 ('advertisement', 'num_images', '4'),
 ('advertisement', 'expire_date', '0'),
+('advertisement', 'ads_per_day_limit', '0'),
 ('advertisement', 'expire_reactivation', '1'),
 ('advertisement', 'description', 1),
 ('advertisement', 'address', 1),
