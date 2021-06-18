@@ -7,6 +7,12 @@ class Controller_Panel_Plan extends Auth_CrudAjax {
      */
     protected $_orm_model = 'plan';
 
+    protected $_fields_caption = [
+        'price' => 'i18n::format_currency_without_symbol',
+        'marketplace_fee' => 'i18n::format_currency_without_symbol',
+        'status' => 'Model_Plan::get_status_label',
+    ];
+
     /**
      *
      * Contruct that checks you are loged in before nothing else happens!

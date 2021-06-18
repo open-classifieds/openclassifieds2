@@ -27,6 +27,33 @@ class Model_Plan extends ORM {
     protected $_primary_key = 'id_plan';
 
     /**
+     * Status constants
+     */
+    const STATUS_INACTIVE = 0;
+    const STATUS_ACTIVE = 1;
+
+    /**
+     * @var  array  Available statuses array
+     */
+    public static $statuses = [
+        self::STATUS_INACTIVE =>  'Inactive',
+        self::STATUS_ACTIVE =>  'Active',
+    ];
+
+    public static function status()
+    {
+        return [
+            self::STATUS_INACTIVE => __('Inactive'),
+            self::STATUS_ACTIVE => __('Active'),
+        ];
+    }
+
+    public static function get_status_label($status)
+    {
+        return self::status()[$status] ?? NULL;
+    }
+
+    /**
      * Rule definitions for validation
      *
      * @return array
