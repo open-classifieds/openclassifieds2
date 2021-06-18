@@ -1521,4 +1521,25 @@ class Model_User extends ORM {
 
     }
 
+    public function has_reached_ad_limit_per_day()
+    {
+        if ( ! $this->loaded())
+        {
+            return FALSE;
+        }
+
+        if (! $ad_limit = core::config('advertisement.ads_per_day_limit'))
+        {
+            return FALSE;
+        }
+
+        $published_ads_today = $amount_ads_used = (New Model_Ad)
+            ->where('status', '=', Model_Ad::STATUS_PUBLISHED)
+            ->where('id_user', '=', $this->id_user)
+            ->where(DB::expr('DATE(published)'), '=', Date::format('today','Y-m-d'))
+            ->count_all();
+
+        return $published_ads_today >= $ad_limit;
+    }
+
 } // END Model_User

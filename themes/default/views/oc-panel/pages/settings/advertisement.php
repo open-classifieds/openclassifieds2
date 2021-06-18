@@ -105,7 +105,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-8 border-t border-gray-200 pt-8">
+                <div class="mt-8 border-t border-gray-200 pt-8" x-data="
+                    {
+                        adsPerDayEnabled: <?= Core::post('ads_per_day_limit', Core::config('advertisement.ads_per_day_limit')) ? 'true' : 'false' ?>,
+                        loginToPostEnabled: <?= Core::post('login_to_post', Core::config('advertisement.login_to_post')) ? 'true' : 'false' ?>,
+                    }
+                ">
                     <div>
                         <h3 class="text-lg leading-6 font-medium text-gray-900">
                             <?=__('Publish Options')?>
@@ -114,7 +119,7 @@
                     <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
                         <div class="sm:col-span-6">
                             <div class="absolute flex items-center h-5">
-                                <?=FORM::checkbox('login_to_post', 1, (bool) Core::post('login_to_post', Core::config('advertisement.login_to_post')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
+                                <?=FORM::checkbox('login_to_post', 1, '', ['x-model' => 'loginToPostEnabled', 'class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
                             </div>
                             <div class="pl-7 text-sm leading-5">
                                 <?=FORM::label('login_to_post', __('Require login to post'), ['class'=>'font-medium text-gray-700'])?>
@@ -122,6 +127,29 @@
                                     <?=__('Require only the logged in users to post.')?>
                                 </p>
                             </div>
+                        </div>
+                        <div class="sm:col-span-6" x-show="loginToPostEnabled">
+                            <div class="absolute flex items-center h-5">
+                                <?=FORM::checkbox('ads_per_day_enabled', 1, '', ['x-model' => 'adsPerDayEnabled', 'class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
+                            </div>
+                            <div class="pl-7 text-sm leading-5">
+                                <?=FORM::label('ads_per_day_enabled', __('Limit published ads per day'), ['class'=>'font-medium text-gray-700'])?>
+                                <p class="text-gray-500">
+                                    <?=__('Limit the number of published ads a user can post per day.')?>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="sm:col-span-3" x-show="loginToPostEnabled && adsPerDayEnabled">
+                            <?= FORM::label('ads_per_day_limit', __('Ads per day limit'), ['class'=>'block text-sm font-medium leading-5 text-gray-700'])?>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <?= FORM::input('ads_per_day_limit', Core::post('ads_per_day_limit', Core::config('advertisement.ads_per_day_limit')), [
+                                    'type' => 'number',
+                                    'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                                ])?>
+                            </div>
+                            <p class="mt-2 text-sm text-gray-500">
+                                <?=__('How many ads a user can publish per day.')?>
+                            </p>
                         </div>
                         <div class="sm:col-span-6">
                             <div class="absolute flex items-center h-5">
