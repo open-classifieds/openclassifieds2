@@ -18,6 +18,11 @@ class Controller_Panel_Update extends Auth_Controller
                 'group_name' => 'payment',
                 'config_value' => '',
             ],
+            [
+                'config_key' => 'ads_per_day_limit',
+                'group_name' => 'advertisement',
+                'config_value' => '0',
+            ],
         ];
 
         Model_Config::config_array($configs);

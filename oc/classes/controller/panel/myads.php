@@ -191,6 +191,12 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                     HTTP::redirect(Route::url('pricing'));
                 }
 
+                if ($this->user->has_reached_ad_limit_per_day())
+                {
+                    Alert::set(Alert::INFO, sprintf(__('You have reached the ad limit of post %s ads per day.'), Core::config('advertisement.ads_per_day_limit')));
+                    HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
+                }
+
                 //activate the ad
                 if ($activate === TRUE)
                 {
