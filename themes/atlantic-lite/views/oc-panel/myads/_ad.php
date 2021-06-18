@@ -166,7 +166,7 @@
             </span>
         <?endif?>
 
-        <?if( core::config('payment.to_top') ):?>
+        <?if( core::config('payment.to_top') AND $ad->status == Model_Ad::STATUS_PUBLISHED ):?>
             <span x-data="{}">
                 <a
                     href="<?=Route::url('oc-panel', ['controller' => 'ad', 'action' => 'to_top', 'id' => $ad->id_ad])?>"
