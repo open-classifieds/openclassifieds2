@@ -89,7 +89,7 @@ var grid = $("#grid-data-api").bootgrid({
         loading: "<tr><td colspan=\"{{ctx.columns}}\" class=\"loading\">{{lbl.loading}}</td></tr>",
         noResults: "<tr><td colspan=\"{{ctx.columns}}\" class=\"no-results\">{{lbl.noResults}}</td></tr>",
         pagination: "<div class=\"{{css.pagination}} border border-gray-300 rounded-md overflow-hidden\"></div>",
-        paginationItem: "<span class=\"{{ctx.css}}\"><a data-page=\"{{ctx.page}}\" class=\"{{css.paginationButton}} -ml-px relative inline-flex items-center px-4 py-2 border-l border-r border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150\">{{ctx.text}}</a></span>",
+        paginationItem: "<span class=\"{{ctx.css}}\"><button type=\"button\" data-page=\"{{ctx.page}}\" class=\"{{css.paginationButton}} -ml-px relative inline-flex items-center px-4 py-2 border-l border-r border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150\">{{ctx.text}}</button></span>",
         rawHeaderCell: "<th class=\"{{ctx.css}}\">{{ctx.content}}</th>", // Used for the multi select box
         row: "<tr{{ctx.attr}}>{{ctx.cells}}</tr>",
         search: "<div class=\"{{css.search}}\"><div class=\"input-group\"><span class=\"{{css.icon}} input-group-addon {{css.iconSearch}}\"></span> <input type=\"text\" class=\"{{css.searchField}}\" placeholder=\"{{lbl.search}}\" /></div></div>",
