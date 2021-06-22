@@ -217,15 +217,7 @@
                                                 </td>
                                             <?endif?>
                                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                                                <?if($ad->status == Model_Ad::STATUS_NOPUBLISHED):?>
-                                                    <?=__('Not published')?>
-                                                <? elseif($ad->status == Model_Ad::STATUS_PUBLISHED):?>
-                                                    <?=__('Published')?>
-                                                <? elseif($ad->status == Model_Ad::STATUS_SPAM):?>
-                                                    <?=__('Spam')?>
-                                                <? elseif($ad->status == Model_Ad::STATUS_UNAVAILABLE):?>
-                                                    <?=__('Unavailable')?>
-                                                <?endif?>
+                                                <?= Model_Ad::get_status_label($ad->status) ?>
 
                                                 <?if( ($order = $ad->get_order())!==FALSE ):?>
                                                     <a class="label <?=($order->status==Model_Order::STATUS_PAID)?'label-success':'label-warning'?> "
