@@ -1287,7 +1287,7 @@ function _e($string, array $values = NULL, $lang = 'en-us')
     $string = empty($values) ? $string : strtr($string, $values);
 
     if (Core::get('edit_translation') !== '1')
-        return $string;
+        return stripslashes($string);
 
     $attributes = [
         'class' => 'editable',
@@ -1306,5 +1306,5 @@ function _e($string, array $values = NULL, $lang = 'en-us')
         $compiled_attributes .= '="'.htmlspecialchars( (string) $value, ENT_QUOTES, Kohana::$charset, TRUE).'"';
     }
 
-    return '<span '.$compiled_attributes.'>'.$string.'</span>';
+    return '<span '.$compiled_attributes.'>'.stripslashes($string).'</span>';
 }
