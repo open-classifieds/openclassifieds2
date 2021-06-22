@@ -1605,6 +1605,8 @@ class Controller_Ad extends Controller {
 
     protected function search_with_synonyms(Kohana_ORM $ads, $field, $text)
     {
+        $ads->or_where($field, 'like', "%{$text}%");
+
         /**
          * Expected word_synonyms theme option value:
          *
@@ -1625,8 +1627,6 @@ class Controller_Ad extends Controller {
         {
             return $ads;
         }
-
-        $ads->or_where($field, 'like', "%{$text}%");
 
         foreach ($synonym_groups as $synonym_group)
         {
