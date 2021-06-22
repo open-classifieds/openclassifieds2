@@ -108,6 +108,23 @@ class Model_Ad extends ORM {
         return self::$_current;
     }
 
+    public static function status()
+    {
+        return [
+            self::STATUS_NOPUBLISHED => __('Not published'),
+            self::STATUS_PUBLISHED => __('Published'),
+            self::STATUS_UNCONFIRMED => __('Unconfirmed'),
+            self::STATUS_SPAM => __('Spam'),
+            self::STATUS_SOLD => __('Sold'),
+            self::STATUS_UNAVAILABLE => __('Unavailable'),
+        ];
+    }
+
+    public static function get_status_label($status)
+    {
+        return self::status()[$status] ?? NULL;
+    }
+
     /**
      * Rule definitions for validation
      *
