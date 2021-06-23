@@ -29,9 +29,9 @@
         <div x-show="open" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity">
             <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
         </div>
-        <div x-show="open" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+        <div x-show="open" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="bg-white rounded-lg shadow-xl transform transition-all sm:max-w-lg sm:w-full">
             <form method="post" action="<?=Route::url('oc-panel',array('controller'=>'menu','action'=>'update','id'=>$key))?>">
-                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="bg-white rounded-tl-lg rounded-tr-lg px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left space-y-6">
                         <h3 class="text-lg leading-6 font-medium text-gray-900">
                             <?=__('Edit Menu')?> <?=$data['title']?>
@@ -72,7 +72,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex">
+                <div class="bg-gray-50 rounded-bl-lg rounded-br-lg px-4 py-3 sm:px-6 sm:flex">
                     <div>
                         <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
                             <a href="<?=Route::url('oc-panel', array('controller'=> 'menu', 'action'=>'delete','id'=>$key))?>"

@@ -332,7 +332,7 @@ class Controller_Panel_Translations extends Auth_Controller {
             if (isset($translation_array[$key]['translated']))
             {
                 $value = str_replace(array("\r", "\n"), '', $value);
-                $translation_array[$key]['translated'] = $value;
+                $translation_array[$key]['translated'] = addslashes($value);
             }
         }
 

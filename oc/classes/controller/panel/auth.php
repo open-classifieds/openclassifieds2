@@ -33,7 +33,7 @@ class Controller_Panel_Auth extends Controller {
             // Load the user
             $user = new Model_User;
             $user   ->where('email', '=', core::post('email'))
-                    ->where('status', 'in', array(Model_User::STATUS_ACTIVE,Model_User::STATUS_SPAM))
+                    ->where('status', 'in', [Model_User::STATUS_ACTIVE, Model_User::STATUS_SPAM, Model_User::STATUS_UNVERIFIED])
                     ->limit(1)
                     ->find();
 
@@ -51,6 +51,19 @@ class Controller_Panel_Auth extends Controller {
                     $blocked_login = TRUE;
                     Alert::set(Alert::ERROR, __('Login has been temporarily disabled due to too many unsuccessful login attempts. Please try again in 24 hours.'));
                 }
+            }
+
+            // Check if email has been verified, and resend verification if not
+            if ($user->loaded() AND $user->status == Model_User::STATUS_UNVERIFIED) {
+                $blocked_login = TRUE;
+
+                $user->email('auth-verify-email', ['[USER.PWD]' => '–', '[URL.QL]' => $user->ql('oc-panel', [
+                    'controller' => 'profile',
+                    'action' => 'verify',
+                    'id' => $user->verification_code,
+                ], TRUE)]);
+
+                Alert::set(Alert::WARNING, __('Please verify your email before log in. We have sent you a verification link to your email.'));
             }
 
             //not blocked so try to login
