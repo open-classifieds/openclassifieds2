@@ -66,10 +66,10 @@
         <?endif?>
         <?endif?>
 
-        <h1>Sorry!</h1>
+        <h1>Oops!</h1>
         <p>Something went wrong with your request. 
 
-        This incident is logged and we are already notified about this problem.</p>
+        The incident was logged and we've been notified about the issue.</p>
 
         <p>You can go <a href="javascript: history.go(-1)">Back</a> or to our <a href="<?php echo URL::site('/', TRUE) ?>">Home page</a>.</p>
       </div>

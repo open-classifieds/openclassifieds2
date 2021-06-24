@@ -2,8 +2,8 @@
 <div class="container">
 	<div class="col-xs-12">
 		<div class="jumbotron text-center">
-			<h1>Sorry!</h1>
-				<p>Something went wrong with your request. This incident is logged and we are already notified about this problem.</p>
+			<h1>Oops!</h1>
+				<p>Something went wrong with your request. The incident was logged and we've been notified about the issue.</p>
 				<?if (Auth::instance()->get_user()):?>
 					<?if (Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN):?>
 						<br><hr><br>
