@@ -135,6 +135,14 @@ class Controller_Panel_Integrations extends Auth_Controller {
                 'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/recaptcha.png',
                 'category' => '',
             ],
+            [
+                'name' => 'smartarget',
+                'config_name' => 'general.smartarget_id',
+                'label' => 'Smartarget',
+                'description' => __('Get 20 apps to improve user engagement. WhatsApp and Facebook Messenger Contact US, Popup, Message Bar and more.'),
+                'logo' => Core::config('general.base_url') . 'themes/default/img/oc-panel/integrations/smartarget.jpg',
+                'category' => '',
+            ],
         ];
 
         $social_integrations = [
