@@ -732,6 +732,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('general', 'site_description', ''),
 ('general', 'subscribe', 0),
 ('general', 'akismet_key', ''),
+('general', 'smartarget_id', ''),
 ('general', 'alert_terms', ''),
 ('general', 'contact_page', ''),
 ('general', 'search_by_description', 0),

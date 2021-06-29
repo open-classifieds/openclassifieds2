@@ -22,6 +22,10 @@ class Controller_Panel_Update extends Auth_Controller
                 'config_key' => 'ads_per_day_limit',
                 'group_name' => 'advertisement',
                 'config_value' => '0',
+            ],            [
+                'config_key' => 'smartarget_id',
+                'group_name' => 'general',
+                'config_value' => '',
             ],
         ];
 
