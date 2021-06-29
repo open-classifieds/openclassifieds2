@@ -65,6 +65,7 @@ class Model_User extends ORM {
             self::STATUS_INACTIVE => __('Inactive'),
             self::STATUS_ACTIVE => __('Active'),
             self::STATUS_SPAM => __('Spam'),
+            self::STATUS_UNVERIFIED => __('Unconfirmed'),
         ];
     }
 
