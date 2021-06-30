@@ -181,7 +181,7 @@ class Controller extends Kohana_Controller
             }
 
             //smartarget
-            if (Core::config('general.smartarget_id'))
+            if (Core::config('general.smartarget_id') AND is_subclass_of($this,'Auth_Controller') === FALSE)
             {
                 Theme::$scripts['footer'] [] = 'https://smartarget.online/loader.js?u=' . Core::config('general.smartarget_id') . '&source=yclas';
             }
