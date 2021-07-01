@@ -192,6 +192,43 @@
                         </div>
                     </div>
                 </div>
+                <div class="mt-8 border-t border-gray-200 pt-8">
+                    <div>
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                            <?=__('Email digest')?>
+                        </h3>
+                    </div>
+                    <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
+                        <div class="sm:col-span-6">
+                            <div class="absolute flex items-center h-5">
+                                <?=FORM::checkbox('digest', 1, (bool) Core::post('digest', Core::config('email.digest')), ['class' => 'form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out'])?>
+                            </div>
+                            <div class="pl-7 text-sm leading-5">
+                                <?=FORM::label('digest', __('Enabled'), ['class'=>'font-medium text-gray-700'])?>
+                                <p class="text-gray-500">
+                                    <?=__('Send email digest')?>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="sm:col-span-3">
+                            <?= FORM::label('digest_ad_type', __('Ads type in the email digest'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <?= Form::select('digest_ad_type', ['normal' => __('Normal'), 'featured' => __('Featured')], Core::post('digest_ad_type', Core::config('email.digest_ad_type')), [
+                                    'class' => 'form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                                ])?>
+                            </div>
+                        </div>
+                        <div class="sm:col-span-3">
+                            <?= FORM::label('digest_ad_limit', __('Ads limit in the email digest'), array('class'=>'block text-sm font-medium leading-5 text-gray-700'))?>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <?= FORM::input('digest_ad_limit', Core::post('digest_ad_limit', Core::config('email.digest_ad_limit')), [
+                                    'class' => 'form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                                    'type' => 'number',
+                                ])?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="mt-8 border-t border-gray-200 pt-5">
                 <div class="flex justify-end">

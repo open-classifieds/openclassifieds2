@@ -199,6 +199,7 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
             $user->address = core::post('address');
             $user->latitude = core::post('latitude');
             $user->longitude = core::post('longitude');
+            $user->digest_interval = core::post('digest_interval');
 
             //$user->seoname = $user->gen_seo_title(core::post('name'));
             $user->last_modified = Date::unix2mysql();
