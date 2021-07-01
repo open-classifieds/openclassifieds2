@@ -3,7 +3,7 @@
 class Controller_Panel_User extends Auth_CrudAjax {
 
     protected $_filter_fields = array(
-                                        'status' => array(0=>'Inactive',1=>'Active',5=>'Spam'),
+                                        'status' => array(0=>'Inactive',1=>'Active',3=>'Unconfirmed',5=>'Spam'),
                                         'id_role' => array('type'=>'SELECT','table'=>'roles','key'=>'id_role','value'=>'name'),
                                         );
 
