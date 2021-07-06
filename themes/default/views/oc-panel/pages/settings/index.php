@@ -74,14 +74,16 @@
                                 <?= __('Manage your custom fields for your users.') ?>
                             </p>
                         </a>
-                        <a href="<?=Route::url('oc-panel',array('controller'=>'role'))?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
-                            <h5 class="text-base leading-6 font-medium text-blue-600">
-                                <?= __('User roles') ?>
-                            </h5>
-                            <p class="mt-2 text-sm leading-6 text-gray-500">
-                                <?= __('Manage different roles to your users, from translation and content creation to moderation and website administration.') ?>
-                            </p>
-                        </a>
+                        <? if (Core::is_selfhosted()) : ?>
+                            <a href="<?=Route::url('oc-panel',array('controller'=>'role'))?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
+                                <h5 class="text-base leading-6 font-medium text-blue-600">
+                                    <?= __('User roles') ?>
+                                </h5>
+                                <p class="mt-2 text-sm leading-6 text-gray-500">
+                                    <?= __('Manage different roles to your users, from translation and content creation to moderation and website administration.') ?>
+                                </p>
+                            </a>
+                        <? endif ?>
                         <? if (Core::is_selfhosted()) : ?>
                             <a href="<?=Route::url('oc-panel',['controller'=>'update'])?>" class="group px-4 py-4 text-sm leading-6 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
                                 <h5 class="text-base leading-6 font-medium text-blue-600">
