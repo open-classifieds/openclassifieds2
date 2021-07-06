@@ -3,7 +3,7 @@
   * Theme Name: Atlantic Lite
   * Description: Clean free theme that includes full admin. It has publicity. Do not delete this theme, all the views depend in this theme.
   * Tags: HTML5, Free
-  * Version: 4.2.0
+  * Version: 4.3.0
   * Author: Oliver <oliver@open-classifieds.com>
   * License: GPL v3
   * Skins: default

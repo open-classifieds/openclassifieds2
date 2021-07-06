@@ -1,5 +1,14 @@
 <?php defined('SYSPATH') or die('No direct script access.');
                 return array (
+  '4.3.0' => 
+  array (
+    'codename' => 'Atropos',
+    'released' => '2021-07-07',
+    'blog' => '',
+    'changelog' => 'https://github.com/yclas/yclas/compare/4.2.0...4.3.0',
+    'issues' => 'https://github.com/yclas/yclas/milestone/47?closed=1',
+    'download' => 'https://j.mp/yc_430',
+  ),
   '4.2.0' => 
   array (
     'codename' => 'Ananke',

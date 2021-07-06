@@ -52,7 +52,7 @@ class install{
      * Software install settings
      * @var string
      */
-    const VERSION   = '4.22.0';
+    const VERSION   = '4.3.0';
 
     /**
      * default locale/language of the install
