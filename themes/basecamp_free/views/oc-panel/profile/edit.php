@@ -213,6 +213,17 @@
 								<?endif?>
 							<?endforeach?>
 
+                            <? if (Core::config('email.digest')) : ?>
+                                <div class="form-group">
+                                    <?= FORM::label('digest_interval', _e('Receive digest emails'), array('class'=>'col-xs-4 control-label', 'for'=>'digest_interval'))?>
+                                    <div class="col-sm-8">
+                                        <?= Form::select('digest_interval', ['never' => __('Never'), 'daily' => __('Daily'), 'weekly' => __('Weekly'), 'monthly' => __('Monthly')], $user->digest_interval, [
+                                            'class' => 'form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5',
+                                        ])?>
+                                    </div>
+                                </div>
+                            <? endif ?>
+
 							<div class="form-group clearfix">
 								<div class="col-md-offset-4 col-md-8">
 									<div class="checkbox">
