@@ -48,7 +48,7 @@
                 </ul>
             </div>
             <div class="mt-5">
-                <a target="_blank" href="<?= Route::url('oc-panel', ['controller'=>'update','action'=>'latest']) ?>" role="button" onclick="return confirm('<?=__('This process can take few minutes DO NOT interrupt it')?>');" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-700 active:bg-blue-700 transition duration-150 ease-in-out">
+                <a href="<?= Route::url('oc-panel', ['controller'=>'update','action'=>'latest']) ?>" onclick="return confirm('<?=__('This process can take few minutes DO NOT interrupt it')?>');" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-700 active:bg-blue-700 transition duration-150 ease-in-out">
                     <?=__('Proceed with Update')?>
                 </a>
             </div>
