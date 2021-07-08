@@ -10,23 +10,9 @@
  */
 class Controller_Panel_Update extends Auth_Controller
 {
-    public function action_430()
+    public function action_440()
     {
         $configs = [
-            [
-                'config_key' => 'mollie_api_key',
-                'group_name' => 'payment',
-                'config_value' => '',
-            ],
-            [
-                'config_key' => 'ads_per_day_limit',
-                'group_name' => 'advertisement',
-                'config_value' => '0',
-            ],            [
-                'config_key' => 'smartarget_id',
-                'group_name' => 'general',
-                'config_value' => '',
-            ],
             [
                 'config_key' => 'digest',
                 'group_name' => 'email',
@@ -71,6 +57,28 @@ class Controller_Panel_Update extends Auth_Controller
                                     ('Dispatch Weekly Digest', '0 7 * * SAT', 'Cron_Digestmail::dispatch_weekly_digest', NULL, 'Dispatch Weekly Digest at 07:00 on Saturday', 1),
                                     ('Dispatch Monthly Digest', '0 7 1 * *', 'Cron_Digestmail::dispatch_monthly_digest', NULL, 'Dispatch Monthly Digest at 07:00 on day-of-month 1', 1);")->execute();
         } catch (exception $e) {}
+    }
+
+    public function action_430()
+    {
+        $configs = [
+            [
+                'config_key' => 'mollie_api_key',
+                'group_name' => 'payment',
+                'config_value' => '',
+            ],
+            [
+                'config_key' => 'ads_per_day_limit',
+                'group_name' => 'advertisement',
+                'config_value' => '0',
+            ],            [
+                'config_key' => 'smartarget_id',
+                'group_name' => 'general',
+                'config_value' => '',
+            ],
+        ];
+
+        Model_Config::config_array($configs);
     }
 
     public function action_420()
