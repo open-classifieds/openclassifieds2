@@ -10,6 +10,55 @@
  */
 class Controller_Panel_Update extends Auth_Controller
 {
+    public function action_440()
+    {
+        $configs = [
+            [
+                'config_key' => 'digest',
+                'group_name' => 'email',
+                'config_value' => '0',
+            ],
+            [
+                'config_key' => 'digest_ad_type',
+                'group_name' => 'email',
+                'config_value' => 'normal',
+            ],
+            [
+                'config_key' => 'digest_ad_limit',
+                'group_name' => 'email',
+                'config_value' => '20',
+            ],
+        ];
+
+        Model_Config::config_array($configs);
+
+        try {
+            DB::query(Database::UPDATE, "ALTER TABLE `".self::$db_prefix."users` ADD `digest_interval` varchar(140) DEFAULT 'never'")->execute();
+        } catch (exception $e) {}
+
+        $contents = [
+            [
+                'order' => 0,
+                'title' => 'Email digest [SITE.NAME]',
+                'seotitle' => 'digest',
+                'description' => "Hello,\n\nWhat's new on [SITE.NAME], a digest of published ads during the past days. Please click on the ad title below for more information or to contact the publisher. [ADS]",
+                'from_email' => core::config('email.notify_email'),
+                'type' => 'email',
+                'status' => '1',
+            ],
+        ];
+
+        Model_Content::content_array($contents);
+
+        // Crontabs
+        try {
+            DB::query(Database::UPDATE, "INSERT INTO `".self::$db_prefix."crontab` (`name`, `period`, `callback`, `params`, `description`, `active`) VALUES
+                                    ('Dispatch Daily Digest', '0 7 * * *', 'Cron_Digestmail::dispatch_daily_digest', NULL, 'Dispatch Daily Digest at 07:00', 1),
+                                    ('Dispatch Weekly Digest', '0 7 * * SAT', 'Cron_Digestmail::dispatch_weekly_digest', NULL, 'Dispatch Weekly Digest at 07:00 on Saturday', 1),
+                                    ('Dispatch Monthly Digest', '0 7 1 * *', 'Cron_Digestmail::dispatch_monthly_digest', NULL, 'Dispatch Monthly Digest at 07:00 on day-of-month 1', 1);")->execute();
+        } catch (exception $e) {}
+    }
+
     public function action_430()
     {
         $configs = [

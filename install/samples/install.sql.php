@@ -73,6 +73,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `locale` varchar(5) DEFAULT NULL,
   `verification_code` int(6) DEFAULT NULL,
   `ewallet_balance` int(10) unsigned DEFAULT 0,
+  `digest_interval` varchar(140) DEFAULT 'never',
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_email` (`email`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_token` (`token`),
@@ -419,6 +420,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."content` (`ord
 (0, 'Hello [TO.NAME]!', 'messaging-ad-contact', 'You have been contacted regarding your advertisement:\n\n`[AD.NAME]`.\n\nUser [FROM.NAME], have a message for you:\n\n[DESCRIPTION]\n\n[URL.QL]\n\nRegards!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'New review for [AD.TITLE] [RATE]', 'ad-review', '[URL.QL]\n\n[RATE]\n\n[DESCRIPTION]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'There is a new reply on the forum', 'new-forum-answer', 'There is a new reply on a forum post where you participated.<br><br><a target=\"_blank\" href=\"[FORUM.LINK]\">Check it here</a><br><br>[FORUM.LINK]<br>', '".core::request('ADMIN_EMAIL')."', 'email',  1),
+(0, 'Email digest [SITE.NAME]', 'digest', 'Hello,\n\nWhat\'s new on [SITE.NAME], a digest of published ads during the past days. Please click on the ad title below for more information or to contact the publisher. [ADS]', '".core::request('ADMIN_EMAIL')."', 'email',  1),
 (0, 'Your plan [PLAN.NAME] has expired', 'plan-expired', 'Hello [USER.NAME],Your plan [PLAN.NAME] has expired \n\nPlease renew your plan here [URL.CHECKOUT]', '".core::request('ADMIN_EMAIL')."', 'email',  1);");
 
 /**
@@ -910,6 +912,9 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('email', 'mailgun_api_key', ''),
 ('email', 'mailgun_domain', ''),
 ('email', 'service', 'mail'),
+('email', 'digest', '0'),
+('email', 'digest_ad_type', 'normal'),
+('email', 'digest_ad_limit', '20'),
 ('user', 'user_fields', '{}'),
 ('social','oauth2_enabled',0),
 ('social','oauth2_client_id',''),
@@ -984,6 +989,9 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."crontab` (`nam
 ('Renew subscription', '*/5 * * * *', 'Cron_Subscription::renew', NULL, 'Notify by email user subscription will expire.', 1),
 ('Notify new updates', '0 9 * * 1', 'Cron_Update::notify', NULL, 'Notify by email of new site updates.', 1),
 ('Generate Access Token', '10 9 1 * *', 'Social::GetAccessToken', NULL, 'Generate Facebook long-lived Access Token.', 1),
-('Algolia Search re-index', '0 * * * *', 'Cron_Algolia::reindex', NULL, 'Re-index everything', 1);");
+('Algolia Search re-index', '0 * * * *', 'Cron_Algolia::reindex', NULL, 'Re-index everything', 1),
+('Dispatch Daily Digest', '0 7 * * *', 'Cron_Digestmail::dispatch_daily_digest', NULL, 'Dispatch Daily Digest at 07:00', 1),
+('Dispatch Weekly Digest', '0 7 * * SAT', 'Cron_Digestmail::dispatch_weekly_digest', NULL, 'Dispatch Weekly Digest at 07:00 on Saturday', 1),
+('Dispatch Monthly Digest', '0 7 1 * *', 'Cron_Digestmail::dispatch_monthly_digest', NULL, 'Dispatch Monthly Digest at 07:00 on day-of-month 1', 1);");
 
 mysqli_close($link);

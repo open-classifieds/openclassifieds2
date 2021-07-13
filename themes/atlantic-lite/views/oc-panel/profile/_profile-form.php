@@ -162,6 +162,15 @@
                 <? endif ?>
             <? endforeach ?>
 
+            <? if (Core::config('email.digest')) : ?>
+                <div class="form-group">
+                    <?= FORM::label('digest_interval', _e('Receive digest emails'), array('for'=>'digest_interval'))?>
+                    <?= Form::select('digest_interval', ['never' => __('Never'), 'daily' => __('Daily'), 'weekly' => __('Weekly'), 'monthly' => __('Monthly')], $user->digest_interval, [
+                        'class' => 'form-control',
+                    ])?>
+                </div>
+            <? endif ?>
+
             <div class="form-check">
                 <?= Form::checkbox('subscriber', 1, (bool) $user->subscriber, [
                     'id' => 'edit-profile-subscriber',

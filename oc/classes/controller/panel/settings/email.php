@@ -54,7 +54,12 @@ class Controller_Panel_Settings_Email extends Auth_Controller {
             ->rule('new_ad_notify', 'range', [':value', 0, 1])
             ->rule('smtp_ssl', 'range', [':value', 0, 1])
             ->rule('smtp_port', 'digit')
-            ->rule('smtp_auth', 'range', [':value', 0, 1]);
+            ->rule('smtp_auth', 'range', [':value', 0, 1])
+            ->rule('digest', 'range', [':value', 0, 1])
+            ->rule('digest_ad_type', 'not_empty')
+            ->rule('digest_ad_type', 'in_array', [':value', ['normal', 'featured']])
+            ->rule('digest_ad_limit', 'not_empty')
+            ->rule('digest_ad_limit', 'range', [':value', 0, 100]);
     }
 
     private function store_settings($data)
@@ -69,6 +74,9 @@ class Controller_Panel_Settings_Email extends Auth_Controller {
         Model_Config::set_value('email', 'smtp_pass', $data['smtp_pass']);
         Model_Config::set_value('email', 'smtp_secure', $data['smtp_secure']);
         Model_Config::set_value('email', 'smtp_auth', $data['smtp_auth']);
+        Model_Config::set_value('email', 'digest', $data['digest'] ?? 0);
+        Model_Config::set_value('email', 'digest_ad_type', $data['digest_ad_type']);
+        Model_Config::set_value('email', 'digest_ad_limit', $data['digest_ad_limit']);
     }
 
     private function get_email_service()

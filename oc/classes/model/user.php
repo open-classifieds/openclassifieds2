@@ -612,6 +612,7 @@ class Model_User extends ORM {
             $user->password             = $password;
             $user->subscriber           = 1;
             $user->verification_code    = rand(100000, 999999);
+            $user->digest_interval      = Core::config('email.digest') ? 'weekly' : 'never';
 
             try
             {

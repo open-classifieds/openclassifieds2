@@ -341,4 +341,69 @@ class Email {
         return $arr;
     }
 
+    public static function send_digest_mail($recipients, $ads = NULL)
+    {
+        $digest_mail_content = Model_Content::get_by_title('digest', 'email');
+
+        if (! $digest_mail_content->loaded())
+        {
+            return;
+        }
+
+        if (! array($recipients))
+        {
+            return;
+        }
+
+        $unsubscribe_link = Route::url('oc-panel', ['controller' => 'auth', 'action' => 'unsubscribe_from_email_digest']);
+
+        $replace = [
+            '[SITE.NAME]' => core::config('general.site_name'),
+            '[SITE.URL]' => core::config('general.base_url'),
+            '[ADS]' => View::factory('_ads-email-digest', ['ads' => $ads])->render(),
+        ];
+
+        $subject = str_replace(array_keys($replace), array_values($replace), $digest_mail_content->title);
+        $content = str_replace(array_keys($replace), array_values($replace), $digest_mail_content->description);
+
+        $mail_body = View::factory('email-digest', [
+            'title' => $subject,
+            'content' => $content,
+            'unsubscribe_link' => $unsubscribe_link,
+        ])->render();
+
+        switch (core::config('email.service')) {
+            case 'elasticemail':
+            case 'elastic':
+                $result = ElasticEmail::send(
+                    $recipients, '', $subject, $mail_body,
+                    $digest_mail_content->from_email, core::config('general.site_name')
+                );
+
+                break;
+            case 'mailgun':
+                $result = Mailgun::send(
+                    $recipients, '', $subject, $mail_body,
+                    $digest_mail_content->from_email, core::config('general.site_name')
+                );
+
+                break;
+            case 'pepipost':
+                //todo
+
+                break;
+            case 'smtp':
+            case 'mail':
+            default:
+                $result = self::phpmailer(
+                    $recipients, '', $subject, $mail_body,
+                    $digest_mail_content->from_email, core::config('general.site_name')
+                );
+
+                break;
+        }
+
+        return $result;
+    }
+
 } //end email
