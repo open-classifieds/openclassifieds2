@@ -420,7 +420,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."content` (`ord
 (0, 'Hello [TO.NAME]!', 'messaging-ad-contact', 'You have been contacted regarding your advertisement:\n\n`[AD.NAME]`.\n\nUser [FROM.NAME], have a message for you:\n\n[DESCRIPTION]\n\n[URL.QL]\n\nRegards!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'New review for [AD.TITLE] [RATE]', 'ad-review', '[URL.QL]\n\n[RATE]\n\n[DESCRIPTION]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'There is a new reply on the forum', 'new-forum-answer', 'There is a new reply on a forum post where you participated.<br><br><a target=\"_blank\" href=\"[FORUM.LINK]\">Check it here</a><br><br>[FORUM.LINK]<br>', '".core::request('ADMIN_EMAIL')."', 'email',  1),
-(0, 'Email digest [SITE.NAME]', 'digest', 'Hello,\n\nWhat\'s new on [SITE.NAME], a digest of published ads during the past days. Please click on the ad title below for more information or to contact the publisher.', '".core::request('ADMIN_EMAIL')."', 'email',  1),
+(0, 'Email digest [SITE.NAME]', 'digest', 'Hello,\n\nWhat\'s new on [SITE.NAME], a digest of published ads during the past days. Please click on the ad title below for more information or to contact the publisher. [ADS]', '".core::request('ADMIN_EMAIL')."', 'email',  1),
 (0, 'Your plan [PLAN.NAME] has expired', 'plan-expired', 'Hello [USER.NAME],Your plan [PLAN.NAME] has expired \n\nPlease renew your plan here [URL.CHECKOUT]', '".core::request('ADMIN_EMAIL')."', 'email',  1);");
 
 /**

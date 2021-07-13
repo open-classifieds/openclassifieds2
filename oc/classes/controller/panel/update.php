@@ -41,7 +41,7 @@ class Controller_Panel_Update extends Auth_Controller
                 'order' => 0,
                 'title' => 'Email digest [SITE.NAME]',
                 'seotitle' => 'digest',
-                'description' => "Hello,\n\nWhat's new on [SITE.NAME], a digest of published ads during the past days. Please click on the ad title below for more information or to contact the publisher.",
+                'description' => "Hello,\n\nWhat's new on [SITE.NAME], a digest of published ads during the past days. Please click on the ad title below for more information or to contact the publisher. [ADS]",
                 'from_email' => core::config('email.notify_email'),
                 'type' => 'email',
                 'status' => '1',

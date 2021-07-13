@@ -360,16 +360,15 @@ class Email {
         $replace = [
             '[SITE.NAME]' => core::config('general.site_name'),
             '[SITE.URL]' => core::config('general.base_url'),
+            '[ADS]' => View::factory('_ads-email-digest', ['ads' => $ads])->render(),
         ];
 
         $subject = str_replace(array_keys($replace), array_values($replace), $digest_mail_content->title);
         $content = str_replace(array_keys($replace), array_values($replace), $digest_mail_content->description);
-        $content = Text::nl2br($content);
 
         $mail_body = View::factory('email-digest', [
             'title' => $subject,
             'content' => $content,
-            'ads' => $ads,
             'unsubscribe_link' => $unsubscribe_link,
         ])->render();
 
